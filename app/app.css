@@ -7464,12 +7464,12 @@ body.dpr-sidebar-resizing {
 .dpr-sidebar-paper-title::after {
   content: "..";
   position: absolute;
-  right: calc(20px - 1ch);
+  right: -8px;
   top: 0;
   bottom: 0;
-  width: 2ch;
+  width: calc(28px + 3ch);
   padding-left: 0;
-  background: transparent;
+  background: var(--dpr-sidebar-paper-bg);
   color: inherit;
   text-align: left;
   opacity: 0;
