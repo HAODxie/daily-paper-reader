@@ -25,3 +25,78 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: neuro-mental
+      description: 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: large language models
+          keyword_cn: 大语言模型
+          query: large language models in research
+        - keyword: sleep
+          keyword_cn: 睡眠
+          query: sleep research
+        - keyword: mental health
+          keyword_cn: 心理健康
+          query: mental health studies
+        - keyword: brain-computer interface
+          keyword_cn: 脑机接口
+          query: brain-computer interface technology
+        - keyword: electroencephalography
+          keyword_cn: 脑电
+          query: EEG signal processing
+        - keyword: deep learning
+          keyword_cn: 深度学习
+          query: deep learning in neuroscience
+      intent_queries:
+        - query: How do large language models impact sleep and mental health
+          query_cn: 大语言模型如何影响睡眠和心理健康
+          enabled: true
+          source: manual
+          note: ''
+        - query: Deep learning for emotion recognition from EEG and brain computer interfaces
+          query_cn: 利用深度学习从脑电进行情绪识别和脑机接口
+          enabled: true
+          source: manual
+          note: ''
+        - query: Multimodal AI integrating sleep data and mental health monitoring
+          query_cn: 多模态人工智能整合睡眠数据和心理健康监测
+          enabled: true
+          source: manual
+          note: ''
+        - query: EEG and fMRI studies on emotion regulation and mental health
+          query_cn: 脑电和功能磁共振成像在情绪调节和心理健康中的研究
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-07-02T02:31:08.585Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
+  biorxiv:
+    papers_table: biorxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_biorxiv_papers_exact
+    vector_rpc_exact: match_biorxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_biorxiv_papers_bm25
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
