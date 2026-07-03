@@ -1,0 +1,2238 @@
+Title: No Evidence for a Wakeful Rest Benefit on Associative Memory: A Within-Participant EEG Study
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.01.735795v1.full.pdf
+
+Published Time: Fri, 03 Jul 2026 21:00:03 GMT
+
+Number of Pages: 27
+
+Markdown Content:
+No Evidence for a Wakeful Rest Benefit 1
+
+# on Associative Memory: A Within -2
+
+# Participant EEG Study 3
+
+# Walter Marion* 1, Lacaze Max 1, Garcia Samuel 1, Buonviso 4
+
+# Nathalie ** 1, Plailly Jane** 1
+
+5 1 Lyon Neuroscience Research Center (CRNL), Inserm U 1028, CNRS UMR 5292, University Lyon 1, 6
+
+69675, Bron, France 7
+
+8
+
+*Corresponding author 9
+
+Correspondence:  marion.walter@inserm.fr 10 
+
+11 
+
+** Co -last authors 12 
+
+13 
+
+14 
+
+# ABSTRACT 15 
+
+16 
+
+Wakeful rest after learning has been proposed to facilitate memory consolidation compared 17 
+
+to engaging in a distraction task, with prior EEG studies linking slow oscillation power during 18 
+
+rest to better memory performance. However, replication attempts have yielded mixed results. 19 
+
+We investigated whether 10 minutes of wakeful rest would enhance associative memory 20 
+
+performance relative to 10 minutes of a hippocampus -dependent auditory short -term memory 21 
+
+distraction task, using a within -participant design with con tinuous EEG recording. We 22 
+
+employed both a replication -inspired analytical approach, closely modeled on prior work, and 23 
+
+a data -specific approach adapted to our dataset. Contrary to our hypotheses, we found no 24 
+
+advantage of rest over distraction on associativ e memory performance. We did, however, 25 
+
+observe an order effect: performance was better for the second learning than the first, and this 26 
+
+improvement was more pronounced when rest was performed second compared to first . At 27 
+
+the neurophysiological level, neith er slow oscillation nor alpha power during the post -learning 28 
+
+period correlated with memory performance, regardless of analytical pipeline, although cross -29 
+
+over analyses revealed that the choice of EEG reference influenced the direction of some 30 
+
+correlations. At the phenomenological level, self -reported mental activity during rest and 31 
+
+distraction, as well as trait daydreaming frequency, were not related to memory outcomes, 32 
+
+despite the two conditions inducing distinct subjective cognitive states. Together, thes e33 
+
+findings do not support a robust benefit of post -learning wakeful rest over a hippocampus -34 
+
+dependent distraction task for associative memory, nor do they replicate prior EEG correlates 35 
+
+of consolidation. We discuss methodological factors, including task -le arning effects in within -36 
+
+participant designs, the coarseness of averaged spectral power measures, and variability in 37 
+
+EEG preprocessing pipelines, that may contribute to inconsistencies across the literature, and 38 
+
+we call for greater standardization and tran sparency in future studies. 39 
+
+40 
+
+Keywords: Memory consolidation, Wakeful res t, Slow oscillations, EEG , Mindwandering 41 
+
+42 
+
+Public data and code:  https://doi.org/10.17605/OSF.IO/CJDE2 43 
+
+44 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+## 1 Introduction 45 
+
+46 
+
+A growing body of research suggests that short periods of wakeful rest after learning can 47 
+
+facilitate memory retention, compared to engaging in distraction tasks . This effect has been 48 
+
+observed across diverse memory tasks (e.g., stories (e.g., Dewar et al., 2012 ; Brokaw et al., 2016 ;49 
+
+Sacripante et al., 2019 ; Evans et al., 2021) , word lists (e.g., Craig et al., 2014 ; Dewar et al., 2014 ;50 
+
+Millar and Balota, 2022 ; Craig and Greer, 2024) , translations (e.g., Mercer, 2015 ; Wang et al., 51 
+
+2021) , picture -word pairs (King and Nicosia, 2022) ) and distraction tasks (e.g., spot -the -difference 52 
+
+(e.g.,  Dewar et al., 2012, 2014; Craig et al., 2014, 2016; Sacripante et al., 2019; Martini et al., 53 
+
+2020; Evans et al., 2021) , Snood game  (Brokaw et al., 2016; Humiston and Wamsley, 2018; Wang 54 
+
+et al., 2021) . In most studies, resting after learning leads to better recall and less forgetting than 55 
+
+being engaged in a distraction task . In a recent systematic review and meta -analysis based on 63 56 
+
+experiments Weng et al. (2025) report ed a significant effect of wakeful rest on memory 57 
+
+consolidation with a medium effect size.  Ho wever, these findings are not always consistent accross 58 
+
+studies, and a non negligeable amount of them did not find any beneficial effect of rest over 59 
+
+distracting task on memory performances (e.g., Fatania and Mercer, 2017; Varma et al., 2017, 60 
+
+2018, 2019; Martini et al., 2018, 2020; Humiston et al., 2019; Tucker et al., 2020; Millar and Balota, 61 
+
+2022) . For instance, Brokaw et al.  (2016)  initially found that 15 minutes of post -learning rest 62 
+
+reduced the decline in correct recall and decreased false recall of short stories compared to 15 63 
+
+minut es spent playing the Snood game after learning . However, the same team later failed to 64 
+
+replicate these behavioral results  (Humiston et al., 2019) . Additionnal ly, i n their follow -up meta -65 
+
+analysis of 11 studies investigating the same effect, they found a moderate effect size  (Humiston 66 
+
+et al., 2019) . They conc luded that while wakeful rest appears beneficial for memory consolidation, 67 
+
+the effect may be smaller than previously believed .68 
+
+To understand the se discrepencies, several lines of research investigated the factors 69 
+
+influencing the benefits of wakeful rest on memory consolidation . In an opinion paper,  Martini and 70 
+
+Sachse (2020)  identified the nature of the distraction task as a modulating factor . Indeed , Varma 71 
+
+et al. (2017 , 2018 , 2019)  conducted a series of eight experiments using various versions of the N -72 
+
+back task , a wo rking memory paradigm characterized by minimal semantic content and 73 
+
+negligeable media l temporal lobe involvement , to systematically manipulate distraction task 74 
+
+difficult y, memory content (word -picture pairs and faces) and retrieval type (free recall and 75 
+
+recognition). Across all conditions, t hey found no advantage of wakeful rest over the N -back task 76 
+
+on memory performances , suggesting that distraction tasks with limited hippocampal involvement 77 
+
+may still be compatible with memory consolidation.  Addressing the role of attentional engagement 78 
+
+rather than hippocampal involvement,  Craig and Greer (2024) showed that post -encoding 79 
+
+engagem ent, and not attentional load (i.e., amount of cognitive resources require d by a task ),80 
+
+disrupts consolidation:  using two difficulties of a Sustained Attention to Response Task (SART) as 81 
+
+distractor, they showed that  memory scores were higher after rest than after distraction task s, with 82 
+
+no difference between low - and high -attentional load conditions. Dewar et al. (2007) reported 83 
+
+equivalent memory impairments across distracting tasks wit h substantially different content. Their 84 
+
+findings showed that interference effects occur regardless of whether the distracting task shares 85 
+
+content with the memory task, indicating that content overlap is not a necessary condition for 86 
+
+memory interference. Accordingly, when the goal is to examine memory consolidation during 87 
+
+wakeful rest rather than content -specific interference, distraction tasks should be designed to 88 
+
+minimize overlap with the memory material. Altogether , t hese findings suggest that for a distraction 89 
+
+task to impair memory consolidation through the interruption of active consolidation processes , it 90 
+
+should be hippocampus -dependent , capture attention , though not necessarily be difficult , and it 91 
+
+should be dissimilar to the learning task . Otherwise, any observed disruption may stem from 92 
+
+classical retroactive interference .93 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Another factor proposed to potentially influence the wakeful rest effect was t he amount of 94 
+
+mindwandering and daydreaming du ring wakeful rest . Indeed,  Craig et al. (2014) showed that 95 
+
+autobiographical thinking cued by sounds , but not listening passively to meaningless sounds, 96 
+
+resulted in lower memory performances compared to rest (see also Varma et al., 2018) . In the 97 
+
+same line, Brokaw et al. (2016) studied the mental activities associated with memory 98 
+
+improvements by asking the percentage of time engaged in different mental activities during the 99 
+
+post -learning conditions (i.e., autobiographical thinking, thinking about the memory task, 100 
+
+meditating, slee ping, thinking about what I am doing). They did not find any link between mental 101 
+
+activities during rest and memory performance. However, participants exhibit ed better memory 102 
+
+performances when, during distraction , they spend less time thinking about the dis traction task, 103 
+
+and more time thinking about their past, current or future life, or meditating. To further study the 104 
+
+potential modulatory role of daydreaming and mindwandering on memory consolidation during 105 
+
+wakeful rest , Humiston et al. (2019 ) extended this approach by assessing these tendencies as 106 
+
+stable individual traits in everyday life, using validated psychometric instruments: the Daydreaming 107 
+
+Frequency Scale (DFS , Stawarczyk et al., 2012) , measuring dispositional daydreaming, and the 108 
+
+Mindfulness Attention Awareness Scale (MAAS , Brown and Ryan, 2003) , measuring trait 109 
+
+mindfulness and meditative tendencies.  Contrary to the ir hypothesis , they  reported that 110 
+
+participants with high propensity of daydreaming and mindwandering showed less memory 111 
+
+improvement s when learning i s followed by rest . This observation opened a new idea in the field: 112 
+
+wakeful rest is not sufficient for memory consolidation , and one have to be offline not only from a 113 
+
+task to perform, but  also from spontaneous thoughts. In this view, wakeful rest could be beneficial 114 
+
+for memory consolidation by  increasing the probability of experiencing offline states (i.e., strong 115 
+
+decrease of externally generated cognition coupled with a strong decrease in internally generated 116 
+
+thoughts), o r mind blank. 117 
+
+Mechanistically, r est is believed to create a state that s upports early memory consolidation, 118 
+
+possibly through processes similar to those active during sleep, such as slow oscillations 119 
+
+(Wamsley, 2022) . To our knowledge, Brokaw et al. (2016) were the first to use 120 
+
+electroencepha lography (EEG) to explore this idea, showing that slow oscillation (SO, 0.3 –1 Hz) 121 
+
+power during post -learning rest positively correlated with memory performance s. They also 122 
+
+showed that alpha (8 -12 Hz) power during rest was negatively correlated with memory 123 
+
+performances . However, these finding s have not been replicated . In a follow -up study, the same 124 
+
+team investigated whether brief offline states occurring during a post -learning task could promote 125 
+
+memory consolidation. To do so, they operationalized two distinct states: "online" states ,126 
+
+characterized by external attentional focus , reduced alpha and SO power , increased pupil 127 
+
+diameter , and faster reaction time s, were associated with active task engagement ; c onversely, 128 
+
+"offline" states , characterized by increased alpha/SO power, reduced pupil diameter, task -129 
+
+unrelated thoughts , and s lower reaction time s, were hypothesized to be conducive to memory 130 
+
+consolidation. They found that the proportion of time spent in offline states during a post -learning 131 
+
+SART significantly predicted subsequent memory performance for a short story. Importantly , this 132 
+
+study did not replicate Brokaw et al. 's (2016) findings , in that SO power alone during the SART did 133 
+
+not correlate with memory performances, and it did not directly compare rest versus distraction 134 
+
+foll owing learning. 135 
+
+In this study, we aimed to replicate the findings from Brokaw et al. (2016) using different 136 
+
+memory and distraction tasks , to assess the generalizability of the EEG findings . We compared 137 
+
+memory performances to an associative memory task after 10 minutes of wakeful rest or 10 138 
+
+minutes of a n auditive short term memory task as distractor with continuous EEG recording in a 139 
+
+within -participant design . The choice of the distraction t ask has been made following the literature 140 
+
+recommendation of hippocampal engagement (Borderie et al., 2024) . We hypothesized that (1) 141 
+
+memory performances after rest would be better tha n memory performances after distracti on , (2) 142 
+
+memory performance s after rest would be positively correlated with SO power , and negatively 143 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+correlated with alpha power , during rest . We also investigated the link between mental activities 144 
+
+during post -learning, daydreaming frequency, and memory performances. 145 
+
+146 
+
+## 2 Material s and methods 147 
+
+Th e data analyzed in this article are part of a larger study focusing on the potential modulating 148 
+
+impact of the inhalation of a persona lly pleasant odor on memory consolidation during wakeful 149 
+
+rest . The original study includes two gro ups of participants : a group with an odor diffused during 150 
+
+both post -learning conditions , and a group where no odor was present ed . Here, we analy zed the 151 
+
+data of the no -odor group only . We collected other data not included here . The detailed and 152 
+
+complete procedure from the original study is findable in the supplementary file (see original study 153 
+
+protocol). This original study has been pre -registered (Walter et al., 2024 ).154 
+
+All analyses were implemented using custom Python and R scripts, which are pu blicly available 155 
+
+on GitHub ( https://github.com/marion -walter/wakeful -rest -eeg.git ) and archived alongside the data 156 
+
+on Open Science Framework ( https://doi.org/10.17605/OSF.IO/CJDE2 , Walter et al., 2026). 157 
+
+Comprehensive documentation is included to ensure full reproducibility of the analyses. 158 
+
+2.1 Participants 159 
+
+The group consisted of 30 participants in order to replicate the effect of Brokaw et al. (2016) 160 
+
+with the same sample size (15 women, 15 men, 29.3 ± 10.5 years, range: 20 -57 years ). The 161 
+
+inclusion criteria were: aged between 18 and 60 years, social security coverage, and willingness 162 
+
+to participate in the study. The exclusion criteria were: pregnancy, labor, or breastfeeding, 163 
+
+deprivation of liberty by judicial or administrative decision, known cardiovascular, respiratory, 164 
+
+olfactory, neurosensory, neurologic or psychiatric disorders, and smoking more than 5 packs a 165 
+
+year (𝑁 𝑐𝑖𝑔𝑎𝑟𝑒𝑡𝑡𝑒𝑠 𝑝𝑒𝑟 𝑑 𝑎𝑦 ∗ 𝑁 𝑦𝑒𝑎𝑟𝑠 𝑜𝑓 𝑠𝑚𝑜𝑘𝑖𝑛𝑔  
+
+> 20
+
+). This study was approved on July 2 , 202 4, by the Ethics 166 
+
+Committee ( Comité de Protection des Personnes Ile De France 3 , ID RCB: 2021 -A03077 -34) in 167 
+
+accordance with French regulations for biomedical experiments with healthy volunteers. It was 168 
+
+conducted in accordance with the Declaration of Helsinki. Participants were informed clearly and 169 
+
+fairly about the study, provided written informed consent, and were compensated for their 170 
+
+participation. 171 
+
+2.2 Tasks and materials 172 
+
+2.2.1 Stimuli 173 
+
+Pictures of items 174 
+
+Fifty pictures of items were used. They were chosen from royalty -free image banks 175 
+
+(https://www.pexels.com/fr -fr/  and  https://unsplash.com/fr ) or generated by artificial intelligence 176 
+
+with Microsoft Bing Image Creator (DALL -E 3 ). They were pictures of animals, musical instruments, 177 
+
+plant s, food, everyday objects, means of transport, and clothing , displayed on a 1024 x 1024 pixels 178 
+
+white background. 179 
+
+Items were selected from an online pilot study to be widely known, easily recognizable, and 180 
+
+namable in one unequivocal word. In the pilot 82 pic tures were preselected, and 50 volunteers 181 
+
+rate d the stereotypy of each picture (i.e. , how well the image represents what it is supposed to 182 
+
+represent, from 0 (not representative at all) to 10 (very representative)) and the familiarity of each 183 
+
+picture (i.e. , how familiar they were with the item displayed , from 0 (not at all familiar) to 10 (very 184 
+
+familiar)) , and were asked to name the item with one word, in the most obvious way. We selected 185 
+
+the 50 items pictures with the highest scores of stereotypy (8.94 ± 1.55) and familiarity (8.86 ±186 
+
+1.68) , and all of which were named consistently by the volunteers .187 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Pictures of landscapes 188 
+
+Fifty pictures of landscapes were chosen from royalty -free image banks 189 
+
+(https://www.pexel s.com/fr -fr/  and  https://unsplash.com/fr ). They were 6000 x 3748 pixels 190 
+
+photography of countryside, desert, water, space, forest, underwater, mo untains, snowy 191 
+
+lan dscapes , and urban environment .192 
+
+Associations 193 
+
+Fifty associations were built per participant. They consisted of a pair composed of an item 194 
+
+picture and a landscape picture. The landscape picture was in the background. The picture of the 195 
+
+object was superimposed on that of the landscape, in a central position. Associations were random 196 
+
+and differed between participants. For each participant, each picture was used only once. 197 
+
+Associations were presented full -screen. 198 
+
+2.2.2 Associative memory task 199 
+
+The memory task itself was adapted from Guinet et al., (2026) . It has been coded in Python 200 
+
+(version 3.1 0.19) using Psycho py (version 2023.1.3) . The overall structure of the task was as 201 
+
+follows: Encoding 1, followed by Initial Retrieval 1, then the first post -learning condition (either Rest 202 
+
+or the Distraction task). Thi s was followed by Encoding 2, Initial Retrieval 2, the alternate post -203 
+
+learning condition (i.e., Rest if Distraction was done first, Distraction if Rest was done first) , and 204 
+
+finally the Surprise Delay Retrieval (Figure 1A) . The associative memory task laste d approximately 205 
+
+one hour, from Encoding 1 to the Surprise Delay Retrieval .206 
+
+Encoding 207 
+
+Each Encoding session (Encoding 1, Encoding 2) was composed of 2 5 trials. A trial consisted 208 
+
+in a 1-second presentation of a fixation cross , followed by a 5 -second presentation of a landscape -209 
+
+object association . Participants had 5 seconds to rate the likelihood of the association on a discrete 210 
+
+scale from 0 (very unlikely) to 3 (very likely) (Figure 1B , left ). Participants were instructed to 211 
+
+remember as many associations as possible for the retrieval test that followed. An encod ing 212 
+
+session last ed approximately five minutes. 213 
+
+Initial Retrieval 214 
+
+Each Initial Retrieval session (Initial Retrieval 1, Initial Retrieval 2) was composed of 2 5 trials. 215 
+
+A trial consisted of the presentation of one of the landscape pictures presented during the 216 
+
+Encoding , for 5 seconds. Then, participants were given up to 15 seconds to type the name of the 217 
+
+previously associated item using a keyboard. If they were unable to re trieve the item ’s name, they 218 
+
+were instructed to enter “0.” A trial ended when the participant s pressed the spacebar to val idate 219 
+
+their answer or when the 15 -second time limit elapsed (Figure 1B , right ). Order of presentation of 220 
+
+the pictures of landscape was random. A retrieval session lasted nine minutes maximum. 221 
+
+Surp rise Delayed Retrieval 222 
+
+The Surprise Delay Retrieval session was composed of 50 trials similar to the Initial Retrieval 223 
+
+sessions, and where t he 50 landscapes from Encoding 1 and Encoding 2 were presented in a 224 
+
+randomi zed order. The surprise delayed retrieval lasted 18 minutes maximum. 225 
+
+Post -learning r est 226 
+
+The resting session was a period in which participants were instructed to rest quie tly, not to 227 
+
+fall asleep, keep their eyes open, breath e through their nose, and move as l ittle as possible while 228 
+
+sitting on a comfortable chair , for a duration of 10 minutes .229 
+
+Post -learning d istraction task 230 
+
+To avoid any interference with the visual material of the associative memory task , as well as to 231 
+
+minimize hands and eyes movements for the EEG recording , the distraction task consisted in an 232 
+
+auditory task designed b y Albouy et al. (2013) . It was made of 54 trials. In each trial, participants 233 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+listened to two six -note melodies ( Sequence 1 and Sequence 2) separated by an interval of 1.5 234 
+
+second , and indicated whether the sequences were identical or different by clicking on one of the 235 
+
+two re sponses (Identical or Different ). Sequences 1 were generated using MATLAB (R2024a ,236 
+
+MathWorks , 2024 ). under two constraints: each sequence had to contain at least one increasing 237 
+
+and one decreasing tone interval , and all sequences had to be unique. For Sequences 2 creation, 238 
+
+half of them were modified by altering either the 2 nd , 3 rd , 4 th , or 5 th note to a pitch not present in the 239 
+
+corresponding Sequence 1. As a result, half of the trials consisted of identical melody pairs, and 240 
+
+the other half consisted of mismatched pairs. The task was displayed on a tablet , and lasted 10 241 
+
+minutes . Performances to this task are described and analy sed in supplementary file 242 
+
+(Supplementary Figure 1) .243 
+
+2.2.3 Questionnaires 244 
+
+Daydreaming Frequency Scale 245 
+
+This 12 -items scale aim s to assess mindwandering frequency in daily life (Stawarczyk et a l., 246 
+
+2012) . For each item, participants had to choose between 5 possible answers from A247 
+
+(corresponding to the least frequent, scored as a 1) to E (corresponding to the most frequent, 248 
+
+scored as a 5). The total score was calculated by summing the scores from each item . A high total 249 
+
+score (minimum of 12, maximum of 60) indicated a high frequency of daydreaming. 250 
+
+Mental activities questionnaire 251 
+
+We adapted the procedure of Andrews -Hanna et al. (2010) used by (Brokaw et al., 2016) , and 252 
+
+asked the participants to assess the amount of time engaged in seven predefined categories of 253 
+
+mental activities: “Thinking about m y past life or imagine my future life”, “Mindwandering”, 254 
+
+“Intentionally thinking about the images learned in the memory task”, “Meditating”, “Sleeping”, 255 
+
+“Thinking about what I was doing (resting or performing the distraction task)”, “Thinking of nothing, 256 
+
+having a mind blank”, “Other: if ticked, specify which mental activity”. 257 
+
+Distraction task difficulty questionnaire 258 
+
+Participants had to answer the question "How difficult did you find the task of musical 259 
+
+comparison?" (from 0: very easy to 10: very difficult) .260 
+
+The Daydreaming Frequency Scale was filled in through LimeSurvey software (LimeSurvey 261 
+
+GmbH, n.d.) . The Mental activities questionnaire and Distraction task difficulty question were built 262 
+
+using the Python libraries Dash (version 3.3.0 ), and Psychopy (version 2025.2.3 ), respectively .263 
+
+2.2.4 EEG activity recording 264 
+
+Electric brain activity was recorded with a 64 -channel scalp -EEG positioned according to the 265 
+
+international 10 -20 system using actiCAP nap (actiC hamp Plus, Brain Products GmbH, Gilching, 266 
+
+Germ any) and Brainvision Recorder (Brainvision Recorder, Vers, 1.2 6.0 101, Brain Products 267 
+
+GmbH, Gilching, Germany ), using Fz as the online reference, and a sampling rate of 500 Hz. The 268 
+
+ground electrode was placed in the mid -frontal region. Impedances were kept below 50 kΩ by 269 
+
+applying conductive gel to the scalp. Due to technical issues in F Cz channel in some participants, 270 
+
+this electrode was removed from the analys es for all partici pants. 271 
+
+2.3 Experimental Procedure 272 
+
+The experiment consisted of two sessions a few days apart ( median : 3 days , range: 1 -28) .273 
+
+During the first session (duration: 30 minutes) , participants signed an informed consent form ,274 
+
+complete d the Daydreaming Frequency Scale , and d id a picture evaluation procedure not 275 
+
+described her e (supplementary file, original study protocol ). 276 
+
+During t he second session , participants were equipped with the EEG -cap . A 5-minute baseline 277 
+
+recording followed , during which participants were asked to rest, eyes open, breath e through their 278 
+
+nose , and move as little as possible . Before starting the associative memory task, instructions were 279 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+given, and participants under went a 3 -trial training (i.e. , an encoding followed by a retrieval ) to 280 
+
+ensure task understanding. Training trials were the same for all participants. Then, the memory 281 
+
+task began (Figure 1A) . Participant s completed two cou nterbalanced conditions : a learning (i.e., 282 
+
+encoding followed by an immediate retrieval ) followed by a 10 -minute resting period , and another 283 
+
+learning followed by a 10 -minute distraction task , resulting in two possible condition order s. After 284 
+
+having completed both conditions, participants perform ed a surprise delayed retrieval of all the 285 
+
+associations . EEG was recorded during this whole session. 286 
+
+287 
+
+288 
+
+Figure 1 – Experimental procedure . A) Associative memory task protocol. 289 
+
+Participants completed two learning sessions (Encoding + Initial Retrieval ), each 290 
+
+followed by either 10 minutes of wakeful r est or 10 minutes of a distraction task , in a 291 
+
+counterbalanced order. A Surprise Delayed Retrieval of all the associations 292 
+
+concluded the procedure . B) Example s of encoding (left) and retrieval (right) trial s.293 
+
+Encoding trial: A 1 -secon d fixation cross was followed by a 5 -second display of the 294 
+
+landscape -item pair, and a 5-second period to evaluate the likelihood of the 295 
+
+association . Retrieval trial: A 1 -second fixation cross was followed by a 5 -second 296 
+
+display of the landscape image, and p articipants had up to 15 seconds to write the 297 
+
+associated item ’s name .298 
+
+At the end of the memory task and after being unequipped, participants were asked to complete 299 
+
+the mental activities questionnaire , regarding their mental activities during the two post -learning 300 
+
+periods: rest and distraction and to complete distraction task difficulty questionnaire . Finally, all the 301 
+
+item ’s pictures presented to the participant s during encoding were displayed one by on e, and 302 
+
+participants were asked to orally name them as they did during the retrieval phases of the memory 303 
+
+task. This step was done to know individual labels of each item and to help scoring. Before the 304 
+
+participant left, they were asked if they had any under standing of the objectives and hypotheses 305 
+
+of this study. The whole second session lasted approximately 2 hr 30 min .306 
+
+2.4 Data description 307 
+
+2.4.1 Memory performance 308 
+
+For each retrieval trial, participants wrote the name of the item that was associated with the 309 
+
+picture of the landscape displayed. Memory performance was scored based on the 310 
+
+correspondence between the item presented during encoding and the participant’s response: a 311 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+score of 1 was assigned for correct retriev al , and 0 for incorrect or omitted responses. Memory 312 
+
+performances were then computed by two complementary memory scores. 313 
+
+For each condition (Rest or Distraction ), we computed a Global Memory Change score to 314 
+
+quantify the change in memory performance between the Initial Retrieval session and the Surprise 315 
+
+Delayed Retrieval session. This metric aligns with common practices in the literature, though 316 
+
+scoring methods vary across studies (e.g., score at final retrieval – score at initial retrieval , Brokaw 317 
+
+et al., 2016; Varma et al., 2017 ; score at final / score at initial retrieval , Martini et al., 2018 , etc.) .318 
+
+To enhance precision , particularly in distinguishing between small and large absolute differences 319 
+
+(e.g., a change from 3 to 2 vs. 23 to 22) , we adopted a refined approach, calculating the score as 320 
+
+follows: 321 
+
+Global Memory Change = (𝒔𝒄𝒐𝒓𝒆 𝒂𝒕 𝒇𝒊𝒏𝒂𝒍 𝒓𝒆𝒄𝒂𝒍𝒍 − 𝒔𝒄𝒐𝒓𝒆 𝒂𝒕 𝒊𝒏𝒊𝒕𝒊𝒂𝒍 𝒓𝒆𝒄𝒂𝒍𝒍     
+
+> 𝒔𝒄𝒐𝒓𝒆 𝒂𝒕 𝒊𝒏𝒊𝒕𝒊𝒂𝒍 𝒓𝒆𝒄𝒂𝒍𝒍
+
+) ∗ 𝟏𝟎𝟎 .322 
+
+where the score at final retrieval and the score at initial retrieval were the sum of correct responses 323 
+
+in the Surprise Delayed and Initial Retr ieval , respectively. However, it should be noted that it 324 
+
+confuse s both trials that were initially retrieved and then forgotten, and trials that were initially 325 
+
+forgotten and then retrieved .326 
+
+Thus, for each condition , we computed a Relative Memory Change memory score, which 327 
+
+quantifies the change in retention of associations initially learned (as measured during the Initial 328 
+
+Retrieval session) by the Surprise Delayed Retrieval session. This score reflects the percentage 329 
+
+of initially learned associatio ns that were later ret rieved, with a value of 10 0 indicating a full 330 
+
+retrieval . It was calculated as follows :331 
+
+Relative Memory Change = (𝑵 𝒕𝒓𝒊𝒂𝒍𝒔 𝒎𝒆𝒎𝒐𝒓𝒊𝒛𝒆𝒅 − 𝑵 𝒕𝒓𝒊𝒂𝒍𝒔 𝒊𝒏𝒊𝒕𝒊𝒂𝒍𝒍𝒚 𝒍𝒆𝒂𝒓𝒏𝒆𝒅     
+
+> 𝑵 𝒕𝒓𝒊𝒂𝒍𝒔 𝒊𝒏𝒊𝒕𝒊𝒂𝒍𝒍𝒚 𝒍𝒆𝒂𝒓𝒏𝒆𝒅
+
+) ∗ 𝟏𝟎𝟎 .332 
+
+where N trials initially learned represents the number of trials correctly retriev ed during the Initial 333 
+
+Retrieval , while N trial memorized refers to the number of trials initially learned that where correctly 334 
+
+retriev ed during the Surprise Delayed Retrieval .335 
+
+2.4.2 EEG signals processing 336 
+
+Preproce ssing 337 
+
+Only EEG data from post -learning conditions (Rest and Distraction) have been analyzed for 338 
+
+this article. First, r aw EEG data were rescaled to microvolts (μV). To standardize signal duration 339 
+
+across participants and conditions, the first 10 seconds of e ach recording were removed, and the 340 
+
+subsequent 10 minutes of data were retained for analysis. To eliminate slow drifts in the signal, a 341 
+
+linear detrending process was applied using a high -pass filter with a cutoff frequency of 0.05 Hz, 342 
+
+including ringing cor rection (inspired by De Cheveigné and Arzounian, 2018) . Signals were then 343 
+
+centered by subtracting the mean value to prepare for Independent Component Analysis (ICA) to 344 
+
+exclude ocular and cardiac artifacts . Since ICA performs optimally on signals filtered above 1 Hz, 345 
+
+and because our analysis focused on slower oscillations, we avo ided removing entire ICA 346 
+
+component s. This precaution was taken to prevent introducing spectral distortions in frequency 347 
+
+bands outside the artifact’s range, which could compromise the integrity of our low -frequency 348 
+
+signals of interest . Instead, we employed a targeted approach to remove ocular and cardia c349 
+
+artifacts locally . ICA was first computed on signals filtered between 1 and 100 Hz using the Infomax 350 
+
+method from the MNE package (version 1.0.2 , Gramfort et al., 2013) . Ocular and cardiac artifacts 351 
+
+were identified using the iclabel method for ocular artifacts and the mne_bad_ecg method for 352 
+
+cardiac artifacts, based on electrocardiogram recordings. These artifacts were then corrected 353 
+
+using a combination of Continuous Wavelet Transform and Multistage Singular Spectrum Analy sis 354 
+
+(CWT -MSSA). The CWT -MSSA algorithm involved : 1) Localizing artifacts using wavelet -based 355 
+
+methods ; 2) Classifying and correcting blink and cardiac artifacts using Singular Spectrum Analysi s356 
+
+or applying a rectification procedure for saccades ; 3) Projecti ng the corrected components back to 357 
+
+propagate the correction across all channels. Muscular artifacts were detected using a sliding Root 358 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Mean Square threshold window. Artifacted segments were replaced with content matching the 359 
+
+spectral properties of the EEG signal (inspired from Ghibaudo et al., 2025) . A notch filter was 360 
+
+applied to remove line noise at 50 Hz and its harmonics (100, 150, and 200 Hz). S ignals were then 361 
+
+low -pass filtered at 200 Hz. Remaining large variations in the signals were removed using a 362 
+
+threshold based on the Median Absolute Deviation (MAD), following a method inspired by 363 
+
+Maddirala and Veluvolu (2021) . Finally, signals were mean -centered one last ti me .364 
+
+Processing 365 
+
+EEG data were processed using two distinct approaches. First, in replication -inspired 366 
+
+analyses, to replicate the negative correlation between memory performance and slow oscillation 367 
+
+power during rest reported by Brokaw et al. (2016) , we adopted their EEG signal processing 368 
+
+methodology. Second , in data -specific analyses, we conducted an analysis tailored to our dataset. 369 
+
+For replication -inspired analyses , since Brokaw et al. (2016) recorded EEG signals with 370 
+
+mastoid references, we re -referenced our data to the TP9 and TP10 electrodes . For each of the 6 371 
+
+channel, band -averaged power spectral density (PSD) w as computed for two frequency bands of 372 
+
+interest: slow oscillations ( SO, 0.3 -1 Hz ) and alpha oscillations (8 -13 Hz) , using Welch’s method 373 
+
+with 4-second Hanning windows and a 50% overlap . To account for interindividual variability in 374 
+
+EEG amplitude, we used relative power values , normalized such that the total power across all 375 
+
+frequency bands summed to a constant value for each analyzed segment. This normalization 376 
+
+ensure d comparability of spectral power distributions across participants and conditions. Finally, 377 
+
+band -averaged PSD s were averaged on participants , condition s and order. One pa rticipant was 378 
+
+excluded from the Distraction condition due to technical issues during data acquisition. 379 
+
+For the data -specific analys es, we followed the same processing steps described above, with 380 
+
+two adjustments . First, the signal from each of the 62 channel s was re -re ferenced to the common 381 
+
+average . Second , given that the 4 -second windows used in Brokaw et al. (2016) were insufficient 382 
+
+to reliably estimate the PSD of slow oscillations — since a 0.3 Hz oscillation has a period of 383 
+
+approximately 3.33 seconds — we increased the window length to 20 seconds. This a djustment 384 
+
+was based on the estimated period required to capture two adjacent frequency cycles. 385 
+
+2.5 Statistic al analys es386 
+
+2.5.1 General information 387 
+
+Descriptive statistics are reported using mean s and standard deviation s (SD) for normally 388 
+
+distributed data, and median s and MAD for non -parametric or skewed distributions . Correlation s389 
+
+were investigated using Spearman meth od. For multiple comparisons correction, we used False 390 
+
+Discovery Rate (FDR) correctio n. Results were considered significant at the level of p < 0.05 . For 391 
+
+significant differences effect sizes were reported with Common Language Effect Sizes (CLES) for 392 
+
+non -parametric statistical tests (Vargha and Delaney, 2000) , and Cohens’ d for parametric ones. 393 
+
+Statistical analys es were performed using two approaches: a replication -inspired and a data -394 
+
+specific approaches .395 
+
+2.5.2 Replica tion -Inspired Analysis 396 
+
+To align with the methodology of Brokaw et al. (2016) , we first performed repl ication -inspired 397 
+
+analyses by computing a memory score inspired from their "change in recall" metric (i.e., Global 398 
+
+Memory Change ). Linear models analyses (i.e., t-tests, Analyses of Variance – ANOVAs – or non -399 
+
+parametric equivalents) were conducted using Pyt hon language (version 3.11.9), Pingouin 400 
+
+(version 0.5.5, Vallat, 2018) and SciPy packages (version 1.16.3, Virtanen et al., 2020) .401 
+
+Memory performances 402 
+
+Linear models were used to assess the main effect of post -learning condition (rest vs. 403 
+
+distraction) on both Global Memory Change and Relative Memory Change . Due to violations of 404 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+normality in the data and to account for the with in -participants design, a non -parametric Wilcoxon 405 
+
+test was used. We then tested for a potential order effect of Cond ition by adding a between -406 
+
+participants Order factor (2 levels: Rest -Distraction, and Distraction -Rest). Because of the mixed -407 
+
+design (within -participant Condition factor and between -participant Order factor) and non -normally 408 
+
+distributed data, we used a perm utation -based ANOVA to test for an interaction effect between 409 
+
+Condition and Order, using the permuco package (version 1.1.3, Frossard and Renaud, 2021) with 410 
+
+a permutation number set to 5000 .411 
+
+Relationship between memory performances and EEG 412 
+
+For each combination of Condition and frequency band, correlations between both Global 413 
+
+Memory Change and PSD were assessed , using the same parameters as in Brokaw et al. (2016). 414 
+
+Therefore, a window duration of 4 seconds was used for PSD estimation, and correlations were 415 
+
+computed across the 6 channels used in their study (i.e., F3, F4, C3, C4, O1, O2). For each 416 
+
+channel, linear regression was fitted to predict ranked memory performance ( Global Memory 417 
+
+Change and Relative Memory Change ) with PSD. Correction for multiple comparisons was applied 418 
+
+to adjust for the number of channels. 419 
+
+Relationship between memory performances and questionnaires 420 
+
+We investigated correlations between memory performances a nd Daydreaming Frequency 421 
+
+Scale scores and mental activities .422 
+
+2.5.3 Data -specific analysis 423 
+
+In the data -specific analyses, t he statistical methods and processing steps were specifically 424 
+
+tailored to our experimental design and dataset. Generalized Linear Mixed Models (GLMM) were 425 
+
+used, which enabled us to perform trial by trial analysis and to consider participants’ variability a s426 
+
+a random effect on non -normally distributed binary data. GLMM were fitted using R language 427 
+
+(version 4.5, R Core Team, 2025) on RStudio (Posit team., 2025). Models were fitted using the 428 
+
+glmmTMB package (version 1.1.13; Brooks et al., 2017), and compared w ith the performance 429 
+
+package (version 0.15.2; Lüdecke et al., 2021). Contrasts of interest were examined using the 430 
+
+emmeans package (version 1.11.2.8; Lenth R and Piaskowski J, 2025). Descriptive model results 431 
+
+are reported as estimated marginal means ( Standa rd Error , SE ), with 95% confidence intervals 432 
+
+(CI95 ).433 
+
+Memory performances 434 
+
+A GLMM on all trials has been fitted to predict trial -by -trial performance score with Condition 435 
+
+(Rest vs Distraction) as fixed categori cal predictor and a random intercept per participant. This 436 
+
+model has been chosen based on model comparison with different random effects structures (see 437 
+
+supplementary file for more information about model selection) . The outcome variable of the model 438 
+
+was ‘memorized’, c orresponding to 1 if a trial was memorized between initial and final retrieval ,439 
+
+and 0 if a trial was forgotten . Trials that scored 0 on the initial retrieval were not included in this 440 
+
+analysis. To test for a potential order effect, we also used a GLMM on a ll trials with Condition and 441 
+
+Order as fixed categorical predictor s and a random intercept per participant. We report odds ratios 442 
+
+(OR , the ratio of the odds of the outcome occurring in one condition relative t he another) with CI 95 443 
+
+confidence intervals (CI) and p-values to quantify the association between predictors and the 444 
+
+outcome. 445 
+
+Relationship between memory performances and EEG 446 
+
+Correlations between memory performance a nd PSD were assessed for each combination of 447 
+
+condition and f requency band , using the Relative Memory Change metric . A window duration of 448 
+
+20 seconds was used for PSD estimation. Correlations were computed across our full set of 62 449 
+
+channel s. For each channel, linear regression was fitted to predict ranked memory performance 450 
+
+(Global Memory Change and Relative Memory Change ) with PSD. FDR correction was used t o451 
+
+control for the number of channels .452 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Complementary analysis 453 
+
+To check equivalency in memory performance at initial retrieval between (1) conditions (R est 454 
+
+vs Distraction) and (2) learning order (Learning 1 vs Learning 2) , we used a permutation -based 455 
+
+ANOVA to test for a potential effect of Condition and Learning Order an d the interaction between 456 
+
+the two on mean score at initial retrieval .457 
+
+## 3 Result s458 
+
+3.1 No beneficial effect of rest on memory performances 459 
+
+Testing for a beneficial effect of the Rest condition on memory perfo rm ances, we first compared 460 
+
+the median Global Memory Change (Figure 2A) and Relative Memor y Change (Supplementary 461 
+
+Figure 2) in the Rest and Distraction conditions . Contrary to our hypothesis and the result observed 462 
+
+by Brokaw et al. (2016), we observed no beneficial effect of rest on memory performances ( Global 463 
+
+Memory Change : Rest: 0 ± 8.2 4 % MAD, Distraction : 0 ± 7.61 % MAD; W = 134 , p = 0.46; Relative 464 
+
+Memory Change : Rest: 5.9 ± 8.75 % MAD, Distraction: 4.26 ± 6.31 % MAD; W = 120 , p = 0. 40 ). 465 
+
+Similar results were observed for data -specific analys es (Figure 2B) . No significant difference s466 
+
+were observed in memory performance between conditions (OR: 0.77, p = 0.28) . The estimated 467 
+
+probability of achieving a score of 1 (i.e., remembering initially re triev ed association in the Surprise 468 
+
+Delayed Retrieval ) in the Rest condition was 0.9 5 (SE: 0.01, CI95: [0.91, 0.97]), compared to 0.96 469 
+
+(SE: 0.01, CI95: [0.93, 0.98] ) in the Distraction condition. 470 
+
+The complementary analysis on initial retrieval only revealed a significant effect of Learning 471 
+
+order (F(1,28 ) = 9.13 , permutation p = 0. 00 5), with the retrieval performance of the second learning 472 
+
+being better than the first, suggesting a learning effect of the memory task . No significant difference 473 
+
+was observed between Condition (F(1,28 ) = 0.04 , permutation p = 0. 85 ) nor in the Learning order 474 
+
+x Condition interaction (F(1,28 ) = 0.00 , permutation p = 1) .475 
+
+476 
+
+477 
+
+478 
+
+Figure 2 – Effects of experimental conditions on memory performances. (A) 479 
+
+Distribution of memory scores using Global Memory Change for each condition. 480 
+
+Inner boxplots indicate central tendenc ies (whiskers = 1.5 times the inter -quartile 481 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+range inside beyond the box; box = first quartile, median, third quartile) . (B) 482 
+
+Distribution of memori zed association proportion s for each condition . Vi olin plots 483 
+
+show the full data distribution (ranging from minimum to maximum), with individual 484 
+
+data points and lines connecting those from the same participant. Estimated 485 
+
+marginal means (emmeans) are highlighted with thick dots and lines. ns = non -486 
+
+significa nt. 487 
+
+3.2 No relationship between EEG activity and memory performances 488 
+
+To further investigate the relationship between neural oscillatory activity at rest and memory 489 
+
+performance s, we examined correlations between SO and alpha power during Rest and 490 
+
+subsequent memory outcomes. 491 
+
+The replication -inspired analysis and data -specific analysis both failed to detect a significant 492 
+
+correlation between SO power during Rest and memory performan ce. The Spearman correlation 493 
+
+coefficients were r = -0. 03 (p = 0. 87) in the replication -inspired analysis (Figure 3A) and r = 0.33 494 
+
+(p = 0. 07 ) in data -specific analysis (Figure 3B ). 495 
+
+Similarly, no significant correlation was observed between alpha power durin g Rest and 496 
+
+memory performance. The Spearman correlation coefficients were r = -0.01 (p = 0. 95) in the 497 
+
+replication -inspired analysis (Figure 4A) and r = 0. 08 (p = 0. 66 ) in data -specific analysis (Figure 498 
+
+4B). 499 
+
+Per -channel relative power and its r elationship with memory performances across Rest and 500 
+
+Distraction are shown in Table 2. 501 
+
+502 
+
+Figure 3 – Correlation between slow oscillation power and memory 503 
+
+performances for the Rest condition . (A) Replication -inspired analysis restricted 504 
+
+to the 6 channels u sed in Brokaw et al. (2016) with 4 -second windows for PSD 505 
+
+computation, using TP9 and TP10 channels as references and Global Memory 506 
+
+Change (GMC) as memory performances (B) Data -specific PSD analysis conducted 507 
+
+across 62 channels with 20 -second Hanning windows using an average reference 508 
+
+and Relative Memory Change (RMC) as memory performances . For both analyses: 509 
+
+Left panel: linear regression on ranked values of memory performances against slow 510 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+oscillations (SO, 0.3 – 1 Hz) power. Middle panel: topomap of Spearman correlation 511 
+
+coefficients (r-values) per channel. Right panel: topomap of channel s with significant 512 
+
+correlations with memory performances . No significant correlation was observed 513 
+
+between SO power and memory performances in either analysis. See 514 
+
+supplementary file to see original values of memory performances and SO power 515 
+
+(Supp lementary Figure 3).516 
+
+517 
+
+Figure 4 – Correlation between alpha power and memory performances for the 518 
+
+Rest condition . (A) Replication -inspired analysis restricted to the 6 channels used 519 
+
+in Brokaw et al. (2016) with 4 -second windows for PSD computation, using TP9 and 520 
+
+TP10 channels as references and Global Memory Change as memory performances 521 
+
+(B) Data -specific PSD analysis conducted across 62 channels with 20 -second 522 
+
+Hanning windows using an average reference and Relative Memory Change as 523 
+
+memory performances . For both analyses: Left panel: linear regression on ranked 524 
+
+values of memory performances against alpha (8 – 12 Hz) po wer. Middle panel: 525 
+
+topomap of Spearman correlation coefficients (r -values) per channel. Right panel: 526 
+
+topomap of channels with significant correlations with memory performances. No 527 
+
+significant correlation was observed between alpha power and memory 528 
+
+performa nces in either analysis. See supplementary file to see original values of 529 
+
+memory performances and alpha power (Supplementary Figure 4).530 
+
+Table 2 – Relationship between EEG activity across Rest and Distraction and 531 
+
+memory performances . Spearman correlations assessing the association 532 
+
+between EEG power in the Slow Oscillation (SO) and alpha frequency bands, and 533 
+
+memory performance (Global Memory Change ), across Rest and Distraction 534 
+
+conditions , and the 6 channels used in the replication -inspired analysis. For each 535 
+
+channel, f rom left to right: relative power in the SO and alpha frequency bands (i.e., 536 
+
+sum of normalized PSD within each frequency band , expressed in %) , spearman 537 
+
+correlation coefficient for each band (r), p-value s (with adjustment for multiple 538 
+
+comparisons using the FDR correction ). 539 
+
+540 
+
+SO μV²/Hz (0.3 –1 Hz) 
+
+Memory following Rest  Memory following Distraction 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+channel  Relative 
+
+power (%) 
+
+r p (fdr -corr)  Relative 
+
+power (%) 
+
+r p (fdr -corr) 
+
+C3  18. 80  0.0 2 0.91 (1)  20. 98  0.1 8 0.3 5 (0. 6)
+
+C4  19.32  0.00  1.00 (1)  21.11  0.18  0.3 4 (0. 6)
+
+F3  20 .09  -0. 10  0. 59 (1)  22.24  0. 12  0. 52 (0. 6)
+
+F4  20 .00  -0.09  0. 87 (1)  22.43  0.1 4 0. 47 (0. 6)
+
+O1  20 .3 9 -0.0 3 0.7 4 (1)  21.43  0.1 0 0. 60 (0. 6)
+
+O2  20 .75  -0. 12  0. 53 (1)  21.45  0. 19  0. 32 (0. 6)
+
+Alpha μV²/Hz (8 –12 Hz) 
+
+Memory following Rest  Memory following Distraction 
+
+channel  Relative 
+
+power (%) 
+
+r p (fdr -corr)  Relative 
+
+power (%) 
+
+r p (fdr -corr) 
+
+C3  12.90  0.13  0.50 (0.97)  8.12  -0.12  0.52 (0.98) 
+
+C4  12.40  -0.03  0.89 (0.97)  7.93  -0.01  0.98 (0.98) 
+
+F3  10.70  0.01  0.97 (0.97)  7.02  -0.05  0.80 (0.98) 
+
+F4  11.00  -0.01  0.95 (0.97)  6.93  -0.02  0.91 (0.98) 
+
+O1  12.65  0.12  0.54 (0.97)  10.38  -0.22  0.23 (0.7) 
+
+O2  14.25  0.13  0.48 (0.97)  11.5  -0.23  0.22 (0.7) 
+
+541 
+
+3.3 Relationship between memory performances, Daydreaming Frequency and mental 542 
+
+activities 543 
+
+We examined the relationship between memory performance, Daydreaming Frequency scores, 544 
+
+and mental activities during Rest and Distraction. This analysis was motivated by the ambiguous 545 
+
+relationship re ported in previous studies between these variables.  Both Global Memory Change 546 
+
+and Relative Memory Change were used. Because results did not vary between both scores, and 547 
+
+because they were highly correlated ( r = 0.74, p < 0.001, Supplementary Figure 5), onl y Relative 548 
+
+Memory Change results are described here. Results for Global Memory Change are described in 549 
+
+supplementary file .550 
+
+Participants scored in median 43 (± 10.38 MAD, min: 22, max: 59) to the Daydreaming 551 
+
+Frequency Scale . T here was no significant correla tion between Relative Memory Change following 552 
+
+rest and Daydreaming Frequency scores in the Rest condition (r = -0.1 4, p = 0. 47 ) (Figure 5A ).553 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+554 
+
+Figure 5 – Daydreaming Frequency Scale scores , m ental activities , and their 555 
+
+relationship with memory performances . (A) Relationship between Daydreaming 556 
+
+Frequency Scale (DFS) scores during Rest and memory performance following Rest 557 
+
+using Relative Memory Change . The blue line represents the regression fit. (B) 558 
+
+Comparison of median values of self -reported percentages of the 10 -minutes of the 559 
+
+post -learning conditions (b lue: Rest, orange: Distraction ) spent in different mental 560 
+
+activities , ** = p < 0.01 , *** = p < 0.001 . Proportion of mental activities for the (C) 561 
+
+Rest condition and (D) Distraction condition. For visualization purposes, mean 562 
+
+values are used instead of median values. Median values and Wilcoxon or paired t-563 
+
+test results can be found in Supplementary Figure 6. Note that while Figure s 5C564 
+
+and 5D display mean percentages to ensure proportions sum to 100% in the pie 565 
+
+charts, the values reported in the text reflect median percentages, consistent 566 
+
+with the non -parametric analyses used throughout. 567 
+
+During Rest (Figure 5C) , participants reported spending 16.94% of time thinking about what 568 
+
+they were doing (i.e., resting) (± 10.67 SD ), 1% thinking about associative memory task (± 1.48 569 
+
+MAD ), 7.9 0% having a mind blank (± 11.71 MAD ), 5.45% meditating (± 8.08 MAD ), 1. 15% sleeping 570 
+
+(± 1.7 0 MAD ), and 5.8 0% doing other activities (± 8.6 0 MAD ). The "other activities" category most 571 
+
+frequently included : planning daily/weekend activities, observing the surroundings, thinking about 572 
+
+the experiment, hunger -related thoughts, menta l repetition of songs, time monitoring, awareness 573 
+
+of nasal breathing, imaginative scenarios, and stress -related thoughts. Notably, when participants 574 
+
+reported "sleeping" (N = 14) all clarified that they were experiencing drowsiness or resisting sleep 575 
+
+rather than actually falling asleep. During Distraction (Figure 5D) , participants reported spending 576 
+
+in average 66 .67% of time thinking about what they were doing (i.e., being focused of t he task) (± 577 
+
+19.54 SD ), 4.7 0% thinking about past/future (± 6.97 MAD ), 0% thinking about associative memory 578 
+
+task (± 0 MAD ), 10.55% having a mind blank (± 7.93 MAD ), 0% meditating (± 0 MAD ), 0% sleeping 579 
+
+(± 0 MAD ), and 0% doing other activities (± 0 MAD ). The "other activities" category most frequently 580 
+
+included : thinking about the experiment, mental repetition of songs , mindwandering and 581 
+
+unrecallable thoughts. 582 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Participants reported spending significantly more time thinking about past/future in Rest 583 
+
+compared to Distraction ( Figure 5B; W = 3.5 0, p < 0.001, CLES = 0.89). A similar pattern was 584 
+
+observed for meditating (W = 34 .00 , p < 0.01, CLES = 0.67). Conversely, participants spent 585 
+
+significantly more time focusing on what they were doing in the Distraction condition compared to 586 
+
+Rest ( t = 11.85 , p < 0.001, Cohen’s d = 3.19). No significant difference s were observed for thinking 587 
+
+about memory task (i.e., rehearsal), sleeping, nor having a mind blank (W’s > 65 ; p’s > 0.08 ). No 588 
+
+correlation was found between mental activities during Rest and Distraction and Relative Memory 589 
+
+Change (r’s < |0.30| ; corrected p’s > 0.24 ; Supplementary Figure 7). 590 
+
+3.4 Order effect 591 
+
+Given that previous studies have reported a significant effect of condition order on memory 592 
+
+performances (Brokaw et al., 2 016; Martini et al., 2018) , we investigated the interaction between 593 
+
+Condition (Distraction, Rest) and Order (First, Second) using both the replication -inspired analys es594 
+
+and data -specific analys es. 595 
+
+For t he replication -inspired an alys es, t he ev olution of memory scores between in itial and 596 
+
+surprise delayed retrieval (Global Memory Change ) did not significantly differ between Condition 597 
+
+(F(1,28) = 0.35, permutation p = 0.57) or Order ( F(1,28) = 1.45, permutation p = 0.25) nor Condition 598 
+
+and Order inte raction ( F(1,28) = 3.27, permutation p = 0.08). 599 
+
+For data -specific analys es, contrasts analyses revealed a significant interaction between 600 
+
+Condition and Order (Figure 6). Post -hoc comparisons revealed that the remembering of the 601 
+
+learned associations was always higher for the second learning than for the first (Order Distraction -602 
+
+Rest , Rest : 0.98 , SE: 0.01, CI95: [0.95, 0.99] , Distraction : 0.95 , SE: 0.02, CI95: [0.89, 0.98] ; O R:603 
+
+2.71, p = 0.02 ; Order Rest -Dis traction, Rest : 0.91 , SE: 0.03, CI95: [0.82, 0.96], Distraction : 0.97 ,604 
+
+SE: 0.01, CI95: [0.93, 0.99] ; O R: 0.30, p < 0.001). Moreover, when comparing each Condition 605 
+
+between Order s, post -hoc tests revealed that memory performances for Rest were significantly 606 
+
+higher when Rest was performed second compared to when it was performed first (OR: 4.8 , p =607 
+
+0. 01 ). Memory performances for Distraction did not differ significantly between Order (OR: 0.53 , p608 
+
+= 0. 31 ). Fin ally, w hen compar ing conditions for each learning, no comparisons were significant 609 
+
+(first learning, OR: 1 .7 8, p = 0. 31 ; second learning, OR: 1 .45 , p = 0. 57) . Our results showed a clear 610 
+
+advantage of the second learning , and even more when considering Rest than Distraction 611 
+
+condition .612 
+
+613 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+614 
+
+Figure 6 - Effects of order of experimental conditions on memory 615 
+
+performances. Distribution of percentage of memori zed items for each condition 616 
+
+(Distraction in yellow, Rest in blue) , within each condition ord er. Left panel: 617 
+
+Distraction – Rest, Right panel: Rest – Distraction. Data points and violin plots 618 
+
+indicate real data , with lines connecting those from the same participant , while 619 
+
+estimated marginal means (emmeans) are highlighted with thick dots and lines. * = 620 
+
+p < 0.0 5, *** = p < 0.001 .621 
+
+622 
+
+## 4 Discussio n623 
+
+Our goal was to test the beneficial effect of short periods of wakeful rest after learning for 624 
+
+memory retention, compared to engaging in distraction tasks , and the potential role of slow brain 625 
+
+oscillations in this consolidation process during rest . We used a within -participant design to assess 626 
+
+memory performance in an associative memory task follow ed either by 10 minutes of wakeful rest 627 
+
+or by a 10 -minute distraction task, both accompanied by continuous EEG recording. Our analytical 628 
+
+approach combined a replication -inspired method , closely aligned with Brokaw et al. (2016) , and 629 
+
+a data -specific method, tailored to our specific dataset. Contrary to our hypothesis, we found no 630 
+
+beneficial effect of wakeful rest on memory performances, compared to Distract ion condition. 631 
+
+However, we found an advantage of the second learning compared to the first learning, and even 632 
+
+more when considering Rest than Distraction condition. On the neurophysiological level, we found 633 
+
+no relationship between EEG slow oscillations or alpha power, and memory performances. On the 634 
+
+phenomenological level, we also found no significant relationship between mental activity during 635 
+
+Rest and Distraction, daydreaming frequency, and memory performances. 636 
+
+4.1 No replication of the wakeful rest effect o n memory performances 637 
+
+The present study found no beneficial effect of post -learning wakeful rest on memory 638 
+
+performance compared to a distraction task. We propose a set of methodological and theoretical 639 
+
+explanations that, taken together, highlight the complexity of studying cons olidation during 640 
+
+wakefulness. 641 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+While rest had been demonstrated to be beneficial for memory consolidation in several studies, 642 
+
+(e.g.,  Gottselig et al., 2004; Dewar et al., 2012, 2014; Craig et al., 2014, 2016; Mercer, 2015; 643 
+
+Brokaw et al. , 2016 ; Schlichting and Bäuml, 2017; Sacripante et al., 2019; Evans et al., 2021; 644 
+
+Wang et al., 2021; King and Nicosia, 2022; Craig and Greer, 2024) , and reported in a recent 645 
+
+systematic review and meta -analysis based on 63 experiments with a medium effect size 646 
+
+(Hedges’s g = 0.448, 95% CI [0.339, 0.557], p < .001 ; Weng et al., 2025)  our result is consistent 647 
+
+to a subset of studies that also failed to replicate the wakeful rest benefit.  Varma et al., (2017) 648 
+
+attributed their negative result to the nature of their distraction task (i.e., N -back task) arguing it did 649 
+
+not engage the hippocampal , thought to interfere with consolidation . Although our distraction task 650 
+
+is hippocampo -dependant  (Borderie e t al., 2024) , it may rely on different hippocampal subsystems 651 
+
+than those engaged during the associative encoding phase , potentially limiting its interference. 652 
+
+Humiston et al. (2019) , who failed to replicate the behavioral findings from  Brokaw et al. (2016) 653 
+
+using an identical protocol , invoked an insuficient sample size or sampling vari ability . Finally, 654 
+
+studies attempting to extend the wakeful rest paradigm to ecological settings have consistenly 655 
+
+found no ben efit  (Brandmark et al., 2020; Leetham et al., 2024; Seban et al., 2026) , underscoring 656 
+
+the difficulty of translating laboratory findings to real -world situations .657 
+
+A central issue in wakeful rest research is that the con dition itself is poorly standardized. 658 
+
+Participants left to rest wakefully do not share a common cognitive or mental state: some engage 659 
+
+in passive visual exploration, others ruminate on personal concerns, and others struggle against 660 
+
+drowsiness. To a lesser extent during the distraction task , even though the state of the participants 661 
+
+was constrained by the task , they still experience d fluctuations in their attentional engagement and 662 
+
+free thoughts that were not monitored online. These variable inner experiences could substantially 663 
+
+modulate consolidation processes, contributing to the large inter -individual variability observed in 664 
+
+memory performance across studies. This suggests that the post -learning condition may be a poor 665 
+
+proxy for the underlying ne ural processes relevant to awake consolidation. 666 
+
+In the present study, we attempted to characterize mental activity during both conditions via 667 
+
+post -experiment questionnaire , like it has been generally done in previous studies . Participants 668 
+
+reported spen di ng significantly more time engaged in autobiographical thoughts during the Rest 669 
+
+condition , and more time thinking about the task they were doing during the Distraction condition 670 
+
+confirming that the two post -learning conditions induced significantly distinct cognitive states. 671 
+
+However, we found no significant correlation between self -reported mental activity and memory 672 
+
+performance. This absence of a relationship aligns with the mixed results in the existing literature: 673 
+
+Brokaw et al. (2016) reported a positive correlation between mindwandering and memory 674 
+
+performance during Rest, Humiston et al. (2019) foun d a negative correlation, Wamsley and 675 
+
+Summer (2020) observed associations that depended on the type of memory task, and Wang et 676 
+
+al. (2021) found no relationship. The inconsistency across studies suggests that the link between 677 
+
+subjective men tal states and consolidation is neither direct nor robust, and may depend on 678 
+
+unmeasured moderating variables. More broadly, and consistent with concerns raised in prior 679 
+
+studies, retrospective estimation of the time spent in different mental states across a 10 -minute 680 
+
+window is inherently difficult and subject to systematic distortion, limiting the precision and 681 
+
+reliability of these self -reports. Future studies may benefit from using experience sampling or 682 
+
+continuous ratings to capture mental activity in a mo re temporally resolved manner. In this regard, 683 
+
+more precise analyses incorporating physiological and behavioral indices of attentional 684 
+
+engagement , such as pupillometry or response time variability alongside subjective ratings of 685 
+
+attentional focus ( Wamsley and Summer, 2020; Wamsley et al., 2023) , may be necessary to 686 
+
+uncover the subtle dynamics underlying consolidation during wakefu lness .687 
+
+Finally, we observed a strong memory performance differe nce between participants, 688 
+
+emphasizing the importance of a within -participant design, despite the risk of a task -learning effect. 689 
+
+Indeed, the scores for Global Memory Change ranged from minimum -50 to maximum 9.09 in the 690 
+
+Rest condition and from minimum -43. 75 to maximum 10.53 in the Distraction condition. This 691 
+
+strong disparity can of course be due to normal inter -participant variability. However, based on 692 
+
+participants oral accounts during the final interview, the encoding strategy used by participants 693 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+seems to play a decisive role in memory performances. Indeed, p articipants who reported creating 694 
+
+short stories to build associations between landscape -object picture pairs generally showed better 695 
+
+memory performance. Although our study did not focus on encoding s trategies, this factor could 696 
+
+potentially influence the effect of rest during wakefulness and warrants further investigation in 697 
+
+future research, thereby highlighting the difficulty of designing a memory task that allows for 698 
+
+equivalent encoding among partici pants, regardless of strategy. 699 
+
+The literature as a whole underscores the need to more systematically incorporate null results, 700 
+
+to identify potential moderating variables, and to better account for methodological variation across 701 
+
+studies  (Martini and Sachse, 2020b; Weng et al., 2025) . Parameters such as participants age, with 702 
+
+older adults benefit ing more than younger participants  (Martini et al., 2019) , memory tests , with 703 
+
+recall measures be ing more sensitive than recognition  (Millar and Balota, 2022; Weng et al., 2025) ,704 
+
+and memory task s (Craig et al., 2016)  have all been identified as modulators of the wakeful rest 705 
+
+effect , , and . Taken together, these factors highlight the complexity of isolating the wakeful rest 706 
+
+benefit and the importance of rigorous, transparent reporting of methodological choices. 707 
+
+4.2 Absence of EEG correlates of memory consolidation 708 
+
+We found no significant correlation between EEG activity during post -learning conditions a nd 709 
+
+subsequent memory performances. Surprisingly, in our data, relative SO power was higher during 710 
+
+the Distraction condition than during Rest (Table 2). While this difference was modest, it raises 711 
+
+questions about the specificity of SO power as a predictor o f memory consolidation and suggests 712 
+
+that absolute power levels may not straightforwardly reflect the quality of consolidation processes .713 
+
+This discrepancy aligns with mixed findings in the literature: while some studies (e.g., Brokaw et 714 
+
+al., 2016; Bencze et al., 2025) report a link between SO power during rest and long -term memory, 715 
+
+others, like Wang et al. (2021) , found no such correlation across multiple frequency bands, despite 716 
+
+better memory outcomes for rest and nap conditions compared to distraction. Several factors may 717 
+
+explain these inconsistencies, such as protocol differences ( i.e., memo ry task s), retention delays 718 
+
+or measurement approach (immediate recall test and average of spectral power in  Brokaw et al. ,719 
+
+2016 , Wang et al., 2021 and our study ; recall test after 7 days , and change in spectral power from 720 
+
+a pre -learning baseline to the post -learning rest period in  Bencze et al., 2025 ). However, we also 721 
+
+note a more fundamental issue: averaging spectral power across an ent ire 10 -minute rest epoch 722 
+
+and correlating it with a single memory score may be a too coarse approach to capture the subtle 723 
+
+and transient neurophysiological dynamics that support consolidation. 724 
+
+According to the two -stage model of memory (Buzsáki, 1989) , new experiences are initially 725 
+
+encoded in parallel across both the hippocampus a nd neocortical networks . The hippocampus 726 
+
+subsequently reactivates these memory traces during offline states , most notably during sleep , but 727 
+
+potentially also during wakeful rest (Mednick et al., 2011; Wamsley, 2022) , orchestrating their 728 
+
+replay in the neocortex. This iterative reactivation is thought to underlie the stabilization of initially 729 
+
+fragile memory traces into durable long -term representations . Critically , the hippocampal -730 
+
+neocortical dialogue is believed to rely on precise coupling between fast and slow oscillatory 731 
+
+rhythms (Schreiner and Staudigl, 2020) , SO acting as the primary pacemak er. During SO, cortical 732 
+
+networks alternate between hyperpolarized down and depolarized up states, each lasting from 0.2 733 
+
+to 1 second . Hippocampal ripples and thalamic spindles consistently align with SO up states during 734 
+
+slow -wave sleep (SWS), giving rise to a fine -tuned cross -frequency coupling widely recognized as 735 
+
+an important electrophysiological substrate of memory consolidation (Clemens et al., 2007; 736 
+
+Staresina et al., 2015; Keeble et al., 2025) .737 
+
+While this mechanism is well -established during SWS , the functional role of SO during 738 
+
+wakefulness remains considerably less clear . Although SOs have been obser ved in humans during 739 
+
+wakefulness (Demanuele et al., 2010) , the oscillatory landscape of the waking brain differs 740 
+
+markedly from that of SWS, suggesting that th e consolidation mechanisms at play may be partially 741 
+
+distinct (Wamsley, 2022) . Scalp -recorded SO power during brief rest periods may provide only an 742 
+
+indirect and potentially incomplete index of the consolidation processes of interest. Recent work 743 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+using intracranial EEG in pharmaco -resistant epileptic patients has provide d direct access to 744 
+
+recordings of deep brain structures such as the hippocampus and medial temporal lobe, enabling 745 
+
+direct observation of ripple activity and memory replay during wake fulness  (Axmacher et al., 2008; 746 
+
+Zhang et al., 2018; Sjøgård et al., 2025; Causse et al., 2026) . Complementing these fin dings, 747 
+
+magnetoencephalography studies in healthy participants have identified replay -like neural activity 748 
+
+during brief periods of wakeful rest, and the extent of this replay predicts subsequent skill 749 
+
+consolidation (Buch et al., 2021) . Together, these approaches offer a promising avenue for 750 
+
+bridging the gap between mechanistic evidence from animal models and the correl ational findings 751 
+
+typically obtained with scalp EEG in humans .752 
+
+4.3 The need for methodological transparency 753 
+
+Our analytical approach combined a replication -inspired method , closely aligned with Brokaw 754 
+
+et al. (2016) , and a data -specific method, tailore d to our specific dataset. At the behavioral level, 755 
+
+results were highly consistent across analyses, regardless of whether Global Memory Change or 756 
+
+Relative Memory Change was used as the memory score, and whether linear models (replication -757 
+
+inspired approach) or trial -by -trial GLMMs (data -specific approach) were employed. This 758 
+
+convergence across methods strengthens confidence in the robustness of our behavioral findings. 759 
+
+At the neurophysiological level, however, notable differences emerged between the two 760 
+
+anal ytical pipelines. Neither the replication -inspired analysis ( Global Memory Change , mastoid -761 
+
+like reference, 6 channels, 4 -second Hanning windows for PSD computation) nor the data -specific 762 
+
+analysis (Relative Memory Change , average reference, 62 channels, 20 -second Hanning 763 
+
+windows) yielded significant correlations between SO power and memory performance. Yet, 764 
+
+differences in effect sizes and p-values were observed between pipelines . To disentangle the 765 
+
+respective contributions of the memory score and the EEG pre processing parameters in these 766 
+
+discrepancies , we conducted exploratory cross -over analyses to explore the impact of reverting 767 
+
+the two memory scores , as well as window duration for PSD computation, and the offline reference 768 
+
+on the correlation between memory performances and SO power. In short, while reverting the 769 
+
+memory scores and the window duration did not seem to change the correlations values, the offline 770 
+
+reference change almost reverts the direction of some correlations though it did not reach the 771 
+
+thres hold of statistical significance. Further details on these analyses are available in the 772 
+
+supplementary file (Supplementary Figure 8, 9 and 10). 773 
+
+Taken together, these observations highlight a broader issue in the field: the considerable 774 
+
+variability in neur ophysiological analysis pipelines across studies, often accompanied by 775 
+
+insufficient reporting and justification of parameter choices. 776 
+
+4.4 Order effects interpretation 777 
+
+To our knowledge, only a minority of within -participant studies have explicitly tested for order 778 
+
+effects. Evans et al. (2021 ) found no significant effect of Order nor interaction between Condition 779 
+
+and Order on memory performances. Brokaw et al. (2016) and Martini et al. (2018) , just as our 780 
+
+results showed, both reported better memory performance when Rest was completed s econd 781 
+
+rather than first . Notably , in both studies , memory performance in the Distraction condition did not 782 
+
+improve when that condition was presented second . Brokaw et al. (2016) attributed this pattern to 783 
+
+a facilitatory effect of distraction on subsequent new encoding, while Martini et al. (2018) argued 784 
+
+that distraction interferes with the consolidation of material learned prior to the rest period . We785 
+
+propose an alternative interpretation : the observed order effect may primarily reflect a task -learning 786 
+
+effect, whereby participants became more familiar with the associative memory paradigm and 787 
+
+developed mo re effective encoding strategies during the second attempt . The apparent advantage 788 
+
+of Rest when presented second may not stem from condition -specific consolidation dynamics, but 789 
+
+rather from the interplay between task familiarity (associative memory task is easier when 790 
+
+performed the second time tha n the first) and emotional state (e.g., confidence of anxiety -related 791 
+
+thoughts , may be less present during Distraction due to task focus ).792 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+A critical interpretive challenge in within -participant designs is the difficulty of dissociating a 793 
+
+post -encoding consolidation effect from a learning -related improvement already present at the time 794 
+
+of encoding. To address this, we examined initial retrieval performance alone, prior to any post -795 
+
+learning condit ion, and found that the performance advantage for the second learning was already 796 
+
+evident at this stage. This result constitutes an additional argument in favor of a task -order learning 797 
+
+effect, independent of any consolidation process. To our knowledge, su ch a learning effect has not 798 
+
+been explicitly reported in wakeful rest memory literature using within -participant designs, though 799 
+
+its absence from published reports may reflect a lack of systematic investigation rather than a n800 
+
+absence of the phenomenon. Thi s raises a broader methodological concern: within -participant 801 
+
+designs, while statistically efficient and well -suited to control for individual differences, may be 802 
+
+particularly vulnerable to order effects when the target effect is of small to moderate magni tude. In 803 
+
+such cases, task learning may obscure, dilute, or interact with the consolidation effect of interest, 804 
+
+complicating the interpretation of condition differences. 805 
+
+4.5 Conclusion 806 
+
+The present study failed to find a significant advantage of post -learning R est over Distraction 807 
+
+on associative memory performance, nor any relationship between post -learning SO or alpha 808 
+
+power, mental activities, and subsequent memory performances . Although our aim was to 809 
+
+conceptually replicate and assess the generalizability of the behavioral and EEG findings of 810 
+
+Brokaw et al. (2016), several methodological differences may account for the discrepancy, 811 
+
+including the use of an associative memory task with cued retrieval rather than story recall with 812 
+
+free recall, a hippocampus -depende nt auditory distractor task, and a delayed final retrieval test 813 
+
+administered after both conditions to preserve the surprise effect and limit intentional rehearsal. 814 
+
+Despite these differences, our protocol followed widely used procedures in the wakeful rest 815 
+
+literature and was grounded in prior evidence. Our cross -analysis comparisons further highlight 816 
+
+that small -to -moderate effects are particularly sensitive to EEG preprocessing decisions , notably 817 
+
+the reference choice and PSD estimation window , underscoring the importance of methodological 818 
+
+transparency in this literature. Whether the absence of a wakeful rest benefit reflects differences 819 
+
+between paradigms, insufficient sensitivity of broadband SO power as a consolidation index, or 820 
+
+uncontrolled inter -individual factors such as encoding strategy, remains an open question. Fut ure 821 
+
+work should prioritize more precise neurophysiological measures, systematic reporting of order 822 
+
+effects, and greater standardization of analytical pipelines to build a more cumulative science of 823 
+
+offline memory consolidation. 824 
+
+## 5 Acknowledgements 825 
+
+We would li ke to thank Dre Anne Caclin for providing us with the short -term auditory memory 826 
+
+task that we used as the distraction task (including all the necessary materials for administering it) 827 
+
+and for her help in adapting it to our needs ; Marie Touzet —Robin and Lau ryne Zacharia for their 828 
+
+help in designing the study and collecting data ; Belkacem Messaoudi for the technical support 829 
+
+during the experimentation; Christelle Daudé for her help with participant recruitment and EEG 830 
+
+setup; Iris Guggenbuhl for her help with th e EEG setup ; Guillemette Colas des Francs for her 831 
+
+participation in mental activity analysis; Dr Valentin Ghibaudo for his help and advices on Python 832 
+
+scripts and analys es ; Maël Delem for his help with generalized linear mixed -effects model analysis 833 
+
+and R scripts .834 
+
+## 6 Funding 835 
+
+This work was supported by the French National Research Agency (ANR -22 -CE37 -0014, 836 
+
+BreathSmellRelax) 837 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+## 7 Conflict of interest disclosure 838 
+
+The authors declare that they comply with the PCI rule of having no financial conflicts of interest 839 
+
+in relation to the content of the article. 840 
+
+## 8 Authors contributions 841 
+
+Marion Walter: Conceptualisation, Methodology, Investigation, Data curation, Formal analys is, 842 
+
+Software, Visualisation, Writing – Original draft Preparation. Max Lacaze: Data curation , Sof tware, 843 
+
+Formal analysis . Samuel Garcia: Software . Nathalie Buonviso: Conceptualisation, Supervision, 844 
+
+Funding acquisition, Writing - Review & Editing. Jane Plailly: Conceptualisation, Supervision, 845 
+
+Writing - Review & Editing. 846 
+
+## 9 Data, scripts, code, and supplementary information availability 847 
+
+Data are available online:  https://doi.org/10.17605/OSF.IO/CJDE 2; Walter et al. (2026) 848 
+
+Scripts and code are available online:  https://doi.org/10.17605/OSF.IO/CJDE2 ; Walter et al. 849 
+
+(2026) 850 
+
+Supplementary information is available online:  https://doi.org/10.17605/OSF.IO/CJDE2 ; Walter 851 
+
+et al. (2026) 852 
+
+## 10 References 853 
+
+actiChamp Plus [Apparatus] (2026) Gilching, Germany: Brain Products GmbH. 854 
+
+Albouy P, Mattout J, Bouet R, Maby E, Sanchez G, Aguera P -E, Daligault S, Delpuech 855 
+
+C, Bertrand O, Caclin A, Tillmann B (2013) Impaired pitch perception and memory in 856 
+
+congenital amusia: the deficit starts in the auditory cortex. Brain 136 , 1639 –1661. 857 
+
+https://doi.org/10.1093/brain/awt082 858 
+
+Andrews -Hanna JR, Reidler JS, Huang C, Buckner RL (2010) Evidence for the Default 859 
+
+Network’s Role in Spontaneous Cognition. J Neurophysiol 104 , 322 –335. 860 
+
+https://doi.org/10.1152/jn.00830.2009 861 
+
+Axmacher N, Elger CE, Fell J (2008) Ripples in the medial temporal lobe are relevant 862 
+
+for human memory consolidation. Brain 131 , 1806 –1817. 863 
+
+https://doi.org/10.1093/brain/awn103 864 
+
+Bencze D, Marián M, Szőllősi Á, Simor P, Racsmány M (2025) Increase in slow 865 
+
+frequency and decrease in alpha and beta power during post -learning rest predict 866 
+
+long -term memory success. Cortex 183 , 167 –182. 867 
+
+https://doi.org/10.1016/j.cortex.2024.11.012 868 
+
+Borderie A, Caclin A, Lachaux J -P, Perrone -Bertollotti M, Hoyer RS, Kahane P, 869 
+
+Catenoix H, Tillmann B, Albouy P (2024) Cross -frequency coupling in cortico -870 
+
+hippo campal networks supports the maintenance of sequential auditory information in 871 
+
+short -term memory. PLOS Biol 22 , e3002512.  https://doi.org/10.1371/journal.pbio.3002512 872 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+BrainVision Reco rder (Vers. 1.26.0101) [Software] (2026) Gilching, Germany: Brain 873 
+
+Products GmbH. 874 
+
+Brandmark A, Byrne M, O’Brien K, Hogan K, Daniel DB, Jakobsen KV (2020) 875 
+
+Translating for Practice: A Case Study of Recommendations From the Wakeful Rest 876 
+
+Literature. Teach Psych ol 47 , 92 –96.  https://doi.org/10.1177/0098628319889268 877 
+
+Brokaw K, Tishler W, Manceor S, Hamilton K, Gaulden A, Parr E, Wamsley EJ (2016) 878 
+
+Resting state EEG correlates of memory consolidation. Neurobiol Learn Mem 130 ,879 
+
+17 –25.  https://doi.org/10.1016/j.nlm.2016.01.008 880 
+
+Brooks ME, Kristensen K, Benthem KJ van, Magnusson A, Berg CW, Nielsen A, 881 
+
+Skaug HJ, Mächler M, Bolker BM (2017) glmmTMB Balances Speed and Flexibility 882 
+
+Among Packages for Zero -inflated Generalized Linear Mixed Modeling. The R Journal 883 
+
+9, 378 –400.  https:/ /digitalcommons.unl.edu/r -journal/675/ 884 
+
+Brown KW, Ryan RM (2003) The benefits of being present: Mindfulness and its role 885 
+
+in psychological well -being. J Pers Soc Psychol 84 , 822 –848. 886 
+
+https://doi.org/10.1037/0022 -3514.84.4.822 887 
+
+Buch ER, Claudino L, Quentin R, Bönstrup M, Cohen LG (2021) Consolidation of 888 
+
+human skill linked to waking hippocampo -neocortical replay. Cell Rep 35 , 109193. 889 
+
+https://doi.org/10.1016/j .celrep.2021.109193 890 
+
+Buzsáki G (1989) Two -stage model of memory trace formation: A role for “noisy” brain 891 
+
+states. Neuroscience 31 , 551 –570.  https://doi.org/10.1016/0306 -4522(89)90423 -5892 
+
+Causse AA, Curot J, Lopes -dos -Santos V, Nunes -da -Silva R, Barron HC, Dornier V, 893 
+
+Denuelle M, De Barros A, Sol J -C, Lotterie J -A, Lehongre K, Fernandez -Vidal S, 894 
+
+Frazzini V, Navarro V, Valton L, Barbeau EJ, Denison T, Reddy L, Dupret D (2026) A 895 
+
+learning -evoked slow -osc illatory architecture paces population activity for offline 896 
+
+reactivation across the human medial temporal lobe. Neuron , S0896627326003752. 897 
+
+https://doi.org/10.1016/j.neuron.2026.05.004 898 
+
+Clemens Z, Mölle M, Eross L, Barsi P, Halász P, Born J (2007) Temporal coupling of 899 
+
+parahippocampal ripples, sleep spindles and slow oscillations in hum ans. Brain 130 ,900 
+
+2868 –2878.  https://doi.org/10.1093/brain/awm146 901 
+
+Craig M, Greer J (2024) Post -encoding task engagement not attentional load is 902 
+
+detrimental to awake consolidation. Sci Rep 14 , 12345.  https://doi.org/10.1038/s41598 -903 
+
+024 -53393 -6904 
+
+Craig M, Sala SD, Dewar M (2014) Autobiographical Thinking Interferes with Episodic 905 
+
+Memory Consolidation. PLOS ONE 9, e93915. 906 
+
+https://doi.org/10.1371/journal.pone.0093915 907 
+
+Craig M, Wol bers T, Harris MA, Hauff P, Della Sala S, Dewar M (2016) Comparable 908 
+
+rest -related promotion of spatial memory consolidation in younger and older adults. 909 
+
+Neurobiol Aging 48 , 143 –152.  https: //doi.org/10.1016/j.neurobiolaging.2016.08.007 910 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+De Cheveigné A, Arzounian D (2018) Robust detrending, rereferencing, outlier 911 
+
+detection, and inpainting for multichannel data. NeuroImage 172 , 903 –912. 912 
+
+https://doi.org/10.1016/j.neuroimage.2018.01.035 913 
+
+Dewar M, Alber J, Butler C, Cowan N, Della Sala S (2012) Brief Wakeful Resting 914 
+
+Boosts New Memories Over the Long Term. Psychol Sci 23 , 955 –960. 915 
+
+https://doi.org/10.1177/0956797612441220 916 
+
+Dewar M, Alber J, Cowan N, Della Sala S (2014) Boosting long -term memory via 917 
+
+wakeful rest: intentional rehearsal is not necessary, consolidation is sufficient. PloS 918 
+
+One 9, e109542.  https://doi.org/10.1371/journal.pone.0109542 919 
+
+Dewar MT, Cowan N, Sala SD (2007) Forgetting Due to Retroactive Interference: A 920 
+
+Fusion of Müller and Pilzecker’s (1900) Early Insights into Everyday Forgetting and 921 
+
+Recent Research on Anterograde Amnesia. Cortex 43 , 616 –634. 922 
+
+https://doi.org/10.1016/S0010 -9452(08)70492 -1923 
+
+Evans FA, Stolwyk RJ, Wong D (2021) A Brief Period of Wakeful R est after Learning 924 
+
+Enhances Verbal Memory in Stroke Survivors. J Int Neuropsychol Soc 27 , 929 –938. 925 
+
+https://doi.org/10.1017/S1355617720001307 926 
+
+Fatania J, Mercer T (2017) Nonspecific Retroactive Inter ference in Children and 927 
+
+Adults. Adv Cogn Psychol 13 , 314 –322.  https://doi.org/10.5709/acp -0231 -6928 
+
+Frossard J, Renaud O (2021) Permutation Tests for Regression, ANOVA, and 929 
+
+Comparison of Signals: The permuco Package. J Stat Softw 99 , 1–32. 930 
+
+https://doi.org/10.18637/jss.v099.i15 931 
+
+Ghibaudo V, Turrel M, Granget J, Souilhol M, Garcia S, Plailly J, Buonviso N (2025) 932 
+
+Pleasant odors specifically promote a soothing autonomic response and brain –body 933 
+
+coupling through respiratory modulation. Sci Rep 15 , 36417. 934 
+
+https://doi.org/10.1038/s41598 -025 -20422 -x935 
+
+Gottselig JM, Hofer -Tinguely G, Borbély AA, Regel SJ, Land olt H -P, Rétey JV, 936 
+
+Achermann P (2004) Sleep and rest facilitate auditory learning. Neuroscience 127 ,937 
+
+557 –561.  https://doi.org/10.1016/j.neuroscience.2004.05.053 938 
+
+Gramfort A, Luessi M, Larso n E, Engemann DA, Strohmeier D, Brodbeck C, Goj R, 939 
+
+Jas M, Brooks T, Parkkonen L, Hämäläinen M (2013) MEG and EEG data analysis 940 
+
+with MNE -Python. Front Neurosci 7, 267.  https://doi.org/10.3 389/fnins.2013.00267 941 
+
+Guinet V, Dantony E, Catenoix H, Nourredine M, Garcia S, Boulogne S, Leclercq M, 942 
+
+Guen CL, Fourcaud -Trocmé N, Roy P, Ravel N, Rheims S (2026) Accelerated long -943 
+
+term forgetting in drug -resistant focal epilepsy: Insight from a prospective controlled 944 
+
+study using a multimodal associative memory paradigm. medRxiv. 945 
+
+https://doi.org/10.64898/2026.01.08.26343621 946 
+
+Humiston GB, Tucker MA, Summer T, Wamsley EJ (2019) Resting States and 947 
+
+Memory Consolidation: A Preregistered Replication and Meta -Analysis. Sci Rep 9,948 
+
+19345.  https://doi.org/10.1038/s41598 -019 -56033 -6949 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Humiston GB, Wamsley EJ (2018) A brief period of eyes -closed rest enhances motor 950 
+
+skill consolidation. Neurobiol Learn Mem 155 , 1–6. 951 
+
+https://doi.org/10.1016/j.nlm.2018.06.002 952 
+
+Keeble L, Monaghan P, Robertson EM, Hannan S (2025) Slow -wave sleep as a key 953 
+
+player in offline memory processing: insights from human EEG studies. Front Behav 954 
+
+Neurosci 19 , 1620544.  https://doi.org/10.3389/fnbeh.2025.1620544 955 
+
+King O, Nicosia J (2022) The effects of wakeful rest on memory consolidation in an 956 
+
+online memory study. Front Psychol 13 , 932592. 957 
+
+https://doi.org/10.3389/fpsyg.2022.932592 958 
+
+Leetham E, Watermeyer T, Craig M (2024) An online experiment that presents 959 
+
+challenges for translating rest -related gains in visual detail memory from the laboratory 960 
+
+to naturalistic se ttings. PLOS ONE 19 , e0290811. 961 
+
+https://doi.org/10.1371/journal.pone.0290811 962 
+
+Lüdecke D, Ben -Shachar M, Patil I, Waggoner P, Makowski D (2021) performance: 963 
+
+An R Package for Assessment, Comparison and Testing of Statistical Models. JOSS 964 
+
+6, 3139.  https://doi.org/10.21105/joss.03139 965 
+
+Maddirala AK, Veluvolu KC (2021) Eye -blink artifact removal from single channel EEG 966 
+
+with k -means and SSA. Sci Rep 11 , 11043.  https://doi.org/10.1038/s41598 -021 -90437 -7967 
+
+Martini M, Martini C, Maran T, Sachse P (2018) Eff ects of post -encoding wakeful rest 968 
+
+and study time on long -term memory performance. J Cogn Psychol 30 , 558 –569. 969 
+
+https://doi.org/10.1080/20445911.2018.1506457 970 
+
+Martini M, Riedlsperger B, Maran T, Sachse P (2020) The Effect of Post -Learning 971 
+
+Wakeful Rest on the Retention of Second Language Learning Material over the Long 972 
+
+Term. Curr Psychol 39 , 299 –306.  https://doi.org/10.1007/s12144 -017 -9760 -z973 
+
+Martini M, Sachse P (2020) Factors modulating the effects of waking rest on memory. 974 
+
+Cogn Process 21 , 149 –153.  https://doi.org/10.1007/s10339 -019 -00942 -x975 
+
+Martini M, Zamarian L, Sachse P, Martini C, Delazer M (2019) Wakeful resting and 976 
+
+memory retention: a study with healthy older and younger adults. Cogn Process 20 ,977 
+
+125 –131.  https://doi.org/10.1007/s10339 -018 -0891 -4978 
+
+Ma thWorks. (2024) MATLAB (R2024a) [Computer software]. The MathWorks, Inc. 979 
+
+https://www.mathworks.com 980 
+
+Mednick SC, Cai DJ, Shuman T, Anagnostaras S, Wixted J (2011) An opportunistic 981 
+
+theory of cellular and systems cons olidation. Trends Neurosci 34 , 504 –514. 982 
+
+https://doi.org/10.1016/j.tins.2011.06.003 983 
+
+Mercer T (2015) Wakeful rest alleviates interference -based forgetting. Memory 23 ,984 
+
+127 –137.  https://doi.org/10.1080/09658211.2013.872279 985 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Millar PR, Balota DA (2022) Wakeful Rest Benefits Recall, but Not Recognition, of 986 
+
+Incidentally Encoded Memory Stimuli in Younger and Older Adults. Brain Sci 12 , 1609. 987 
+
+https://doi.org/10.3390/brainsci12121609 988 
+
+Posit team (2025) Rstudio: Integrated development environment for r. Posit Software, 989 
+
+PBC. Boston, MA.  http://www.posit.co/ 990 
+
+Core Team (2025) R: A language and environment for statistical computing. R 991 
+
+Foundation for Statistical Computing. Vienna, Austria.  https://www.R -project.org /992 
+
+Sacripante R, McIntosh RD, Della Sala S (2019) Benefit of wakeful resting on gist and 993 
+
+peripheral memory retrieval in healthy younger and older adults. Neurosci Lett 705 ,994 
+
+27 –32.  https://doi.org /10.1016/j.neulet.2019.04.026 995 
+
+Schlichting A, Bäuml K -HT (2017) Brief wakeful resting can eliminate directed 996 
+
+forgetting. Mem 25 , 254 –260.  https://doi.org/10.1080/09658211.2016.1153659 997 
+
+Schreiner T, Staudigl T (2020) Electrophysiological signatures of memory reactivation 998 
+
+in humans. Philos Trans R Soc B Biol Sci 375 , 20190293. 999 
+
+https://doi.org/10.1098/rstb.2019.0293 1000 
+
+Seban P, Šikl R, Prošek T, Urban K (2026) Wakeful rest and memory consolidation in 1001 
+
+an ecologically valid educational setting: no benefit over distractor tasks. Psychol Res 1002 
+
+90 , 42.  https://doi.org/10.1007/s00426 -026 -02265 -x1003 
+
+Sjøgård M, Baxter B, Mylonas D, Thompson M, Kwok K, Driscoll B, Tolosa A, Shi W, 1004 
+
+Stickgold R, Vangel M, Chu CJ, Manoach DS (2025) Hippocampal ripples predict 1005 
+
+motor learning during brief rest breaks in humans. Nat Commun 16 , 1234. 1006 
+
+https://doi.org/10.1038/s41467 -025 -61136 -y1007 
+
+Staresina BP, Bergmann TO, Bonnefond M, van der Meij R, Jensen O, Deuker L, 1008 
+
+Elger CE, Axmacher N, Fell J (2015) Hierarchical nesting of slow oscillations, spindles 1009 
+
+and r ipples in the human hippocampus during sleep. Nat Neurosci 18 , 1679 –1686. 1010 
+
+https://doi.org/10.1038/nn.4119 1011 
+
+Stawarczyk D, Majerus S, Van Der Linden M, D’Argembeau A (2012) Using the 1012 
+
+Daydreaming Frequency Scale to Investigate the Relationships between Mind -1013 
+
+Wandering, Psychological Well -Being, and Present -Moment Awareness. Front 1014 
+
+Psychol 3, 363.  http s://doi.org/10.3389/fpsyg.2012.00363 1015 
+
+Tucker MA, Humiston GB, Summer T, Wamsley E (2020) Comparing the Effects of 1016 
+
+Sleep and Rest on Memory Consolidation. Nat Sci Sleep 12 , 79 –91. 1017 
+
+https://doi.org/10.2147/NS S.S223917 1018 
+
+Vallat R (2018) Pingouin: statistics in Python. J Open Source Softw 3, 1026. 1019 
+
+https://doi.org/10.21105/joss.01026 1020 
+
+Vargha A, Delaney HD (2000) A Critique and Improvement of the CL Com mon 1021 
+
+Language Effect Size Statistics of McGraw and Wong. J Educ Behav Stat 25 , 101 –1022 
+
+132.  https://doi.org/10.3102/10769986025002101 1023 
+
+> .CC-BY-NC 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.01.735795 doi: bioRxiv preprint
+
+Varma S, Daselaar SM, Kessels RPC, Takashima A (2018) Pro motion and 1024 
+
+suppression of autobiographical thinking differentially affect episodic memory 1025 
+
+consolidation. PLOS ONE 13 , e0201780.  https://doi.org/10.1371/journal.pone.0201780 1026 
+
+Varma S, T akashima A, Fu L, Kessels RPC (2019) Mindwandering propensity 1027 
+
+modulates episodic memory consolidation. Aging Clin Exp Res 31 , 1601 –1607. 1028 
+
+https://doi.org/10.1007/s40520 -019 -01251 -11029 
+
+Varma S, Takashi ma A, Krewinkel S, van Kooten M, Fu L, Medendorp WP, Kessels 1030 
+
+RPC, Daselaar SM (2017) Non -Interfering Effects of Active Post -Encoding Tasks on 1031 
+
+Episodic Memory Consolidation in Humans.  Front Behav Neurosci 11 , 54. 1032 
+
+https://doi.org/10.3389/fnbeh.2017.00054 1033 
+
+Virtanen P et al.  (2020) SciPy 1.0: fundamental algorithms for scientific computing in 1034 
+
+Python. Nat Methods 17 , 261 –272.  https://doi.org/10.1038/s 41592 -019 -0686 -21035 
+
+Walter M, Buonviso N, Plailly J (2024 ) Memory Consolidation During Wakeful Rest: 1036 
+
+Could Odors Play a Role? . https://doi.org/10.17605/OSF.IO/TVCX2 1037 
+
+Walter M, Lacaze M, Garcia S, Buonviso N, Plailly J (202 6) Supplements for 'No 1038 
+
+Evidence for a Wakeful Rest Benefit on Associative Memory: A Within -Participant 1039 
+
+EEG Study' . https://doi.org/ 10.17605/OSF.IO/CJDE2 1040 
+
+Wamsley EJ (2022) Offline memory consolidation during waking rest. Nat Rev Psychol 1041 
+
+1, 441 –453.  https://doi.org/10.1038/s44159 -022 -00072 -w1042 
+
+Wamsley EJ, Arora M, Gibson H, Powell P, Collins M (2023) Memory Consolidation 1043 
+
+during Ultra -short Offline States. J Cogn Neurosci 35 , 1617 –1634. 1044 
+
+https://doi.org/10.1162/jocn_a_02035 1045 
+
+Wamsley EJ, Summer T (2020) Spontaneous Entry into an “Offline” State during 1046 
+
+Wakefulness: A Mechanism of Memory Consolidation? J Cogn Neurosci 32 , 1714 –1047 
+
+1734.  https://doi.org/10.1162/jocn_a_01587 1048 
+
+Wang SY, Baker KC, Culbreth JL, Tracy O, Arora M, Liu T, Morris S, Collins MB, 1049 
+
+Wamsley EJ (2021) ‘Sleep -dependent’ memory consolidation? Brief periods of post -1050 
+
+training rest and sleep provide an equivalent benefit for both declarative and 1051 
+
+procedural memory. Learn Mem 28 , 195 –203.  https://doi.org/10.1101/lm.053330.120 1052 
+
+Weng L, Yu J, Lv Z, Yang S, Jülich ST, Lei X (2025 ) Effects of wakeful rest on memory 1053 
+
+consolidation: A systematic review and meta -analysis. Psychon Bull Rev 32 , 1937 –1054 
+
+1968.  https://doi.org/10.3758/s13423 -025 -02665 -x1055 
+
+Zhang H, Fell J, Axmacher N (20 18) Electrophysiological mechanisms of human 1056 
+
+memory consolidation. Nat Commun 9, 4103.  https://doi.org/10.1038/s41467 -018 -06553 -y1057

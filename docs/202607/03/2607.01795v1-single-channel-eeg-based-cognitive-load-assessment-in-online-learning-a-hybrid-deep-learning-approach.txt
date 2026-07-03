@@ -1,0 +1,301 @@
+Title: Single-Channel EEG-Based Cognitive Load Assessment in Online Learning: A Hybrid Deep Learning Approach
+
+URL Source: https://arxiv.org/pdf/2607.01795v1
+
+Published Time: Fri, 03 Jul 2026 00:38:35 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# Single-Channel EEG-Based Cognitive Load Assessment in Online Learning: A Hybrid Deep Learning Approach 
+
+## Rowan Hussein University of Ottawa Ottawa, Ontario, Canada 
+
+rhuss060@uottawa.ca 
+
+## Mohamed Ouf Queen’s University Kingston, Ontario, Canada 
+
+24blr2@queensu.ca 
+
+## Abstract 
+
+Monitoring cognitive load during online learning could help instructors identify content that learners find diffi-cult, but remote settings remove the visual cues that sup-port this judgement in a classroom. We study whether a single-channel, consumer-grade EEG device (the Neu-roSky MindWave Mobile 2) can distinguish easy from dif-ficult educational-video content, using the publicly avail-able dataset of Wang et al. [24] (ten learners, one excluded for excessive noise, leaving nine). We implement a hybrid CNN+LSTM+Attention model that combines the raw wave-form with band-power features. In a within-subject set-ting, the model reaches up to 78 .5% accuracy, compared with 55% for conventional feature-based classifiers; regu-larization (dropout and L2) closes the large gap between training and validation accuracy that we observe without it, keeping validation accuracy stable at roughly 68 –73% . We are deliberately cautious about these numbers: with only nine subjects, within-subject evaluation is optimistic, and we argue that subject-independent evaluation—in which no learner appears in both training and test data—should be the standard for this task. To that end we release a repro-ducible evaluation pipeline. We frame the work as a feasi-bility study rather than a deployable system, and pair it with an open, notebook-based tool that records EEG, runs infer-ence, and visualizes estimated cognitive load as a heatmap over the video timeline to help educators locate potentially challenging segments. 
+
+## 1. Introduction 
+
+The rapid transition to online education following the COVID-19 pandemic highlighted a number of critical chal-lenges in maintaining effective instruction and meaning-ful student engagement. Traditional classroom dynamics, where instructors can visually assess comprehension and adjust teaching strategies in real-time, were largely lost in 
+
+Figure 1. MindWave Mobile 2. 
+
+virtual settings. As a result, many online learners expe-rienced reduced motivation, diminished participation, and less interactive communication with peers and educators [3, 6]. The absence of face-to-face feedback mechanisms and the isolating nature of remote learning environments hinder instructors’ ability to gauge understanding and pro-vide help. Consequently, these conditions may negatively impact learning outcomes and overall educational effective-ness. Electroencephalography (EEG) offers a promising av-enue to address these issues by enabling the continuous monitoring of cognitive load during online learning ses-sions. By capturing the brain’s electrical activity, EEG can detect subtle shifts in mental effort and engagement as learners interact with educational content [1, 2]. Real-time EEG-based feedback allows educators to identify students who struggle with specific topics, encouraging timely inter-ventions such as clarifying explanations or adjusting teach-ing materials. Moreover, when a significant portion of the class shows elevated cognitive load at the same point in the instructional material, it may indicate that the content is inherently challenging, prompting educators to reevaluate their instructional design and delivery. Beyond the measurement of basic mental states, EEG has also been used extensively in medical and biomedical applications, including the analysis of mental workload and 1
+
+> arXiv:2607.01795v1 [cs.LG] 2 Jul 2026
+
+fatigue [9], the diagnosis of neurological conditions [11], and the rehabilitation of disorders affecting the central ner-vous system [4]. In educational contexts, EEG-based anal-yses have proven valuable for understanding learners’ cog-nitive processes, emotional states, and engagement patterns [26]. These insights are especially useful given recent ad-vancements in consumer-grade EEG devices. These sys-tems simplify data acquisition by eliminating the need for complex multi-channel setups, conductive gels, and exten-sive calibration procedures. For instance, single-channel EEG headsets, such as the MindWave Mobile 2 (Figure 1), are similar in size to conventional headphones and require only minimal preparation, thus lowering barriers to adop-tion in real-world educational environments [14, 15]. Despite such technological and methodological advance-ments, accurately measuring cognitive load from EEG sig-nals remains a challenging task, particularly when work-ing with small datasets. State-of-the-art approaches of-ten rely on multi-channel EEG recordings and leverage sophisticated machine learning models—such as Convolu-tional Neural Networks (CNNs), Long Short-Term Memory (LSTM) networks, and attention-based architectures—to classify cognitive load states [10, 22, 26]. While these methods have demonstrated commendable performance on larger datasets, smaller datasets are prone to overfitting and reduced model generalizability [21]. Strategies like regular-ization, cross-validation, and careful preprocessing are re-quired to mitigate these limitations and ensure reliable out-comes. In this study, we present a single-channel EEG-based ap-proach to estimating cognitive load while learners watch educational videos. Our hybrid CNN+LSTM+Attention model, which combines the raw waveform with band-power features, reaches up to 78 .5% accuracy in distinguishing easy from difficult content in a within-subject setting, com-pared with 55% for conventional feature-based classifiers. We treat this result cautiously: with only nine subjects, within-subject evaluation is optimistic, and we argue that 
+
+subject-independent evaluation—in which no learner con-tributes data to both training and testing—should be the standard for judging whether such a system generalizes to new learners. To support this, we release a reproducible evaluation pipeline. We build the model into a processing pipeline that integrates data acquisition from a MindWave Mobile 2 headset, signal preprocessing, feature extraction, and inference; by visualizing the resulting estimates as a heatmap over the video timeline, it gives educators intuitive feedback for locating segments that may warrant interven-tion. 
+
+Contributions: This work makes three contributions: 
+
+A feasibility study on consumer single-channel EEG. 
+
+We show that a hybrid CNN+LSTM+Attention model reaches up to 78 .5% within-subject accuracy on the confusion-detection task, substantially above conventional feature-based classifiers, and we characterize its overfitting behaviour and the effect of regularization. 
+
+A methodological caution and open evaluation pipeline. We argue that subject-independent evaluation should be the default for this task, and we release code that implements it—leave-one-subject-out cross-validation, an explicit chance baseline, a label-permutation significance test, and a branch ablation—so that generalization to unseen learners can be assessed reproducibly. 
+
+An open visualization tool. We provide a simple, notebook-based tool that, once an EEG session is recorded, processes the data and displays a cognitive-load heatmap over the video timeline. 
+
+Organization: Following this introduction, we review re-lated work on EEG-based cognitive load assessment and machine learning techniques. We then present our method-ology, including data collection, preprocessing, and model development. Next, we discuss the results and their implica-tions. Finally, we conclude with a summary of our findings and directions for future research. 
+
+## 2. Literature Review 
+
+Electroencephalography (EEG) has been extensively em-ployed to measure cognitive load and emotional states in both educational and human-computer interaction (HCI) contexts. Traditional methodologies often utilize multi-channel EEG systems, allowing for the extraction of rich neural patterns associated with varying cognitive engage-ment and emotional responses [1, 2]. For instance, Zarjam et al. [25] identified specific spectral features from EEG sig-nals that effectively discriminate between different cogni-tive load levels during reading tasks. Similarly, Anderson et al. [1] conducted a user study examining the cognitive load imposed by distinct visualization techniques (e.g., graphical versus textual representations). Their findings suggest that EEG-based assessments can inform the selection and refine-ment of visualization methods, potentially guiding the cre-ation of more effective educational materials. Antonenko et al. [2] further demonstrated the utility of continuous EEG measurements to capture subtle fluctuations in cog-nitive load, providing valuable insights into how particular instructional interventions influence cognitive processing. Recent advancements in machine learning (ML) and deep learning (DL) have significantly contributed to the analysis and classification of EEG data for cognitive load assessment. Numerous approaches, including Convolu-tional Neural Networks (CNNs), Long Short-Term Mem-ory (LSTM) networks, and attention-based architectures, have been explored to improve the accuracy and robust-ness of cognitive load classification [10, 22, 26]. For ex-ample, Zhang et al. [26] introduced a deep attention-based LSTM framework that effectively classified hand move-2ments from EEG signals, outperforming traditional mod-els. Likewise, Li et al. [10] employed a multilevel multi-scale CNN for motor imagery EEG, achieving high classi-fication accuracies by capturing time-frequency-space fea-tures. One recurring challenge is the limited size of avail-able EEG datasets, which can lead to overfitting and re-duced generalizability [12, 21], and—as we emphasize in this paper—to over-optimistic accuracy estimates when the evaluation split allows data from the same subject to ap-pear in both training and test sets. Some studies address the sample-size limitation with careful preprocessing pipelines and regularization [10, 22]. Another promising develop-ment is the emergence of consumer-grade EEG devices— such as the NeuroSky MindWave, Muse, and Emotiv In-sight [5, 8, 15]—which simplify data acquisition and cir-cumvent the complexities inherent in multi-channel EEG systems [14]. These portable and user-friendly solutions en-able broader experimentation. Machine learning has proven effective across a range of human-centered sensing tasks— for example, computer-vision-based injury prevention and activity classification in physical fitness [7, 20]—as well as in software-engineering analytics [16–19] and commu-nications and maritime monitoring systems [13, 23]; we bring this data-driven perspective to EEG-based cognitive-load estimation. Building on these trends, our study asks how well a single-channel EEG device can estimate cogni-tive load when the model is evaluated on unseen learners, and offers an accessible, reproducible pipeline for online-learning settings. 
+
+## 3. Methodology 
+
+This section outlines our approach to collecting, process-ing, and analyzing the EEG dataset, as well as the develop-ment and refinement of our machine learning models. We describe the data source, preprocessing procedures, feature extraction methods, model architectures, and the steps taken to mitigate overfitting. Throughout, we highlight our itera-tive process of trial and error, guiding the selection of tech-niques aimed at improving classification performance under challenging data constraints. 
+
+3.1. Data Collection 
+
+3.1.1. Data Source 
+
+We employed a dataset originally presented by Wang et al. [24], where EEG signals were recorded from ten col-lege students as they watched educational video segments of varying difficulty. A pool of 20 videos (approximately two minutes each) was used, with half categorized as “easy” and the other half as “hard.” To introduce potential confu-sion, two-minute clips were extracted from the middle of a topic. Each participant watched 10 of these videos (5 easy, 5 hard), giving a total of 100 trials. After viewing each video, participants provided a self-reported confusion 
+
+> Figure 2. Raw single-channel EEG for the excluded Subject #6, showing the large-amplitude noise that motivated its removal.
+
+rating on a 7-point Likert scale, later normalized into a bi-nary label (confused vs. not confused). In addition to these 
+
+user-defined labels , predefined labels based on the intended difficulty of the videos were also available. Participants, aged 24–31 and from diverse backgrounds, had normal or corrected-to-normal vision and no reported neurological conditions. Informed consent was obtained, and ethical approval was granted by the relevant insti-tutional review board. After excluding one participant (Subject #6) whose signal was dominated by noise (Sec-tion 3.2.1), our analysis uses the remaining nine subjects (90 trials); we report counts consistently on this post-exclusion set. 
+
+3.1.2. Data Acquisition Device 
+
+The EEG signals were acquired using a single-channel Neu-roSky MindWave Mobile 2 headset (Figure 1), with the primary sensor positioned near the FP1 location and the reference electrode at the ear clip. The device streams the raw single-channel waveform at approximately 512 Hz over Bluetooth and also reports derived metrics (e.g., band-power values) computed on-board via the Fast Fourier Transform (FFT) and proprietary algorithms. This plug-and-play configuration eliminates the need for complex multi-channel setups or gel-based electrodes, making the device accessible and suitable for the educational context. 
+
+3.2. Data Processing and Preprocessing 
+
+3.2.1. Data Cleaning 
+
+Initial variance analysis indicated that several device-generated features (e.g., the proprietary attention and medi-tation indices and certain band powers) offered limited dis-criminatory value due to their low variance. Consequently, we based the CNN branch on the raw EEG signal and re-served the band-power features for the recurrent branch (Section 3.2.2). A manual inspection revealed that one participant’s data (Subject #6, Figure 2) were predominantly noisy and thus excluded. Other than this removal, the dataset was relatively complete and required minimal handling of missing values. The final dataset associates each trial with its raw EEG time 3Table 1. Equations for Selected Features and Regularization 
+
+Feature/Term Equation 
+
+Mean (μ) μ = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+xi
+
+Variance (σ2) σ2 = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+(xi − μ)2
+
+Skewness Skew = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+ xi − μσ
+
+3
+
+Kurtosis Kurt = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+ xi − μσ
+
+4
+
+− 3
+
+Zero-Crossings Count of sign changes in {xi}Ni=1 
+
+Absolute Area A =
+
+> N
+
+X
+
+> i=1
+
+|xi|
+
+Peak-to-Peak p2p = xmax − xmin 
+
+Relative Band Power Pband =
+
+P  
+
+> f∈band
+
+|X(f )|2
+
+P 
+
+> f
+
+|X(f )|2
+
+L2 Regularization Loss L2 = Loss original + λ X
+
+> j
+
+w2
+
+> j
+
+series, band-power sequence, and the corresponding confu-sion label. 
+
+3.2.2. Feature Extraction 
+
+EEG signals are non-stationary, so it is important to capture both time- and frequency-domain characteristics. We seg-ment each trial into short windows and derive two comple-mentary representations that feed the two model branches. The first is the (normalized) raw waveform itself, provided as a fixed-length window to the convolutional branch; we treat the window length as a hyperparameter and study its effect in Section 4.4. The second is a sequence of relative band-power vectors: for each of a small number of consec-utive sub-windows we compute the relative power in the 
+
+delta (0.5–4 Hz), theta (4–8 Hz), alpha (8–12 Hz), and 
+
+beta (12–30 Hz) bands, yielding a length-10 sequence of 
+
+4-dimensional vectors for the recurrent branch. We addi-tionally computed a set of time-domain descriptors— mean ,
+
+variance , skewness , kurtosis , zero-crossings , absolute area under the curve , and peak-to-peak distance —which we use for the simple feature-based baseline (Section 3.4). Table 1 summarizes the mathematical definitions of the key features and the L2 regularization term. 
+
+3.2.3. Data Segmentation for Sequence Modeling 
+
+To facilitate sequence modeling, we used a moving-window approach and tested several raw-window lengths ( 25 , 50 ,and 100 samples, i.e., roughly 0.05 –0.20 s at the device’s 
+
+∼512 Hz raw rate) to identify the temporal granularity that best captured cognitive-load variations while balancing temporal resolution against the number of usable segments per trial. Because these windows are short relative to a two-minute trial, this study is a within-subject sensitivity analy-sis (Section 4.4), not our headline generalization result. 
+
+3.3. Model Development 
+
+3.3.1. Baseline Models 
+
+We initially evaluated conventional machine learning classi-fiers, including Decision Trees, Random Forests, XGBoost, Support Vector Machines, and Logistic Regression. These models served as baselines, achieving modest accuracies (roughly 25–55%) when predicting confusion states. While these results were modest, they provided a benchmark and underscored the inherent difficulty of the classification task. 
+
+3.3.2. Advanced Models (LSTM and Attention) 
+
+To better exploit temporal dependencies in the EEG sig-nals, we tried Long Short-Term Memory (LSTM) networks, building on our prior experience applying LSTMs to se-quence classification of activity videos [7]. LSTMs capture long-term temporal structures, which can be valuable for identifying subtle patterns in cognitive load. Additionally, we integrated an attention mechanism to focus on the most informative time steps, similar to that of Zhang et al. [26]. While this approach improved representational capacity, the small dataset size led to persistent overfitting challenges. 
+
+3.3.3. Proposed CNN+LSTM+Attention Architecture 
+
+Building on these trials, we developed a dual-input hybrid architecture (Figure 3). The convolutional branch takes the raw window (Section 4.4) and applies 1D convolution, max-pooling, and batch normalization to extract local temporal patterns; the recurrent branch takes the length-10 sequence of 4-dimensional band-power vectors and applies stacked LSTMs to model longer-range dependencies. Each branch has its own additive attention layer (a softmax over time steps) that reweights and pools its features. The two pooled representations are concatenated and passed through a fully connected layer with batch normalization, dropout, and L2
+
+regularization. Because the task is binary (confused vs. not confused), the output is a single sigmoid unit trained with binary cross-entropy. 1
+
+3.3.4. Overfitting Mitigation 
+
+Given the small sample, we combined dropout (randomly dropping units in the fully connected layer), L2 regular-ization (penalizing large weights), and early stopping . No 
+
+> 1Figure 3 illustrates the dual-branch structure; the specific input and output dimensions it shows correspond to an earlier configuration (a longer input window and a multi-output head), whereas the model we evaluate uses the window length selected in Section 4.4 and the single-sigmoid bi-nary head.
+
+4Figure 3. Schematic of the proposed dual-input CNN+LSTM+Attention architecture (convolutional branch, recurrent branch, per-branch attention, and fusion). The evaluated model uses the window length selected in Section 4.4 and a single-sigmoid binary output (see footnote). 
+
+data augmentation was used at this stage, though synthetic data generation is a natural direction for future work. 
+
+3.4. Evaluation Protocol 
+
+The results reported in this paper use within-subject eval-uation, with accuracy computed on held-out windows and cross-validated over the segmented data. This is the stan-dard setting in much small-sample EEG work and is what we use to compare models and window sizes. We stress, however, that within-subject evaluation is op-timistic for our purpose. With only nine subjects and many short windows per trial, windows from the same subject can appear in both training and test sets, so a model may exploit subject- and trial-specific idiosyncrasies rather than gener-alizable correlates of cognitive load—a well-documented pitfall. For a system meant to help new learners, the appro-priate protocol is subject-independent leave-one-subject-out (LOSO) cross-validation , in which each subject is held out entirely for testing, paired with a majority-class chance baseline, a label-permutation significance test, and a branch 
+
+Table 2. Performance of baseline classifiers on predefined and user-defined labels. These conventional models establish the diffi-culty of the task.                                                                          
+
+> Predefined Label User-Defined Label Model Acc Prec Rec F1 Acc Prec Rec F1
+> Random Forest 0.35 0.6250 0.35 0.3321 0.35 0.4344 0.35 0.3051 XGBoost 0.45 0.6250 0.45 0.4795 0.50 0.5303 0.50 0.5104 SVM 0.25 0.0625 0.25 0.1000 0.35 0.1225 0.35 0.1815 Logistic Reg. 0.50 0.6515 0.50 0.5313 0.55 0.5345 0.55 0.5410 Decision Tree 0.55 0.7396 0.55 0.5742 0.55 0.6917 0.55 0.5421 Gradient Boosting 0.40 0.6667 0.40 0.4000 0.50 0.5303 0.50 0.5104 AdaBoost 0.35 0.6250 0.35 0.3321 0.50 0.5606 0.50 0.5101 KNN 0.35 0.5536 0.35 0.3647 0.55 0.4938 0.55 0.5119
+
+ablation under identical folds. We do not report LOSO num-bers as a settled result here; instead we release code that runs this full protocol (Section 4.6) so that generalization can be measured reproducibly. This distinction—and the caution it implies—is a central message of the paper. 
+
+3.5. Implementation Details 
+
+All experiments were conducted in Python on a MacBook Pro (M2 Pro) . Models were built in TensorFlow /Keras ;
+
+scikit-learn provided the baselines, cross-validation split-ters, and metrics; and NumPy /Pandas handled data manip-ulation, with Matplotlib /Seaborn for visualization. All ran-dom seeds ( NumPy and TensorFlow ) were fixed and are re-ported in the released code to support reproducibility. 
+
+## 4. Results 
+
+We first report conventional baselines, then the performance of the proposed hybrid model, its overfitting behaviour, and a within-subject window-size analysis. We close with a qualitative visualization and a discussion of why subject-independent evaluation is the essential next step. 
+
+4.1. Baseline Model Performance 
+
+We first evaluated a range of conventional classifiers— Random Forest, XGBoost, SVM, Logistic Regression, De-cision Tree, Gradient Boosting, AdaBoost, and KNN—on hand-crafted features, using both the predefined (content-difficulty) and user-defined (self-reported confusion) labels. As shown in Table 2, performance is modest. Several accu-racies fall at or below the 50% chance level of this balanced binary task; this reflects the very small per-fold test sets and the difficulty of decoding confusion from a single chan-nel, and it motivates both the sequence-based model below and our caution about single split-based numbers. The best user-defined-label accuracy is around 55% (Decision Tree, KNN, Logistic Regression). 
+
+4.2. Proposed Hybrid Model 
+
+Moving beyond hand-crafted features, the proposed dual-input CNN+LSTM+Attention model leverages both the raw 5Figure 4. Training and validation accuracy/loss for the proposed model before (top) and after (bottom) applying dropout and L2  
+
+> regularization. After regularization, validation accuracy stabilizes around 0.68 –0.73 and the train–validation gap shrinks.
+
+waveform and the band-power sequence. In a within-subject setting it reaches up to 78 .5% accuracy (Sec-tion 4.4), a clear improvement over the conventional clas-sifiers in Table 2, whose best result is 55% . This supports the intuition that jointly modelling local waveform structure (via the convolutional branch) and longer-range spectral dy-namics (via the recurrent branch), with attention over time steps, captures information that static feature summaries miss. We emphasize, however, that these are within-subject numbers on a nine-subject dataset and should be read as ev-idence of feasibility rather than as a generalization estimate; Section 4.6 returns to this point. 
+
+4.3. Overfitting Analysis and Mitigation 
+
+Overfitting was a recurring challenge: early models reached high training accuracy but generalized poorly. Dropout, 
+
+L2 regularization, and early stopping narrowed this gap. Figure 4 shows the effect directly. Before regularization (top), validation accuracy peaks near 0.61 and then declines while training accuracy keeps climbing—the classic over-fitting signature. After regularization (bottom), the two curves track together and plateau around 0.68 –0.73 . This behaviour is exactly what one expects on a small dataset, and it is why we report regularized performance and treat the raw peak accuracies with caution. 
+
+4.4. Effect of Window Size 
+
+We examined three raw-window sizes ( 25 , 50 , and 100 
+
+samples). As shown in Table 3, a window of 50 sam-ples gave the best accuracy ( 78 .5% ), with 25 and 100 sam-ples at 75 .0% and 76 .0% . The drop at 100 samples likely stems from fewer usable segments per trial and the result-ing padding, which reduces the effective amount of training  
+
+> Table 3. Within-subject classification accuracy of the proposed model for different raw-window sizes.
+
+Window Size (samples) Accuracy (%) 
+
+25 75.0 50 78.5 100 76.0 data. We therefore use a 50 -sample window in the proposed model. 
+
+4.5. Qualitative Visualization Over Time 
+
+Beyond aggregate metrics, the pipeline can render cognitive-load estimates over the course of a video. As a qualitative demonstration, we concatenated several seg-ments into a single longer clip containing three challenging (hard) segments interspersed among easier content, ran in-ference, and applied a median filter to the model’s output to suppress transient artifacts. Figure 5 shows the resulting heatmap over the video timeline. We present this as an il-lustration of the interface rather than a quantitative result; systematically measuring how well predicted high-load re-gions align with known difficult segments is left to future work. 
+
+4.6. Toward Subject-Independent Evaluation 
+
+The results above use within-subject evaluation, which is standard in much small-sample EEG work but is optimistic: because short windows from the same subject can appear in both training and test sets, a model can exploit subject-specific signal characteristics rather than generalizable cor-relates of cognitive load. For a system intended to help 
+
+new learners, the more honest question is how well it trans-fers to subjects it has never seen. The appropriate pro-tocol is subject-independent leave-one-subject-out (LOSO) cross-validation, paired with a majority-class chance base-line and a label-permutation significance test. We expect subject-independent accuracy to be lower than the within-subject figures reported here—consistent with the valida-tion plateau of 0.68 –0.73 in Figure 4—and we regard es-tablishing that number as the essential next step rather than a settled result. To make this straightforward and repro-ducible, we release an evaluation script that implements LOSO cross-validation, the chance baseline, the permuta-tion test, and a branch ablation (CNN-only, LSTM-only, and the full model) under identical folds. 
+
+## 5. Conclusion and Future Work 
+
+This study examined whether cognitive load can be as-sessed from a single-channel, consumer-grade EEG de-vice while learners watch educational videos. A hy-brid CNN+LSTM+Attention model that combines the raw 6Figure 5. Illustrative cognitive-load heatmap produced by the vi-sualization pipeline over a concatenated video, intended to show the interface rather than to serve as a quantitative result. 
+
+waveform with band-power features reached up to 78 .5% 
+
+within-subject accuracy on a nine-subject dataset, clearly above conventional feature-based classifiers ( 55% ), while regularization kept validation accuracy stable around 68 –
+
+73% . Alongside the model, we provide an open, notebook-based pipeline that records EEG, runs inference, and visu-alizes estimated cognitive load as a heatmap over the video timeline. 
+
+Limitations. The dataset is small (nine subjects after exclu-sion), the signal is a single channel from a consumer device, and the labels are coarse. Our headline numbers are within-subject and therefore optimistic; we accordingly frame this as a reproducible feasibility study rather than a deployable system, and we avoid claims of clinical or classroom relia-bility. 
+
+Future Work. The most important next step is afull subject-independent (leave-one-subject-out) evaluation with a chance baseline and significance testing, for which we release code (Section 4.6). Beyond that, promising di-rections include multi-channel or additional-sensor inputs to capture richer neural activity, larger and more diverse datasets, domain adaptation and data augmentation to im-prove robustness in data-limited regimes, and interpretabil-ity methods to relate features to cognitive load. Integrating the pipeline into online-learning platforms could then sup-port real-time, personalized instructional adjustments. 
+
+## References 
+
+[1] E. W. Anderson, K. C. Potter, L. E. Matzen, J. F. Shepherd, G. A. Preston, and C. T. Silva. A user study of visualiza-tion effectiveness using eeg and cognitive load. Computer Graphics Forum , 30(3):791–800, 2011. 1, 2 [2] Pavlo Antonenko, Fred Paas, Roland Grabner, and Tamara van Gog. Using electroencephalography to measure cogni-tive load. Educational Psychology Review , 22(4):425–438, 2010. 1, 2 [3] Wen Bao. Covid-19 and online teaching in higher educa-tion: A case study of peking university. Human Behavior and Emerging Technologies , 2(2):113–115, 2020. 1 [4] Janis J. Daly and Jonathan R. Wolpaw. Brain–computer in-terfaces in neurological rehabilitation. The Lancet Neurol-ogy , 7(11):1032–1043, 2008. 2 [5] Emotiv Inc. Emotiv brainwear. https://www.emotiv. com/ , 2026. Accessed: 2026-06-15. 3 [6] Charles Hodges, Stephanie Moore, Barb Lockee, Torrey Trust, and Aaron Bond. The difference between emergency remote teaching and online learning. Educause Review ,2020. 1 [7] Rowan Hussein and Mohamed Ouf. LSTM exer-cise classification: Push-up videos. Kaggle dataset, 2022. https : / / www . kaggle . com / datasets / mohamadashrafsalama/pushup/data . 3, 4 [8] InteraXon Inc. Muse: The brain sensing headband. https: //choosemuse.com/ , 2026. Accessed: 2026-06-15. 3 [9] Jakob Nikolas Kather, Johannes Krisam, et al. Deep learning in medical diagnostics. Nature Biomedical Engineering , 4: 389–399, 2020. 2 [10] Ming-ai Li, Jian-fu Han, and Jin-fu Yang. Automatic fea-ture extraction and fusion recognition of motor imagery eeg using multilevel multiscale cnn. Medical & Biological Engi-neering & Computing , 59:2037–2050, 2021. 2, 3 [11] Fabien Lotte, Marco Congedo, Anatole L´ ecuyer, Fr´ ed´ eric Lamarche, and Bruno Arnaldi. A review of classification al-gorithms for eeg-based brain–computer interfaces. Journal of Neural Engineering , 4(2):R1–R13, 2007. 2 [12] Yun Luo, Si-Yang Zhang, Wei-Long Zheng, and Bao-Liang Lu. Wgan domain adaptation for eeg-based emotion recog-nition. In International Conference on Neural Information Processing (ICONIP) , pages 275–286. Springer, 2018. 3 [13] M. A. Marshall, Mohamed A. Ouf, A. Elkhateeb, Amr Soli-man, M. S. Rahaman, and S. Mobarak. A review of recon-figurable intelligent surfaces and their application to machine learning-assisted underwater communications. Technical re-port, Fisheries and Marine Institute, Memorial University of Newfoundland, 2024. 3 [14] Noman Naseer and Keum-Shik Hong. fnirs-based brain– computer interfaces: A review. Frontiers in Human Neu-roscience , 9:3, 2015. 2, 3 [15] NeuroSky Inc. NeuroSky MindWave mobile 2. https: //neurosky.com/ , 2026. Accessed: 2026-06-15. 2, 3 
+
+7[16] Mohamed Ouf and Mariam Guizani. Same project, different start: How contribution events shape activity and retention in open source. arXiv preprint arXiv:2604.22120 , 2026. 3 [17] Mohamed Ouf, Hao Li, Ming Zhang, and Mariam Guizani. Reverse engineering user stories from code using large lan-guage models. In 2025 IEEE International Conference on Collaborative Advances in Software and Computing . IEEE, 2025. [18] Mohamed Ouf, Aya Mohamed, and Mariam Guizani. Do good, stay longer? temporal patterns and predictors of newcomer-to-core transitions in conventional OSS and OSS4SG. arXiv preprint arXiv:2601.23142 , 2026. [19] Mohamed Ouf, Shayan Noei, Zana Van Iterson, Mariam Guizani, and Ying Zou. An empirical analysis of commu-nity and coding patterns in OSS4SG vs. conventional OSS. 
+
+arXiv preprint arXiv:2601.03430 , 2026. 3 [20] Mohamed A. Ouf, R. M. Amin, M. M. Sabry, A. H. Ali, Y. A. Hamdan, and Sherine N. Saleh. VISION-PF: A com-puter vision approach to injury prevention in physical fitness. In 2024 International Telecommunications Conference (ITC-Egypt) , pages 1–6. IEEE, 2024. 3 [21] Khansa Rasheed, Adnan Qayyum, Junaid Qadir, Shobi Sivathamboo, Patrick Kwan, Levin Kuhlmann, Terence O’Brien, and Adeel Razi. Machine learning for predicting epileptic seizures using eeg signals: A review. IEEE Reviews in Biomedical Engineering , 14:139–155, 2021. 2, 3 [22] Avik Sarkar, Ankita Singh, and Rakhi Chakraborty. A deep learning-based comparative study to track mental depres-sion from eeg data. Neuroscience Informatics , 2(4):100039, 2022. 2, 3 [23] Amr Soliman, M. A. Marshall, M. S. Rahaman, Mohamed A. Ouf, and A. El-Sayed. A bibliometric review of research publications on digital twin predictive maintenance systems in the maritime industry. Technical report, Fisheries and Ma-rine Institute, Memorial University of Newfoundland, 2024. 3[24] Haohan Wang, Yiwei Li, Xiaobo Hu, Yucong Yang, Zhu Meng, and Kai-min Chang. Using eeg to improve massive open online courses feedback interaction. In AIED 2013 Workshops Proceedings , 2013. 1, 3 [25] Pega Zarjam, Julien Epps, and Fang Chen. Characteriz-ing working memory load using eeg delta activity. In 19th European Signal Processing Conference (EUSIPCO) , pages 1554–1558. IEEE, 2011. 2 [26] Guangyi Zhang, Vandad Davoodnia, Alireza Sepas-Moghaddam, Yaoxue Zhang, and Ali Etemad. Classifica-tion of hand movements from eeg using a deep attention-based lstm network. IEEE Sensors Journal , 20(6):3113– 3121, 2020. 2, 4 
+
+8
