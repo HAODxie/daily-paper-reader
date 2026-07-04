@@ -1,0 +1,426 @@
+Title: Prefrontal activation predicts response latency and is shaped by age and lifestyle
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.22.733821v1.full.pdf
+
+Published Time: Wed, 01 Jul 2026 08:30:22 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+Prefrontal activation predicts response latency and is shaped by age and lifestyle 
+
+Rufus Mitchell Heggs 1,2,* , Daniel Tamkin 1,2* , Lucas Scherdel 1, Anita Snowdon-Farrell 1,2 ,Alfred Curry 2, Onayomi Rosenior-Patten 1,2 , Simon R Schultz 1,2 
+
+¹Connectome Health, Tobeleggweg 22, CH-8049 Zurich, Switzerland 
+
+> 2
+
+Centre for Neurotechnology and Department of Bioengineering, Imperial College London, South Kensington, London, SW7 2AZ, UK 
+
+*co-first authors 
+
+Corresponding author: 
+
+rufus@connectome.health 
+
+Abstract: 
+
+Neurological and neuropsychiatric conditions affect 43% of the global population, many shaped by modifiable lifestyle exposures, yet their relationship to cortical haemodynamics is poorly characterised. The dorsolateral prefrontal cortex (dlPFC) is a particularly tractable target: it underpins executive function, is disrupted across neuropsychiatric and age-related conditions, and lies on the cortical surface, within reach of scalable, wearable-grade optical neuroimaging. We present LUCID, a longitudinal study of 92 healthy adults combining consumer wearable sleep and physical activity metrics with task-evoked dlPFC haemodynamics, measured by time-domain functional near-infrared spectroscopy (TD-fNIRS). Log-transformed peak dlPFC activation was negatively associated with reaction time (RT) across the 2N-Back and Stroop tasks and both hemispheres (r = -0.37 to -0.53), greater activation accompanying faster responses, consistent with a capacity/recruitment account. Activation showed moderate test–retest reliability (intraclass correlation coefficient, ICC = 0.56-0.71), with between-person variance exceeding within-person fluctuation, indicating stable individual differences. Demographic and lifestyle features incrementally predicted activation, with age the strongest predictor and modest contributions from sleep and physical activity. These findings establish TD-fNIRS dlPFC activation as a longitudinally stable, behaviourally relevant functional neural marker for scalable tracking of modifiable risk. 1 Introduction 
+
+Neurological conditions affect 43% of the world's population (3.4 billion individuals) and are the top contributor to the global disease burden, ahead of cardiovascular diseases (Steinmetz et al., 2024). A growing body of evidence suggests that many of these conditions are not solely the product of genetic predisposition or acute injury, but emerge from the cumulative effects of modifiable lifestyle factors over time. 
+
+A common thread linking many of these conditions is disruption to cerebral haemodynamics, specifically the delivery and regulation of oxygenated blood flow to the brain. Such disruption is observed across vascular dementia, traumatic brain injury (TBI), ischaemic stroke, schizophrenia, and neurodegenerative diseases, where alterations in the haemodynamic response serve as both a marker of underlying pathology and a potential target for monitoring disease progression or recovery (Patel, Nischal and Patel, 2026). This pattern extends to neuropsychiatric conditions: systematic review and meta-analysis evidence indicates that depressed patients show a consistent reduction in cerebral blood flow (CBF) relative to healthy controls, suggesting a role for haemodynamic assessment and CBF-altering interventions in high-risk groups (Chithiramohan et al., 2022). In attention deficit hyperactivity disorder (ADHD), prefrontal hypoactivation during executive function tasks is consistently observed using functional near-infrared spectroscopy (fNIRS), with diminished oxyhaemoglobin (HbO) responses in the prefrontal cortex (PFC) documented in both child and adult populations (Peet et al., 2022; Zhang et al., 2023), consistent with the broader pattern of haemodynamic disruption observed across neurological and neuropsychiatric conditions. 
+
+Critically, however, many of these conditions do not arise acutely. The concept of the exposome, the totality of environmental and lifestyle exposures an individual accumulates across their lifespan offers a framework for understanding this incremental trajectory, capturing how cumulative exposures interact with genetic background to shape brain health and disease vulnerability over time (Sakowski et al., 2024; Nature Reviews Neuroscience ,2026). In dementia, for example, the 2024 Lancet Commission identified fourteen modifiable risk factors spanning physical, social, and environmental domains that, if addressed from childhood through later life, could prevent or delay nearly half of all cases worldwide (Livingston et al., 2024). This principle extends across neurological conditions more broadly: for a substantial proportion of cases, the trajectory toward disease is shaped by compounding everyday lifestyle exposures rather than discrete clinical events. 
+
+Haemodynamic imaging has predominantly been applied in the context of established diagnosis, yet the more pressing opportunity lies upstream - identifying and continuously tracking the lifestyle factors that cumulatively modulate cerebral haemodynamics before clinical thresholds are reached. The dorsolateral Prefrontal Cortex (dlPFC) is a particularly compelling target. It underpins the core executive functions, working memory, cognitive flexibility, planning, and inhibitory control (Jung et al., 2022) - which are themselves sensitive to lifestyle-related variation in sleep and physical activity (Csipo et al., 2021; Shen et al., 2024). Its haemodynamic function is disrupted across neuropsychiatric and age-related conditions (Chithiramohan et al., 2022; Peet et al., 2022; Zhang et al., 2023; Patel, Nischal and Patel, 2026) and, as a superficial cortical region, it is also accessible to reliable, scalable optical neuroimaging (Ban et al., 2022; Castillo et al., 2024; Taylor et al., 2024). Recent work has begun to address this opportunity, establishing that sleep and physical activity each exert measurable effects on cortical haemodynamics. Sleep deprivation has been shown to significantly alter task-evoked prefrontal haemodynamic responses and reduce task-associated cerebral blood flow, with concurrent impairments in reaction time (RT) and sustained attention (Csipo et al., 2021; Rab-Bábel et al., 2025). Physical activity interventions produce acute increases in prefrontal oxyhaemoglobin, with effects varying by exercise type, intensity, and duration (Naito et al., 2024), and are associated with improvements in working memory and inhibitory control (Shen et al., 2024). Where both domains have been examined together, their contributions to brain function appear distinct: sleep and physical activity relate specifically to brain connectivity during cognitively demanding tasks, while heart rate variability and respiration rate are more relevant for resting-state connectivity (Triana et al., 2024). 
+
+However, two critical limitations constrain the translational value of this literature. First, most are single-session or acutely manipulated designs. These capture transient state effects rather than the stable individual differences that arise from habitual lifestyle patterns, making it impossible to separate trait-level haemodynamic sensitivity from day-to-day fluctuation. Second, prior work has rarely targeted the dlPFC specifically: prefrontal effects have typically been captured with broad cortical coverage or framed around connectivity, rather than as targeted, task-evoked activation under standardised executive load. 
+
+The present study addresses both limitations with a longitudinal, repeated-measures design spanning three sessions in a healthy adult cohort. We pair task-evoked dlPFC haemodynamics, measured by time-domain functional near-infrared spectroscopy (TD-fNIRS), with quantitative, multimodal lifestyle data from consumer wearables. Consumer-grade wearable devices now make it feasible to continuously capture a broad suite of lifestyle-relevant metrics longitudinally and at scale, providing objective proxies for the cumulative lifestyle exposures that may shape prefrontal brain function. The present study focuses specifically on sleep and physical activity, two of the most consistently implicated modifiable lifestyle domains captured quantitatively across multiple temporal windows prior to each scanning session. Complementing this, TD-fNIRS enables direct measurement of dlPFC oxygenation in a portable, repeated-measures protocol that is well-suited to longitudinal multimodal study designs. Critically, TD-fNIRS is considered the gold standard of non-invasive optical brain imaging, offering superior depth sensitivity and improved quantitative estimates of oxyhaemoglobin concentration relative to conventional continuous-wave fNIRS systems, providing greater confidence that measured haemodynamic signals reflect cortical rather than superficial tissue changes (Ban et al., 2022; Castillo et al., 2024). 
+
+Using this framework, we continuously and quantitatively captured sleep and physical activity metrics alongside task-evoked dlPFC haemodynamics and standardised cognitive assessments, the Switching Stroop task and the 2N-Back working memory test, across three repeated sessions in a healthy adult cohort. Unlike prior work relying on self-report or single-domain monitoring, this design enables characterisation of stable individual differences in prefrontal brain state and their relationship to habitual lifestyle behaviour. We report three principal findings. First, peak dlPFC oxyhaemoglobin activation, measured via TD-fNIRS, predicts response latency across executive tasks, with greater activation accompanying faster responses - and does so reliably, showing moderate test–retest stability across sessions with between-person variance exceeding within-person fluctuation. Second, this activation is shaped by age and habitual lifestyle - age is the strongest predictor, with wearable-derived sleep and physical activity making small, incremental contributions. Third, the composite of haemodynamic response and response latency, is better explained by demographic and lifestyle features than by dlPFC activation or response latency alone. Together, these findings establish TD-fNIRS dlPFC activation as alongitudinally stable, behaviourally relevant functional neural marker coupled to response latency and shaped by age and lifestyle. 
+
+# 2 Methods 
+
+# 2.1 Participants 
+
+Ninety two healthy adults (42 female; age range 18–55 years) were recruited via mailing lists, social media, and local institutional networks. Eligibility was assessed through an anonymous online pre-screening questionnaire (Qualtrics). Eligible respondents were contacted by email, provided with a Participant Information Sheet before booking their first appointment, and gave written informed consent at the first session after confirming they had read and understood the study information. 
+
+Eligibility criteria were: aged 18–55 years; normal or corrected-to-normal vision and hearing; fluency in English; at least one month of consistent consumer wearable use (e.g. Oura, Whoop, Apple Watch, Garmin, or Fitbit), with consent to share data before and during the study; availability to attend up to three imaging sessions at Imperial College London; and willingness to comply with study procedures, including wearing the Kernel Flow 2 TD-fNIRS headset and completing the cognitive task battery. 
+
+Exclusion criteria were: history of neurological conditions (including brain surgery, craniotomy, epilepsy, stroke, or concussion with loss of consciousness); history of acute migraine; active psychiatric condition; major comorbid or unstable medical condition; current use of psychoactive medication; pregnancy (self-reported); and inability to provide informed consent or follow task instructions due to severe cognitive or language impairment. 
+
+# 2.2 Ethical approvals 
+
+This study received favourable opinion from the Imperial College Research Ethics Committee (ICREC; ref. 7657797) and departmental approval from the Head of the Department of Bioengineering. All researchers involved in the study hold Good Clinical Practice (GCP) certification, in compliance with the UK Policy for Health and Social Care Research. 
+
+# 2.3 Wearable and lifestyle features 
+
+2.3.1 Wearable data Acquisition: 
+
+Lifestyle and physiological data were collected using wearable devices integrated via the Terra API. Data streams were available for up to three months prior to the first scan and throughout the study period. Collected variables included: 
+
+1.  Physical activity (e.g., steps, energy expenditure) 
+
+2.  Sleep (duration, efficiency, latency, regularity) 
+
+3.  Cardiovascular measures (resting heart rate, heart rate variability) 
+
+4.  Respiratory and oxygenation metrics 
+
+> Table 1. 92 Participant wearable breakdown
+
+2.3.2 Wearable feature extraction: 
+
+Daily-resolution wearable metrics spanning activity, sleep, and vital-sign domains were retrieved for each participant and aligned to the timestamp of each scan, using only records preceding the scan. Non-numeric metrics (for example, sleep end time) were excluded. For every metric we defined three trailing windows relative to the scan: the preceding day, the preceding 7 days, and the preceding 30 days. From these we derived, per metric, the most recent daily value; the mean and standard deviation over the 7-day window; and the mean, standard deviation, skewness, kurtosis, and linear trend (the ordinary-least-squares slope of value against date) over the 30-day window. Window statistics were computed only when the window was adequately sampled, requiring more than two daily values for the 7-day statistics and more than ten for the 30-day statistics. We additionally computed person-centred deviation features, expressing the most recent daily value, the 7-day mean, and the 30-day mean relative to each participant's mean over all of their prior records for that metric; these were retained only where at least 14, 21, and 60 prior daily values were available, respectively. Each feature was labelled by window, statistic, metric, and unit (for example, month_kurtosis_sleep_duration_minute). 
+
+# 2.4 Cognitive Assessment Protocol: 
+
+Each participant completed three sessions separated by approximately 7–10 days. Each session followed a standardised protocol comprising: a pre-scan contextual survey; acognitive task battery, and a post-scan survey. Cognitive performance was assessed using a battery of tasks implemented via Cognitron (formerly H2 Cognitive Designs; Hampshire et al., 2019). Participants completed a 4-minute eyes-closed rest period prior to the task battery. Tasks were then administered in a fixed order: Immediate Object Recall, Digit Span, 2N-back, Stroop, and Delayed Object Recall with a 15 second eyes-open rest period between consecutive tasks. A second 4-minute eyes-closed rest period was completed following the task battery. A subset of which was used for the present analysis (2N-Back and Switching Stroop (detailed below) 
+
+2.4.1 2N-Back task paradigm 
+
+Working memory was assessed with a 2N-Back paradigm (see Figure 2a, left). Participants viewed a sequential stream of images (N = 78 trials) and indicated, for each image, whether it matched the image presented two positions earlier. Images were drawn from a stimulus set           
+
+> Wearables used
+> Whoop Apple Watch Oura Fitbit Garmin Other
+> 21 17 9536 4
+
+and responses were made via response mapping "Match"/"No Match" button press. A different image sequence was used in each session. RT (from stimulus onset to response) and match accuracy were recorded as outcome measures. All trials were aggregated for task-evoked haemodynamics. 
+
+2.4.2 Switching Stroop task paradigm 
+
+Participants completed a Switching Stroop (see Figure 2a, right) colour–word interference task (N = 60 trials; split across congruent, incongruent and switch trials), incorporating two switching rules: stimulus matches text colour or stimulus matches ink colour, cued by. Responses ("Red"/"Blue") were made via clicking a box left or right . RTRT & dlPFC and accuracy were recorded for each trial type, and condition contrasts (incongruent −congruent; switch − non-switch) were computed. All trials were aggregated for task-evoked haemodynamics. 
+
+Only the 2N-Back and Switching Stroop tasks were included in the current analysis (see methods for task-evoked haemodynamic analysis). An important note, is that these tasks differed in their response time demands: the 2N-Back paradigm imposed external time pressure (i.e. the task stimulus window would move on if the participant didn’t select anything), whereas Stroop RTs reflect self-paced, deliberate response selection (i.e. the participant had to click an option for the test to continue). 
+
+# 2.5 TD-fNIRS feature extraction: 
+
+2.5.1 TD-fNIRS Data Acquisition: 
+
+Neuroimaging data were acquired with the Kernel Flow2, a second-generation TD-fNIRS system (Kernel, Culver City, CA, USA) (Ban et al, 2022). At the start of each session, the headset was calibrated and positioned so that the anterior edge of the frontal modules aligned with the top of the participant's eyebrows, ensuring consistent placement over the dlPFC across sessions. Unlike continuous-wave fNIRS, which records only the attenuation of light, TD-fNIRS emits picosecond light pulses and measures the full distribution of photon times-of-flight (DTOF) at each channel. Because late-arriving photons preferentially sample deeper tissue, resolving this temporal profile affords greater depth sensitivity and a partial separation of superficial extracerebral signal from cortical signal. The system illuminated tissue at two wavelengths (690 and 905 nm) and recorded at an effective sampling rate of 3.76 or 4.76 Hz (the acquisition rate was changed by the manufacturer during the study period). Each module comprised three sources and six detectors, yielding up to 18 within-module channels together with a variable number of between-module channels, with source–detector separations spanning 8–60 mm. For the present study, one module over each hemisphere was used to provide bilateral coverage of the dlPFC (left and right dlPFC). 
+
+2.5.2 TD-fNIRS preprocessing: 
+
+Shared Near Infrared Spectroscopy Format (SNIRF) files were exported from the Kernel Flow 2 system using the manufacturer's Hb Moments pipeline (Dubois et al., 2024, see software section), which yields oxygenated (HbO) and deoxygenated (HbR) haemoglobin concentration changes in channel space. Each recording was trimmed to the relevant task period, optode channels removed that had with insufficient or atypically shaped photon time-of-flight distributions, computes the moments of the time-of-flight distribution, converts these to HbO and HbR concentration changes, and applies motion-artefact correction and global signal regression (the latter by regressing out the mean signal across short-separation intra-module channels). Full pipeline details are provided by the manufacturer (Dubois et al., 2024). On the resulting HbO time series, we applied a band-pass filter (0.02–0.2 Hz) to isolate the task-relevant haemodynamic frequency band, and restricted subsequent task-evoked analyses to long-separation channels overlying the left and right dlPFC (l-dlPFC, r-dlPFC respectively). 
+
+2.5.3 dlPFC task-evoked haemodynamic analysis: 
+
+Task-related haemodynamic responses were estimated using a general linear model (GLM), implemented with MNE-NIRS (Luke et al., 2021) and Nilearn (Abraham et al., 2014), fitted to dlPFC HbO time series across the full task-battery recording. All cognitive tasks in the battery (Immediate Object Recall, Digit Span, 2N-Back, Stroop, and Delayed Object Recall) were modelled as regressors of interest using a finite impulse response (FIR) basis spanning a 20-second post-stimulus window, allowing the task-evoked response to be estimated without assuming a fixed response shape. Practice blocks and the immediate object-memory encoding period were included as nuisance regressors, and the leading 10 principal components of the short-separation channels (per chromophore) were added to account for systemic and superficial haemodynamic contributions. Although the manufacturer pipeline already regresses out the mean short-separation signal, this captures only the average superficial component; the principal-component regressors were included to account for additional structured physiological variance not removed by mean regression. Low-frequency drift was modelled with a discrete-cosine drift basis. For each session, peak task-evoked activation (β max) was subsequently extracted for the 2N-Back and Swtiching Stroop conditions only. 
+
+2.5.4 dlPFC response and cognitive performance association 
+
+Pearson correlations (r) were computed between log(β) and each behavioural metric across all 92 participants and scanning sessions (1–3 pooled). Correlations were computed separately for each region of interest (l-dlPFC; r-dlPFC) × task (2N-Back; Switching Stroop) combination, requiring a minimum of three observations per pair. RT and accuracy metrics were examined in separate figures. Regression lines were fitted by ordinary least squares. Significance thresholds: ***p < 0.001, **p < 0.01, *p < 0.05. 
+
+2.5.5 Hemispheric laterality index 
+
+To quantify the relative engagement of l- and r-dlPFC, a laterality index (LI) was computed for each task and scan using the standard formulation (Seghier, 2008): 
+
+𝐿𝐼 = (𝑙 ﹘𝑑𝑙𝑃𝐹𝐶 − 𝑟 ﹘𝑑𝑙𝑃𝐹𝐶) (𝑙 ﹘𝑑𝑙𝑃𝐹𝐶 + 𝑟 ﹘𝑑𝑙𝑃𝐹𝐶)  [2] 
+
+where l- and r-dlPFC are the peak activations (β max) in the left and right hemispheres, respectively. The index is bounded between −1 and +1: +1 denotes exclusively left-hemisphere activation, −1 exclusively right-hemisphere activation, and values near zero balanced bilateral engagement. LI was then examined as a function of age group, sex at birth, and task. 2.5.6 dlPFC response and demographic / lifestyle prediction 
+
+Feature selection was performed over the wearable-derived features alone. Candidate features were first filtered for completeness, discarding any feature missing for more than 40% of scans. Surviving features were ranked by univariate performance, scored as the mean pooled R² across 25 repeats of participant-grouped 5-fold cross-validation for the target being modelled, and the 20 top-ranked features were taken as seeds. Greedy forward selection was run independently from each seed: beginning from the seed feature, at each step we added whichever remaining feature most improved the repeated cross-validated R², stopping when no addition improved R² by at least 0.01. Demographic variables (age group, sex) and the temporal confound (hour of day) were not entered into selection; the wearable feature set was optimised on its own, and these covariates were added afterward and independently to limit overfitting and preserve their interpretation as separate contributions. 
+
+For each target we retained the five highest-scoring forward-selection models rather than only the single best, and inspected their SHAP attributions to identify features contributing strongly and consistently across models. The same small set of features recurred across these models, across all targets, and across both tasks, and we consolidated them into a single three-feature base model shared across all targets and both tasks: the most recent daily step count (day_activity_steps_count), the 30-day standard deviation of active hours (month_std_activity_active_hours_hour), and the 30-day kurtosis of sleep duration (month_kurtosis_sleep_duration_minute). No explicit correlation filter was applied; redundancy was controlled by the data-driven forward selection and this SHAP-based consolidation, and the three retained features are mutually uncorrelated (see supplementary material, section A3). Features beyond these three produced only marginal R² gains consistent with overfitting to the present sample and were not retained. This consolidation, and the underlying forward selection, were performed once on the full sample rather than nested within the reported cross-validation folds; because features were retained by their recurrence across models rather than by taking any single best-scoring model, and all reported targets share this one fixed three-feature set, any residual selection optimism is small and common across targets, leaving the cross-target ΔR² comparisons unaffected. 
+
+Ridge regression was used to predict a range of session-level outcomes (Figure 4b). For each task (2N-Back and Switching Stroop) separate models were fitted for neural targets (l-dlPFC, r-dlPFC, and bilateral total dlPFC peak activation, the last defined as the summed left and right β max), behavioural targets (number of correct responses and median RT), and and two composite measures that divide a behavioural measure by bilateral total dlPFC peak activation: 1. median RT / bilateral activation (RT & dlPFC) and 2. number of correct responses / bilateral activation (Perf & dlPFC). Activation, RT, and RT & dlPFC targets were log-transformed prior to modelling; performance and Perf & dlPFC targets were not. Predictors comprised the three selected wearable features, the temporal confound hour of day, and the demographic covariates age group and sex; domain analyses (below) fit subsets of this set. Within every cross-validation fold, features were standardised to zero mean and unit variance using parameters estimated from the training data alone and applied to held-out data to prevent leakage. All models used a fixed ridge penalty (α = 2.98). 
+
+Predictive performance was quantified as the pooled coefficient of determination (R²): within each cross-validation split, out-of-fold predictions from all five folds were concatenated and a single R² was computed against the observed values, rather than averaging fold-wise R². Each split was a participant-grouped 5-fold partition (GroupKFold), so that all scans from a given participant fell in one fold and never appeared in both training and test sets. To stabilise estimates, the split was repeated across 100 random participant groupings and the mean pooled R² across the 100 repeats is reported. Models were benchmarked against a mean-baseline that predicted the training-fold mean for every held-out scan. 
+
+Confidence intervals, both for individual-model R² and for between-model differences (ΔR²), were obtained by a participant-level (cluster) bootstrap layered on these 100-repeat predictions. Participants were resampled with replacement 2,000 times; for each resample the mean pooled R² across the 100 repeats was recomputed on the resampled scans. Model comparisons were evaluated on a common sample of scans complete for both models and matched at the participant level, so that each bootstrap draw yields a paired difference in pooled R². Ninety-five percent confidence intervals were taken as the 2.5th and 97.5th percentiles of the bootstrap distribution, and two-sided bootstrap p-values were defined as below in equation 1: 
+
+p=  [2] 2 𝑚𝑖𝑛{𝑃𝑟(Δ≤0), 𝑃𝑟(Δ≥0)}) 
+
+For representative models, above-chance prediction was additionally confirmed by apermutation test: the target was shuffled and a single participant-grouped 5-fold cross-validation re-run across 1,000 permutations, with the p-value defined as (1 + the number of permutations whose pooled R² met or exceeded the observed value) / (1 + 1,000). 
+
+2.5.7 Model Interpretability 
+
+Feature contributions were quantified with SHAP values (Lundberg and Lee, 2017) from a linear explainer applied to a ridge model refitted on the full dataset, without cross-validation, yielding per-feature attributions for every scan. Mean absolute SHAP values ranked features by overall contribution, and signed SHAP values characterised the direction of each feature's effect on predicted activation. Features were grouped into demographic, sleep, activity, and confound domains for summary. 
+
+# 2.6 Statistical Analysis 
+
+Test-retest reliability of dlPFC β estimates and cognitive performance metrics was assessed using a two-way random-effects, absolute-agreement, single-measurement intraclass correlation coefficient (ICC(A,1)), computed with Pingouin (Vallat, 2018). Participants were treated as targets and sessions, ordered by acquisition time, as raters. Because the ICC requires a balanced design, only participants with at least three sessions were included, and participants with more than three were truncated to their first three sessions by acquisition time, yielding three measurements per participant. For each measure we report the ICC(A,1) with its F statistic, p value, and 95% confidence interval, alongside between-person variance (the variance of participant means), within-person variance (the mean of participants' across-session variances), and their ratio. 
+
+Associations between prefrontal activation and cognitive performance were examined using Pearson correlation (r), computed between log(β) and each behavioural metric (median RT; accuracy) across all sessions pooled (scans 1–3). Correlations were performed separately for each region (l-dlPFC; r-dlPFC) × task (2-Back; Switching Stroop) combination, with a minimum of three observations required per test. 
+
+Age-related differences in mean peak β and cognitive performance were examined using Kruskal-Wallis H tests across four age groups, with effect size reported as: 
+
+[3] η² = (𝐻 − 𝑘 + 1) (𝑛 − 𝑘) 
+
+Where a significant omnibus effect was observed, post-hoc pairwise comparisons were conducted using Mann-Whitney U tests with Bonferroni correction. Sex differences were evaluated using Mann-Whitney U tests. Two-way ANOVA (age group × sex) was used to assess main effects and interactions, with partial η² reported as a measure of effect size. 
+
+Within-participant changes in β across consecutive scanning sessions were assessed using Wilcoxon signed-rank tests on paired observations, with Bonferroni correction applied across the number of pairwise scan comparisons. 
+
+All tests were two-tailed. Significance thresholds were set at p < 0.05 (*), p < 0.01 (**), and p < 0.001 (***). 
+
+# 2.7 Software 
+
+Data were stored and automatically processed using the Connectome Health Platform 
+
+(https://connectome.health/ ). Data acquisition and preprocessing were performed 
+
+using the Kernel Flow 2 data acquisition graphical user interface and the Hb Moments 
+
+pipeline (Dubois et al., 2024;  https://docs.kernel.com/docs/data-export-pipelines ). 
+
+Subsequent analyses were conducted in Python 3.14.2, using NumPy, SciPy, and pandas for data handling, scikit-learn (Pedregosa et al., 2011) for ridge regression, Pingouin (Vallat, 2018) for ICC, and SHAP (Lundberg and Lee, 2017) for feature attribution. GLM modelling was conducted using MNE-NIRS (Luke et al., 2021) and Nilearn (Abraham et al., 2014). Statistical analyses were performed using SciPy and Pingouin. 
+
+# 3 Results 
+
+# 3.1 Participant characteristics 
+
+The LUCID dataset comprised 92 healthy adults (42 female) spanning four age groups: 18–24 years (n = 13, 46% female), 25–34 years (n = 30, 57% female), 35–44 years (n = 28, 36% female), and 45–55 years (n = 21, 43% female). They completed three in-person scanning sessions. Mean inter-session interval was 10.6 ± 5.8 days. Each session yielded simultaneous TD-fNIRS neuroimaging, cognitive task performance (2N-Back and Switching Stroop), pre-scan survey data, and longitudinal wearable-derived lifestyle metrics. Full participant flow and session completion rates are shown in Figure 1. Figure 1. Study design, data acquisition and feature extraction pipeline. (a) Schematic overview of the longitudinal study protocol in healthy participants aged 18–55. Wearable devices were synced approximately 30 days prior to the first session to establish baseline data. Participants completed four in-person sessions (S1–S3), each separated by approximately 10 days. At each session, four data modalities were collected simultaneously: (i) neuroimaging using the Kernel Flow 2 TD-fNIRS system; (ii) cognitive tasks comprising a Switching Stroop task and a 2-back working memory task; (iii) surveys capturing pre-scan self-reported current state; and (iv) wearable data including continuous sleep and physical activity monitoring via the Connectome App. Following data acquisition, neural and cognitive features were extracted simultaneously from each session. Feature selection was then applied to identify the most informative variables across cognitive, neural, and composite (demographic, lifestyle, and confound) feature sets for downstream modelling. (b) Participant flow from application to study completion. Of 574 applicants, 330 were deemed ineligible, leaving 244 eligible participants. A further 120 did not respond, resulting in 124 enrolled participants. Of these, 43 completed fewer than three sessions and were excluded, yielding a final sample of 92 participants who completed the full protocol. (c) Distribution of mean inter-session intervals (in days) across the final sample (N = 92). The box plot shows the median, interquartile range, and full spread of session spacing, with individual participant values overlaid as scatter points .(d) Age and sex distribution of the final sample. Participants are grouped into five-year age bands (18–24, 25–34, 35–44, 45–54) and counts are shown separately for female (pink) and male (blue) participants, with a density overlay illustrating the overall distribution by sex. 
+
+# 3.2 dlPFC peak activation provides a stable, individual-sensitive functional neural marker 
+
+Log-transformed peak dlPFC activation (log β max; Figure 2c) was negatively associated with median RT across both tasks and both hemispheres (Figure 2f), such that participants with larger prefrontal haemodynamic responses responded faster on average. The associations were consistent in direction and broadly comparable in magnitude, r = −0.37 to −0.43 for the 2N-Back and r = −0.43 to −0.53 for the Switching Stroop (all p < 0.001) and were strongest when compared against rule-switching Stroop trials (l-dlPFC r = −0.53; r-dlPFC r = −0.44), indicating that the coupling between prefrontal recruitment and response speed scales with cognitive-control demand. 
+
+Figure 2: Greater dlPFC haemodynamic peak activity is linked to faster task RT. (a) Task paradigms: 2N-Back (left), participants are presented with one image at a time and asked to select Match or No Match. Switching Stroop (right), participants are presented with one of two rules and are required to select the option (Red or Blue) that corresponds to the rule. 
+
+(b) Participants undergo simultaneous TD-fNIRS neuroimaging of left and right dlPFC regions whilst completing the tests. (c) 
+
+Mean and individual task RTs. For each task paradigm across all sessions, the median trial decision RT was recorded as the moment from stimulus presentation to decision click. For 2N-Back (left) RT was recorded for trials that "Match" was selected, for Stroop (right), all trials RTs were recorded as well as a sub-breakdown of "rule-switching" trials. (d) Representative task-evoked left dlPFC activation for a participant. Peak haemodynamic activation was extracted as the maximum FIR (β) coefficient across the post-stimulus window for each task condition (Stroop, 2N-Back). (e) Individual and mean peak task-evoked dlPFC activation (β max) across repeated sessions (S1–S3), shown separately for left dlPFC (top) and r-dlPFC (bottom) for 2N-Back and Stroop. Thin lines represent individual participants; bold markers indicate session means. r-dlPFC activation increased significantly across sessions for both tasks (indicated significance brackets). (f) Association between log-transformed mean peak dlPFC activation (log β) and median RT across participants, shown for left dlPFC (top row) and right dlPFC (bottom row) for 2N-Back and Stroop. Each point represents a participant mean. Lines indicate fitted linear trends; greater log-transformed peak activation was associated with faster RTs across all conditions (2N-Back/left: r = −0.43; 2N-Back/right: r = −0.37; Stroop overall/left: r = −0.50; Stroop switch/left: r = −0.53; Stroop overall/right: r = −0.43; Stroop switch/right: r = −0.44). 
+
+Critically, this activation measure was trait-like rather than state-driven. Decomposing the variance of all neural and behavioural measures into between- and within-person components (Table 2) showed that between-person variance exceeded within-person variance for every measure (all between:within ratios > 1), with moderate-to-good reliability overall (ICC range 0.56–0.77). Among the neural measures, the Stroop dlPFC composites were the most reliable (bilateral ICC = 0.747, ratio 3.12:1; r-dlPFC ICC = 0.713, ratio 2.67:1), and aggregating across hemispheres improved stability relative to either side alone (bilateral 2N-Back ICC = 0.678 vs unilateral 0.560–0.628). The dominance of between-person variance indicates that an individual's peak dlPFC response is stable across repeated sessions and reflects who the participant is more than the state they are in on a given day. Hemispheric laterality, behaved differently from activation magnitude. Unlike β max, the laterality index showed no age-group differences (2N-Back: H(3) = 0.82, p = 0.84; Switching Stroop: H(3) = 2.89, p = 0.41) and no sex differences (both ns) for either task.                                                              
+
+> Metric ICC Fp95% CI Var (between) Var (within) Ratio
+> Stroop
+> median RT
+> 0.768 29.331 1.30 ×
+> 10 ⁻⁷⁴
+> [0.31, 0.90] 0.2686 0.07839 3.43:1
+> Stroop
+> switch RT
+> 0.704 23.430 1.14 ×
+> 10 ⁻⁶⁶
+> [0.21, 0.87] 0.3451 0.139 2.48:1
+> Stroop
+> l-dlPFC β max
+> 0.591 8.143 5.71 ×
+> 10 ⁻³³
+> [0.32, 0.75] 2.53 × 10 ⁻¹⁴1.535 × 10 ⁻¹⁴1.65:1
+> Stroop
+> r-dlPFC β max
+> 0.713 14.694 2.27 ×
+> 10 ⁻⁵⁰
+> [0.41, 0.85] 2.23 × 10 ⁻¹⁴8.363 × 10 ⁻¹⁵2.67:1
+> Stroop dlPFC
+> bilat. β max
+> 0.747 18.342 1.22 ×
+> 10 ⁻⁵⁷
+> [0.43, 0.87] 8.772 × 10 ⁻¹⁴2.808 × 10 ⁻¹⁴3.12:1
+> 2N-Back
+> median RT
+> 0.555 11.592 6.27 ×
+> 10 ⁻⁴ ³
+> [0.12, 0.77] 0.01939 0.01423 1.36:1
+> 2N-Back
+> l-dlPFC β max
+> 0.628 11.888 3.64 ×
+> 10 ⁻⁴⁴
+> [0.25, 0.81] 1.178 × 10 ⁻¹⁴6.402 × 10 ⁻¹⁵1.84:1
+> 2N-Back
+> r-dlPFC β max
+> 0.560 7.909 7.97 ×
+> 10 ⁻³²
+> [0.26, 0.74] 1.11 × 10 ⁻¹⁴7.626 × 10 ⁻¹⁵1.46:1
+> 2N-Back dlPFC
+> bilat. β max
+> 0.678 14.480 6.70 ×
+> 10 ⁻⁵⁰
+> [0.31, 0.84] 4.187 × 10 ⁻¹⁴1.851 × 10 ⁻¹⁵2.26:1
+> Table 2. ICC and variance components for neural and behavioural measures.
+
+Together, the behavioural sensitivity and cross-session stability of log β max indicate that it behaves as a durable individual property rather than a transient task signal. Because such capacity is a comparatively stable physiological characteristic, it would be expected to dominate between-person variance, as observed, while also affording the faster responses seen in participants with larger haemodynamic responses. On this view, log β max constitutes a stable, individual-sensitive functional neural marker, though whether the same vascular properties shape performance directly remains to be established. 
+
+# 3.3 Variation in peak dlPFC activation with age group and sex at birth 
+
+Peak dlPFC activation (β max) was analysed at the scan-observation level (n = 92 participants, 276 observations; Figure 3) using two-way ANOVA with age group and sex at birth as factors, fitted separately for each of the four region–task combinations. β max differed significantly across age groups in all four region–task combinations (l-dlPFC 2N-Back: F(3,268) = 8.55, p < 0.001, partial η² = 0.087; l-dlPFC Stroop: F(3,268) = 13.51, p < 0.001, partial η² = 0.131; r-dlPFC 2N-Back: F(3,267) = 9.07, p < 0.001, partial η² = 0.092; r-dlPFC Stroop: F(3,267) = 18.61, p < 0.001, partial η² = 0.173). The effect was consistent across hemispheres and tasks, with larger effect sizes for Stroop than for the 2N-Back. Effect sizes fell in the small-to-medium range (partial η² = 0.087–0.173), indicating that age group accounted for a meaningful but modest proportion of scan-level variance in activation. 
+
+Figure 3. Prefrontal haemodynamic response, RT, and hemispheric laterality by age and sex. Median RT for the 2N-Back (match trials) and Switching Stroop (all trials) (top row), mean peak β (log-transformed GLM activation amplitude) for l-dlPFC (second row) and r-dlPFC (third row), and the hemispheric laterality index (LI = (L − R)/(L + R), where L and R are peak β in the left and right hemispheres; bottom row), shown across all scanning sessions (N = 92 participants, 276 scan observations). Each panel shows the distribution split by age group (x-axis: 18–24, 25–34, 35–44, 45–54 years) and sex (Female, pink; Male, blue). Half-violins show the kernel density estimate for each sex within each age group; points are individual scan observations with horizontal jitter. Medians are indicated by horizontal lines within each half-violin. Omnibus age-group differences were tested with Kruskal–Wallis H; significant effects are annotated above the relevant panel. Two-way ANOVA (age × sex) statistics are shown in the top-right corner of each panel (Age, Sex, Interaction; *p < 0.05, **p < 0.01, ***p < 0.001; ns, not significant). In contrast to activation magnitude, laterality showed no age-group differences (2N-Back: H(3) = 0.82, p = 0.84; Switching Stroop: H(3) = 2.89, p = 0.41) and no sex differences (both ns) for either task, and low across-session reliability (ICC = 0.21 for both tasks, with within-participant exceeding between-participant variance), indicating that prefrontal laterality varied within individuals across sessions rather than behaving as a stable trait. Positive LI values indicate left-hemisphere dominance, negative values right-hemisphere dominance. Within-group variance was substantial across all comparisons, with individual differences dominating over demographic trends. Age group was retained as a covariate in all downstream predictive models. By contrast, no significant main effect of sex at birth was observed in any region–task combination (all p ≥ 0.055; l-dlPFC 2N-Back: F(1,268) = 3.73, p = 0.055, partial η² = 0.014; l-dlPFC Stroop: F(1,268) = 2.79, p = 0.096, partial η² = 0.010; r-dlPFC 2N-Back: F(1,267) = 1.47, p = 0.226, partial η² = 0.005; r-dlPFC Stroop: F(1,267) = 2.20, p = 0.140, partial η² = 0.008). A significant age × sex interaction was present for l-dlPFC activation during the 2N-Back task (F(3,268) = 2.70, p = 0.046, partial η² = 0.029), indicating that sex-related differences in activation were not uniform across age groups; no interaction approached significance in any other region–task combination (all p > 0.49). On the basis of this interaction, sex at birth was retained as a covariate in all downstream predictive models. 
+
+# 3.4 Age and lifestyle predict dlPFC activation and cognitive performance 
+
+We next assessed whether task-evoked dlPFC activation, cognitive performance, or their combination could be predicted from age and wearable-derived lifestyle features, and which of these targets was most predictable. Wearable-derived metrics spanning two lifestyle domains were extracted across the sample (Figure 4a): sleep (sleep duration, start and end time, time in bed) and physical activity (steps, active duration, active energy, active hours, low-intensity duration). We confirmed that data covered broad distributions unexplained by demographic group. Furthermore, through correlation analysis we found that cross-domain correlations were weak. This allowed sleep and activity to be included as complementary, non-redundant model inputs. More details on this analysis can be found in the Supplementary Material. Predictive modelling required complete wearable data, which was unavailable for some sessions, so these analyses used a stricter subsample than the activation and reliability results above: the 53 participants with complete wearable features across all three scans (159 scans). 
+
+Ridge regression predicted peak dlPFC activation from demographics (age group, sex), the stable month-level lifestyle aggregates, and the day-level temporal confounds (prior-day step count, hour of day), with cross-validated performance improving as domains were combined (demographics R² = 0.181; + lifestyle 0.209; + temporal confounds, the full model, 0.339), the confounds adding the largest increment (ΔR² = 0.130). Within the full model, age group was the strongest predictor (mean |SHAP| = 0.216), followed by sex (0.131); among the temporal confounds the highly variable prior-day step count was the most influential non-demographic feature (|SHAP| = 0.107), whereas hour of day was negligible (0.022), and the stable month-level lifestyle aggregates were intermediate (within-month variability of active hours 0.075; within-month kurtosis of sleep duration 0.070). Activation thus reflected a composite of stable individual characteristics and modifiable lifestyle factors rather than a fixed biological trait. 
+
+Predictive performance also varied by target type (Figure 5c). For the Switching Stroop task the composite RT & dlPFC (reaction time scaled by activation) was the most lifestyle-predictable target (mean pooled R² = 0.406), above the neural targets (l-dlPFC β max 0.249; right 0.354; bilateral 0.339) and RT alone (0.218). Differences between targets were assessed with the participant-level bootstrap described in the Methods. Across both tasks the efficiency composites were more predictable than the raw behavioural measures they rescale: composite RT & dlPFC exceeded RT only (Stroop ΔR² = 0.19, 95% CI [0.03, 0.36], p = 0.025; 2N-Back ΔR² = 0.26 [0.11, 0.41], p = 0.003), and Perf & dlPFC exceeded the near-zero summary score (R² = 0.336 vs 0.009; Stroop ΔR² = 0.33 [0.11, 0.55], p = 0.006; 2N-Back ΔR² = 0.30 [0.04, 0.49], p = 0.028). Neither composite measure significantly out-predicted its neural component (Stroop RT & dlPFC vs bilateral dlPFC ΔR² = 0.07 [−0.02, 0.16], p = 0.15), indicating that the composite's predictability tracks the activation channel rather than adding independent behavioural information. Consistent with this, lifestyle predicted dlPFC activation more reliably than RT, though the neural-behavioural gap reached significance only for the 2N-Back task (ΔR² = 0.27 [0.07, 0.45], p = 0.011), not Stroop (ΔR² = 0.12 [−0.11, 0.35], p = 0.29). Taken together, the lifestyle signal appears to reside primarily in the haemodynamic response rather than in task speed: the composite measure are informative because rescaling by activation recovers a signal only weakly reflected in RT alone, rather than because brain and behaviour carry independent information. 
+
+Figure 4. Age and lifestyle predict brain activity: (a) Example longitudinal traces of selected wearable metrics for a single representative participant. Vertical purple lines indicate the timing of each of the three scan sessions. (b) 
+
+Schematic of the prediction framework. Ridge regression models were trained to predict task-evoked dlPFC activation and behavioural performance from four feature domains: demographics (age group, sex), sleep, physical activity and temporal confounds (day before and hour of scan). Targets spanned behavioural measures (overall score, median RT), neural measures (left, right, and bilateral dlPFC β max) , and composite measures of dlPFC activation scaled by RT and or task accuracy. (c) Model validation for representative target, the r-dlPFC under Stroop (top; n = 53 participants, 159 scans) shown for a single representative cross-validation seed; the per-seed R² = 0.368. Predicted versus actual peak activation shows held-out predictions relative to the line of identity (y = x) and the mean baseline (ȳ); inset shows: permutation null distributions, generated by shuffling the target across 1,000 permutations and confirm that observed performance exceeded chance (p = 0.001 for both). 
+
+d) Cross-validated predictive performance (R²) across all targets for both tasks. Each value is the mean across 100 seeded repeats of 5-fold cross-validation, with folds split 80/20 at the participant level (GroupKFold) so that scans from a given participant never appear in both training and test sets. (e) 
+
+Contribution of individual feature domains and their combinations to predictive performance for the bilateral (Total) dlPFC Stroop target, shown as mean cross-validated R² (±SEM) computed with the same 100-seed GroupKFold scheme as in (c), for models trained on each feature set in isolation and in combination: sleep, activity, lifestyle (sleep + activity), demographics, and confounds. (f) SHAP features importance for the bilateral (Total) dlPFC Stroop model. The beeswarm plot (left) shows the signed, value-coloured contribution of each feature, and the bar plot (right) shows the mean absolute SHAP value per feature, grouped by domain and temporal scale (demographics; monthly sleep-duration and step-count aggregates; and day- and week-level confounds). 4 Discussion 
+
+This study combined longitudinal TD-fNIRS imaging of the dlPFC with wearable-derived lifestyle data in a cohort of 92 healthy adults, asking how much of the individual variation in task-evoked prefrontal activation could be accounted for by stable demographic characteristics and modifiable lifestyle factors. Three results define the picture. 2N-Back and Stroop evoked peak dlPFC activations were trait-like - between-person variance exceeded within-person variance for every neural measure, with reliability reaching the range of the most stable behavioural measures and it tracked response speed across both tasks and hemispheres, such that participants with larger haemodynamic responses responded faster. Demographic and lifestyle features predicted activation out-of-sample at modest but reliably above-chance levels, with age the dominant contributor and cumulative, long-window sleep and activity aggregates adding a smaller increment. Most informatively, measures that combined activation with behaviour (activation scaled by RT or by Perf) were easier to predict than either activation or behaviour on its own. Taken together, these findings point not to the magnitude of prefrontal activation per se, nor to task performance per se, but to a stable, demand-matched capacity for prefrontal recruitment that activation and behaviour each express only partially, and which we argue is the natural target for this class of measurement. 
+
+Peak dlPFC activation differed robustly across age groups in every region–task combination, with the largest effects under the Switching Stroop and with older bands showing smaller task-evoked responses in both hemispheres. Hemispheric laterality, by contrast, showed no age effect, so the gradient reflects a roughly proportional reduction in bilateral activation rather than a shift in left–right balance. The most parsimonious reading is an age-related reduction in the capacity to mobilise oxygenated blood flow to dlPFC under demand. Because TD-fNIRS indexes oxygenated-haemoglobin dynamics, a global decline in cerebrovascular reactivity would scale down the peak response in both hemispheres -lowering magnitude while preserving laterality. This would be most visible in the more demanding Switching Stroop, where the coupling between prefrontal recruitment and faster responding was strongest, most fully exposing differences in vascular capacity. 
+
+This pattern runs counter to the dominant account in the cognitive-ageing literature. In older adults (typically ≥60 years), prefrontal activation during demanding tasks is frequently reported to increase or to become more bilateral, long interpreted as compensatory recruitment that offsets declining neural efficiency (Cabeza, 2002; Gonzalez, 2023), though whether such increases are genuinely compensatory rather than nonspecific remains debated (Morcom and Henson, 2018). Our cohort, however, spans 18–55, a range lying largely below the window in which such compensation is described, and the direction of our effect is the opposite: activation falls rather than rises across age bands. We therefore favour a vascular account for our results over compensatory reorganisation. Across adulthood, cerebrovascular reactivity falls and neurovascular coupling becomes disrupted (Zimmerman et al., 2021). Both lower the ceiling on the task-evoked haemodynamic response, well before cognitive decline is detectable. On this view, the smaller responses in older bands reflect reduced vascular capacity rather than a failure of compensation. Two caveats apply. First, haemodynamic ageing signals are hard to interpret on their own, because the measured response depends on vascular as well as neural factors. Second, age was abetween-participant grouping, so these effects are cross-sectional and cannot separate vascular ageing from cohort differences. The youngest band is also modestly powered (n = 13). 
+
+We found no evidence for sex effects in prefrontal recruitment. Sex at birth had no significant main effect on activation in any region–task combination, and even the strongest such effect (l-dlPFC, 2N-Back) was both non-significant and small (partial η² = 0.014); laterality likewise showed no sex difference for either task. The single age × sex interaction we observed, in l-dlPFC during the 2N-Back, was uncorrected, marginal (p = 0.046), and rested on small per-cell counts, so we treat it as suggestive at most rather than as evidence of a robust age-conditioned sex effect. This null result sits within a mixed literature on sex differences in prefrontal activation (Hill, Laird and Robinson, 2014), and is most compatible with the view that such differences, where they exist, are small and task-specific (Voyer et al., 2021). Sex was therefore retained in the predictive models as a standard demographic covariate rather than as a factor of primary interest. 
+
+The contribution of wearable-derived sleep and activity metrics aligns with evidence that habitual sleep and physical activity each shape prefrontal haemodynamics and executive function (Csipo et al., 2021; Naito et al., 2024; Shen et al., 2024). Two features of our result refine this picture. First, sleep and activity contributed complementary, non-redundant information rather than behaving as facets of a single "healthy lifestyle" factor. Combined, they explained more variance than either domain alone (sleep and activity were each near zero in isolation, R² = −0.008 and 0.008, but jointly reached R² = 0.043), supporting their inclusion as distinct inputs. Second, predictive signal was distributed across timescales, drawing on habitual, month-window aggregates of sleep and activity alongside acute, day-window state (time of day, prior-day step count). These operated synergistically rather than interchangeably: the two non-demographic blocks explained far more in combination than the sum of their standalone contributions (R² = 0.119 versus roughly 0.04), and the habitual features added more once proximal state was accounted for, with their increment rising from 0.03 over demographics alone to 0.08 over demographics plus confounds. This suggests that prefrontal recruitment tracks the interaction between accumulated lifestyle exposure and proximal physiological state, not either in isolation. Read this way, the wearable feature set offers a tractable, if partial, proxy for the exposome spanning both habitual and proximal windows (Sakowski et al., 2024). The contribution should not be overstated, however. The habitual lifestyle features added only a small unique increment over demographics (R² 0.181 to 0.209, ΔR² ≈ 0.03), demographics were themselves dominated by age, and the value of the lifestyle features emerged chiefly in combination with proximal state. 
+
+These observations converge on a capacity account of prefrontal recruitment rather than the classical neural-efficiency account. The classical formulation holds that more capable individuals achieve equal performance with less activation, implying an inverse coupling between activation and performance (Causse et al, 2017). Our data show the opposite: greater peak activation was associated with faster responding across tasks and hemispheres. This is more readily explained if the task-evoked haemodynamic response indexes an individual's capacity to mobilise oxygenated blood flow to dlPFC under demand, with both larger responses and faster decisions reflecting a common, largely stable underlying capacity. On this view, activation and response speed are two noisy expressions of the same latent quantity, which is why a composite signal combining them was more predictable from age and lifestyle than either component alone – the composite cancels component-specific noise and estimates the shared capacity dimension more cleanly. The modest absolute R² values are then the expected signature of a low-ceiling problem in which the most informative target is a derived, second-order quantity, rather than a sign of weak association. 
+
+Practically, combining TD-fNIRS with passively collected wearable data may offer a scalable route to functional readouts of prefrontal engagement that do not require laboratory neuroimaging at every timepoint. Framed cautiously, the composite capacity index is a candidate endpoint rather than a validated marker: its modest but reliable predictability suggests it could serve as a comparator against which clinical or at-risk cohorts are contrasted - for example, populations with documented prefrontal hypoactivation such as ADHD (Peet et al., 2022; Zhang et al., 2023) - or as a repeatable within-individual readout for wellness and cognitive-performance applications, where the comparison of interest is change over time rather than diagnosis. Given that a substantial share of neurological and neuropsychiatric burden is shaped by modifiable exposures accumulating long before clinical thresholds are reached (Steinmetz et al., 2024; Livingston et al., 2024), an upstream, lifestyle-sensitive functional measure is an attractive target. We stress, however, that these are demonstrations of measurability and association in a healthy cohort, not of clinical utility or causal efficacy; any endpoint use would require prospective validation against established functional and clinical measures. 
+
+Several limitations qualify these conclusions. (1) Missing data across the wearable streams was substantial, and the predictive models were consequently fitted on a reduced subsample (n ≈ 53 with complete neural and wearable data) rather than the full cohort; the signal nonetheless survived strict participant-level cross-validation, and missingness is tractable through improved compliance protocols and device provisioning in future iterations. (2) Wearable metrics were not derived identically across devices, and inter-device differences in how sleep and activity are computed may have introduced measurement heterogeneity; such heterogeneity would, if anything, attenuate rather than inflate predictive performance, and can be reduced by standardising devices in future cohorts. (3) fNIRS signal quality depends on hair type and scalp-optode coupling, which vary systematically across individuals and raise both a noise concern and an equity concern, since poorer coupling for some hair types could bias signal recovery; we did not explicitly model this and recommend that future studies quantify and adjust for it. (4) The two tasks differ structurally in a way that complicates direct comparison: the 2N-Back is externally paced and advances regardless of response, so its reaction times index decision speed under an imposed deadline, whereas the Switching Stroop is self-paced, so its reaction times index the duration of deliberate conflict resolution. Longer Stroop responses may therefore reflect more thorough resolution rather than slowing, and cross-task comparison of reaction-time-derived indices should be made with this asymmetry in mind. (5) Finally, the incremental contributions of feature domains were modest and not formally tested for significance, the comparison of predictive performance across targets mixes log-transformed and untransformed outcomes (limiting strict R² comparability), and the design is observational and cross-sectional with respect to age; the consistency of out-of-sample prediction and the convergence on a coherent capacity account strengthen, but cannot substitute for, the causal and longitudinal tests these hypotheses ultimately require. In sum, individual differences in prefrontal recruitment during demanding cognition are partly structured by who we are and how we live. Age accounted for the largest share of variation in dlPFC activation, while cumulative sleep and physical activity added a smaller, independent increment, and the quantity most legible to these factors was neither activation nor performance alone, but the stable capacity for demand-matched prefrontal recruitment that both express. We have argued that this capacity plausibly reflects the lifestyle-sensitive, vascularly expressed headroom of the prefrontal haemodynamic response, and that combined fNIRS–wearable measurement offers a practical way to track it. Whether that capacity can be shifted, and whether shifting it matters for cognition and health, are the questions this work sets up rather than settles 
+
+# 5 Funder Information Declared 
+
+This work was supported by UK Research and Innovation (UKRI) through UKRI Impact Acceleration Awards EPSRC EP/X52556X/1 and MRC MR/X502959/1, and by Connectome GmbH. Author relationships with the study sponsor are declared under Competing Interests. 
+
+# 6 Declarations 
+
+Competing interests: This study was sponsored by Connectome Health (Connectome GmbH), and several authors hold financial and professional interests in the company. [RMH], co-first author and co-investigator, is Chief Science Officer and a co-founder of Connectome Health; [SRS], the principal investigator, is an investor in and advisor to Connectome Health; [DT] is a machine learning engineer at Connectome Health; and [LS] is Chief Executive Officer and a co-founder of Connectome Health. These relationships constitute financial and professional interests in the subject matter of this work. The remaining authors declare no competing interests. 
+
+# 7 Author Contributions 
+
+Rufus Mitchell Heggs: Conceptualisation; study design; ethics submission; participant recruitment, management and scanning; data analysis (Figures 1–5 and Supplementary figures); writing - original draft (introduction, results, discussion). Daniel Tamkin: Data analysis: GLM design matrix and parameter selection (Figure 2); ridge regression analysis (Figure 5); writing: original draft (methods and figure 5 results). Lucas Scherdel: 
+
+Conceptualisation; study design; writing: review and editing (introduction, discussion). Data analysis: Feature selection. Anita Snowdon-Farrell: Participant recruitment, management and scanning, writing: original draft (methods: study design, setup and participant management). Alfred Curry: Data analysis: wearable metric criteria (Supplementary Figures); writing: original draft (methods: selection of wearable metrics) and reviewed text. 
+
+Onayomi Rosenior-Patten: Data acquisition (scanning). Simon R Schultz: 
+
+Conceptualisation; principal investigator; supervision; writing: review and editing (introduction, discussion). 8 References 
+
+1.  Abraham, A., Pedregosa, F., Eickenberg, M., Gervais, P., Mueller, A., Kossaifi, J., Gramfort, A., Thirion, B. and Varoquaux, G. (2014) 'Machine learning for 
+
+neuroimaging with scikit-learn', Frontiers in Neuroinformatics , 8, 14. Available at: 
+
+https://doi.org/10.3389/fninf.2014.00014 
+
+2.  Ban, H.Y., Barrett, G., Borisevich, A., Chaturvedi, A., Dahle, J.L., Dehghani, H. et al. (2022) 'Kernel Flow: a high channel count scalable time-domain functional near-infrared spectroscopy system', Journal of Biomedical Optics , 27(7), 074710. 
+
+Available at:  https://doi.org/10.1117/1.JBO.27.7.074710 
+
+3.  Cabeza, R. (2002) 'Hemispheric asymmetry reduction in older adults: the HAROLD 
+
+model', Psychology and Aging , 17(1), pp. 85–100. Available at: 
+
+https://doi.org/10.1037/0882-7974.17.1.85 
+
+4.  Castillo, E. et al. (2024) 'Reliability of brain metrics derived from a time-domain functional near-infrared spectroscopy system', Scientific Reports , 14, article 17604. 
+
+Available at:  https://doi.org/10.1038/s41598-024-68555-9 
+
+5.  Causse, M., Chua, Z., Peysakhovich, V., Del Campo, N. and Matton, N. (2017) 'Mental workload and neural efficiency quantified in the prefrontal cortex using 
+
+fNIRS', Scientific Reports , 7(1), 5222. Available at: 
+
+https://doi.org/10.1038/s41598-017-05378-x 
+
+6.  Chithiramohan, T., Parekh, J.N., Kronenberg, G., Haunton, V.J., Minhas, J.S., Panerai, R.B., Robinson, T.G., Divall, P., Subramaniam, H., Mukaetova-Ladinska, E. and Beishon, L. (2022) 'Investigating the association between depression and cerebral haemodynamics: a systematic review and meta-analysis', Journal of 
+
+Affective Disorders , 299, pp. 144–158. Available at: 
+
+https://doi.org/10.1016/j.jad.2021.11.037 
+
+7.  Csipo, T., Mukli, P., Lipecz, A., Tarantini, S., Farkas, E., Csiszar, A., Ungvari, Z. and Yabluchanskiy, A. (2021) 'Sleep deprivation impairs cognitive performance, alters task-associated cerebral blood flow and decreases cortical neurovascular coupling-related hemodynamic responses', Scientific Reports , 11, 20994. Available 
+
+at:  https://doi.org/10.1038/s41598-021-00188-8 
+
+8.  Dubois, J., Field, R.M., Jawhar, S. et al. Reliability of brain metrics derived from a Time-Domain Functional Near-Infrared Spectroscopy System. Sci Rep 14 , 17500 
+
+(2024).  https://doi.org/10.1038/s41598-024-68555-9 
+
+9.  Hampshire, A., Sandrone, S. and Hellyer, P.J. (2019) 'A large-scale, cross-sectional investigation into the efficacy of brain training', Frontiers in Human Neuroscience , 13, 
+
+221. Available at:  https://doi.org/10.3389/fnhum.2019.00221 
+
+10.  Jung, J., Lambon Ralph, M.A. and Jackson, R.L. (2022) 'Subregions of DLPFC display graded yet distinct structural and functional connectivity', Journal of 
+
+Neuroscience , 42(15), pp. 3241–3254. Available at: 
+
+https://doi.org/10.1523/JNEUROSCI.1216-21.2022 
+
+11.  Livingston, G., Huntley, J., Liu, K.Y., Costafreda, S.G., Selbæk, G., Alladi, S., Ames, D., Banerjee, S., Burns, A., Brayne, C., Fox, N.C., Ferri, C.P., Gitlin, L.N., Howard, R., Kales, H.C., Kivimäki, M., Larson, E.B., Nakasujja, N., Rockwood, K., Samus, Q., Shirai, K., Singh-Manoux, A., Schneider, L.S., Walsh, S., Yao, Y., Sommerlad, A. and Mukadam, N. (2024) 'Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission', The Lancet , 404(10452), pp. 572–628. Available at: 
+
+https://doi.org/10.1016/S0140-6736(24)01296-0 
+
+12.  Luke, R., Larson, E.D., Shader, M.J. et al. (2021) 'Analysis methods for measuring passive auditory fNIRS responses generated by a block-design paradigm', 
+
+Neurophotonics , 8(2), 025008. Available at:  https://doi.org/10.1117/1.NPh.8.2.025008 
+
+13.  Naito, T., Oka, K. and Ishii, K. (2024) 'Hemodynamics of short-duration light-intensity physical exercise in the prefrontal cortex of children: a functional near-infrared 
+
+spectroscopy study', Scientific Reports , 14, 15771. Available at: 
+
+https://doi.org/10.1038/s41598-024-66598-6 
+
+14.  Nischal, S.A. and Patel, N.K. (2026) 'Cerebral blood flow as a mechanistic framework 
+
+across neurological disease', Discover Neuroscience , 21(1), article 44. Available at: 
+
+https://doi.org/10.1186/s13064-026-00269-2 
+
+15.  Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M. and Duchesnay, É. (2011) 'Scikit-learn: machine learning in Python', Journal of Machine Learning Research , 12, pp. 2825–2830. 
+
+16.  Peet, E. et al. (2022) 'Functional near-infrared spectroscopy in developmental psychiatry: a review of attention deficit hyperactivity disorder', Frontiers in Psychiatry ,
+
+13. Available at:  https://pmc.ncbi.nlm.nih.gov/articles/PMC9911305/ 
+
+17.  Rab-Bábel, K.S., Sulina, D., Daniel, C., Rab, T., Kozák, N. and Oláh, L. (2025) 'Sleep deprivation impairs neurovascular coupling and cerebral vasomotor reactivity', 
+
+Scientific Reports , 15, 9491. Available at: 
+
+https://doi.org/10.1038/s41598-025-94212-w 
+
+18.  Sakowski, S.A., Koubek, E.J., Chen, K.S., Goutman, S.A. and Feldman, E.L. (2024) 'Role of the exposome in neurodegenerative disease: recent insights and future 
+
+directions', Annals of Neurology , 95(4), pp. 635–652. Available at: 
+
+https://doi.org/10.1002/ana.26897 
+
+19.  Seghier, M.L. (2008) 'Laterality index in functional MRI: methodological issues', 
+
+Magnetic Resonance Imaging , 26(5), pp. 594–601. Available at: 
+
+https://doi.org/10.1016/j.mri.2007.10.010 
+
+20.  Shen, Q., Hou, J., Xia, T., Zhang, J., Wang, D., Yang, Y., Luo, R., Xin, Z., Yin, H. and Cui, L. (2024) 'Exercise promotes brain health: a systematic review of fNIRS studies', 
+
+Frontiers in Psychology , 15, 1327822. Available at: 
+
+https://doi.org/10.3389/fpsyg.2024.1327822 
+
+21.  Steinmetz, J.D., Seeher, K.M., Schiess, N., Nichols, E., Cao, B., Servili, C. et al. (GBD 2021 Nervous System Disorders Collaborators) (2024) 'Global, regional, and national burden of disorders affecting the nervous system, 1990–2021: a systematic analysis for the Global Burden of Disease Study 2021', The Lancet Neurology , 23(4), 
+
+pp. 344–381. Available at:  https://doi.org/10.1016/S1474-4422(24)00038-3 
+
+22.  Taylor, M., Field, R.M., Jawhar, S., Dubois, J. et al. (2024) 'Reliability of brain metrics derived from a Time-Domain Functional Near-Infrared Spectroscopy System', 
+
+Scientific Reports , 14, 17500. Available at: 
+
+https://doi.org/10.1038/s41598-024-68555-9 
+
+23.  Triana, A.M., Salmi, J., Hayward, N.M.E.A., Saramäki, J. and Glerean, E. (2024) 'Longitudinal single-subject neuroimaging study reveals effects of daily environmental, physiological, and lifestyle factors on functional brain connectivity', PLoS Biology , 22(10), e3002797. Available at: 
+
+https://doi.org/10.1371/journal.pbio.3002797 
+
+24.  Vallat, R. (2018) 'Pingouin: statistics in Python', Journal of Open Source Software ,
+
+3(31), 1026. Available at:  https://doi.org/10.21105/joss.01026 
+
+25.  Voyer, D., Saint-Aubin, J., Altman, K. and Gallant, G. (2021) 'Sex differences in verbal working memory: a systematic review and meta-analysis', Psychological 
+
+Bulletin , 147(4), pp. 352–398. Available at:  https://doi.org/10.1037/bul0000320 
+
+26.  Zhang, Y., Ran, M., Zhang, X., Wang, M., Wang, M. and Jiang, G. (2023) 'Diminished prefrontal hemodynamic response in adult attention deficit hyperactivity disorder: a multi-channel functional near-infrared spectroscopy study', European Journal of 
+
+Psychiatry , 37(3), pp. 160–166. Available at: 
+
+https://doi.org/10.1016/j.ejpsy.2023.01.001 
+
+27.  Zimmerman, B., Rypma, B., Gratton, G. and Fabiani, M. (2021) 'Age-related changes in cerebrovascular health and their effects on neural function and cognition: a 
+
+comprehensive review', Psychophysiology , 58(7), e13796. Available at: 
+
+https://doi.org/10.1111/psyp.13796

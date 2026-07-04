@@ -6,77 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-03
-- 运行时间：2026-07-03 21:06:00 UTC
+- 最新运行日期：2026-07-04
+- 运行时间：2026-07-04 20:39:53 UTC
 - 运行状态：成功
-- 本次总论文数：19
-- 精读区：8
+- 本次总论文数：17
+- 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日共推荐19篇论文，精读率42%，其中2篇获得最高分9.0。最值得关注的两个方向是：基于EEG的超双曲图神经网络抑郁症识别，以及睡眠中去甲肾上腺素慢波连接心率动态与记忆巩固。建议优先精读这两篇9分论文，再结合速读中8分的跨模态脑-语言统一模型与痴呆症检测研究拓展视野。
-- 详情：[/202607/03/README](/202607/03/README)
+今日共筛17篇论文，精读6篇，两篇9分高分聚焦脑网络分析与神经影像生成式框架。
+最值得关注方向：多尺度超图语义对齐的脑网络分析（SABER），以及生成式视觉-语言神经影像框架（NeuroVLM）。
+建议普通读者关注脑科学与多模态大模型的交叉应用，特别是语义对齐分析与统一生成模型的前沿突破。
+- 详情：[/202607/04/README](/202607/04/README)
 
 ### 精读区论文标签
-1. [SA-HGNN: Sample-Adaptive Hyperbolic Graph Neural Network for EEG-Based Depression Recognition](/202607/03/2607.02063v1-sa-hgnn-sample-adaptive-hyperbolic-graph-neural-network-for-eeg-based-depression-recognition)  
+1. [SABER: A Semantic-Aligned Brain Network Analysis Framework via Multi-scale Hypergraphs](/202607/04/2607.01901v1-saber-a-semantic-aligned-brain-network-analysis-framework-via-multi-scale-hypergraphs)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于脑电的抑郁识别，使用图神经网络
-2. [Noradrenergic infraslow rhythm during sleep is the critical link between heart-rate dynamics and memory consolidation](/202607/03/biorxiv-10-64898-2026-01-06-697926-v2-noradrenergic-infraslow-rhythm-during-sleep-is-the-critical-link-between-heart-rate-dynamics-and-memory-consolidation)  
+   evidence：整合大语言模型语义进行脑网络分析
+2. [NeuroVLM: A generative vision-language framework for human neuroimaging](/202607/04/biorxiv-10-64898-2026-02-06-704508-v3-neurovlm-a-generative-vision-language-framework-for-human-neuroimaging)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：链接睡眠中肾上腺素超慢节律、心率动力学和记忆巩固
-3. [Tetradic Dynamics of Dyadic Sensorimotor Coordination: A Multiscale EEG Hyperscanning Study](/202607/03/biorxiv-10-64898-2026-06-21-732435-v1-tetradic-dynamics-of-dyadic-sensorimotor-coordination-a-multiscale-eeg-hyperscanning-study)  
+   evidence：用于神经影像的视觉语言模型，连接语言和脑成像
+3. [Prefrontal activation predicts response latency and is shaped by age and lifestyle](/202607/04/biorxiv-10-64898-2026-06-22-733821-v1-prefrontal-activation-predicts-response-latency-and-is-shaped-by-age-and-lifestyle)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：双人协调的EEG超扫描研究，与精神疾病相关
-4. [Sleep spindles enhance latent working memory representations](/202607/03/biorxiv-10-64898-2026-06-26-734777-v1-sleep-spindles-enhance-latent-working-memory-representations)  
+   evidence：结合可穿戴睡眠指标与fNIRS测量的前额叶激活
+4. [HARMONY: A large-scale harmonized neuroimaging dataset for research on anxious misery disorders](/202607/04/biorxiv-10-64898-2026-06-26-732748-v1-harmony-a-large-scale-harmonized-neuroimaging-dataset-for-research-on-anxious-misery-disorders)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：睡眠纺锤波与工作记忆关系
-5. [A Simple Subject Independent Channel Selection in EEG for Motor Imagery Task](/202607/03/biorxiv-10-64898-2026-06-26-734867-v1-a-simple-subject-independent-channel-selection-in-eeg-for-motor-imagery-task)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：面向运动想象脑机接口的EEG通道选择
-6. [The human language processing system straightens natural speech](/202607/03/biorxiv-10-64898-2026-06-30-735613-v1-the-human-language-processing-system-straightens-natural-speech)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：利用大语言模型研究语音处理中的神经表征，结合功能磁共振成像
-7. [No Evidence for a Wakeful Rest Benefit on Associative Memory: A Within-Participant EEG Study](/202607/03/biorxiv-10-64898-2026-07-01-735795-v1-no-evidence-for-a-wakeful-rest-benefit-on-associative-memory-a-within-participant-eeg-study)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：清醒休息与记忆巩固的EEG研究
-8. [Learning-related population dynamics in right and left dorsal premotor cortex during typing skill acquisition](/202607/03/biorxiv-10-64898-2026-07-02-736059-v1-learning-related-population-dynamics-in-right-and-left-dorsal-premotor-cortex-during-typing-skill-acquisition)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：研究四肢瘫痪患者在脑机接口打字技能获取中的神经群体动态
+   evidence：大规模多模态神经影像数据集，用于焦虑痛苦障碍和心理健康研究
+5. [BrainRiem: Riemannian Prototype Learning for Source-Free Cross-Site Brain Network Diagnosis](/202607/04/2606.29200v1-brainriem-riemannian-prototype-learning-for-source-free-cross-site-brain-network-diagnosis)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：用于神经精神诊断的无源域适应fMRI连接性方法
+6. [Sample size critically shapes the reliability of EEG case-control findings in psychiatry](/202607/04/biorxiv-10-1101-2025-11-10-687610-v2-sample-size-critically-shapes-the-reliability-of-eeg-case-control-findings-in-psychiatry)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：系统评估样本量如何影响精神病学中EEG病例对照研究的可靠性
 
 ### 速读区论文标签
-1. [BrainJanus: A Unified Model for Understanding and Generation across Brain, Vision, and Language](/202607/03/2606.30319v1-brainjanus-a-unified-model-for-understanding-and-generation-across-brain-vision-and-language)  
+1. [BrainJanus: A Unified Model for Understanding and Generation across Brain, Vision, and Language](/202607/04/2606.30319v1-brainjanus-a-unified-model-for-understanding-and-generation-across-brain-vision-and-language)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：统一模型整合脑、视觉和语言，用于神经解码和编码
-2. [Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection](/202607/03/2606.30675v1-listening-between-the-lines-joint-learning-of-asr-embeddings-and-llm-augmented-linguistics-for-dementia-detection)  
+   evidence：脑机接口技术、统一脑模型
+2. [Do Multimodal Large Language Models Need Reasoning to Classify Dementia from Speech?](/202607/04/2607.00260v2-do-multimodal-large-language-models-need-reasoning-to-classify-dementia-from-speech)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：大语言模型增强的语言学特征用于痴呆检测
-3. [I\textsuperscript{2}RiMA: Spectral Riemannian Representation with Temporal Attention for Mental Stress Detection based on EEG Signals](/202607/03/2607.01279v1-itextsuperscript2rima-spectral-riemannian-representation-with-temporal-attention-for-mental-stress-detection-based-on-eeg-signals)  
+   evidence：多模态大语言模型用于语音痴呆分类
+3. [Dendritic In-Context Learning in a Single-Layer Spiking Neural Network](/202607/04/2607.02283v1-dendritic-in-context-learning-in-a-single-layer-spiking-neural-network)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于脑电信号的精神压力检测，采用频谱黎曼表示和时间注意力机制
-4. [Can Language Models Actually Retrieve In-Context? Drowning in Documents at Million Token Scale](/202607/03/2607.01538v1-can-language-models-actually-retrieve-in-context-drowning-in-documents-at-million-token-scale)  
+   evidence：脉冲神经网络中的树突上下文学习，连接深度学习与神经科学
+4. [Cognitive function linked to temporal occupancy of Brain-Ventricle (BraVe) modes](/202607/04/biorxiv-10-1101-2025-01-04-631289-v4-cognitive-function-linked-to-temporal-occupancy-of-brain-ventricle-brave-modes)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：研究语言模型在百万token规模下的上下文检索能力
-5. [State-Specific Respiratory Signatures for Affective and Stress Recognition: Interpretable Respiratory Markers, Autocorrelation Lags, and Compact CNN Models](/202607/03/2606.26723v1-state-specific-respiratory-signatures-for-affective-and-stress-recognition-interpretable-respiratory-markers-autocorrelation-lags-and-compact-cnn-models)  
+   evidence：fMRI中的脑室耦合模式与认知功能相关
+5. [Habitual lifestyle timing explains circadian timing, but daily lifestyle changes do not, in free-living humans across 2000 days](/202607/04/2606.28261v1-habitual-lifestyle-timing-explains-circadian-timing-but-daily-lifestyle-changes-do-not-in-free-living-humans-across-2000-days)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用CNN开发可解释的呼吸标记用于压力和情感识别
-6. [A Comparative Study on Affective Cues in Text Embeddings Across Psychological Emotion Theories](/202607/03/2606.29068v1-a-comparative-study-on-affective-cues-in-text-embeddings-across-psychological-emotion-theories)  
+   evidence：研究生活方式时间对心率昼夜节律的影响，与睡眠相关
+6. [Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data](/202607/04/2606.30879v2-neural-signatures-of-programming-expertise-classifying-programmer-skill-levels-using-eeg-data)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：研究文本嵌入中的情感线索，用于情绪识别，与心理健康相关
-7. [MindAU: EEG-Conditioned Facial Action Unit Editing via Dual-Stream Manifold Alignment](/202607/03/2607.00410v1-mindau-eeg-conditioned-facial-action-unit-editing-via-dual-stream-manifold-alignment)  
+   evidence：使用脑电数据和机器学习进行分类
+7. [Copewell: A Multi-Agent Swarm Architecture for Equitable Mental Wellness Support](/202607/04/2607.02245v1-copewell-a-multi-agent-swarm-architecture-for-equitable-mental-wellness-support)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：基于EEG的面部表情编辑与情绪相关
-8. [Single-Channel EEG-Based Cognitive Load Assessment in Online Learning: A Hybrid Deep Learning Approach](/202607/03/2607.01795v1-single-channel-eeg-based-cognitive-load-assessment-in-online-learning-a-hybrid-deep-learning-approach)  
+   evidence：心理健康支持、多智能体AI系统
+8. [Unsupervised Representation Learning Reveals Individualized Neurophysiological Profiles](/202607/04/biorxiv-10-64898-2026-02-10-705127-v2-unsupervised-representation-learning-reveals-individualized-neurophysiological-profiles)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：单通道EEG认知负荷评估的深度学习方法
-9. [Tetradic Dynamics of Dyadic Sensorimotor Coordination: A Multiscale EEG Hyperscanning Study](/202607/03/biorxiv-10-64898-2026-06-21-732435-v2-tetradic-dynamics-of-dyadic-sensorimotor-coordination-a-multiscale-eeg-hyperscanning-study)  
+   evidence：使用无监督表示学习从脑磁图数据提取个性化神经生理特征
+9. [Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data](/202607/04/2606.30879v1-neural-signatures-of-programming-expertise-classifying-programmer-skill-levels-using-eeg-data)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：双人感觉运动协调的多尺度EEG超扫描研究
-10. [Closed-loop optimization of a high-dimensional generative latent space for rhythmic visual response](/202607/03/biorxiv-10-64898-2026-06-27-734819-v1-closed-loop-optimization-of-a-high-dimensional-generative-latent-space-for-rhythmic-visual-response)  
+   evidence：使用脑电图和机器学习分类程序员技能水平
+10. [Perceptual glimpses are locally accumulated and globally maintained at distinct processing levels](/202607/04/biorxiv-10-1101-2025-04-30-651428-v4-perceptual-glimpses-are-locally-accumulated-and-globally-maintained-at-distinct-processing-levels)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：基于EEG的闭环脑机接口视觉调制
-11. [Subthalamic Nucleus Optogenetic Inhibition Bidirectionally Regulates Social Motivation According to Familiarity and Social Hierarchy](/202607/03/biorxiv-10-64898-2026-06-30-735581-v1-subthalamic-nucleus-optogenetic-inhibition-bidirectionally-regulates-social-motivation-according-to-familiarity-and-social-hierarchy)  
+   evidence：关于知觉决策的脑电实验
+11. [Preventing Data Leakage in Neural Decoding](/202607/04/biorxiv-10-64898-2026-01-26-701583-v2-preventing-data-leakage-in-neural-decoding)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：光遗传调控社会动机与心理健康
+   evidence：解决神经解码中的数据泄漏问题，对神经科学中的深度学习至关重要
 
 
 <div class="dpr-home-promo-card">

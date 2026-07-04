@@ -1,0 +1,675 @@
+Title: Habitual lifestyle timing explains circadian timing, but daily lifestyle changes do not, in free-living humans across 2000 days
+
+URL Source: https://arxiv.org/pdf/2606.28261v1
+
+Published Time: Mon, 29 Jun 2026 01:05:09 GMT
+
+Number of Pages: 53
+
+Markdown Content:
+# Habitual lifestyle timing explains circadian timing, but daily lifestyle changes do not, in free-living humans across 2000 days 
+
+Billy C. Smith 1∗, Zeel Pansara 1, Rosanne H. Timmerman 1, Emmanuel Molefi 1,Tiago Da Silva Costa 2,3,4, Christopher Thornton 5, Lucas G.S. Fran¸ ca 6,7,Rachel E. Stirling 8, Sarah E. Heaps 9, Philippa Karoly 8, Mario Leocadio-Miguel 10 ,Peter N. Taylor 1,3,11 , Karoline Leiberg 1, Yujiang Wang 1,3,11 ∗
+
+June 29, 2026 
+
+1. CNNP Lab (www.cnnp-lab.com), School of Computing, Newcastle University, Newcastle upon Tyne, United Kingdom, NE4 5TG 2. Faculty of Medical Sciences, Newcastle University, Newcastle upon Tyne, United Kingdom, NE2 4HH 3. Northern Centre for Mood Disorders, Newcastle University, Cumbria, Northumberland, Tyne and Wear NHS Foundation Trust, Newcastle Upon Tyne, UK 4. National Institute for Health and Care Research, Newcastle Biomedical Research Centre, Newcastle Upon Tyne, UK 5. School of Computing, Engineering & Digital Technologies, Teesside University, Middles-brough, Tees Valley, TS1 3BX 6. School of Computer Science, Faculty of Science and Environment, Northumbria University, Newcastle upon Tyne, NE1 8ST, United Kingdom 1
+
+> arXiv:2606.28261v1 [q-bio.QM] 26 Jun 2026
+
+7. Department of Forensic and Neurodevelopmental Science, Institute of Psychiatry, Psychology & Neuroscience, King’s College London, London, SE5 8AF, United Kingdom 8. Department of Biomedical Engineering and Graeme Clark Institute, The University of Mel-bourne, Victoria, Australia 9. Department of Mathematical Sciences, Durham University, United Kingdom 10. School of Psychology, Faculty of Health and Wellbeing, Northumbria University, Newcastle upon Tyne, NE1 8ST, United Kingdom 11. UCL Queen Square Institute of Neurology, Queen Square, London, United Kingdom, WC1N 3BG * Email: b.smith16@ncl.ac.uk or Yujiang.Wang@ncl.ac.uk 2Summary (Abstract) 
+
+Background Both between- and within-subject variations in circadian timing matter for health. If lifestyle changes could be used to regulate circadian timing, they would offer accessible and scalable routes to chronotherapy, but this link remains unclear under real-life conditions. Here, we explore how lifestyle ‘traits’ (such as typical wake time) and ‘states’ (day-to-day deviations from traits, such as waking up later than typical) explain between- and within-subject variation in acrophase (peak time) of the circadian rhythm of heart rate (CRHR). 
+
+Methods We collected free-living wearable data (smartwatch, continuous glucose monitor) from healthy volunteers for up to 4 weeks. The CRHR was derived from activity-adjusted heart rate, and acrophase was defined as time-of-day at daily CRHR peak. Sleep, food, and physical activity ‘factors’ were calculated and split into traits and states. Using a linear mixed-effects model, we tested how traits and states associate with between- and within-subject acrophase variance. 
+
+Findings Data from 105 healthy volunteers (66 female, age = 42.5 ± 15.7 years) spanning ˜2000 days (18.8 ± 8.30 days each) were analysed. Traits were substantially more influential than states, explaining 42.3% versus 0.9% of total acrophase variance. Accordingly, traits explained 86.5% of between-subject variance, whereas states explained only 1.8% of within-subject variance. Sleep, food and physical activity factors contributed both jointly and uniquely, and lifestyle timing 
+
+mattered most. 
+
+Interpretation Between-subject lifestyle traits explained acrophase better than within-subject lifestyle states. This asymmetry, alongside the considerable overlap between factors, supports sustained, holistic, timing-focused lifestyle adjustments as chronotherapy targets, testable through future interventional studies. 31 Introduction 
+
+The timing of the human circadian rhythm (biological clock) varies between people. Some people’s rhythms run earlier than others’ – a between-subject difference generally captured by ‘chronotype’ (Roenneberg et al., 2019). This between-subject timing matters for health: later chronotype has been correlated with addiction, mood, sleep, and metabolic disorders (Knutson and Schantz, 2018; Chan et al., 2026). An individual’s circadian timing may also shift from day to day: elevated within-subject variation has been linked to increased mortality risk (Windred et al., 2024) and cardiometabolic health (St-Onge et al., 2025); mood disorders (S. H. Jones, Hare, and Evershed, 2005; Esaki et al., 2021) (accompanying symptom onset in bipolar disorder (Song et al., 2024)); and epilepsy (Smith et al., 2025). Thus, both an individual’s typical circadian rhythm timing and day-to-day stability are clinically relevant, yet both are hard to measure at scale outside of laboratory conditions. However, the heart has its own circadian rhythm (CRHR), regulated by the SCN (Hastings, Reddy, and Maywood, 2003; Lu and Kim, 2021), which can be measured with wearable devices (Bowman et al., 2021; Huang et al., 2021; Natarajan et al., 2025). The ‘acrophase’ of this rhythm, the time of its daily peak (Esaki et al., 2021; Natarajan et al., 2025), can serve as a scalable proxy for circadian timing. Identifying what factors affect CRHR acrophase is a key step towards regulating between- and within-subject circadian timing in targeted chronotherapy. Circadian rhythm timing is driven by ‘zeitgebers’ (time-givers) (Aschoff, 1960) via entrainment. The light-and-dark cycle is the primary zeitgeber, but elements of lifestyle can act as non-photic zeitgebers (Mistlberger and Skene, 2005; Healy, Morris, and Liu, 2021). Such lifestyle zeitgebers make for attractive intervention targets, as they are measurable and modifiable at scale: delayed (made later) sleep shifts circadian timing and increases timing variability (Sletten et al., 2010); meal timing entrains circadian rhythms independently of sleep, with delayed meals delaying timing (Wehrens et al., 2017; Kr¨ auchi et al., 2002; Quante et al., 2019; Yoshizaki et al., 2013); and morning physical activity generally advances (make earlier) timing, whereas evening activity delays it (Youngstedt, Elliott, and Kripke, 2019; Thomas et al., 2020; Quante et al., 2019). However, these findings come almost entirely from controlled laboratory studies, where one cue is manipulated and the rest held constant. If chronotherapeutic interventions are to take place outside the clinic, 4we need to understand how lifestyle factors jointly influence circadian timing under real-world conditions. A further unknown is whether lifestyle acts mainly on between- or within-subject circadian variation, or both. Answering this means separating between- from within-subject effects in one model. The within-between framework (Bell and K. Jones, 2015; Mundlak, 1978) does so by split-ting each lifestyle predictor into an individual mean (trait), capturing habitual lifestyle, and daily deviations from that mean (state), capturing day-to-day change. This lets us ask two questions of every factor: (i) does a person’s habitual lifestyle relate to their typical acrophase, and (ii) do daily lifestyle deviations relate to daily shifts in acrophase? Either answer would be informative: a factor may govern typical acrophase, its daily variation, both, or neither. Here, we ask how much lifestyle habits, and daily deviations from them, explain between- and within-subject variance in the acrophase of the circadian rhythm of heart rate (CRHR), with mul-tiple lifestyle factor categories modelled concurrently. We first test whether a large healthy cohort shows substantial between- and within-subject variance in CRHR acrophase using wearable de-vices. We then ask how much variation is accounted for by each category (sleep, physical activity, and food), and whether habit and daily deviation contribute differently between and within people. By showing which factors associate with between-subject variation, and which explain day-to-day within-subject changes, these analyses indicate which lifestyle factors are the most plausible tar-gets for chronotherapy. 52 Methods 60 80 100 120 AB               
+
+> 16.0 16.5 17.0 Time of day [h]  CRHR acrophase
+> 78910 Time of day [h]  Wake timing
+> May 17 19 21 23 25 27 Date May 17 19 21 23 25 27 29 31 100 150
+> Heart rate [bpm]  raw heart rate activity-corrected heart rate circadian rhythm acrophase
+> C
+> Date Date
+> 21 22 20 acrophase first meal timing wake timing prev day peak activity timing Heart rate [bpm]
+> trait (habitual mean) = 8.5 h
+> state (daily deviations) 29
+
+Figure 1: Overview of Methods A : Raw and activity-corrected heart rate over 14 days, with singular spectrum analysis (SSA) extracted circadian rhythm (circadian rhythm of heart rate, CRHR) overlaid. Empty circles indicate daily CRHR acrophase. B: Two-day zoom-in showing acrophase on one day together with a sample of lifestyle factors across categories (previous day peak activity time, wake time, first meal time). C: Top: CRHR acrophase shown as time of day over days, which is our response variable for LMER modelling. Bottom: Wake timing as an example lifestyle factor. Each factor is also split into its trait (habitual mean) and state (daily deviation) predictor factor for LMER modelling. Shaded x-axis region shows the same date across all three panels (21st May). 
+
+2.1 Study design and participants 
+
+We collected wearable data from healthy adult volunteers in an observational, free-living design, in which participants were asked to maintain their usual routines while continuously wearing a smartwatch and a continuous glucose monitor (CGM) for up to four weeks. Glucose time-in-range for participants with CGM is shown in Supplementary 1. Recruitment was from the local area (Newcastle upon Tyne, UK); full details, inclusion criteria and device models are given in Supplementary Methods (Supplementary 2). Our analysis sample comprised 105 participants contributing 1977 circadian cycles. The study was approved by the Newcastle University Ethics 6Committee (23-032-WAN). 
+
+2.2 Estimating circadian timing from heart rate 
+
+The body’s circadian timing is governed not by a single clock but by a hierarchy: a central clock in the suprachiasmatic nucleus (most directly indexed by dim-light melatonin onset), and peripheral clocks throughout the body’s tissues that are also entrained directly by non-photic cues such as feeding and physical activity. Our marker of interest is the circadian rhythm of heart rate (CRHR), extracted from continuous heart-rate recordings, whose daily peak time ( acrophase ) we take as a readout of peripheral clock timing (Figure 1A). CRHR acrophase is related to, but distinct from, both central clock phase and ‘chronotype’ as captured by questionnaires (Vitale et al., 2015; Roenneberg et al., 2019). CRHR phase has shown reasonable alignment with DLMO, the gold standard central clock marker (Huang et al., 2021). We interpret CRHR acrophase as a wearable-derived marker of peripheral circadian timing, informative in its own right (Bowman et al., 2021; Huang et al., 2021; Lee et al., 2024) with clinical relevance (S. H. Jones, Hare, and Evershed, 2005; Esaki et al., 2021; Song et al., 2024; Smith et al., 2025). Because physical activity raises heart rate independently of the circadian rhythm (masking), heart rate during periods of detected physical activity were corrected before rhythm extraction. The circadian rhythm was extracted using singular spectrum analysis (SSA), a non-parametric method validated for extracting a circadian rhythm from physiological time-series data against alternative techniques (Molefi et al., 2026). Acrophase was computed for each day, allowing it to vary from one day to the next (Figure 1). Its relation to sunrise and sunset is shown in Supple-mentary 3. Full preprocessing, extraction parameters, and circadian-component identification are detailed in Supplementary Methods. 
+
+2.3 Lifestyle factor categories 
+
+We measured several lifestyle factors (Figure 1B) across three categories. 
+
+1 Sleep : Sleep timing, duration, and quality were derived as factors from device sleep-detection output. 72 Physical activity : Bouts of physical activity events were derived from heart rate (HR), step count, and accelerometry. We included the total duration and average HR (a marker of intensity) of bouts within two hours of waking, or two hours of sleep on the previous day. Additionally, we included the timing, duration, and average HR of the bout with the greatest average HR (‘peak-activity’) on the previous day. 
+
+3 Food : Meal timing factors were derived by glucose profile peaks as a proxy. We additionally measured pre-bed and post-wake glucose concentration as additional physiological factors. Detection algorithms, thresholds, and the full factor list are given in Supplementary Methods; for readability, factors are referred to by descriptive name in the text, with machine-readable names tabulated in Supplementary 4. 
+
+2.4 Separating habit (trait) from daily deviation (state) 
+
+Our central analytical step separates each (lifestyle) factor into two components, following the within-between framework (Bell and K. Jones, 2015; Mundlak, 1978). The trait component reflects a person’s average level of a lifestyle factor across their recording, capturing habits (e.g typical wake time). The state component is their daily deviation from that average, capturing day-to-day change (e.g waking up 1 hour later than usual); also see Figure 1C. Modelling both together lets us ask two distinct questions of every factor: does a person’s habit relate to when their circadian rhythm typically peaks (a between-subject question), and do daily deviations from habits relate to daily shifts in rhythm timing (a within-subject question)? This separation is what dense wearable sampling makes possible, and where it differs from questionnaire instruments, which capture habitual between-subject difference, but not its within-subject day-to-day movement. See Supplementary 5 for a full list of paper terminology used. 
+
+2.5 Statistical analysis 
+
+We modelled the effects of lifestyle factors (predictors) on CRHR acrophase (response) using a linear mixed-effects regression with fixed effects for all lifestyle (trait and state), and a random intercept for participant. Other factors were also included as predictors including participant age, 8sex, and daylight hours for any given day. Two smartwatches were used in our study: to correct for device-level confounds, device type was included as a factor. We confirm that circular (time of day, 0h to 23.99h) acrophase and lifestyle factors are linearly associated in Supplementary 6. A first-order autoregressive structure was placed on the residuals to absorb day-to-day circadian inertia, so that the variance of estimates of the lifestyle coefficients can be directly quantified. To describe how much acrophase variance lifestyle explained, we used marginal and conditional 
+
+R2 for overall fixed- and random-effect fit (Nakagawa and Schielzeth, 2013), and semi-partial R2
+
+(Stoffel, Nakagawa, and Schielzeth, 2021) to attribute variance to each lifestyle category uniquely and to the variance shared across categories. Finally, we used a Snijders-Bosker decomposition (Snijders and Bosker, 2011) to split the variance explained into its between- and within-subject parts. To guide interpretation, each analysis was mapped to a specific question: marginal and conditional R2 quantified the overall variance explained by the model; semi-partial R2 quantified the unique and shared contributions of lifestyle categories; grouped semi-partial R2 compared the explanatory contribution of trait versus state factors; the Snijders-Bosker decomposition separated explained variance into between- and within-subject components; and standardised β coefficients were used to compare the relative direction and magnitude of individual lifestyle factors. All model specifications, variance decomposition formulae, and software are given in Supplementary Methods. 93 Results 
+
+We analysed wearable data from 105 healthy, free-living, volunteers (66 female, age = 42.5 ± 15.7 years) over 1977 circadian cycles (days) (18.8 ± 8.30 cycles each) (Supplementary 7). 
+
+3.1 Between- and within-subject heart rate circadian acrophase dis-tributions 020 40 60 80 100 00:00 03:00 06:00 09:00 12:00 15:00 18:00 21:00 00:00 Time of day [hours] subject     
+
+> CRHR acrophase by subject A
+> Mean: 15.41 SD: 1.92 0510 15 20 25 00:00 03:00 06:00 09:00 12:00 15:00 18:00 21:00 00:00 Time of day [hours] #subjects  Within−subject CRHR ac rophase means B
+> Median: 0.88
+> 04812 0.5 1.0 1.5 2.0 2.5 Standard deviation [hours] #subjects  Within−subject CRHR ac rophase SDs C
+> Individual days Within-subject average Within-subject 95% CI
+
+Figure 2: CRHR acrophase distributions within and between subjects. A : Caterpillar plot of per-subject CRHR acrophase distributions. B: Distribution of within-subject acrophase average (circular mean). C: Distribution of within-subject acrophase standard deviations. 
+
+We first investigated the distribution of acrophase for each subject (Figure 2A), and extracted within each subject their mean and standard deviation (SD) in CRHR acrophase (Figure 2B, C). Across all subjects, their mean acrophase was distributed on average at 15.41 hours (03:25pm) with a standard deviation of 1.92 hours (Figure 2B). Across all subjects, their acrophase standard deviations (Figure 2C) range from 0.21 hours to 2.35 hours (median 0.88 h). Between-subject variability in average acrophase (1.92h) was greater than the median within-subject variability in acrophase (0.88h) in this healthy volunteer population. Having established that acrophase varies 10 substantially both between and within individuals, we now ask how much of each source of variation is explained by lifestyle. 
+
+3.2 60.65% of CRHR acrophase variance can be explained Total R² 60.65%     
+
+> Sleep (3.57%)
+> Food (1.93%)
+> Physical activity (7.05%) Demographics & light (1.17%) Shared / overlap (38.61%) Random (8.32%)
+> Unexplained
+> (39.35%)
+
+Figure 3: 60.65% of CRHR acrophase variance can be explained by modelled factors. 
+
+Coloured portions represent variance explained (semi-partial R2) by categories of lifestyle factors in-cluded in the model. Distinct lifestyle categories sleep, food and physical activity uniquely explained 3.57%, 1.93%, 7.05%, respectively. Modelled demographics and light contributed a further 1.17%. The overlap between lifestyle categories explained 38.61% of variance. The random intercept further explains 8.32% variance, leaving a total of 39.35% variance unexplained. 
+
+We investigated the extent to which lifestyle factor categories (sleep, food, physical activity) explain CRHR acrophase variance overall. Using semi-partial R2, we evaluated both the unique contributions of each category, the overlapping contributions from all lifestyle categories, non-lifestyle categories (including factors of demographics and light), and the random intercept (Fig-ure 3). While each category also uniquely contributed to explain the CRHR acrophase variance, we found that the overlap between categories – representative of variance not uniquely attributable to any group, due to inherent associations between categories – explained the largest proportion of variance attributable to the lifestyle model. The model total marginal (fixed effects only) and conditional (fixed and random effects) R2
+
+11 were 52.33% and 60.65% respectively. Of the investigated model components, the shared variance explained between categories (‘overlap’) contributed most (38.61%) to the model marginal R2.Individual categories uniquely contributed between 1.93% (food) and 7.05% (physical activity). The model’s random intercept, capturing between-subject variability not covered by traits, was associated with 8.32% variance. 39.35% acrophase variance remains unexplained by our model. The large portion of variance explained attributed to the overlap implies that these lifestyle cat-egories are not strictly independent zeitgebers, but form a correlated lifestyle profile. Despite their inherent overlap, there are small, but clear portions of acrophase variance uniquely attributable to different lifestyle categories. 
+
+3.3 Traits explain CRHR acrophase better than states 98% 2% 0.0 0.1 0.2 0.3 0.4 State Trait Marginal R² contribution   
+
+> A
+> 92% 8% 88% 12% 98% 2% 0.00 0.02 0.04 0.06
+> Physical activity Sleep Food
+> Marginal R² contribution State Trait
+> B
+
+Figure 4: Lifestyle traits explained substantially more variance than states. Semi-partial R2
+
+(the reduction in model marginal R2 when a specific group of factors are dropped) was used to determine the marginal R2 contributions shown. Percentages show the relative contributions between traits and states. A: Variance explained by trait and state factors uniquely. B: Same as A, but restricted to unique variance explained within each lifestyle category. 
+
+To contextualise the previous result, we investigated the differences in variance explained by lifestyle trait (individual habitual mean) and state (deviation from habit) separately. We found that across and within all lifestyle categories, traits were substantially more influential than states in explaining CRHR acrophase variance (Fig. 4). Together, all lifestyle trait factors uniquely accounted for R2 = 0 .423 variance explained. In comparison, state factors only accounted for 12 R2 = 0 .009 (Fig. 4A). This is a split of approx. 98% vs. 2% of relative explainable variance contri-butions. Within each lifestyle category (Fig. 4B), traits accounted for between 88-98% of relative variance. Conversely, states accounted for between 2-12%. This implies that modelled habits (such as typical wake time) are more strongly associated with CRHR acrophase than modelled day-to-day deviations from habits (e.g., later/earlier wake times relative to typical). Furthermore, we performed a Snijders-Bosker (Snijders and Bosker, 2011) multi-level decomposition (Section 2.5) to separate variance in CRHR acrophase into within- vs. between-subject aspects. We found that while 86.5% ( R2 
+
+> between
+
+= 0 .865) of between-subject CRHR acrophase variance was explained by the model, only 1.8% ( R2 
+
+> within
+
+= 0 .018) of within-subject CRHR acrophase was explained. Taken together, these findings imply that modelled between-subject habitual lifestyle traits ex-plain between-subject CRHR acrophase variance well, but within-subject lifestyle states mostly do not explain within-subject day-to-day CRHR acrophase variance. Put simply, using wake-time as an example: a person’s habitual wake time explains their average CRHR acrophase well, but daily variations in wake time do not explain their daily changes in acrophase. 
+
+3.4 Timing-related traits have the greatest influence on CRHR acrophase 
+
+Finally, we evaluated the importance of individual lifestyle factors on CRHR acrophase through comparison of model coefficients (Figure 5), which reflect how much acrophase is advanced or delayed per one standard deviation increase in each factor, when other factors are held constant. There was considerable variation between factors in the estimate magnitude and direction, from -0.13 hours (0.13h advance) for post-wake activity duration (trait), to 0.65 hours (0.65h delay) for wake timing (trait). Standard error also varied from 0.01 hours for previous day’s peak-activity average heart rate (state) to 0.21 hours for wake timing (trait). Timing-related trait factors had the greatest influence on CRHR acrophase. Overall, individual factors had a weak influence on CRHR acrophase, most within the range of 
+
+β = 0.0 h to 0.5 h (advance or delay to acrophase) for each one standard deviation increase in the factor. The most influential factors fell between 0.5 h to 1.0 h, with none exceeding 1.0 h. Note the standard deviation of each factor is its population standard deviation across subjects and days. 13 *** *** *******       
+
+> −0.5 0.0 0.5 1.0
+> time in bed sleep efficiency time in bed
+> wake timing
+> sleep efficiency
+> wake timing
+> post− wake glucose
+> prev day pre−bed glucose prev day pre−bed glucose
+> prev day last−meal timing first−meal timing
+> post− wake glucose
+> prev day last−meal timing first−meal timing
+> post− wake activity duration
+> post− wake activity avg HR
+> prev day peak−activity du ration
+> prev day pre−bed activity du ration
+> post− wake activity duration
+> prev day peak−activity avg HR
+> prev day peak−activity avg HR
+> prev day peak−activity timing
+> prev day peak−activity du ration
+> prev day pre−bed activity du ration
+> prev day pre−bed activity avg HR
+> prev day peak−activity timing
+> daylight hours daylight hours age
+
+Standardised estimate β [hours] Sleep  Food  Ph ysical activity  
+
+> Trait State 95% CI Phase delay by 30 minutes
+
+Figure 5: Magnitude of influence for individual factors. Points show standardised model estimates (β, beta weights), with 95% confidence intervals overlaid as bars. For example, β = 0 .5 means that a factor, when increased by one unit of standard deviation, delayed (made later) acrophase by 0.5h = 30 minutes. Negative β indicate acrophase advance (make earlier) for each one standard deviation increase .Timing-related factors are highlighted in bold text. Traits are shown with a filled circle, and states are shown with an empty circle. Approximate two-sided p-values (* = < 0.05) are shown for reference only. 
+
+Across categories, timing-related trait factors had the greatest association with CRHR acrophase, specifically the factors of ‘wake time’, ‘first meal time’, and ‘previous day’s peak-activity time’. A detailed table of model coefficients is shown in Supplementary 4. The wide confidence intervals around several estimates indicate uncertainty in the precise size, and in some cases direction, of these associations. We investigated this further via a leave-one-subject-out sensitivity analysis. While there was substantial variation in the estimate of most coefficients, most maintained their general direction (Supplementary 8). 14 To summarise, the most influential factors were timing-related habitual (trait) factors. The model’s explanatory power is not driven by one dominant lifestyle factor or category, but from multiple related timing cues that together define an individual’s circadian timing. 
+
+3.5 Modelled lifestyle categories account for weekday-weekend differ-ences in CRHR acrophase 
+
+In our model, there was not a substantial weekday vs. weekend effect on acrophase ( β = 0 .002 ±
+
+0.04, see Supplementary 4). We investigated this in further detail in Supplementary 9. Most subjects did not have a substantial difference in acrophase between weekdays and weekends, though the number of subjects with a ≥ 30 min later acrophase on weekends was greater than the number with a ≥ 30 min earlier weekend acrophase. When re-running the model over weekdays-only and weekends-only, trends seen in Figures 3 and 5 generally held. However, sleep and overlap explained relatively more variance during weekends, and conversely, physical activity and the random intercept explained more variance during weekdays. 
+
+# 4 Discussion 
+
+The timing of an individual’s circadian rhythm has two distinct properties: when it typically peaks, which differs markedly between people, and how much timing shifts from day to day. Using ˜ 2000 days of continuous wearable recordings from 105 healthy volunteers under free-living conditions, we found that everyday lifestyle accounts for these two properties very differently. Habitual lifestyle explained most of the between-subject differences in CRHR acrophase: people whose habits are generally early or late have circadian rhythms that are accordingly early or late. Yet the same lifestyle factors explained almost none of a person’s day-to-day changes in acrophase, despite daily sampling that could resolve any day-to-day effects precisely. Beyond this asymmetry, two further features stand out: lifestyle factors act far more through their shared, overlapping influence than through any single zeitgeber acting alone; and it is the timing of lifestyle, rather than quality or quantity, that was associated with circadian timing. Together they reframe how lifestyle should 15 be understood as a regulator of our biological clock. The magnitudes we observed are consistent with circadian shifts reported under controlled conditions, but our free-living design reframes their interpretation. A one-standard-deviation delay in habitual sleep-wake time delayed acrophase by 0.65 ± 0.21 hours, comparable to the 1.75-hour delay Sletten et al., 2010 reported for a two-hour sleep delay under laboratory control. Habitual first meal timing showed the same direction as the 1.1–3.8 hour delays of Yoshizaki et al., 2013, though weaker (0.42 ± 0.18). This is unsurprising: Yoshizaki et al., 2013 delayed all three daily meals equally, and controlled caloric intake (a considerable aspect of meals as a zeitgeber (Stephan, 1997)), whereas we observed meals as they naturally occurred. Glucose peak timing may also be a less reliable proxy. Physical activity followed the expected geometry: habitually more intense post-wake activity advanced phase (-0.12 ± 0.19 hours per standard deviation), more intense pre-bed activity delayed it (0.29 ± 0.17 hours), and later timing of the day’s most intense bout delayed acrophase (0.47 ± 0.14 hours), echoing the general morning-advance, evening-delay pattern of Thomas et al., 2020 and Quante et al., 2019. In summary, we find that effects established one cue at a time in the laboratory survive when every cue varies at once, but in attenuated form. Under free-living conditions, Quante et al., 2019 report stronger shifts from later meal and physical activity than we observed, however report independent correlations where lifestyle factors were not mutually adjusted. In contrast, we were able to describe the unique contributions of each lifestyle factor or category when considered alongside other factors/categories (Figure 3). Lifestyle factors measured in real-world settings have inherent interrelationships (Supplementary 10), which we were able to cleanly separate from unique contributions through describing the variance ex-plained by ‘overlap’. Crucially, no single factor or category dominated; lifestyle factors are not competing zeitgebers, but a co-acting profile: they shift circadian timing together. This explains the large overlap and motivates treating lifestyle holistically rather than as a set of independent levers, a point we return to below. What, then, does the state-trait asymmetry imply about the CRHR? That habitual lifestyle 16 explains when the rhythm typically peaks, while day-to-day deviation barely tracks how it changes day-to-day, suggests it is shaped by sustained lifestyle patterns rather than by short-term fluc-tuation. Stable patterns, such as a wake time held at 6am rather than 8am over weeks, appear to matter; sporadic late wake times do not. This parallels evidence that the central clock re-mains stable over months despite lifestyle variation (McHill et al., 2021), and raises the possibility that peripheral timing is similarly buffered against daily perturbation. It also helps reconcile our attenuated effects with the larger shifts reported in the laboratory: a controlled study imposes a large, sustained, single-cue shift, whereas natural day-to-day variation is small and potentially self-cancelling. So controlled laboratory results are not overstating an effect, but measuring a response to a much larger and cleaner perturbation. The direction of this relationship under real-world conditions, however, remains open. Our observational design cannot separate lifestyle acting as a zeitgeber from the endogenous central clock that drives both peripheral physiological phase and the timing of lifestyle; the within-between model lets us hold habitual timing and daily deviation apart, but it describes association, not cause. In terms of clinical implications, our results point to concrete targets to test for causal chronother-apy interventions. Because habitual, timing-related factors carried the most weight, the most promising levers for shifting peripheral rhythm timing are sustained adjustments to the timing of sleep, meals, and exercise rather than other properties or any occasional change. To advance (shift earlier) a person’s circadian rhythm, a regimen of progressively earlier wake, meal, and activity times maintained over weeks, even if light conditions are not controlled, is the approach our find-ings would support. The dominance of shared over unique variance carries a practical implication: because lifestyle factors act in concert, chronotherapeutic adjustment is likely to be more effective when applied holistically. However, this combined causality also needs to be tested in interven-tional studies. Factors not tied to voluntary timing may offer secondary targets: pre-bed routines to improve sleep efficiency, dietary structure to regulate glucose, or activity prescribed to target specific heart-rate zones. An additional open question is whether there is an interaction between trait and state: for example whether deviations from typical wake time are more disruptive to 17 circadian timing for someone who wakes early, compared to someone who wakes late. We were unable to widely test interaction terms in our model due to sample size limitations, but preliminary testing did not reveal any substantial interaction between a trait and its respective state (Supple-mentary 11), suggesting this may not be the case. All of this, however, follows from association, and the causal step must be demonstrated directly through interventional studies before any of it is clinically actionable (Quante et al., 2019). Several questions follow directly from what we found, and from what our design could not reach. The first is direction: establishing whether habitual lifestyle entrains the peripheral circa-dian rhythm, or merely co-varies with an endogenous clock that sets both, requires interventional designs that manipulate habitual timing and observe the rhythm’s response. The second is the large unexplained share of within-subject variance: day-to-day acrophase shifts substantially, yet the lifestyle factors we measured account for almost none of that movement, even though we were well powered to detect it across ˜ 2000 person-days. This potentially points to inputs we did not capture (principally light exposure, but also mood (Shapiro et al., 2024), stress (Steinach and Gunga, 2020), alcohol (Meyrel, Rolland, and Geoffroy, 2020), caffeine (Burke et al., 2015)), social factors (Mistlberger and Skene, 2004), and work schedules (Bowman et al., 2021). Emerging light-tracking and ecological momentary assessment methods could close some of this gap. Additionally, it may point towards between-subject differences in how lifestyle states interact with acrophase (for example, meal timing’s effect on acrophase being influenced by between-subject differences in metabolism or food intake (Stephan, 1997)). A third concerns generalisability of the marker and the sample. CRHR acrophase reflects one peripheral circadian rhythm and need not track rhythms in other domains (core temperature, melatonin, or cellular clocks). Our heart-rate cor-rection mitigates the primary masking confound of physical activity but not of somnolence, sleep debt, or pathology. Our cohort, though spanning a broad age range, was predominantly white and drawn from one region. Finally, the between-subject findings rest on ˜ 100 individuals; while our daily sampling resolves within-subject effects well, the habitual estimates and the between-person variation in their direction would be sharpened by larger cohorts. 18 In conclusion, across ˜ 2000 days and 105 healthy adults, lifestyle explained when the circadian rhythm of heart rate typically peaks far better than how it shifts from day to day. We detected a strong shared influence of many factors over any single cue. The timing of lifestyle appeared to matter more than any other property. The asymmetry we report between habitual and day-to-day timing is the step that lets the next questions be posed precisely: which lifestyle timing cues, ad-justed deliberately and sustained over weeks, actually shift the rhythm in a causal study design? What governs the day-to-day variations in circadian rhythm that habitual lifestyle leaves unex-plained? Answering them would turn these associations into the basis for targeted chronotherapy, and clarify why circadian timing becomes more variable in neurological and psychiatric disease. 
+
+# Software 
+
+R (4.6.0) (Team, 2025), packages: Rssa (1.0.4) (Korobeynikov et al., 2024), nlme (3.1-169) (Pin-heiro et al., 2026), MuMIn (1.48.19) (Barto´ n, 2026), performance (0.17.0) (L¨ udecke et al., 2021) 
+
+# Code and Data availability 
+
+Code and data to reproduce our full statistical analysis is provided in https://github.com/ cnnp-lab/2026_BCS_LifestyleCRHR .
+
+# Acknowledgements 
+
+We thank all study volunteers, and all members of the Computational Neurology, Neuroscience & Psychiatry Lab ( www.cnnp-lab.com ) for discussions on the analysis and manuscript. P.N.T. and Y.W. are both supported by UKRI Future Leaders Fellowships (MR/T04294X/1, MR/V026569/1). 19 Author contributions 
+
+B.S, K.L, Y.W. contributed to study design, interpretation, and writing. B.S, R.T, E.M, K.L, Y.W. contributed to data analysis. Z.P, B.S, C.T and Y.W. contributed to data collection. B.S, Y.W, P.N.T. contributed to figure design. Y.W, K.L, P.N.T, P.K, M.L, T.D.S.C, S.H, R.S, Z.P, E.M, L.G.F, C.T, and R.T. contributed to paper review. 
+
+# Conflict of interest 
+
+None declared. 20 References 
+
+Roenneberg, Till et al. (Sept. 2019). “Chronotype and Social Jetlag: A (Self-) Critical Review”. en. In: Biology 8.3, p. 54. issn : 2079-7737. doi : 10 . 3390 / biology8030054 . url : https : //www.mdpi.com/2079-7737/8/3/54 (visited on 04/23/2026). Knutson, Kristen L. and Malcolm von Schantz (Aug. 2018). “Associations between chronotype, morbidity and mortality in the UK Biobank cohort”. In: Chronobiology International 35.8. eprint: https://doi.org/10.1080/07420528.2018.1454458, pp. 1045–1053. issn : 0742-0528. doi :
+
+10 . 1080 / 07420528 . 2018 . 1454458 . url : https : / / doi . org / 10 . 1080 / 07420528 . 2018 . 1454458 (visited on 05/29/2026). Chan, Zachary M. et al. (2026). “Heart rate phase is an indicator of chronotype-relevant circadian shifts associated with human disease: an All of Us Research Program analysis”. en. In: The Jour-nal of Physiology 604.8. eprint: https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/JP290337, pp. 3282–3296. issn : 1469-7793. doi : 10 . 1113 / JP290337 . url : https : / / onlinelibrary . wiley.com/doi/abs/10.1113/JP290337 (visited on 04/21/2026). Windred, Daniel P et al. (Jan. 2024). “Sleep regularity is a stronger predictor of mortality risk than sleep duration: A prospective cohort study”. In: Sleep 47.1, zsad253. issn : 0161-8105. 
+
+doi : 10.1093/sleep/zsad253 . url : https://doi.org/10.1093/sleep/zsad253 (visited on 06/19/2026). St-Onge, Marie-Pierre et al. (May 2025). “Multidimensional Sleep Health: Definitions and Impli-cations for Cardiometabolic Health: A Scientific Statement From the American Heart As-sociation”. In: Circulation: Cardiovascular Quality and Outcomes 18.5, e000139. doi : 10 . 1161/HCQ.0000000000000139 . url : https://www.ahajournals.org/doi/10.1161/HCQ. 0000000000000139 (visited on 06/19/2026). Jones, Steven Huntley, Dougal Julian Hare, and Kate Evershed (2005). “Actigraphic assessment of circadian activity and sleep patterns in bipolar disorder”. en. In: Bipolar Disorders 7.2. eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1399-5618.2005.00187.x, pp. 176–186. issn :1399-5618. doi : 10 . 1111 / j . 1399 - 5618 . 2005 . 00187 . x . url : https : / / onlinelibrary . wiley.com/doi/abs/10.1111/j.1399-5618.2005.00187.x (visited on 04/23/2026). 21 Esaki, Yuichi et al. (Oct. 2021). “Association between circadian activity rhythms and mood episode relapse in bipolar disorder: a 12-month prospective cohort study”. en. In: Translational Psy-chiatry 11.1, p. 525. issn : 2158-3188. doi : 10 . 1038 / s41398 - 021 - 01652 - 9 . url : https : //www.nature.com/articles/s41398-021-01652-9 (visited on 04/23/2026). Song, Yun Min et al. (May 2024). “Causal dynamics of sleep, circadian rhythm, and mood symp-toms in patients with major depression and bipolar disorder: insights from longitudinal wear-able device data”. English. In: eBioMedicine 103. issn : 2352-3964. doi : 10.1016/j.ebiom. 2024.105094 . url : https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(24)00129-4/fulltext (visited on 01/19/2026). Smith, Billy C. et al. (Apr. 2025). “More variable circadian rhythms in epilepsy captured by long-term heart rate recordings from wearable sensors”. en. In: Epilepsia 66.8. eprint: https://onlinelibrary.wiley 
+
+issn : 1528-1167. doi : 10.1111/epi.18424 . url : https://onlinelibrary.wiley.com/doi/ abs/10.1111/epi.18424 (visited on 05/26/2025). Hastings, Michael H., Akhilesh B. Reddy, and Elizabeth S. Maywood (Aug. 2003). “A clockwork web: circadian timing in brain and periphery, in health and disease”. en. In: Nature Reviews Neuroscience 4.8, pp. 649–661. issn : 1471-0048. doi : 10.1038/nrn1177 . url : https://www. nature.com/articles/nrn1177 (visited on 05/29/2026). Lu, Qingqing and Jin Kim (Oct. 2021). “Mammalian circadian networks mediated by the suprachi-asmatic nucleus”. In: The FEBS Journal 289. doi : 10.1111/febs.16233 .Bowman, Clark et al. (Aug. 2021). “A method for characterizing daily physiology from widely used wearables”. In: Cell Reports Methods 1.4, p. 100058. issn : 2667-2375. doi : 10.1016/j. crmeth . 2021 . 100058 . url : https : / / www . sciencedirect . com / science / article / pii / S2667237521001065 (visited on 02/18/2025). Huang, Yitong et al. (2021). “Distinct Circadian Assessments From Wearable Data Reveal Social Distancing Promoted Internal Desynchrony Between Circadian Markers”. eng. In: Frontiers in Digital Health 3, p. 727504. issn : 2673-253X. doi : 10.3389/fdgth.2021.727504 .Natarajan, Aravind et al. (Jan. 2025). “Circadian rhythm of heart rate and activity: A cross-sectional study”. In: Chronobiology International 42.1. eprint: https://doi.org/10.1080/07420528.2024.2446 22 pp. 108–121. issn : 0742-0528. doi : 10.1080/07420528.2024.2446622 . url : https://doi. org/10.1080/07420528.2024.2446622 (visited on 04/23/2026). Aschoff, J¨ urgen (Jan. 1960). “Exogenous and Endogenous Components in Circadian Rhythms”. en. In: Cold Spring Harbor Symposia on Quantitative Biology 25, pp. 11–28. issn : 0091-7451, 1943-4456. doi : 10.1101/SQB.1960.025.01.004 . url : http ://symposium.cshlp.org/ content/25/11 (visited on 05/29/2026). Mistlberger, Ralph E. and Debra J. Skene (Aug. 2005). “Nonphotic Entrainment in Humans?” EN. In: Journal of Biological Rhythms 20.4, pp. 339–352. issn : 0748-7304. doi : 10 . 1177 / 0748730405277982 . url : https://doi.org/10.1177/0748730405277982 (visited on 05/29/2026). Healy, Kelly L., Andrew R. Morris, and Andrew C. Liu (Oct. 2021). “Circadian Synchrony: Sleep, Nutrition, and Physical Activity”. In: Frontiers in Network Physiology 1, p. 732243. issn :2674-0109. doi : 10.3389/fnetp.2021.732243 . url : https://www.ncbi.nlm.nih.gov/pmc/ articles/PMC8830366/ (visited on 05/16/2025). Sletten, Tracey L. et al. (Nov. 2010). “Timing of Sleep and Its Relationship with the Endogenous Melatonin Rhythm”. English. In: Frontiers in Neurology 1. issn : 1664-2295. doi : 10.3389/ fneur.2010.00137 . url : https://www.frontiersin.org/journals/neurology/articles/ 10.3389/fneur.2010.00137/full (visited on 04/15/2026). Wehrens, Sophie M.T. et al. (June 2017). “Meal Timing Regulates the Human Circadian System”. In: Current Biology 27.12, 1768–1775.e3. issn : 0960-9822. doi : 10.1016/j.cub.2017.04.059 .
+
+url : https://pmc.ncbi.nlm.nih.gov/articles/PMC5483233/ (visited on 11/18/2025). Kr¨ auchi, Kurt et al. (2002). “Alteration of internal circadian phase relationships after morning versus evening carbohydrate-rich meals in humans”. English. In: Journal of Biological Rhythms 
+
+17.4, pp. 364–376. issn : 0748-7304. doi : 10.1177/074873002129002663 .Quante, Mirja et al. (Feb. 2019). “Zeitgebers and their association with rest-activity patterns”. In: Chronobiology international 36.2, pp. 203–213. issn : 0742-0528. doi : 10.1080/07420528. 2018.1527347 . url : https://pmc.ncbi.nlm.nih.gov/articles/PMC6492024/ (visited on 03/03/2026). 23 Yoshizaki, Takahiro et al. (June 2013). “Influence of dietary behavior on the circadian rhythm of the autonomic nervous system as assessed by heart rate variability”. In: Physiology & Behavior 118, pp. 122–128. issn : 0031-9384. doi : 10.1016/j.physbeh.2013.05.010 . url : https://www. sciencedirect.com/science/article/pii/S0031938413001510 (visited on 04/23/2026). Youngstedt, Shawn D., Jeffrey A. Elliott, and Daniel F. Kripke (Apr. 2019). “Human circadian phase-response curves for exercise”. eng. In: The Journal of Physiology 597.8, pp. 2253–2268. 
+
+issn : 1469-7793. doi : 10.1113/JP276943 .Thomas, J. Matthew et al. (Feb. 2020). “Circadian rhythm phase shifts caused by timed exercise vary with chronotype”. en. In: JCI Insight 5.3. issn : 0021-9738. doi : 10.1172/jci.insight. 134270 . url : https://insight.jci.org/articles/view/134270 (visited on 04/23/2026). Bell, Andrew and Kelvyn Jones (Jan. 2015). “Explaining Fixed Effects: Random Effects Modeling of Time-Series Cross-Sectional and Panel Data”. en. In: Political Science Research and Meth-ods 3.1, pp. 133–153. issn : 2049-8470, 2049-8489. doi : 10.1017/psrm.2014.7 . url : https: / / www . cambridge . org / core / journals / political - science - research - and - methods / article / explaining - fixed - effects - random - effects - modeling - of - timeseries -crosssectional-and-panel-data/0334A27557D15848549120FE8ECD8D63 (visited on 04/24/2026). Mundlak, Yair (1978). “On the Pooling of Time Series and Cross Section Data”. In: Econometrica 
+
+46.1, pp. 69–85. issn : 0012-9682. doi : 10.2307/1913646 . url : https://www.jstor.org/ stable/1913646 (visited on 04/23/2026). Vitale, Jacopo A. et al. (Mar. 2015). “Chronotype influences activity circadian rhythm and sleep: Differences in sleep quality between weekdays and weekend”. In: Chronobiology International 
+
+32.3. eprint: https://doi.org/10.3109/07420528.2014.986273, pp. 405–415. issn : 0742-0528. 
+
+doi : 10 . 3109 / 07420528 . 2014 . 986273 . url : https : / / doi . org / 10 . 3109 / 07420528 . 2014.986273 (visited on 06/01/2026). Lee, Minki P. et al. (Dec. 2024). “The real-world association between digital markers of circadian disruption and mental health risks”. en. In: npj Digital Medicine 7.1, p. 355. issn : 2398-6352. 
+
+doi : 10.1038/s41746-024-01348-6 . url : https://www.nature.com/articles/s41746-024-01348-6 (visited on 05/29/2026). 24 Molefi, Emmanuel et al. (2026). “ChronoSSA: A MATLAB toolbox for robust chronobiological rhythm detection [in preparation]”. In. Nakagawa, Shinichi and Holger Schielzeth (2013). “A general and simple method for obtaining R2 from generalized linear mixed-effects models”. en. In: Methods in Ecology and Evolution 4.2. eprint: https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.2041-210x.2012.00261.x, pp. 133–142. issn : 2041-210X. doi : 10 . 1111 / j . 2041 - 210x . 2012 . 00261 . x . url : https : //onlinelibrary.wiley.com/doi/abs/10.1111/j.2041-210x.2012.00261.x (visited on 05/07/2026). Stoffel, Martin, Shinichi Nakagawa, and Holger Schielzeth (May 2021). “partR2: partitioning R in generalized linear mixed models”. In: PeerJ 9, e11414. doi : 10.7717/peerj.11414 .Snijders, Tom and Roel Bosker (2011). Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling . en. SAGE Publications Ltd. url : https://uk.sagepub.com/en-gb/eur/ multilevel-analysis/book234191 (visited on 05/07/2026). Stephan, Friedrich K (Nov. 1997). “Calories Affect Zeitgeber Properties of the Feeding Entrained Circadian Oscillator”. In: Physiology & Behavior 62.5, pp. 995–1002. issn : 0031-9384. doi :
+
+10 . 1016 / S0031 - 9384(97 ) 00204 - 7 . url : https : / / www . sciencedirect . com / science / article/pii/S0031938497002047 (visited on 05/29/2026). McHill, Andrew W. et al. (Apr. 2021). “Robust stability of melatonin circadian phase, sleep metrics, and chronotype across months in young adults living in real-world settings”. In: Journal of pineal research 70.3, e12720. issn : 0742-3098. doi : 10.1111/jpi.12720 . url : https://pmc. ncbi.nlm.nih.gov/articles/PMC9135480/ (visited on 05/04/2026). Shapiro, Benjamin et al. (Jan. 2024). “Unraveling the interplay of circadian rhythm and sleep deprivation on mood: A Real-World Study on first-year physicians”. eng. In: PLOS digital health 3.1, e0000439. issn : 2767-3170. doi : 10.1371/journal.pdig.0000439 .Steinach, Mathias and Hanns-Christian Gunga (2020). “Circadian Rhythm and Stress”. en. In: 
+
+Stress Challenges and Immunity in Space: From Mechanisms to Monitoring and Preventive Strategies . Ed. by Alexander Chouk` er. Cham: Springer International Publishing, pp. 145–179. 25 isbn : 978-3-030-16996-1. doi : 10.1007/978-3-030-16996-1_9 . url : https://doi.org/10. 1007/978-3-030-16996-1_9 (visited on 05/08/2026). Meyrel, Manon, Benjamin Rolland, and Pierre A. Geoffroy (Apr. 2020). “Alterations in circadian rhythms following alcohol use: A systematic review”. In: Progress in Neuro-Psychopharmacology and Biological Psychiatry 99, p. 109831. issn : 0278-5846. doi : 10.1016/j.pnpbp.2019.109831 .
+
+url : https://www.sciencedirect.com/science/article/pii/S0278584619303975 (visited on 05/05/2026). Burke, Tina M. et al. (Sept. 2015). “Effects of caffeine on the human circadian clock in vivo and in vitro”. In: Science Translational Medicine 7.305, 305ra146–305ra146. doi : 10.1126/ scitranslmed.aac5125 . url : https://www.science.org/doi/10.1126/scitranslmed. aac5125 (visited on 05/05/2026). Mistlberger, Ralph E. and Debra J. Skene (2004). “Social influences on mammalian circadian rhythms: animal and human studies”. en. In: Biological Reviews 79.3. eprint: https://onlinelibrary.wiley.com pp. 533–556. issn : 1469-185X. doi : 10.1017/S1464793103006353 . url : https://onlinelibrary. wiley.com/doi/abs/10.1017/S1464793103006353 (visited on 06/16/2026). Team, R Core (2025). R: A Language and Environment for Statistical Computing . Vienna, Austria. 
+
+url : https://www.R-project.org/ .Korobeynikov, Anton et al. (Sept. 2024). Rssa: A Collection of Methods for Singular Spectrum Analysis . url : https://cran.r-project.org/web/packages/Rssa/index.html (visited on 06/01/2026). Pinheiro, Jos´ e et al. (Mar. 2026). nlme: Linear and Nonlinear Mixed Effects Models . url : https: //cran.r-project.org/web/packages/nlme/index.html (visited on 06/18/2026). Barto´ n, Kamil (Mar. 2026). MuMIn: Multi-Model Inference . url : https://cran.r- project. org/web/packages/MuMIn/index.html (visited on 06/18/2026). L¨ udecke, Daniel et al. (Apr. 2021). “performance: An R Package for Assessment, Comparison and Testing of Statistical Models”. In: Journal of Open Source Software 6, p. 3139. doi : 10.21105/ joss.03139 .26 Supplementary Sections 1 Glucose time-in-range 
+
+Participants wore a Freestyle Libre 2 or 3 plus continuous glucose monitor (CGM) to monitor interstitial glucose levels. No participant declared a diabetes diagnosis to the study team. The quality of an individual’s glucose control can be approximated by duration of time interstitial glucose readings are between 3.9mmol/L (70 mg/DL) and 10mmol/L (180mg/DL) (referred to as ‘time in range’ (TIR) (Bellido et al., 2021)). Beck et al., 2018 report an average TIR from blood measurements across 1440 people with type 1 diabetes of 41% ( ± 16%). Most people with type 1 or type 2 diabetes using CGMs are recommended to aim for a TIR above 70%. In Supplementary Figure 1.1, we evaluated the TIR of our participants to ensure we were sampling from a non-diabetic population. With a minimum of 90%, the time-in-range of study participants is typical of previous observations for non-diabetic populations (Shah et al., 2019); substantially higher than what has been observed in diabetic populations (Beck et al., 2018); and well above the target range of 70% for people with diabetes (Bellido et al., 2021). 0.0 2.5 5.0 7.5 10.0 12.5     
+
+> 90.0 92.5 95.0 97.5 100.0
+> Average glucose time−in−range (%)
+> Number of subjects
+
+Supplementary Figure 1.1: The percentage of recording time where participants’ interstitial glucose levels (measured using CGM) were in the range of 3.9mmol/L to 10mmol/L (70-180 mg/DL). 
+
+27 2 Supplementary Methods 
+
+2.1 Participant data 
+
+Wearable device data were collected from healthy volunteers in an observational design. Adult participants were recruited through various means (colleagues, mailing lists, posters, online ad-vertisements, word-of-mouth) from the local area (Newcastle upon Tyne, UK). Collection and analysis of this data was approved by the Newcastle University Ethics Committee (23-032-WAN). Study inclusion criteria at signup were age > 18, generally of good health, willing to wear wear-able devices and be prompted with digital questionnaires for up to four weeks, not aware of health issues preventing continuous use of wearable devices (including overnight wear). Participants were asked to maintain their usual routines during the four week experimental period. Participants wore a smart watch (Empatica EmbracePlus or Garmin Venu 3) and optionally a continuous glucose monitor (‘CGM’; Freestyle Libre 2 or 3 plus; glucose time-in-range shown in Supplemen-tary 1). Smartwatches collected heart rate (via photoplethysmography, PPG), various measures of accelerometry-derived physical activity, and sleep characteristics derived from proprietary device algorithms. Garmin data were collected via the ‘Labfront’ platform. For inclusion in this analysis, additional pre-processing criteria were CGM data present, age and sex recorded, no reporting of shift work, and no travel outside of a UTC+2 timezone. Individual cycles were dropped where smartwatch data coverage was less than 75% of the day, or acrophase was outlying ( >5h from subject median); subjects where all cycles were dropped where removed. Overall, 105 participants (73 with a Garmin, 32 with an Empatica, all with a CGM) were retained for analysis here. 
+
+2.2 Lifestyle feature extraction 
+
+2.2.1 Sleep detection 
+
+Sleep windows were derived separately for each device and unified from properietary algorithm outputs into a common format. For Garmin: sleep onset, wake, and duration were taken directly from the Labfront-exported daily summary. For Empatica, sleep was detected from the device’s sleep-detection stage output (stage codes: 0 = awake, 101 = sleep, 102 = brief awakening, 300 = 28 prolonged awakening). Contiguous (with maximum allowed gap of 30 minutes) non-awake blocks were clustered to form candidate sleep episodes; the longest candidate per night was selected, and the time of sleep onset and wake derived from it. ‘Time in bed’ (TIB) refers to the duration between onset and wake. Duration was defined as the total time actually spent sleeping (TIB, with awakenings removed). Efficiency was calculated as duration T IB .
+
+2.2.2 Physical activity detection 
+
+An algorithm was developed to derive ‘Physical activity’ (PA) events from raw heart rate (HR), step count, and accelerometry data recorded by both Garmin and Empatica devices at 1-minute sample rate. Firstly, missing intervals in wearable data shorter than 5 minutes were linearly interpolated and smoothed using a symmetric triangular kernel (11-minute window for HR for higher temporal precision; 21-minute window for step count and accelerometry, for greater smoothing). Activity types were identified via thresholds: walking (50–120 steps/min), running ( ≥120 steps/min), ‘other training’ (HR >50% of age-predicted maximum ((220 − age ) × 0.5), and acceleration > 2 ×
+
+individual mean - possibly reflective of weight training, or non-walking aerobic exercise such as swimming or cycling). When overlapping, walking and running events took precedence over ‘other training’. Events under 5 minutes were excluded. 
+
+2.2.3 Glucose profile peak detection 
+
+Glucose profile peak times, interpreted as a proxy for meal times, were identified from the 15-minute CGM time series using a template matching approach (Pellizzari et al., 2025). A 2-hour Gaussian template ( σ = 20 minutes) was cross-correlated with a 24-hour rolling-baseline-corrected glucose signal. Candidate peaks were required to exceed a minimum cross-correlation score of 5 and prominence of 10 mmol/L-normalised units, with a minimum inter-peak separation of 2 hours. For each peak, the post-peak trough was identified within a 3-hour forward search window, and peak height (peak glucose - preceding trough) was calculated. 29 2.3 Circadian rhythm of heart rate and acrophase estimation 
+
+2.3.1 Preprocessing 
+
+For each subject, heart rate (HR) data were resampled to 5-minute resolution (mean of 5-minute bins) from an original 1-minute resolution common to both devices, to reduce noise and compu-tational time. Small gaps ( ≤ 1 hour) were filled by linear interpolation. HR data were then split into variable-length ‘runs’ between missing-data gaps exceeding 60 hours (2.5 days), and each run was centred on the within-run mean by subtraction. Runs were required to have at least 2.5 days of gap-free data. Very few subjects had more than 1 run, and no subjects had more than 3 runs. To minimize the effect of PA-induced HR elevations when extracting a circadian rhythm, HR data bins covering detected PA events were removed from the run. Any remaining missing gaps ( > 1hour, or associated with PA) in the run were interpolated using an iterative gap-filling approach based on singular spectrum analysis (SSA) (igapfill; (Korobeynikov et al., 2024)). 
+
+2.3.2 Circadian rhythm extraction 
+
+After resampling and interpolation, singular spectrum analysis (SSA) (Rssa (Korobeynikov et al., 2024)) was applied to each HR run to extract a circadian rhythm. SSA is a non-parametric spectral estimation technique that can be used to separate underlying distinct-frequency rhythmic components from noise in time-series data. It is an additive decomposition, such that all the distinct-frequency ‘components’ extracted by SSA can be added together to produce the input data. For example, if a set of distinct-frequency sine waves and a noise component were added together to produce a mixed-frequency, noisy signal, passing this through SSA should return the original set of sine waves, and an identified noise component. In this way, it is useful to extract underlying biological rhythms (including, but not limited to, the circadian rhythm) from real-world, noisy biological time-series data. Minimal parameters are required, only a ‘window length’ parameter (L) which can be considered as an ‘upper bound’ on the frequency of any extracted components. An additional advantage of SSA over traditional circadian rhythm extraction techniques – such as cosinor analysis – is that it better captures the day-to-day fluctuations in circadian rhythm properties (Molefi et al., 2026) such as acrophase. For SSA, L was set to 720 5-minute samples (2.5 30 days). Edge artefacts were mitigated by forecast-padding both ends of the data before application of SSA, then dropping the sections of the output corresponding to padding. To identify the component corresponding to a circadian rhythm from the set of distinct-frequency components, we first ordered components by the proportion of overall signal variation explained (eigenvalue). For each component, we used the fast fourier transform (FFT) to estimate the spectral power (the sum of squared absolute FFT coefficients in a given frequency range) in: the component overall and the circadian range (20 to 28 hour period). If most ( ≥ 60%) of the components total power fell under the 20 to 28 hour range, the component was classified as circadian. The circadian time series (Figure 1A) for each run was reconstructed as the sum of identified circadian components (if multiple were detected), plus the run mean. 
+
+2.3.3 Acrophase 
+
+For each subject, a singular daily acrophase time series was constructed (Figure 1). Across the circadian time series computed for each run, acrophase was calculated for each day of recording as the time-of-day (in decimal hours, e.g 3:30pm = 15.5) in local time at circadian rhythm peak magnitude. 
+
+2.4 Statistical analysis 
+
+2.4.1 Modelled lifestyle factors 
+
+Lifestyle factors were modelled at daily resolution and fell into one of three broad categories of lifestyle factors: sleep, food, or physical activity. Factor names are prefixed by category in the following statistical model description. ‘Non-behavioural’ (‘other’) factors were also modelled, including demographic factors (age and sex), a boolean weekend factor (is weekend, i.e did that cycle fall on a saturday or sunday), corrections for smart watch device type (deviceGarmin or deviceEmpatica), and the amount of available daylight on that day in Newcastle upon Tyne based on the duration between sunrise and sunset (capturing seasonal variation). A full list of the 45 factors included in the linear mixed effects model is shown in Supplementary 4. 31 2.4.2 Modelling habits and day-to-day deviation: trait and state decomposition 
+
+Following the ‘within-between’ framework proposed by Bell and Jones, 2015 (building upon Mund-lak, 1978), each lifestyle factor was decomposed at the individual-level to the mean across their observation period, reflecting subject-specific lifestyle habits, and daily deviations from their mean, reflecting within-subject day-to-day deviation from lifestyle habits. Including both components si-multaneously in a mixed-effects model allows the between- and within-subject lifestyle-acrophase effects to be estimated simultaneously; with the additional benefit that unobserved between-subject confounds are absorbed by the between-subject means, so are removed from the day-to-day devi-ations. Borrowing from psychology terminology (Schmitt and Blum, 2020), we term these decom-positions ‘trait’ and ‘state’ factors respectively. Figure 1C shows variation in lifestyle factor ‘wake time’ for one individual over 12 days, which is decomposed into trait and state when modelled. In this instance, the wake time trait – the average wake time for this individual – is 8:28am. The state is a series of within-subject daily deviations from this average, calculated by subtracting the trait from the original factor, which captures earlier or later wake times each day. The trait would be modelled as a constant over the 12 observations. 
+
+2.4.3 Binary missingness indicators 
+
+When a lifestyle factor was missing on a given day, the corresponding state factor was set to 0 and an associated missingness indicator factor was set to 1. This prevents missing data from being interpreted as days on which behaviour was exactly average — a state value of 0 ordinarily means no deviation from the person’s trait. By including the missingness indicator as a covariate, the model estimates a distinct effect for missing days rather than conflating them with observed days where the factor aligned with the average. For example, an individual may have forgotten to wear their watch on one night, meaning sleep factors (such as wake time) were not recorded. However, their CGM was still attached, and they put their watch back on after waking, before morning exercise. Rather than drop this entire day from the model, losing valid morning meal time and activity data, we set the sleep state factors to 0 and sleep data missing to 1. 32 2.4.4 LMER model 
+
+Modelling the influence of behaviour on CRHR acrophase was performed using a linear mixed-effects regression (LMER) model with fixed effects for lifestyle and non-lifestyle factors (see Sup-plementary 4 for a full list of included factors), and a random intercept for individual. We used the R NLME implementation of an LMER (nlme::lme (Pinheiro et al., 2026)) which additionally allows modelling of a first-order autoregressive correlation structure (corAR1) on model residuals, indexed by calendar day within participant. This absorbs day-to-day ‘circadian inertia’ into the residual covariance structure rather than conditioning on yesterday’s acrophase as a fixed effect, so that the variance of estimates of the lifestyle coefficients can be properly quantified. Due to the extensive number of factors, a summary of the formula for the model is shown below: 
+
+lme f ull : circadian acrophase ∼sleep f actors 
+
++ f ood f actors 
+
++ activity f actors 
+
++ other f actors 
+
++ corAR 1+ (1 |subject )(2.1) A key assumption of linear mixed effects models is that the predictors are linearly related to the response factor. However both circadian acrophase, as well as timing predictor factors, are circular (time-of-day, 0h to 23.99h). Supplementary 6 shows the correlation between these factors, confirming that they are ‘locally’ linearly related, so suitable for LMER modelling. The final sample for LMER modelling included 1977 circadian cycles (days) across 105 participants. 
+
+2.4.5 Variance decomposition 
+
+To summarise the variance in acrophase explained by our model, we used marginal and conditional 
+
+R2. Marginal R2 (mR 2) refers to variance explained by LMER fixed effects only, whereas condi-tional R2 (cR 2) refers to the variance explained by fixed and random effects together (Nakagawa 33 and Schielzeth, 2013). We used the MuMIn R package (Barto´ n, 2026) to calculate marginal and conditional R2.To compare the acrophase variance explained by lifestyle categories uniquely (i.e, within distinct groups of the fixed effects), we calculated semi-partial R2 (Stoffel, Nakagawa, and Schielzeth, 2021), calculated by leave-one-block-out refitting. For example, to calculate the semi-partial R2 (spR 2)of only factors in the sleep category, we calculate: 
+
+spR 2 
+
+> sleep
+
+= mR 2 − mR 2
+
+> no sleep
+
+where mR 2 refers to the marginal R2 of the main model with all lifestyle categories, and 
+
+mR 2 
+
+> no sleep
+
+refers to the marginal R2 of a sub-model with all sleep factors removed. If sleep is important for explaining acrophase variance, then mR 2 
+
+> no sleep
+
+should be lower than mR 2. The magnitude of the reduction in variance explained is the semi-partial R2 for the sleep category, and specifically represents the variance uniquely explained by that group of factors. If each group of fixed effects are perfectly independent, the sum of their semi-partial R2s (unique variance explained) should sum to the total variance explained by all fixed effects in the model together (marignal R2). But what if the sum is smaller than the marginal R2? It is possible that some variance cannot be uniquely attributed to any group, but is ‘shared’ between two or multiple groups. i.e, when one group of factors is dropped to calculate its spR 2, another group ‘steps in’ to account for some of the variance that dropped group explained. In this case, there is ‘overlap’ in the way that different groups of lifestyle factors explain acrophase variance. Note that semi-partial 
+
+R2s still account for the unique variance explained by each group, but their sum will be less than the model mR 2, as some variance is not uniquely attributable to any group. To measure this, we calculate: 
+
+spR 2 
+
+> overlap
+
+= mR 2 − (spR 2 
+
+> sleep
+
++ spR 2 
+
+> f ood
+
++ spR 2 
+
+> pa
+
++ spR 2
+
+> other
+
+)Finally, the variance associated with the model random intercept uniquely is calculated as 
+
+spR 2 
+
+> random
+
+= cR 2 − mR 2, and the model unexplained variance is calculated as spR 2 
+
+> unexplained
+
+=34 1 − cR 2.
+
+2.5 Snijders-Bosker multilevel analysis 
+
+We used the Snijders-Bosker (Snijders and Bosker, 2011) multi-level decomposition to estimate the between- and within-subject variance explained by lifestyle factors. To do so, we compared the main model ( lme f ull , Eqn. 2.1) to a ‘null’ model ( lme null , Eqn. 2.2), without any lifestyle traits or states: 
+
+lme null : circadian acrophase ∼other f actors 
+
++ corAR 1+ (1 |subject )(2.2) For both models, we extracted the intercept ( τ 2, between-subject) and residual ( σ2, within-subject) variance components from the model fits. We then calculated the variance explained ( R2)at either the between-subject or within subject level by lifestyle factors (traits and states): 
+
+R2 
+
+> between
+
+= 1 − τ 2
+
+> lme f ull
+
+τ 2
+
+> lme null
+
+R2 
+
+> within
+
+= 1 − σ2
+
+> lme f ull
+
+σ2
+
+> lme null
+
+Compared to a null model with no lifestyle factors, this result indicates that lifestyle factors are able to account for 86.5% of all between-subject variance in acrophase. Conversely, lifestyle factors are only able to account for 1.8% of within-subject variance. This implies that the within-subject variance in acrophase remains unexplained by the in-cluded factors. Together with our finding in Figure 4 that the trait factors are substantially more influential than state factors, these results imply that between-subject acrophase variation can be explained by lifestyle traits, but within-subject variance cannot be explained by lifestyle states. 35 3 Acrophase phase relationship with sunset and sunrise 
+
+To additionally motivate CRHR acrophase as a circadian phase marker, we provide distributions of the phase relationship in Figure 3.1. Acrophase occurred approximately 8.1 hours after sunrise. Acrophase occurred approximately 2.7 hours prior to sunset. Median = 8.1 h    
+
+> 0100 200 300 400
+> 0510 15
+
+Acrophase relative to sunrise (h)    
+
+> Number of days
+> Median = 2.7 h
+> 0100 200 300
+> −5 0510
+
+Sunset relative to acrophase (h) 
+
+> Number of days
+
+Supplementary Figure 3.1: The relationship between CRHR acrophase and sunrise/sunset timing (in Newcastle upon Tyne) across subjects. 
+
+36 4 Full list of model coefficients 
+
+category effect term estimate std.error df statistic p.value n/a fixed (Intercept) 14.9134065 0.2856241 1845 52.2134122 0.0000000 other fixed age 0.1091742 0.1834586 86 0.5950892 0.5533465 other fixed sexMale 0.3173780 0.2201307 86 1.4417704 0.1529989 other fixed is weekendTrue 0.0021677 0.0373377 1845 0.0580575 0.9537091 other fixed deviceGarmin 0.4299571 0.3459302 86 1.2429014 0.2172822 other fixed daylight hours trait -0.0653622 0.1175184 86 -0.5561870 0.5795273 other fixed daylight hours state 0.0607888 0.0596867 1845 1.0184642 0.3085909 sleep fixed sleep waketime trait 0.6504174 0.2115630 86 3.0743438 0.0028271 sleep fixed sleep waketime state 0.0865741 0.0180912 1845 4.7854265 0.0000018 sleep fixed sleep tib trait 0.0121599 0.1336144 86 0.0910071 0.9276986 sleep fixed sleep tib state -0.0255195 0.0159729 1845 -1.5976730 0.1102870 sleep fixed sleep efficiency trait 0.3390633 0.1359634 86 2.4937830 0.0145531 sleep fixed sleep efficiency state -0.0037453 0.0148075 1845 -0.2529339 0.8003475 sleep fixed sleep data missing1 -0.4517538 0.3211113 1845 -1.4068450 0.1596418 food fixed gluc postwake trait 0.1287704 0.1565334 86 0.8226383 0.4129889 food fixed gluc postwake state -0.0330013 0.0184991 1845 -1.7839455 0.0745968 food fixed gluc daybefore prebed trait 0.0008196 0.1314049 86 0.0062369 0.9950381 food fixed gluc daybefore prebed state 0.0094409 0.0152645 1845 0.6184881 0.5363300 food fixed gluc firstmeal time trait 0.4202630 0.1809266 86 2.3228373 0.0225493 food fixed gluc firstmeal time state 0.0381228 0.0164522 1845 2.3171763 0.0206031 food fixed gluc daybefore lastmeal time trait 0.1647770 0.1593647 86 1.0339617 0.3040529 food fixed gluc daybefore lastmeal time state 0.0377388 0.0147918 1845 2.5513274 0.0108114 food fixed gluc postwake missing1 -0.0947042 0.0883154 1845 -1.0723405 0.2837074 food fixed gluc daybefore prebed missing1 0.0601319 0.0890563 1845 0.6752121 0.4996256 food fixed gluc firstmeal missing1 -0.0615598 0.0851569 1845 -0.7228987 0.4698337 food fixed gluc firstmeal nopeak1 0.0110882 0.0469861 1845 0.2359893 0.8134672 food fixed gluc daybefore lastmeal missing1 0.0334467 0.0872534 1845 0.3833285 0.7015203 food fixed gluc daybefore lastmeal nopeak1 -0.0335989 0.0455204 1845 -0.7381061 0.4605439 pa fixed pa postwake duration trait -0.1344254 0.1918486 86 -0.7006847 0.4853913 pa fixed pa postwake duration state -0.0019437 0.0151898 1845 -0.1279609 0.8981939 pa fixed pa postwake avghr trait -0.1249903 0.1878474 86 -0.6653821 0.5075867 pa fixed pa daybefore prebed duration trait 0.1499550 0.1508396 86 0.9941354 0.3229459 pa fixed pa daybefore prebed duration state -0.0177773 0.0180266 1845 -0.9861702 0.3241789 pa fixed pa daybefore prebed avghr trait 0.2883500 0.1723710 86 1.6728446 0.0979921 pa fixed pa daybefore maxbout time trait 0.4673701 0.1358087 86 3.4413842 0.0008956 pa fixed pa daybefore maxbout time state 0.0310887 0.0138502 1845 2.2446424 0.0249092 pa fixed pa daybefore maxbout avghr trait 0.0093738 0.1463884 86 0.0640336 0.9490920 pa fixed pa daybefore maxbout avghr state -0.0012074 0.0130528 1845 -0.0925019 0.9263093 pa fixed pa daybefore maxbout duration trait -0.0266930 0.1197493 86 -0.2229073 0.8241363 pa fixed pa daybefore maxbout duration state 0.0334082 0.0173797 1845 1.9222600 0.0547269 pa fixed pa postwake missing1 -0.0285459 0.0522429 1845 -0.5464080 0.5848516 pa fixed pa postwake nobout1 0.0372550 0.0383238 1845 0.9721116 0.3311225 pa fixed pa daybefore prebed missing1 0.0333984 0.0618864 1845 0.5396736 0.5894873 pa fixed pa daybefore prebed nobout1 -0.0243621 0.0389563 1845 -0.6253715 0.5318046 pa fixed pa daybefore maxbout missing1 0.0165777 0.0590799 1845 0.2805982 0.7790500 pa fixed pa daybefore maxbout nobout1 0.0884162 0.0706666 1845 1.2511737 0.2110297 
+
+Supplementary Table 1: Coefficients for the intercept and 45 factors included in the model. Coefficient estimate and standard errors are in units of hours. 
+
+37 5 Definition of terms 
+
+Term Definition 
+
+HR heart rate 
+
+CRHR circadian rhythm of heart rate 
+
+PA physical activity 
+
+Acrophase time-of-day at CRHR peak on a given day; a day-to-day marker of circadian phase 
+
+Lifestyle quantifiable aspects of daily living, such as sleep, food and physical activity characteristics. Lifestyle factor quantifiable behavioural or non-behavioural aspect of lifestyle, such as sleep timing, glucose levels post-wake, or physical activity duration. Lifestyle factor category a group of lifestyle factors, such as multiple factors related to sleep. We use three categories in this paper: sleep, food, physical activity 
+
+Lifestyle trait within-subject average of a lifestyle factor, e.g typical wake time. When compared between subjects, indicative of differences in habits .Also referred to as ‘ trait ’ for brevity. Lifestyle state within-subject deviation (on a given day) from their trait, indicative of day-to-day deviations from habits (e.g, waking up 1 hour later than usual on a given day). Also referred to as ‘ state ’ for brevity.  
+
+> Supplementary Table 2: Definitions of terms used.
+
+38 6 Time-of-day variables local linearity 
+
+A key assumption of linear mixed effects models is that predictor and response factors are linearly related. Circadian acrophase (our model response factor) as well as any timing-related trait predic-tors are both circular variables (with range 0.00-23.99). A circular variable is defined by ‘wrapping around’ at minima and maxima (i.e, the value succeeding 23.99h is 0.00h, and the value preceding 0.00h is 23.99h). If one or both time-of-day factors are centered near this ‘midnight boundary’, non-linear ‘wrap around’ correlations are possible, which are not suitable for linear mixed effects models. However, we show in Figures 6.1a and 6.1b that the relationship between timing predic-tors and circadian acrophase are ‘locally linear’ (they do not cross the midnight boundary), so do not exhibit problematic wrap-around effects, and are suitable for linear modelling. Selection of predictors was motivated by this challenge: for example, we selected wake time (centered in the morning) over sleep onset time (centered near the midnight boundary). State factors are not actually circular ’time of day’ variables, but reflect the deviation from a time of day (the trait) in hours. They are shown here alongside accompanying traits for reference. 39 pa_daybefore_maxbout_time_trait sleep_waketime_trait 
+
+gluc_daybefore_lastmeal_time_trait gluc_firstmeal_time_trait 
+
+10 12 14 16 18 5 7 9 11 13 
+
+7.5 10.0 12.5 15.0 9 11 13 15 
+
+10 15 20 
+
+10 15 20 
+
+Time of day 
+
+> Circadian acrophase (time of day)
+
+Correlation between acrophase and lifestyle timing variables (trait) (a) pa_daybefore_maxbout_time_state sleep_waketime_state 
+
+gluc_daybefore_lastmeal_time_state gluc_firstmeal_time_state 
+
+−10 0 10 −10 −5 0 5 10 15 
+
+−10 −5 0 5 −10 −5 0 5
+
+10 15 20 
+
+10 15 20 
+
+Time of day 
+
+> Circadian acrophase (time of day)
+
+Correlation between acrophase and lifestyle timing variables (state) 
+
+(b) 
+
+Supplementary Figure 6.1 
+
+# 7 Demographics distributions 
+
+40 0510 15    
+
+> 20 40 60 80
+
+Age (years)   
+
+> Participants
+> Female Male
+> 020 40 60
+> Female Male
+> Participants
+
+Model subset (N = 105) Supplementary Figure 7.1: Age and sex distributions for the n=105 individuals included in our analysis. 
+
+# 8 Leave-one-subject-out 
+
+To determine if observed results were driven by particular influential subjects, we re-ran the model fit for each subject in the sample, dropping that subject from the model fit each time. Supplemen-tary Figure 8.1, similarly to Figure 5, shows the distribution of each model coefficient estimate across all iterations. Confidence intervals (CI) reflect the consistency of that estimate across all iterations, with wider intervals reflecting that the estimate is unstable (can be driven by particu-lar individuals). Point colour reflects whether the estimate ‘flipped sign’ (e.g, went from positive (acrophase delay) to negative (acrophase advance)) across model fits, which would suggest that the factors’ precise relationship with acrophase is unclear. Factors with large estimates retained directionality. The most influential trait factors (mean, 
+
+CI min − CI max in Figure 5 – wake (0.65, 0.27-0.79), previous day peak-activity (0.47, 0.33-0.56), and first meal timing (0.43, 0.34-0.50) – remained consistent in direction and reasonably stable. Sign flips occurred only for factors with smaller estimates centered on zero, so are of little concern. Besides wake time, major traits identified (previous day peak-activity and first meal timing) remained consistent (low CI), and all retained direction. The large confidence interval for sleep 41 timing may be reflective of inter-individual chronotype or work schedule differences. Smaller es-timates remained consistently small across all iterations, providing further confidence that these factors are not influential. Additionally, this process facilitated estimating uncertainty for statistics reported in Figure 3 (semi-partial R2 by category) and Figure 4 (semi-partial R2 of trait and state factors, both overall and within categories, and snijders-bosker multi-level variance decomposition). We calculated the mean and standard deviation of these statistics across all iterations (Tables 3-6).    
+
+> Supplementary Table 3: Figure 3: Semi-partial R2by category
+
+Category Mean SD 
+
+Sleep 0.0358 0.0021 Food 0.0194 0.0014 Physical activity 0.0705 0.0032 Demographics & light 0.0118 0.0011 Overlap 0.3862 0.0090 Random intercept 0.0829 0.0066 Unexplained 0.3934 0.0059   
+
+> Supplementary Table 4: Figure 4A: Overall trait and state semi-partial R2
+
+Factors Mean SD 
+
+Traits 0.4234 0.0064 States 0.0095 0.0005    
+
+> Supplementary Table 5: Figure 4B: Trait and state semi-partial R2within categories
+
+Category Traits States Mean SD Mean SD 
+
+Sleep 0.0325 0.0021 0.0028 0.0002 Food 0.0173 0.0014 0.0024 0.0001 Physical activity 0.0671 0.0032 0.0012 0.0001 Point estimates were consistent with those reported in Figures 3 and 4 on average, and stable across iterations. 42 Supplementary Table 6: Snijders-Bosker multi-level variance decomposition 
+
+Statistic Mean SD 
+
+R2between 0.8655 0.0101 
+
+R2within 0.0190 0.0070 43 gluc_daybefore_prebed_trait pa_daybefore_maxbout_avghr_state pa_postwake_duration_state is_weekendTrue sleep_efficiency_state pa_daybefore_maxbout_avghr_trait gluc_daybefore_prebed_state gluc_firstmeal_nopeak1 sleep_tib_trait pa_daybefore_maxbout_missing1 pa_daybefore_prebed_duration_state pa_daybefore_prebed_nobout1 sleep_tib_state pa_daybefore_maxbout_duration_trait pa_postwake_missing1 pa_daybefore_maxbout_time_state gluc_postwake_state pa_daybefore_prebed_missing1 pa_daybefore_maxbout_duration_state gluc_daybefore_lastmeal_missing1 gluc_daybefore_lastmeal_nopeak1 pa_postwake_nobout1 gluc_daybefore_lastmeal_time_state gluc_firstmeal_time_state gluc_daybefore_prebed_missing1 daylight_hours_state gluc_firstmeal_missing1 daylight_hours_trait sleep_waketime_state pa_daybefore_maxbout_nobout1 gluc_postwake_missing1 age pa_postwake_avghr_trait gluc_postwake_trait pa_postwake_duration_trait pa_daybefore_prebed_duration_trait gluc_daybefore_lastmeal_time_trait pa_daybefore_prebed_avghr_trait sexMale sleep_efficiency_trait gluc_firstmeal_time_trait deviceGarmin sleep_data_missing1 pa_daybefore_maxbout_time_trait sleep_waketime_trait 
+
+−0.5 0.0 0.5 
+
+Coefficient estimate 
+
+LOSO stability 
+
+Stable 
+
+Sign flip 
+
+Band = min−max across 105 refits; point = full−sample estimate 
+
+Leave−One−Subject−Out sensitivity: fixed−effect coefficients Supplementary Figure 8.1: The distribution of coefficient estimates across 105 iterations (in each iteration, one of 105 subjects were left out, to determine confidence intervals for each factor). Points show standardised model estimates (beta weights), with 95% confidence intervals overlaid. 
+
+44 9 Weekends vs Weekdays 
+
+In our main model, there was a negligible weekday vs. weekend effect on acrophase (‘is weekend’ factor, β = 0 .002 ± 0.04, Supplementary Table 1). Here, we investigate the weekend effect in more detail. Looking at weekday-weekend distributions of acrophase (Figure 9.1), most subjects did not have a substantial difference in acrophase between weekdays and weekends, though the number of subjects with a ≥ 30 min later acrophase on weekends was greater than the number with a ≥ 30 min earlier weekend acrophase. When re-running the model over weekdays-only and weekends-only (Figures 9.2 and 9.3), trends seen in Figures 3 and 5 generally held. However, sleep and overlap explained relatively more variance during weekends, and conversely, physical activity and the random intercept explained more variance during weekdays. The difference between weekend and weekday acrophase was small at 0.12 hours on average (Figure 9.1). When modelling weekends and weekdays separately, during weekends sleep, overlap, physical activity and random intercept explained 4.6% , 45.7% , 6.4% and 5.9% respectively (Figure 9.2). Conversely, during weekdays sleep, overlap, physical activity and random intercept explained 2.7%, 27.6%, 8.2% and 11.0% respectively. Other categories did not differ substantially between the two models. The trend towards later acrophase on weekends is most likely reflective of the social jetlag phenomenon. Despite clear weekend-weekday differences for some subjects, the weekend factor was not influential in the main model, implying that weekday-weekend differences can be accounted for by the modelled lifestyle factors. 45 10 15 20  
+
+> weekday_avg weekend_avg
+
+Weekday or Weekend average 
+
+> Time of day [h]
+
+direction    
+
+> less than 30min difference
+> more than 30min earlier
+> more than 30min later
+> NA
+> 010 20 30
+> −3 −2 −1 012
+
+Weekend − weekday average difference [h] 
+
+> Number of subjects
+
+direction 
+
+> less than 30min difference
+> more than 30min earlier
+> more than 30min later
+
+Supplementary Figure 9.1: A: Difference between average circadian acrophase calculated over week-days vs. weekends for each subject (line), coloured by direction of difference. B: distribution across subjects of differences between weekday and weekend average circadian acrophase (mean=0.12h, me-dian=0.16h). 
+
+46 Total R² 63.5% 
+
+Sleep (2.7%) 
+
+Food (2.5%) 
+
+Physical activity (8.2%) 
+
+Demographics & light (1.5%) 
+
+Shared / overlap (37.6%) 
+
+Random (11.0%) 
+
+Unexplained (36.5%) 
+
+n_obs = 1395, n_groups = 105 (WEEKDAY) (a) Model conditional and category semi-partial R2s calculated using a model including only weekday cycles. Total R² 66.6% 
+
+Sleep (4.6%) 
+
+Food (2.7%) 
+
+Physical activity (6.4%) 
+
+Demographics & light (1.3%) 
+
+Shared / overlap (45.7%) 
+
+Random (5.9%) 
+
+Unexplained (33.4%) 
+
+n_obs = 582, n_groups = 103 (WEEKEND) 
+
+(b) Model conditional and category semi-partial R2s calculated using a model including only weekend cycles. 
+
+Supplementary Figure 9.2 
+
+47 *** ** *
+
+** *
+
+*** 
+
+Sleep 
+
+Food 
+
+Physical activity 
+
+Demographics & light 
+
+−0.5 0.0 0.5 1.0 
+
+Time in bed (state) Sleep efficiency (state) Time in bed (trait) Wake time (state) Sleep efficiency (trait) Wake time (trait) 
+
+Post−wake glucose (state) Pre−bed glucose (prev. day) (trait) Pre−bed glucose (prev. day) (state) First−meal time (state) Last−meal time (prev. day) (state) Post−wake glucose (trait) Last−meal time (prev. day) (trait) First−meal time (trait) 
+
+Post−wake activity (duration) (trait) Post−wake activity (avg HR) (trait) Peak−activity duration (prev. day) (trait) Peak−activity (avg HR, prev. day) (state) Peak−activity duration (prev. day) (state) Post−wake activity (duration) (state) Pre−bed activity (duration, prev. day) (state) Peak−activity time (prev. day) (state) Peak−activity (avg HR, prev. day) (trait) Pre−bed activity (duration, prev. day) (trait) Pre−bed activity (avg HR, prev. day) (trait) Peak−activity time (prev. day) (trait) 
+
+Daylight hours (trait) Daylight hours (state) Age 
+
+Standardised estimate (95% CI) 
+
+Trait State 
+
+n_obs = 1395, n_groups = 105 (WEEKDAY) (a) Model factor coefficients calculated using a model including only weekday cycles. *** 
+
+** 
+
+**
+
+Sleep 
+
+Food 
+
+Physical activity 
+
+Demographics & light 
+
+−0.5 0.0 0.5 1.0 
+
+Time in bed (state) Sleep efficiency (state) Wake time (state) Time in bed (trait) Sleep efficiency (trait) Wake time (trait) 
+
+Post−wake glucose (state) Pre−bed glucose (prev. day) (state) First−meal time (state) Last−meal time (prev. day) (state) Last−meal time (prev. day) (trait) Pre−bed glucose (prev. day) (trait) Post−wake glucose (trait) First−meal time (trait) 
+
+Post−wake activity (duration) (trait) Peak−activity (avg HR, prev. day) (trait) Pre−bed activity (duration, prev. day) (state) Post−wake activity (avg HR) (trait) Peak−activity (avg HR, prev. day) (state) Peak−activity duration (prev. day) (trait) Peak−activity duration (prev. day) (state) Post−wake activity (duration) (state) Peak−activity time (prev. day) (state) Pre−bed activity (duration, prev. day) (trait) Pre−bed activity (avg HR, prev. day) (trait) Peak−activity time (prev. day) (trait) 
+
+Daylight hours (trait) Age Daylight hours (state) 
+
+Standardised estimate (95% CI) 
+
+Trait State 
+
+n_obs = 582, n_groups = 103 (WEEKEND) 
+
+(b) Model factor coefficients calculated using a model including only weekend cycles. 
+
+Supplementary Figure 9.3 
+
+48 10 Multicollinearity assessment via variance inflation fac-tors (VIFs) 
+
+‘Multicollinearity’ refers to the association between model predictor factors, specifically conditional on other factors also included in the model (as opposed to a direct correlation between raw pre-dictors). If multicollinearity between two predictors A and B is high, the value of adding B will be low (and will likely result in a low model estimate with high standard error for B), even if both A and B are strongly associated with the response factor. The variance inflation factor (VIF) is a measure of the multicollinearity of a predictor. While accepted thresholds vary, generally a VIF below 5 suggests low multicollinearity, between 5 and 10 suggests moderate multicollinearity, and above 10 indicates excessive multicollinearity and warrants removal of a predictor from a model (L¨ udecke et al., 2021). We report VIFs for factors included in the model in Table 7. Besides wake time (trait), most factors had low multicollinearity. While wake time displays moderate multicollinearity, this is not high enough to warrant removal from the model. Related lifestyle factors will inherently display some multicollinearity. Post-wake activity average HR and previous day pre-bed activity average HR states (not shown here) were previously dropped for excessive VIFs so were not included in the model, but their trait factors were kept. 49 Factor VIF VIF CI low VIF CI high SE factor Tolerance Tolerance CI low Tolerance CI high sleep waketime trait 6.24 5.77 6.76 2.50 0.16 0.15 0.17 pa postwake duration trait 4.66 4.32 5.04 2.16 0.21 0.20 0.23 gluc firstmeal time trait 4.41 4.09 4.77 2.10 0.23 0.21 0.24 pa postwake avghr trait 4.38 4.06 4.73 2.09 0.23 0.21 0.25 age 4.04 3.75 4.36 2.01 0.25 0.23 0.27 pa daybefore prebed avghr trait 3.80 3.53 4.10 1.95 0.26 0.24 0.28 pa daybefore prebed duration trait 3.63 3.38 3.92 1.91 0.28 0.26 0.30 gluc daybefore lastmeal time trait 3.59 3.34 3.87 1.89 0.28 0.26 0.30 gluc postwake trait 3.32 3.09 3.58 1.82 0.30 0.28 0.32 device 2.87 2.67 3.08 1.69 0.35 0.32 0.37 pa daybefore maxbout avghr trait 2.65 2.48 2.85 1.63 0.38 0.35 0.40 sleep efficiency trait 2.61 2.43 2.80 1.61 0.38 0.36 0.41 pa daybefore maxbout time trait 2.27 2.12 2.43 1.51 0.44 0.41 0.47 gluc daybefore lastmeal missing 2.27 2.12 2.43 1.51 0.44 0.41 0.47 gluc daybefore prebed trait 2.19 2.05 2.34 1.48 0.46 0.43 0.49 gluc daybefore prebed missing 2.14 2.01 2.29 1.46 0.47 0.44 0.50 sleep tib trait 2.11 1.98 2.25 1.45 0.47 0.44 0.51 pa daybefore maxbout duration trait 1.67 1.57 1.78 1.29 0.60 0.56 0.64 pa daybefore prebed duration state 1.63 1.54 1.74 1.28 0.61 0.58 0.65 daylight hours trait 1.61 1.52 1.71 1.27 0.62 0.58 0.66 sleep waketime state 1.52 1.44 1.61 1.23 0.66 0.62 0.70 pa daybefore prebed nobout 1.51 1.43 1.60 1.23 0.66 0.62 0.70 pa daybefore maxbout duration state 1.42 1.35 1.50 1.19 0.71 0.66 0.74 gluc postwake missing 1.41 1.34 1.50 1.19 0.71 0.67 0.75 pa postwake duration state 1.39 1.32 1.47 1.18 0.72 0.68 0.76 sex 1.37 1.30 1.46 1.17 0.73 0.69 0.77 sleep tib state 1.33 1.27 1.41 1.15 0.75 0.71 0.79 gluc firstmeal time state 1.32 1.26 1.40 1.15 0.76 0.71 0.79 gluc firstmeal missing 1.32 1.25 1.40 1.15 0.76 0.72 0.80 pa daybefore prebed missing 1.28 1.22 1.35 1.13 0.78 0.74 0.82 pa postwake nobout 1.27 1.21 1.35 1.13 0.79 0.74 0.82 gluc postwake state 1.12 1.08 1.19 1.06 0.89 0.84 0.93 pa postwake missing 1.11 1.07 1.17 1.05 0.90 0.85 0.94 gluc daybefore lastmeal time state 1.11 1.06 1.17 1.05 0.90 0.85 0.94 is weekend 1.10 1.06 1.17 1.05 0.91 0.85 0.94 gluc daybefore prebed state 1.10 1.06 1.17 1.05 0.91 0.86 0.94 gluc daybefore lastmeal nopeak 1.08 1.04 1.15 1.04 0.93 0.87 0.96 sleep efficiency state 1.08 1.04 1.15 1.04 0.93 0.87 0.96 pa daybefore maxbout time state 1.06 1.03 1.13 1.03 0.94 0.88 0.97 sleep data missing 1.04 1.01 1.13 1.02 0.96 0.89 0.99 pa daybefore maxbout missing 1.04 1.01 1.13 1.02 0.96 0.89 0.99 gluc firstmeal nopeak 1.03 1.01 1.13 1.02 0.97 0.88 0.99 pa daybefore maxbout avghr state 1.03 1.01 1.14 1.02 0.97 0.88 0.99 pa daybefore maxbout nobout 1.03 1.00 1.15 1.01 0.97 0.87 1.00 daylight hours state 1.02 1.00 1.28 1.01 0.99 0.78 1.00 
+
+Supplementary Table 7: Ordered VIFs for the main model factors, derived using the R function performance::check collinearity() (L¨ udecke et al., 2021) 
+
+# 11 Interaction terms 
+
+Interaction terms were not included in the main model due to sample size restrictions. Here, we tested models with additional interaction terms between each pair of predictors. With n=45 predictors (Table 1), 990 ( n(n − 1) /2) models were tested. The top 20 (ordered by increase in marginal R2) are shown in Table 8. The highest addition to model marginal R2 was 0.03 (3%) by adding an interaction term between sleep efficiency and previous day pre-bed activity 50 duration traits. Adding pair-wise interaction terms individually did not substantially improve model fit. This may suggest that interactions between lifestyle factors under natural circumstances do not play a role in modulating CRHR acrophase, though this requires further investigation. Interestingly, interactions between traits and states did not emerge: implying that, for example, the influence of the change from typical wake time on acrophase is not different for early or late wakers. var1 var2 R2m base R2c base R2m new R2c new delta R2m delta R2c sleep efficiency trait pa daybefore prebed duration trait 0.523 0.607 0.553 0.616 0.030 0.010 sleep waketime trait gluc daybefore prebed trait 0.523 0.607 0.542 0.605 0.018 -0.001 age sex 0.523 0.607 0.537 0.610 0.014 0.004 sleep waketime trait gluc postwake trait 0.523 0.607 0.536 0.604 0.013 -0.003 device pa daybefore prebed duration trait 0.523 0.607 0.536 0.609 0.012 0.002 daylight hours trait gluc postwake trait 0.523 0.607 0.534 0.604 0.011 -0.003 gluc firstmeal time trait pa daybefore maxbout avghr trait 0.523 0.607 0.533 0.608 0.010 0.002 gluc postwake trait gluc firstmeal time trait 0.523 0.607 0.533 0.600 0.010 -0.007 gluc firstmeal time trait pa daybefore prebed duration trait 0.523 0.607 0.533 0.609 0.009 0.003 sleep waketime trait pa daybefore maxbout avghr trait 0.523 0.607 0.532 0.609 0.008 0.002 sleep waketime trait pa daybefore maxbout missing 0.523 0.607 0.532 0.610 0.008 0.004 gluc daybefore prebed trait gluc daybefore lastmeal time trait 0.523 0.607 0.531 0.605 0.008 -0.002 gluc daybefore prebed trait pa daybefore maxbout avghr trait 0.523 0.607 0.531 0.602 0.008 -0.005 sleep waketime trait sleep efficiency trait 0.523 0.607 0.531 0.611 0.008 0.005 gluc postwake trait pa postwake avghr trait 0.523 0.607 0.531 0.607 0.007 0.000 gluc daybefore prebed trait pa postwake avghr trait 0.523 0.607 0.531 0.605 0.007 -0.001 sleep efficiency trait gluc firstmeal time trait 0.523 0.607 0.530 0.611 0.007 0.005 gluc daybefore prebed trait gluc firstmeal time trait 0.523 0.607 0.530 0.602 0.007 -0.004 sex pa daybefore maxbout time trait 0.523 0.607 0.530 0.610 0.006 0.004 sleep efficiency trait gluc postwake trait 0.523 0.607 0.530 0.604 0.006 -0.002 
+
+Supplementary Table 8: The change in marginal ( mR 2) and conditional ( cR 2) when each pair of predictor factors in the model were added as an interaction term (var1:var2). ‘ base’ refers to the marginal and conditional R2 of the original model. ‘ new’ refers to the marginal and conditional R2 of a model with this interaction term added. ‘delta’ refers to either the marginal or conditional R2 gain by adding this interaction term (e.g R2m new - R2m base). Results are ordered by marginal R2 gained (delta R2m). Top 20 models shown. 
+
+51 Supplementary References 
+
+Bellido, Virginia et al. (July 2021). “Time-in-range for monitoring glucose control: Is it time for a change?” In: Diabetes Research and Clinical Practice 177, p. 108917. issn : 0168-8227. doi :
+
+10 . 1016 / j . diabres . 2021 . 108917 . url : https : / / www . sciencedirect . com / science / article/pii/S0168822721002771 (visited on 06/19/2026). Beck, Roy et al. (Oct. 2018). “Validation of Time in Range as an Outcome Measure for Diabetes Clinical Trials”. In: Diabetes Care 42, p. dc181444. doi : 10.2337/dc18-1444 .Shah, Viral N et al. (Oct. 2019). “Continuous Glucose Monitoring Profiles in Healthy Nondiabetic Participants: A Multicenter Prospective Study”. In: The Journal of Clinical Endocrinology & Metabolism 104.10, pp. 4356–4364. issn : 0021-972X. doi : 10 . 1210 / jc . 2018 - 02763 . url :
+
+https://doi.org/10.1210/jc.2018-02763 (visited on 06/19/2026). Pellizzari, Elisa et al. (Mar. 2025). “Automatic identification of unreported meals from continu-ous glucose monitoring data in individuals after bariatric surgery using a template matching algorithm”. en. In: Scientific Reports 15.1, p. 7797. issn : 2045-2322. doi : 10.1038/s41598-025-92275-3 . url : https://www.nature.com/articles/s41598-025-92275-3 (visited on 11/17/2025). Korobeynikov, Anton et al. (Sept. 2024). Rssa: A Collection of Methods for Singular Spectrum Analysis . url : https://cran.r-project.org/web/packages/Rssa/index.html (visited on 06/01/2026). Molefi, Emmanuel et al. (2026). “ChronoSSA: A MATLAB toolbox for robust chronobiological rhythm detection [in preparation]”. In. Bell, Andrew and Kelvyn Jones (Jan. 2015). “Explaining Fixed Effects: Random Effects Modeling of Time-Series Cross-Sectional and Panel Data”. en. In: Political Science Research and Meth-ods 3.1, pp. 133–153. issn : 2049-8470, 2049-8489. doi : 10.1017/psrm.2014.7 . url : https: / / www . cambridge . org / core / journals / political - science - research - and - methods / article / explaining - fixed - effects - random - effects - modeling - of - timeseries -crosssectional-and-panel-data/0334A27557D15848549120FE8ECD8D63 (visited on 04/24/2026). 52 Mundlak, Yair (1978). “On the Pooling of Time Series and Cross Section Data”. In: Econometrica 
+
+46.1, pp. 69–85. issn : 0012-9682. doi : 10.2307/1913646 . url : https://www.jstor.org/ stable/1913646 (visited on 04/23/2026). Schmitt, Manfred and Gabriela S. Blum (2020). “State/Trait Interactions”. en. In: Encyclopedia of Personality and Individual Differences . Springer, Cham, pp. 5206–5209. isbn : 978-3-319-24612-3. doi : 10.1007/978-3-319-24612-3_1922 . url : https://link.springer.com/rwe/10. 1007/978-3-319-24612-3_1922 (visited on 05/24/2026). Pinheiro, Jos´ e et al. (Mar. 2026). nlme: Linear and Nonlinear Mixed Effects Models . url : https: //cran.r-project.org/web/packages/nlme/index.html (visited on 06/18/2026). Nakagawa, Shinichi and Holger Schielzeth (2013). “A general and simple method for obtaining R2 from generalized linear mixed-effects models”. en. In: Methods in Ecology and Evolution 4.2. eprint: https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.2041-210x.2012.00261.x, pp. 133–142. issn : 2041-210X. doi : 10 . 1111 / j . 2041 - 210x . 2012 . 00261 . x . url : https : //onlinelibrary.wiley.com/doi/abs/10.1111/j.2041-210x.2012.00261.x (visited on 05/07/2026). Barto´ n, Kamil (Mar. 2026). MuMIn: Multi-Model Inference . url : https://cran.r- project. org/web/packages/MuMIn/index.html (visited on 06/18/2026). Stoffel, Martin, Shinichi Nakagawa, and Holger Schielzeth (May 2021). “partR2: partitioning R in generalized linear mixed models”. In: PeerJ 9, e11414. doi : 10.7717/peerj.11414 .Snijders, Tom and Roel Bosker (2011). Multilevel Analysis: An Introduction to Basic and Advanced Multilevel Modeling . en. SAGE Publications Ltd. url : https://uk.sagepub.com/en-gb/eur/ multilevel-analysis/book234191 (visited on 05/07/2026). L¨ udecke, Daniel et al. (Apr. 2021). “performance: An R Package for Assessment, Comparison and Testing of Statistical Models”. In: Journal of Open Source Software 6, p. 3139. doi : 10.21105/ joss.03139 .53

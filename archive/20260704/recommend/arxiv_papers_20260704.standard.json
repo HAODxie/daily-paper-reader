@@ -1,0 +1,713 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-04T20:34:42.344726+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 19,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 30,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2607.01901v1",
+      "source": "arxiv",
+      "title": "SABER: A Semantic-Aligned Brain Network Analysis Framework via Multi-scale Hypergraphs",
+      "abstract": "Effective brain disease diagnosis requires the synergy of brain connectivity patterns and high-level semantic knowledge. Existing methods, however, largely treat semantics from large language models (LLMs) as auxiliary features or supervision, limiting their direct role in decision-making and constraining classification stability and robustness. To overcome this, we propose a semantic-aligned brain network framework that actively integrates LLM-derived semantics into the prediction process. Specifically, ROI-level semantics are first incorporated via global self-attention to enrich node representations and provide whole-brain context. Multi-scale hypergraphs are then constructed to explicitly model functional subnetworks and multi-ROI interactions, addressing the locality limitations of traditional GNNs and capturing high-order dependencies. Finally, a decision-level semantic alignment mechanism selectively injects patient-specific textual embeddings into graph representations, enabling semantics to directly guide predictions without perturbing the underlying network structure. Experiments on public brain network datasets ABIDE and ADHD-200 demonstrate state-of-the-art performance, enhanced stability, and improved interpretability, particularly in small-sample settings.",
+      "authors": [
+        "Yidan Xu",
+        "Xiangmin Han",
+        "Rundong Xue",
+        "Huihui Ye"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.MM"
+      ],
+      "published": "2026-07-02T08:58:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.01901v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "integrates LLM semantics for brain network analysis",
+      "llm_evidence_cn": "整合大语言模型语义进行脑网络分析",
+      "llm_evidence": "整合大语言模型语义进行脑网络分析",
+      "canonical_evidence": "整合大语言模型语义进行脑网络分析",
+      "llm_tldr_en": "Proposes SABER, a semantic-aligned brain network framework that actively integrates LLM-derived semantics via global self-attention and multi-scale hypergraphs for improved brain disease diagnosis.",
+      "llm_tldr_cn": "现有方法将大语言模型语义仅作为辅助特征，限制了其在脑疾病诊断中的直接作用。本文提出SABER框架，通过全局自注意力将ROI级语义融入节点表示，并构建多尺度超图建模功能子网络，使语义直接参与预测。实验证明该方法提升了分类稳定性与鲁棒性，为脑网络分析提供了新范式。",
+      "llm_tldr": "现有方法将大语言模型语义仅作为辅助特征，限制了其在脑疾病诊断中的直接作用。本文提出SABER框架，通过全局自注意力将ROI级语义融入节点表示，并构建多尺度超图建模功能子网络，使语义直接参与预测。实验证明该方法提升了分类稳定性与鲁棒性，为脑网络分析提供了新范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-02-06-704508-v3",
+      "source": "biorxiv",
+      "title": "NeuroVLM: A generative vision-language framework for human neuroimaging",
+      "abstract": "Neuroimaging research has produced tens-of-thousands of articles that pair natural language and activation coordinate tables. Recent advances in vision-language models (VLMs) have provided methods to model text and images simultaneously. In this work, we present NeuroVLM, a model architecture for learning from 30,826 human neuroimage-text pairs. The architecture supports contrastive and generative objectives. The contrastive model ranks similarity between neuroimages and text. The generative models include text-to-neuroimage and neuroimage-to-text. These models are evaluated on network images from a variety of atlases, statistical maps from diverse publications, and images created from coordinate tables. These models are capable of generating atlases or maps given a text corpus, generating text interpretations of neuroimages, labeling networks, finding publications most related to a neuroimage query, or finding neuroimages most related to a text query.",
+      "authors": [
+        "Hammonds, R.",
+        "Aguirre-Chavez, J.",
+        "Omoma-Edosa, B.",
+        "Patel, A.",
+        "Voytek, B."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.02.06.704508v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "vision-language model for neuroimaging, bridging language and brain imaging",
+      "llm_evidence_cn": "用于神经影像的视觉语言模型，连接语言和脑成像",
+      "llm_evidence": "用于神经影像的视觉语言模型，连接语言和脑成像",
+      "canonical_evidence": "用于神经影像的视觉语言模型，连接语言和脑成像",
+      "llm_tldr_en": "NeuroVLM is a generative vision-language framework trained on 30,826 neuroimage-text pairs, enabling text-to-neuroimage and neuroimage-to-text generation, directly relevant to large language models and fMRI.",
+      "llm_tldr_cn": "该论文提出了NeuroVLM，一个生成式视觉-语言框架，利用30826对神经影像-文本对进行训练。该模型支持对比学习和生成任务，包括文本到神经影像和神经影像到文本的生成。评估表明，模型能够生成脑图谱和统计图，为神经影像分析提供了强大的多模态工具，与大语言模型和fMRI研究高度相关。",
+      "llm_tldr": "该论文提出了NeuroVLM，一个生成式视觉-语言框架，利用30826对神经影像-文本对进行训练。该模型支持对比学习和生成任务，包括文本到神经影像和神经影像到文本的生成。评估表明，模型能够生成脑图谱和统计图，为神经影像分析提供了强大的多模态工具，与大语言模型和fMRI研究高度相关。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-22-733821-v1",
+      "source": "biorxiv",
+      "title": "Prefrontal activation predicts response latency and is shaped by age and lifestyle",
+      "abstract": "Neurological and neuropsychiatric conditions affect 43% of the global population, many shaped by modifiable lifestyle exposures, yet their relationship to cortical haemodynamics is poorly characterised. The dorsolateral prefrontal cortex (dlPFC) is a particularly tractable target: it underpins executive function, is disrupted across neuropsychiatric and age-related conditions, and lies on the cortical surface, within reach of scalable, wearable-grade optical neuroimaging. We present LUCID, a longitudinal study of 92 healthy adults combining consumer wearable sleep and physical activity metrics with task-evoked dlPFC haemodynamics, measured by time-domain functional near-infrared spectroscopy (TD-fNIRS). Log-transformed peak dlPFC activation was negatively associated with reaction time (RT) across the 2N-Back and Stroop tasks and both hemispheres (r = -0.37 to -0.53), greater activation accompanying faster responses, consistent with a capacity/recruitment account. Activation showed moderate test-retest reliability (intraclass correlation coefficient, ICC = 0.56-0.71), with between-person variance exceeding within-person fluctuation, indicating stable individual differences. Demographic and lifestyle features incrementally predicted activation, with age the strongest predictor and modest contributions from sleep and physical activity. These findings establish TD-fNIRS dlPFC activation as a longitudinally stable, behaviourally relevant functional neural marker for scalable tracking of modifiable risk.",
+      "authors": [
+        "Mitchell-Heggs, R.",
+        "Tamkin, D.",
+        "Scherdel, L.",
+        "Snowdon-Farrell, A.",
+        "Curry, A.",
+        "Rosenior-Patten, O.",
+        "Schultz, S. R."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-28T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.22.733821v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "combines wearable sleep metrics with prefrontal activation measured by fNIRS",
+      "llm_evidence_cn": "结合可穿戴睡眠指标与fNIRS测量的前额叶激活",
+      "llm_evidence": "结合可穿戴睡眠指标与fNIRS测量的前额叶激活",
+      "canonical_evidence": "结合可穿戴睡眠指标与fNIRS测量的前额叶激活",
+      "llm_tldr_en": "This longitudinal study combines consumer wearable sleep and physical activity data with task-evoked prefrontal cortex hemodynamics to predict response latency and explore effects of age and lifestyle.",
+      "llm_tldr_cn": "神经精神疾病受生活方式影响，但皮层血流动力学与生活方式的关系尚不清晰。该研究通过纵向设计，结合可穿戴设备收集的睡眠和活动数据与任务诱发的背外侧前额叶fNIRS信号，发现峰值前额叶激活可预测反应延迟，且该关系受年龄和生活方式调节，为可穿戴健康监测提供了神经基础。",
+      "llm_tldr": "神经精神疾病受生活方式影响，但皮层血流动力学与生活方式的关系尚不清晰。该研究通过纵向设计，结合可穿戴设备收集的睡眠和活动数据与任务诱发的背外侧前额叶fNIRS信号，发现峰值前额叶激活可预测反应延迟，且该关系受年龄和生活方式调节，为可穿戴健康监测提供了神经基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-26-732748-v1",
+      "source": "biorxiv",
+      "title": "HARMONY: A large-scale harmonized neuroimaging dataset for research on anxious misery disorders",
+      "abstract": "Patterns of brain circuit dysfunction underlying depression and anxiety have been increasingly characterized, including dimensional and subtype variation. A key challenge is determining how such patterns generalize across populations and measurement frameworks. Here, we introduce HARMONY, a harmonized multimodal neuroimaging dataset supporting large-scale investigation of brain-behavior associations across symptom-defined dimensions. HARMONY integrates four Human Connectome Project-style Connectomes Related to Human Disease cohorts spanning adolescence to later adulthood and capturing anxious misery symptoms. The resource combines standardized HCP-style preprocessing, quality control, imaging-derived phenotypes, and harmonized symptom measures into a clinically enriched public dataset. Proof-of-concept analyses using HARMONY showed that pooling heterogeneous cohorts increased statistical power for detecting associations between imaging-derived phenotypes and anhedonia and depression severity. Effect sizes remained modest, consistent with symptom-based measures across heterogeneous samples. Functional imaging-derived phenotypes showed the strongest multivariate predictive performance. In summary, HARMONY provides a large multi-cohort resource for reproducible mental health neuroimaging research.",
+      "authors": [
+        "Jarukasemkit, S.",
+        "Harms, M. P.",
+        "Lenzini, P.",
+        "Chen, A.",
+        "Glasser, M. F.",
+        "Hamilton, K.",
+        "Li, L.",
+        "Luo, X.",
+        "Myers, M.",
+        "Pines, A. R.",
+        "Reid, E.",
+        "Tozzi, L.",
+        "Zavaliangos-Petropulu, A.",
+        "Zhang, J.",
+        "Whitfield-Gabrieli, S.",
+        "Narr, K. L.",
+        "Williams, L. M.",
+        "Sheline, Y.",
+        "Bijsterbosch, J. D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.26.732748v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Large-scale multimodal neuroimaging dataset for anxious misery disorders and mental health",
+      "llm_evidence_cn": "大规模多模态神经影像数据集，用于焦虑痛苦障碍和心理健康研究",
+      "llm_evidence": "大规模多模态神经影像数据集，用于焦虑痛苦障碍和心理健康研究",
+      "canonical_evidence": "大规模多模态神经影像数据集，用于焦虑痛苦障碍和心理健康研究",
+      "llm_tldr_en": "HARMONY integrates four HCP-style cohorts to provide a harmonized multimodal neuroimaging dataset for studying brain-behavior associations across dimensions of anxious misery, enabling large-scale mental health research.",
+      "llm_tldr_cn": "抑郁和焦虑的脑回路功能障碍模式需要在大样本中验证泛化性。HARMONY数据集整合了四个人类连接组项目风格的队列，涵盖从青少年到成年的跨年龄样本，提供标准化的多模态神经影像数据（包括结构、功能MRI等），重点关注焦虑痛苦症状维度。该资源配套了预处理、质量控制和影像衍生表型，支持大规模脑-行为关联分析，将极大推动精神疾病神经影像研究。",
+      "llm_tldr": "抑郁和焦虑的脑回路功能障碍模式需要在大样本中验证泛化性。HARMONY数据集整合了四个人类连接组项目风格的队列，涵盖从青少年到成年的跨年龄样本，提供标准化的多模态神经影像数据（包括结构、功能MRI等），重点关注焦虑痛苦症状维度。该资源配套了预处理、质量控制和影像衍生表型，支持大规模脑-行为关联分析，将极大推动精神疾病神经影像研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.29200v1",
+      "source": "arxiv",
+      "title": "BrainRiem: Riemannian Prototype Learning for Source-Free Cross-Site Brain Network Diagnosis",
+      "abstract": "Multi-site functional MRI (fMRI) studies are essential for robust neuropsychiatric diagnosis yet suffer severe domain shifts from scanner heterogeneity, demographics, and site-specific acquisition protocols. Traditional domain adaptation requires concurrent source and target data access, violating clinical privacy regulations. Moreover, functional connectivity matrices lie on the Symmetric Positive Definite (SPD) manifold, where Euclidean operations cause geometric distortions corrupting diagnostic patterns. We propose BrainRiem, a source-free domain adaptation framework learning compact Riemannian brain prototypes via manifold-aware bi-level optimization. It employs the Log-Euclidean Metric to ensure prototypes remain valid SPD matrices, while Dirichlet Energy spectral calibration aligns their frequency characteristics with real brain networks. Only anonymized prototypes are transmitted to target sites, serving as stable anchors for training local models without source data access and reducing leakage under the evaluated attacks. Comprehensive experiments on ABIDE and REST-meta-MDD show BrainRiem consistently outperforms state-of-the-art source-free, traditional, and graph domain adaptation methods across diverse scanners and demographics. Notably, learned prototypes exhibit biologically interpretable connectivity patterns aligning with established neuroscience findings, validating the necessity of Riemannian geometry for brain network analysis.",
+      "authors": [
+        "Kunyu Zhang",
+        "Tianxiang Xu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-28T04:59:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.29200v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "source-free domain adaptation for neuropsychiatric diagnosis using fMRI connectivity",
+      "llm_evidence_cn": "用于神经精神诊断的无源域适应fMRI连接性方法",
+      "llm_evidence": "用于神经精神诊断的无源域适应fMRI连接性方法",
+      "canonical_evidence": "用于神经精神诊断的无源域适应fMRI连接性方法",
+      "llm_tldr_en": "BrainRiem proposes a Riemannian prototype learning framework for source-free cross-site brain network diagnosis, addressing domain shifts in multi-site fMRI studies while preserving privacy.",
+      "llm_tldr_cn": "多站点fMRI研究面临严重的领域偏移问题，且传统域适应需共享数据违反隐私。该研究提出BrainRiem，基于黎曼几何的源自由域适应方法，通过流形感知的双层优化学习紧凑的黎曼脑原型，在不访问源数据的情况下实现跨站点诊断，保证了诊断模式在SPD流形上的几何完整性。",
+      "llm_tldr": "多站点fMRI研究面临严重的领域偏移问题，且传统域适应需共享数据违反隐私。该研究提出BrainRiem，基于黎曼几何的源自由域适应方法，通过流形感知的双层优化学习紧凑的黎曼脑原型，在不访问源数据的情况下实现跨站点诊断，保证了诊断模式在SPD流形上的几何完整性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-11-10-687610-v2",
+      "source": "biorxiv",
+      "title": "Sample size critically shapes the reliability of EEG case-control findings in psychiatry",
+      "abstract": "Electroencephalography (EEG) studies in psychiatry have produced highly inconsistent findings, particularly in case-control designs. Small sample sizes are widely assumed to contribute to this variability, yet their impact on the reliability of EEG group comparisons has not been systematically quantified at scale. Here, we address this key gap using a large multisite resting-state EEG dataset comprising 2,874 participants aged 5-18 years, including individuals with attention-deficit/hyperactivity disorder, autism spectrum disorder, anxiety, learning disorders, and healthy controls. We extracted a comprehensive set of spectral, temporal, and complexity EEG features and performed repeated case-control comparisons across a wide range of sample sizes using extensive random subsampling. Results from small samples were unstable, with inflated and highly variable effect sizes across iterations. By contrast, larger samples produced consistent and reproducible findings, converging on uniformly small but robust effects. Statistical power rose steeply with sample size, whereas false positive rates remained relatively stable. These results demonstrate the central role of sample size in shaping EEG study outcomes and challenge the utility of conventional case-control approaches for biomarker discovery in psychiatry.",
+      "authors": [
+        "Ebadi, A.",
+        "Kaderi, S.",
+        "Rodriguez-Herreros, B.",
+        "Chabane, N.",
+        "Allouch, S.",
+        "Hassan, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-25T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.11.10.687610v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "systematically evaluates how sample size affects reliability of EEG case-control findings in psychiatry",
+      "llm_evidence_cn": "系统评估样本量如何影响精神病学中EEG病例对照研究的可靠性",
+      "llm_evidence": "系统评估样本量如何影响精神病学中EEG病例对照研究的可靠性",
+      "canonical_evidence": "系统评估样本量如何影响精神病学中EEG病例对照研究的可靠性",
+      "llm_tldr_en": "Using 2874 participants, demonstrates that small sample sizes severely undermine reliability of EEG group comparisons in psychiatric conditions, providing quantitative guidelines for study design.",
+      "llm_tldr_cn": "该论文利用包含2874名5-18岁儿童的大型多站点EEG数据集，系统重复比较了不同样本量下注意缺陷 ADHD、自闭症、焦虑等病例对照的EEG特征差异，发现小样本导致结论高度不可靠，并为EEG研究提供了最小样本量建议。",
+      "llm_tldr": "该论文利用包含2874名5-18岁儿童的大型多站点EEG数据集，系统重复比较了不同样本量下注意缺陷 ADHD、自闭症、焦虑等病例对照的EEG特征差异，发现小样本导致结论高度不可靠，并为EEG研究提供了最小样本量建议。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "biorxiv-10-1101-2025-11-10-687610-v2"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.30319v1",
+      "source": "arxiv",
+      "title": "BrainJanus: A Unified Model for Understanding and Generation across Brain, Vision, and Language",
+      "abstract": "Modeling the bidirectional correspondence between external sensory stimuli and internal neural activity has emerged as a critical frontier in neuroscience. However, existing approaches predominantly treat brain encoding and decoding as isolated tasks, relying heavily on unimodal alignment and external priors while overlooking the brain's intrinsic nature as a multimodal integration system. To address these limitations, we propose BrainJanus, the first unified brain model that integrates brain, vision, and language within a single framework. Specifically, we introduce a Unified Brain Tokenizer to quantize continuous neural dynamics into discrete tokens aligned with visual and linguistic representations in a shared Omni space. Building on this, we utilize an All-in-One autoregressive architecture that leverages next-token prediction to enable seamless any-to-any generation, which encompasses image-to-brain and text-to-brain encoding, and brain-to-image and brain-to-text decoding. Extensive experiments demonstrate that BrainJanus achieves superior performance across diverse benchmarks. Furthermore, our framework exhibits zero-shot generalization and preserves interpretable biological topography, highlighting its potential as a general-purpose brain modeling paradigm. The code is available at \\href{https://github.com/HaitaoWuTJU/BrainJanus}{GitHub}.",
+      "authors": [
+        "Haitao Wu",
+        "Qirui Zhang",
+        "Zhouheng Yao",
+        "Shangquan Sun",
+        "Qihao Zheng",
+        "Mianxin Liu",
+        "Chi Zhang",
+        "Wanli Ouyang",
+        "Chunfeng Song",
+        "Changqing Zhang",
+        "Jiamin Wu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-29T14:02:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.30319v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "brain-computer interface, unified brain model",
+      "llm_evidence_cn": "脑机接口技术、统一脑模型",
+      "llm_evidence": "脑机接口技术、统一脑模型",
+      "canonical_evidence": "脑机接口技术、统一脑模型",
+      "llm_tldr_en": "Proposes BrainJanus, the first unified model integrating brain, vision, and language via a Unified Brain Tokenizer for bidirectional encoding and decoding.",
+      "llm_tldr_cn": "针对现有脑编码与解码任务割裂、依赖单模态对齐的问题，提出BrainJanus统一模型，通过统一脑分词器将神经活动量化为离散标记，并在共享空间中与视觉、语言表征对齐，实现多模态双向生成与理解。",
+      "llm_tldr": "针对现有脑编码与解码任务割裂、依赖单模态对齐的问题，提出BrainJanus统一模型，通过统一脑分词器将神经活动量化为离散标记，并在共享空间中与视觉、语言表征对齐，实现多模态双向生成与理解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.28261v1",
+      "source": "arxiv",
+      "title": "Habitual lifestyle timing explains circadian timing, but daily lifestyle changes do not, in free-living humans across 2000 days",
+      "abstract": "Background: Both between- and within-subject variations in circadian timing matter for health. If lifestyle changes could be used to regulate circadian timing, they would offer accessible and scalable routes to chronotherapy, but this link remains unclear under real-life conditions. Here, we explore how lifestyle 'traits' (such as typical wake time) and 'states' (day-to-day deviations from traits, such as waking up later than typical) explain between- and within-subject variation in acrophase (peak time) of the circadian rhythm of heart rate (CRHR). Methods: We collected free-living wearable data (smartwatch, continuous glucose monitor) from healthy volunteers for up to 4 weeks. The CRHR was derived from activity-adjusted heart rate, and acrophase was defined as time-of-day at daily CRHR peak. Sleep, food, and physical activity 'factors' were calculated and split into traits and states. Using a linear mixed-effects model, we tested how traits and states associate with between- and within-subject acrophase variance. Findings: Data from 105 healthy volunteers (66 female, age = 42.5 $\\pm$ 15.7 years) spanning ~2000 days (18.8 $\\pm$ 8.30 days each) were analysed. Traits were substantially more influential than states, explaining 42.3% versus 0.9% of total acrophase variance. Accordingly, traits explained 86.5% of between-subject variance, whereas states explained only 1.8% of within-subject variance. Sleep, food and physical activity factors contributed both jointly and uniquely, and lifestyle timing mattered most. Interpretation: Between-subject lifestyle traits explained acrophase better than within-subject lifestyle states. This asymmetry, alongside the considerable overlap between factors, supports sustained, holistic, timing-focused lifestyle adjustments as chronotherapy targets, testable through future interventional studies.",
+      "authors": [
+        "Billy C. Smith",
+        "Zeel Pansara",
+        "Rosanne H. Timmerman",
+        "Emmanuel Molefi",
+        "Tiago Da Silva Costa",
+        "Christopher Thornton",
+        "Lucas G. S. França",
+        "Rachel E. Stirling",
+        "Sarah E. Heaps",
+        "Philippa J. Karoly",
+        "Mario Leocadio-Miguel",
+        "Peter N. Taylor",
+        "Karoline Leiberg",
+        "Yujiang Wang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "stat.AP"
+      ],
+      "published": "2026-06-26T16:47:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.28261v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "investigates lifestyle timing effects on circadian rhythm of heart rate, relevant to sleep",
+      "llm_evidence_cn": "研究生活方式时间对心率昼夜节律的影响，与睡眠相关",
+      "llm_evidence": "研究生活方式时间对心率昼夜节律的影响，与睡眠相关",
+      "canonical_evidence": "研究生活方式时间对心率昼夜节律的影响，与睡眠相关",
+      "llm_tldr_en": "Analyzes 2000 days of wearable data showing that habitual wake time predicts circadian phase, but daily deviations do not, emphasizing trait over state.",
+      "llm_tldr_cn": "通过2000天自由生活可穿戴数据，分析生活方式特质（如典型起床时间）和状态（每日偏差）对心率昼夜节律峰值时间的影响。发现特质稳定解释个体间变异，而每日变化不能解释个体内变异，提示习惯性时间而非每日变化调节昼夜节律。",
+      "llm_tldr": "通过2000天自由生活可穿戴数据，分析生活方式特质（如典型起床时间）和状态（每日偏差）对心率昼夜节律峰值时间的影响。发现特质稳定解释个体间变异，而每日变化不能解释个体内变异，提示习惯性时间而非每日变化调节昼夜节律。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30879v1",
+      "source": "arxiv",
+      "title": "Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data",
+      "abstract": "Accurately assessing a programmer's skill level is critical for hiring, team composition, and performance evaluation in the software industry. Conventional methods, such as coding tests or interviews, often fail to capture the full spectrum of cognitive abilities underlying programming expertise. This study explores using electroencephalography (EEG) and machine learning to investigate neural correlates of programming skill. We analyzed an existing EEG dataset recorded during code comprehension from 37 programmers with 1 to 30 years of experience (8.1 +/- 6.3 years) to examine relationships between neural activity and expertise. Additionally, we conducted classification experiments using Random Forest classifiers with diverse features for binary (experts vs. novices) and multi-class (experts, intermediates, novices) setups.We identified EEG features and brain regions associated with programming expertise. Specifically, EEG entropy showed the strongest correlation with skill level. Furthermore, experts' brains were characterized by highly localized centro-frontal activation, whereas frontal activation in other groups was part of a more distributed network. Regarding classification, our setup achieved an average accuracy of 91.83% (binary) and 78.15% (multi-class) in stratified 10-fold cross-validation, while leave-one-subject-out validation achieved 85.00% and 58.80%, respectively. Individual frequency bands outperformed full-spectrum analyses, and both program comprehension and resting-state data yielded strong results. These findings demonstrate that EEG features effectively capture neural correlates across different skill levels and highlight the potential of neural data to complement traditional methods of skill assessment.",
+      "authors": [
+        "Maurice Rekrut",
+        "Mahima Mahabaleshwar Acharya",
+        "Taisiia Ulianova",
+        "Norman Peitek",
+        "Annabelle Bergum",
+        "Mariya Toneva",
+        "Sven Apel",
+        "Antonio Krüger"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-06-29T20:10:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.30879v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Classifying programmer skill levels using EEG and machine learning",
+      "llm_evidence_cn": "使用脑电图和机器学习分类程序员技能水平",
+      "llm_evidence": "使用脑电图和机器学习分类程序员技能水平",
+      "canonical_evidence": "使用脑电图和机器学习分类程序员技能水平",
+      "llm_tldr_en": "This paper uses EEG data and Random Forest classifiers to classify programmer skill levels, demonstrating neural correlates of programming expertise.",
+      "llm_tldr_cn": "该研究利用脑电图（EEG）数据与随机森林分类器，对程序员的技能水平进行分类，展示了编程专长的神经关联。研究采用代码理解任务中的EEG记录，分析了37名程序员的数据，探索了神经活动与专业水平之间的关系。结果揭示了通过脑电信号识别专业技能水平的潜力，为EEG在认知状态评估中的应用提供了支持。",
+      "llm_tldr": "该研究利用脑电图（EEG）数据与随机森林分类器，对程序员的技能水平进行分类，展示了编程专长的神经关联。研究采用代码理解任务中的EEG记录，分析了37名程序员的数据，探索了神经活动与专业水平之间的关系。结果揭示了通过脑电信号识别专业技能水平的潜力，为EEG在认知状态评估中的应用提供了支持。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00260v2",
+      "source": "arxiv",
+      "title": "Do Multimodal Large Language Models Need Reasoning to Classify Dementia from Speech?",
+      "abstract": "Multimodal large language models (MLLMs) have emerged as a promising approach for improving the accuracy, transferability, and explainability of automatic dementia classification (ADC) systems from voice recordings. Yet it remains unclear whether their reasoning capabilities are beneficial for ADC, and how such capabilities should be leveraged. In this paper, we conduct a careful evaluation of reasoning MLLMs for ADC and show that naive strategies, such as relying on text-based rationales, can lead to hallucinated and inconsistent rationales for diagnosis and yield inferior ADC performance compared with LLM-free baselines. To overcome this limitation, we propose \\textbf{De}mentia \\textbf{T}hinker with Nonlinear \\textbf{A}daptor and Re\\textbf{i}nforcement \\textbf{L}earning (DeTAiL), an adaptor-based framework that exploits the internal representations of reasoning MLLMs for improved dementia classification. Across two dementia datasets with distinct test formats and label granularities, DeTAiL consistently outperforms strong baselines and methods that rely on text-based rationales. Code and demo will be released upon acceptance.",
+      "authors": [
+        "Liming Wang",
+        "Neguine Rezaii",
+        "Bradford C. Dickerson",
+        "James Glass"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS"
+      ],
+      "published": "2026-06-30T23:12:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.00260v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "MLLM used for dementia classification from speech",
+      "llm_evidence_cn": "多模态大语言模型用于语音痴呆分类",
+      "llm_evidence": "多模态大语言模型用于语音痴呆分类",
+      "canonical_evidence": "多模态大语言模型用于语音痴呆分类",
+      "llm_tldr_en": "Investigates whether reasoning in multimodal LLMs benefits automatic dementia classification, proposing Dementia Thinker with nonlinear adaptor to improve performance.",
+      "llm_tldr_cn": "针对多模态大语言模型（MLLM）在痴呆自动分类中的推理能力问题，论文提出Dementia Thinker方法，通过非线性适配器避免推理导致的幻觉，提高了分类性能。实验表明，简单依赖文本解释会降低性能。",
+      "llm_tldr": "针对多模态大语言模型（MLLM）在痴呆自动分类中的推理能力问题，论文提出Dementia Thinker方法，通过非线性适配器避免推理导致的幻觉，提高了分类性能。实验表明，简单依赖文本解释会降低性能。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.30879v2",
+      "source": "arxiv",
+      "title": "Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data",
+      "abstract": "Accurately assessing a programmer's skill level is critical for hiring, team composition, and performance evaluation in the software industry. Conventional methods, such as coding tests or interviews, often fail to capture the full spectrum of cognitive abilities underlying programming expertise. This study explores using electroencephalography (EEG) and machine learning to investigate neural correlates of programming skill. We analyzed an existing EEG dataset recorded during code comprehension from 37 programmers with 1 to 30 years of experience (8.1 +/- 6.3 years) to examine relationships between neural activity and expertise. Additionally, we conducted classification experiments using Random Forest classifiers with diverse features for binary (experts vs. novices) and multi-class (experts, intermediates, novices) setups. We identified EEG features and brain regions associated with programming expertise. Specifically, EEG entropy showed the strongest correlation with skill level. Furthermore, experts' brains were characterized by highly localized centro-frontal activation, whereas frontal activation in other groups was part of a more distributed network. Regarding classification, our setup achieved an average accuracy of 91.83% (binary) and 78.15% (multi-class) in stratified 10-fold cross-validation, while leave-one-subject-out validation achieved 85.00% and 58.80%, respectively. Individual frequency bands outperformed full-spectrum analyses, and both program comprehension and resting-state data yielded strong results. These findings demonstrate that EEG features effectively capture neural correlates across different skill levels and highlight the potential of neural data to complement traditional methods of skill assessment.",
+      "authors": [
+        "Maurice Rekrut",
+        "Mahima Mahabaleshwar Acharya",
+        "Taisiia Ulianova",
+        "Norman Peitek",
+        "Annabelle Bergum",
+        "Mariya Toneva",
+        "Sven Apel",
+        "Antonio Krüger"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-06-29T20:10:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.30879v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses EEG data and machine learning for classification",
+      "llm_evidence_cn": "使用脑电数据和机器学习进行分类",
+      "llm_evidence": "使用脑电数据和机器学习进行分类",
+      "canonical_evidence": "使用脑电数据和机器学习进行分类",
+      "llm_tldr_en": "Classifies programmer skill levels using EEG data recorded during code comprehension, employing random forest classifiers and analyzing neural correlates of expertise.",
+      "llm_tldr_cn": "本研究利用在代码理解过程中记录的脑电图数据，通过随机森林分类器对程序员技能水平进行分类。分析了1至30年经验编程人员的神经活动与专业水平之间的关系，发现脑电特征可有效区分不同技能水平。这一方法为客观评估编程专长提供了神经科学依据。",
+      "llm_tldr": "本研究利用在代码理解过程中记录的脑电图数据，通过随机森林分类器对程序员技能水平进行分类。分析了1至30年经验编程人员的神经活动与专业水平之间的关系，发现脑电特征可有效区分不同技能水平。这一方法为客观评估编程专长提供了神经科学依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-04-30-651428-v4",
+      "source": "biorxiv",
+      "title": "Perceptual glimpses are locally accumulated and globally maintained at distinct processing levels",
+      "abstract": "Making decisions often requires the integration of multiple pieces of information. An extensive body of research has investigated the neural architecture underpinning evidence accumulation in perceptual tasks where information is continuously present, but less is known about how this neural architecture operates in situations affording only intermittent glimpses of an evidence source. In two electroencephalography (EEG) experiments, participants judged the direction of up to two pulses of motion evidence separated by gaps of varying duration. Our behavioural analysis found that participants used both pulses but underutilised the second, and showed no systematic decrease in accuracy as a function of gap duration. At the neural level, motor beta lateralisation tracked cumulative evidence across pulses, maintaining a sustained representation of the decision variable through the gap and until response. In contrast, the centroparietal positivity (CPP), a previously-characterised signature of evidence accumulation, built up transiently to a peak that scaled with each pulse's contribution to the decision variable (i.e. the absolute belief update it produced), falling back to baseline in between pulses. These patterns were recapitulated in a model where pulse-information transiently integrated at the CPP level is fed to and maintained at a bounded motor level. In this model, the evidence in the second pulse is only integrated to the extent that the evidence in the first pulse falls short of the bound, or not integrated at all if a bound has already been hit.",
+      "authors": [
+        "Pares-Pujolras, E.",
+        "Geuzebroek, A. C.",
+        "O'Connell, R. G.",
+        "Kelly, S. P."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-02T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.04.30.651428v4.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG experiments on perceptual decision making",
+      "llm_evidence_cn": "关于知觉决策的脑电实验",
+      "llm_evidence": "关于知觉决策的脑电实验",
+      "canonical_evidence": "关于知觉决策的脑电实验",
+      "llm_tldr_en": "Uses EEG to study evidence accumulation from intermittent motion pulses, finding that participants integrate both pulses but underutilize the second, with neural signatures at different processing levels.",
+      "llm_tldr_cn": "在知觉决策中，当信息仅间歇出现时，大脑如何进行证据积累尚不清楚。本文通过两个脑电实验，让被试判断运动脉冲的方向（间隔可变）。行为结果表明被试综合了两个脉冲，但对第二个脉冲利用不足；脑电揭示局部积累和全局维持分别发生在不同处理层级。这一发现深化了对非连续信息下决策神经机制的理解。",
+      "llm_tldr": "在知觉决策中，当信息仅间歇出现时，大脑如何进行证据积累尚不清楚。本文通过两个脑电实验，让被试判断运动脉冲的方向（间隔可变）。行为结果表明被试综合了两个脉冲，但对第二个脉冲利用不足；脑电揭示局部积累和全局维持分别发生在不同处理层级。这一发现深化了对非连续信息下决策神经机制的理解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.02283v1",
+      "source": "arxiv",
+      "title": "Dendritic In-Context Learning in a Single-Layer Spiking Neural Network",
+      "abstract": "In-context learning (ICL) operates via implicit gradient descent embedded in the forward pass of modern AI architectures -- Transformers, Mamba, state-space models, and MLPs. Capturing this capability in biologically plausible Spiking Neural Networks (SNNs) has remained an open challenge: existing SNNs fail the Garg-2022 benchmark at non-trivial task dimensions. We trace this failure to a structural assumption: prior SNN designs route adaptation through inference-time synaptic plasticity, viewing the dendritic compartment as a passive conduit for error or teacher signals. We challenge this assumption. The subthreshold dynamics of a single dendritic compartment already implement a complete online learning algorithm. By treating the compartment as the computational substrate rather than a passive conduit, we propose DendriCL -- a single-layer compartmental spiking architecture whose apical recurrence is structurally identical to leaky online Widrow-Hoff LMS. This dynamics-only update collapses the architectural depth required for general-purpose ICL to a single layer. DendriCL is uniquely seed-stable at super-dimensional Garg-2022 ICL -- where dense Transformers exhibit grokking-style instability and fail past moderate task dimension -- and a linear probe recovers the reference online-LMS trajectory directly from the apical membrane at R^2 = 0.93, showing the algorithm is structurally embedded in the dynamics rather than implicitly discovered during training. Taken together, ICL requires neither attention, depth, nor inference-time plasticity: a single compartment with online-LMS dynamics is sufficient.",
+      "authors": [
+        "Juwei Shen",
+        "Yujie Wu",
+        "Changwen Chen"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE",
+        "cs.LG"
+      ],
+      "published": "2026-07-02T15:02:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.02283v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dendritic in-context learning in spiking neural networks, bridges deep learning and neuroscience",
+      "llm_evidence_cn": "脉冲神经网络中的树突上下文学习，连接深度学习与神经科学",
+      "llm_evidence": "脉冲神经网络中的树突上下文学习，连接深度学习与神经科学",
+      "canonical_evidence": "脉冲神经网络中的树突上下文学习，连接深度学习与神经科学",
+      "llm_tldr_en": "Demonstrates that single-layer spiking neural networks can achieve in-context learning via dendritic dynamics, solving a key benchmark and bridging AI and neuroscience.",
+      "llm_tldr_cn": "该研究发现，单层脉冲神经网络中树突室的亚阈值动力学即可实现完整的在线学习算法，从而在脉冲网络中成功复现了上下文学习能力，解决了先前脉冲网络在Garg-2022基准测试中的失败问题。这一结果不仅揭示了生物神经计算的潜在机制，也为构建更高效的类脑人工智能提供了新思路。",
+      "llm_tldr": "该研究发现，单层脉冲神经网络中树突室的亚阈值动力学即可实现完整的在线学习算法，从而在脉冲网络中成功复现了上下文学习能力，解决了先前脉冲网络在Garg-2022基准测试中的失败问题。这一结果不仅揭示了生物神经计算的潜在机制，也为构建更高效的类脑人工智能提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.02245v1",
+      "source": "arxiv",
+      "title": "Copewell: A Multi-Agent Swarm Architecture for Equitable Mental Wellness Support",
+      "abstract": "Mental health disorders affect nearly one billion people globally, yet 75% of individuals in low- and middle-income countries receive no treatment due to workforce shortages, cost barriers, and stigma. Current AI-powered wellness solutions predominantly rely on single-mode conversational interfaces that suffer high abandonment rates and fail to provide measurable, immediate relief calibrated to users' dynamic emotional states. This paper presents Copewell, a novel multi-agent swarm system designed to expand access to mental wellness support through human-centered AI principles. Our architecture introduces three technical innovations: (1) a multi-source assessment framework integrating self-reported, physiological, and contextual data to mitigate algorithmic bias; (2) valence-arousal emotion mapping using Russell's Circumplex Model of Affect to route users to specialized AI agents; and (3) dual-mode intervention delivery combining conversational support with evidence-based sensory wellness protocols. We examine the sociotechnical design considerations underlying Copewell's development, including a privacy-first architecture, embedded ethical oversight through a dedicated Ethics Supervisor agent, and participatory design informed by mental health practitioners. Early practitioner engagement and beta deployment inform design decisions and identify directions for future empirical evaluation. This work contributes to responsible AI discourse by demonstrating how technical architecture can operationalize equity and safety principles from inception.",
+      "authors": [
+        "Seren Yenikent",
+        "Jack Vinijtrongjit",
+        "Katherine Ng"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.HC"
+      ],
+      "published": "2026-07-02T14:40:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.02245v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "mental wellness support, multi-agent AI system",
+      "llm_evidence_cn": "心理健康支持、多智能体AI系统",
+      "llm_evidence": "心理健康支持、多智能体AI系统",
+      "canonical_evidence": "心理健康支持、多智能体AI系统",
+      "llm_tldr_en": "Presents Copewell, a multi-agent swarm architecture integrating self-reported, physiological, and contextual data for equitable mental wellness support.",
+      "llm_tldr_cn": "针对中低收入国家缺乏心理健康服务的问题，提出Copewell多智能体蜂群系统，通过整合自我报告、生理和情境数据动态评估用户情绪状态，提供个性化干预，旨在降低治疗缺口。",
+      "llm_tldr": "针对中低收入国家缺乏心理健康服务的问题，提出Copewell多智能体蜂群系统，通过整合自我报告、生理和情境数据动态评估用户情绪状态，提供个性化干预，旨在降低治疗缺口。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-01-26-701583-v2",
+      "source": "biorxiv",
+      "title": "Preventing Data Leakage in Neural Decoding",
+      "abstract": "Neural decoding is a widely-used machine learning technique for investigating how behavior, perception and cognition are represented in neural activity. However without careful application data leakage can occur, where information from the test set contaminates the training set, leading to biased estimates of decoding performance and potentially invalidating biological conclusions. Here we show that leakage can be introduced in neural decoding studies by common supervised and unsupervised preprocessing steps, including dimensionality reduction. We reveal that in some cases leakage can paradoxically decrease decoding performance relative to unbiased estimates, and we provide theoretical analyses explaining how this occurs. We also show that, for autocorrelated neural time series, randomized k-fold cross-validation can dramatically overstate decoding performance. Based on these findings, we provide detailed recommendations for avoiding data leakage in neural decoding.",
+      "authors": [
+        "Wong, R.",
+        "McCullough, M. H.",
+        "Lu, T.",
+        "Zhu, S. I.",
+        "Goodhill, G. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-29T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.01.26.701583v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Addresses data leakage in neural decoding, crucial for deep learning in neuroscience",
+      "llm_evidence_cn": "解决神经解码中的数据泄漏问题，对神经科学中的深度学习至关重要",
+      "llm_evidence": "解决神经解码中的数据泄漏问题，对神经科学中的深度学习至关重要",
+      "canonical_evidence": "解决神经解码中的数据泄漏问题，对神经科学中的深度学习至关重要",
+      "llm_tldr_en": "This paper reveals how common preprocessing steps introduce data leakage in neural decoding, providing theoretical analyses and demonstrating paradoxical effects, essential for reliable deep learning applications in neuroscience.",
+      "llm_tldr_cn": "神经解码中数据泄漏会严重扭曲模型性能评估和生物学结论。本文系统展示了常见监督和无监督预处理步骤（如降维）如何引入泄漏，并理论分析了泄漏可能反而降低解码准确率的悖论。研究还发现，自相关神经时间序列尤其容易受影响。这项工作为神经科学领域的深度学习实践提供了重要方法论指导，有助于避免虚假结果。",
+      "llm_tldr": "神经解码中数据泄漏会严重扭曲模型性能评估和生物学结论。本文系统展示了常见监督和无监督预处理步骤（如降维）如何引入泄漏，并理论分析了泄漏可能反而降低解码准确率的悖论。研究还发现，自相关神经时间序列尤其容易受影响。这项工作为神经科学领域的深度学习实践提供了重要方法论指导，有助于避免虚假结果。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-01-04-631289-v4",
+      "source": "biorxiv",
+      "title": "Cognitive function linked to temporal occupancy of Brain-Ventricle (BraVe) modes",
+      "abstract": "The temporal coordination between fMRI signals in gray matter and ventricular spaces represents an emerging yet poorly understood dimension of brain physiology with potential relevance for neuroprotection. Here, we analyzed 2177 resting-state fMRI scans from 880 participants spanning the cognitive spectrum from normal aging to dementia, using a unified phase-coupling approach that incorporates fluctuations in both brain tissue and ventricular space. We identify distinct modes of Brain-Ventricle (BraVe) coupling occurring over time, and compare their temporal occupancy across cognitive status groups, neurodegenerative biomarkers and cognitive scores.\n\nIn the most prevalent BraVe mode, signals across the entire brain evolve in anti-phase with ventricular signals, occurring less frequently with cognitive decline (p < 10-7, g > 0.3). In the remaining BraVe modes, specific cortical regions temporarily align with ventricular fluctuations, shaping canonical resting-state networks at the cortical level. Two BraVe modes overlapping with the Default Mode Network and the Frontoparietal Network, occur less frequently in dementia (p < 10-8, g > 0.35), with the latter correlating significantly with FDG-PET glucose metabolism (r = 0.20, p = 3.65x10-5). Conversely, a mode overlapping with the Limbic Network increases in occupancy with cognitive decline and associates with APOE {varepsilon}4 status (r = 0.11, p = 1.30x10-6).\n\nBraVe mode occupancy correlates more strongly and broadly with cognitive function than with disease-specific molecular biomarkers, with between 16 and 27 cognitive and functional variables per mode surviving strict Bonferroni correction, spanning global cognition, episodic memory, executive function, and everyday functioning. These findings reveal that the transient phase shifts underlying resting-state network dynamics are not arbitrary: when cortical subnetworks shift out of phase from the global brain signal, they align with ventricular signals, suggesting that resting-state functional connectivity and brain-ventricle coupling may be two perspectives on the same underlying physical process, one that is directly linked with cognitive function.",
+      "authors": [
+        "Campo, F. F.",
+        "Miguel, V.",
+        "Brattico, E.",
+        "Nigro, S.",
+        "Tafuri, B.",
+        "Logroscino, G.",
+        "Cabral, J.",
+        "the Alzheimer's Disease Neuroimaging Initiative,"
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-26T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.01.04.631289v4.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "cognitive function linked to brain-ventricle coupling modes in fMRI",
+      "llm_evidence_cn": "fMRI中的脑室耦合模式与认知功能相关",
+      "llm_evidence": "fMRI中的脑室耦合模式与认知功能相关",
+      "canonical_evidence": "fMRI中的脑室耦合模式与认知功能相关",
+      "llm_tldr_en": "This study identifies distinct modes of brain-ventricle coupling from resting-state fMRI and links their temporal occupancy to cognitive status and neurodegenerative biomarkers.",
+      "llm_tldr_cn": "该研究提出了脑-室（BraVe）耦合模式的概念，通过分析2177次静息态fMRI扫描，揭示了全脑信号与脑室信号之间不同的相位耦合模式。研究发现这些模式的时间占有率随认知状态和神经退行性生物标志物变化，表明脑室耦合可能成为评估认知功能和神经保护的潜在影像学标记。",
+      "llm_tldr": "该研究提出了脑-室（BraVe）耦合模式的概念，通过分析2177次静息态fMRI扫描，揭示了全脑信号与脑室信号之间不同的相位耦合模式。研究发现这些模式的时间占有率随认知状态和神经退行性生物标志物变化，表明脑室耦合可能成为评估认知功能和神经保护的潜在影像学标记。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-02-10-705127-v2",
+      "source": "biorxiv",
+      "title": "Unsupervised Representation Learning Reveals Individualized Neurophysiological Profiles",
+      "abstract": "Human brain activity contains stable, individual-specific features that persist over months to years, forming neurophysiological profiles. Most model-based profiling approaches use participant labels or supervised objectives, making it difficult to determine whether successful differentiation reflects stable biology or exploitable idiosyncrasies. We introduce a participant-agnostic autoencoder framework that derives profiles from brief resting-state magnetoencephalography (MEG) segments using reconstruction as sole training objective. Discriminative profiles emerged from the learned latent space without participant labels. Within-session, autoencoder profiles reached 93.3% accuracy at 120 s, exceeding functional-connectivity, spectral, and contrastive baselines with recordings as short as 14 s when participant-specific anatomy was withheld from source reconstruction. Differentiation generalized above chance across recording sessions (between-session accuracy 49.5% for the pretrained autoencoder). Profiles also predicted age more accurately than baselines (r2=0.318), and the decoder enabled perturbation-based sensitivity analyses in spectral and connectivity spaces. This establishes participant-agnostic representation learning as a scalable and interpretable profiling.",
+      "authors": [
+        "Lapatrie, M.",
+        "da Silva Castanheira, J.",
+        "Aydin, I.",
+        "Baillet, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-26T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.02.10.705127v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Unsupervised representation learning for individualized neurophysiological profiles using deep learning",
+      "llm_evidence_cn": "使用无监督表示学习从脑磁图数据提取个性化神经生理特征",
+      "llm_evidence": "使用无监督表示学习从脑磁图数据提取个性化神经生理特征",
+      "canonical_evidence": "使用无监督表示学习从脑磁图数据提取个性化神经生理特征",
+      "llm_tldr_en": "This paper introduces an autoencoder framework that learns individualized neurophysiological profiles from brief resting-state MEG without labels, achieving 93.3% identification accuracy and surpassing traditional connectivity measures.",
+      "llm_tldr_cn": "人脑活动存在个体特异性特征，但以往方法依赖监督学习难以区分真实生物学信号与人为偏差。本文提出一种参与者无关的自编码器框架，仅以重建为目标从短时静息态脑磁图(MEG)片段中学习潜在表征。结果显示，即使没有标签，潜在空间也自发产生了高判别性个体轮廓，在120秒内识别准确率达93.3%，超过了功能连接和频谱特征。该方法为无监督神经肖像学提供了新的工具，有助于个性化的神经科学研究。",
+      "llm_tldr": "人脑活动存在个体特异性特征，但以往方法依赖监督学习难以区分真实生物学信号与人为偏差。本文提出一种参与者无关的自编码器框架，仅以重建为目标从短时静息态脑磁图(MEG)片段中学习潜在表征。结果显示，即使没有标签，潜在空间也自发产生了高判别性个体轮廓，在120秒内识别准确率达93.3%，超过了功能连接和频谱特征。该方法为无监督神经肖像学提供了新的工具，有助于个性化的神经科学研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
