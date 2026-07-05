@@ -1,0 +1,23 @@
+---
+title: Pulsed forehead photobiomodulation alters EEG power independent of pulsation frequency entrainment
+title_zh: 脉冲前额光生物调节改变脑电图功率，独立于脉冲频率的夹带作用
+authors: "Mathew, A. A., Van Lankveld, H., Zhong, X. Z., Chen, J. X., Zomorrodi, R., Chen, J. J."
+date: 2026-07-04
+pdf: "https://www.biorxiv.org/content/10.1101/2025.05.26.656199v5.full.pdf"
+tags: ["query:neuro-mental"]
+score: 8.0
+evidence: 前额脉冲光生物调节引起的脑电功率变化
+tldr: 经颅光生物调节(tPBM)的脑响应机制尚不明确，尤其脉冲频率能否引起神经夹带未知。本研究对46名健康成人进行额叶tPBM，记录高密度EEG，改变波长(808/1064nm)、脉冲频率(10/40Hz)和辐照度(100-200mW/cm²)。结果发现theta和alpha功率被广泛抑制，beta和gamma功率额叶增强、后部减弱，且效应不按能量比例缩放，低辐照度每焦耳效率最高。10Hz脉冲比40Hz引起更强的额叶gamma增加，女性alpha抑制更显著。这表明tPBM引发可重复的EEG特征，但能量效率非线性，脉冲频率效应不支持神经夹带，为个性化剂量提供依据。
+source: biorxiv
+selection_source: fresh_fetch
+motivation: 探究tPBM脉冲频率能否引起神经夹带，以及剂量-响应关系，为临床参数优化提供基础。
+method: 46名受试者接受额叶tPBM，记录128导EEG，采用重复测量设计，分析不同波长、脉冲频率、辐照度下的频带功率变化。
+result: tPBM抑制theta/alpha功率，增强额叶beta/gamma；能量效率在低辐照度最高；10Hz脉冲比40Hz引起更强gamma增加；女性alpha抑制更强。
+conclusion: tPBM引起可重复的EEG特征，但效应不随能量线性缩放，10Hz脉冲效果优于40Hz，不支持频率夹带，需考虑个体因素优化剂量。
+---
+
+## 摘要
+经颅光生物调节是一种非侵入性脑刺激方法，利用低功率近红外光通过光化学方式刺激线粒体功能，目前正在研究用于支持大脑健康以及治疗神经和精神疾病。然而，其临床转化受到光刺激参数的广泛差异以及对这些参数和个体生物因素如何塑造大脑反应的理解不足的限制。在人类中建立这种剂量-反应关系是可靠且公平地向个体提供经颅光生物调节的先决条件，但基本问题仍然悬而未决：神经反应如何随传递的能量变化，以及光脉冲的频率是否能与神经节律同步，即所谓的神经频率夹带。为了研究这一点，我们在46名健康年轻人中记录了高密度头皮脑电图，在向右侧前额传递经颅光生物调节期间，采用重复测量设计，每次记录4分钟的刺激。在不同的实验环节中，我们改变了波长（808纳米、1064纳米）、脉冲频率（10赫兹、40赫兹）和辐照度（100、150、200毫瓦/平方厘米），并评估了性别和肤色的影响，肤色使用个体类型角量化。通过头皮拓扑图、参数分层时间进程、线性混合效应模型和全局能量效率测量分析了频带功率的逐分钟变化。我们的发现表明，刺激引发了频带和区域特异性的变化：θ波和α波功率普遍被抑制，而β波和γ波功率在前额区域增加，在后部区域减少，并在刺激结束后增强。没有固定效应通过错误发现率校正，功率变化与传递能量不成比例，每焦耳效率在最低辐照度下最高。探索性的未校正关联主要集中在刺激后和高频带，包括10赫兹脉冲比40赫兹脉冲引起的更强的前额γ波增加（β = -38.1%, p = 0.043）以及女性比男性更强的α波抑制（β = -5.4%, p = 0.038）。总体而言，我们提出脉冲前额光生物调节引发可重复的脑电图特征，这些特征不与传递能量成比例，且γ波功率对10赫兹脉冲的反应强于40赫兹脉冲，这与频率匹配的夹带不一致。这些参数和生物学依赖性效应为如何为大脑健康和临床应用确定经颅光生物调节的剂量提供了基础。
+
+## Abstract
+Transcranial photobiomodulation is a non-invasive brain stimulation approach that uses low-power near-infrared light to photochemically stimulate mitochondrial function and is under investigation for supporting brain health and treating neurological and psychiatric disorders. Its clinical translation is limited, however, by wide variation in light stimulation parameters and a poor understanding of how those parameters, and individual biological factors, shape the brain's response. Establishing this dose-response relationship in humans is a prerequisite for delivering tPBM reliably and equitably across individuals, yet basic questions remain open: how the neural response scales with delivered energy, and whether the frequency at which the light is pulsed can synchronize with neural rhythms, also known as neural frequency entrainment. To study this, we recorded high-density scalp electroencephalography (EEG) in 46 healthy young adults during transcranial photobiomodulation delivered to the right forehead, in a repeated-measures design with 4 minutes of stimulation per recording. Across sessions we varied wavelength (808 nm, 1064 nm), pulsation frequency (10 Hz, 40 Hz), and irradiance (100, 150, 200 mW/cm2), and assessed the effects of sex and skin tone, quantified using the individual typology angle. Minute-by-minute changes in band power were analysed with scalp topographies, parameter-stratified time courses, linear mixed-effects models, and measures of global energy efficiency. Our findings revealed that stimulation evoked band- and region-specific changes: theta and alpha power were broadly suppressed, whereas beta and gamma power increased frontally and decreased posteriorly, strengthening after stimulation ended. No fixed effect survived false-discovery-rate correction, and power changes were not proportional to delivered energy, with per-joule efficiency greatest at the lowest irradiance. Exploratory uncorrected associations were concentrated post-stimulation and in high-frequency bands, including a stronger frontal gamma increase with 10 Hz than 40 Hz pulsation (beta = -38.1%, p = 0.043) and stronger alpha suppression in females than males (beta = -5.4%, p = 0.038). Overall, we present that pulsed forehead photobiomodulation elicits reproducible EEG signatures that do not scale with delivered energy, and gamma power responded more strongly to 10 Hz than 40 Hz pulsation, inconsistent with frequency-matched entrainment. These parameter- and biology-dependent effects provide a foundation to inform how tPBM could be dosed for brain health and clinical applications.

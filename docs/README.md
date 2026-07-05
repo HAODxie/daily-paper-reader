@@ -6,73 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-04
-- 运行时间：2026-07-04 20:39:53 UTC
+- 最新运行日期：2026-07-05
+- 运行时间：2026-07-05 21:09:00 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日共筛17篇论文，精读6篇，两篇9分高分聚焦脑网络分析与神经影像生成式框架。
-最值得关注方向：多尺度超图语义对齐的脑网络分析（SABER），以及生成式视觉-语言神经影像框架（NeuroVLM）。
-建议普通读者关注脑科学与多模态大模型的交叉应用，特别是语义对齐分析与统一生成模型的前沿突破。
-- 详情：[/202607/04/README](/202607/04/README)
+今日17篇推荐中精选6篇精读，重点关注神经影像生成框架与脑损伤后睡眠认知恢复机制。最值得精读的是《NeuroVLM》生成式视觉语言框架（9.0分）和《Semaphorin 3A》促进脑损伤后睡眠与认知韧性（9.0分）。建议关注脑损伤后的神经保护干预策略及生成式AI在脑成像中的应用前景。
+- 详情：[/202607/05/README](/202607/05/README)
 
 ### 精读区论文标签
-1. [SABER: A Semantic-Aligned Brain Network Analysis Framework via Multi-scale Hypergraphs](/202607/04/2607.01901v1-saber-a-semantic-aligned-brain-network-analysis-framework-via-multi-scale-hypergraphs)  
+1. [NeuroVLM: A generative vision-language framework for human neuroimaging](/202607/05/biorxiv-10-64898-2026-02-06-704508-v3-neurovlm-a-generative-vision-language-framework-for-human-neuroimaging)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：整合大语言模型语义进行脑网络分析
-2. [NeuroVLM: A generative vision-language framework for human neuroimaging](/202607/04/biorxiv-10-64898-2026-02-06-704508-v3-neurovlm-a-generative-vision-language-framework-for-human-neuroimaging)  
+   evidence：NeuroVLM将视觉语言模型应用于神经影像-文本对
+2. [Semaphorin 3A promotes resilience of sleep and cognition to brain injury](/202607/05/biorxiv-10-64898-2026-06-24-734382-v1-semaphorin-3a-promotes-resilience-of-sleep-and-cognition-to-brain-injury)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：用于神经影像的视觉语言模型，连接语言和脑成像
-3. [Prefrontal activation predicts response latency and is shaped by age and lifestyle](/202607/04/biorxiv-10-64898-2026-06-22-733821-v1-prefrontal-activation-predicts-response-latency-and-is-shaped-by-age-and-lifestyle)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：结合可穿戴睡眠指标与fNIRS测量的前额叶激活
-4. [HARMONY: A large-scale harmonized neuroimaging dataset for research on anxious misery disorders](/202607/04/biorxiv-10-64898-2026-06-26-732748-v1-harmony-a-large-scale-harmonized-neuroimaging-dataset-for-research-on-anxious-misery-disorders)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：大规模多模态神经影像数据集，用于焦虑痛苦障碍和心理健康研究
-5. [BrainRiem: Riemannian Prototype Learning for Source-Free Cross-Site Brain Network Diagnosis](/202607/04/2606.29200v1-brainriem-riemannian-prototype-learning-for-source-free-cross-site-brain-network-diagnosis)  
+   evidence：脑损伤后的睡眠中断和记忆巩固
+3. [Progressive Self-Supervised Learning with Individualized Community Assignment for Brain Network Analysis](/202607/05/2606.29695v1-progressive-self-supervised-learning-with-individualized-community-assignment-for-brain-network-analysis)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：用于神经精神诊断的无源域适应fMRI连接性方法
-6. [Sample size critically shapes the reliability of EEG case-control findings in psychiatry](/202607/04/biorxiv-10-1101-2025-11-10-687610-v2-sample-size-critically-shapes-the-reliability-of-eeg-case-control-findings-in-psychiatry)  
+   evidence：自监督深度学习用于脑网络分析
+4. [Synergistic Perception-Reasoning Governance: Grounding Medical MLLMs with Verifiable Anatomical Evidence](/202607/05/2607.00060v1-synergistic-perception-reasoning-governance-grounding-medical-mllms-with-verifiable-anatomical-evidence)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：系统评估样本量如何影响精神病学中EEG病例对照研究的可靠性
+   evidence：医学多模态大语言模型的免训练证据注入框架
+5. [Modeling Dynamical Vision with Biologically Plausible Recurrent Convolutional Networks](/202607/05/biorxiv-10-1101-2025-08-11-669756-v2-modeling-dynamical-vision-with-biologically-plausible-recurrent-convolutional-networks)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：生物合理的递归卷积网络用于视觉神经科学
+6. [Characterization of aperiodic and theta activity in preterm infants using EEG: Insights into cerebral maturation and inter-individual variability](/202607/05/biorxiv-10-64898-2025-12-26-696574-v2-characterization-of-aperiodic-and-theta-activity-in-preterm-infants-using-eeg-insights-into-cerebral-maturation-and-inter-individual-variability)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：早产儿脑成熟的EEG表征
 
 ### 速读区论文标签
-1. [BrainJanus: A Unified Model for Understanding and Generation across Brain, Vision, and Language](/202607/04/2606.30319v1-brainjanus-a-unified-model-for-understanding-and-generation-across-brain-vision-and-language)  
+1. [Pulsed forehead photobiomodulation alters EEG power independent of pulsation frequency entrainment](/202607/05/biorxiv-10-1101-2025-05-26-656199-v5-pulsed-forehead-photobiomodulation-alters-eeg-power-independent-of-pulsation-frequency-entrainment)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：脑机接口技术、统一脑模型
-2. [Do Multimodal Large Language Models Need Reasoning to Classify Dementia from Speech?](/202607/04/2607.00260v2-do-multimodal-large-language-models-need-reasoning-to-classify-dementia-from-speech)  
+   evidence：前额脉冲光生物调节引起的脑电功率变化
+2. [Drowsiness alters the neural dynamics but not the core computations of multisensory integration](/202607/05/biorxiv-10-64898-2026-01-12-699055-v2-drowsiness-alters-the-neural-dynamics-but-not-the-core-computations-of-multisensory-integration)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：多模态大语言模型用于语音痴呆分类
-3. [Dendritic In-Context Learning in a Single-Layer Spiking Neural Network](/202607/04/2607.02283v1-dendritic-in-context-learning-in-a-single-layer-spiking-neural-network)  
+   evidence：关于困倦和睡眠过渡中多感觉整合的脑电研究
+3. [NeuroMark-SZ: A Holistic Resting-State-fMRI-Based Model for Divergent Functional Circuitry in Schizophrenia](/202607/05/biorxiv-10-64898-2026-03-12-710902-v2-neuromark-sz-a-holistic-resting-state-fmri-based-model-for-divergent-functional-circuitry-in-schizophrenia)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：脉冲神经网络中的树突上下文学习，连接深度学习与神经科学
-4. [Cognitive function linked to temporal occupancy of Brain-Ventricle (BraVe) modes](/202607/04/biorxiv-10-1101-2025-01-04-631289-v4-cognitive-function-linked-to-temporal-occupancy-of-brain-ventricle-brave-modes)  
+   evidence：基于fMRI的精神分裂症功能环路模型
+4. [Rhythmic replay of short-term memory neural patterns revealed by time-resolved error prediction](/202607/05/biorxiv-10-64898-2026-06-22-733876-v1-rhythmic-replay-of-short-term-memory-neural-patterns-revealed-by-time-resolved-error-prediction)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：fMRI中的脑室耦合模式与认知功能相关
-5. [Habitual lifestyle timing explains circadian timing, but daily lifestyle changes do not, in free-living humans across 2000 days](/202607/04/2606.28261v1-habitual-lifestyle-timing-explains-circadian-timing-but-daily-lifestyle-changes-do-not-in-free-living-humans-across-2000-days)  
+   evidence：脑电时变多变量模式分析用于工作记忆研究
+5. [Neural correlates of evidence accumulation in social-affective decision-making under perceptual ambiguity](/202607/05/biorxiv-10-1101-2025-06-24-660932-v2-neural-correlates-of-evidence-accumulation-in-social-affective-decision-making-under-perceptual-ambiguity)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：研究生活方式时间对心率昼夜节律的影响，与睡眠相关
-6. [Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data](/202607/04/2606.30879v2-neural-signatures-of-programming-expertise-classifying-programmer-skill-levels-using-eeg-data)  
+   evidence：模糊情绪判断中证据积累的脑电关联
+6. [Hierarchical Predictive Processing during Natural Reading](/202607/05/biorxiv-10-64898-2026-06-24-734402-v1-hierarchical-predictive-processing-during-natural-reading)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用脑电数据和机器学习进行分类
-7. [Copewell: A Multi-Agent Swarm Architecture for Equitable Mental Wellness Support](/202607/04/2607.02245v1-copewell-a-multi-agent-swarm-architecture-for-equitable-mental-wellness-support)  
+   evidence：自然阅读中记录EEG，分析预测误差信号
+7. [When Can Brain Connectivity Track the Working Mind? A Large-Scale Benchmark of Dynamic Functional Connectivity Across Cognitive Paradigms](/202607/05/biorxiv-10-64898-2026-06-28-735101-v1-when-can-brain-connectivity-track-the-working-mind-a-large-scale-benchmark-of-dynamic-functional-connectivity-across-cognitive-paradigms)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：心理健康支持、多智能体AI系统
-8. [Unsupervised Representation Learning Reveals Individualized Neurophysiological Profiles](/202607/04/biorxiv-10-64898-2026-02-10-705127-v2-unsupervised-representation-learning-reveals-individualized-neurophysiological-profiles)  
+   evidence：fMRI动态功能连接基准测试用于认知状态追踪
+8. [Neural Tracking of Speech Envelope as an Index of Spatial Release from Masking](/202607/05/biorxiv-10-64898-2026-06-29-734758-v1-neural-tracking-of-speech-envelope-as-an-index-of-spatial-release-from-masking)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用无监督表示学习从脑磁图数据提取个性化神经生理特征
-9. [Neural Signatures of Programming Expertise: Classifying Programmer Skill Levels Using EEG Data](/202607/04/2606.30879v1-neural-signatures-of-programming-expertise-classifying-programmer-skill-levels-using-eeg-data)  
+   evidence：使用EEG神经语音跟踪指标反映空间释放掩蔽
+9. [Generative Learning as a Tool to Improve Perception of Emotional Body Motion Expressions](/202607/05/2606.28769v1-generative-learning-as-a-tool-to-improve-perception-of-emotional-body-motion-expressions)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：使用脑电图和机器学习分类程序员技能水平
-10. [Perceptual glimpses are locally accumulated and globally maintained at distinct processing levels](/202607/04/biorxiv-10-1101-2025-04-30-651428-v4-perceptual-glimpses-are-locally-accumulated-and-globally-maintained-at-distinct-processing-levels)  
+   evidence：使用生成模型学习情绪身体运动，与情绪和心理健康相关
+10. [Machine learning on magnetoencephalography data yields generalizable low-dimensional neural fingerprints that distinguish individuals across task conditions](/202607/05/biorxiv-10-64898-2026-06-26-734424-v1-machine-learning-on-magnetoencephalography-data-yields-generalizable-low-dimensional-neural-fingerprints-that-distinguish-individuals-across-task-conditions)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：关于知觉决策的脑电实验
-11. [Preventing Data Leakage in Neural Decoding](/202607/04/biorxiv-10-64898-2026-01-26-701583-v2-preventing-data-leakage-in-neural-decoding)  
+   evidence：基于MEG数据的机器学习低维神经指纹
+11. [Sparse Distributed Archetypes Reveal Compressible Network Motifs Underlying Naturalistic Cognition](/202607/05/biorxiv-10-64898-2026-06-26-734861-v1-sparse-distributed-archetypes-reveal-compressible-network-motifs-underlying-naturalistic-cognition)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：解决神经解码中的数据泄漏问题，对神经科学中的深度学习至关重要
+   evidence：叙事聆听时的fMRI数据，使用原型分析
 
 
 <div class="dpr-home-promo-card">
