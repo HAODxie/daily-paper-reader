@@ -1,0 +1,992 @@
+Title: Interpretable compositional computation with recurrent neural networks
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.23.733979v1.full.pdf
+
+Published Time: Mon, 06 Jul 2026 21:18:20 GMT
+
+Number of Pages: 27
+
+Markdown Content:
+# Interpretable compositional computation with recurrent neural networks 
+
+Louis Pezon 1, ∗ and Alexander van Meegen 1, 2, †
+
+> 1
+
+School of Computer and Communication Sciences and School of Life Sciences, EPFL, Lausanne, Switzerland 
+
+> 2
+
+Department of Physics, Faculty of Mathematics and Natural Sciences, RWTH Aachen University, Aachen, Germany 
+
+Abstract 
+
+Flexible cognition utilizes reusable components to enable rapid adaptation of behavior to different contexts or tasks. Analysis of artificial neural networks trained on multiple tasks suggested that this composi-tionality is supported by dynamical structures which are shared and re-used across tasks. However, the nature of these shared components, and how they can be used in a task-dependent manner, remained unclear. Here, we develop a theory of interpretable compositional computation based on shared dynam-ical structures in the low-dimensional latent space of low-rank recurrent neural networks. We show that these shared latent components are not immediately visible in the neural activity, and are thus compatible with task-dependent activity. We identify hallmarks of shared latent components both in the connectivity statistics and the neural representations. These hallmarks yield testable predictions for the network’s re-sponse to specific perturbation experiments. Finally, we identify distinct loci where task-dependence can enter the computation, allowing us to characterize qualitatively different solutions to compositional tasks. In summary, our theory provides a mechanistic understanding and testable hallmarks of compositional computation via shared components in low-rank networks. 
+
+I. INTRODUCTION 
+
+A key feature of human cognition is the ability to flexibly re-use learned concepts and behaviors [1]. For example, once a trumpeter masters air flow and harmonics, she can use these skills across a vast repertoire of musical pieces. Furthermore, if she is faced with a new instrument, such as an Alphorn, she can quickly adapt using her existing repertoire of skills. However, compositionality—exemplified by the player flexibly combining her learned skills—is a hard task for artificial neural networks [2–5], including state-of-the-art transformer-based networks [6–8]. While compositionality alone poses a significant challenge, there is an additional layer of complexity: natural behavior is inherently dynamic, which needs to be reflected by the computation [9–11]. How do the neural circuits in the brain implement the dynamic and compositional computations which enable the players performance? Finding appropriate models for dynamic and compositional computation is an ongoing challenge. One prominent approach is to train artificial networks on a family of tasks with a common structure [12–15]. An analysis of the trained networks revealed that the network computation can reflect this structure: the trained networks re-purposed representations [12] or “dynamical motifs” [14, 15] across similar tasks — a finding that parallels observations in prefrontal cortex [16]. In these cases, the networks learned to implement a compositional computation using “shared components”. However, the nature of these components is not clear. Even if neural representations or dynamics involve shared subspaces, neural activity remains task-dependent [15–17]. Furthermore, a compositional multi-task computation should combine shared components with task-dependent ones. Consider, for example, a family of tasks that all require memorizing an indicated direction. Such a family of tasks can be solved using a ring attractor [18–21] that is shared across tasks [15]. Yet, a shared ring attractor alone cannot perform task-specific computations: it must be used in a task-dependent manner. This raises two questions: First, how can shared components be reconciled with task-dependent activity? And second, how can they be used in a task-dependent manner to enable flexible computation in a single network? To address these questions, we assume that the computations are implemented by recurrent neural network dynamics [9]. We exploit the fact that the task structure of typical neuroscience experiments is low-dimensional [22, 23], which means that the tasks can be solved using low-dimensional dynamics. Indeed, understanding the computation of a neural population in terms of low-dimensional dynamics has been a striking success story [10, 11, 17, 24–33]. Such low-dimensional dynamics are, in turn, naturally implemented in low-rank networks [27]. Here, we build on the extensive theory of low-rank networks [27, 31, 32, 34–45] to understand how a network with a generic structure can solve multiple tasks by combining shared and task-dependent components. To this end, we develop   
+
+> ∗louis.pezon@epfl.ch
+> †vanmeegen@physik.rwth-aachen.de
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+2a theory of compositional computation in low-rank networks. A direct result of the theory is that shared components are not immediately obvious in neural activity, and thus consistent with task-dependent activity. Nonetheless, we show that computation via shared components leaves testable hallmarks in the connectivity statistics. Furthermore, shared components impose specific constraints on the geometry of neural activity across tasks, for which we propose a test based on perturbation experiments. Next, we identify two loci where each task variable can enter a computation via shared components, that can be identified via perturbation experiments. Generalizing our framework to a compositional family of tasks [16], we build a systematic catalog of qualitatively different solutions to the same tasks. Finally, we construct explicit examples of how shared components can enable solving complex compositional tasks. 
+
+II. RESULTS A. Multi-task computation in low-rank RNNs 
+
+We develop a theory of multi-task computation via shared computational components (or “motifs” [15]) in recurrent neural networks (RNNs). To this end, we consider artificial neural networks consisting of N neurons, characterized by their firing rates r(t) = ( r1(t), . . . , r N (t)) . The vector of firing rates r(t), called the population activity, fully describes the instantaneous state of the network. We assume that the same RNN is used across different tasks and that the task identity has been correctly inferred from the context, for example by a separate network that is not part of our model. During a trial, the task identity is directly provided to the network, encoded as a constant input c; in addition, the network receives a time-dependent stimulus s(t) (Fig. 1A). The dynamics of the RNN are 
+
+τ dr
+
+dt = −r + σ(Wrec r + Wss + Wcc + b), (1) where Wrec denotes the recurrent connectivity, Ws and Wc the input weights from stimulus s and task input c, respectively, 
+
+b the neuron-specific bias, τ the time constant of the dynamics, and σ the neuronal nonlinearity (softplus for all simulations). The final output is a linear readout of the rates, 
+
+y(t) = 1
+
+N W ⊤
+
+> out
+
+r(t), (2) where Wout denotes the readout weights. RNNs are capable of performing computations via low-dimensional latent dynamics, embedded in the high-dimensional space of firing rates r(t) (Fig. 1B, [10, 17, 24–27, 29–32]). Low-rank connectivity naturally gives rise to such dynamics [27, 31, 32, 34–45]. Following this prominent line of work, we assume that the connectivity is low-rank, Wrec = 1 
+
+> N
+
+U V ⊤
+
+where U and V are N ×P matrices with P ≪ N . This allows us to identify a small number P of factors, λ(t) = 1 
+
+> N
+
+V ⊤r(t),and introduce the recurrent flow-field ψrec that governs their dynamics: 
+
+τ dλ
+
+dt = ψrec (λ, s, c),
+
+ψrec (λ, s, c) = −λ + 1
+
+N V ⊤σ(U λ + Wss + Wcc + b).
+
+(3) The trajectory of the factors λ(t), together with the inputs, s(t) and c, fully determine the outputs as 
+
+y(t) = LP τ [ψout (λ, s, c)]( t)
+
+ψout (λ, s, c) = 1
+
+N W ⊤
+
+> out
+
+σ(U λ + Wss + Wcc + b) (4) where the readout flow-field ψout (λ, s, c) controls the nonlinear transformation from factors to outputs, and LP τ denotes low-pass filtering 1 with time constant τ . It follows from Eqs. (3)-(4) that the dynamics and output of the network—and thus, the computation it performs—is entirely determined by the low-dimensional flow-fields ψrec and ψout .           
+
+> 1The low-pass filter is LP τ[f]( t) = τ−1Rt
+> 0e−(t−s)/τ f(s)ds .
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+3
+
+Figure 1. Compositional computation using shared components in low-rank RNNs. A. Multi-tasking RNNs receive a stimulus s(t)
+
+and a constant input c encoding task identity. The transformation from stimulus s (left; blue direction on the circle represented by s1 = cos α, s 2 = sin α) to network output y depends on the task identity (right). B. Low-rank RNNs naturally implement low-dimensional latent dynamics λ(t) in their high-dimensional neural activity r(t). These latent dynamics fully determine the input-output transformation and the neural activity. C. In multi-tasking low-rank RNNs, the autonomous part ψ0(λ) of the low-dimensional recurrent dynamics ψrec (λ, s, c) can serve as a shared component which is re-used across tasks. The combination with task-dependent input-driven dynamics and readout enables compositional computation. 
+
+It is convenient to further distinguish the autonomous dynamics, which implement computation in the absence of stimulus, for example during a memory period, from the input-driven dynamics that mediate the effect of the stimulus. This corresponds to the unique decomposition of the recurrent flow-field into two terms [33]: 
+
+ψrec (λ, s, c) = ψ(c)0 (λ) + ψin (λ, s, c), (5) where ψ(c)0 = ψrec |s=0 describes the latent dynamics for task c in the absence of stimulus (i.e., s = 0 ), and the input-driven flow-field ψin satisfies ψin |s=0 = 0 . The decomposition of Eq. (5) allows us to express how a network can combine shared and task-dependent components: we propose that the autonomous dynamics provide the shared components . Formally, we require that autonomous dynamics are the same across tasks and do not depend on the task input c, such that one can write 
+
+ψ(c)0 ≡ ψ0. (6) To implement task-dependent computation, the task identity c can modulate both the effect of the stimulus via the input-driven flow-field ψin , and the network’s output via ψout (Fig. 1C). As an illustration, we consider a set of two stylized memory tasks [15]: the pro and anti memory tasks. Both tasks require memorizing a direction indicated by a transient input. After a delay, either the stimulus angle (‘pro’ task), or its opposite (‘anti’ task), should be reported (Fig. 1A). These tasks can be solved using a shared latent ring attractor (Fig. 1C2), combined with a task-dependent input-driven flow-field: depending on the task, either the stimulus angle, or its opposite, is stored using the ring attractor (Fig. 1C3). Here, the task dependence is resolved by the interaction of the input with the 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+4
+
+Figure 2. Computation via shared latent components is consistent with task-dependent neural activity. A. Neural activity is task-dependent in monkey prefrontal cortex during context-dependent decision making (A1; data from Mante et al. [17]) and in multitasking RNNs (A2; data from Driscoll et al. [15]). B. Task-shared dynamics in latent space do not imply task-shared neural activity, since the activity depends on the task input c. C. Shared latent ring attractors for memory pro/anti tasks (C1) lead to disjoint attractors in firing rate space (C2; first three principal components shown). For a given stimulus angle α in the ‘pro’ task (left), or its opposite in the ‘anti’ task (right), factors λ follow the same trajectory (C1) while firing rates are separated across tasks (C2). In panel A1, projection axes were obtained using TDR [17]; activity is trial-averaged over motion conditions; and trajectories are styled according to context (colors and marker shapes), and motion direction (filled / empty markers) and coherence (color shades). In panels A2 and C2, PCA was performed on neural activity during the memory period. In A2, the ‘task’ axis was obtained by training a linear classifier to separate the two rings. 
+
+ring attractor. Afterwards, a simple readout of the stored angle is sufficient to solve both tasks. A key advantage of considering the low-dimensional flow-field ψrec is that it provides a highly interpretable perspective on the latent dynamics. For example, it was recently shown that evidence accumulation is best understood in terms of a combination of input-driven dynamics for evidence accumulation and autonomous dynamics to fix the decision [33]. In the context of multi-task networks, the flow-field supports interpretability by explicitly separating shared and task-dependent components. For now, we consider for simplicity the case where the network uses the same shared autonomous dynamics across all tasks. However, our results directly generalize to the case when only subsets of tasks in a family use shared components, as we will show later. 
+
+B. Shared components coexist with task-dependent neural activity 
+
+Shared components across tasks seem to be at odds with the observation that neural activity often evolves in different subspaces across contexts or tasks (Fig. 2A, [17, 24, 25, 30, 46–51]). Perhaps counter-intuitively, we show that there is no such contradiction because the shared components are on the level of the factors. Going from the factors λ(t) to the population activity r(t) reveals that shared latent components can coexist with task-dependent activity. Indeed, the vector of firing rates, 
+
+r(t) = LP τ [σ(U λ + Wss + Wcc + b)]( t), (7) depends on both the factors λ as well as the task input c. Accordingly, even if the factors λ follow identical dynamics across different tasks, the neural activity can still be task-dependent (Fig. 2B). To illustrate this point, we consider again the pro/anti memory tasks and their solution using a shared ring attractor (Fig. 1C). We created a low-rank network that implements this solution in its latent dynamics (Methods). In the latent space, the same ring attractor is reused for both pro- and anti-task (Fig. 2C1). However, as shown above, the shared ring 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+5attractor in the latent space does not imply a shared ring attractor in the space of the neurons’ firing rates r. Accordingly, the representations of the memorized stimulus form two disjoint rings, one for each task (Fig. 2C2), such that task identity is straightforward to decode from the first principal components of the activity. The coexistence of shared latent components and task-dependent neural activity can be interpreted geometrically: the task-dependent part of the activity takes place in the nullspace of V (i.e., orthogonal to its column vectors), such that it does not affect the factors λ(t) = 1 
+
+> N
+
+V ⊤r(t). More precisely, the projection of the task-dependent activity on V needs to be negligible; strict confinement to the nullspace is not required. Since V spans only a P ≪ N dimensional subspace, there is ample room for task-dependent activity. Thus, the possibility of task-dependent activity despite shared latent components is a generic feature in low-rank networks, by no means restricted to the illustrative example used above. Conversely, and consistent with experimental evidence [16, 17], shared latent components imply that there is at least a P -dimensional subspace in which the activity is shared across tasks, which is the subspace spanned by V . 
+
+> C. Shared components shape network connectivity
+
+Computation via shared latent dynamics is compatible with task-dependent neural activity. Yet, a given family of tasks typically does not admit a unique compositional solution. A RNN could in principle solve each task using specific dynamics, without reusing components across tasks. For instance, the two ‘pro’ and ‘anti’ tasks presented above could be solved using one latent ring attractors for each task, rather than a shared one (Fig. 3A). What, then, distinguishes these different types of solution? As an answer, we identified specific testable constraints on the low-rank connectivity statistics imposed by shared autonomous latent dynamics. To this end, we consider the flow-field ψ(c)0 (λ) = ψrec (λ, s = 0 , c) controlling the autonomous latent dynamics for a given task input c, given from Eq. (3) by 
+
+ψ(c)0 (λ) = −λ + 1
+
+N V ⊤σ(U λ + Wcc + b). (8) In general, the autonomous dynamics ψ(c)0 (λ) might depend on the task input c. The fact that two tasks, with respective task inputs c and c′, are solved using shared autonomous dynamics is formally expressed by the equality of the flow-fields 
+
+ψ(c)0 (λ) = ψ(c′)0 (λ). This equality imposes a subtle statistical structure in the network connectivity. To reveal this structure, we rewrite Eq. (8) as an empirical average over the neurons in the network [52–55], 
+
+ψ(c)0 (λ) = −λ + 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+viσ(u⊤ 
+
+> i
+
+λ + wci ⊤c + bi), (9) where the vectors ui, vi, wci denote the i-th row of the matrices U , V , Wc respectively, and bi is neuron i’s bias. Formally, 
+
+ψ(c)0 (λ) + λ corresponds to the output of a single-hidden-layer feedforward network [56], where ui, vi are input and output weights, and wci ⊤c + bi =: β(c) 
+
+> i
+
+can be interpreted as an effective bias that is specific to task c. Observe here that the task dependence enters only through the effective bias. The fact that two tasks c, c′ share the same autonomous dynamics constrains the joint statistics of the input and output weights ui, vi and effective biases β(c) 
+
+> i
+
+, β (c′) 
+
+> i
+
+. More precisely, for a given task c, we define for each neuron i a task-dependent effective output weight ν(c) 
+
+> i
+
+∈ RP , so that each neuron is characterized by a point θ(c) 
+
+> i
+
+= ( ui, β (c) 
+
+> i
+
+, ν(c) 
+
+> i
+
+) ∈ R2P +1 (Fig. 3B). We show that if two tasks c, c′ use shared autonomous dynamics, then the point-clouds Θ(c) = {θ(c) 
+
+> i
+
+; i = 1 , . . . N } and Θ(c′) are statistically indistinguishable (Methods). To illustrate this result, we designed three additional solutions to the pro/anti memory tasks presented above, which all use distinct ring attractors for the ‘pro’ and the ‘anti’ task (Fig. 3A). These distinct ring attractors are either shifted along a third dimension, reflected within the same plane, or in orthogonal subspaces. To test whether the point-clouds Θ(c) are similar across the two tasks, with c corresponding either to the ‘pro’ task input c+, or the ‘anti’ task input c−, we trained classifiers to predict if a given point θi was sampled from Θ(c+) or Θ(c−) (Fig. 3B; Methods). As predicted by the theory, above chance classification, and thus statistical separation, is only possible for the RNNs using distinct attractors, as a hallmark that autonomous latent dynamics are significantly different between the two tasks (Fig. 3C). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+6
+
+Figure 3. Shared components constrain network connectivity statistics. A. Many different solutions based on ring attractors in the latent dynamics exist for the memory pro/anti task, corresponding to minima in the sketched loss landscape. Instead of using a shared ring attractor, the network could use one ring attractor for each task which are separated along a third axis, reflected within the same subspace, or in orthogonal subspaces. B. Each neuron can be characterized by task-dependent effective parameters, which depend on the connectivity and the task input. Solutions using shared components imply identical statistics of the task-dependent effective neuron parameters (B1). This can be used to dissociate solutions with and without shared components by training a classifier to distinguish the distributions (B2). C. If the network uses shared components, the classifier cannot distinguish the statistics of the task-dependent effective neuron parameters above chance level. Histograms: distribution of classifier AUCs (blue: observed, gray: control with shuffled labels). Solid lines: medians. 
+
+D. Hallmarks of shared attractors in representational geometry 
+
+We have shown that shared latent components constrain the connectivity statistics, although they are not immediately visible at the level of neural activity. However, synaptic connectivity is typically not accessible in behaving animals; thus, our method for identifying shared components by analyzing connectivity statistics is inadequate for an experimental setting. In contrast, neural activity can now be recorded at large scale across multiple tasks or contexts. Can shared latent components be detected from neural activity? We show that an analysis of neural activity during specific perturbation experiments provides a necessary condition to identify computation via shared attractors. In these perturbation experiments, the task input is switched during a memory period: for a given pair of tasks with corresponding inputs c, c′, the network is initially in an attractor state for task c′, denoted r(c′). We then switch the task input from c′ to c, and let the network relax to a new attractor state, denoted r(c′→c) (Fig. 4A1). Finally, we compare 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+7
+
+Figure 4. Perturbations of task input extract hallmarks of shared attractors in representational geometry. A. Starting from an attractor state r(+) for the ‘pro’ task, the task input is switched (vertical dashed line) from c+ (‘pro’ task) to c− (‘anti’ task). This leads to firing rates dynamics towards a new “perturbed” attractor state r(+ →− ) (A1). Comparing r(+ →− ) with ‘anti’ task attractors 
+
+r(−) across pairs of stimuli α′, α (A2) leads to the representational similarity matrix K(+ →− ) 
+
+> α′,α
+
+. Colored solid lines: population activity trajectory after the task input switch c+ → c− for five different initial attractor states r(+)  
+
+> α
+
+. B. For shared attractors, the matrix entries K(+ →− ) 
+
+> α′,α
+
+and K(−→ +)  
+
+> α,α ′
+
+are identical. This symmetry allows to test for shared attractors across the four solutions from Fig. 3 (colored dots; color according to α − α′). For the “reflected” and “orthogonal” solution, the hypothesis of shared latent attractors can be excluded because of large deviations from the identity line. For the “parallel” solution the hypothesis can not be excluded, as a consequence of an additional symmetry of the solution. CCC: Lin’s Concordance Correlation Coefficient [57] between entries of the matrices K(+ →− ) 
+
+> α′,α
+
+and K(−→ +)  
+
+> α,α ′
+
+.
+
+this “perturbed” attractor state with another unperturbed attractor state r(c) for task c. (Fig. 4A2; note that the task 
+
+c of the unperturbed setting has to be the same as the final task in the perturbed setting c′ → c). We construct the corresponding representational similarity matrix (RSM) K(c′→c) 
+
+> α,α ′
+
+= 1 
+
+> N
+
+r(c) 
+
+> α⊤
+
+r(c′→c) 
+
+> α′
+
+, where α and α′ index different initial attractor states for each task, for example different points on the ring attractors of the ‘pro’ and ‘anti’ tasks. Intuitively, this matrix captures changes in the representational geometry [58] due to the perturbation of the task input from c′ to c.Reverting this procedure, we also determine the RSM K(c→c′) 
+
+> α′,α
+
+for the opposite perturbation from c to c′.For a shared attractor, the latent state is by definition not affected by the switch of the task input. In combination with the constraints imposed by shared latent dynamics on the connectivity statistics, we show that this implies a symmetry of the RSMs (Methods): K(c′→c) 
+
+> α,α ′
+
+= K(c→c′) 
+
+> α′,α
+
+. Importantly, this is only a necessary condition for a shared attractor; this symmetry could also arise from additional symmetries in the latent dynamics. For a stylized example, we turn to the setup investigated in the previous section where the memory pro/anti task is solved with four different solutions (Fig. 3A). For the perturbation experiments, we switch the task input during the memory period; for instance, from the ‘pro’ task c+ to the ‘anti’ task c−. In all four solutions, the network stores the stimulus angle during the memory period using a ring attractor. After the perturbation and a sufficient relaxation period, the neural activity settles again in a state on a ring attractor. Even for the solution using a shared latent attractor, neural activity is affected by the perturbation, since shared attractors in latent space do not imply shared neural activity (Fig. 4A). However, changes in the representational geometry obey the symmetry K(c−→c+) 
+
+> α,α ′
+
+= K(c+→c−) 
+
+> α′,α
+
+(Fig. 4B). We see explicitly that this symmetry is only a necessary condition: it is also exhibited by the solution with parallel ring attractors (Fig. 4B), due to its internal symmetries. This is, however, a peculiar example; in more generic cases we expect the symmetry to be violated 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+8     
+
+> Figure 5. Identifying shared attractors in low-rank networks trained end-to-end. Low-rank networks were trained end-to-end on the pro/anti memory tasks (Methods). Analysis reveals whether networks use shared attractors (A, rank-8) or not (B, rank-4). Shared attractors are identified using either connectivity statistics (Fig. 3) or perturbation response (Fig. 4), and visualized with low-dimensional projections (PCA of factors λduring memory period).
+
+for solutions relying on distinct attractors. Going beyond examples with controlled solutions, we trained networks end-to-end on the same tasks, enforcing the rank of the recurrent connectivity matrix (Methods). Due to the training procedure, there is no explicit control over the solution found by the network. In particular, it is not clear whether the network utilizes shared latent attractors. Using either connectivity statistics or representational geometry reveals that occurrence of shared attractors depends on the hyper-parameters, in this case the rank (Fig. 5). This shows that either method can be used to identify shared attractors when the ground-truth solution is unknown.  
+
+> E. Loci of task-dependent computation
+
+A central question about compositional computation is: where does the task-dependence enter the computation? Our framework identifies two potential loci. In a network using shared autonomous dynamics, the task input c can modulate how the stimulus drives the recurrent dynamics (via ψin , Eq. (5)), or how the shared factors are read out (via ψout , Eq. (4)). We call these two mechanisms input- and output-modulation . Task-dependence has to be resolved by one of the two, or a combination of both. For example, in the memory-pro/anti example above, we considered a solution via input-modulation: the shared ring attractor was used to store either the stimulus angle or its opposite, depending on the task input (Fig. 1C), while the readout was fixed across tasks. But this pair of tasks also admits a solution via output-modulation, where the input-driven dynamics ( ψin ) are the same across the two tasks, but the readout is “flipped” for the anti-task. Both input-and output-modulated solutions rely on shared latent components. Importantly, the two potential implementations can be dissociated using perturbations of the task input: Switching the task input during the memory period changes the network’s output for the output-modulated, but not the input-modulated solution. However, compositionality often relies on the combination of several independent contextual factors, which each affect the computation in a distinct way. To understand how the network can use shared components in this case, we move beyond the binary pro/anti task and turned to a family of tasks with an explicit compositional structure. Concretely, we consider a family of categorization tasks inspired by Tafazoli et al. [16]. In this study, macaque monkeys were trained to classify stimuli based on either their shape or their color, and had to report their decision using saccades along one of two orthogonal response directions. We modeled these tasks by representing the two stimulus features, color and shape, as two distinct input channels s1 and s2, and the two response directions as two output channels, y1 and y2. Each task in this family is therefore characterized by the combination of the relevant stimulus feature, s1 or s2 (indexed by a variable 
+
+cin ), and the required response direction, y1 or y2 (indexed by cout ) (Fig. 6A). In contrast to the experimental setup, the stimulus presentation is followed in our model by a memory period and the network should respond once a fixation signal 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+9
+
+Figure 6. Combining shared and task-dependent components. A. A family of four categorization tasks where cin selects the attended input channel and cout the response channel reporting the categorization result. Each task is characterized by cin (blue or orange) and cout (square or triangular markers). B. Solution with attractors re-used across all tasks. (B1) Shared one-dimensional latent autonomous dynamics. Black dots: attractors, used to store the classification result. (B2) cin -dependence is resolved by input-driven dynamics ψin ; cout -dependence is resolved by readout ψout . Left: colored arrows represent the value of ψin at λ = 0 
+
+for the stimulus of panel (A) and the two values of cin (blue or orange). Right: markers represent ψout evaluated at the three attractors of panel (B1) for the two values of cout (squares or triangles). C. Solution with attractors re-used across subsets of tasks. (C1) Latent attractors used for each task. Output-dependence is resolved by recurrent dynamics: attractors are re-used only across tasks with the same cout . Autonomous dynamics can be shared across tasks (C2), or depend on cout (C3). In the former case the input-driven dynamics must resolve the full task-dependence; in the latter they only have to resolve cin . Colored arrows as in (B2). (C4) Both solutions lead to distinct latent dynamics. Solid and dotted lines: trajectories; markers: fixed points. D. Identification of shared components across tasks for each solution. Markers represent tasks. Pairs of tasks (edges) are compared using connectivity statistics and measuring median cross-task classifier AUC (see Fig. 3); or using task input perturbations and measuring Lin’s CCC of representational similarity matrices (RSMs; see Fig. 4). High AUCs and low CCCs indicate non-shared autonomous dynamics. Non-shared components are successfully identified (light edges). E. Overview of the loci of task-dependence. For each solution (rows), entries summarize which component of the latent dynamics ( ψ0, ψin or ψout , columns) resolves each task-dependence, cin 
+
+and cout . “inv.”: task-invariant. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+10 is switched off. Similar to the memory pro/anti task, there are different solutions based on shared latent components. In a minimal solution, the categorization choice is encoded using only two attractors, which are re-used across all task conditions (Fig. 6B1). This solution combines input- and output- modulation: the input flow-field selects the relevant stimulus feature according to cin , and the readout flow-field directs the response to the required direction according to cout (Fig. 6B2), while the autonomous dynamics are fully invariant to the task input. However, the step from a single task condition to multiple, compositional ones opens up a set of multiple qualitatively different solutions: instead of using a shared component across all tasks, specific components could be shared across subsets of tasks. As an example, we constructed solutions that use orthogonal latent attractors across different response directions; in this way, the choice of the response direction is delegated to the recurrent dynamics while the readout ψout can be shared across all tasks. In these solutions, attractors are re-used across conditions for the relevant stimulus feature ( cin ), but not for the selected response direction ( cout ). This is possible in a two-dimensional latent space, in which each combination of categorization choice and response direction corresponds to one of four different attractors (Fig. 6C1). The autonomous dynamics can be shared across all tasks, with four coexisting attractors (Fig. 6C2). Alternatively, the autonomous dynamics could only contain the two attractors corresponding to the selected response direction cout , while the attractors for the non-selected direction are absent (Fig. 6C3). In the latter case, the autonomous dynamics are only partially shared across tasks; concretely, they are invariant with respect to cin but depend on cout . In full analogy to the fully shared components considered in the previous sections, these partially shared components lead to testable hallmarks in the connectivity and representational geometry (Fig. 6D). Furthermore, they can be distinguished using perturbations of the task input during the memory period: changing cout during a memory period changes the network output for the ‘partially shared’ solution, but not for the ‘fully shared’ one. Each of the three solutions presented above is distinguished by the locus where the selection of the output direction enters the computation (Fig. 6E). In the one-dimensional solution, this is performed at the level of the readout ψout ; in the ‘fully shared’ solution, this is done via the input flow-field ψin ; and in the ‘partially shared’ solution, via the autonomous flow-field ψ(cout )0 . For all three solutions, input feature selection is performed by ψin . Building on this classification of solutions by the locus of task-dependence, we systematically constructed a family of nine qualitatively different solutions, each uniquely characterized by the structure of attractor re-use and the specific combination of the loci ( ψ0, ψin , or ψout )associated with each task condition ( cin and cout ) (Methods and Fig. S1).  
+
+> F. Compositional computation via shared latent dynamics
+
+In this section, we show explicitly how shared and task-dependent components can be composed to solve a more elaborate family of tasks, going beyond the stylized examples employed so far. Here, we use fully shared autonomous dynamics to demonstrate how they can be combined with task-specific components at different loci to enable multi-tasking. Concretely, we consider a family comprising eight of the tasks used by Driscoll et al. [15]: delay-pro, memory-pro, react-pro, delay-anti, memory-anti, react-anti, match-to-sample, and anti-match-to-sample (Fig. 7A1; see the Methods for detailed task descriptions). The delay and react tasks are similar to the memory tasks used above, except that there is no memory period: after its onset, the stimulus is continuously present. For the memory and delay tasks, the output should occur when the fixation input switches off; for the react task it should occur directly at stimulus presentation. The match-to-sample tasks are structurally different: in these tasks the network receives a second stimulus after a memory period, and should report the second stimulus if it matches the first one without a delay. Our network implementation solves this family of tasks using a three-dimensional autonomous flow-field that contains a stable fixed point at the origin and a ring attractor that is shifted in the z-direction (Fig. 7A2). At the beginning of the task, the network is in the fixed point at the origin. An incoming stimulus and the subsequent autonomous dynamics (Fig. 7B) drive the network to the corresponding location on the ring attractor, or its opposite for anti tasks. Importantly, the third factor, λ3, acts as a gate: the stimulus affects the dynamics only in the λ3 = 0 plane, but not on the ring attractor in the 
+
+λ3 = 1 plane. This gating allows the network to solve the match-to-sample tasks: the first stimulus, which is stored on the ring attractor, is not affected by the incoming second stimulus, such that both stimuli can be compared by the readout. The solution combines multiple loci to resolve task-dependence (Fig. 7A2). The pro vs. anti context is resolved by the input flow-field: in the anti context, the input-driven dynamics implement a rotation by π for all tasks. The readout flow-field resolves the four classes of tasks: for the match-to-sample tasks, the readout compares the incoming second stimulus to the stored first stimulus and reports it if there is a match (Fig. 7C). Put differently, the readout is non-zero only if the network is on the ring attractor ( λ3 = 1 ) and the incoming stimulus matches the stored angle. For the memory, delay, and react tasks, the readout simply reports the value of the two first latents, encoding the stimulus angle, or its opposite for anti tasks. In addition, the readout is gated by the fixation signal for the memory and delay tasks. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+11 
+
+Figure 7. Compositional computation across eight tasks via shared latent dynamics. A1. Input-output structure for the eight tasks. Memory, delay, and react require reporting a stimulus angle α (pro) or its opposite α + π (anti); they differ in stimulus presentation timing and output gating (Methods). Match-to-sample tasks require comparing a second stimulus angle α2 to a memorized first one 
+
+α1 and reporting a match (pro: α2 = α1, anti: α2 = α1 + π). A2. The eight tasks are solved using a shared autonomous flow field 
+
+ψ0, comprising a fixed point and a ring attractor in a three-dimensional latent space. Task-dependence is resolved by the input flow field ψin (modulated by c0, encoding pro/anti) and the readout ψout (modulated by c1, c2, encoding task class). Flow-field in green shows dynamics in the (λ2 = 0) plane. B. Input-driven and autonomous dynamics. B1. An incoming stimulus drives the network towards the corresponding location in the λ3 = 0 plane (blue trajectory). Bottom: flow-field in the λ2 = 0 plane. B2. During the memory period, autonomous dynamics drive the network to the ring attractor in the λ3 = 1 plane, retaining the stored angle (green trajectory). C. Readout ψout , color-coded (white: zero output). For the match-to-sample task (top), output is produced only in the 
+
+λ3 = 1 plane, where the location on the ring matches the second stimulus. For the memory task (bottom), the readout matches the latents (λ1, λ 2).
+
+This example shows how a recurrent network can solve a range of different tasks with a common structure using shared autonomous latent dynamics, with all task-dependence delegated to input and readout flow-fields. In this case, the shared structure is that all tasks rely on an angular variable, which is naturally implemented by a shared ring attractor. 
+
+III. DISCUSSION 
+
+Building on empirical results in trained recurrent neural networks [12, 14, 15], we developed a theory of compositional computation via shared latent components in low-rank recurrent networks. In particular, we proposed that the notion of “shared dynamical motifs”, introduced by Driscoll et al. [15], can be formalized in terms of autonomous latent dynamics that are shared and re-used across tasks involving similar computations. We showed that these shared latent components 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+12 are consistent with task-dependent neural activity, which is ubiquitously observed in neural data [17, 24, 25, 30, 46–51]. Furthermore, we used our theory to derive observable consequences of computation via shared latent components. First, we showed that the connectivity statistics contain signatures that allows to dissociate shared from non-shared solutions. Second, we utilized perturbations of the task input to reveal hallmarks in the representational geometry imposed by shared attractors. Finally, we explicitly constructed solutions for compositional tasks to demonstrate that shared latent components enable flexible and dynamic compositional computation. Based on these solutions, we delineated specific mechanisms through which the shared components can be utilized: via input- or output-modulation, and via partial invariances. Our work highlights the degeneracy of solutions in recurrent neural networks [14, 59–61]. The low-rank assumption for the network connectivity poses a strong constraint on the space of possible networks. Nonetheless, many low-rank solutions are possible for each task we considered; we explicitly constructed some of these solutions. For large enough networks, the universal approximation property of feedforward networks [62–64] together with the mapping from low-rank recurrent to feedforward networks [56] implies that arbitrary solutions with the dimensionality given by the rank of the connectivity can be implemented. The degeneracy of the solution space raises the question of how these solutions can be distinguished. Based on our theory, we showed that targeted perturbations of the task input provide a powerful tool to dissociate solutions. Importantly, this approach relies only on experimentally accessible quantities: the task signal and the neural activity. Hence, our theory suggests new experiments where targeted perturbation of the task- or context-signal are used to gain insight into the mechanisms employed by the network. Note that using perturbation of the task signal is different from using perturbations of the stimulus inputs [50], neural activity [65], or connectivity [44] to dissociate solutions. A generic problem for compositional tasks is how a network can discover and exploit the tasks’ compositional structure during training. This problem is tightly related to the encoding of the task identity [13]: if the input directly encodes the compositional structure, it can be exploited by the network to enable compositional generalization; the opposite extreme is a one-hot coding which does not contain any information about the task structure. For our theory, this distinction is not relevant. In both cases, the context input reduces to a task-dependent effective bias. From this perspective, structured compositional inputs and shared components form distinct, complementary mechanisms which facilitate compositional computation. Importantly, we assume for all our examples that the correct task is encoded in the input, akin to a task set [66, 67], circumventing the challenging question how the correct task can be inferred [68]. Conceptually, we leverage the low-rank assumption and a strict mathematical definition of shared latent components to derive observable consequences. While end-to-end trained neural networks do not necessarily obey the low-rank assumption, training often leads to learned low-rank components [35], such that the networks might rely on qualitatively similar dynamics. A direct consequence of the low-rank assumption is that the neural activity is constrained to low-dimensional manifolds [69, 70] which are nonlinearly embedded in the firing rate space (cf. Eq. (7)). Due to the nonlinear mapping, the resulting manifolds can have a high linear dimensionality in firing rate space [71], as observed in neural activity [72, 73]. An alternative theoretical approach to multi-task networks with high-dimensional dynamics does not use task-shared dynamical components [74]. A central component of our framework is the mean-field description of single-hidden-layer networks in terms of a probability distribution [52–55]. In the context of low-rank networks, this distribution is typically assumed to be Gaussian [27] or a mixture of Gaussians [31, 37, 45]; recent studies went beyond Gaussianity to link connectivity and computation in the case of more general connectivity structures [43, 75]. Going beyond the (mixture of) Gaussian assumption increases the expressivity of the network and links to universal approximation, which we expect to be of broad interest in theoretical neuroscience. Existing work on multitasking recurrent networks relies predominantly on end-to-end training. Here, we took an orthogonal approach: we designed flow-fields that solve the task and trained feedforward networks to implement them, exploiting the link between low-rank recurrent networks and feedforward networks [56]. This allowed us to have precise control over the solution implemented by the network; in contrast, end-to-end training relies on a variety of indirect methods, for example hyperparameter tuning, to chart the solution space [14, 15, 59–61, 76]. On a more abstract level, controlling the flow-field allowed us to strike a favorable balance that retains mechanistic interpretability while allowing for complex solutions to multi-task problems. 
+
+> Acknowledgements
+
+We thank Wulfram Gerstner for exceptional guidance and mentoring, Manuel Beiran for helpful feedback on the project, Flavio Martinelli for valuable discussions on identifiability, and the whole team of the Laboratory of Computational Neuro-science for insightful discussions. We gratefully acknowledge the publicly available data by Valerio Mante and Laura Driscoll that is used in Fig. 2A. This work was funded by the Swiss National Science Foundation grants CRSII5 198612, 200020-
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+13 207426 and 200021-236436. AvM was also supported by the Ministry of Culture and Science of North Rhine-Westphalia (NRW Rückkehrprogramm).    
+
+> IV. METHODS A. Neural network training
+> 1. Controlling solution space degeneracy
+
+End-to-end training of recurrent neural networks uses (stochastic) gradient descent to minimize a loss function L(Θ) on the space of the network parameters Θ, for example a mean-squared-error loss that penalizes deviations from the desired network output [15]. Typically, there are multiple, qualitatively different solutions to the task [14, 59–61, 76]. Put differently, the solution space exhibits a degeneracy. Which of these solutions is found depends on the implicit bias imposed by, among other factors, hyperparameters, initialization, network architecture, and learning algorithm. For low-rank networks, this solution space degeneracy can be controlled. The central observation is that the network output depends on the parameters only through the flow fields, see (3) and (4). Hence, in this case one can consider the loss as a functional of the flow fields L[ψ], where we denote ψ = {ψrec , ψout } for simplicity. To control the solution space degeneracy, we introduce a target flow field ψ∗ corresponding to a specific solution to the task, L[ψ∗] ≈ 0. Controlling the properties of the target flow field allows us to control the properties of the solution. The target flow field, in turn, is imposed using an auxiliary mean-squared-error loss, 
+
+L∗[ψ | ψ∗] = 12 ⟨∥ ψ∗ − ψ∥2⟩P (γ), (10) where P (γ) denotes the data distribution comprising the latent variables as well as all input variables. Adjusting the data distribution allows to control the domain within which the flow field of the network matches the target flow field; in regions of low probability P (γ) the flow field can deviate from the target flow field. To train the flow field, we use online stochastic gradient descent (SGD) with L2 regularization and Gaussian noise. New data samples are generated from P (γ) in each SGD step. For large network sizes N , this training procedure is described by a convex optimization problem in the space of probability measures of the single-neuron parameters ρ(θ), which implies that it is guaranteed to converge [52–55]. Intuitively, the convexity arises because the flow field ψ can be written as a linear functional of ρ, such that the auxiliary mean-squared error loss L∗[ψ | ψ∗] is quadratic in ρ [52]. Conceptually, our training approach is fundamentally different from end-to-end training: leveraging the correspondence between low-rank networks and the low-dimensional latent dynamics described by ψ, we specify a solution to the task ψ∗.To train the flow field, we need to train the corresponding single-hidden-layer network, (3) and (4), on the auxiliary MSE loss (10). Note that this is computationally cheap compared to end-to-end training with backpropagation through time.  
+
+> 2. Flow field training
+
+For each task solution used in the Results, we designed a specific flow-field (ψrec ∗, ψout ∗), see section "Task solutions". To obtain low-rank networks implementing the dynamics of Eqs. (3)-(4) with given (ψrec ∗, ψout ∗), we trained MLPs on the auxiliary loss of Eq. (10), with the target ψ∗ defined as ψ∗(λ, s, c) = ( ψrec ∗(λ, s, c) + λ, ψout ∗(λ, s, c)) .All MLPs were trained using online SGD. At each step, a new sample was drawn independently from the task-specific training data distribution P (λ, s, c), see section "Task solutions". L2 regularization with coefficient λreg was applied to all weights. Weight diffusion was implemented as additive Gaussian noise with standard deviation σdiff , applied independently to each weight at every gradient step. Gaussian noise with standard deviation σin was further added to the inputs s, c to improve robustness. Numerical parameters were set to 1.5 × 10 7 gradient steps (except ∼ 40 × 10 7 for the 8-tasks flow field of Fig. 7), step size η = 5 × 10 −3, λreg = 10 −6, σdiff = 10 −6, σin = 10 −6. Number of neurons was N = 1024 (except 
+
+N = 2048 for Fig. 7).  
+
+> 3. End-to-end training
+
+We trained two low-rank networks end-to-end on the pro/anti memory tasks, with ranks P = 8 and P = 4 (Fig. 5). Empirically, low-rank networks initialized at random did not reliably converge; we therefore used a two-stage procedure. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+14 First, a full-rank network of N = 256 neurons was trained end-to-end on the two tasks. Second, its recurrent connectivity was truncated to rank P by retaining the P leading components of its singular value decomposition, Wrec = 1 
+
+> N
+
+U V ⊤; this low-rank approximation was used to initialize a low-rank network, which was then fine-tuned end-to-end on the same tasks. Both stages used backpropagation through time with the Adam optimizer and a mean-squared-error loss on the network output. At each step, a fresh batch of 64 trials was drawn from the task distribution. The discretized dynamics used a step size dt/τ = 0 .2. L2 regularization with coefficient λreg = 10 −6 was applied to the weights, and an additional penalty with coefficient λact = 10 −6 to the firing rates. Gaussian noise was injected into the inputs ( σin = 0 .1) and into the recurrent currents ( σrec = 0 .05 ) at every step to improve robustness. Both full-rank pretraining and low-rank fine-tuning used a learning rate η = 3 × 10 −4 and 2 × 10 5 steps for the rank-8 network, and η = 10 −3 for 10 5 steps for the rank-4 network. 
+
+B. Shared components impose constraints on the empirical measure of parameters 
+
+We start from the expression of Eq. (9) for the autonomous dynamics. Up to the leak term ( −λ), this expression can be interpreted as a multi-layer perceptron (MLP) with a single hidden layer, where the term β(c) 
+
+> i
+
+= bi +wc⊤ 
+
+> i
+
+c is equivalent to a task-dependent bias. Thus, the problem can be mapped to an identifiability problem for MLPs: How does the input-output function of an MLP constrain its parameters? A MLP with N hidden neurons is defined by a nonlinearity σ : R → R, and a set of parameters Θ = {(ui, vi, β i), i =1, . . . , N }, where ui denotes neuron i’s input weights, vi its output weights, and βi its bias, parameterizing the function 
+
+FΘ : x 7 → 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+viσ(u⊤ 
+
+> i
+
+x + βi). (11) MLPs can approximate arbitrary functions if the number N of neurons is large enough due to the Universal Approximation Theorem [62–64]. A distinct question is that of identifiability : can two MLPs with different parameters implement the same function? In other words, are network parameters uniquely determined by the function they implement? Identifiability results have been derived in various settings [77–79], including networks with more general architectures [80, 81]. 
+
+1. Symmetries, irreducibility, and empirical measure 
+
+Importantly, Eq. (11) enjoys general symmetries beyond the well-known permutation symmetry of neuron labels, that must be taken into account when considering identifiability [77, 79, 82]: 1. Duplicate neurons : if several neurons i1, i 2, . . . , i m have the same input weights and biases (ui1 , β i1 ) = · · · =(uim , β im ) , the function FΘ does not depend on their individual output weights vi1 , . . . , vim but only on their sum 
+
+(vi1 + · · · + vim ).2. Zero neurons : if a neuron’s output weight is null, vi = 0 , the function FΘ does not depend on its other parameters 
+
+ui and βi.Therefore, identifiability results are typically expressed for “irreducible” networks containing neither zero nor duplicate neurons. Alternatively, Eq. (11) can be expressed in a way that naturally encompasses the permutation, duplicate-neurons, and zero-neurons symmetries. To this end, we start by writing it in terms of the empirical measure (EM) of the single-neuron parameters 
+
+ρ(u, v, β ) = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+δ(u − ui)δ(v − vi)δ(β − βi), (12) where δ(x) denotes a Dirac delta, as 
+
+FΘ = Fρ : x 7 →
+
+Z
+
+v σ(u⊤x + β) d ρ(u, v, β ). (13) By decomposing the EM as the product of its (u, β )-marginal μ(u, β ) with the corresponding conditional ρ(v|u, β ), one 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+15 can write 
+
+Fρ(x) = 
+
+Z 
+
+> supp ν
+
+ν(u, β ) σ(u⊤x + β) d μ(u, β ) (14) where ν(u, β ) := R v dρ(v|u, β ) denotes the conditional mean of the output weights v, and supp ν its support. The function Fρ neither depends on the conditional distribution ρ(v|u, β ) beyond its mean (see also [83]), nor on the distribution 
+
+μ outside the support of ν: these invariances account, respectively, for the duplicate-neurons and zero-neurons symmetries. Therefore, the identifiability of irreducible MLPs is equivalent to the identifiability of the marginal μ and conditional mean 
+
+ν for non-irreducible MLPs: if two MLPs with EMs ρ and ρ′ implement the same function Fρ = Fρ′ , then ν = ν′ and 
+
+μ = μ′ on supp ν.The properties of the activation function may give rise to additional symmetries. For example, softplus σ(t) = log(1 + et)
+
+has the "even+linear" property σ(t) = σ(−t) + t [82]. Such activation-function-specific symmetries can in turn lead to 
+
+affine symmetries [81], i.e., non-trivial combinations of neurons I with a constant output, P 
+
+> i∈I
+
+viσ(u⊤ 
+
+> i
+
+x + βi) = const .Crucially, Vlačić and Bölcskei [81] showed that irreducible MLPs are identifiable up to permutation if σ has no such affine symmetries; and conversely, affine symmetries are the only additional symmetries beyond the generic permutation, zero-neurons, and duplicate-neurons symmetries. In summary, MLPs are identifiable up to specific symmetries. These symmetries are conveniently captured by the parameterization of Eq. (14), excluding possible activation-function-specific affine symmetries.  
+
+> 2. Approximate conditional mean
+
+To distinguish shared and non-shared latent dynamics, we test for statistical difference between the empirical samples 
+
+Θ for two tasks. Since the order of the samples is not relevant for the test, this takes the permutation invariance into account. Furthermore, we estimate the conditional mean of the output weights ν(z) to account for the duplicate-neurons symmetry. For simplicity, we do not consider the zero-neuron symmetry as well as additional activation-function-specific affine symmetries. Empirically, zero-neuron symmetries are absent, likely due to weight diffusion during training, and we expect that the involved affine symmetries occur only rarely. We denote the input weights and the effective bias as z(c) 
+
+> i
+
+= ( ui, β (c) 
+
+> i
+
+), and drop the superscript c unless it is relevant. The empirical conditional mean of the output weights ν(z) ≡ R v dρ(v | z) reads 
+
+ν(z) = 1
+
+|I(z)|
+
+X
+
+> j∈I(z)
+
+vj , I(z) = {j s.t. zj = z}, (15) which is only defined for values of z such that there is at least one neuron with zj = z, i.e., |I(z)| > 0. If there are no duplicates the conditional mean is simply ν(zi) = vi.Empirically, we did not observe exact duplicates in z-space. This may be linked to numerical imprecision as well as weight diffusion during training. We interpret this fact in a statistical perspective: redundancy in z-space has to be understood in a smooth way, where neurons close to each other are almost duplicates. To account for this perspective, we smoothen the Dirac deltas of the EM in Eq. (12) using a Kernel Density Estimate (KDE) of ρ [84] to compute an approximate conditional mean: Let ˜ρ(z, v) be a KDE of the EM ρ, of the form 
+
+˜ρ(z, v) = 1
+
+N
+
+> N
+
+X
+
+> j=1
+
+k(z|zj )kv (v|vj ), (16) where k(·| z∗) is a kernel with mass 1 and mean z∗ (e.g., a Gaussian), and similarly for kv (·| v∗). We compute an approximate conditional mean as 
+
+˜ν(z) = ⟨v|z⟩˜ρ =
+
+R v ˜ρ(z, v)d v
+
+R ˜ρ(z, v)d v =
+
+P 
+
+> j
+
+k(z|zj ) R vkv (v|vj )d v
+
+P 
+
+> j
+
+k(z|zj ) R kv (v|vj )d v =
+
+P 
+
+> j
+
+k(z|zj )vj
+
+P 
+
+> j
+
+k(z|zj ) , (17) which yields an “effective output weight” for each neuron i,
+
+˜νi := ˜ ν(zi) = 
+
+P 
+
+> j
+
+wij vj
+
+P 
+
+> j
+
+wij 
+
+(18) 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+16 where wij = k(zi|zj ). Note that the choice of the kernel kv (·| v∗) is irrelevant here, provided that it has mass 1 and mean 
+
+v∗.For a given task c, let θ(c) 
+
+> i
+
+= ( ui, β (c) 
+
+> i
+
+, ˜ν(c) 
+
+> i
+
+) denote the single-neuron parameters that characterize the autonomous dynamics, and Θ(c) := {θ(c) 
+
+> i
+
+}Ni=1 the corresponding point-cloud. If the point-clouds Θ(c) and Θ(c′) are statistically undistinguishable for two tasks c, c′, the tasks share similar autonomous dynamics. Conversely, if the point-clouds are significantly different, either the (u, β (c))-marginals, or the function ˜ν(c), are different across tasks — which implies that autonomous dynamics are different across tasks due to the identifiability of MLPs expressed in terms of the (u, β )-marginal and the conditional mean. For the KDE of ρ, we used Gaussian kernels of the form k(z|z∗) = 1√det(2 πΣ) exp( ∥Σ−1/2(z − z∗)∥2) where Σ = diag( σ21 , . . . , σ 2 
+
+> P+1
+
+) is a diagonal matrix with separate bandwidths σμ for each dimension μ. To select the maximal bandwidth, we used that the autonomous flow-field should not be significantly affected by replacing each vi with the corresponding ˜ν(c) 
+
+> i
+
+. For instance, for the pro/anti networks with a shared ring attractor, this replacement should not destroy the slow ring manifold. Concretely, bandwidth selection was made according to the scale of the data: bandwidth σμ
+
+in dimension μ was set to σ2 
+
+> μ
+
+= s2⟨z2
+
+> μ
+
+⟩σ20 , with s = ( d+2 4 N )−1/(d+4) a proportionality factor that adjusts the bandwidth to the dimensionality d of z and the number N of neurons (following Silverman’s ‘rule of thumb’ for multivariate data [84]), 
+
+⟨z2
+
+> μ
+
+⟩ the mean square of samples of zμ, and σ0 = 14 a fixed factor small enough to ensure preservation of flow fields. 
+
+3. Testing for statistical difference between point-clouds 
+
+Given two point-clouds Θ(c) and Θ(c′), we tested whether there was a significant difference between their underlying distribution by training nonlinear classifiers to predict from which point cloud ( Θ(c) or Θ(c′)) a given data point θ was sampled [85, 86]. Importantly, the (u)-marginals of the point-clouds are identical because the input weights {ui} are the same across tasks. This can lead to identity leak when training classifiers if the same ui is shared between training and test sets. To prevent such an identity leak, cross-validation folds were defined over neuron indices i: for each fold, both data points associated with index i (i.e. both θ(c) 
+
+> i
+
+and θ(c′) 
+
+> i
+
+, with label yi = +1 or −1 respectively) were assigned together to either the training or test set. Classifiers were trained to predict labels from data. The AUC was computed by averaging over folds. Tests under the null hypothesis were performed by independently swapping labels for each neuron with probability 1/2, which preserves the marginal distributions while destroying the correspondence between class labels and parameter features. To obtain the results reported in the figures, we trained nonlinear Support Vector Classifiers (SVCs) with an RBF kernel using scikit-learn [87] and evaluated their AUC using 2-fold cross-validation. A distribution of AUCs was obtained by running cross-validation over 50 different classifier initializations and random fold assignments. When reporting a single AUC (as in Fig. 6D), it corresponds to the median of this distribution. 
+
+C. Testing for shared latent attractors via task input perturbations 
+
+Given a latent stationary state λ of the autonomous dynamics, the corresponding population activity of neuron i for task input c is given from Eq. (7) by 
+
+λ, c 7 → r(c) 
+
+> i
+
+= σ(u⊤ 
+
+> i
+
+λ + β(c) 
+
+> i
+
+). (19) Let λ(c) 
+
+> α
+
+be an attractor of the autonomous latent dynamics for task input c and sensory input α, and λ(c→c′) 
+
+> α
+
+the new attractor reached after a switch of the task input from task input c to c′. Denote r(c) 
+
+> α
+
+, r(c→c′) 
+
+> α
+
+the corresponding population activity vectors. We define λ(c′) 
+
+> α′
+
+, λ(c′→c) 
+
+> α′
+
+, r(c′) 
+
+> α′
+
+, r(c′→c) 
+
+> α′
+
+similarly, for the task switch from c′ to c and the sensory input α′.Define the kernel (also called representational similarity matrix) for two inputs α, α ′,
+
+K(c′→c) 
+
+> α,α ′
+
+= 1
+
+N r(c) 
+
+> α⊤
+
+r(c′→c) 
+
+> α′
+
+. (20) If c, c′ share autonomous dynamics, then (i) λ(c→c′) 
+
+> α
+
+= λ(c) 
+
+> α
+
+, and (ii) the marginal distributions coincide, μ(c)(u, β ) = 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+17 
+
+μ(c′)(u, β ). Therefore, 
+
+K(c′→c) 
+
+> α,α ′
+
+= 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+σ(u⊤ 
+
+> i
+
+λ(c) 
+
+> α
+
++ β(c) 
+
+> i
+
+)σ(u⊤ 
+
+> i
+
+λ(c′→c) 
+
+> α′
+
++ β(c) 
+
+> i
+
+)=
+
+Z
+
+σ(u⊤λ(c) 
+
+> α
+
++ β) σ(u⊤λ(c′→c) 
+
+> α′
+
++ β) d μ(c)(u, β )
+
+> (∗)
+
+=
+
+Z
+
+σ(u⊤λ(c→c′) 
+
+> α
+
++ β) σ(u⊤λ(c′) 
+
+> α′
+
++ β) d μ(c′)(u, β )= K(c→c′) 
+
+> α′,α
+
+. (21) where we used (i) and (ii) in (∗). Thus, the symmetry K(c′→c) 
+
+> α,α ′
+
+= K(c→c′) 
+
+> α′,α
+
+is a direct consequence of shared latent attractors. Conversely, a violation of this symmetry indicates an absence of shared attractors. 
+
+D. Tasks 
+
+Memory pro / anti tasks 
+
+This family comprises two tasks: memory pro and memory anti. The input is four dimensional, s = ( s1, s 2, f, c ) where 
+
+(s1, s 2) ∈ R2 are the stimulus input, f ∈ { 0, 1} the fixation input, and c ∈ {− 1, 1} encodes the pro ( c = 1 ) or anti (c = −1) version of the tasks; the target output is two-dimensional, y = ( y1, y 2) ∈ R2. There are four consecutive periods: context, stimulus, memory, and response (following Driscoll et al. [15]). The stimulus input is (s1, s 2) = (cos θs, sin θs)
+
+with θs ∈ [0 , 2π) during the stimulus period and zero otherwise, the fixation input is f = 0 during the response period and f = 1 in all other previous periods, and the context input is constant ( c = ±1) during all periods. The target output (Fig. 1A) is (y1, y 2) = (cos θs, sin θs) or (y1, y 2) = (cos( θs + π), sin( θs + π)) for pro and anti tasks, respectively, during the response period and zero during other periods. For simulations, periods ranged across 0.5 to 1.5 τ for the context, 2 to 5 τ for the stimulus, 5 to 10 τ for the memory, and 5 τ for the response. 
+
+Ring attractor family 
+
+This family comprises eight tasks: react, delay, memory, and react-to-sample, each in a pro and anti version. The input is six dimensional, s = ( s1, s 2, f, c 0, c 1, c 2), where c1 ∈ { 0, 1} encodes whether the match-to-sample ( c1 = 1 ) or another task (c1 = 0 ) should be solved, c2 ∈ { 0, 1} distinguishes react ( c2 = 1 ) from delay and memory tasks ( c2 = 0 ), and c0 encodes the pro/anti context (as c in the memory tasks above). The target output is two-dimensional, y = ( y1, y 2) ∈ R2. There are two consecutive periods in the react tasks (context and stimulus), three periods in the delay tasks (context, stimulus, and response), and four periods in the memory and match-to-sample tasks (context, stimulus, memory, and response). All task inputs are constant during all periods; the fixation input is f = 1 except for tasks with a response period during which 
+
+f = 0 . The stimulus is (s1, s 2) = (cos θs, sin θs) during stimulus (react, memory, and match-to-sample tasks) or stimulus and response (delay tasks) periods; for the match-to-sample tasks a second stimulus (s1, s 2) = (cos θm, sin θm) is presented during the response period; and during all other periods the stimulus is zero. Similar to the memory pro/anti tasks, for the react and delay tasks the target is (y1, y 2) = (cos θs, sin θs) during either the response period (delay task) or the stimulus period (react task); and is changed to (cos( θs +π), sin( θs +π)) for their anti versions. For the match-to-sample tasks, the target is (y1, y 2) = (cos θm, sin θm) during the response period if θm = θs,and 0 otherwise as well as during other periods; for the anti version, the condition is changed to θm = θs + π (Fig. 7A1). 
+
+Categorization tasks 
+
+This family comprises four tasks, parameterized by two constant task inputs: cin ∈ {± 1}, selecting the relevant stimulus channel ( cin = +1 for s1, cin = −1 for s2), and cout ∈ {± 1}, selecting the output channel reporting the categorization result ( cout = +1 for y1, cout = −1 for y2), inspired by the experimental design of Tafazoli et al. [16] (Fig. 6A). The input is five-dimensional, s = ( s1, s 2, f, c in , c out ), where s1, s 2 ∈ [−1, 1] encode two distinct stimulus features, and f ∈ { 0, 1}
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+18 is the fixation input. The target is two-dimensional, y = ( y1, y 2) ∈ R2. As in the previous ‘memory’ tasks, there are four consecutive periods: context, stimulus, memory, and response. Task input is constant across all periods. During the context period, the stimulus is zero and f = 1 . During the stimulus period, s1 and s2 take non-zero values and f = 1 . During the memory period, all stimulus inputs are zero and f = 1 .During the response period, all stimulus inputs are zero and f = 0 . The network must categorize the relevant stimulus, 
+
+˜s = {s1 if cin = +1 or s2 if cin = −1}, as positive or negative, and report the result in the selected output channel. The target output during the response period is therefore (y1, y 2) = {(sign ˜ s, 0) if cout = +1 or (0 , sign ˜ s) if cout = −1}, and 
+
+0 during other periods.  
+
+> E. Task solutions
+> Memory pro / anti tasks (shared)
+
+The latent space is two-dimensional, λ = ( λ1, λ 2) ∈ R2 and the readout is two-dimensional, y = ( y1, y 2) ∈ R2. The full input is s = ( s1, s 2, f, c ) where (s1, s 2) ∈ R2 are the stimulus input, f ∈ { 0, 1} the fixation input, and c ∈ {− 1, 1} encodes the pro ( c = 1 ) or anti ( c = −1) version of the tasks. We use polar coordinates for (λ1, λ 2) and (s1, s 2) with radii r, r s
+
+and angles θ, θ s, respectively. 
+
+Flow field. The autonomous radial dynamics in the latent space are given by a quartic double-well potential with stable fixed points at r = 0 and r = 1 , corresponding to the radial flow 
+
+g(r) = −r(2 r − 1)( r − 1) . (22) The total autonomous flow field is given by 
+
+f1 = g(r) cos θ, f2 = g(r) sin θ, (23) implementing a fixed point at the origin and a ring attractor. The input-driven flow field is 
+
+˜f1 = −rs (λ1 − c s 1), ˜f2 = −rs (λ2 − c s 2), (24) which leads to a fixed point at λ1 = c s 1, λ 2 = c s 2 where the multiplication with c rotates the angle by π for the anti tasks. The multiplication with rs ensures that there are no input-driven dynamics without a stimulus input. The readout is 
+
+yi = (1 − f ) λi, i = 1 , 2, (25) reporting the latent state if fixation is switched off. 
+
+Training distribution. The stimulus (s1, s 2) = rs(cos θs, sin θs) is sampled according to θs ∼ Unif[0 , 2π] and rs ∼
+
+Bernoulli( c = 0 .25) . Further, f ∼ Bernoulli( c = 0 .5) and c ∼ Rademacher( {− 1, +1 }). The latent state is sampled as 
+
+λ ∼ N (0 , σ 2I2) with σ = 0 .5. With probability pnorm = 0 .25 the planar part is normalized, (λ1, λ 2) ← (λ1,λ 2)
+
+√λ21+λ22
+
+, if there is no stimulus input to increase the number of samples on the ring attractor. 
+
+> Memory pro / anti tasks (non-shared)
+
+We use the same notation as in the shared solution above, and specify only differences. 
+
+Parallel solution. For the "parallel" example, the latent space is three-dimensional and the autonomous flow-field is task-dependent: the flow field is identical to the shared solution in the (λ1, λ 2) -plane, but the flow-field along the λ3-axis depends on the task input c: f3 = −(λ3 − c), such that the ring attractor is in the λ3 = c plane. The input-driven flow field is task-invariant: the multiplication with the task input c in Eq. (24) is replaced by a multiplication with λ3,
+
+˜fi = −rs (λi − λ3 si) for i = 1 , 2; there is input-driven flow in the λ3 direction. The readout is identical to the shared solution, and does not depend on λ3. The training data distribution is identical except that λ is drawn from a three-dimensional normal distribution, λ ∼ N (0 , σ 2I3); and when normalization occurs, it is on the ring in the plane λ3 = c.
+
+Reflected solution. For the "reflected" example, the latent space is two-dimensional and the autonomous flow-field is task-dependent. The full latent space is shifted by (1 , 0) for the pro task, and then reflected with respect to the y-axis for the anti task. Within the shifted latent space, the input-driven dynamics are identical to that of the shared solution — for the anti task, input-driven dynamics are the reflected opposite of that of the pro task. The readout is task-invariant: it 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+19 reports the latent state, projected on the (λ1 ≥ 0) -half-plane, and shifted by (1 , 0) , i.e. y = (1 − f ) · (|λ1| − 1, λ 2). The training data distribution is also identical, except that the planar normalization is also shifted and reflected according to the task to match the location of the ring attractor. 
+
+Orthogonal solution. For the "orthogonal" example, the latent space is four-dimensional and the autonomous flow-field is task dependent: for the ’pro’ task, the flow field is identical to the shared solution in the (λ1, λ 2)-subspace and the autonomous flow in the (λ3, λ 4)-subspace is contractive, f3 = −λ3 and f4 = −λ4; for the ’anti’ task, the flow field is identical to the shared solution in the (λ3, λ 4)-subspace and the autonomous flow in the (λ1, λ 2)-subspace is contractive. The input flow field is task-invariant: ˜fi = −rs (λi − si) for i = 1 , 2 and ˜fi = −rs (λi + si−2) for i = 3 , 4, such that input-driven dynamics solve the pro task in the (λ1, λ 2)-subspace and the anti task in the (λ3, λ 4)-subspace. The readout flow field is also task-invariant: yi = (1 − f ) ( λi + λi+2 ) for i = 1 , 2, leveraging that the flow is contractive in the irrelevant subspace. The training data distribution is identical except that λ is drawn from a four-dimensional normal distribution, 
+
+λ ∼ N (0 , σ 2I4) and planar normalization is performed independently in the two subspaces (λ1, λ 2) and (λ3, λ 4).
+
+Ring attractor family 
+
+We use the same notation as in the shared memory task above, and specify only differences. The latent space is three-dimensional, λ = ( λ1, λ 2, λ 3) ∈ R3 and the full input is s = ( s1, s 2, f, c 0, c 1, c 2) where c1 ∈ { 0, 1} encodes whether the match-to-sample ( c1 = 1 ) or another task ( c1 = 0 ) should be solved, c2 ∈ { 0, 1} distinguishes react ( c2 = 1 ) from delay and memory tasks ( c2 = 0 ), and c0 encodes the pro/anti context (as c in the memory tasks above). 
+
+Flow field. The autonomous radial dynamics in the (λ1, λ 2)-plane are given by the fixed point and the ring attractor, and the flow along the λ3 axis is contractive towards λ3 = r with r2 = λ21 + λ22. In total, the autonomous flow field is 
+
+f1 = g(r) cos θ, f2 = g(r) sin θ, f3 = −(λ3 − r). (26) The flow in the λ3 tracks the radius in the (λ1, λ 2)-plane; since the ring has radius r = 1 this shifts the ring into the λ3 = 1 
+
+plane. The input-driven flow field is 
+
+˜f1 = −rs γ(1 − λ3) ( λ1 − c0 s1), ˜f2 = −rs γ(1 − λ3) ( λ2 − c0 s2), ˜f3 = rs (−f3 + g(r)) . (27) where γ(x) = clip( x−ab−a , 0, 1) with a = 0 .1, b = 0 .9 interpolates between γ(x ≤ a) = 0 and γ(x ≥ b) = 1 . The multiplication with γ(1 − λ3) gates the input such that it has an effect in the λ3 = 0 plane but not in the λ3 = 1 plane. The double-well along the λ3 direction ensures that the dynamics take place in the λ3 = 0 plane during the first stimulus presentation. The output is 
+
+yi = γ(c1) γ(λ3) h(θ − θs) si + γ(1 − c1) γ(1 − f ) λi, i = 1 , 2 (28) where h(θ) = exp[ ν(cos θ − 1)] with ν = 5 . Here, γ(c1) and γ(1 − c1) gate the output to the term for the match-to-sample or the memory task, respectively. The first term, corresponding to the output for match-to-sample tasks, is only non-zero if the network is on the ring attractor in the λ3 = 1 plane due to the factor γ(λ3), that is a first stimulus has been presented, and the angle of the current stimulus is close to the angle on the ring attractor due to the factor h(θ − θs). If both conditions are fulfilled, the output is the strength of the stimulus. The second term, corresponding to the memory tasks, is non-zero if the fixation is off, implemented by the factor γ(1 − f ), and reports the latent state in the (λ1, λ 2)-plane, i.e., on the ring once if a stimulus was presented. Finally, to solve the ‘react’ tasks, the input weights for c2 were set equal to the negative input weights from the fixation input f .
+
+Training distribution. The stimulus (s1, s 2) = rs(cos θs, sin θs) is sampled according to θs ∼ Unif[0 , 2π] and 
+
+rs ∼ Bernoulli( pstim ) with pstim = 0.25 . Further, f ∼ Bernoulli( pfix ), 12 (cm + 1) ∼ Bernoulli( pmatch ), and 
+
+c0 ∼ Rademacher( {− 1, +1 }), with pmatch = 0 .4 and pfix = 0 .5. The latent state is sampled as λ ∼ N (0 , σ 2I3)
+
+with σ = 0 .5. With probability pnorm = 0 .2 the planar part is normalized, (λ1, λ 2) ← (λ1,λ 2)
+
+√λ21+λ22
+
+, and independently λ3 is fixed to λ3 = 1 with probability pclip z = 0 .2, to increase the number of samples on the ring attractor. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+20 
+
+Categorization tasks (re-used across all tasks) 
+
+We use the same notation as in the shared memory task above, and specify only differences. The latent space is one-dimensional, λ1 ∈ R and the full input is s = ( s1, s 2, f, c in , c out ) where cin ∈ {− 1, 1} selects the input channel, cin = 1 for 
+
+s1 and cin = −1 for s2, and cout ∈ {− 1, 1} selects the output channel, cout = 1 for y1 and cout = −1 for y2.
+
+Flow field. The autonomous flow field implements stable fixed points at λ1 = ±1 and λ1 = 0 , f1 = −λ1 + ˜ g(λ1) with 
+
+˜g(λ1) = −λ1(2 λ21 − 3|λ1|). (29) The input-driven flow field is 
+
+˜f1 = −| ˜s|λ1 + ˜ s, ˜s = 1 + cin 
+
+2 s1 + 1 − cin 
+
+2 s2 (30) driving the dynamics towards the fixed point λ1 = sign(˜ s) according to the relevant input channel selected via ˜s. The output is 
+
+y1 = 1 + cout 
+
+2 (1 − f )λ1, y2 = 1 − cout 
+
+2 (1 − f )λ1 (31) which reports the latent state in the relevant output channel. 
+
+Training distribution. The stimuli si = rs ˆsi are sampled according to ˆsi ∼ Uniform([ −1, +1]) and rs ∼ Bernoulli( p =0.25) . Further, f = 1 if rs = 1 and otherwise f ∼ Bernoulli( p = 0 .5) , cin ∼ Rademacher( {− 1, +1 }), and cout ∼
+
+Rademacher( {− 1, +1 }). The latent state is sampled as λ1 ∼ N (0 , σ 2) with σ = 0 .5. With probability pnorm = 0 .25 the latent space is normalized, λ1 ← λ1 
+
+> |λ1|
+
+, if there is no stimulus input to increase the number of samples on the fixed points. 
+
+Categorization tasks (re-used across some tasks) 
+
+We use the same notation as in the re-used solution for the categorization task, and specify only differences. The latent space is two-dimensional, λ = ( λ1, λ 2) ∈ R2, while inputs and outputs remain identical. 
+
+Fully invariant solution. For the fully invariant solution, the autonomous flow field is 
+
+f1 = −λ1 + χ(λ2)˜ g(λ1), f2 = −λ2 + χ(λ1)˜ g(λ2), (32) where χ(λ) = 1 − min(1 , |λ|) is a ’tent-shaped’ gate with χ(0) = 1 and χ(±1) = 0 , such that there are five attractors at 
+
+(0 , 0) , (0 , 1) , (0 , −1) , (1 , 0) , and (−1, 0) . The input-driven flow field is 
+
+˜f1 = 1 + cout 
+
+2 [−| ˜s|λ1 + ˜ s], ˜f2 = 1 − cout 
+
+2 [−| ˜s|λ2 + ˜ s], (33) which is identical to the re-used solution except that it resolves the output channel. This allows for a final output that is shared across all tasks, yi = (1 − f )λi for i = 1 , 2.
+
+Partially invariant solution. For the partially invariant solution, the autonomous flow field depends on the task input: 
+
+f1 = −λ1 + ReLU( cout )˜ g(λ1), f2 = −λ2 + ReLU( −cout )˜ g(λ2), (34) such that there are only attractors along the λ1-axis if cout = 1 and along the λ2-axis if cout = −1. The input-driven flow field is 
+
+˜fi = −| ˜s|λi + ˜ s, (35) driving the dynamics to λi = sign(˜ s) independent of cout , but the autonomous dynamics lead back to the origin for the irrelevant output dimension. This allows again for a final output that is shared across all tasks, yi = (1 − f )λi for i = 1 , 2.
+
+Training distribution. The full input is distributed as in the re-used solution. The latent state is sampled as λ ∼N (0 , σ 2I2) with σ = 0 .5. With probability pfp = 0 .25 the latent state is set to an attractor chosen with equal probability from {(0 , 1) , (0 , −1) , (1 , 0) , (−1, 0) } to increase the number of samples on the fixed points. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+21 
+
+F. A family of solutions to the two-factors categorization tasks 
+
+Each of the solutions to the categorization tasks presented in Fig. 6 is characterized by the structure of attractor re-use and the loci of task-dependence — i.e., which attractors are re-used across which task conditions, and where each of the two contextual factors (cin , cout ) enters the computation, as summarized in Fig. 6E. Building on this systematic characterization, we extended the set of solutions to build a family of nine qualitatively different solutions (Fig. S1). Importantly, we only consider solutions where the irrelevant stimulus is not persistently encoded via attractor dynamics, consistent with PFC 
+
+Figure S1. Nine qualitatively different solutions to the categorization tasks of Fig. 6. A. Four possible patterns of attractor re-use across the four task conditions, (cin , cout ) ∈ {± 1}2. B. Solutions with attractors re-used across tasks with the same cout . B1. 
+
+Latent attractors in a two-dimensional space; one pair of attractors per value of cout . B2. Two solutions distinguished by the locus of cin -dependence: ψin (top) or ψ0 (bottom); the complementary component is cin -invariant. Plotting conventions as in Fig. 6. B3. 
+
+Readout ψout , modulated by cout . Markers represent ψout evaluated at the attractors of panel (B1), for the two values of cout . C. 
+
+Solutions with no attractor re-use. C1. Latent attractors in a four-dimensional space, with one independent pair in an orthogonal latent dimension for each task condition. C2. Four solutions, each characterized by a distinct combination of loci through which 
+
+cin and cout enter the computation: ψin (arrows) or ψ0 (boxes), with cin and cout -dependence indicated. For an example task c
+
+(orange square: attend s2, respond on y1), arrows represent the task-dependent routing of the input s through ψin towards specific latent dimensions ( λ1,2,3,4); and dots on lines in green boxes represent the task-dependent existence of attractor pairs along each latent dimension. Since attractors are different across response directions cout , the readout ψout need not be task-dependent. D. 
+
+Summary of all nine solutions. Rows represent solutions, grouped by attractor re-use pattern (right); columns show the dependence of ψ0, ψin , and ψout on cin and cout (’inv.’: task-invariant). First three rows are shown in Fig. 6. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+22 data [16, 17]. For each of the four categorization tasks, the network needs a pair of attractors to store the categorization result. In addition to the cases where attractors were re-used across all tasks (Fig. 6B) and only across tasks with the same response direction ( cout ; Fig. 6C), attractors can be shared only across tasks with the same relevant input feature ( cin ); finally, the network could use a different pair of attractors for each task. This leads to four distinct patterns of attractor re-use (Fig. S1A). When several task subsets use distinct attractors, there are two possibilities: all attractors can be constantly present in the autonomous dynamics, so that task-dependence must be resolved by the input dynamics ψin (as in Fig. 6C2); alternatively, task-dependence can modulate the autonomous dynamics (as in Fig. 6C3), so that only attractors relevant to the correct task subset are present, and input dynamics need not be task-dependent. This reasoning also holds when attractors are shared only across cout , yielding two distinct solutions (Fig. S1B). Finally, for both solutions, cout -dependence must be resolved by the readout ψout (Fig. S1B3). In the case where a different pair of attractors is used for each task, both contextual factors (cin , cout ) need to be resolved either by the autonomous dynamics ψ(c)0 or the input ψin ; while the readout ψout can be task-invariant. The four possible combinations of factors and loci lead to four distinct solutions (Fig. S1C), each characterized by specific invariances of the autonomous and input-driven dynamics. This leads to a systematic catalogue of nine qualitatively different solutions, each uniquely characterized by its pattern of attractor re-use and the loci at which cin and cout modulate the computation (Fig. S1D). Note that we did not consider solutions with additional unnecessary task dependence; for instance, a solution where both ψin and ψ0 would resolve cout .
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+23 
+
+REFERENCES 
+
+[1] Steven M. Frankland and Joshua D. Greene. Concepts and compositionality: In search of the brain’s language of thought. 
+
+Annual Review of Psychology , 71(1):273–303, January 2020. ISSN 1545-2085. doi:10.1146/annurev-psych-122216-011829. URL http://dx.doi.org/10.1146/annurev-psych-122216-011829 .[2] Jerry A. Fodor and Zenon W. Pylyshyn. Connectionism and cognitive architecture: A critical analysis. Cognition , 28(1–2): 3–71, March 1988. ISSN 0010-0277. doi:10.1016/0010-0277(88)90031-5. URL http://dx.doi.org/10.1016/0010-0277(88) 90031-5 .[3] Brenden Lake and Marco Baroni. Generalization without systematicity: On the compositional skills of sequence-to-sequence recurrent networks. In Jennifer Dy and Andreas Krause, editors, Proceedings of the 35th International Conference on Machine Learning , volume 80 of Proceedings of Machine Learning Research , pages 2873–2882. PMLR, 10–15 Jul 2018. [4] Dieuwke Hupkes, Verna Dankers, Mathijs Mul, and Elia Bruni. Compositionality decomposed: How do neural networks generalise? 
+
+Journal of Artificial Intelligence Research , 67:757–795, April 2020. ISSN 1076-9757. doi:10.1613/jair.1.11674. URL http: //dx.doi.org/10.1613/jair.1.11674 .[5] Thaddäus Wiedemer, Prasanna Mayilvahanan, Matthias Bethge, and Wieland Brendel. Compositional generalization from first principles. In A. Oh, T. Naumann, A. Globerson, K. Saenko, M. Hardt, and S. Levine, editors, Advances in Neural Information Processing Systems , volume 36, pages 6941–6960. Curran Associates, Inc., 2023. URL https://proceedings.neurips.cc/ paper_files/paper/2023/file/15f6a10899f557ce53fe39939af6f930-Paper-Conference.pdf .[6] Nouha Dziri, Ximing Lu, Melanie Sclar, Xiang (Lorraine) Li, Liwei Jiang, Bill Yuchen Lin, Sean Welleck, Peter West, Chandra Bhagavatula, Ronan Le Bras, Jena Hwang, Soumya Sanyal, Xiang Ren, Allyson Ettinger, Zaid Harchaoui, and Yejin Choi. Faith and fate: Limits of transformers on compositionality. In A. Oh, T. Naumann, A. Globerson, K. Saenko, M. Hardt, and S. Levine, editors, Advances in Neural Information Processing Systems , volume 36, pages 70293–70332. Curran Associates, Inc., 2023. URL https://proceedings.neurips.cc/paper_files/paper/2023/file/ deb3c28192f979302c157cb653c15e90-Paper-Conference.pdf .[7] R. Thomas McCoy, Shunyu Yao, Dan Friedman, Mathew D. Hardy, and Thomas L. Griffiths. Embers of autoregression show how large language models are shaped by the problem they are trained to solve. Proceedings of the National Academy of Sciences , 121 (41), October 2024. ISSN 1091-6490. doi:10.1073/pnas.2322420121. URL http://dx.doi.org/10.1073/pnas.2322420121 .[8] Parshin Shojaee*, Iman Mirzadeh*, Keivan Alizadeh, Maxwell Horton, Samy Bengio, and Mehrdad Farajtabar. The illusion of thinking: Understanding the strengths and limitations of reasoning models via the lens of problem complexity, 2025. URL 
+
+https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf .[9] Saurabh Vyas, Matthew D. Golub, David Sussillo, and Krishna V. Shenoy. Computation through neural population dynamics. 
+
+Annual Review of Neuroscience , 43(1):249–275, July 2020. ISSN 1545-4126. doi:10.1146/annurev-neuro-092619-094115. URL 
+
+http://dx.doi.org/10.1146/annurev-neuro-092619-094115 .[10] Lea Duncker and Maneesh Sahani. Dynamics on the manifold: Identifying computational dynamical activity from neural popula-tion recordings. Current Opinion in Neurobiology , 70:163–170, October 2021. ISSN 0959-4388. doi:10.1016/j.conb.2021.10.014. URL http://dx.doi.org/10.1016/j.conb.2021.10.014 .[11] Christopher Langdon, Mikhail Genkin, and Tatiana A. Engel. A unifying perspective on neural manifolds and circuits for cognition. Nature Reviews Neuroscience , 24(6):363–377, April 2023. ISSN 1471-0048. doi:10.1038/s41583-023-00693-x. URL 
+
+http://dx.doi.org/10.1038/s41583-023-00693-x .[12] Guangyu Robert Yang, Madhura R. Joglekar, H. Francis Song, William T. Newsome, and Xiao-Jing Wang. Task representations in neural networks trained to perform many cognitive tasks. Nature Neuroscience , 22(2):297–306, January 2019. ISSN 1546-1726. doi:10.1038/s41593-018-0310-2. URL http://dx.doi.org/10.1038/s41593-018-0310-2 .[13] Reidar Riveland and Alexandre Pouget. Natural language instructions induce compositional generalization in networks of neurons. 
+
+Nature Neuroscience , 27(5):988–999, March 2024. ISSN 1546-1726. doi:10.1038/s41593-024-01607-5. URL http://dx.doi. org/10.1038/s41593-024-01607-5 .[14] Elia Turner and Omri Barak. The simplicity bias in multi-task rnns: Shared attractors, reuse of dynamics, and geometric representation. In A. Oh, T. Naumann, A. Globerson, K. Saenko, M. Hardt, and S. Levine, editors, Advances in Neural Information Processing Systems , volume 36, pages 25495–25507. Curran Associates, Inc., 2023. URL https://proceedings. neurips.cc/paper_files/paper/2023/file/50d6dbc809b0dc96f7f1090810537acc-Paper-Conference.pdf .[15] Laura N. Driscoll, Krishna Shenoy, and David Sussillo. Flexible multitask computation in recurrent networks utilizes shared dynamical motifs. Nature Neuroscience , 27(7):1349–1363, July 2024. ISSN 1546-1726. doi:10.1038/s41593-024-01668-6. URL 
+
+http://dx.doi.org/10.1038/s41593-024-01668-6 .[16] Sina Tafazoli, Flora M. Bouchacourt, Adel Ardalan, Nikola T. Markov, Motoaki Uchimura, Marcelo G. Mattar, Nathaniel D. Daw, and Timothy J. Buschman. Building compositional tasks with shared neural subspaces. Nature , 2025. doi:10.1038/s41586-025-09805-2. URL https://doi.org/10.1038/s41586-025-09805-2 .[17] Valerio Mante, David Sussillo, Krishna V. Shenoy, and William T. Newsome. Context-dependent computation by recurrent dynamics in prefrontal cortex. Nature , 503(7474):78–84, November 2013. ISSN 1476-4687. doi:10.1038/nature12742. URL 
+
+http://dx.doi.org/10.1038/nature12742 .[18] Rani Ben-Yishai, R Lev Bar-Or, and Haim Sompolinsky. Theory of orientation tuning in visual cortex. Proceedings of the National Academy of Sciences , 92(9):3844–3848, 1995. [19] Kechen Zhang. Representation of spatial orientation by the intrinsic dynamics of the head-direction cell ensemble: a theory. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+24 
+
+Journal of Neuroscience , 16(6):2112–2126, 1996. [20] A David Redish, Adam N Elga, and David S Touretzky. A coupled attractor model of the rodent head direction system. Network: computation in neural systems , 7(4):671, 1996. [21] Sung Soo Kim, Hervé Rouault, Shaul Druckmann, and Vivek Jayaraman. Ring attractor dynamics in the drosophila central brain. Science , 356(6340):849–853, 2017. [22] Peiran Gao and Surya Ganguli. On simplicity and complexity in the brave new world of large-scale neuroscience. Current Opinion in Neurobiology , 32:148–155, 2015. [23] Peiran Gao, Eric Trautmann, Byron Yu, Gopal Santhanam, Stephen Ryu, Krishna Shenoy, and Surya Ganguli. A theory of multineuronal dimensionality, dynamics and measurement. bioRxiv , 2017. [24] David Sussillo, Mark M Churchland, Matthew T Kaufman, and Krishna V Shenoy. A neural network that finds a naturalistic solution for the production of muscle activity. Nature Neuroscience , 18(7):1025–1033, June 2015. ISSN 1546-1726. doi: 10.1038/nn.4042. URL http://dx.doi.org/10.1038/nn.4042 .[25] Abigail A. Russo, Sean R. Bittner, Sean M. Perkins, Jeffrey S. Seely, Brian M. London, Antonio H. Lara, Andrew Miri, Najja J. Marshall, Adam Kohn, Thomas M. Jessell, Laurence F. Abbott, John P. Cunningham, and Mark M. Churchland. Motor cortex embeds muscle-like commands in an untangled population response. Neuron , 97(4):953–966.e8, February 2018. ISSN 0896-6273. doi:10.1016/j.neuron.2018.01.004. URL http://dx.doi.org/10.1016/j.neuron.2018.01.004 .[26] Evan D. Remington, Devika Narain, Eghbal A. Hosseini, and Mehrdad Jazayeri. Flexible sensorimotor computations through rapid reconfiguration of cortical dynamics. Neuron , 98(5):1005–1019.e5, June 2018. ISSN 0896-6273. doi: 10.1016/j.neuron.2018.05.020. URL http://dx.doi.org/10.1016/j.neuron.2018.05.020 .[27] Francesca Mastrogiuseppe and Srdjan Ostojic. Linking connectivity, dynamics, and computations in low-rank recurrent neural networks. Neuron , 99(3):609–623.e29, August 2018. ISSN 0896-6273. doi:10.1016/j.neuron.2018.07.003. URL http://dx. doi.org/10.1016/j.neuron.2018.07.003 .[28] Ryan C. Williamson, Brent Doiron, Matthew A. Smith, and Byron M. Yu. Bridging large-scale neuronal recordings and large-scale network models using dimensionality reduction. Current Opinion in Neurobiology , 55:40–47, April 2019. ISSN 0959-4388. doi:10.1016/j.conb.2018.12.009. URL http://dx.doi.org/10.1016/j.conb.2018.12.009 .[29] Christopher J. Cueva, Alex Saez, Encarni Marcos, Aldo Genovesio, Mehrdad Jazayeri, Ranulfo Romo, C. Daniel Salzman, Michael N. Shadlen, and Stefano Fusi. Low-dimensional dynamics for working memory and time encoding. Proceedings of the National Academy of Sciences , 117(37):23021–23032, August 2020. ISSN 1091-6490. doi:10.1073/pnas.1915984117. URL 
+
+http://dx.doi.org/10.1073/pnas.1915984117 .[30] Mikio C. Aoi, Valerio Mante, and Jonathan W. Pillow. Prefrontal cortex exhibits multidimensional dynamic encoding during decision-making. Nature Neuroscience , 23(11):1410–1420, October 2020. ISSN 1546-1726. doi:10.1038/s41593-020-0696-5. URL http://dx.doi.org/10.1038/s41593-020-0696-5 .[31] Alexis Dubreuil, Adrian Valente, Manuel Beiran, Francesca Mastrogiuseppe, and Srdjan Ostojic. The role of population struc-ture in computations through neural dynamics. Nature Neuroscience , 25(6):783–794, June 2022. ISSN 1546-1726. doi: 10.1038/s41593-022-01088-4. URL http://dx.doi.org/10.1038/s41593-022-01088-4 .[32] Brian DePasquale, David Sussillo, L.F. Abbott, and Mark M. Churchland. The centrality of population-level factors to network computation is demonstrated by a versatile approach for training spiking networks. Neuron , 111(5):631–649.e10, March 2023. ISSN 0896-6273. doi:10.1016/j.neuron.2022.12.007. URL http://dx.doi.org/10.1016/j.neuron.2022.12.007 .[33] Thomas Zhihao Luo, Timothy Doyeon Kim, Diksha Gupta, Adrian G. Bondy, Charles D. Kopec, Verity A. Elliott, Brian De-Pasquale, and Carlos D. Brody. Transitions in dynamical regime and neural mode during perceptual decisions. Nature , 646 (8087):1156–1166, 2025. doi:10.1038/s41586-025-09528-4. URL https://doi.org/10.1038/s41586-025-09528-4 .[34] Itamar Daniel Landau and Haim Sompolinsky. Coherent chaos in a recurrent neural network with structured connectivity. 
+
+PLOS Computational Biology , 14(12):e1006309, December 2018. ISSN 1553-7358. doi:10.1371/journal.pcbi.1006309. URL 
+
+http://dx.doi.org/10.1371/journal.pcbi.1006309 .[35] Friedrich Schuessler, Francesca Mastrogiuseppe, Alexis Dubreuil, Srdjan Ostojic, and Omri Barak. The interplay between randomness and structure during learning in rnns. In H. Larochelle, M. Ranzato, R. Hadsell, M.F. Balcan, and H. Lin, editors, 
+
+Advances in Neural Information Processing Systems , volume 33, pages 13352–13362. Curran Associates, Inc., 2020. URL 
+
+https://proceedings.neurips.cc/paper_files/paper/2020/file/9ac1382fd8fc4b631594aa135d16ad75-Paper.pdf .[36] Itamar D. Landau and Haim Sompolinsky. Macroscopic fluctuations emerge in balanced networks with incomplete recurrent alignment. Physical Review Research , 3(2), June 2021. ISSN 2643-1564. doi:10.1103/physrevresearch.3.023171. URL http: //dx.doi.org/10.1103/physrevresearch.3.023171 .[37] Manuel Beiran, Alexis Dubreuil, Adrian Valente, Francesca Mastrogiuseppe, and Srdjan Ostojic. Shaping dynamics with mul-tiple populations in low-rank recurrent networks. Neural Computation , 33(6):1572–1615, May 2021. ISSN 1530-888X. doi: 10.1162/neco_a_01381. URL http://dx.doi.org/10.1162/neco_a_01381 .[38] Adrian Valente, Jonathan W Pillow, and Srdjan Ostojic. Extracting computational mechanisms from neural data using low-rank rnns. In S. Koyejo, S. Mohamed, A. Agarwal, D. Belgrave, K. Cho, and A. Oh, editors, Advances in Neural Information Processing Systems , volume 35, pages 24072–24086. Curran Associates, Inc., 2022. URL https://proceedings.neurips.cc/ paper_files/paper/2022/file/9877d915a4b4f00e85e7b4cfdf41e450-Paper-Conference.pdf .[39] Manuel Beiran, Nicolas Meirhaeghe, Hansem Sohn, Mehrdad Jazayeri, and Srdjan Ostojic. Parametric control of flexi-ble timing through low-dimensional neural manifolds. Neuron , 111(5):739–753.e8, March 2023. ISSN 0896-6273. doi: 10.1016/j.neuron.2022.12.016. URL http://dx.doi.org/10.1016/j.neuron.2022.12.016 .[40] Matthijs Pals, A Erdem Sağtekin, Felix Pei, Manuel Gloeckler, and Jakob H Macke. Inferring stochastic low-
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+25 
+
+rank recurrent neural networks from neural data. In A. Globerson, L. Mackey, D. Belgrave, A. Fan, U. Pa-quet, J. Tomczak, and C. Zhang, editors, Advances in Neural Information Processing Systems , volume 37, pages 18225–18264. Curran Associates, Inc., 2024. URL https://proceedings.neurips.cc/paper_files/paper/2024/file/ 209423f076b6479ab3a4f45886e30306-Paper-Conference.pdf .[41] Srdjan Ostojic and Stefano Fusi. Computational role of structure in neural activity and connectivity. Trends in Cognitive Sciences , 28(7):677–690, July 2024. ISSN 1364-6613. doi:10.1016/j.tics.2024.03.003. URL http://dx.doi.org/10.1016/j. tics.2024.03.003 .[42] Friedrich Schuessler, Francesca Mastrogiuseppe, Srdjan Ostojic, and Omri Barak. Aligned and oblique dynamics in recurrent neural networks. eLife , 13, November 2024. ISSN 2050-084X. doi:10.7554/elife.93060.3. URL http://dx.doi.org/10.7554/ elife.93060.3 .[43] Louis Pezon, Valentin Schmutz, and Wulfram Gerstner. Linking neural manifolds to circuit structure in recurrent networks. 
+
+Neuron , 114(9):1682–1694.e21, 2026/06/17 2026. [44] Christopher Langdon and Tatiana A. Engel. Latent circuit inference from heterogeneous neural responses during cognitive tasks. Nature Neuroscience , 28(3):665–675, February 2025. ISSN 1546-1726. doi:10.1038/s41593-025-01869-7. URL http: //dx.doi.org/10.1038/s41593-025-01869-7 .[45] Yiteng Zhang, Jianfeng Feng, and Bin Min. Elucidating the selection mechanisms in context-dependent computation through low-rank neural network modeling. eLife , 13, July 2025. ISSN 2050-084X. doi:10.7554/elife.103636.3. URL http://dx.doi. org/10.7554/elife.103636.3 .[46] Markus Siegel, Timothy J. Buschman, and Earl K. Miller. Cortical information flow during flexible sensorimotor decisions. 
+
+Science , 348(6241):1352–1355, June 2015. ISSN 1095-9203. doi:10.1126/science.aab0551. URL http://dx.doi.org/10. 1126/science.aab0551 .[47] Juri Minxha, Ralph Adolphs, Stefano Fusi, Adam N. Mamelak, and Ueli Rutishauser. Flexible recruitment of memory-based choice representations by the human medial frontal cortex. Science , 368(6498), June 2020. ISSN 1095-9203. doi: 10.1126/science.aba3313. URL http://dx.doi.org/10.1126/science.aba3313 .[48] Timo Flesch, Keno Juechems, Tsvetomira Dumbalska, Andrew Saxe, and Christopher Summerfield. Orthogonal representations for robust context-dependent task performance in brains and neural networks. Neuron , 110(24):4212–4219, December 2022. ISSN 0896-6273. doi:10.1016/j.neuron.2022.12.004. URL http://dx.doi.org/10.1016/j.neuron.2022.12.004 .[49] Gouki Okazawa and Roozbeh Kiani. Neural mechanisms that make perceptual decisions flexible. Annual Review of Physiology ,85(1):191–215, February 2023. ISSN 1545-1585. doi:10.1146/annurev-physiol-031722-024731. URL http://dx.doi.org/10. 1146/annurev-physiol-031722-024731 .[50] Marino Pagan, Vincent D. Tang, Mikio C. Aoi, Jonathan W. Pillow, Valerio Mante, David Sussillo, and Carlos D. Brody. Individual variability of neural computations underlying flexible decisions. Nature , 639(8054):421–429, November 2024. ISSN 1476-4687. doi:10.1038/s41586-024-08433-6. URL http://dx.doi.org/10.1038/s41586-024-08433-6 .[51] A. Mouille, C. Gaillard, E. Astrand, C. Wardak, J.L. Amengual, and S. Ben Hamed. The prefrontal cortex encodes task-identity information and flexibly adjusts its sensory processes as a function of the specific ongoing task. PLOS Biology , 23(8): e3003353, August 2025. ISSN 1545-7885. doi:10.1371/journal.pbio.3003353. URL http://dx.doi.org/10.1371/journal. pbio.3003353 .[52] Song Mei, Andrea Montanari, and Phan-Minh Nguyen. A mean field view of the landscape of two-layer neural networks. 
+
+Proceedings of the National Academy of Sciences , 115(33), July 2018. ISSN 1091-6490. doi:10.1073/pnas.1806579115. URL 
+
+http://dx.doi.org/10.1073/pnas.1806579115 .[53] Lénaïc Chizat and Francis Bach. On the global convergence of gradient descent for over-parameterized models using optimal transport. In S. Bengio, H. Wallach, H. Larochelle, K. Grauman, N. Cesa-Bianchi, and R. Garnett, editors, Advances in Neural Information Processing Systems , volume 31. Curran Associates, Inc., 2018. URL https://proceedings.neurips.cc/paper_ files/paper/2018/file/a1afc58c6ca9540d057299ec3016d726-Paper.pdf .[54] Grant Rotskoff and Eric Vanden-Eijnden. Parameters as interacting particles: long time convergence and asymptotic error scaling of neural networks. In S. Bengio, H. Wallach, H. Larochelle, K. Grauman, N. Cesa-Bianchi, and R. Garnett, editors, Advances in Neural Information Processing Systems , volume 31. Curran Associates, Inc., 2018. URL https://proceedings.neurips.cc/ paper_files/paper/2018/file/196f5641aa9dc87067da4ff90fd81e7b-Paper.pdf .[55] Justin Sirignano and Konstantinos Spiliopoulos. Mean field analysis of neural networks: A central limit theorem. Stochastic Processes and their Applications , 130(3):1820–1852, 2020. ISSN 0304-4149. doi:https://doi.org/10.1016/j.spa.2019.06.003. URL https://www.sciencedirect.com/science/article/pii/S0304414918306197 .[56] Ken-ichi Funahashi and Yuichi Nakamura. Approximation of dynamical systems by continuous time recurrent neural networks. 
+
+Neural Networks , 6(6):801–806, 1993. [57] Lawrence I-Kuei Lin. A concordance correlation coefficient to evaluate reproducibility. Biometrics , 45(1):255–268, 1989. ISSN 0006341X, 15410420. URL http://www.jstor.org/stable/2532051 .[58] Nikolaus Kriegeskorte and Xue-Xin Wei. Neural tuning and representational geometry. Nature Reviews Neuroscience , 22 (11):703–718, September 2021. ISSN 1471-0048. doi:10.1038/s41583-021-00502-3. URL http://dx.doi.org/10.1038/ s41583-021-00502-3 .[59] Niru Maheswaranathan, Alex Williams, Matthew Golub, Surya Ganguli, and David Sussillo. Universality and individuality in neural dynamics across large populations of recurrent networks. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d’ Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems , volume 32. Curran Associates, Inc., 2019. URL 
+
+https://proceedings.neurips.cc/paper_files/paper/2019/file/5f5d472067f77b5c88f69f1bcfda1e08-Paper.pdf .
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+26 
+
+[60] Elia Turner, Kabir V Dabholkar, and Omri Barak. Charting and navigating the space of solutions for recurrent neural networks. In M. Ranzato, A. Beygelzimer, Y. Dauphin, P.S. Liang, and J. Wortman Vaughan, editors, Advances in Neural Information Processing Systems , volume 34, pages 25320–25333. Curran Associates, Inc., 2021. URL https://proceedings.neurips.cc/ paper_files/paper/2021/file/d530d454337fb09964237fecb4bea6ce-Paper.pdf .[61] Ann Huang, Satpreet Harcharan Singh, Flavio Martinelli, and Kanaka Rajan. Measuring and controlling solution degeneracy across task-trained recurrent neural networks. In The Thirty-ninth Annual Conference on Neural Information Processing Systems ,2025. URL https://openreview.net/forum?id=R0LqbSgZjP .[62] George Cybenko. Approximation by superpositions of a sigmoidal function. Mathematics of control, signals and systems , 2(4): 303–314, 1989. [63] Kurt Hornik, Maxwell Stinchcombe, and Halbert White. Multilayer feedforward networks are universal approximators. Neural networks , 2(5):359–366, 1989. [64] Ken-Ichi Funahashi. On the approximate realization of continuous mappings by neural networks. Neural Networks , 2(3):183–192, 1989. [65] Joana Soldado-Magraner, Valerio Mante, and Maneesh Sahani. Inferring context-dependent computations through linear approxi-mations of prefrontal cortex dynamics. Science Advances , 10(51), December 2024. ISSN 2375-2548. doi:10.1126/sciadv.adl4743. URL http://dx.doi.org/10.1126/sciadv.adl4743 .[66] Jonathan D Wallis, Kathleen C Anderson, and Earl K Miller. Single neurons in prefrontal cortex encode abstract rules. Nature ,411(6840):953–956, 2001. [67] Katsuyuki Sakai. Task set and prefrontal cortex. Annual Review of Neuroscience , 31(1):219–245, July 2008. ISSN 1545-4126. doi:10.1146/annurev.neuro.31.060407.125642. URL http://dx.doi.org/10.1146/annurev.neuro.31.060407.125642 .[68] Haozhe Shan, Minni Sun, and Lea Duncker. Separating the ’what’ and ’how’ of compositional computation to enable reuse and continual learning. In The Thirty-ninth Annual Conference on Neural Information Processing Systems , 2025. URL https: //openreview.net/forum?id=Wg9gAqjAHb .[69] Juan A Gallego, Matthew G Perich, Lee E Miller, and Sara A Solla. Neural manifolds for the control of movement. Neuron , 94 (5):978–984, 2017. [70] Matthew G Perich, Devika Narain, and Juan A Gallego. A neural manifold view of the brain. Nature Neuroscience , 28(8): 1582–1597, 2025. [71] Valentin Schmutz, Ali Haydaroğlu, Shuqi Wang, Yixiao Feng, Matteo Carandini, and Kenneth D. Harris. High-dimensional neuronal activity from low-dimensional latent dynamics: a solvable model. In The Thirty-ninth Annual Conference on Neural Information Processing Systems , 2025. URL https://openreview.net/forum?id=cGks3s79hW .[72] Carsen Stringer, Marius Pachitariu, Nicholas Steinmetz, Matteo Carandini, and Kenneth D Harris. High-dimensional geometry of population responses in visual cortex. Nature , 571(7765):361–365, 2019. [73] Jason Manley, Sihao Lu, Kevin Barber, Jeffrey Demas, Hyewon Kim, David Meyer, Francisca Martínez Traub, and Alipasha Vaziri. Simultaneous, cortex-wide dynamics of up to 1 million neurons reveal unbounded scaling of dimensionality with neuron number. Neuron , 112(10):1694–1709, 2024. [74] Owen Marschall, David G Clark, and Ashok Litwin-Kumar. A theory of multi-task computation and task selection. bioRxiv ,pages 2025–12, 2025. [75] Ludwig Hruza and Srdjan Ostojic. Balancing structure and randomness: maximum entropy networks for context-dependent computations, 2026. URL https://arxiv.org/abs/2605.25607 .[76] William Qian and Cengiz Pehlevan. Discovering alternative solutions beyond the simplicity bias in recurrent neural networks. In The Fourteenth International Conference on Learning Representations , 2026. URL https://openreview.net/forum?id= 8fViWZ0yZJ .[77] Francesca Albertini, Eduardo Sontag, and Vincent Maillot. Uniqueness of weights for neural networks. Artif. Neural Netw. Speech Vis. , 04 1993. [78] Héctor J. Sussmann. Uniqueness of the weights for minimal feedforward nets with a given input-output map. Neural Networks ,5(4):589–593, 1992. [79] Berfin Simsek, François Ged, Arthur Jacot, Francesco Spadaro, Clement Hongler, Wulfram Gerstner, and Johanni Brea. Geometry of the loss landscape in overparameterized neural networks: Symmetries and invariances. In Proceedings of the 38th International Conference on Machine Learning , 2021. URL https://proceedings.mlr.press/v139/simsek21a.html .[80] Charles Fefferman et al. Reconstructing a neural net from its output. Revista Matemática Iberoamericana , 10(3):507–556, 1994. [81] Verner Vlačić and Helmut Bölcskei. Affine symmetries and neural network identifiability. Advances in Mathematics , 376:107485, 2021. [82] Flavio Martinelli, Berfin Simsek, Wulfram Gerstner, and Johanni Brea. Expand-and-cluster: Parameter recovery of neural networks. In Proceedings of the 41st International Conference on Machine Learning , 2024. URL https://proceedings.mlr. press/v235/martinelli24a.html .[83] Timothy Doyeon Kim, Ulises Pereira-Obilinovic, Yiliu Wang, Eric Shea-Brown, and Uygar Sümbül. Identifying connectivity distributions from neural dynamics using flows, 2026. URL https://arxiv.org/abs/2603.26506 .[84] Bernard W. Silverman. Density Estimation for Statistics and Data Analysis . Routledge, Boca Raton, 1 edition, 1998. ISBN 9781315140919. doi:10.1201/9781315140919. [85] David Lopez-Paz and Maxime Oquab. Revisiting classifier two-sample tests. In International Conference on Learning Represen-tations , 2017. URL https://openreview.net/forum?id=SJkXfE5xx .[86] Ilmun Kim, Aaditya Ramdas, Aarti Singh, and Larry Wasserman. Classification accuracy as a proxy for two-sample testing. The 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 29, 2026. ;https://doi.org/10.64898/2026.06.23.733979 doi: bioRxiv preprint
+
+27 
+
+Annals of Statistics , 49(1):411 – 434, 2021. doi:10.1214/20-AOS1962. URL https://doi.org/10.1214/20-AOS1962 .[87] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine learning in Python. 
+
+Journal of Machine Learning Research , 12:2825–2830, 2011.

@@ -6,71 +6,68 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-05
-- 运行时间：2026-07-05 21:09:00 UTC
+- 最新运行日期：2026-07-06
+- 运行时间：2026-07-06 21:18:51 UTC
 - 运行状态：成功
-- 本次总论文数：17
+- 本次总论文数：16
 - 精读区：6
-- 速读区：11
+- 速读区：10
 
 ### 今日简报（AI）
-今日17篇推荐中精选6篇精读，重点关注神经影像生成框架与脑损伤后睡眠认知恢复机制。最值得精读的是《NeuroVLM》生成式视觉语言框架（9.0分）和《Semaphorin 3A》促进脑损伤后睡眠与认知韧性（9.0分）。建议关注脑损伤后的神经保护干预策略及生成式AI在脑成像中的应用前景。
-- 详情：[/202607/05/README](/202607/05/README)
+今日研报聚焦16篇前沿论文，精读揭示精神病理学跨诊断计算标志（9.0分）与高性能脑机语音合成突破（9.0分）。建议关注计算精神病学与脑机接口交叉领域的最新进展。
+- 详情：[/202607/06/README](/202607/06/README)
 
 ### 精读区论文标签
-1. [NeuroVLM: A generative vision-language framework for human neuroimaging](/202607/05/biorxiv-10-64898-2026-02-06-704508-v3-neurovlm-a-generative-vision-language-framework-for-human-neuroimaging)  
+1. [Dissociating volatility and stochasticity reveals transdiagnostic computational signatures of psychopathology](/202607/06/biorxiv-10-64898-2026-05-22-727329-v2-dissociating-volatility-and-stochasticity-reveals-transdiagnostic-computational-signatures-of-psychopathology)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：NeuroVLM将视觉语言模型应用于神经影像-文本对
-2. [Semaphorin 3A promotes resilience of sleep and cognition to brain injury](/202607/05/biorxiv-10-64898-2026-06-24-734382-v1-semaphorin-3a-promotes-resilience-of-sleep-and-cognition-to-brain-injury)  
+   evidence：跨诊断的精神病理学计算特征
+2. [Brain2voice 2.0: High-performance voice synthesis brain-computer interface](/202607/06/biorxiv-10-64898-2026-06-30-735633-v1-brain2voice-20-high-performance-voice-synthesis-brain-computer-interface)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑损伤后的睡眠中断和记忆巩固
-3. [Progressive Self-Supervised Learning with Individualized Community Assignment for Brain Network Analysis](/202607/05/2606.29695v1-progressive-self-supervised-learning-with-individualized-community-assignment-for-brain-network-analysis)  
+   evidence：高性能语音合成脑机接口
+3. [SAKE: Software Architectural Knowledge Evaluation Benchmark for Large Language Models](/202607/06/2606.29520v1-sake-software-architectural-knowledge-evaluation-benchmark-for-large-language-models)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：自监督深度学习用于脑网络分析
-4. [Synergistic Perception-Reasoning Governance: Grounding Medical MLLMs with Verifiable Anatomical Evidence](/202607/05/2607.00060v1-synergistic-perception-reasoning-governance-grounding-medical-mllms-with-verifiable-anatomical-evidence)  
+   evidence：大语言模型软件架构知识评估基准
+4. [Which Metric Reflects the Spelling Rate Accuracy in Event-Related Potential-Based Brain-Computer Interfaces?](/202607/06/2607.00794v1-which-metric-reflects-the-spelling-rate-accuracy-in-event-related-potential-based-brain-computer-interfaces)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：医学多模态大语言模型的免训练证据注入框架
-5. [Modeling Dynamical Vision with Biologically Plausible Recurrent Convolutional Networks](/202607/05/biorxiv-10-1101-2025-08-11-669756-v2-modeling-dynamical-vision-with-biologically-plausible-recurrent-convolutional-networks)  
+   evidence：基于事件相关电位脑机接口的拼写率度量分析
+5. [CALM: Interpretable Cross-Modal Alignment for Biomarker Discovery from Unpaired Data](/202607/06/2607.01656v1-calm-interpretable-cross-modal-alignment-for-biomarker-discovery-from-unpaired-data)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：生物合理的递归卷积网络用于视觉神经科学
-6. [Characterization of aperiodic and theta activity in preterm infants using EEG: Insights into cerebral maturation and inter-individual variability](/202607/05/biorxiv-10-64898-2025-12-26-696574-v2-characterization-of-aperiodic-and-theta-activity-in-preterm-infants-using-eeg-insights-into-cerebral-maturation-and-inter-individual-variability)  
+   evidence：跨模态对齐用于神经精神障碍生物标志物发现
+6. [Temporal fingerprints of TMS-evoked potentials across thalamocortical circuits](/202607/06/biorxiv-10-64898-2026-06-29-734769-v1-temporal-fingerprints-of-tms-evoked-potentials-across-thalamocortical-circuits)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：早产儿脑成熟的EEG表征
+   evidence：TMS诱发电位的EEG信号处理
 
 ### 速读区论文标签
-1. [Pulsed forehead photobiomodulation alters EEG power independent of pulsation frequency entrainment](/202607/05/biorxiv-10-1101-2025-05-26-656199-v5-pulsed-forehead-photobiomodulation-alters-eeg-power-independent-of-pulsation-frequency-entrainment)  
+1. [Age and Social Observation Effects on Theta Synchrony and Its Role in Adolescent Post-Error Control: A Computational Approach](/202607/06/biorxiv-10-64898-2026-06-29-734887-v1-age-and-social-observation-effects-on-theta-synchrony-and-its-role-in-adolescent-post-error-control-a-computational-approach)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：前额脉冲光生物调节引起的脑电功率变化
-2. [Drowsiness alters the neural dynamics but not the core computations of multisensory integration](/202607/05/biorxiv-10-64898-2026-01-12-699055-v2-drowsiness-alters-the-neural-dynamics-but-not-the-core-computations-of-multisensory-integration)  
+   evidence：基于EEG theta同步分析的青少年错误后控制研究
+2. [Neural representation of hedonic valence during narrative listening](/202607/06/biorxiv-10-64898-2026-06-30-735538-v1-neural-representation-of-hedonic-valence-during-narrative-listening)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：关于困倦和睡眠过渡中多感觉整合的脑电研究
-3. [NeuroMark-SZ: A Holistic Resting-State-fMRI-Based Model for Divergent Functional Circuitry in Schizophrenia](/202607/05/biorxiv-10-64898-2026-03-12-710902-v2-neuromark-sz-a-holistic-resting-state-fmri-based-model-for-divergent-functional-circuitry-in-schizophrenia)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：基于fMRI的精神分裂症功能环路模型
-4. [Rhythmic replay of short-term memory neural patterns revealed by time-resolved error prediction](/202607/05/biorxiv-10-64898-2026-06-22-733876-v1-rhythmic-replay-of-short-term-memory-neural-patterns-revealed-by-time-resolved-error-prediction)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：脑电时变多变量模式分析用于工作记忆研究
-5. [Neural correlates of evidence accumulation in social-affective decision-making under perceptual ambiguity](/202607/05/biorxiv-10-1101-2025-06-24-660932-v2-neural-correlates-of-evidence-accumulation-in-social-affective-decision-making-under-perceptual-ambiguity)  
+   evidence：自然听故事时的fMRI情感效价研究
+3. [Comparing Vibrotactile Stimulation to Combined Visual and Auditory Stimulation for 40 Hz Gamma Entrainment](/202607/06/biorxiv-10-1101-2025-03-14-639935-v2-comparing-vibrotactile-stimulation-to-combined-visual-and-auditory-stimulation-for-40-hz-gamma-entrainment)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：模糊情绪判断中证据积累的脑电关联
-6. [Hierarchical Predictive Processing during Natural Reading](/202607/05/biorxiv-10-64898-2026-06-24-734402-v1-hierarchical-predictive-processing-during-natural-reading)  
+   evidence：比较体感与视听刺激诱发40Hz伽马振荡的脑电研究
+4. [Time space signatures of hybrid search resolution using EEG and eye movements concurrent recordings](/202607/06/biorxiv-10-64898-2026-06-22-733836-v1-time-space-signatures-of-hybrid-search-resolution-using-eeg-and-eye-movements-concurrent-recordings)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：自然阅读中记录EEG，分析预测误差信号
-7. [When Can Brain Connectivity Track the Working Mind? A Large-Scale Benchmark of Dynamic Functional Connectivity Across Cognitive Paradigms](/202607/05/biorxiv-10-64898-2026-06-28-735101-v1-when-can-brain-connectivity-track-the-working-mind-a-large-scale-benchmark-of-dynamic-functional-connectivity-across-cognitive-paradigms)  
+   evidence：利用EEG和眼动追踪分析混合视觉搜索
+5. [When Can Brain Connectivity Track the Working Mind? A Large-Scale Benchmark of Dynamic Functional Connectivity Across Cognitive Paradigms](/202607/06/biorxiv-10-64898-2026-06-28-735101-v1-when-can-brain-connectivity-track-the-working-mind-a-large-scale-benchmark-of-dynamic-functional-connectivity-across-cognitive-paradigms)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：fMRI动态功能连接基准测试用于认知状态追踪
-8. [Neural Tracking of Speech Envelope as an Index of Spatial Release from Masking](/202607/05/biorxiv-10-64898-2026-06-29-734758-v1-neural-tracking-of-speech-envelope-as-an-index-of-spatial-release-from-masking)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：使用EEG神经语音跟踪指标反映空间释放掩蔽
-9. [Generative Learning as a Tool to Improve Perception of Emotional Body Motion Expressions](/202607/05/2606.28769v1-generative-learning-as-a-tool-to-improve-perception-of-emotional-body-motion-expressions)  
+   evidence：动态功能连接方法的大规模基准测试
+6. [Interpretable compositional computation with recurrent neural networks](/202607/06/biorxiv-10-64898-2026-06-23-733979-v1-interpretable-compositional-computation-with-recurrent-neural-networks)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：使用生成模型学习情绪身体运动，与情绪和心理健康相关
-10. [Machine learning on magnetoencephalography data yields generalizable low-dimensional neural fingerprints that distinguish individuals across task conditions](/202607/05/biorxiv-10-64898-2026-06-26-734424-v1-machine-learning-on-magnetoencephalography-data-yields-generalizable-low-dimensional-neural-fingerprints-that-distinguish-individuals-across-task-conditions)  
+   evidence：循环神经网络的可解释组合计算与神经科学中的动态结构
+7. [Partitioning away consciousness: an equal and cross-frequency connectivity analysis from the integration-segregation perspective](/202607/06/biorxiv-10-64898-2026-06-24-733949-v1-partitioning-away-consciousness-an-equal-and-cross-frequency-connectivity-analysis-from-the-integration-segregation-perspective)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：基于MEG数据的机器学习低维神经指纹
-11. [Sparse Distributed Archetypes Reveal Compressible Network Motifs Underlying Naturalistic Cognition](/202607/05/biorxiv-10-64898-2026-06-26-734861-v1-sparse-distributed-archetypes-reveal-compressible-network-motifs-underlying-naturalistic-cognition)  
+   evidence：睡眠等状态下的跨频率连接分析
+8. [Pre-task light exposure primes higher-order cognition and preserves mood](/202607/06/biorxiv-10-64898-2026-06-28-735029-v1-pre-task-light-exposure-primes-higher-order-cognition-and-preserves-mood)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：叙事聆听时的fMRI数据，使用原型分析
+   evidence：光照暴露改善认知并保护情绪
+9. [EEG biomarkers of reinforcement learning and motivation: A multi-task battery](/202607/06/biorxiv-10-64898-2026-06-28-735051-v1-eeg-biomarkers-of-reinforcement-learning-and-motivation-a-multi-task-battery)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：用于强化学习和动机的脑电生物标志物，与心理健康相关
+10. [Estimating the Explainable Variance of EEG Responses to Natural Speech](/202607/06/biorxiv-10-64898-2026-07-02-736170-v1-estimating-the-explainable-variance-of-eeg-responses-to-natural-speech)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：脑电响应建模用于自然语言处理
 
 
 <div class="dpr-home-promo-card">
