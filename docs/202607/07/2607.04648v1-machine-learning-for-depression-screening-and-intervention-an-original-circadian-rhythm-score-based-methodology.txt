@@ -1,0 +1,473 @@
+Title: Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology
+
+URL Source: https://arxiv.org/pdf/2607.04648v1
+
+Published Time: Tue, 07 Jul 2026 03:36:12 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+# Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology 
+
+# Bin Wang ∗
+
+Faculty of Information Science and Engineering Ocean University of China Qingdao, China wangbin9545@ouc.edu.cn 
+
+# Shuo Lian ∗
+
+Faculty of Information Science and Engineering Ocean University of China Qingdao, China lianshuo@stu.ouc.edu.cn 
+
+# Yuanyuan Hou 
+
+Department of Rehabilitation Medicine The Affiliated Hospital of Qingdao University Qingdao, China houyuanyuanv@163.com 
+
+# Dexian Wang 
+
+School of Intelligent Medicine Chengdu University of Traditional Chinese Medicine Chengdu, China wangdexian@cdutcm.edu.cn 
+
+# Peilan He 
+
+Faculty of Information Science and Engineering Ocean University of China Qingdao, China hepeilan@ouc.edu.cn 
+
+# Feng Hong †
+
+Faculty of Information Science and Engineering Ocean University of China Qingdao, China hongfeng@ouc.edu.cn 
+
+# Yanwei Yu †
+
+Faculty of Information Science and Engineering Ocean University of China Qingdao, China yuyanwei@ouc.edu.cn 
+
+# Tianrui Li 
+
+School of Computing and Artificial Intelligence Southwest Jiaotong University Chengdu, China trli@swjtu.edu.cn 
+
+## Abstract 
+
+Depression screening from large-scale behavioral data is challenged by fragmented circadian indicators, limited interpretability, and the lack of intervention-oriented analysis. Existing approaches typi-cally analyze sleep, activity, and social behaviors in isolation, failing to capture their joint circadian structure. To address this limita-tion, we first propose the Circadian Rhythm Score (CRS), a com-posite index that compresses multi-domain daily behaviors into a unified representation of circadian rhythm. CRS is constructed to maximize discriminative power for depression screening while pre-serving behavioral semantics through non-negativity constraints. Empirical results demonstrate near-lossless compression, where a single CRS retains almost the full predictive capability compared with multiple raw behavioral indicators. Building upon CRS, we develop an interpretable depression screening framework based on gradient-boosted trees and SHAP analysis, revealing nonlin-ear and saturation-like associations between circadian rhythm and depression risk. Beyond risk prediction, we further integrate interaction modeling and counterfactual regression to estimate heterogeneous and dose-dependent behavioral effects, enabling  
+
+> ∗Bin Wang and Shuo Lian are co-first authors with equal contributions.
+> †Feng Hong and Yanwei Yu are corresponding authors.
+> This work is licensed under a Creative Commons Attribution 4.0 International License.
+> KDD ’26, Jeju Island, Republic of Korea
+> ©2026 Copyright held by the owner/author(s). ACM ISBN 979-8-4007-2259-2/2026/08 https://doi.org/10.1145/3770855.3818913
+
+intervention-oriented reasoning under different circadian contexts. Experiments on the China Health and Retirement Longitudinal Study (CHARLS, n=15,233), demonstrate robust screening perfor-mance (ROC-AUC=0.825) and identify actionable behavioral thresh-olds, including a minimum effective exercise dose of approximately 300 MET-min/week and an optimal restorative nap duration of ap-proximately 65 minutes for sleep-deprived individuals. By bridging supervised representation learning and interpretable modeling, this work provides a scalable framework for depression screening and intervention-aware healthcare data mining. 
+
+## CCS Concepts 
+
+• Applied computing → Health informatics ; • Computing methodologies → Modeling methodologies .
+
+## Keywords 
+
+AI for Healthcare, Depression Screening, Circadian Rhythm, Inter-vention Analysis, CHARLS 
+
+ACM Reference Format: 
+
+Bin Wang, Shuo Lian, Yuanyuan Hou, Dexian Wang, Peilan He, Feng Hong, Yanwei Yu, and Tianrui Li. 2026. Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology. In Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2 (KDD ’26), August 09–13, 2026, Jeju Island, Republic of Korea. ACM, New York, NY, USA, 12 pages. https://doi.org/10.1145/3770855. 3818913  
+
+> arXiv:2607.04648v1 [cs.LG] 6 Jul 2026 KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al.
+
+## 1 Introduction 
+
+Challenges: Depression is a prevalent mental disorder character-ized by persistent low mood and constitutes a major and growing global health burden, particularly among older adults [ 42 ]. The 2019 Global Burden of Disease study ranked depression as the second leading cause of years lived with disability worldwide [ 32 ]. Depres-sion is strongly associated with reduced quality of life, functional impairment [ 47 ], increased mortality [ 34 ], and elevated risk of sui-cidal behavior [ 8]. In the context of rapid population aging, depres-sion is projected to become the leading contributor to global disease burden by 2030 [ 18 ]. Despite extensive clinical efforts, conventional treatments—primarily pharmacotherapy and psychotherapy—often produce modest effect sizes, suggesting a ceiling in therapeutic effi-cacy [ 25 ]. Adverse medication effects and poor treatment adherence have further motivated interest in alternative and complementary interventions [ 13 ]. These therapeutic challenges are compounded by systemic barriers, including low rates of early detection and lim-ited access to evidence-based mental healthcare [ 33 ]. Consequently, the early screening, and effective management of late-life depression remain urgent priorities for global public health [17]. 
+
+Motivation: Depression is characterized by impaired neuro-plasticity and structural abnormalities in key brain regions, includ-ing the hippocampus and prefrontal cortex [ 23 , 36 , 39 ]. Growing evidence indicates that circadian rhythm disruption—reflecting misalignment of the endogenous biological clock—is not merely a secondary manifestation but a core mechanism contributing to depressive pathogenesis [ 9 , 41 ], a view supported by our prior studies in animal models demonstrating that circadian mis-alignment impairs hippocampal and prefrontal function and induces depressive-like behaviors [ 19 , 20 , 49 ]. Sleep and cir-cadian rhythms are tightly coupled [ 12 ], and chronic sleep dis-turbances show a bidirectional, self-reinforcing relationship with depression [ 4 , 5, 7], with consistent associations reported for sleep duration and regularity [ 35 , 48 ]. This interplay extends to daytime napping, which exhibits heterogeneous and often bidirectional as-sociations with depressive symptoms, particularly in older adults [21 , 37 ]. Physical activity further modulates circadian function and mood regulation [ 31 ], with exercise demonstrating antidepressant effects and partial restoration of neuroplasticity in major depressive disorder [ 6 , 43 ]. Collectively, sleep, napping, and physical activ-ity shape the circadian rest–activity rhythm (RAR), a behavioral manifestation of circadian health that is strongly associated with depression risk [ 21 , 22 , 45 ]. Moreover, prior research suggests that jointly addressing cross-domain circadian behaviors may outper-form isolated interventions [ 30 ], while large-scale survey data are typically self-reported and heterogeneous [ 16 ], underscoring the need for a unified circadian representation. Motivated by this evi-dence, we develop a machine-learning–oriented CRS that integrates sleep, napping, social activity, and physical activity into a unified representation for depression screening and intervention analysis. 
+
+Research Gaps: Although machine learning has been increas-ingly applied to depression research [ 10 ], several critical gaps re-main: 
+
+• Lack of an integrated representation for circadian rhythm quantifi-cation. Single-domain features are insufficient to capture systemic circadian risk. Existing studies typically examine sleep or phys-ical activity in isolation, lacking an integrated score that quan-tifies cross-domain circadian rhythm. This limitation is notable given that circadian regulation spans sleep, social engagement, and physical activity [ 11 , 14 , 44 ], all of which have been inde-pendently linked to depressive symptoms across populations [3, 26, 35]. 
+
+• Limited interpretability and actionable insight. While modern machine learning models improve predictive accuracy, they often operate as black boxes. For clinical decision support, it is essential not only to identify influential risk factors (e.g., insufficient sleep) but also to characterize interpretable and actionable thresholds that can guide behavioral recommendations. 
+
+• Emphasis on correlation over intervention. Most existing machine learning models focus on learning input–output associations and are therefore unable to address counterfactual or intervention-oriented questions (e.g., How much would depression risk de-crease with increased exercise?). As a result, these models strug-gle to transition from risk prediction tools to decision support systems capable of informing personalized intervention strate-gies. 
+
+Our Contributions: To address the above research gaps, we design an analytical framework centered on CRS that enables inter-pretable, predictive, and intervention-oriented depression screen-ing. The proposed framework identifies CRS as the most influential predictor for depression discrimination and demonstrates that CRS alone achieves strong screening performance, attaining an AUC of up to 0.83 in the 70–79 age group. Beyond risk prediction, the framework integrates causal inference to derive actionable interven-tion insights, some interesting conclusions like a protective sleep duration window of ∼6 hours and a supported minimum effective exercise dose of approximately 300 MET-min/week. This work makes the summarized key contributions: 
+
+• We propose the CRS, a supervised and interpretable composite index that integrates heterogeneous daily behaviors into a com-pact, task-aligned representation of circadian robustness. Unlike prior single-domain or heuristic measures, CRS is constructed by optimizing screening performance while preserving behavioral semantics. 
+
+• We demonstrate that CRS achieves near-lossless compression of rich circadian-related features, retaining most discriminative power of the full behavioral set and exhibiting strong standalone screening performance across demographic subgroups. This en-ables simplified yet effective depression risk assessment at popu-lation scale. 
+
+• Building upon CRS-based screening, we integrate interpretable machine learning and counterfactual regression model to ana-lyze heterogeneous and dose-dependent associations of modi-fiable behaviors under different circadian contexts. This frame-work supports principled exploration of who benefits, under what conditions, and within what dosage ranges, bridging depression screening with actionable, testable intervention hypotheses. 
+
+## 2 Related Works 
+
+Depression and Circadian Rhythms. Depression is a leading cause of global disability [ 32 ], with growing evidence implicating Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea 
+
+Figure 1: Visual summary of the proposed framework. The framework integrates daily behavioral data into a composite index CRS to achieve effective depression screening (ROC-AUC 0.825) while providing interpretable, dose-dependent lifestyle guidance on sleep, exercise, and napping. 
+
+circadian rhythm disruption as a core pathophysiological mecha-nism rather than merely a secondary symptom [ 44 ]. Disturbances in the sleep-wake cycle, such as insomnia, have been identified as crucial predictors of depression onset [ 5]. Beyond sleep duration, daytime napping exhibits complex, bidirectional associations with depressive symptoms, particularly in older adults [ 27 ]. Similarly, physical activity serves as a critical regulator of biological rhythms, with meta-analyses confirming its antidepressant effects [ 40 ]. While prior work often examines these behaviors in isolation [ 35 ], recent approaches advocate for integrated RAR markers to capture sys-temic circadian health [ 21 ]. However, traditional RAR measures often require longitudinal actigraphy, limiting their applicability in large-scale epidemiological screenings [22]. 
+
+Machine Learning and Causal Intervention. To translate circadian-behavioral insights into scalable population screening, machine learning models have been increasingly applied to large-scale health surveys such as CHARLS [ 46 ]. Tree-based methods often outperform traditional linear models on tabular health data due to their ability to capture complex nonlinear relationships [ 15 ]. Despite their predictive success, many existing approaches remain largely black-box, limiting their utility for clinical interpretation and decision support [ 28 ]. More importantly, prediction alone do not reveal whether modifying a behavior would lead to improved mental health outcomes [ 17 ]. To bridge this gap, To bridge this gap, recent studies have incorporated Shapley-value explanations for model interpretability [ 29 ] and heterogeneous treatment effect estimation for counterfactual reasoning [ 24 ]. Nevertheless, existing frameworks rarely combine interpretable causal analysis with a uni-fied circadian indicator, limiting their ability to generate actionable and personalized recommendations for depression prevention. 
+
+## 3 Methodology 
+
+We propose a circadian rhythm score for depression screening and intervention-oriented analysis, centered on a compact composite indicator termed CRS. The framework consists of three main compo-nents: (1) Supervised construction of CRS from multiple behavioral factors; (2) Depression risk screening using a tree-based model with post-hoc interpretability; and (3) Counterfactual analysis to explore dose-dependent behavioral effects for actionable guidance. An overview of the framework is shown in Figure 2. 
+
+## 3.1 Dataset Preparation and Screening Task 
+
+The study population was derived from the 2018 wave of the China Health and Retirement Longitudinal Study (CHARLS) [ 16 ], a nation-ally representative survey of middle-aged and older adults in China. Following data preprocessing and standard exclusion procedures, including the removal of participants with missing key variables, the final analytic cohort consisted of 15,233 individuals aged 45 years and above. 
+
+Problem Formulation. The depression screening task is formu-lated as a binary classification problem . We aim to learn a mapping KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al. 
+
+Figure 2: Overview of the proposed CRS-based analytical framework. The pipeline comprises three stages: (1) CRS Construction: aggregating five behavioral domains into a unified score using supervised weight learning; (2) Screening (Top Branch): utilizing the CRS, raw behaviors, and covariates in a LightGBM model for risk prediction, interpreted via SHAP; and (3) Intervention (Bottom Branch): applying causal inference techniques to extract actionable insights from the data. 
+
+function 𝑓 : 𝑋 → ˆ𝑦 that predicts the probability of elevated depres-sive risk. The input component 𝑋 consists of three aspects: 
+
+𝑋 = {xCRS , xRhythm , xCovariates } (1) where xCRS is the proposed composite score CRS, xRhythm denotes the raw circadian behaviors (e.g., sleep duration, nap frequency), and xCovariates represents socio-demographic and health-related factors. Detailed variable description is displayed in Table 1. The screening model is then represented as: 
+
+ˆ𝑦 = LightGBM (𝑋 ) (2) The ground truth label 𝑦 is derived according to the CES-D-10 scale [ 38 ] (see Appendix A.1.2) , where participants with a total score ≥ 10 are labeled as having elevated depressive risk (i.e., 𝑦 = 1), consistent with established epidemiological cut-offs [2]. 
+
+## 3.2 CRS Index Construction 
+
+Circadian regulation manifests through coordinated daily behaviors, including sleep, napping, physical activity, and social engagement. Existing studies typically model these behaviors independently, which fragments circadian information and complicates interpreta-tion. We address this limitation by constructing a single composite index CRS (i.e., the xCRS in Formula 1) that summarizes overall circadian rhythm while remaining interpretable and predictive. 
+
+3.2.1 Definitions of Circadian-related Components. For each in-dividual, we extract five raw circadian-related components x =
+
+ 𝑥 𝑖, 1, . . . , 𝑥 𝑖, 5
+
+⊤ and standardize it as z (detailed in Appendix A.2.1 ) re-flecting sleep quality ( 𝑧 𝑖, SleepQuality ), nocturnal sleep duration ( 𝑧 𝑖, NightSleep ), daytime napping ( 𝑧 𝑖, Nap ), social activity ( 𝑧 𝑖, SocialAct ), and physical activity ( 𝑧 𝑖, PhyAct ). Notably, to capture the distinct physiological impacts of nap duration, daytime napping ( 𝑧 𝑖, Nap ) is processed via discrete encoding (rewarding short power naps while penalizing excessive duration), whereas other components like night sleep duration are treated as continuous variables. The components are aligned such that higher values contribute positively to CRS. The x𝑖  
+
+> CRS
+
+for individual 𝑖 is computed as the weighted sum of normalized components z𝑖 , where weights are constrained to be non-negative: 
+
+x𝑖  
+
+> CRS
+
+= w⊤z𝑖 , w ≥ 0, (3) where x𝑖  
+
+> CRS
+
+and z𝑖 denote the CRS and standardized component vector for individual 𝑖 , respectively, and w is the shared weight vector achieved via supervised learning. 
+
+3.2.2 Weight Search via Supervised Learning. Rather than assigning subjective or uniform weights, we determine the optimal weight vector w∗ through a supervised learning approach using LightGBM to maximize depression screening performance. Specifically, we conducted a randomized search over w with 100,000 trials, sampling each component independently from a uniform distribution U ( 0, 1)
+
+subject to the non-negativity constraint w ≥ 0.For each candidate w, we computed the composite score xCRS 
+
+using Eq. (3). To optimize the ROC-AUC via LightGBM, −xCRS is taken as the input with the maximization of the screening score. The best-performing weight vector was then 𝐿 1-normalized such that 
+
+∥w∗ ∥1 = 1 and fixed for all subsequent analyses. This procedure is computationally acceptable, requiring approximately 5 minutes. The resulting optimal weights are: 
+
+w∗ = (0.6874 , 0.1203 , 0.0091 , 0.1233 , 0.0599 ).
+
+Consequently, the composite score x𝑖  
+
+> CRS
+
+for the individual 𝑖 is de-fined as: Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea 
+
+Table 1: Description of control variables and coding scheme. 
+
+Variable Definition Circadian rhythm–related variables 
+
+sleep_quality_score (𝑥 𝑖, 1) Ordinal variable: 1 = very poor, 2 = poor, 3 = fair, 4 = good 
+
+night_sleep_duration_hr (𝑥 𝑖, 2) Continuous variable (hours per night) 
+
+nap_duration_min (𝑥 𝑖, 3) Continuous variable (minutes per day) Primary_activity_purpose ( 𝑥 𝑖, 4) Categorical variable: 0 = no valid activity, 1 = job-related, 2 = entertainment, 3 = exercise, 4 = other 
+
+weighted_social_score Used for 𝑥 𝑖, 4 when available. Activity-based weighted score: high benefit = 3, moderate benefit = 2, low benefit = 1, no benefit = 0; summed across reported activities 
+
+social_activity_count Used when weighted_social_score is unavailable. Count variable: number of reported social activities Activity_regularity Continuous variable (days per week), defined as max (da052_1 , da052_2 , da052_3 )
+
+total_activity_level_met (𝑥 𝑖, 5) Continuous variable (MET (Metabolic Equivalent of Task)-hours per week), intensity-weighted sum with weights 8.0 (vigorous), 4.0 (moderate), and 3.3 (light) Activity_intensity Categorical variable: 0 = inactive (all da052_x = 0); 1 = light-dominant (da052_3 > 0); 2 = moderate-dominant (da052_2 > 0); 3 = vigorous-dominant (da052_1 > 0) 
+
+Socio-demographic-related variables 
+
+Gender 1 = male, 2 = female Age Continuous variable (years) Residence 1 = urban, 2 = rural Education Years of schooling coded as: 1 = illiterate; 3 = incomplete primary school; 6 = primary school; 9 = middle school; 12 = high school/vocational school; 15 = junior college/associate degree; 16 = four-year college/bachelor’s degree; 19 = master’s degree; 22 = doctoral degree (Ph.D.) Marital_status 1 = partnered (married/cohabiting), 2 = single (never married/divorced/widowed) Work_life_status_code 0 = missing; 1 = working (satisfied); 2 = working (dissatisfied); 3 = working (satisfaction unknown); 4 = recently retired ( ≤ 5 years); 5 = mid-term retired (5–10 years); 6 = long-term retired ( > 10 years); 7 = retired (duration unknown); 8 = never worked; 9 = unemployed/other 
+
+Health behavior-related variables 
+
+Smoking_intensity Continuous variable (cigarettes per day) Smoking_status 0 = never smoker, 1 = former smoker, 2 = current smoker Total_alcohol_g_per_month Continuous variable (grams per month) Drink_status 0 = never drinker, 1 = former drinker, 2 = current drinker 
+
+Health status-related variables 
+
+Chronic_diseases a Continuous variable (count of diagnosed conditions) Pain Binary variable: 0 = no pain, 1 = pain reported  
+
+> aChronic diseases include hypertension, hyperlipidemia, hyperglycemia, malignant tumor, chronic lung disease, liver disease, heart disease, stroke, kidney disease, stone disease, arthritis, asthma, mental disorders, and memory-related diseases.
+
+x𝑖  
+
+> CRS
+
+= 0.6874 𝑧 𝑖, SleepQuality + 0.1203 𝑧 𝑖, NightSleep 
+
++ 0.0091 𝑧 𝑖, Nap + 0.1233 𝑧 𝑖, SocialAct 
+
++ 0.0599 𝑧 𝑖, PhyAct .
+
+(4) To achieve interpretability, we next apply SHAP (SHapley Additive exPlanations) value to quantify feature contributions and identify nonlinear risk patterns. This allows us to examine how circadian rhythm characteristics influence depression risk beyond black-box prediction. 
+
+## 3.3 Intervention-oriented Analysis 
+
+Prediction alone does not inform how modifiable behaviors might reduce depression risk. To address this concern, we complement screening with counterfactual and heterogeneous effect analyses focusing on modifiable circadian-related behaviors. Specifically, we investigate: 
+
+• Intervention Analysis 1: whether intentional exercise 1 yields greater mental health benefits than occupational physical labor 
+
+at comparable intensity levels; and    
+
+> 1We distinguish intentional exercise from occupational physical labor . Intentional exer-cise refers to planned, leisure-time physical activities undertaken primarily for fitness or health benefits (e.g., jogging, gym workouts, swimming). In contrast, occupational physical labor consists of work-related physical activities performed as part of one’s job responsibilities (e.g., construction work, farming, warehouse loading). Although both may involve comparable physical intensity, they differ in voluntariness, context, and psychosocial load, which may lead to distinct mental health effects.
+
+• Intervention Analysis 2: whether daytime napping compen-sates for insufficient nocturnal sleep. 
+
+3.3.1 Model for Intervention Analysis 1: To determine whether the mental health returns of physical activity depend on its purpose, we build the logistic regression model as logit (𝑃 (𝑌 = 1)) = 𝛼 + 𝛽 1𝑥 MET + 𝛽 2IExercise 
+
++𝛽 3 (𝑥 MET × IExercise ) + 𝛾 xCovariates 
+
+(5) where 𝑥 MET represents the physiological load (MET-hours/week), i.e., the associated variable 𝑥 𝑖, 5 in Table 1, and IExercise acts as the 
+
+psychological context switch (1=intentional exercise, 0=occupational labor). Regarding the coefficients, 𝛽 1 (baseline labor efficiency) quan-tifies the effect of physical activity performed solely as occupational labor; 𝛽 2 (contextual intercept) represents the fixed mental health difference independent of activity volume; and 𝛽 3 (the intentional-ity bonus) measures the differential benefit of exercise over labor. Finally, 𝛾 xCovariates adjusts for demographics and health status. 
+
+3.3.2 Model for Intervention Analysis 2: To test the hypothesis that napping specifically rescues individuals from the risks of sleep deprivation, we build the logistic regression model as logit (𝑃 (𝑌 = 1)) = 𝛼 + 𝛽 1IShortSleep + 𝛽 2𝑥 Nap 
+
++𝛽 3 (IShortSleep × 𝑥 Nap ) + 𝛾 xCovariates 
+
+(6) KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al. 
+
+where IShortSleep is a binary indicator serving as a context switch (1 = sleep deprived, 0 = normal) and 𝑥 Nap represents the dosage (nap duration in minutes), i.e., the associated variable 𝑥 𝑖, 3 in Table 1. Regarding the coefficients, 𝛽 1 (sleep deprivation penalty) quantifies the baseline risk increase due to insufficient nocturnal sleep; 𝛽 2
+
+(baseline nap effect) represents the napping effect for good sleepers; and 𝛽 3 (compensatory rescue effect) measures the additional benefit of napping specifically triggered by the sleep deprived context. Finally, controls 𝛾 xCovariates adjusts for covariate factors. 
+
+## 4 Experiments 4.1 Experimental Setup 
+
+The dataset is split into a training set (70%, 𝑛 = 10 ,663 ) and an inde-pendent test set (30%, 𝑛 = 4,570 ) with stratified sampling to preserve class proportions. Model hyperparameters tuning are implemented via cross-validation on the training set, and all experimental re-sults are obtained from the held-out test set. Model performance is primarily assessed using ROC-AUC, complemented by PR-AUC and classification metrics to account for class imbalance. Confi-dence intervals are estimated via bootstrap resampling. Detailed experimental settings are provided in Appendix A.3 .
+
+## 4.2 Screening Performance 
+
+The optimized LightGBM model achieves screening performance on the test set with a ROC-AUC of 0.825 and PR-AUC of 0.726 (shown in Table 2), indicating robust discrimination between individuals with and without elevated depressive risk. Figure 3 reports the resulting confusion matrix. In screening contexts, sensitivity (i.e., Recall) is prioritized over specificity to minimize false negatives. The model attains a recall of 0.751 for the depressed group, while maintaining acceptable specificity for non-depressed individuals. Statistical uncertainty is quantified via nonparametric bootstrapping on the independent test set (1,000 resamples with replacement), with 95% percentile confidence inter-vals (2.5th–97.5th CI) reported for ROC–AUC and PR–AUC. 
+
+Table 2: Classification performance on test set.                           
+
+> Metric / Class Precision Recall F1-score Support
+> Aggregated results
+> Macro Average 0.747 0.759 0.750 4,570 Weighted Average 0.772 0.761 0.764 4,570
+> Class-specific results
+> Non-depressed 0.841 0.767 0.802 2,889 Depressed 0.652 0.751 0.698 1,681
+> Probabilistic results
+> Metrics Score 95% CI
+> ROC-AUC 0.825 [0.813, 0.838] PR-AUC 0.726 [0.703, 0.751]
+
+Ablation study. Table 3 reveals two complementary roles of CRS: standalone screening and circadian-feature compression. The uni-variate CRS-only model, which excludes both standard covariates and the five raw circadian components, achieves a ROC-AUC of 0.7856, accuracy of 0.729, and macro-F1 of 0.722. Although this performance is lower than that of the full model, the drop is ex-pected because a one-dimensional score necessarily discards demo-graphic, health-status, and residual component-level information. 
+
+Figure 3: Confusion matrix on test set. 
+
+Importantly, as a single interpretable behavioral marker, CRS sub-stantially outperforms the non-circadian covariates-only baseline, whose ROC-AUC is 0.7223. This indicates that CRS alone carries strong depression-relevant circadian information. When standard covariates are included, the CRS-compressed model achieves a ROC-AUC of 0.8226, only 0.0028 lower than the full model using CRS, raw circadian components, and covariates. This result supports the role of CRS as a near-lossless representation of circadian-related information in multivariable screening. Therefore, CRS should not be interpreted as a complete substitute for the full screening model; rather, it provides a compact, interpretable, and discriminative rhythm-health summary that can serve as a low-burden standalone screening signal and an efficient circadian representation for downstream risk modeling. 
+
+Table 3: Ablation study results on the test set to display im-pact of circadian awareness.                                 
+
+> Model Configuration ROC-AUC Accuracy Macro F1
+> Circadian-Aware Models
+> CRS + Five Circadian-related Components + Covari-ates
+> 0.8254 0.761 0.750
+> CRS + Covariates 0.8226 0.749 0.742 Univariate CRS Only 0.7856 0.729 0.722 Circadian-related Components 0.8242 0.737 0.733 w/o Sleep Quality ( 𝑧 𝑖, Quality )0.7456 0.649 0.647 w/o Social Activity ( 𝑧 𝑖, Social )0.8246 0.742 0.736 w/o Night Sleep Duration ( 𝑧 𝑖, Sleep )0.8238 0.738 0.733 w/o Total Activity Level ( 𝑧 𝑖, Activity )0.8253 0.753 0.745 w/o Nap Duration ( 𝑧 𝑖, Nap )0.8250 0.756 0.747
+> Non-Circadian Model
+> Covariates Only 0.7223 0.608 0.608
+
+## 4.3 Interpretability of Circadian Risk 
+
+SHAP analysis of risk factors. We apply SHAP to examine how circadian rhythm characteristics influence depression risk. In Figure 4, each point corresponds to one individual, with color indicating the feature value from low (blue) to high (red). It presents that the global SHAP summary, where CRS emerges as the most influential predictor, surpassing individual sleep or activity variables. Notably, higher CRS values are associated with negative SHAP values, sug-gesting a protective effect, while severe pain and greater chronic disease burden contribute positively to predicted depression risk. Figure 5 further visualizes the relationship between CRS (i.e., the 
+
+circadian_rhythm_score in Figure 4) and its SHAP values. The Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea 
+
+plot reveals a monotonically decreasing, S-shaped pattern with saturation at higher CRS levels, indicating diminishing marginal protective effects once circadian rhythm robustness exceeds a cer-tain threshold. -0.75 -0.50 -0.25 0.00 0.25 0.50 0.75 
+
+> SHAP value (impact on model output)
+> age
+> nap_duration_min
+> weighted_social_score
+> total_alcohol_g_per_month
+> night_sleep_duration_hr
+> chronic_disease_count
+> work_life_status_code
+> education_years
+> residence
+> sleep_quality_score
+> pain
+> circadian_rhythm_score
+> SHAP Global Impact
+> Low
+> High
+> Feature value
+
+Figure 4: SHAP summary plot illustrating the global contri-bution of risk factors to depression risk predictions. 
+
+Figure 5: Nonlinear association. The cubic polynomial fit (𝑅 2 = 0.98 ) effectively captures the risk saturation effect com-pared to the linear fit. Logistic regression analysis of CRS. We conduct a multivari-able logistic regression to examine the association between CRS and depression risk, controlling for potential confounders including age, gender, education, marital status, chronic disease burden, smoking, and drinking status. As shown in Table 4, CRS exhibits a strong and statistically significant negative association with depression risk (Coef = −0.9407 , 𝑝 < 0.001 ). 
+
+Table 4: Logistic regression results for the association be-tween CRS and depression risk. Variable Coef. Std. Err. z P> |𝑧 | [0.025 0.975] 
+
+const -0.2745 0.175 -1.568 0.117 -0.618 0.069 CRS_Scaled -0.9407 0.022 -43.300 0.000 -0.983 -0.898 age -0.0139 0.002 -6.522 0.000 -0.018 -0.010 gender 0.2956 0.050 5.938 0.000 0.198 0.393 education_years -0.0463 0.005 -9.175 0.000 -0.056 -0.036 marry 0.0882 0.015 5.938 0.000 0.059 0.117 chronic_disease_count 0.2526 0.018 13.906 0.000 0.217 0.288 smoking_status 0.0184 0.028 0.658 0.511 -0.036 0.073 drinking_status -0.0363 0.016 -2.216 0.027 -0.068 -0.004 
+
+In terms of effect size, a one–standard deviation increase in CRS corresponds to an approximately 61% (1 − 0.39 ) reduction in the 
+
+odds ratio (OR) of elevated depression risk ( OR = 𝑒 −0.9407 ≈ 0.39 ). This finding suggests that individuals with more robust circadian rhythms are substantially less likely to exhibit depression risks. Figure 6 further illustrates a consistent monotonic relationship, whereby higher CRS values are associated with lower predicted depression risk, supporting the interpretation of CRS as a protective behavioral marker. 
+
+Figure 6: Observed depression risk versus normalized CRS. Higher CRS values are associated with a monotonic reduc-tion in depression risk, with the steepest decline occurring around normalized CRS values from 0 to 0.25. Shaded ribbon indicates the 95% CI. Performance of univariate CRS across demographic sub-groups. We further assess the predictive performance of the CRS across diverse demographic subgroups. As shown in Figure 7, uni-variate CRS maintains especially strong discriminative performance in older age cohorts (70–79 and 80+), achieving AUCs of 0.830 and 0.805, respectively. 
+
+## 4.4 Intervention-Oriented Experimental Findings 
+
+Beyond risk screening, we examine how the proposed framework can provide intervention-oriented insights into modifiable behav-iors. 
+
+Answer to Intervention Analysis 1: Intentional exercise con-fers greater mental health benefits than occupational physical labor at comparable intensity levels. This conclusion is supported KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al. 
+
+Figure 7: Best observed AUC of the univariate CRS across demographic subgroups. 
+
+by a formal statistical hypothesis test using interaction-term logistic regression. Occupational physical labor alone is not significantly associated with reduced depression risk ( 𝑝 = 0.435 ) (details shown in Table A1 of Appendix A.4). In contrast, the interaction between intentional exercise and activity intensity is statistically significant ( Coef. =
+
+−0.1404 , 𝑃 = 0.006 ). This indicates that, conditional on comparable energy expenditure, engaging in intentional exercise is associated with an approximately 13.1% (1-0.869) depression reduction in the OR of elevated depressive risk relative to occupational physical labor (OR = 𝑒 −0.1404 ≈ 0.869 ; reduction computed as 1 − OR). 
+
+Suggested exercise volume and activity types for older adults. 
+
+To inform exercise-related guidance for older adults, we analyze SHAP dependence plots for physical activity volume and conclude below suggestions: (1) Minimum effective dose and beneficial range. As shown in Fig-ure 8, physical activity exhibits a non-linear protective associ-ation with depression risk. SHAP values cross zero at approx-imately 300 MET-min/week, indicating a minimum effective dose. The strongest protective effects are observed within the range of 1700–4200 MET-min/week, beyond which marginal benefits gradually attenuate, suggesting diminishing returns. (2) Walking as a preferred activity type. Stratification by activity type reveals that walking (see Figure 9 (a)) is associated with a robust and stable transition toward negative SHAP values, indicating a consistent protective association across intensity levels. In contrast, moderate intensity exercise (see Figure 9 (b)) exhibits substantially higher variability, with protective effects emerging primarily at higher intensities. Moreover, composition analysis (see Figure 10) suggests that maintaining walking as more than 40% of total physical activity is stably associated with lower predicted depression risk. 
+
+Answer to Intervention Analysis 2: Daytime napping plays a compensatory role for individuals with insufficient noctur-nal sleep. This conclusion is supported by a formal hypothesis test using interaction-term logistic regression. Interaction analysis results (detailed in Table A2 of Appendix A.4) reveals a significant 
+
+rescue effect . While long daytime naps ( ≥90 minutes) are not associ-ated with reduced depression risk among individuals with sufficient 
+
+Figure 8: SHAP variation of exercise volume (MET-min/week). 
+
+Figure 9: Comparison of SHAP between (a) walking and (b) moderate intensity exercise (MET-min/week). 
+
+Figure 10: SHAP variation for (a) walking ratio and (b) mod-erate intensity exercise ratio in total activity. 
+
+nocturnal sleep, they are significantly protective for those with in-sufficient nocturnal sleep ( < 6 hours). Specifically, the interaction term indicates a statistically significant reduction in depression risk ( Coef. = −0.26 , 𝑃 = 0.03 ), corresponding to an approximately 22.9% reduction in the OR of elevated depressive risk ( OR = 0.771 ) for sleep deprived individuals. 
+
+Suggested optimal napping duration (a.k.a., dose–response analysis). To determine the sweet spot for napping intervention, we employed a counterfactual analysis based on gradient boosted decision trees. Unlike linear regression, this tree model captures non-linear interactions between behavioral dosage and risk re-sponse. We trained a tree model on the sleep deprived cohort and Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea 
+
+derived the dose-response trajectory by simulating hypothetical outcomes: we predicted depression probabilities across a contin-uous range of nap durations ( 𝑡 ∈ [ 0, 180 ] minutes) while holding other physiological and sociodemographic covariates constant at their population central tendencies. The resulting curve (see Figure 11) reveals a U-shaped trajec-tory . The risk of depression initially decreases with nap duration, reaching its global minimum at approximately 65 minutes. This suggests a restorative window where the benefits of sleep compensa-tion peak. However, beyond this threshold—particularly exceeding 90 minutes—the risk rebounds significantly, potentially reflecting the adverse effects of sleep inertia and disruption. 
+
+Figure 11: Dose-response analysis of nap duration. For night sleep deprived individuals, the optimal nap duration is iden-tified at ∼65 min, saturating beyond ∼96 min. 
+
+## 4.5 Limitations and Ethical Considerations 
+
+Limitations. This study has several limitations that warrant con-sideration. 
+
+First, the analysis is based on cross-sectional survey data. Although interaction modeling and counterfactual inference technique are used to explore heterogeneous and dose-dependent associations, the results reflect associations at a single time point and do not es-tablish long-term temporal causality. Longitudinal validation using follow-up data is needed to assess dynamic circadian changes and depression trajectories. 
+
+Second, circadian-related behaviors are self-reported. Measures of sleep, napping, physical activity, and social engagement may be subject to recall and reporting bias. Future studies incorporating objective behavioral measurements could further improve measure-ment precision and external validity. 
+
+Third, intervention-oriented analyses rely on standard causal as-sumptions. Dose–response and heterogeneous-effect estimates as-sume adequate control of confounding, and thus should be inter-preted as decision-support and hypothesis-generating evidence, rather than definitive causal effects. Overall, these limitations delineate the scope of inference rather than undermine the proposed framework, which is designed for scal-able, interpretable depression screening and intervention-oriented data mining. 
+
+Ethical Considerations. This research involves the secondary analysis of de-identified data from the China Health and Retirement Longitudinal Study (CHARLS), which is publicly available for aca-demic research. The original CHARLS data collection was approved by the Biomedical Ethics Review Committee of Peking University (IRB00001052-11015), and informed consent was obtained from all participants at the time of data collection. As this study utilizes anonymized data without direct interaction with human subjects, it is exempt from additional institutional review board (IRB) ap-proval. Furthermore, the proposed CRS framework and depression screening models are designed as decision support tools to identify at-risk populations and generate intervention hypotheses. They are not intended to replace professional clinical diagnosis. We have explicitly analyzed the model’s limitations and false-positive rates to prevent potential over-reliance on automated screening results. 
+
+## 5 Conclusion and Future Work 
+
+This study proposes a circadian rhythm-aware framework for de-pression screening and intervention-oriented analysis using large-scale population survey data. By integrating a supervised CRS with interpretable machine learning and causal effect estimation, the framework enables scalable identification of depression risk while preserving clinically meaningful behavioral structure. Beyond risk screening, the proposed approach provides interpretable and subgroup-specific insights into how modifiable circadian-related be-haviors—such as sleep, physical activity, and daytime napping—are associated with depression risk under different circadian contexts. From an AI for healthcare perspective, this work illustrates how observational health data can be leveraged to bridge population-level screening, interpretability, and intervention-oriented reason-ing within a unified analytical pipeline. Future work will focus on longitudinal validation using multi-wave data, integration of objective behavioral measurements, and prospective evaluation of circadian rhythm-aware decision support tools for mental health prevention. 
+
+## GenAI Disclosure 
+
+A generative AI tool Gemini3 Nanobanana Pro was used solely for layout and formatting refinement of Figure 1. No scientific content was generated by the tool. 
+
+## Acknowledgments 
+
+This work was supported by the National Natural Science Founda-tion of China (Nos. 62402463, 62506049 and U2468207), the Young Scientists Fund of Shandong Province (No. ZR2023QH026), Pre-vention and Control of Emerging and Major Infectious Diseases-National Science and Technology Major Project (No. 2025ZD01902800), Sichuan Science and Technology Program (No. 2024NSFTD0036), and the Fundamental Research Funds for the Central Universities (No. 2682026ZT007). KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al. 
+
+## References 
+
+[1] Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama. 2019. Optuna: A next-generation hyperparameter optimization frame-work. In Proceedings of the 25th ACM SIGKDD international conference on knowl-edge discovery & data mining . 2623–2631. [2] Elena M Andresen, Judith A Malmgren, William B Carter, and Donald L Patrick. 1994. Screening for depression in well older adults: evaluation of. Prev Med 10 (1994), 77–84. [3] Jacky Au and John Reece. 2017. The relationship between chronotype and depressive symptoms: a meta-analysis. Journal of affective disorders 218 (2017), 93–104. [4] C. Baglioni et al . 2016. Sleep and mental disorders: A meta-analysis of polysomno-graphic research. Psychological Bulletin 142, 9 (2016), 969–990. [5] Chiara Baglioni, Gemma Battagliese, Bernd Feige, Kai Spiegelhalder, Christoph Nissen, Ulrich Voderholzer, Caterina Lombardo, and Dieter Riemann. 2011. In-somnia as a predictor of depression: a meta-analytic evaluation of longitudinal epidemiological studies. Journal of affective disorders 135, 1-3 (2011), 10–19. [6] W. Brüchle et al . 2021. Physical Activity Reduces Clinical Symptoms and Restores Neuroplasticity in Major Depression. Frontiers In Psychiatry 12 (2021), 660642. [7] J.-P. Chaput et al . 2022. The role of insufficient sleep and circadian misalignment in obesity. Nature Reviews. Endocrinology 19, 2 (2022), 82–97. [8] E. F. Coccaro. 2019. New Hope for Patients with Major Depressive Disorder? The New England Journal of Medicine 381, 10 (2019), 980–981. [9] J. J. Crouse et al . 2021. Circadian rhythm sleep-wake disturbances and depression in young people: implications for prevention and early intervention. The Lancet. Psychiatry 8, 9 (2021), 813–823. [10] Daniel Durstewitz, Georgia Koppe, and Andreas Meyer-Lindenberg. 2019. Deep neural networks in psychiatry. Molecular Psychiatry 24, 11 (2019), 1583–1598. doi:10.1038/s41380-019-0365-9 [11] Cindy L Ehlers, Ellen Frank, and David J Kupfer. 1988. Social zeitgebers and bio-logical rhythms: a unified approach to understanding the etiology of depression. 
+
+Archives of general psychiatry 45, 10 (1988), 948–952. [12] P. Franken and D.-J. Dijk. 2023. Sleep and circadian rhythmicity as entangled processes serving homeostasis. Nature Reviews. Neuroscience 25, 1 (2023), 43–59. [13] V. Garfield, C. H. Llewellyn, and M. Kumari. 2016. The relationship between physical activity, sleep duration and depressive symptoms in older adults: The English Longitudinal Study of Ageing (ELSA). Preventive Medicine Reports 4(2016), 512–516. [14] Anne Germain and David J Kupfer. 2008. Circadian rhythm disturbances in depression. Human Psychopharmacology: Clinical and Experimental 23, 7 (2008), 571–585. [15] Léo Grinsztajn, Edouard Oyallon, and Gaël Varoquaux. 2022. Why do tree-based models still outperform deep learning on typical tabular data? Advances in neural information processing systems 35 (2022), 507–520. [16] X. He et al . 2025. Cross-national differences in the association between estimated cardiorespiratory fitness and depressive symptoms among older adults: findings from three nationwide cohort studies. BMC Medicine 23, 1 (2025), 363. [17] H. Herrman et al . 2022. Time for united action on depression: a Lancet-World Psychiatric Association Commission. Lancet (London, England) 399, 10328 (2022). [18] R. S. Hock et al . 2012. A new resolution for global mental health. Lancet (London, England) 379, 9824 (2012), 1367–1368. [19] Y. Hou et al . 2021. Long-term variable photoperiod exposure impairs the mPFC and induces anxiety and depression-like behavior in male wistar rats. Experi-mental Neurology 347 (2021), 113908. [20] Y. Hou et al . 2025. Long-term variable photoperiod exposure impairs hippocampal synapse involving of the glutamate system and leads to memory deficits in male Wistar rats. Experimental Neurology 387 (2025), 115191. [21] S. Y. Jeon et al . 2023. Circadian rest-activity rhythm and longitudinal brain changes underlying late-life cognitive decline. Psychiatry and Clinical Neuro-sciences 77, 4 (2023), 205–212. [22] S. J. Kang et al . 2024. Integrative Modeling of Accelerometry-Derived Sleep, Physical Activity, and Circadian Rhythm Domains With Current or Remitted Major Depression. JAMA Psychiatry 81, 9 (2024), 911–918. [23] P. C. M. P. Koolschijn et al . 2009. Brain volume abnormalities in major depressive disorder: a meta-analysis of magnetic resonance imaging studies. Human Brain Mapping 30, 11 (2009), 3719–3735. [24] Sören R Künzel, Jasjeet S Sekhon, Peter J Bickel, and Bin Yu. 2019. Metalearners for estimating heterogeneous treatment effects using machine learning. Proceedings of the national academy of sciences 116, 10 (2019), 4156–4165. [25] F. Leichsenring et al . 2022. The efficacy of psychotherapies and pharmacothera-pies for mental disorders in adults: an umbrella review and meta-analytic evalu-ation of recent meta-analyses. World Psychiatry : Official Journal of the World Psychiatric Association (WPA) 21, 1 (2022), 133–145. [26] Rosa Levandovski, Giovana Dantas, Luciana Carvalho Fernandes, Wolnei Caumo, Iraci Torres, Till Roenneberg, Maria Paz Loayza Hidalgo, and Karla Viviani Allebrandt. 2011. Depression scores associate with chronotype and social jetlag in a rural population. Chronobiology international 28, 9 (2011), 771–778. [27] Liqing Li, Qi Zhang, Liyong Zhu, Guohua Zeng, Hongwei Huang, Jian Zhuge, Xiaorui Kuang, Sule Yang, Di Yang, Zhensheng Chen, et al . 2022. Daytime naps and depression risk: A meta-analysis of observational studies. Frontiers in psychology 13 (2022), 1051128. [28] Rulin Li, Xueyan Wang, Lanjun Luo, and Youwei Yuan. 2024. Identifying the most crucial factors associated with depression based on interpretable machine learning: a case study from CHARLS. Frontiers in Psychology 15 (2024). doi:10. 3389/fpsyg.2024.1392240 [29] Scott M Lundberg and Su-In Lee. 2017. A unified approach to interpreting model predictions. Advances in neural information processing systems 30 (2017). [30] R. Manber et al . 2008. Cognitive behavioral therapy for insomnia enhances depression outcome in patients with comorbid major depressive disorder and insomnia. Sleep 31, 4 (2008), 489–495. [31] J. Noone et al . 2024. Understanding the variation in exercise responses to guide personalized physical activity prescriptions. Cell Metabolism 36, 4 (2024), 702– 724. [32] Global Burden of Disease Study 2019 Collaborators. 2022. Global, regional, and national burden of 12 mental disorders in 204 countries and territories, 1990-2019: a systematic analysis for the Global Burden of Disease Study 2019. The Lancet. Psychiatry 9, 2 (2022), 137–150. [33] Global Burden of Disease Study 2021 Collaborators. 2024. Global incidence, preva-lence, years lived with disability (YLDs), disability-adjusted life-years (DALYs), and healthy life expectancy (HALE) for 371 diseases and injuries in 204 countries and territories and 811 subnational locations, 1990-2021: a systematic analysis for the Global Burden of Disease Study 2021. Lancet (London, England) 403, 10440 (2024), 2133–2161. [34] V. Patel et al . 2015. Addressing the burden of mental, neurological, and substance use disorders: key messages from Disease Control Priorities, 3rd edition. Lancet (London, England) 387, 10028 (2015), 1672–1685. [35] Andrew JK Phillips, William M Clerx, Conor S O’Brien, Akane Sano, Laura K Barger, Rosalind W Picard, Steven W Lockley, Elizabeth B Klerman, and Charles A Czeisler. 2017. Irregular sleep/wake patterns are associated with poorer academic performance and delayed circadian and sleep/wake timing. Scientific reports 7, 1 (2017), 3216. [36] C. Pittenger and R. S. Duman. 2007. Stress, depression, and neuroplasticity: a convergence of mechanisms. Neuropsychopharmacology : Official Publication of the American College of Neuropsychopharmacology 33, 1 (2007). [37] B. Qin et al . 2025. Bidirectional relationship between afternoon naps and de-pressive symptoms in Chinese middle-aged and older adults: Evidence from a nationally representative cohort study. Journal of Affective Disorders 375 (2025), 380–389. [38] Lenore Sawyer Radloff. 1977. The CES-D scale: A self-report depression scale for research in the general population. Applied psychological measurement 1, 3 (1977), 385–401. [39] L. Schmaal et al . 2015. Subcortical brain alterations in major depressive disorder: findings from the ENIGMA Major Depressive Disorder working group. Molecular Psychiatry 21, 6 (2015), 806–812. [40] Felipe B Schuch, Davy Vancampfort, Joseph Firth, Simon Rosenbaum, Philip B Ward, Edson S Silva, Mats Hallgren, Antonio Ponce De Leon, Andrea L Dunn, Andrea C Deslandes, et al . 2018. Physical activity and incident depression: a meta-analysis of prospective cohort studies. American journal of psychiatry 175, 7 (2018), 631–648. [41] Y. Shen et al . 2023. Circadian disruption and sleep disorders in neurodegeneration. 
+
+Translational Neurodegeneration 12, 1 (2023), 8. [42] D. C. Steffens. 2024. Treatment-Resistant Depression in Older Adults. The New England Journal of Medicine 390, 7 (2024), 630–639. [43] D. Vancampfort et al . 2025. The efficacy, mechanisms and implementation of physical activity as an adjunctive treatment in mental disorders: a meta-review of outcomes, neurobiology and key determinants. World Psychiatry : Official Journal of the World Psychiatric Association (WPA) 24, 2 (2025), 227–239. [44] William H Walker, James C Walton, A Courtney DeVries, and Randy J Nelson. 2020. Circadian rhythm disruption and mental health. Translational psychiatry 
+
+10, 1 (2020), 28. [45] J. L. Wang et al . 2015. Suprachiasmatic neuron numbers and rest-activity circadian rhythms in older humans. Annals of Neurology 78, 2 (2015), 317–322. [46] Zhen Wang and Ning Jia. 2025. Using machine learning to predict depression among middle-aged and elderly population in China and conducting empirical analysis. PLOS ONE 20, 3 (2025), e0319232. doi:10.1371/journal.pone.0319232 [47] R. Yan et al . 2024. Association between internet exclusion and depressive symp-toms among older adults: panel data analysis of five longitudinal cohort studies. 
+
+EClinicalMedicine 75 (2024), 102767. [48] Long Zhai, Hua Zhang, and Dongfeng Zhang. 2015. Sleep duration and depression among adults: A meta-analysis of prospective studies. Depression and anxiety 32, 9 (2015), 664–670. [49] Y. Zuo et al . 2024. Circadian misalignment impairs oligodendrocyte myelina-tion via Bmal1 overexpression leading to anxiety and depression-like behaviors. 
+
+Journal of Pineal Research 76, 1 (2024), e12935. Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea 
+
+## A Supplement A.1 Data and Variables Details 
+
+A.1.1 Data Exclusion Criteria. To ensure data validity, we applied the following exclusion rules to the initial CHARLS 2018 cohort (𝑁 = 19 , 716 ): (1) Missing Data: Participants with missing responses on CES-D-10 items ( 𝑛 = 3, 770 ) or age ( 𝑛 = 370 ) were removed. (2) Outliers: We excluded physically implausible values, including night sleep > 12 hours ( 𝑛 = 19 ), nap duration > 200 minutes (𝑛 = 57 ), and extreme smoking/alcohol values ( 𝑛 = 197 ). (3) Others: Residents in special zones were excluded ( 𝑛 = 70 ). The participant selection process is visualized in Figure A1. 
+
+Figure A1: Participant selection flowchart showing the step-by-step exclusion process. 
+
+A.1.2 Ground Truth. Depressive symptoms were assessed using the 10-item Center for Epidemiologic Studies Depression Scale (CES-D-10) [ 38 ]. Participants rated the frequency of specific feel-ings during the past week on a 4-point scale: 0 (rarely or none of the time), 1 (some or a little of the time), 2 (occasionally or a moderate amount of the time), and 3 (most or all of the time). Items 5 ("I felt hopeful about the future") and 8 ("I was happy") were reverse-coded prior to summation. The total score 𝑆 𝑖 ranges from 0 to 30. Consistent with established validation studies in Chinese elderly populations, a binary cutoff of ≥ 10 was applied to identify individuals with elevated depressive risk ( 𝑦 𝑖 = 1). 
+
+## A.2 CRS Construction Details 
+
+This section details the feature engineering and optimization pro-cess for the CRS. 
+
+A.2.1 Definition of Normalized Circadian Component. Let z𝑖 de-note the z-score normalized circadian-related component vector for individual 𝑖 . The five behavioral components are computed as follows: 
+
+• Sleep Quality: Derived directly from the self-reported sleep quality score. 
+
+𝑧 𝑖,𝑆𝑙𝑒𝑒𝑝𝑄𝑢𝑎𝑙𝑖𝑡 𝑦 = sleep_quality_score 𝑖 
+
+• Nocturnal Sleep Deviation: Quantifies the proximity to an ideal 8-hour sleep duration. 
+
+𝑧 𝑖,𝑁 𝑖𝑔ℎ𝑡𝑆𝑙𝑒𝑒𝑝 = − | night_sleep_duration_hr 𝑖 − 8|• Napping Pattern: A discrete scoring system rewarding short 
+
+power naps while penalizing excessive daytime sleepiness. 
+
+𝑧 𝑖,𝑁 𝑎𝑝 =
+
+
+
+0, nap_duration_min 𝑖 = 0,
+
+1, 0 < nap_duration_min 𝑖 ≤ 30 ,
+
+−1, nap_duration_min 𝑖 > 30 .
+
+• Social Activity and Physical Activity: Measured by the weighted social engagement score and total MET-hours/week, respectively. While the relationship between activity levels and health may be complex at extremes, we model them as monotonically positive factors in this screening context, assuming that higher engage-ment generally reflects better functional status in older adults. 
+
+𝑧 𝑖,𝑆𝑜𝑐𝑖𝑎𝑙𝐴𝑐𝑡 =
+
+(
+
+weighted_social_score 𝑖 , if available ,
+
+social_activity_count 𝑖 , otherwise .𝑧 𝑖,𝑃ℎ𝑦𝐴𝑐𝑡 = total_activity_level_met 𝑖 
+
+## A.3 Reproducibility 
+
+A.3.1 Hyperparameter Tuning. We utilized the python package 
+
+Optuna [ 1] to optimize the hyperparameters of LightGBM. To en-sure robustness against class imbalance and overfitting, the ob-jective function maximized the ROC-AUC score using stratified 5-fold cross-validation with a fixed random seed. The optimization process consisted of 100 trials. Fixed model parameters included 
+
+objective=’binary’ , metric=’auc’ , and notably is_unbalance=True 
+
+to automatically weight the positive class. Early stopping with a patience of 100 rounds was applied during training. The search space of each hyperparameter and the final selected value are as follows. 
+
+• n_estimators : Integer search [200 , 2000 ] with step 100 (Selected: 2000) 
+
+• learning_rate : Log-uniform search [0.01 , 0.1] (Selected: 0.0685) 
+
+• num_leaves : Integer search [20 , 100 ] (Selected: 35) 
+
+• max_depth : Integer search [5, 20 ] (Selected: 8) 
+
+• subsample : Uniform search [0.6, 1.0] (Selected: 0.9392) 
+
+• colsample_bytree : Uniform search [0.5, 1.0] (Selected: 0.5665) 
+
+• reg_alpha (L1): Log-uniform search [0.1, 10 .0] (Selected: 9.8709) 
+
+• reg_lambda (L2): Log-uniform search [0.1, 10 .0] (Selected: 7.9652) 
+
+A.3.2 Experimental Implementation Details. Operating Point Se-lection. To avoid test-set leakage, the operating threshold 𝑡 ∗ was selected solely using out-of-fold (OOF) predictions from the train-ing set. We chose the threshold that maximized the F1 score on the OOF precision–recall curve and subsequently applied this fixed threshold to the independent test set for all reported classification metrics. 
+
+Uncertainty Estimation. Statistical uncertainty is quantified via nonparametric bootstrapping on the independent test set (1,000 re-samples with replacement), with 95% percentile confidence intervals (2.5th–97.5th percentiles) reported for ROC–AUC and PR–AUC. 
+
+## A.4 Detailed Statistical Results 
+
+Variable coding for the activity-purpose interaction model. For Intervention Analysis 1, the terminology used in the main text is mapped to the regression variables in Table A1. Let 𝑋 MET denote the physical activity volume measured in MET-hours/week. The KDD ’26, August 09–13, 2026, Jeju Island, Republic of Korea Bin Wang et al. 
+
+variables purpose_labor , purpose_ent , and purpose_exe denote indicator variables for occupational physical labor, entertainment-related activity, and intentional exercise, respectively. The inter-action variables inter_mets_ent and inter_mets_exe are con-structed by multiplying 𝑋 MET by the corresponding activity-purpose indicators. Therefore, purpose_labor corresponds to the main-text statement that occupational physical labor alone is not significantly associated with reduced depression risk, whereas inter_mets_exe 
+
+corresponds to the reported interaction between intentional exer-cise and activity intensity. 
+
+Variable coding for the sleep–nap interaction model. For Interven-tion Analysis 2, the terminology used in the main text is mapped to the regression variables in Table A2. Insufficient nocturnal sleep 
+
+refers to participants with night sleep duration < 6 hours and is encoded by the binary variable sleep_deprived . Daytime napping is discretized into three categories: nap_1_Power for short power naps, nap_2_Restorative for intermediate restorative naps, and 
+
+nap_3_Long for long daytime naps with duration ≥ 90 minutes. Accordingly, inter_sleep_nap_3_Long represents the interaction between insufficient nocturnal sleep and long daytime napping, testing whether long naps have an additional association with de-pression risk specifically among individuals sleeping less than 6 hours per night. The non-significant coefficient of nap_3_Long 
+
+corresponds to the main-text statement that long daytime naps are not associated with reduced depression risk among individu-als with sufficient nocturnal sleep, whereas the significantly nega-tive coefficient of inter_sleep_nap_3_Long supports the reported compensatory or rescue effect. 
+
+Table A1: Logistic regression results: interaction ffects of physical activity purpose on depression risk Variable Coef. Std. Err. z P> |𝑧 | [0.025 0.975] 
+
+const -0.5443 0.206 -2.636 0.008 -0.949 -0.140 purpose_labor -0.0217 0.028 -0.781 0.435 -0.076 0.033 purpose_ent -0.2177 0.096 -2.279 0.023 -0.405 -0.031 purpose_exe -0.1539 0.049 -3.132 0.002 -0.250 -0.058 inter_mets_ent -0.1321 0.106 -1.246 0.213 -0.340 0.076 inter_mets_exe -0.1404 0.051 -2.744 0.006 -0.241 -0.040 age -0.0052 0.003 -2.070 0.038 -0.010 -0.000 gender 0.3305 0.059 5.604 0.000 0.215 0.446 education_years -0.0869 0.006 -14.880 0.000 -0.098 -0.075 marry 0.0910 0.017 5.298 0.000 0.057 0.125 chronic_disease_count 0.2827 0.021 13.449 0.000 0.242 0.324 smoking_status 0.0288 0.033 0.861 0.389 -0.037 0.094 drinking_status -0.0608 0.019 -3.142 0.002 -0.099 -0.023 
+
+Table A2: Logistic regression results: interaction effects of napping and sleep deprivation on depression risk Variable Coef. Std. Err. z P> |𝑧 | [0.025 0.975]

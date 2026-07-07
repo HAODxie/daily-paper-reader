@@ -1,0 +1,786 @@
+Title: A Granularity-Aware EEG Feature Framework for Psychopathology Dimension Prediction
+
+URL Source: https://arxiv.org/pdf/2607.02670v1
+
+Published Time: Tue, 07 Jul 2026 00:06:16 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# A Granularity-Aware EEG Feature Framework for Psychopathology Dimension Prediction 
+
+Haofan Cheng 1†, Jingjing Hu 1†, Jingrong Pei 1, Shuaiqi Fu 1, Meilun Shen 3, Shuai Fang 1, Meng Wang 1,2 , Dan Guo 1,2* , and Jie Zhang 3* 1School of Computer Science and Information Engineering, Hefei University of Technology, Hefei, 230601, China 
+
+2Key Laboratory of Knowledge Engineering with Big Data (Ministry of Education of China), Hefei University of Technology, Hefei, 230601, China 
+
+3Preventive Medicine Institute & Medical Innovation Center, The Fourth Military Medical University, Xi’an, 710032, China 
+
+*Address correspondence to: guodan@hfut.edu.cn; zhangjie78@fmmu.edu.cn 
+
+†These authors contributed equally to this work. 
+
+Abstract 
+
+Electroencephalography (EEG) offers a noninvasive approach for examining neurophysiolog-ical correlates of dimensional psychopathology, yet systematic evidence across EEG paradigms and feature granularities remains limited. Here, we develop a granularity-aware EEG feature pipeline that organizes multi-scale descriptors into global, regional, and channel levels. Us-ing the Healthy Brain Network (HBN) cohort, we evaluate prediction of four psychopathology dimensions— p-factor, internalizing, externalizing, and attention problems—across four EEG paradigms. Given the heterogeneity of pediatric psychopathology and the moderate reliability of questionnaire-derived scores, this setting represents a challenging feasibility test rather than a clinical screening scenario. Tree-based models and granularity-balanced feature selection showed promising improvements over conventional approaches in certain conditions, though effect sizes remained modest. Visualization of selected markers identified dimension-specific spatial and spectral patterns aligned with existing neurophysiological knowledge. An exploratory cross-dataset sanity check on the independent PEARL cohort suggested that the selection principle remains technically operable under protocol shifts, without claiming generalizability. Over-all, multi-scale EEG features contain weak but detectable signals related to dimensional psy-chopathology, and granularity-aware selection may serve as a useful feature-reduction strategy for future EEG-based phenotyping studies. 
+
+Keywords: EEG; dimensional psychopathology; feature selection; pediatric mental health 1
+
+> arXiv:2607.02670v1 [cs.LG] 2 Jul 2026
+
+## Introduction 
+
+Mental health problems in children and adolescents have become an increasingly important public health concern, yet emotional, behavioral, and attentional vulnerabilities often emerge in heteroge-neous and context-dependent forms, making early identification particularly challenging. Current practice still largely depends on self-report questionnaires, parent- or teacher-rated scales, and clin-ical interviews. Although indispensable, these tools are susceptible to recall bias, social desirability, rater inconsistency, and limited sensitivity to subclinical or early-stage changes, driving precision psychiatry toward objective and individualized neurobiological markers beyond symptom-level ob-servation [1, 2]. A growing body of evidence suggests that psychopathology is better characterized as continuous dimensions—such as the general p-factor, internalizing, externalizing, and attention problems—rather than strictly separated diagnostic categories. While these dimensional frameworks offer a useful bridge between clinical symptoms and underlying neural mechanisms, they remain pri-marily derived from behavioral rating scales, leaving a critical gap in objective neurophysiological validation, particularly in pediatric populations where functional brain network organization relates to cognitive variability [3]. Electroencephalography (EEG) provides a promising tool for addressing this gap. EEG is non-invasive, relatively low-cost, and capable of capturing neural activity with millisecond-level temporal resolution, making it especially suitable for large-scale pediatric studies. Recent reviews have high-lighted the potential of EEG-based biomarkers for psychiatric disorders, while also noting challenges in robustness, heterogeneity, and clinical translation [4]. Recent advances in brain–computer in-terface and neurophysiological signal analysis have further demonstrated the potential of EEG for objective cognitive and affective assessment [5, 6]. For example, adaptive spatiotemporal encod-ing networks have been developed for cognitive assessment from resting-state EEG [7], and resting EEG has also been explored for decoding individual psychological traits [8]. EEG-based model-ing has shown effectiveness in emotion recognition [9–11], driving state detection [12], and moral cognition analysis [13]. Beyond EEG, related studies on subtle behavioral and affective cues, such as micro-action recognition, further highlight the importance of objective multimodal markers for understanding human psychological and behavioral states [14]. More recently, EEG emotion recog-nition has benefited from advanced representation learning strategies, including facial emoji proxy modeling [15] and spatial-energy-aware dynamic filtering with sparse graph convolutions [16, 17], suggesting that structured EEG representations can capture meaningful affective and cognitive in-formation. Despite these advances, several challenges remain in EEG-based psychopathology prediction. First, most existing studies focus on a single symptom domain, clinical label, or psychological con-struct, while systematic prediction across multiple psychopathology dimensions remains limited. Second, many studies rely on task-specific EEG paradigms or relatively small samples, which may re-duce generalizability across recording conditions and developmental populations. Resting-state EEG is attractive because it is easy to administer, task-free, and less affected by performance-related con-founds; however, task-state paradigms may also contain complementary information related to nat-uralistic audiovisual processing or visual contextual modulation. Therefore, more comparison across 2multiple EEG paradigms is needed. Third, although previous work has explored data augmentation and signal processing strategies to improve model robustness under limited-sample settings [18, 19], the organization of EEG features across spatial scales remains underexplored. Recent work on multi-dimensional EEG feature integration and feature selection has shown that combining heterogeneous EEG descriptors can improve precision diagnosis in psychiatric contexts [20]. However, conven-tional feature selection strategies often pool all features together, which may allow high-dimensional channel-level descriptors to dominate the selected feature set and suppress lower-dimensional but potentially stable global or regional markers. This is particularly problematic because different spa-tial granularities capture distinct neural phenomena and exhibit inherent trade-offs: channel-level features preserve fine-grained topographical details but are sensitive to anatomical variability, while global features offer robustness at the cost of potentially underfitting symptom-specific patterns. Existing methods rarely account for such multi-scale conflicts, leaving a gap in principled strategies for balanced feature representation. Another important issue is the reliability and interpretability of EEG-based computational pipelines. Neuroimaging and neurophysiological studies have increasingly emphasized transparent and reproducible analytical practices [21]. In medical AI, performance-oriented models may also suf-fer from limited explainability, which can hinder clinical trust and practical deployment [22]. These concerns are particularly important in pediatric psychopathology prediction, where models should not only achieve predictive performance but also provide stable and interpretable evidence about which frequency bands, brain regions, and spatial granularities contribute to different psychopathol-ogy dimensions. To address these limitations, we propose a granularity-aware EEG feature framework for pre-dicting dimensional psychopathology scores from multi-paradigm EEG recordings. The core idea is to treat global, regional, and channel-level descriptors not as interchangeable candidates but as sep-arate information pools, each capturing complementary yet potentially conflicting aspects of neural activity. Rather than allowing high-dimensional channel features to dominate via flat selection, our framework enforces a balanced multi-scale representation by allocating independent feature budgets to each granularity. Using the large-scale Healthy Brain Network (HBN) cohort as the primary benchmark, we investigate four EEG paradigms: resting-state eyes closed, resting-state eyes open, movie watching, and surround suppression. For each paradigm, we extract a multi-scale feature set covering spectral power, band-power ratios, differential entropy, aperiodic activity, signal complex-ity, microstate dynamics, regional asymmetry, connectivity, and temporal dynamics. These features are organized into three spatial granularities: global, region, and channel. We then systematically evaluate their predictive capacity for four psychopathology dimensions, including p-factor, internal-izing, externalizing, and attention problems. To further examine the generalizability of the proposed framework beyond the HBN pediatric cohort, we additionally conduct an exploratory cross-dataset assessment on the PEARL dataset [23], where resting-state EEG is used to predict clinically relevant depression and neuroticism-related measures under the same feature extraction and granularity-aware selection pipeline. As part of this evaluation, we compare GSTS against multiple feature selection strategies across all four EEG paradigms (Figure 3), providing empirical evidence on the relative strengths and limitations of granularity-aware selection in different recording conditions. 3RS-EC        
+
+> Resting State: Eyes Closed
+> Resting-state EEG recorded
+> while participants keep their
+> eyes closed, capturing
+> spontaneous brain activity.
+> RS-EO
+> Resting State: Eyes Open
+> Resting-state EEG recorded
+> while participants keep their
+> eyes open and maintain
+> visual fixation.
+> MW
+> Task State: Movie Watching
+> EEG recorded during passive
+> movie watching. reflecting
+> naturalistic audio-visual
+> processing.
+> SuS
+> Task State: Suppression
+> EEG recorded during the
+> surround suppression
+> paradigm, probing visual
+> contrast and contextual
+> suppression. (a) (b) (c) (d)
+> externalizing
+> p-factor
+> attention
+> internalizing
+> (e) Pathological factors
+> from the questionnaire.
+> ~2,500+ participants
+> 129-channel high-density
+> ~80,000+ samples /dataset
+> (4 psych.
+> factors)
+
+Figure 1: Overview of the experimental datasets. (a) Resting-state with eyes closed (RS-EC). (b) Resting-state with eyes open (RS-EO). (c) Passive movie watching (MW). (d) Surround suppression (SuS). (e) Four psychopathology dimension scores derived from the Child Behavior Checklist (CBCL) via a bifactor model: p-factor, internalizing, externalizing, and attention. The dataset comprises approximately 2,600 participants aged 5–21 years, with 129-channel high-density EEG recordings and over 80,000 4-s epochs per paradigm. Table 1: Summary of four EEG paradigms from the HBN dataset. Each epoch is a 4 s seg-ment at 100 Hz over 129 channels. SuS uses a block-design SSVEP paradigm ( ∼5–10 min/subject), yielding ∼10 × more epochs per subject than resting-state ( ∼2.5 min) and MW ( ∼2–3 min).                     
+
+> Task #Subject #Epochs Epochs/Subj. Description
+> EC (Eyes Closed) 2,575 82,814 32.2 Resting-state, eyes closed EO (Eyes Open) 2,592 85,521 33.0 Resting-state, eyes open MW (Movie Watching) 2,295 88,258 38.5 Naturalistic audiovisual processing SuS (Surround Suppression) 1,925 780,587 405.5 Visual contrast integration, run-1
+
+The main contributions of this study are summarized as follows: 1. We establish a large-scale multi-paradigm evaluation protocol using the HBN dataset, system-atically comparing four EEG paradigms and four psychopathology dimensions to assess the feasibility of EEG-based prediction in pediatric populations. 2. We propose a granularity-aware stability selection strategy (GSTS) that performs feature se-lection separately across global, regional, and channel-level descriptors. Comparative experi-ments (Figure 3) and visualization of selected markers (Figure 5) demonstrate its competitive performance and interpretability. 3. We implement a fold-contained evaluation pipeline integrating model screening, feature selec-tion, hyperparameter tuning, and ablation analysis, with all operations confined to training folds for unbiased generalization estimates, and conduct an exploratory cross-dataset assess-ment on the PEARL cohort to examine transferability under protocol shifts. 4Nested cross-validation protocol    
+
+> Fold 1 Fold 2 Fo ld Fold K
+
+... ...   
+
+> Selection Fold Only Evaluation
+> Fold Only
+> Inner CV
+> Apply to
+> test fold
+> Refit on training fold Evaluate
+> (AUC, BA, F1, etc.)
+> Repeat for all K folds and aggregate performance
+
+Dataset and prediction tasks  
+
+> HBN
+> N≈2600
+> ages 5-21
+> Paradigms
+> EC SuS MW EO
+> psychological dimensions
+> PEARL stress test
+
+Tri-Granularity Feature Manifest 
+
+Global 
+
+Region 
+
+Channel  
+
+> Feature Manifest
+> Granularity
+
+Optimized Pipeline & Outputs     
+
+> Integrated Classifier
+> Model Family
+> M*
+> Feature Set
+> S*
+> Performance evaluation
+> AUC Accuracy Macro-F1
+> Brain-region Frequency-band
+> Granularity
+> (95% CI)
+> Stable markers
+> Permutation
+
+Granularity-aware Feature-Model 
+
+Selection Engine 
+
+(a) Stage 2A: 
+
+Cross-task Model Family 
+
+Screening 
+
+3
+
+(b) Stage 2B: 
+
+Granularity-aware 
+
+Stability Top-K Selection 
+
+(c) Nested validation 
+
+GSTS Algorithm (Stage 2B) 
+
+> Region
+> Selected feature set S ∗
+> Flat Top-K
+> Channel
+> dominance risk
+> GSTS (ours)
+> Independent
+> budgets
+> Global
+> Resampl e
+> Scoring
+> Stability
+> score
+> Top-KG
+> selection
+
+1 2 4      
+
+> Externalizing Internalizing Attention p-factor
+> Extreme-group classification
+> Top 30% vs Bottom 30%
+> PEARL-Neuro
+> N = 79
+> 1
+> 10
+> 100
+> Feature Frequency Spatial
+
+b c
+
+> Candidate model
+> families
+> Logistic
+> Regression
+> ElasticNet
+> Linear SVM
+> Random
+> Forest
+> XGBoost
+
+CMFS Algorithm (Stage 2A)      
+
+> p-factor
+> Nested cross-validation
+> Evaluate across all task–label pairs
+> EC
+> SuS
+> MW
+> EO
+> Externalizing Internalizing Attention
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> ...
+> Inner
+> CV
+> Outer
+> CV
+> AUC
+> matrix
+> Rank aggregation
+> Model
+> ranking
+> Rank Model Score
+
+a 
+
+> p-factor
+> Top-K model
+> families
+> M*
+
+.....  
+
+> Channel
+> ... ...
+> Channel
+> Global
+> Region
+> Channel
+> Global
+> Region
+> Outer CV
+> Pre-
+> -processing
+> Feature
+> selection
+> Search
+> Final
+> fitting
+
+Figure 2: Overview of the proposed framework. The pipeline consists of four stages: (1) dataset preparation from the HBN cohort with four EEG tasks and four psychopathology dimensions; (2) a granularity-aware feature-model selection engine comprising cross-task model family screening (CMFS), granularity-aware stability-based feature selection (GSTS), and fold-contained nested cross-validation; (3) an optimized multi-granularity pipeline with performance evaluation and interpretable outputs; and (4) a fold-contained nested cross-validation protocol ensuring unbiased generalization estimates across candidate model families (Logistic Regression, ElasticNet, Linear SVM, Random Forest, XGBoost). 
+
+## Materials and Methods 
+
+Experimental Datasets 
+
+We utilized four EEG paradigms from the Healthy Brain Network (HBN) dataset [24], a large-scale community-based study of psychiatric and learning disorders in children and adolescents aged 5–21 years (approved by the Chesapeake IRB), employing the V2 processed version from Releases 1–11. These four paradigms include two resting-state tasks—eyes closed (EC) and eyes open (EO)—and two naturalistic/task-based paradigms—movie watching (MW, Despicable Me clip) and surround suppression (SuS, run-1, block-design SSVEP, ∼5–10 min/subject). After task-specific quality con-trol, the available sample sizes were 2,575 participants for EC, 2,592 for EO, 2,295 for MW, and 1,925 for SuS. Because task availability and data quality differed across participants, these samples were partially overlapping rather than identical subsets. EEG was recorded using a 129-channel EGI GSN-HydroCel system at 1,000 Hz, downsampled to 100 Hz, with 4-second non-overlapping epochs extracted from each task. The primary outcomes are four psychopathology dimension scores derived from the Child Behavior Checklist (CBCL) via a bifactor model: p-factor, attention, internalizing, and externalizing, all z-scored across the full cohort (2,541 participants had complete labels; the remaining 34 were excluded from supervised analyses). As summarized in Table 1 and illustrated 5Table 2: Summary of EEG features stratified by spatial granularity. Under the default configuration, C = 129, Bfreq = 5, R = 5 (six regions for connectivity, including the auricular– mastoid reference), P =  62
+
+ = 15, M = 2, Q = 3, and Kms = 4, yielding 28 global, 400 regional, and 3096 channel-level features, for a total of 3524 conceptual features . Each conceptual feature is aggregated across per-subject epochs via three statistics (mean, std, median), yielding 3524 × 3 = 10 ,572 columns in the final feature matrix. 
+
+Granularity Symbol Dim Description & Primary Function (References) 
+
+Global 
+
+M cov  
+
+> k
+
+, M occ  
+
+> k
+
+, M dur  
+
+> k
+
+3Kms = 12 Microstate coverage, occurrence, and mean duration for state k.
+
+Function: Whole-scalp global microstate dynamics [25, 26] 
+
+Tk→l K2ms = 16 Microstate transition probability from state k to state l.
+
+Function: Temporal segmentation and transition patterns of global brain states [27] 
+
+Subtotal: 28 
+
+Region 
+
+Pabs ,r,b , P rel ,r,b 2RB = 50 Region-mean log10 absolute and relative power in region r and band b.
+
+Function: Regional oscillatory energy and frequency dominance [28–30] 
+
+Apow  
+
+> r,b,m
+
+2RB = 50 Inter-hemispheric asymmetry of region-level log10 absolute and relative power, m ∈ { logabs , rel }.
+
+Function: Regional functional lateralization of spectral activity [31, 32] Coh r1,r 2,b , PLV r1,r 2,b 2P B = 150 Coherence and PLV between regional pair ( r1, r 2) in band b (six regions, P = 15). 
+
+Function: Inter-regional functional synchronization and phase consistency [33, 34] 
+
+μt,r,b,m , σ t,r,b,m , s t,r,b,m RBM Q = 150 Sliding-window mean, std, and temporal slope of regional spectral power, m ∈ { logabs , rel }.
+
+Function: Regional time-varying neural dynamics [35] 
+
+Subtotal: 400 
+
+Channel 
+
+Pabs ,ch,b CB = 645 Log10 absolute power at channel ch and band b.
+
+Function: Fine-grained spectral energy topography [28, 29] 
+
+Prel ,ch,b CB = 645 Relative power at channel ch and band b.
+
+Function: Fine-grained frequency dominance across canonical bands [30, 36] DE ch,b CB = 645 Differential entropy of band-pass filtered EEG at channel ch and band b.
+
+Function: Log-energy-like spectral information content [37] 
+
+Rθ/β,ch , R α/β,ch , R θ/α,ch 3C = 387 Log10 band-power ratios at channel ch .
+
+Function: Channel-level spectral balance across canonical bands [38–40] 
+
+κch , ω ch 2C = 258 Aperiodic 1 /f slope and intercept at channel ch .
+
+Function: Channel-level scale-free neural activity and background characteristics [41, 42] 
+
+Ha,ch , H m,ch , H c,ch , H SE ,ch 4C = 516 Hjorth activity, mobility, complexity, and spectral entropy at channel ch .
+
+Function: Channel-level signal complexity and irregularity [43, 44] 
+
+Subtotal: 3096 
+
+Total 3524 Conceptual features (28 global + 400 regional + 3096 channel) 
+
+in Figure 1, the SuS task yielded ∼10 × more epochs per subject than resting-state ( ∼2.5 min) and MW ( ∼2–3 min). After requiring non-missing psychometric labels, the extreme-quantile (30/70) transform yielded task-specific binary classification sample sizes of approximately 1,527 (EC), 1,537 (EO), 1,232 (MW), and 1,084 (SuS) subjects per label. Given the passive EEG paradigms, the questionnaire-derived nature of the target dimensions, and the broad developmental age range, the prediction tasks examined here are inherently difficult. We therefore emphasize relative improvements over chance-level performance and consistency across paradigms rather than direct comparison with binary diagnostic classification benchmarks. 
+
+Feature Extraction 
+
+Guided by the multi-scale conflict discussed above, we extracted EEG features organized into three spatial granularities—global, region, and channel—to preserve their distinct neural information as separate candidate pools rather than treating all descriptors interchangeably. Before detailing the specific feature families, we formally define what we mean by a granularity-aware feature selection pipeline. Let F = Fglobal ∪ F region ∪ F channel denote the complete feature set partitioned by spatial scale, and let G = {global , region , channel } be the set of granularities. A selection procedure is said 6to be granularity-aware if it (i) partitions the feature space by spatial scale a priori, (ii) enforces per-granularity selection budgets {Kg }g∈G rather than a single global budget, and (iii) evaluates contributions separately per granularity. Equivalently, the selection problem is formulated as: max  
+
+> {Sg}g∈G
+
+X
+
+> g∈G
+
+Score( Sg , y ), s.t. |Sg | ≤ Kg , S g ⊆ F g , ∀g ∈ G , (1) where Score( Sg , y ) measures the predictive utility of feature subset Sg with respect to labels y.This constrained formulation explicitly prevents high-dimensional granularities from dominating the selected representation and ensures that each spatial scale contributes within its allocated budget. Let each input EEG epoch be denoted as X ∈ RC×T , where C is the number of channels and T
+
+is the number of time samples. We extracted a multi-scale set of EEG features across three spatial granularities—global, region, and channel—to capture both linear and nonlinear characteristics of neural activity. A summary of the extracted feature families is provided in Table 2. Under the default configuration ( C = 129, Bfreq = 5, R = 5 brain regions, P = 15 regional pairs, M = 2 power metrics, Q = 3 epoch-level summary statistics, and Kms = 4 microstates), this yields 28 global, 400 regional, and 3096 channel-level features, totaling 3524 conceptual features. All features were aggregated across epochs using three statistics (mean, standard deviation, and median) and 
+
+z-score normalized. EEG preprocessing included bandpass filtering (1–45 Hz), common average referencing, bad channel detection with spline interpolation, and epoch rejection. All preprocessing steps were applied independently to each subject’s recording. Common average referencing and bad-channel interpolation were restricted to within-subject channel information without cross-subject aggregation, so that each recording remained an independent unit throughout preprocessing. Log transformation was applied to power values, and a regularization term ( ϵ = 10 −15 ) ensured numerical stability for power ratios. For global microstate features , we identified EEG microstates using K-means clustering on global field power peaks [25, 26]. For each of the Kms = 4 canonical microstates, we computed coverage, occurrence, and mean duration (3 Kms = 12 features), along with the microstate transi-tion probability matrix ( K2ms = 16 features) characterizing temporal segmentation and transition patterns [27]. For frequency-domain features , power spectral density (PSD) was estimated using Welch’s method [28] with a 2-second Hanning window and 50% overlap. For each channel and frequency band, we computed log-absolute power and relative power (each yielding CB = 645 features); region-level features were obtained by averaging across channels within each of R = 5 brain regions (2 RB = 50 features). At the channel level, we additionally computed differential entropy ( CB = 645 features), log-absolute band-power ratios for ( θ/β ), ( α/β ), and ( θ/α ) (3 C = 387 features), and aperiodic parameters by fitting the spectral power spectrum as log(PSD( f )) = ωch − κch log( f ) + η(f ), where 
+
+κch is the aperiodic exponent and ωch is the offset (2 C = 258 features) [41, 42]. For regional asymmetry and connectivity , we quantified inter-hemispheric asymmetry for each power metric (2 RB = 50 features) and estimated inter-regional functional connectivity using coherence and phase-locking value (PLV) across regional pairs. For connectivity, we used six regions (including the auricular-mastoid reference), yielding P =  62
+
+ = 15 pairs, and two connectivity met-7rics (coherence and PLV), giving 2 P B = 150 features. For long-duration paradigms, we extracted sliding-window mean, standard deviation, and slope of regional spectral power ( RBM Q = 150 features). To quantify signal complexity, we computed Hjorth parameters (activity, mobility, com-plexity) and spectral entropy (4 C = 516 features) [43, 44]. Sample entropy was included as an optional feature ( C = 129 if enabled). All features were organized into three granularities: global-level (28 microstate features), region-level (400 features), and channel-level (3096 features). The complete feature taxonomy, including dimensionality breakdown per feature family, is summarized in Table 2. 
+
+Granularity-Aware Feature-Model Selection Engine 
+
+As illustrated in Figure 2, the core of our framework comprises a feature-model selection engine that systematically identifies optimal feature representations and model families. Let T denote the set of EEG tasks (EC, EO, MW, SuS) and L denote the set of prediction labels ( p-factor, attention, externalizing, internalizing). For each task–label pair ( t, l ) ∈ T × L , we construct a feature matrix and corresponding binary label vector. The feature space is organized according to a reference feature manifest F, which specifies the spatial granularity of each feature. Let G = {global , region , channel }
+
+denote the three granularity levels, with granularity-specific budgets {Kg }g∈G controlling the number of features retained per level. This engine operates in two stages, as detailed below. 
+
+Stage 2A: Cross-task Model Family Screening (CMFS) 
+
+Before performing feature selection and final pipeline optimization, we conducted a cross-task model family screening procedure to identify robust candidate classifiers. The goal was to reduce the model search space by selecting model families that consistently performed well across different EEG tasks and psychological labels, rather than determining the final model for any specific task–label pair. For each task–label pair ( t, l ) ∈ T × L , we constructed a full-feature matrix Xt,l (including all three granularities) and binary label vector yt,l , with only basic preprocessing (missing-value handling, low-variance removal, and standardization) applied. A predefined candidate set M comprising linear models (Logistic Regression, ElasticNet), SVM (Linear SVM), tree-based ensembles (Random Forest), and boosting models (XGBoost) was evaluated, with the Dummy classifier included as a sanity-check baseline. For each model family, hyperparameters were tuned via inner cross-validation within each outer training fold using AUC as the optimization objective. To summarize robustness, for each model family m ∈ M , we computed its mean AUC, median AUC, average rank, number of first-place rankings, and number of top-two rankings across all |T |×|L| 
+
+task–label combinations: MeanRank( m) = 1
+
+|T | · |L| 
+
+X
+
+> t∈T
+
+X
+
+> l∈L
+
+Rank( m, t, l ) (2) where Rank( m, t, l ) denotes the rank of model family m on task–label pair ( t, l ) according to vali-dation AUC. The average rank assessed consistency, while top-two frequency indicated whether a model remained competitive even when not the best for a specific task. This screening produced a 8Algorithm 1: Granularity-Aware Stability Top-K Selection (GSTS) 
+
+Input: Training feature matrix Xtrain ; training labels ytrain ; feature manifest F; granularity set 
+
+G = {global , region , channel }; granularity-specific budgets {Kg }g∈G ; base scoring method ϕ;number of resampling iterations Bstab .
+
+Output: Selected feature set S∗. 
+
+> 1
+
+Initialize final selected feature set S∗ ← ∅  
+
+> 2
+
+foreach granularity g ∈ G do  
+
+> 3
+
+Identify feature subset Fg = {f ∈ F : granularity( f ) = g} 
+
+> 4
+
+Initialize selection count cf ← 0 for each feature f ∈ F g 
+
+> 5
+
+for b ← 1 to Bstab do  
+
+> 6
+
+Draw a stratified subsample Db from ( Xtrain , y train ) 
+
+> 7
+
+Extract X(g) 
+
+> b
+
+using only features in Fg 
+
+> 8
+
+Apply preprocessing using only Db 
+
+> 9
+
+Compute feature importance score sf for each feature f ∈ F g using scoring method ϕ 
+
+> 10
+
+Select the top-Kg features in Fg according to sf 
+
+> 11
+
+Increase cf by one for each selected feature  
+
+> 12
+
+foreach feature f ∈ F g do  
+
+> 13
+
+Compute stability score πf = cf /B stab  
+
+> 14
+
+Select Sg , the top-Kg features in Fg according to stability score πf 
+
+> 15
+
+Update S∗ ← S ∗ ∪ S g 
+
+> 16
+
+return S∗
+
+reduced set of candidate model families M∗ ⊂ M for subsequent experiments. By selecting based on cross-task stability rather than single-task performance, the framework avoids over-specialization to any particular EEG condition or psychological label. CMFS is a preliminary screening step. Its aggregated ranking statistics are derived from nested CV results on the full dataset. The step selects two out of five coarse model families, with no selection of hyperparameters or features. Downstream training is performed de novo within each outer fold of the GSTS pipeline. 
+
+Stage 2B: Granularity-Aware Stability Top-K Feature Selection (GSTS) 
+
+The detailed procedure of the proposed Granularity-Aware Stability Top-K Selection (GSTS) frame-work is summarized in Algorithm 1. GSTS is designed to address a structural imbalance that naturally arises in multi-scale EEG feature spaces. The extracted feature set contains descriptors from three spatial granularities: global, regional, and channel levels. These granularities differ not only in dimensionality but also in neurophysiological meaning. Global features summarize whole-brain temporal dynamics, regional features capture anatomically aggregated functional patterns, and channel-level features preserve fine-grained topographical information. However, because channel-level descriptors are far more numerous than global or regional descriptors, a conventional flat selec-tion strategy over the pooled feature space can introduce a candidate-pool bias: high-dimensional feature groups are more likely to occupy the selected subset simply because they contribute more candidates, even when lower-dimensional groups contain stable and complementary information. To mitigate this bias, GSTS reformulates feature selection as a structured, granularity-constrained stability selection problem rather than a single flat ranking problem. Specifically, the complete fea-ture space F is first partitioned according to the feature manifest into three non-overlapping subsets, 9Fglobal , Fregion , and Fchannel . Instead of allowing all features to compete in one shared pool, GSTS performs competition within each granularity independently. Each granularity g ∈ G is assigned an independent feature budget Kg , so that the final representation is constrained to preserve informa-tion from multiple spatial scales. This design transforms the original imbalanced K-of-N selection problem into a set of granularity-specific Kg -of-Ng selection problems, where Ng = |F g |. As a re-sult, each spatial scale contributes according to its within-granularity relevance rather than its raw dimensionality. Within each granularity, GSTS further introduces resampling-based stability regularization. Given the training data only, GSTS repeatedly draws Bstab stratified subsamples and computes feature relevance scores within each granularity using a base scoring function ϕ, such as the ANOVA F-test. In each resampling iteration b, the top-Kg features from granularity g are retained, and the selection count cf of each feature is updated. After Bstab iterations, every feature f ∈ F g receives a stability score: 
+
+πf = cf
+
+Bstab 
+
+, cf =
+
+> Bstab
+
+X
+
+> b=1
+
+I(f ∈ S (g) 
+
+> b
+
+), (3) where S(g) 
+
+> b
+
+denotes the subset of top-Kg features selected from granularity g in the b-th resampling iteration. For each granularity, GSTS selects the final subset Sg by retaining the Kg features with the highest stability scores. The final selected representation is then obtained by merging the stable subsets from all granularities: 
+
+S∗ = Sglobal ∪ S region ∪ S channel . (4) This procedure provides three forms of regularization simultaneously: dimensionality reduction through top-Kg selection, stability regularization through repeated subsampling, and granularity regularization through explicit multi-scale budget constraints. Therefore, GSTS does not merely reduce the number of EEG features; it preserves a balanced and interpretable multi-granularity representation while preventing high-dimensional channel-level descriptors from overwhelming lower-dimensional but neurophysiologically meaningful global and regional markers. All GSTS operations are conducted strictly within the training folds of the nested cross-validation pipeline. Feature relevance scores, stability estimates, and final selected subsets are computed with-out access to the held-out test fold, and the learned feature subset is then applied unchanged to the corresponding test data. This fold-contained implementation ensures that the reported performance reflects genuine generalization rather than information leakage from feature selection. Unlike con-ventional feature selection methods that impose sparsity on the pooled feature space, GSTS imposes sparsity under granularity-aware structural constraints, thereby aligning feature reduction with the hierarchical organization of EEG descriptors. 10 Fold-Contained Supervised Evaluation Protocol 
+
+To rigorously evaluate the proposed framework and prevent data leakage, we adopted a nested cross-validation (CV) protocol with leakage-free design, as illustrated in Figure 2. The outer loop consists of Kcv -fold stratified cross-validation (default Kcv = 5), where each fold reserves one subject group as the test set while the remaining groups are used for training. All feature selection (GSTS), hy-perparameter tuning, and model fitting are performed exclusively within each training fold using inner cross-validation (also 5-fold), and the held-out test fold is used only for final evaluation. This design ensures that the test data never participate in any decision-making process—including prepro-cessing, feature selection, or hyperparameter optimization—thereby providing unbiased estimates of generalization performance. All EEG preprocessing operations (filtering, re-referencing, bad-channel interpolation) are applied independently to each subject’s recording without cross-subject informa-tion exchange and are performed once before cross-validation splitting. For model selection, we used the five candidate model families (plus the Dummy classifier) screened via CMFS as described in Stage 2A. Hyperparameters for each model were optimized via grid search within the inner CV loop using AUC as the objective. The top-performing model families 
+
+M∗ were selected based on their cross-task stability across all task–label combinations, measured by mean rank, mean AUC, and top-two frequency. For feature selection, we employed GSTS with 
+
+Bstab = 100 and ANOVA F-test as the base scoring method ϕ. The feature budgets were set to 
+
+Kglobal = 10, Kregion = 50, and Kchannel = 100 by default. All selection operations were performed using only the training data, and the selected subset S∗ was applied to the test fold without refitting. After completing all Kcv outer folds, performance metrics (AUC, balanced accuracy, and macro F1-score) are aggregated and reported as mean ± standard deviation. To assess statistical signifi-cance, we employed two complementary procedures. For the full model-performance table (Table 3), paired t-tests compared each model’s fold-wise AUCs against the Dummy classifier within each task–label pair. For the ROC summary figure (Figure 4), permutation tests with 1,000 random label shuffles were performed for each task–label pair, and the resulting p-values were corrected for multiple comparisons across all panels using false discovery rate (FDR) control. This yields the optimized multi-granularity pipeline with interpretable outputs, including 95% confidence intervals, stable EEG markers (robust features), and brain-region and frequency-band contributions. 
+
+## Results and Discussion 
+
+Analysis of experimental results 
+
+To establish a systematic baseline for EEG-based psychopathology prediction across diverse record-ing conditions and clinical dimensions, we first evaluated the predictive performance of six candidate models, ranging from linear classifiers to tree-based ensembles, using the full feature set across four EEG paradigms and four psychopathology dimensions (Table 3). Tree-based ensembles (XGBoost and Random Forest) consistently outperformed linear models across all 16 task–label combinations, together accounting for every best-AUC position: XGBoost led in 9 of 16 cases (AUC range 0.522– 0.663) and Random Forest in the remaining 7 (range 0.516–0.655). Linear models (L2 Logistic, 11 Table 3: Model performance on  resting-state and task-state EEG data  using the  full F-all feature set  (AUC / Accuracy / Macro F1) with nested 5-fold cross-validation [mean  ± std]. Values are reported as mean  ± standard deviation across 5 outer folds. For each paradigm and psychopathology label, the best-performing model was selected according to mean cross-validated AUC. Significance markers indicate paired t-test results (vs. Dummy Classifier) for AUC only:  ∗p <  0.05,  ∗∗ p <  0.01. Best results per metric and per paradigm are shown in bold and colored. 
+
+> Model  P-factor  Attention  Externalizing  Internalizing AUC  Accuracy  Macro F1  AUC  Accuracy  Macro F1  AUC  Accuracy  Macro F1  AUC  Accuracy  Macro F1 Resting-State paradigm 1 (Eye-closed EEG paradigm):
+> Dummy Classifier  0.517  ± 0.026  0.517  ± 0.026  0.517  ± 0.026  0.484  ± 0.054  0.484  ± 0.054  0.483  ± 0.054  0.500  ± 0.035  0.500  ± 0.035  0.499  ± 0.035  0.483  ± 0.018  0.483  ± 0.018  0.482  ± 0.018 Logistic Regression L2  0.501  ± 0.022  0.503  ± 0.008  0.502  ± 0.008  0.559  ± 0.026  0.534  ± 0.023  0.533  ± 0.023  0.547  ± 0.019 ∗ 0.542  ± 0.032  0.542  ± 0.032  0.618  ± 0.012 ∗∗  0.593  ± 0.013 ∗∗  0.592  ± 0.012 ∗∗
+> Logistic Reg. ElasticNet  0.524  ± 0.021  0.526  ± 0.027  0.525  ± 0.026  0.550  ± 0.026  0.535  ± 0.023  0.533  ± 0.022  0.538  ± 0.020  0.526  ± 0.024  0.526  ± 0.023  0.581  ± 0.020 ∗∗  0.559  ± 0.024 ∗ 0.557  ± 0.026 ∗
+> Linear SVM  0.493  ± 0.026  0.500  ± 0.028  0.498  ± 0.028  0.550  ± 0.031  0.535  ± 0.016  0.535  ± 0.016  0.546  ± 0.020  0.537  ± 0.024  0.535  ± 0.025  0.598  ± 0.011 ∗∗  0.570  ± 0.012 ∗∗  0.568  ± 0.013 ∗∗
+> Random Forest  0.534  ± 0.034  0.525  ± 0.028  0.524  ± 0.028  0.553  ± 0.049  0.542  ± 0.037  0.541  ± 0.037  0.605  ± 0.028 ∗∗  0.582  ± 0.028 ∗∗  0.582  ± 0.028 ∗∗  0.655  ± 0.017 ∗∗  0.626  ± 0.029 ∗∗  0.626  ± 0.029 ∗∗
+> XGBoost  0.549  ± 0.004  0.528  ± 0.011  0.527  ± 0.011  0.576  ± 0.035  0.549  ± 0.030  0.548  ± 0.031  0.597  ± 0.025 ∗∗  0.579  ± 0.024 ∗∗  0.579  ± 0.024 ∗∗  0.651  ± 0.024 ∗∗  0.609  ± 0.006 ∗∗  0.609  ± 0.006 ∗∗
+> Resting-State paradigm 2 (Eye-open EEG paradigm):
+> Dummy Classifier  0.510  ± 0.018  0.510  ± 0.018  0.510  ± 0.018  0.500  ± 0.051  0.500  ± 0.051  0.500  ± 0.052  0.509  ± 0.025  0.509  ± 0.025  0.508  ± 0.025  0.499  ± 0.025  0.499  ± 0.025  0.499  ± 0.025 Logistic Regression L2  0.516  ± 0.018  0.510  ± 0.026  0.510  ± 0.026  0.552  ± 0.035  0.549  ± 0.020  0.549  ± 0.020  0.559  ± 0.020 ∗ 0.564  ± 0.020 ∗ 0.564  ± 0.020 ∗ 0.598  ± 0.015 ∗∗  0.581  ± 0.013 ∗∗  0.580  ± 0.013 ∗∗
+> Logistic Reg. ElasticNet  0.509  ± 0.018  0.514  ± 0.023  0.513  ± 0.023  0.548  ± 0.035  0.540  ± 0.029  0.537  ± 0.028  0.566  ± 0.029 ∗ 0.552  ± 0.031  0.550  ± 0.034  0.566  ± 0.032  0.561  ± 0.035  0.560  ± 0.036 Linear SVM  0.517  ± 0.013  0.499  ± 0.029  0.498  ± 0.029  0.553  ± 0.036  0.551  ± 0.022  0.551  ± 0.023  0.541  ± 0.021 ∗ 0.526  ± 0.014  0.524  ± 0.013  0.576  ± 0.021 ∗ 0.567  ± 0.009 ∗∗  0.566  ± 0.009 ∗∗
+> Random Forest  0.516  ± 0.028  0.508  ± 0.018  0.507  ± 0.018  0.553  ± 0.040  0.550  ± 0.031  0.549  ± 0.031  0.623  ± 0.040 ∗∗  0.605  ± 0.046 ∗ 0.605  ± 0.046 ∗ 0.643  ± 0.025 ∗∗  0.608  ± 0.020 ∗∗  0.607  ± 0.019 ∗∗
+> XGBoost  0.527  ± 0.028  0.526  ± 0.018  0.526  ± 0.018  0.522  ± 0.042  0.521  ± 0.030  0.520  ± 0.030  0.612  ± 0.053 ∗ 0.575  ± 0.038 ∗ 0.574  ± 0.038  0.663  ± 0.024 ∗∗  0.623  ± 0.024 ∗∗  0.623  ± 0.024 ∗∗
+> Task-State paradigm 1 (Movie-Watching EEG paradigm):
+> Dummy Classifier  0.505  ± 0.028  0.505  ± 0.028  0.505  ± 0.028  0.489  ± 0.026  0.489  ± 0.026  0.489  ± 0.026  0.483  ± 0.016  0.483  ± 0.016  0.483  ± 0.016  0.483  ± 0.025  0.483  ± 0.025  0.483  ± 0.025 Logistic Regression L2  0.518  ± 0.036  0.510  ± 0.031  0.508  ± 0.030  0.567  ± 0.023 ∗∗  0.547  ± 0.013 ∗∗  0.547  ± 0.014 ∗∗  0.603  ± 0.030 ∗∗  0.575  ± 0.035 ∗∗  0.574  ± 0.034 ∗∗  0.571  ± 0.054 ∗ 0.548  ± 0.057  0.548  ± 0.057 Logistic Reg. ElasticNet  0.507  ± 0.039  0.505  ± 0.033  0.499  ± 0.039  0.550  ± 0.009 ∗∗  0.548  ± 0.016 ∗∗  0.544  ± 0.021 ∗∗  0.526  ± 0.037 ∗ 0.528  ± 0.037 ∗ 0.526  ± 0.037 ∗ 0.556  ± 0.036 ∗ 0.546  ± 0.029 ∗ 0.545  ± 0.028 ∗
+> Linear SVM  0.509  ± 0.038  0.510  ± 0.027  0.509  ± 0.028  0.550  ± 0.033  0.537  ± 0.028  0.536  ± 0.029  0.534  ± 0.041  0.531  ± 0.019 ∗∗  0.530  ± 0.019 ∗∗  0.545  ± 0.051  0.532  ± 0.048  0.530  ± 0.049 Random Forest  0.517  ± 0.037  0.524  ± 0.025  0.524  ± 0.026  0.539  ± 0.028  0.522  ± 0.022  0.521  ± 0.021  0.640  ± 0.025 ∗∗  0.610  ± 0.026 ∗∗  0.610  ± 0.026 ∗∗  0.623  ± 0.051 ∗∗  0.588  ± 0.045 ∗∗  0.587  ± 0.046 ∗∗
+> XGBoost  0.529  ± 0.029  0.520  ± 0.032  0.518  ± 0.031  0.570  ± 0.034 ∗∗  0.546  ± 0.026 ∗ 0.546  ± 0.026 ∗ 0.620  ± 0.024 ∗∗  0.594  ± 0.016 ∗∗  0.594  ± 0.016 ∗∗  0.620  ± 0.036 ∗∗  0.575  ± 0.031 ∗∗  0.574  ± 0.031 ∗∗
+> Task-State paradigm 2 (Surround Suppression EEG paradigm):
+> Dummy Classifier  0.471  ± 0.026  0.471  ± 0.026  0.471  ± 0.026  0.506  ± 0.038  0.506  ± 0.038  0.506  ± 0.038  0.484  ± 0.028  0.484  ± 0.028  0.484  ± 0.028  0.490  ± 0.049  0.490  ± 0.049  0.490  ± 0.049 Logistic Regression L2  0.509  ± 0.046  0.492  ± 0.048  0.491  ± 0.049  0.492  ± 0.032  0.501  ± 0.034  0.500  ± 0.034  0.532  ± 0.027 ∗ 0.522  ± 0.021  0.522  ± 0.021  0.583  ± 0.032  0.551  ± 0.026  0.549  ± 0.027 Logistic Reg. ElasticNet  0.493  ± 0.033  0.483  ± 0.028  0.481  ± 0.028  0.510  ± 0.045  0.526  ± 0.048  0.523  ± 0.048  0.529  ± 0.034  0.521  ± 0.027  0.519  ± 0.024  0.551  ± 0.031  0.549  ± 0.020  0.546  ± 0.021 Linear SVM  0.505  ± 0.049  0.509  ± 0.045  0.506  ± 0.045  0.490  ± 0.041  0.491  ± 0.026  0.487  ± 0.026  0.502  ± 0.020  0.504  ± 0.014  0.501  ± 0.010  0.559  ± 0.033  0.537  ± 0.031  0.536  ± 0.032 Random Forest  0.541  ± 0.035 ∗ 0.529  ± 0.026  0.529  ± 0.026  0.543  ± 0.047  0.530  ± 0.035  0.528  ± 0.036  0.602  ± 0.051 ∗ 0.573  ± 0.032 ∗∗  0.572  ± 0.034 ∗∗  0.633  ± 0.039 ∗ 0.602  ± 0.028 ∗ 0.602  ± 0.028 ∗
+> XGBoost  0.544  ± 0.016 ∗∗  0.520  ± 0.015 ∗∗  0.520  ± 0.015 ∗∗  0.560  ± 0.042  0.527  ± 0.037  0.526  ± 0.037  0.592  ± 0.052 ∗ 0.564  ± 0.052 ∗ 0.563  ± 0.053 ∗ 0.645  ± 0.036 ∗ 0.609  ± 0.018 ∗ 0.609  ± 0.017 ∗
+
+12 Table 4: Cross-task model family screening results. Models were evaluated on the full feature set (F-all) across all 16 (task, label) combinations from 4 paradigms (EC, EO, Movie, SuS). For each combination, models were ranked by validation AUC. Mean rank and median AUC summarize cross-task stability; #Best and #Top2 indicate how often a model achieved the first or top-two distinct AUC ranks. Models with mean rank ≤ 3 and at least one Top2 occurrence were selected for subsequent experiments. Model Family Mean AUC ± SD Median AUC Mean Rank ↓ #Best #Top2 Decision XGBoost 0.586 ± 0.045 0.584 1.62 9 15 Selected                                         
+
+> Random Forest 0.583 ±0.048 0.577 2.00 712 Selected
+> L2 Logistic 0.552 ±0.037 0.555 3.12 03Reserve ElasticNet 0.538 ±0.024 0.543 4.38 00Reserve Linear SVM 0.536 ±0.030 0.543 4.19 02Reserve Dummy 0.494 ±0.014 0.496 5.69 00–
+
+ElasticNet, Linear SVM) produced consistently lower AUCs (range 0.490–0.618), confirming that EEG–psychopathology relationships are predominantly nonlinear. Across psychopathology dimen-sions, internalizing was the most predictable (best AUC per paradigm 0.623–0.663), followed by externalizing (0.602–0.640), while p-factor (0.527–0.549) and attention (0.553–0.576) showed lower predictability. Among paradigms, resting-state (EC and EO) and movie-watching produced compa-rable predictive signals, while surround suppression yielded the weakest overall performance. Paired 
+
+t-tests against the Dummy classifier confirmed that the AUCs of tree-based models were significantly above chance ( p < 0.05 or p < 0.01) for most task–label pairs, whereas linear models frequently failed to reach significance, particularly for p-factor and attention dimensions. This may be attributed to the fact that the block-design SSVEP paradigm in the SuS task intro-duces strong, periodic visual-evoked responses that could mask the more subtle, endogenous neural signals associated with trait-level psychopathology, making it less suitable for capturing individual differences compared to spontaneous resting-state or naturalistic viewing conditions. 
+
+Model Screening Results 
+
+Given the consistent superiority of tree-based ensembles over linear models observed in the full-feature evaluation (Table 3), we next conducted a formal cross-task model screening procedure to determine which specific model families should be retained for downstream experiments. Using cross-task stability—defined as the ability to maintain competitive performance across four EEG paradigms and four psychopathology dimensions—as the selection criterion, we ranked models by validation AUC for each of the 16 (task, label) combinations under nested 5-fold CV (Table 4). XGBoost achieved the highest mean AUC (0.586) and lowest mean rank (1.62), followed closely by Random Forest (0.583, rank 2.00); XGBoost also delivered the most first-place wins (9/16) and the highest Top-2 frequency (15/16), with Random Forest ranking second in both metrics (7/16 first-place, 12/16 Top-2). Linear models (L2 Logistic, ElasticNet, Linear SVM) trailed substantially, with mean ranks ranging from 3.12 to 4.38 and zero first-place wins. Applying a selection criterion of mean rank ≤ 3 and at least one Top-2 occurrence, we retained XGBoost and Random Forest as an equal-weight ensemble (prediction-score level) for all downstream experiments; L2 Logistic (rank 13 Table 5: Ablation study of feature granularity on EEG-based psychopathology predic-tion. The ensemble (XGBoost + Random Forest) was evaluated under 5-fold cross-validation on eyes-closed (EC) resting-state and movie-watching (MW) paradigms. Results are reported as AUC / Accuracy / Macro F1 (mean ± std). #F counts conceptual features; each is aggregated via three statistics (mean, std, median), yielding 3 × columns in the final model input matrix. Best results per target and paradigm are highlighted in color.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+
+> Feature Granularity #F P-factor Attention Externalizing Internalizing AUC Accuracy Macro F1 AUC Accuracy Macro F1 AUC Accuracy Macro F1 AUC Accuracy Macro F1 Resting-State Paradigm 1 (Eye-closed EEG Paradigm):
+> Global 28 0.512 ±0.030 0.508 ±0.027 0.507 ±0.028 0.505 ±0.033 0.498 ±0.026 0.497 ±0.025 0.583 ±0.019 0.556 ±0.018 0.556 ±0.018 0.582 ±0.030 0.558 ±0.024 0.558 ±0.024 Region 400 0.538 ±0.023 0.522 ±0.019 0.522 ±0.019 0.581 ±0.037 0.561 ±0.023 0.561 ±0.023 0.593 ±0.016 0.560 ±0.020 0.559 ±0.020 0.644 ±0.019 0.605 ±0.014 0.605 ±0.014 Channel 3096 0.536 ±0.016 0.521 ±0.010 0.520 ±0.010 0.583 ±0.043 0.561 ±0.037 0.560 ±0.037 0.598 ±0.029 0.567 ±0.036 0.566 ±0.036 0.641 ±0.022 0.606 ±0.037 0.605 ±0.037 Global + Region 428 0.530 ±0.022 0.526 ±0.010 0.525 ±0.010 0.569 ±0.041 0.549 ±0.029 0.548 ±0.029 0.598 ±0.020 0.572 ±0.023 0.572 ±0.023 0.646 ±0.024 0.602 ±0.026 0.602 ±0.026 Global + Channel 3124 0.547 ±0.015 0.538 ±0.018 0.538 ±0.018 0.569 ±0.038 0.545 ±0.028 0.544 ±0.028 0.605 ±0.029 0.575 ±0.021 0.575 ±0.021 0.645 ±0.023 0.611 ±0.025 0.610 ±0.025 Region + Channel 3496 0.520 ±0.009 0.503 ±0.016 0.502 ±0.016 0.584 ±0.043 0.556 ±0.035 0.556 ±0.035 0.609 ±0.033 0.583 ±0.032 0.583 ±0.032 0.660 ±0.022 0.620 ±0.025 0.620 ±0.025 Global + Region + Channel 3524 0.546 ±0.007 0.534 ±0.019 0.533 ±0.019 0.570 ±0.047 0.548 ±0.025 0.548 ±0.025 0.601 ±0.028 0.562 ±0.031 0.561 ±0.032 0.659 ±0.027 0.614 ±0.028 0.613 ±0.028
+> Task-State Paradigm 1 (Movie-Watching EEG Paradigm):
+> Global 28 0.518 ±0.025 0.521 ±0.026 0.519 ±0.025 0.516 ±0.034 0.521 ±0.025 0.521 ±0.025 0.593 ±0.014 0.568 ±0.013 0.568 ±0.013 0.548 ±0.028 0.529 ±0.025 0.528 ±0.025 Region 400 0.541 ±0.029 0.537 ±0.022 0.536 ±0.021 0.570 ±0.038 0.566 ±0.018 0.566 ±0.018 0.622 ±0.029 0.602 ±0.023 0.601 ±0.023 0.600 ±0.037 0.580 ±0.029 0.580 ±0.030 Channel 3096 0.496 ±0.029 0.488 ±0.025 0.487 ±0.025 0.558 ±0.041 0.542 ±0.037 0.541 ±0.037 0.623 ±0.017 0.606 ±0.029 0.605 ±0.029 0.634 ±0.046 0.592 ±0.028 0.591 ±0.029 Global + Region 428 0.546 ±0.034 0.529 ±0.025 0.528 ±0.025 0.586 ±0.024 0.567 ±0.017 0.567 ±0.018 0.618 ±0.031 0.592 ±0.039 0.591 ±0.039 0.613 ±0.034 0.580 ±0.029 0.580 ±0.030 Global + Channel 3124 0.501 ±0.017 0.494 ±0.020 0.493 ±0.019 0.560 ±0.026 0.550 ±0.023 0.550 ±0.023 0.617 ±0.022 0.594 ±0.019 0.594 ±0.019 0.629 ±0.048 0.605 ±0.033 0.604 ±0.033 Region + Channel 3496 0.514 ±0.032 0.515 ±0.028 0.513 ±0.028 0.568 ±0.045 0.532 ±0.035 0.532 ±0.035 0.634 ±0.021 0.605 ±0.034 0.604 ±0.034 0.643 ±0.053 0.612 ±0.035 0.612 ±0.035 Global + Region + Channel 3524 0.522 ±0.019 0.527 ±0.025 0.526 ±0.025 0.570 ±0.038 0.541 ±0.024 0.541 ±0.024 0.627 ±0.014 0.591 ±0.017 0.590 ±0.017 0.634 ±0.044 0.599 ±0.026 0.599 ±0.026
+
+3.12, 3 Top-2) was reserved as a baseline comparison, while ElasticNet (rank 4.38, 0 Top-2) and Linear SVM (rank 4.19, 2 Top-2) were excluded. 
+
+Feature Granularity Analysis 
+
+To assess the contribution of different spatial granularities to psychopathology prediction, we con-ducted an ablation study comparing seven feature configurations, global-level (28 conceptual fea-tures), region-level (400 conceptual features), channel-level (3,096 conceptual features), and their pairwise and full combinations, using the selected ensemble (XGBoost and Random Forest) on both eyes-closed resting-state and movie-watching EEG datasets. From Table 5, the Region+Channel combination consistently achieved the best overall performance across most dimensions and paradigms, yielding the highest AUCs for internalizing in both EC (0.660) and MW (0.643), externalizing in EC (0.609), and attention in EC (0.584). This suggests that region-level and channel-level features pro-vide complementary information: regional aggregation captures anatomically organized functional patterns, while channel-level details preserve fine-grained topographical nuances that jointly enhance predictive power. Interestingly, adding global microstate features to Region+Channel (i.e., the full G+R+C set) did not further improve performance and, in several cases, slightly underperformed the Region+Channel combination (e.g., EC internalizing: 0.659 vs. 0.660; MW externalizing: 0.627 vs. 0.634). This suggests that global microstate features capture whole-brain temporal dynamics that are qualitatively different from region- and channel-level spectral features; when combined, their information may overlap with what is already represented in the spatially resolved features, yielding marginal net gain rather than additive improvement. Rather than being uninformative, global features may serve a complementary role that is most valuable when region- and channel-level information is not yet present, but offers limited additional benefit once finer spatial details are accounted for. 14 P-factor Attention Ext. Int. 0.45 0.50 0.55 0.60 0.65 0.70 AUC                      
+
+> 0.582 0.581 0.612 0.668 aResting-State (Eye-closed)
+> P-factor Attention Ext. Int. 0.45 0.50 0.55 0.60 0.65 0.70
+> 0.558 0.579 0.634 0.657 bResting-State (Eye-open)
+> P-factor Attention Ext. Int. 0.45 0.50 0.55 0.60 0.65 0.70
+> 0.562 0.598 0.639 0.643 cMovie-Watching
+> P-factor Attention Ext. Int. 0.45 0.50 0.55 0.60 0.65 0.70
+> 0.582 0.582 0.605 0.654 dSurround Suppression
+> Full V1 V2-L1 V2-EN V3 GSTS
+
+Figure 3: Per-paradigm comparison of feature selection strategies across four EEG paradigms. (a) EC, (b) EO, (c) MW, and (d) SuS: AUC values (mean ± std) for the full-feature baseline, comparison variants, and the proposed GSTS framework across four psychopathology di-mensions. Table 6: Comparison of feature selection strategies across four EEG paradigms (EC, EO, MW, SuS). All strategies are described in Feature Selection Strategy Analysis. Full denotes the no-selection baseline. V1 denotes flat stability selection, V2-L1 and V2-EN denote embedded L1 and ElasticNet selection, respectively, and V3 denotes PCA-based dimensionality reduction. GSTS denotes the proposed granularity-aware stability top-K selection framework. Adjusted stability (Jadj ) [45] corrects for chance-level overlap expected from random selection: Jadj = ( J − Jexp )/(1 −
+
+Jexp ), where Jexp = k/ (2 N − k), with k being the number of selected features and N = 10 ,572 the total number of candidate features. #Top2 indicates how many task–label combinations a strategy ranked within the top two. Bold indicates the best value among comparison strategies. 
+
+Strategy Variants k Adjusted Stability ↑ Mean AUC ↑ Mean Rank ↓ #Top2 ↑
+
+Full: No selection 10,572 – 0.5903 ± 0.0463 3.31 3V1: Flat stability Top-200 200 0.359 0.5816 ± 0.0403 4.81 0V2-L1: Embedded L1 selection 318 0.207 0.5821 ± 0.0413 4.56 2V2-EN: Embedded ElasticNet selection 8,710 0.100 0.5882 ± 0.0492 3.31 7V3: PCA-based reduction 200 – 0.5593 ± 0.0422 6.56 0
+
+GSTS: Granularity-aware selection (ours) 1,121 0.497 0.6082 ± 0.0349 1.19 16 
+
+GSTS-compact: Budget-constrained GSTS 226 0.419 0.5901 ± 0.0324 4.00 –
+
+Feature Selection Strategy Analysis 
+
+To evaluate whether the proposed granularity-aware selection strategy improves EEG-based psy-chopathology prediction, we compared it with five representative alternatives, including the full-feature baseline, flat stability selection, embedded sparse selection, ElasticNet selection, and PCA-based dimensionality reduction. The proposed method (Algorithm 1) is referred to as GSTS through-out this section. The other methods are denoted as comparison variants: Full denotes the no-selection baseline, V1 denotes flat stability selection, V2-L1 and V2-EN denote embedded L1 and ElasticNet selec-tion, respectively, and V3 denotes PCA-based reduction. Figure 3 first presents the per-paradigm comparison across the four EEG conditions. Overall, GSTS achieved consistently strong AUC per-formance across EC, EO, MW, and SuS, whereas the competing variants showed more pronounced paradigm-dependent fluctuations. V2-EN obtained relatively competitive AUC values in some con-ditions, but it retained most of the original features, indicating limited dimensionality reduction. In 15 contrast, V1 and V2-L1 produced compact feature subsets but yielded lower AUCs, suggesting that flat or globally sparse selection may remove weak but complementary EEG markers. V3 showed the lowest overall predictive performance, consistent with the fact that PCA maximizes unsuper-vised variance rather than label-discriminative information. These per-paradigm results indicate that GSTS provides a more favorable balance between predictive accuracy and feature reduction across heterogeneous EEG paradigms. Table 6 further summarizes the results across all four paradigms and all task–label combinations. On the primary performance metric, mean AUC, GSTS achieved the best overall result among all strategies, with a mean AUC of 0.6082, outperforming the full-feature baseline and all compari-son variants. GSTS also obtained the lowest mean rank and ranked within the top two in every task–label combination, demonstrating that its advantage was not driven by a single paradigm or psychopathology dimension. Importantly, this performance gain was achieved while retaining only a small subset of the original feature space, indicating that granularity-aware selection can remove redundant features without discarding useful multi-scale EEG information. The compact GSTS variant provides a complementary view of this effect. Under a strict feature budget of approxi-mately 200 features, GSTS-compact achieved a mean AUC comparable to the full-feature baseline while reducing the feature space by nearly two orders of magnitude. Its adjusted stability was also higher than that of flat stability selection, suggesting that partitioning features by spatial granularity yields more reproducible feature subsets than applying a single global selection constraint. Taken together, Figure 3 and Table 6 support the same conclusion: GSTS provides the best overall feature selection strategy in terms of the primary AUC metric, while also improving feature compactness and selection stability. To further verify that the predictive performance of GSTS is meaningfully above random chance rather than a consequence of sampling variability, we next examined the ROC curves and permutation-based significance tests across all task–label combinations. Figure 4 shows the ROC curves of GSTS across all 16 task–label combinations. Most panels achieved AUC values above 0.5, and the permutation-based tests confirmed that several task–label combinations were significantly better than random-chance prediction. These results indicate that the signals captured by GSTS are not merely random fluctuations in high-dimensional EEG features. Nevertheless, the AUC values remain moderate, so the results should be interpreted as evidence of weak but detectable EEG correlates of dimensional psychopathology rather than as sufficient performance for individual-level clinical diagnosis. 
+
+Visualization 
+
+To facilitate interpretation of the selected EEG markers, we visualized the selection density of features aggregated across outer cross-validation folds for each psychopathology dimension, as shown in Figure 5. Selection density reflects how frequently a feature was retained across folds and serves as a proxy for the stability of its predictive contribution; it does not imply causal relevance or functional activation. Panel A shows that channel-level selection density exhibited dimension-specific spatial preferences: attention problems focused over posterior and occipitotemporal regions; externalizing 16 0.00 
+
+0.25 
+
+0.50 
+
+0.75 
+
+1.00 
+
+> EC
+> AUC = 0.662
+> 95% CI [0.633, 0.692]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+a Internalizing 
+
+> AUC = 0.602
+> 95% CI [0.574, 0.632]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+b Externalizing 
+
+> AUC = 0.585
+> 95% CI [0.556, 0.614]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+c p-factor 
+
+> AUC = 0.570
+> 95% CI [0.541, 0.601]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+d Attention 
+
+0.00 
+
+0.25 
+
+0.50 
+
+0.75 
+
+1.00 
+
+> EO
+> AUC = 0.656
+> 95% CI [0.629, 0.685]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+e
+
+> AUC = 0.630
+> 95% CI [0.602, 0.659]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+f
+
+> AUC = 0.548
+> 95% CI [0.519, 0.578]
+> p_raw < 0.001
+> p_fdr = 0.001
+
+g
+
+> AUC = 0.563
+> 95% CI [0.534, 0.594]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+h
+
+0.00 
+
+0.25 
+
+0.50 
+
+0.75 
+
+1.00 
+
+> Movie
+> AUC = 0.630
+> 95% CI [0.597, 0.664]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+i
+
+> AUC = 0.629
+> 95% CI [0.596, 0.663]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+j
+
+> AUC = 0.550
+> 95% CI [0.517, 0.584]
+> p_raw = 0.003
+> p_fdr = 0.003
+
+k
+
+> AUC = 0.592
+> 95% CI [0.557, 0.625]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+l
+
+0.00 0.25 0.50 0.75 1.00 
+
+0.00 
+
+0.25 
+
+0.50 
+
+0.75 
+
+1.00 
+
+> SUS
+> AUC = 0.630
+> 95% CI [0.597, 0.666]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+m
+
+0.00 0.25 0.50 0.75 1.00 
+
+> AUC = 0.589
+> 95% CI [0.554, 0.625]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+n
+
+0.00 0.25 0.50 0.75 1.00 
+
+> AUC = 0.581
+> 95% CI [0.548, 0.615]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+o
+
+0.00 0.25 0.50 0.75 1.00 
+
+> AUC = 0.575
+> 95% CI [0.539, 0.611]
+> p_raw < 0.001
+> p_fdr < 0.001
+
+p
+
+False Positive Rate (1 − Speci fi city) 
+
+> True Positive Rate (Sensitivity)
+
+Figure 4: ROC curves of the proposed GSTS pipeline across all 16 task–label combi-nations. Rows correspond to EEG paradigms (EC, EO, MW, SuS), and columns correspond to psychopathology dimensions (internalizing, externalizing, p-factor, attention). Each panel reports AUC with 95% confidence interval and permutation-based p-value against random-chance perfor-mance (AUC = 0.5). showed prefrontal, frontocentral, and midline hotspots; internalizing concentrated over central and right posterior/temporal electrodes; and the p-factor displayed a diffuse posterior-dominant pattern. 
+
+Panel B reveals that selected features concentrated in specific region–frequency-band interactions rather than distributing uniformly, suggesting that predictive information arises from joint spatial– spectral patterns rather than any single band or region in isolation. Panel C indicates that GSTS did not converge on a single preferred granularity but adaptively integrated global, regional, and channel-level features in a target-dependent manner—global microstates most prominent for p-factor, region-level features for internalizing, and channel-level features for externalizing—empirically confirming that granularity-aware selection preserves multi-scale information rather than allowing any single spatial level to dominate. 17 A Topography B Region  × Band  
+
+> C Feature families  Region
+> Channel
+> Selection density
+
+Attention Externalizing Internalizing P-factor 
+
+> Mean fold freq.  Mean fold freq.
+> Global
+
+Figure 5: Interpretable EEG markers identified by the proposed GSTS framework. The figure summarizes stable EEG features selected by the final GSTS pipeline for four psychopathology dimensions: attention, externalizing, internalizing, and p-factor. (A) Channel-level scalp topogra-phies show the spatial distribution of selection density across electrodes. (B) Region-by-frequency heatmaps summarize stable marker distributions across brain regions and canonical frequency bands. (C) Feature-family contributions show the selection density of different EEG feature types, with col-ors indicating spatial granularity: global, region, and channel. Selection density was computed as the mean fold-wise selection frequency across outer cross-validation folds. 
+
+Exploratory Sanity Check on an Independent Adult Cohort (PEARL) 
+
+To probe whether the granularity-aware selection pipeline remains technically operable under pro-tocol shift, we applied the identical feature extraction and GSTS workflow—without adaptation or re-tuning—to the PEARL resting-state EEG dataset [23]. PEARL differs from HBN along every relevant axis: age (50–63 vs. 5–21 years), sample size ( n = 79 vs. n = 2 ,575), EEG hardware, and target construct (BDI depression scores vs. CBCL-derived psychopathology dimensions). These mismatches are deliberate: publicly available EEG datasets with clinically relevant phenotypes remain scarce, and most candidates suitable for external probing contain approximately 100 par-ticipants [23]. We therefore frame this analysis as an exploratory stress test rather than a formal external validation. From Table 7, given the small PEARL sample ( n = 79), all comparisons fall within overlapping standard-error intervals and formal statistical inference is unwarranted. Under eyes-closed (EC) resting-state, GSTS yielded an AUC of 0 .744 ± 0.217 for BDI prediction, compared to 0 .688 ± 0.214 for the no-selection baseline (Full), while reducing features from 3,426 to 61. Under 18 Table 7: Exploratory sanity check of GSTS on the PEARL resting-state EEG dataset (BDI depression prediction). Results are reported as AUC / Accuracy / Macro F1 (mean ± std) under eyes-closed (EC) and eyes-open (EO) conditions. Full: no selection; GSTS: granularity-aware stability selection.                                                                         
+
+> Condition Strategy AUC ↑Accuracy ↑Macro F1 ↑#Features Conclusion
+> EC Full (no selection) 0.688 ±0.214 0.596 ±0.141 0.579 ±0.153 3,426 Baseline Dummy 0.587 ±0.116 0.586 ±0.111 0.581 ±0.114 3,426 Chance GSTS (Ours) 0.744 ±0.217 0.687 ±0.195 0.664 ±0.213 61 Stress-test pass
+> EO Full (no selection) 0.486 ±0.173 0.505 ±0.119 0.488 ±0.113 3,426 Baseline Dummy 0.587 ±0.116 0.586 ±0.111 0.581 ±0.114 3,426 Chance baseline GSTS (Ours) 0.608 ±0.288 0.603 ±0.217 0.597 ±0.223 95 Stress-test pass
+
+eyes-open (EO), GSTS achieved AUC 0 .608 ± 0.288 versus Full at 0 .486 ± 0.173, with feature reduc-tion to 95 features. Cross-fold stability of selected feature subsets was moderate in both conditions (EC: 0.705, EO: 0.779). Notably, in the EO condition, the full feature set (Full) underperformed the dummy-classifier baseline (AUC 0.587), indicating that the raw signal-to-noise ratio was too low for meaningful prediction without feature selection; GSTS surpassed the dummy baseline, suggest-ing that granularity-aware selection can recover predictive signal even when the unselected feature space is uninformative. The results offer a weak but non-negative signal: the GSTS pipeline did not collapse under severe distribution shift, and the HBN gains are unlikely to be trivially explained by overfitting to a single dataset’s feature structure. 
+
+Clinical Utility Considerations 
+
+Although the AUC values reported in this study (ranging from approximately 0.52 to 0.63) may appear modest compared with those achieved in binary diagnostic classification tasks, their clinical utility should be interpreted in the context of screening and risk stratification rather than definitive individual diagnosis. In real-world pediatric mental health settings, the base rate of clinically signifi-cant psychopathology is relatively low, and behavioral checklists alone often yield high false-positive rates due to rater variability and situational factors. Even moderate AUC ( 0.60) could be useful for population-level risk stratification, but individual-level diagnosis is not recommended. When used as a triage tool, an EEG-derived risk score can meaningfully reorder referral priority—for ex-ample, by identifying the top 30% of children with the highest predicted p-factor or externalizing scores for follow-up clinical assessment, while reducing unnecessary screenings in the low-risk tail. This “rule-out” utility, even at moderate discriminative performance, may offer practical value in resource-constrained primary care or school-based mental health screening programs, where objec-tive, low-burden biomarkers are urgently needed to complement subjective ratings. Moreover, the consistency of predictive signals across multiple paradigms (especially EC and MW) suggests that the framework captures stable, replicable neural correlates rather than task-specific artifacts, which is a prerequisite for any clinically deployable tool. We emphasize that these considerations are qualitative and hypothesis-generating; rigorous evaluation of clinical utility would require prospec-tive studies with predefined risk thresholds, decision-curve analysis, and cost-benefit assessment in 19 real-world referral pathways. 
+
+## Conclusion 
+
+We present a reproducible computational recipe that systematically integrates multi-paradigm record-ings and multi-scale descriptors to predict dimensional psychopathology scores in children and adoles-cents. Our results indicate that resting-state and naturalistic paradigms carry measurable but weak neural correlates of psychopathology dimensions, with nonlinear tree-based models and granularity-balanced feature selection showing encouraging performance relative to conventional flat-selection or linear approaches in certain conditions. The ablation and visualization analyses suggest that differ-ent spatial granularities contribute complementary information, with regional-level features serving as a robust intermediate representation and channel-level features offering additional fine-grained details for specific phenotypes such as attention and externalizing problems. An exploratory sanity check on an independent adult resting-state cohort suggested that the granularity-aware selection pipeline remained technically operable under protocol shifts; this preliminary observation is not in-tended as evidence of generalizability but rather as a demonstration of pipeline portability, pending rigorous validation on larger, age-matched cohorts. This work offers a reproducible, fold-contained computational pipeline and provides empirical evidence that spatial granularity is a potentially im-portant consideration in EEG-based psychiatric phenotyping, warranting further investigation in future studies. 
+
+## Acknowledgments 
+
+Funding: This work is supported by National Key R&D Program of China (NO.2024YFB3311602), the Ministry of Education of the People’s Republic of China (JYB2025XDXM605), Natural Sci-ence Foundation of China (62272144, 72188101), the Anhui Provincial Natural Science Foundation (2408085J040), and the Major Project of Anhui Provincial Science and Technology Breakthrough Program (202423k09020001), the Anhui Provincial Graduate Quality Engineering Program (2024cx-cysj002), the Fundamental Research Funds for the Central Universities (JZ2024AHST0337), and the New Cornerstone Science Foundation through the XPLORER PRIZE and the CAST Young Talent Cultivation Program for Doctoral Students. 
+
+Author contributions: Conceptualization: H.C., J.H., and J.Z. Methodology: H.C., J.H., J.P., and J.Z. Software: H.C., S.F., and S.Q.F. Investigation: H.C., J.H., J.P., and M.S. Visualization: H.C., J.H., and J.P. Writing—original draft: H.C. and J.H. Writing—review and editing: J.H., M.W., D.G., and J.Z. Supervision: M.W., D.G., and J.Z. Funding acquisition: J.H., M.W., D.G., and J.Z. 
+
+Competing interests: The authors declare that they have no competing interests. 20 Data Availability 
+
+This study utilized the Healthy Brain Network (HBN) EEG dataset [24], which is publicly available at 
+
+https://fcon_1000.projects.nitrc.org/indi/cmi_healthy_brain_network/ . From this dataset, we used four EEG paradigms: two resting-state tasks (eyes-closed and eyes-open) and two naturalistic/task-based paradigms (movie watching and surround suppression). For the exploratory PEARL as-sessment, we used the PEARL dataset [23], accessible at https://openneuro.org/datasets/ ds004796/versions/1.0.4 . The code and feature extraction pipeline used in this study will be released upon publication at https://github.com/chf12581/GAFF .
+
+## References 
+
+1. Bosl WJ, Enlow MB, and Nelson CA. A dynamical systems framework for precision psychiatry. npj Digital Medicine 2025;8:586. 2. Comai S, Manchia M, Bosia M, et al. Moving toward precision and personalized treatment strategies in psychiatry. International Journal of Neuropsychopharmacology 2025;28:pyaf025. 3. Keller AS, Pines AR, Shanmugan S, et al. Personalized functional brain network topography is associated with individual differences in youth cognition. Nature communications 2023;14:8411. 4. Yun S. Advances, challenges, and prospects of electroencephalography-based biomarkers for psychiatric disorders: a narrative review. Journal of Yeungnam Medical Science 2024;41:261–8. 5. Jia T, Sun J, McGeady C, Ji L, and Li C. Enhancing brain–computer interface performance by incorporating brain-to-brain coupling. Cyborg and Bionic Systems 2024;5:0116. 6. Ju J, Feleke AG, Luo L, and Fan X. Recognition of drivers’ hard and soft braking intentions based on hybrid brain-computer interfaces. Cyborg and Bionic Systems 2022. 7. Sun J, Shen A, Sun Y, et al. Adaptive spatiotemporal encoding network for cognitive assessment using resting state EEG. npj Digital Medicine 2024;7:375. 8. Jach HK, Feuerriegel D, and Smillie LD. Decoding personality trait measures from resting EEG: An exploratory report. Cortex 2020;130:158–71. 9. Ye W, Wang J, Chen L, Dai L, Sun Z, and Liang Z. Adaptive spatial–temporal aware graph learning for EEG-based emotion recognition. Cyborg and Bionic Systems 2024;5:0088. 10. Li J, Li J, Wang X, Zhan X, and Zeng Z. A domain generalization and residual network-based emotion recognition from physiological signals. Cyborg and Bionic Systems 2024;5:0074. 11. Si X, He H, Yu J, and Ming D. Cross-subject emotion recognition brain–computer interface based on fNIRS and DBJNet. Cyborg and Bionic Systems 2023;4:0045. 12. Qi G, Liu R, Guan W, and Huang A. Augmented recognition of distracted driving state based on electrophysiological analysis of brain network. Cyborg and Bionic Systems 2024;5:0130. 13. Bao C, Hu X, Zhang D, Lv Z, and Chen J. Predicting moral elevation conveyed in Danmaku comments using EEGs. Cyborg and Bionic Systems 2023;4:0028. 21 14. Guo D, Li K, Hu B, Zhang Y, and Wang M. Benchmarking Micro-action Recognition: Dataset, Methods, and Applications. IEEE Transactions on Circuits and Systems for Video Technology 2024;34:6238–52. 15. Hu J, Guo D, Cheng H, et al. See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition. In: Forty-third International Conference on Machine Learning . 2026. 16. Hu J, Fu S, Si Z, and Chen J. Spatial-Energy-Aware Dynamic Filtering with Sparse Graph Convolutions for EEG Emotion Recognition. In: Proceedings of the Annual Meeting of the Cognitive Science Society . Vol. 47. 2025. 17. Tao S, Hu J, Huang J, Cui F, Liu X, and Guo D. Band-Gated Identity-Disentangled Training for Cross-Subject Auditory Attention Decoding. 18. Dong Y, Tang X, Tan F, et al. An approach for EEG data augmentation based on deep con-volutional generative adversarial network. In: 2022 IEEE International Conference on Cyborg and Bionic Systems (CBS) . IEEE. 2023:347–51. 19. Wang W, Zhao P, Jia H, Zhang Y, Jiang Y, and Duan F. Enabling Tensor Completion on Single Trial EEG Signals. In: 2025 IEEE International Conference on Cyborg and Bionic Systems (CBS) . IEEE. 2025:111–6. 20. Luo X, Xu Y, Yan Z, et al. Multidimensional EEG features integration with feature selection strategy for precision diagnosis of depressive disorders. Frontiers in Psychiatry 2025;16:1624997. 21. Poldrack RA, Baker CI, Durnez J, et al. Scanning the horizon: towards transparent and repro-ducible neuroimaging research. Nature reviews neuroscience 2017;18:115–26. 22. London AJ. Artificial intelligence and black-box medical decisions: accuracy versus explainabil-ity. Hastings Center Report 2019;49:15–21. 23. Dzianok P and Kublik E. PEARL-Neuro Database: EEG, fMRI, health and lifestyle data of middle-aged people at risk of dementia. Scientific Data 2024;11:276. 24. Shirazi SY, Franco A, Scopel Hoffmann M, et al. HBN-EEG: The FAIR implementation of the Healthy Brain Network (HBN) electroencephalography dataset. bioRxiv 2024:2024–10. 25. Michel CM and Koenig T. EEG microstates as a tool for studying the temporal dynamics of whole-brain neuronal networks: a review. Neuroimage 2018;180:577–93. 26. Koenig T, Prichep L, Lehmann D, et al. Millisecond by millisecond, year by year: normative EEG microstates and developmental stages. Neuroimage 2002;16:41–8. 27. Lehmann D, Ozaki H, and P´ al I. EEG alpha map series: brain micro-states by space-oriented adaptive segmentation. Electroencephalography and clinical neurophysiology 1987;67:271–88. 28. Welch P. The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modified periodograms. IEEE Transactions on audio and electroacoustics 1967;15:70–3. 29. Buzsaki G and Draguhn A. Neuronal oscillations in cortical networks. science 2004;304:1926–9. 30. Cohen MX. Analyzing neural time series data: theory and practice. MIT press, 2014. 22 31. Davidson RJ. Anterior electrophysiological asymmetries, emotion, and depression: Conceptual and methodological conundrums. Psychophysiology 1998;35:607–14. 32. Allen JJ, Coan JA, and Nazarian M. Issues and assumptions on the road from raw signals to metrics of frontal EEG asymmetry in emotion. Biological psychology 2004;67:183–218. 33. Lachaux JP, Rodriguez E, Martinerie J, and Varela FJ. Measuring phase synchrony in brain signals. Human brain mapping 1999;8:194–208. 34. Nolte G, Bai O, Wheaton L, Mari Z, Vorbach S, and Hallett M. Identifying true brain in-teraction from EEG data using the imaginary part of coherency. Clinical neurophysiology 2004;115:2292–307. 35. Vidaurre D, Hunt LT, Quinn AJ, et al. Spontaneous cortical activity transiently organises into frequency specific phase-coupling networks. Nature communications 2018;9:2987. 36. Bastos AM and Schoffelen JM. A tutorial review of functional connectivity analysis methods and their interpretational pitfalls. Frontiers in systems neuroscience 2016;9:175. 37. Duan RN, Zhu JY, and Lu BL. Differential entropy feature for EEG-based emotion classifica-tion. In: 2013 6th international IEEE/EMBS conference on neural engineering (NER) . IEEE. 2013:81–4. 38. Monastra VJ, Lubar JF, and Linden M. The development of a quantitative electroencephalo-graphic scanning process for attention deficit–hyperactivity disorder: Reliability and validity studies. Neuropsychology 2001;15:136. 39. Clarke AR, Barry RJ, McCarthy R, and Selikowitz M. Excess beta activity in children with attention-deficit/hyperactivity disorder: an atypical electrophysiological group. Psychiatry re-search 2001;103:205–18. 40. Arns M, Conners CK, and Kraemer HC. A decade of EEG theta/beta ratio research in ADHD: a meta-analysis. Journal of attention disorders 2013;17:374–83. 41. He BJ, Zempel JM, Snyder AZ, and Raichle ME. The temporal structures and functional significance of scale-free brain activity. Neuron 2010;66:353–69. 42. Donoghue T, Haller M, Peterson EJ, et al. Parameterizing neural power spectra into periodic and aperiodic components. Nature neuroscience 2020;23:1655–65. 43. Hjorth B. EEG analysis based on time domain properties. Electroencephalography and clinical neurophysiology 1970;29:306–10. 44. Liang Z, Wang Y, Sun X, et al. EEG entropy measures in anesthesia. Frontiers in computational neuroscience 2015;9:16. 45. Liu Y. Survey on stability of feature selection. Journal of software 2018;29:2559–79. 23

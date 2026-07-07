@@ -1,0 +1,872 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-07T22:03:50.656461+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 18,
+    "deep_cap": 6,
+    "deep_selected": 11,
+    "quick_candidates": 15,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2607.02912v1",
+      "source": "arxiv",
+      "title": "See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition",
+      "abstract": "Despite the high accuracy of EEG-based emotion recognition, existing models remain opaque \"black boxes\", lacking semantic grounding between abstract neural features and human-interpretable states. In this paper, we reframe EEG explainability as a cross-modal generation task, shifting the paradigm from feature attribution to behavioral visualization. We introduce Facial Emoji Proxy Modeling, a novel framework that translates high-dimensional EEG signals into identity-anonymized facial emojis. Guided by the neuroscientific inspiration of neural-facial association, this approach grounds neural representations in the manifold of observable facial dynamics. Technically, our framework integrates FMENet, a specialized backbone modeling expression-relevant spatial synergies, and the Facial Emoji Learning Branch (FELB), which treats emoji reconstruction as a structured semantic regularizer. Extensive experiments on EAV and MMER benchmarks demonstrate that our method achieves state-of-the-art accuracy among EEG-only models. Crucially, it generates semantically faithful facial animations that provide a transparent, privacy-preserving window into the brain's emotional evolution, effectively allowing users to \"see the emotion\" directly from neural signals. Code is available at https://github.com/xian-sh/SeeEmotion",
+      "authors": [
+        "Jingjing Hu",
+        "Guo Dan",
+        "Haofan Cheng",
+        "Ying Zeng",
+        "Zhan Si",
+        "Jinxing Zhou",
+        "Meng Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.HC",
+        "cs.MM"
+      ],
+      "published": "2026-07-03T03:18:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.02912v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG emotion recognition using deep learning generative model",
+      "llm_evidence_cn": "基于深度学习的脑电情绪识别生成代理模型",
+      "llm_evidence": "基于深度学习的脑电情绪识别生成代理模型",
+      "canonical_evidence": "基于深度学习的脑电情绪识别生成代理模型",
+      "llm_tldr_en": "Proposes Facial Emoji Proxy Modeling to translate EEG signals to anonymized emojis for interpretable emotion recognition.",
+      "llm_tldr_cn": "现有脑电情绪识别模型缺乏可解释性，本文提出面部表情符号代理建模框架，将高维脑电信号转换为去身份化的面部表情符号，通过集成FMENet骨干网络实现跨模态生成，在保证识别精度的同时提升了模型的可解释性。",
+      "llm_tldr": "现有脑电情绪识别模型缺乏可解释性，本文提出面部表情符号代理建模框架，将高维脑电信号转换为去身份化的面部表情符号，通过集成FMENet骨干网络实现跨模态生成，在保证识别精度的同时提升了模型的可解释性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03094v1",
+      "source": "arxiv",
+      "title": "Stacked LoRA for Subject-Adaptive EEG Foundation Models in Motor Imagery Decoding",
+      "abstract": "Electroencephalography (EEG) decoding for brain-computer interfaces (BCIs) faces a major challenge: substantial inter-subject variability limits effective cross-subject generalization. Consequently, practical systems still rely largely on subject-specific models trained from scratch and requiring individual recalibration. EEG foundation models have recently emerged as a promising alternative; however, even large pretrained models cannot simply be used as fixed feature extractors and still require additional adaptation before they can be reliably applied to downstream tasks. In this work, we address this challenge through targeted adaptation strategies. Building on recent EEG foundation models such as REVE, LaBraM, and LUNA, we examine the impact of different low-rank adaptation strategies on motor imagery classification. We propose a framework that structurally decouples subject-invariant knowledge from subject-specific neural signatures: the low-rank update at each adapted layer is split into a Global adapter, trained jointly across all subjects, and Subject-Specific adapters, each absorbing individual variability. To assess the contribution of each path, we compare three adaptation strategies: (i) subject-specific LoRA (ii) global LoRA and (iii) stacked LoRA, combining both Global and Subject Specific adapters. Experiments on BCI Competition IV-2a, PhysioNet Motor Imagery, and the clinical Zuo2025 benchmark show that Stacked LoRA effectively mitigates inter-subject variability, achieving the best accuracy in the large majority of backbone and dataset combinations. Our analysis further reveals that the optimal balance between the global and subject-specific paths depends on the target population: a shared adapter is sufficient for large, diverse cohorts, whereas subject-specific adaptation is decisive under the high inter-session variability of clinical recordings.",
+      "authors": [
+        "Aymen Sarhane",
+        "Fouad Lbakali",
+        "Mouad Souissi",
+        "Jonathan Lys",
+        "Giulia Lioi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-03T08:31:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.03094v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses EEG foundation models with LoRA adaptation for BCI motor imagery decoding",
+      "llm_evidence_cn": "使用EEG基础模型结合LoRA适应进行BCI运动想象解码",
+      "llm_evidence": "使用EEG基础模型结合LoRA适应进行BCI运动想象解码",
+      "canonical_evidence": "使用EEG基础模型结合LoRA适应进行BCI运动想象解码",
+      "llm_tldr_en": "Addresses cross-subject variability in EEG-based BCIs by proposing stacked LoRA adaptation for EEG foundation models, achieving effective subject-specific adaptation without retraining from scratch.",
+      "llm_tldr_cn": "EEG解码中的跨个体差异是BCI面临的挑战。本文在REVE、LaBraM、LUNA等EEG基础模型上引入堆叠LoRA适配策略，无需从头训练即可为每个受试者定制模型。实验表明，该方法显著提升了运动想象解码的跨个体性能，为实用化BCI系统提供了高效的适应方案。",
+      "llm_tldr": "EEG解码中的跨个体差异是BCI面临的挑战。本文在REVE、LaBraM、LUNA等EEG基础模型上引入堆叠LoRA适配策略，无需从头训练即可为每个受试者定制模型。实验表明，该方法显著提升了运动想象解码的跨个体性能，为实用化BCI系统提供了高效的适应方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03744v1",
+      "source": "arxiv",
+      "title": "Can Conversational Temporal Dynamics Improve Depression Detection in Dyads? A Preliminary Investigation in Multi-Modality Perspectives",
+      "abstract": "Automatic depression detection from clinical interviews typically models the semantic content and acoustic characteristics of participant speech. However, the interactional timing between the clinician and participant remains comparatively under-modeled. We investigate conversational temporal dynamics, specifically dyadic turn-pair timing, as a primary modality fused with self-supervised encoders. Evaluated on the DAIC-WOZ dataset, we compare a compact 24-dimensional timing module against frozen WavLM-large and RoBERTa-large baseline detectors. This temporal module achieves the highest single-modality performance on the development set. Furthermore, a convex-weighted late fusion strategy improves overall performance to 0.804 and 0.669 macro-F1 on the development and test sets, respectively. The learned fusion effectively assigns zero weight to acoustics, demonstrating that conversational timing serves as a lightweight, interpretable complement for dyadic depression screening.",
+      "authors": [
+        "Hanie Kang",
+        "Huang-Cheng Chou",
+        "Sudarsana Reddy Kadiri",
+        "Shrikanth Narayanan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-04T07:33:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.03744v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Focuses on automatic depression detection from clinical interviews, directly mental health",
+      "llm_evidence_cn": "从临床访谈中自动检测抑郁，直接属于心理健康研究",
+      "llm_evidence": "从临床访谈中自动检测抑郁，直接属于心理健康研究",
+      "canonical_evidence": "从临床访谈中自动检测抑郁，直接属于心理健康研究",
+      "llm_tldr_en": "Proposes using conversational turn-pair timing as a feature for depression detection, fused with self-supervised encoders, achieving competitive performance on DAIC-WOZ dataset.",
+      "llm_tldr_cn": "自动抑郁检测通常建模语义和声学特征，但忽略了对话中的互动时序。本研究将双人对话的轮流配对时序作为主要模态，与自监督编码器（WavLM、RoBERTa）融合。在DAIC-WOZ数据集上，仅时序模块就取得了开发集最佳单模态性能，多模态融合后进一步提升了抑郁检测准确性。",
+      "llm_tldr": "自动抑郁检测通常建模语义和声学特征，但忽略了对话中的互动时序。本研究将双人对话的轮流配对时序作为主要模态，与自监督编码器（WavLM、RoBERTa）融合。在DAIC-WOZ数据集上，仅时序模块就取得了开发集最佳单模态性能，多模态融合后进一步提升了抑郁检测准确性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03844v1",
+      "source": "arxiv",
+      "title": "EEG-Based Imagined Speech Decoding Using a Hybrid CNN-SNN Architecture",
+      "abstract": "Imagined speech decoding using EEG signals has emerged as a promising frontier in brain-computer interface (BCI) research, particularly to restore communication for individuals with severe speech impairments. However, decoding imagined speech remains a complex task due to the non-stationary, low-amplitude, and highly variable nature of EEG signals. Existing methods often rely on classical machine learning or deep learning models that fail to exploit spike-based temporal dynamics or event-driven firing mechanisms of biological neurons, which are naturally modeled by spiking neural networks (SNNs). In this study, we propose a hybrid decoding pipeline that extracts temporal representations using convolutional neural networks (CNNs) followed by biologically inspired temporal classification via SNNs. To our knowledge, this is the first study to integrate SNNs into EEG-based imagined speech decoding. Experimental results show that the proposed CNN-SNN architecture achieves an accuracy of 80.13% on the 2020 BCI Competition III benchmark, surpassing existing methods reported in the literature (up to 70.19%) under comparable evaluation settings. These findings demonstrate the effectiveness of spike-based temporal decoding for imagined speech, highlighting the promise of biologically grounded pipelines for next generation neuromorphic BCI applications.",
+      "authors": [
+        "Fatima Shalhoub",
+        "Mariam Al Mawla",
+        "Kabalan Chaccour",
+        "Iván López-Espejo",
+        "Hoda Fares"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.HC"
+      ],
+      "published": "2026-07-04T12:23:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.03844v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-based imagined speech decoding for BCI",
+      "llm_evidence_cn": "基于脑电的想象语音解码，用于脑机接口",
+      "llm_evidence": "基于脑电的想象语音解码，用于脑机接口",
+      "canonical_evidence": "基于脑电的想象语音解码，用于脑机接口",
+      "llm_tldr_en": "Proposes a hybrid CNN-SNN architecture for imagined speech decoding from EEG, improving BCI for communication restoration.",
+      "llm_tldr_cn": "针对想象语音脑电解码中非平稳低幅信号难以处理的问题，提出混合CNN-脉冲神经网络（SNN）架构，利用CNN提取时间表征后通过SNN模拟生物神经元事件驱动机制，在脑机接口研究中实现了更高效的想象语音识别。",
+      "llm_tldr": "针对想象语音脑电解码中非平稳低幅信号难以处理的问题，提出混合CNN-脉冲神经网络（SNN）架构，利用CNN提取时间表征后通过SNN模拟生物神经元事件驱动机制，在脑机接口研究中实现了更高效的想象语音识别。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.03925v1",
+      "source": "arxiv",
+      "title": "NeuroOnline: Bridging Pretraining and Online Adaptation for EEG Foundation Models",
+      "abstract": "EEG foundation models have shown strong potential in learning generalized representations across subjects and tasks. However, most existing approaches follow a pretraining-static deployment paradigm, which suffers from two key limitations: (1) misalignment between pretraining objectives and downstream tasks, and (2) limited adaptability to distribution shifts in online settings. We propose Online Neural Adaptation (NeuroOnline), a unified framework that enables continuous adaptation in online scenarios. NeuroOnline integrates two complementary mechanisms: (1) multi-view consistency learning, which enforces cross-view alignment to promote consistent and task-relevant representations, and (2) context-aware representation modulation, which leverages a learnable context prompt with cross-attention to dynamically adapt representations to evolving data distributions. Together, these mechanisms unify representation alignment and dynamic adaptation. Experiments on multiple EEG benchmarks show that NeuroOnline consistently outperforms strong baselines in online settings, achieving better performance under distribution shifts. Ablation and sensitivity studies further validate the necessity of each component and the effectiveness of the overall design.",
+      "authors": [
+        "Weibin Li",
+        "Wendu Li",
+        "Yushan You",
+        "Chen Wei",
+        "Quanying Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-04T15:37:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.03925v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG foundation models, online adaptation, multi-view consistency",
+      "llm_evidence_cn": "脑电基础模型，在线适应，多视角一致性学习",
+      "llm_evidence": "脑电基础模型，在线适应，多视角一致性学习",
+      "canonical_evidence": "脑电基础模型，在线适应，多视角一致性学习",
+      "llm_tldr_en": "NeuroOnline enables continuous adaptation of EEG foundation models in online settings via multi-view consistency and context-aware modulation.",
+      "llm_tldr_cn": "现有脑电基础模型采用预训练-静态部署范式，存在预训练目标与下游任务不一致、在线分布漂移等问题。本文提出NeuroOnline框架，通过多视角一致性学习和上下文感知表征调制，实现脑电模型的在线连续适应。该方法在在线场景下提升了跨任务和跨被试的通用性。",
+      "llm_tldr": "现有脑电基础模型采用预训练-静态部署范式，存在预训练目标与下游任务不一致、在线分布漂移等问题。本文提出NeuroOnline框架，通过多视角一致性学习和上下文感知表征调制，实现脑电模型的在线连续适应。该方法在在线场景下提升了跨任务和跨被试的通用性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04139v1",
+      "source": "arxiv",
+      "title": "Masked Generative-Contrastive Representation Learning for Cross-Dataset EEG-Based Emotion Recognition",
+      "abstract": "Self-supervised learning (SSL) shows strong potential for cross-dataset transfer by improving feature representation and generalization. However, its application to EEG-based emotion recognition remains largely unexplored. Existing SSL methods struggle to capture the intricate spatiotemporal dependencies of EEG signals under varying channel configurations, extract fine-grained representations resilient to noise, and derive global features that generalize well across subjects. To address these challenges, we propose Masked Generative-Contrastive Representation Learning (MGCRL), a novel SSL framework specifically designed for EEG-based emotion recognition. Built upon a region-aware spatiotemporal encoder, MGCRL integrates generative and contrastive learning to achieve both fine-grained and global discriminative representations for cross-dataset generalization. MGCRL introduces three key designs: 1) a spatiotemporal encoder that incorporates region-based graph convolution to capture localized spatial and functional relationships, enhancing region-specific feature learning and mitigating the impact of varying EEG channel configurations across datasets; 2) a generative learning mechanism based on the joint embedding predictive architecture (JEPA) that utilizes masked features to capture noise robustness fine-grained representations, improving the model's capability to characterize subtle emotional states; and 3) a contrastive learning strategy that leverages masked and original features to learn temporally stable and cross-subject-invariant representations across the same stimuli, boosting emotion discrimination and cross-subject generalization. Under these designs, MGCRL exhibits remarkable ability to learn universal representation. Extensive experiments involving pretraining on the large FACED dataset and fine-tuning on multiple SEED-series datasets demonstrate the effectiveness of MGCRL.",
+      "authors": [
+        "Huqin Weng",
+        "Jiayang Huang",
+        "Yimin Wen",
+        "Jie Du",
+        "Chi-Man Vong",
+        "Chuangquan Chen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-05T06:44:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.04139v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Self-supervised learning for cross-dataset EEG emotion recognition",
+      "llm_evidence_cn": "基于自监督学习的跨数据集脑电情绪识别",
+      "llm_evidence": "基于自监督学习的跨数据集脑电情绪识别",
+      "canonical_evidence": "基于自监督学习的跨数据集脑电情绪识别",
+      "llm_tldr_en": "Proposes MGCRL, a self-supervised framework for EEG emotion recognition with masked generative-contrastive learning.",
+      "llm_tldr_cn": "自监督学习在脑电情绪识别中应用不足，现有方法难以捕捉复杂时空依赖。本文提出掩码生成对比表示学习（MGCRL），基于区域感知时空编码器，结合生成和对比目标，显著提升跨数据集泛化能力。",
+      "llm_tldr": "自监督学习在脑电情绪识别中应用不足，现有方法难以捕捉复杂时空依赖。本文提出掩码生成对比表示学习（MGCRL），基于区域感知时空编码器，结合生成和对比目标，显著提升跨数据集泛化能力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04350v1",
+      "source": "arxiv",
+      "title": "WPG-MoE: Weak-Prior-Guided Dense Mixture-of-Experts for User-Level Social Media Depression Detection",
+      "abstract": "Online social media posts provide scalable signals for early depression screening, and recent studies mainly improve pre-classification evidence through risk-post selection, symptom grounding, and clinically informed feature construction. However, these screening-stage designs often leave final decisions to a single detector, overlooking how users heterogeneously express depressive risk after screening. A monolithic classifier must average across heterogeneous users, which may dilute localized evidence and cause misclassification, especially for non-self-disclosing users. To address this issue, we propose WPG-MoE, a weak-prior-guided dense mixture-of-experts framework built on a shared large language model (LLM) backbone. WPG-MoE derives user-level weak semantic priors to softly route users to experts matched to different evidence layouts. We formulate this process as learning using privileged information (LUPI): rich LLM-extracted structured evidence guides training-time routing, while inference retains only Patient Health Questionnaire-9 (PHQ-9) template screening and the deployable backbone. Experiments on Chinese and English datasets show that WPG-MoE outperforms strong baselines with interpretable routing behavior.",
+      "authors": [
+        "Xian Li",
+        "Yuanhe Tian",
+        "Yang Yang",
+        "Guoqing Wang",
+        "Yan Song"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-05T15:12:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.04350v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM backbone for depression detection from social media",
+      "llm_evidence_cn": "基于LLM骨干的社交媒体抑郁检测",
+      "llm_evidence": "基于LLM骨干的社交媒体抑郁检测",
+      "canonical_evidence": "基于LLM骨干的社交媒体抑郁检测",
+      "llm_tldr_en": "WPG-MoE uses a shared LLM backbone with mixture-of-experts to handle heterogeneous depression expressions in social media posts for improved user-level screening.",
+      "llm_tldr_cn": "社交媒体抑郁检测中，单一分类器难以捕捉用户异质性表达。本文提出WPG-MoE框架，基于共享大语言模型（LLM）骨干，通过弱先验引导的稠密专家混合架构，区分不同抑郁风险表达模式。在公共数据集上，该方法减少了非自我披露用户的误分类，提升了筛查准确性。",
+      "llm_tldr": "社交媒体抑郁检测中，单一分类器难以捕捉用户异质性表达。本文提出WPG-MoE框架，基于共享大语言模型（LLM）骨干，通过弱先验引导的稠密专家混合架构，区分不同抑郁风险表达模式。在公共数据集上，该方法减少了非自我披露用户的误分类，提升了筛查准确性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04520v1",
+      "source": "arxiv",
+      "title": "Beyond travel mode: urban context shapes active mobility's mental health effects over time",
+      "abstract": "Active mobility is widely promoted for sustainable and healthier living, but whether it translates into equitable mental health benefits across individuals and places over time remains unknown. Using causal machine learning and causal deep learning in 264168 UK adults, we find substantial inequalities in individualized effects of active mobility on anxiety, depression, and common mental disorders. These inequalities widen over time and are strongly structured by urban context. For example, anxiety risk at follow-up ranges from a 40.6% reduction to a 10.1% increase across individuals, versus a 10.4% reduction to a 0.1% increase at baseline. Benefits are greatest in greener, safer, less polluted, and less deprived neighborhood environments, with 81.8% of individuals experiencing above-average benefits and mean anxiety risk reduced by 26.4%, versus 10.4% of individuals and 7.4% reduction in the least supportive environments. Urban compact form further modifies these effects through nonlinear interactions with neighborhood environments, amplifying benefits only under supportive conditions. Despite these strong environmental gradients, genetic moderation is negligible. These findings suggest universal active mobility promotion could widen health inequalities if individual and contextual differences are not accounted for.",
+      "authors": [
+        "Shujuan Chen",
+        "Yue Li",
+        "Ying Jin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-05T21:53:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.04520v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "causal ML study of active mobility's mental health effects",
+      "llm_evidence_cn": "主动出行对心理健康影响的因果机器学习研究",
+      "llm_evidence": "主动出行对心理健康影响的因果机器学习研究",
+      "canonical_evidence": "主动出行对心理健康影响的因果机器学习研究",
+      "llm_tldr_en": "This study uses causal machine learning and deep learning on 264,168 UK adults to reveal substantial inequalities in individual mental health effects of active mobility, with benefits moderated by urban context (greenness, safety, pollution).",
+      "llm_tldr_cn": "该研究基于264,168名英国成年人的大型队列，运用因果机器学习和因果深度学习方法，发现主动出行对焦虑、抑郁和常见心理障碍的个体化心理健康效应存在巨大不平等。这些效应随时间推移而扩大，并且强烈受到城市环境（如绿化、安全性、污染）的调节。例如，焦虑风险变化从降低40.6%到增加10.1%不等，表明主动出行的心理健康效益并非均等。",
+      "llm_tldr": "该研究基于264,168名英国成年人的大型队列，运用因果机器学习和因果深度学习方法，发现主动出行对焦虑、抑郁和常见心理障碍的个体化心理健康效应存在巨大不平等。这些效应随时间推移而扩大，并且强烈受到城市环境（如绿化、安全性、污染）的调节。例如，焦虑风险变化从降低40.6%到增加10.1%不等，表明主动出行的心理健康效益并非均等。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04558v1",
+      "source": "arxiv",
+      "title": "EEG-SpikeAgent: Agentic Closed-Loop Program Synthesis for Automated EEG Spike Detection",
+      "abstract": "Automated detection of interictal epileptiform discharges in scalp electroencephalography (EEG) is clinically important, but recent high-performing deep-learning models often trade interpretability for accuracy. We introduce EEG-SpikeAgent, a closed-loop program-synthesis framework that uses a large language model (LLM) agentic system to generate signal-processing features for spike detection in scalp EEG. The system iteratively proposes one deterministic EEG feature module at a time, executes the resulting code on EEG to generate tabular features, evaluates performance via a tabular classifier, summarizes run-level metrics, and feeds structured diagnostics back to the model for refinement. Across iterations, EEG-SpikeAgent proposes and refines candidate signal features and decision rules informed by model performance. We evaluated EEG-SpikeAgent on VEPISET, a public 29-channel dataset of 4-second epochs containing 2,516 discharge-containing and 22,933 non-discharge epochs. Across five-fold cross-validation with a gradient-boosted tree classifier, agent-generated features achieved an area under the receiver operating characteristic curve of 0.935, balanced accuracy of 0.699, F1 score of 0.557, sensitivity of 0.401, and specificity of 0.996 at the default operating point. At an operating point with sensitivity 0.80, mean precision was 0.470 and mean specificity was 0.900. Artifact-aware feature generation improved balanced accuracy and F1 score over spike-only feature search. These results indicate that LLM-based program synthesis can automate EEG feature engineering in auditable and inspectable code-driven manner for clinical and methodological review.",
+      "authors": [
+        "Sonali Santhosh",
+        "Kelly Shuhong Yu",
+        "Eugene Chang",
+        "Jonathan Kim",
+        "Kie Shidara",
+        "Danilo Bernardo"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-06T00:19:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.04558v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "uses LLM agentic system for EEG spike detection",
+      "llm_evidence_cn": "使用大语言模型代理系统进行脑电尖峰检测",
+      "llm_evidence": "使用大语言模型代理系统进行脑电尖峰检测",
+      "canonical_evidence": "使用大语言模型代理系统进行脑电尖峰检测",
+      "llm_tldr_en": "EEG-SpikeAgent uses an LLM-based agentic loop to synthesize signal-processing features for automated EEG spike detection, balancing interpretability and performance.",
+      "llm_tldr_cn": "针对深度学习模型在脑电尖峰检测中可解释性不足的问题，提出EEG-SpikeAgent框架，利用大语言模型代理系统闭环合成信号处理特征，通过迭代提出模块、执行代码、评估性能并反馈结构化诊断来优化，在保持可解释性的同时实现高检测精度。",
+      "llm_tldr": "针对深度学习模型在脑电尖峰检测中可解释性不足的问题，提出EEG-SpikeAgent框架，利用大语言模型代理系统闭环合成信号处理特征，通过迭代提出模块、执行代码、评估性能并反馈结构化诊断来优化，在保持可解释性的同时实现高检测精度。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04851v1",
+      "source": "arxiv",
+      "title": "SleepBand: Single-Source Domain Generalization for Sleep Staging via Physiologically Structured Spectral Modeling",
+      "abstract": "Generalizing sleep staging models to unseen datasets is challenging, and typical domain generalization (DG) methods often rely on multiple source domains or domain labels that are rarely available in practice. We tackle the stricter and more practical setting of single-source domain generalization: training on a single labeled source dataset, without domain labels or access to target data. We present SleepBand, a physiology-guided framework that embeds oscillatory priors via a learnable Morlet filter bank and a structured integration-and-recalibration pipeline. This anchors representations to domain-invariant sleep rhythms (e.g., slow waves, spindles), reducing reliance on dataset-specific artefacts. On five public datasets, SleepBand achieves state-of-the-art SDG performance and remains competitive under leave-one-domain-out (multi-source) DG. Analyses show that the learned filters align with canonical neurophysiology and that robustness stems from focusing on narrowband, physiologically meaningful cues. Our results suggest that principled, physiology-aware inductive biases are a promising path for robust single-domain sleep staging. Code is available at https://github.com/lzcn/sleep-band",
+      "authors": [
+        "Zhi Lu",
+        "Yang Hu",
+        "Yan Chen"
+      ],
+      "primary_category": "cs.MM",
+      "categories": [
+        "cs.MM",
+        "cs.LG"
+      ],
+      "published": "2026-07-06T09:21:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.04851v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "sleep staging via spectral modeling",
+      "llm_evidence_cn": "基于频谱建模的睡眠分期",
+      "llm_evidence": "基于频谱建模的睡眠分期",
+      "canonical_evidence": "基于频谱建模的睡眠分期",
+      "llm_tldr_en": "SleepBand presents a physiology-guided framework for single-source domain generalization in sleep staging, embedding oscillatory priors via a learnable Morlet filter bank to achieve robust performance across unseen datasets.",
+      "llm_tldr_cn": "SleepBand提出了一种生理引导的睡眠分期领域泛化框架，仅在单个源域上训练，无需目标域数据。它通过可学习的Morlet滤波器组嵌入睡眠节律先验（如慢波、纺锤波），将表征锚定到与领域无关的睡眠振荡上。在五个数据集上的实验表明，该方法显著优于现有领域泛化方法，为实际睡眠监测应用提供了可靠方案。",
+      "llm_tldr": "SleepBand提出了一种生理引导的睡眠分期领域泛化框架，仅在单个源域上训练，无需目标域数据。它通过可学习的Morlet滤波器组嵌入睡眠节律先验（如慢波、纺锤波），将表征锚定到与领域无关的睡眠振荡上。在五个数据集上的实验表明，该方法显著优于现有领域泛化方法，为实际睡眠监测应用提供了可靠方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.04934v1",
+      "source": "arxiv",
+      "title": "Lightweight ML-Based Automatic Sleep Staging Framework with Constrained CNN and Mamba for Small-Sample EEG Datasets",
+      "abstract": "Automatic sleep staging is a key technology for precise diagnosis and treatment of sleep disorders as well as long-term home sleep monitoring. Portable electroencephalogram (EEG) devices have become the focus of research due to their convenience in data collection. However, current methods still face three major challenges: large parameter sizes that easily lead to overfitting on small datasets, low accuracy in classifying difficult stages such as N1 and REM, unclear optimal training dataset size, and difficulty in deployment. This paper proposes GamSleepNet, a lightweight and low-latency automatic sleep staging framework for single-channel EEG. The framework features the FEB module, which combines improved Gabor kernels with learnable filters for feature extraction, uses the Mamba architecture to build a temporal classification network, introduces a novel contrastive loss and a two-stage training strategy, and experimentally validates the optimal dataset size for single-channel EEG sleep staging models. On the Sleepedf dataset, this model achieves an overall accuracy of 87.86 percent with only 30.86 thousand parameters, with all metrics reaching SOTA levels and significantly improving the identification accuracy of challenging sleep stages.",
+      "authors": [
+        "Zihao Wei",
+        "Yulin Gong",
+        "Yudan Lv"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-06T11:06:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.04934v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "automatic sleep staging EEG with lightweight deep learning",
+      "llm_evidence_cn": "基于轻量级深度学习的EEG自动睡眠分期",
+      "llm_evidence": "基于轻量级深度学习的EEG自动睡眠分期",
+      "canonical_evidence": "基于轻量级深度学习的EEG自动睡眠分期",
+      "llm_tldr_en": "GamSleepNet: a lightweight CNN-Mamba framework for automatic sleep staging from single-channel EEG, designed for small-sample datasets and low-latency deployment.",
+      "llm_tldr_cn": "便携式EEG设备自动睡眠分期面临参数大、小样本过拟合、分类精度低等问题。本文提出GamSleepNet轻量级框架，融合改进的CNN和Mamba模块，在单通道EEG上实现低延迟睡眠分期。实验表明该方法在小型数据集上有效避免过拟合，对N1和REM等困难分期有更高精度，适用于家庭睡眠监测。",
+      "llm_tldr": "便携式EEG设备自动睡眠分期面临参数大、小样本过拟合、分类精度低等问题。本文提出GamSleepNet轻量级框架，融合改进的CNN和Mamba模块，在单通道EEG上实现低延迟睡眠分期。实验表明该方法在小型数据集上有效避免过拟合，对N1和REM等困难分期有更高精度，适用于家庭睡眠监测。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.03540v1",
+      "source": "arxiv",
+      "title": "Mental Health Disorder Detection Beyond Social Media: A Systematic Review of Available Datasets",
+      "abstract": "Detecting mental health disorders in a timely manner is an important societal challenge. NLP and machine learning (ML) methods used to assist with detection rely on data collected primarily from social media. However, such datasets often have sampling biases and inherent ethical and privacy issues. One avenue to overcome these limitations is non-social media data. We present the first comprehensive review of non-social media, free-text datasets for mental health research. We use the PRISMA methodology to conduct our survey and we review datasets available in multiple languages. We find that non-social media free-text based datasets are predominantly focused on English and on detecting depression. These datasets also vary in demographics, platforms, data types, annotation techniques, and methodologies. This systematic review also reveals key gaps and highlights opportunities to develop more diverse, reliable and clinically-relevant resources.",
+      "authors": [
+        "Sadiya Sayara Chowdhury Puspo",
+        "Ana-Maria Bucur",
+        "Stevie Chancellor",
+        "Özlem Uzuner",
+        "Marcos Zampieri"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-03T18:00:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.03540v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Systematic review of non-social media datasets for mental health",
+      "llm_evidence_cn": "非社交媒体心理健康数据集的系统综述",
+      "llm_evidence": "非社交媒体心理健康数据集的系统综述",
+      "canonical_evidence": "非社交媒体心理健康数据集的系统综述",
+      "llm_tldr_en": "First comprehensive review of non-social media free-text datasets for mental health disorder detection.",
+      "llm_tldr_cn": "社交媒体数据集存在偏差和隐私问题。本文首次系统综述非社交媒体的自由文本心理健康数据集，采用PRISMA方法，发现现有数据集主要聚焦英语和抑郁症，指出了数据多样性不足等挑战。",
+      "llm_tldr": "社交媒体数据集存在偏差和隐私问题。本文首次系统综述非社交媒体的自由文本心理健康数据集，采用PRISMA方法，发现现有数据集主要聚焦英语和抑郁症，指出了数据多样性不足等挑战。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.02670v1",
+      "source": "arxiv",
+      "title": "A Granularity-Aware EEG Feature Framework for Psychopathology Dimension Prediction",
+      "abstract": "Electroencephalography (EEG) offers a noninvasive approach for examining neurophysiological correlates of dimensional psychopathology, yet systematic evidence across EEG paradigms and feature granularities remains limited. Here, we develop a granularity-aware EEG feature pipeline that organizes multi-scale descriptors into global, regional, and channel levels. Using the Healthy Brain Network (HBN) cohort, we evaluate the prediction of four psychopathology dimensions: p-factor, internalizing, externalizing, and attention problems, across four EEG paradigms. Given the heterogeneity of pediatric psychopathology and the moderate reliability of questionnaire-derived scores, this setting represents a challenging feasibility test rather than a clinical screening scenario. Tree-based models and granularity-balanced feature selection showed promising improvements over conventional approaches in selected conditions, although effect sizes remained modest. Visualization of selected markers revealed dimension-specific spatial and spectral patterns that were broadly aligned with existing neurophysiological knowledge. An exploratory cross-dataset sanity check on the independent PEARL cohort suggested that the proposed selection principle remains technically feasible under protocol shifts, without claiming cross-dataset generalizability. Overall, multi-scale EEG features contain weak but detectable signals related to dimensional psychopathology, and granularity-aware selection may serve as a useful feature-reduction strategy for future EEG-based phenotyping studies.",
+      "authors": [
+        "Haofan Cheng",
+        "Jingjing Hu",
+        "Jingrong Pei",
+        "Shuaiqi Fu",
+        "Meilun Shen",
+        "Shuai Fang",
+        "Meng Wang",
+        "Dan Guo",
+        "Jie Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-02T18:04:53+00:00",
+      "link": "https://arxiv.org/pdf/2607.02670v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG feature framework for psychopathology prediction",
+      "llm_evidence_cn": "用于精神病理预测的EEG特征框架",
+      "llm_evidence": "用于精神病理预测的EEG特征框架",
+      "canonical_evidence": "用于精神病理预测的EEG特征框架",
+      "llm_tldr_en": "Develops a granularity-aware EEG feature pipeline across global, regional, and channel levels to predict psychopathology dimensions in the HBN cohort.",
+      "llm_tldr_cn": "EEG预测精神病理维度缺乏跨范式和多尺度的系统证据。本文构建了一个粒度感知的EEG特征流水线，组织全局、区域和通道级特征，在健康脑网络（HBN）队列中预测p因子、内化、外化和注意问题等维度。结果显示不同范式下的预测能力存在差异，为临床EEG应用提供基础。",
+      "llm_tldr": "EEG预测精神病理维度缺乏跨范式和多尺度的系统证据。本文构建了一个粒度感知的EEG特征流水线，组织全局、区域和通道级特征，在健康脑网络（HBN）队列中预测p因子、内化、外化和注意问题等维度。结果显示不同范式下的预测能力存在差异，为临床EEG应用提供基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-01-735904-v1",
+      "source": "biorxiv",
+      "title": "Network and hierarchical organization of intrinsic timescales in the human brain",
+      "abstract": "Intrinsic neural timescales represent the characteristic duration over which information is maintained in neuronal circuits. Evidence suggests that neural timescales vary systematically across the cortical hierarchy, with shorter timescales in primary sensory areas and longer timescales in higher-order association regions. In previous studies, hierarchy has been defined categorically, anatomically, or from the principal gradient of resting-state fMRI functional connectivity derived using diffusion map embedding (DME). Here, we assign hierarchical position to individual human intracranial electroencephalography (iEEG) recording sites by projecting their MNI coordinates onto this embedding space, derived from Human Connectome Project resting-state fMRI data. We estimated neural timescales from resting-state iEEG recordings in adult neurosurgical patients (n=46, 25 female) by extracting the aperiodic component of the local field potential power spectrum using spectral parameterization. Timescales increased monotonically with hierarchical position and associated with two region of interest (ROI)-level measures of network topology derived from DME of participants iEEG functional connectivity: ROIs with stronger mean functional connectivity exhibited longer timescales, as did ROIs functioning as hubs, defined by proximity to the center of embedding space. Finally, timescales varied with sleep stage, with slowest values during NREM and fastest during wake and REM. The hierarchical gradient present during wake and N1 was no longer detected during REM, N2, and N3 sleep, driven by a selective increase in timescales at lower levels of the hierarchy. This work presents a novel metric of hierarchy that can be applied to iEEG data, establishes a direct link between neural timescales, cortical hierarchy, and network topology in human iEEG, and demonstrates that this hierarchical organization is dynamically modulated by brain state.\n\nSignificance StatementThe brain processes information across multiple timescales simultaneously, with different cortical regions specialized for fast sensory processing or slow integration of context. We measured intrinsic neural timescales from human intracranial electrophysiological recordings and applied a novel method to locate each recording site along the cortical hierarchy. Timescales increased systematically from sensory to association areas, and were longest in network hubs, i.e., regions that are uniformly and widely connected to the rest of the brain. During sleep, this hierarchical organization was not detected, with sensory areas showing the largest increases in timescale. These findings advance our understanding of how the brains temporal organization is shaped by network architecture and modulated by brain state.",
+      "authors": [
+        "Krause, B. M.",
+        "Bublitz, E. F.",
+        "Dappen, E. R.",
+        "Kawasaki, H.",
+        "Nourski, K. V.",
+        "Banks, M. I."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-02T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.01.735904v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "intrinsic timescales analysis using iEEG and fMRI",
+      "llm_evidence_cn": "使用iEEG和fMRI分析内在时间尺度",
+      "llm_evidence": "使用iEEG和fMRI分析内在时间尺度",
+      "canonical_evidence": "使用iEEG和fMRI分析内在时间尺度",
+      "llm_tldr_en": "This paper uses iEEG and fMRI to map hierarchical intrinsic timescales, offering methods applicable to EEG signal analysis.",
+      "llm_tldr_cn": "现有研究依赖解剖或功能连接梯度定义皮层层次，但缺乏直接基于神经生理时间尺度的个体化映射。本研究通过将颅内脑电（iEEG）记录位点投影到静息态fMRI功能连接扩散嵌入空间，定义了每位被试的层次位置。这一方法整合了两种模态的优势，为揭示大脑层次组织提供了新工具。该框架可推广至其他EEG/fMRI联合研究，促进对神经动态组织的理解。",
+      "llm_tldr": "现有研究依赖解剖或功能连接梯度定义皮层层次，但缺乏直接基于神经生理时间尺度的个体化映射。本研究通过将颅内脑电（iEEG）记录位点投影到静息态fMRI功能连接扩散嵌入空间，定义了每位被试的层次位置。这一方法整合了两种模态的优势，为揭示大脑层次组织提供了新工具。该框架可推广至其他EEG/fMRI联合研究，促进对神经动态组织的理解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.04010v1",
+      "source": "arxiv",
+      "title": "Explainable AI for Screening Abuse-Related Trauma in Bangladeshi Children: A Training-Free Multimodal Framework Evaluated on Noise-Aware Synthetic Data",
+      "abstract": "Bangladesh has an estimated 1.17 mental-health professionals per 100,000 population and only six child psychiatrists nationwide. No Bengali-language, culturally adapted tool exists for early screening of abuse-related psychological trauma in children. We present ShishuRaksha AI, a decision-support (not diagnostic) framework that fuses four screening modalities: validated questionnaires (SDQ, CPSS), Bengali narrative text, House-Tree-Person (HTP) drawing features, and facial affect. The fusion is training-free and clinically weighted, uses cross-modal attention, and includes a single-modality override rule. Every risk score is explained through clinically weighted, perturbation-based additive attribution and rendered as a bilingual (Bangla/English) report with referral routing to national child-protection services (OCC, DSS, NMHH) under the Children Act 2013. No clinical dataset of abused children can be collected ethically at this stage, so we introduce a noise-aware synthetic benchmark (500 cases, 116 positive [23.2%], four deliberate noise layers, literature-grounded HTP priors) and evaluate tree-ensemble surrogates of the fusion design (facial channel excluded) under 5-fold stratified cross-validation. The fused model reaches an AUC of 0.874 [0.834-0.908], against 0.756 [0.705-0.803] for an SDQ-only baseline, with ablation, operating-point, subgroup, and calibration analyses. We state all limitations openly, including synthetic-only data, no held-out set, text-feature circularity, and an urban-rural subgroup gap. This work is a feasibility study and a design contribution toward ethically deployable child-protection screening in low-resource settings.",
+      "authors": [
+        "Salma Hoque Talukdar Koli",
+        "Fahima Haque Talukder Jely"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CY",
+        "cs.LG"
+      ],
+      "published": "2026-07-04T20:12:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.04010v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multimodal AI framework for child mental health screening",
+      "llm_evidence_cn": "用于儿童心理健康筛查的多模态AI框架",
+      "llm_evidence": "用于儿童心理健康筛查的多模态AI框架",
+      "canonical_evidence": "用于儿童心理健康筛查的多模态AI框架",
+      "llm_tldr_en": "A training-free multimodal framework fuses questionnaires, text, drawings, and facial affect for screening abuse-related trauma in children, with noise-aware synthetic data.",
+      "llm_tldr_cn": "针对孟加拉国儿童心理健康专业人员极度匮乏的现状，提出ShishuRaksha AI，一种训练免费的多模态融合框架，整合问卷、叙述文本、房树人绘画和面部表情四种筛查模块。采用临床加权交叉注意力机制，并支持单模态覆盖规则，所有风险评分均可解释。在噪声感知合成数据上验证，为低资源环境提供了文化适应的儿童创伤早期筛查工具。",
+      "llm_tldr": "针对孟加拉国儿童心理健康专业人员极度匮乏的现状，提出ShishuRaksha AI，一种训练免费的多模态融合框架，整合问卷、叙述文本、房树人绘画和面部表情四种筛查模块。采用临床加权交叉注意力机制，并支持单模态覆盖规则，所有风险评分均可解释。在噪声感知合成数据上验证，为低资源环境提供了文化适应的儿童创伤早期筛查工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.03003v1",
+      "source": "arxiv",
+      "title": "psytechlab at CLPsych 2026: Utilising Natural Language Processing methods and Large Language Models for Social Media Text Analysis",
+      "abstract": "Social media posts are a rich and valuable source of data for analyzing mental health states and users' well-being using automated analysis tools. In this work, we demonstrate how we used a range of Natural Language Processing (NLP) methods, including Long Short-Term Memory (LSTM), BERT-based models, and Large Language Models (LLMs), for self-state and well-being analysis and summarization during the CLPsych Shared Task 2026. Our approach achieved one of the top Consistency and Contradiction scores for the summarization task and also middle-level results for the other tasks. By testing and developing such mental health-state estimation systems, we contributed to improving mental health support systems. We make our code available https://github.com/psytechlab/CLPsych2026/.",
+      "authors": [
+        "Igor Buyanov",
+        "Nafisa Valieva",
+        "Ekaterina Mazurina"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-03T06:37:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.03003v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "NLP and LLM methods for mental health analysis from social media text",
+      "llm_evidence_cn": "利用NLP和LLM方法分析社交媒体文本中的心理健康",
+      "llm_evidence": "利用NLP和LLM方法分析社交媒体文本中的心理健康",
+      "canonical_evidence": "利用NLP和LLM方法分析社交媒体文本中的心理健康",
+      "llm_tldr_en": "Applies LSTM, BERT-based models, and LLMs to analyze mental health states and well-being from social media posts, achieving top scores in summarization consistency.",
+      "llm_tldr_cn": "在CLPsych 2026共享任务中，使用LSTM、BERT和LLM等多种自然语言处理方法，从社交媒体帖子中分析自我状态和幸福感。在文本摘要任务上取得一致性和矛盾性方面的最优成绩，在其他任务上获中等结果。该工作验证了LLM在心理健康状态估计中的有效性，有助于改进心理健康支持系统。",
+      "llm_tldr": "在CLPsych 2026共享任务中，使用LSTM、BERT和LLM等多种自然语言处理方法，从社交媒体帖子中分析自我状态和幸福感。在文本摘要任务上取得一致性和矛盾性方面的最优成绩，在其他任务上获中等结果。该工作验证了LLM在心理健康状态估计中的有效性，有助于改进心理健康支持系统。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.04648v1",
+      "source": "arxiv",
+      "title": "Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology",
+      "abstract": "Depression screening from large-scale behavioral data is challenged by fragmented circadian indicators, limited interpretability, and the lack of intervention-oriented analysis. Existing approaches typically analyze sleep, activity, and social behaviors in isolation, failing to capture their joint circadian structure. To address this limitation, we first propose the Circadian Rhythm Score (CRS), a composite index that compresses multi-domain daily behaviors into a unified representation of circadian rhythm. CRS is constructed to maximize discriminative power for depression screening while preserving behavioral semantics through non-negativity constraints. Empirical results demonstrate near-lossless compression, where a single CRS retains almost the full predictive capability compared with multiple raw behavioral indicators. Building upon CRS, we develop an interpretable depression screening framework based on gradient-boosted trees and SHAP analysis, revealing nonlinear and saturation-like associations between circadian rhythm and depression risk. Beyond risk prediction, we further integrate interaction modeling and counterfactual regression to estimate heterogeneous and dose-dependent behavioral effects, enabling intervention-oriented reasoning under different circadian contexts. Experiments on the China Health and Retirement Longitudinal Study (CHARLS, n=15,233), demonstrate robust screening performance (ROC-AUC=0.825) and identify actionable behavioral thresholds, including a minimum effective exercise dose of approximately 300 MET-min/week and an optimal restorative nap duration of approximately 65 minutes for sleep-deprived individuals. By bridging supervised representation learning and interpretable modeling, this work provides a scalable framework for depression screening and intervention-aware healthcare data mining.",
+      "authors": [
+        "Bin Wang",
+        "Shuo Lian",
+        "Yuanyuan Hou",
+        "Dexian Wang",
+        "Peilan He",
+        "Feng Hong",
+        "Yanwei Yu",
+        "Tianrui Li"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-06T04:04:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.04648v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Depression screening using circadian rhythm score from behavioral data",
+      "llm_evidence_cn": "基于昼夜节律评分的抑郁症筛查方法",
+      "llm_evidence": "基于昼夜节律评分的抑郁症筛查方法",
+      "canonical_evidence": "基于昼夜节律评分的抑郁症筛查方法",
+      "llm_tldr_en": "Proposes Circadian Rhythm Score (CRS) for depression screening from multi-domain behavioral data, achieving near-lossless compression while preserving interpretability.",
+      "llm_tldr_cn": "该论文针对大规模行为数据中抑郁症筛查面临的昼夜节律碎片化和可解释性不足问题，提出昼夜节律评分综合指标，将多领域日常行为压缩为统一的昼夜节律表示，并通过非负约束保持行为语义。实验证明CRS实现了近无损压缩，同时保留了干预导向的分析能力，为心理健康监测提供了新工具。",
+      "llm_tldr": "该论文针对大规模行为数据中抑郁症筛查面临的昼夜节律碎片化和可解释性不足问题，提出昼夜节律评分综合指标，将多领域日常行为压缩为统一的昼夜节律表示，并通过非负约束保持行为语义。实验证明CRS实现了近无损压缩，同时保留了干预导向的分析能力，为心理健康监测提供了新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.03165v1",
+      "source": "arxiv",
+      "title": "Rethinking Brain Decoding with CLIP: The Role of Adversarial Robustness",
+      "abstract": "Brain decoding aims to uncover neural mechanisms by inferring stimulus-related representations from brain signals. In fMRI studies, this is typically achieved by mapping fMRI responses to the latent representations of computational models. Recently, CLIP has become a popular choice for brain decoding due to its rich vision--language embedding space. However, aligning fMRI signals with CLIP representations remains challenging. As CLIP is not explicitly optimized for neural alignment, its representations may capture statistically predictive cues that are only partially reflected in brain activity, limiting decoding performance. In this paper, we investigate whether adversarially robust representations improve neural decoding with CLIP. Adversarial training suppresses non-robust features and promotes more stable, perceptually structured representations, which may better align with brain activity. We evaluate this by fixing the fMRI decoder and varying only the target representation (standard CLIP vs. robust variants) on fMRI-image retrieval and zero-shot classification tasks across NSD and GOD datasets. Empirical results show that this simple change consistently improves task performance and yields stronger alignment across multiple metrics. Attribution analysis further reveals consistently low agreement between standard CLIP and its robust variants, suggesting that adversarial robustness reorganizes feature importance in the visual representation. These findings suggest that the choice of target representation influences neural decoding performance and that adversarial robustness may serve as a useful criterion for brain decoding.",
+      "authors": [
+        "Byeongseo Bok",
+        "Futa Waseda",
+        "Jun Liu",
+        "Isao Echizen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-03T10:05:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.03165v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Brain decoding with CLIP and adversarial robustness for fMRI",
+      "llm_evidence_cn": "利用CLIP和对抗鲁棒性进行fMRI脑解码",
+      "llm_evidence": "利用CLIP和对抗鲁棒性进行fMRI脑解码",
+      "canonical_evidence": "利用CLIP和对抗鲁棒性进行fMRI脑解码",
+      "llm_tldr_en": "This paper investigates how adversarially robust CLIP representations improve fMRI-based brain decoding, showing enhanced neural alignment.",
+      "llm_tldr_cn": "脑解码常用CLIP视觉-语言模型，但其表征与脑活动对齐有限。本研究探索对抗训练得到的鲁棒表征是否能改善神经对齐。实验表明，对抗鲁棒特征在多个脑解码任务上优于标准CLIP特征。这揭示了视觉-语言模型鲁棒性与神经预测性之间的关联，为构建更好的脑机接口和认知模型提供了新思路。",
+      "llm_tldr": "脑解码常用CLIP视觉-语言模型，但其表征与脑活动对齐有限。本研究探索对抗训练得到的鲁棒表征是否能改善神经对齐。实验表明，对抗鲁棒特征在多个脑解码任务上优于标准CLIP特征。这揭示了视觉-语言模型鲁棒性与神经预测性之间的关联，为构建更好的脑机接口和认知模型提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.04749v1",
+      "source": "arxiv",
+      "title": "Direct Model State Migration for Elastic Training of Large Language Models",
+      "abstract": "Large language model (LLM) training shall adapt to dynamic resources in shared clusters to tackle the elasticity, including passive preemption and optimistic scaling. State migration across device sets is required when altering the hybrid-parallel configuration due to dynamic resources. Existing solutions rely on checkpoint-based mechanisms, which persist complete states to storage for resuming with re-assigned resources, forcing all GPUs to stall when transferring model states. Despite optimization efforts, checkpoint-based solutions incur prohibitive latency due to data movement across memory hierarchies.   We propose ETC, a checkpoint-free state migration framework for elastic hybrid-parallel LLM training. We exploits the state locality to minimize inter-GPU data movement, replacing storage persistence with direct peer-to-peer communication. Besides, we eliminate node fragmentation through communication coalescing. Integrated with Megatron-LM, ETC reduces migration overhead by 2.33$\\times$ to 6.37$\\times$ compared to checkpoint-based solutions across diverse parallel configurations. By enabling efficient migration, ETC unlocks practical elastic training in production environments.",
+      "authors": [
+        "Weijian Liu",
+        "Mingzhen Li",
+        "Rui Kang",
+        "Chen Sun",
+        "Guangming Tan",
+        "Weile Jia"
+      ],
+      "primary_category": "cs.DC",
+      "categories": [
+        "cs.DC"
+      ],
+      "published": "2026-07-06T07:39:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.04749v1",
+      "tags": [
+        "keyword:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Elastic training framework for large language models",
+      "llm_evidence_cn": "大语言模型的弹性训练状态迁移框架",
+      "llm_evidence": "大语言模型的弹性训练状态迁移框架",
+      "canonical_evidence": "大语言模型的弹性训练状态迁移框架",
+      "llm_tldr_en": "ETC: a checkpoint-free state migration framework for elastic hybrid-parallel LLM training, minimizing latency.",
+      "llm_tldr_cn": "大规模语言模型训练需适应动态资源，现有检查点机制造成高延迟。本文提出ETC无检查点状态迁移框架，利用状态局部性最小化数据移动，实现高效的弹性训练。",
+      "llm_tldr": "大规模语言模型训练需适应动态资源，现有检查点机制造成高延迟。本文提出ETC无检查点状态迁移框架，利用状态局部性最小化数据移动，实现高效的弹性训练。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.04107v1",
+      "source": "arxiv",
+      "title": "Semantic Integration and Lexical Expectation Shape N400 and P600 Dynamics During Naturalistic Reading",
+      "abstract": "Word surprisal is a well-established computational predictor of human neural responses during language comprehension, but it remains less clear whether local semantic fit explains neural response variation beyond lexical expectation during naturalistic reading. Using the Dublin EEG-based Reading Experiment Corpus (DERCo), this study examined whether contextual semantic relevance predicts word-locked EEG activity in the N400 and P600 windows. Contextual semantic relevance was computed as an attention-aware measure of how strongly a target word is semantically connected to its recent discourse context, and it was compared with GPT-based word surprisal. Across 22 participants and 32 EEG channels, we tested both predictors using regression-based ERP analyses and generalized additive mixed models while controlling for lexical variables and repeated observations. Both predictors were reliably associated with EEG responses, but they showed partly different temporal and scalp-level patterns. Surprisal captured expectancy-related variation, whereas contextual semantic relevance showed robust effects across N400- and P600-window mean voltages, with particularly strong explanatory support in the P600 window. Model comparisons indicated that contextual semantic relevance contributed explanatory value beyond lexical controls and surprisal. These findings suggest that naturalistic reading depends on both lexical expectation and local semantic integration, and that contextual semantic relevance offers an interpretable computational link between discourse semantic fit and ERP dynamics.",
+      "authors": [
+        "Kun Sun",
+        "Rong Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-05T04:07:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.04107v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG study using GPT-based word surprisal to predict neural responses",
+      "llm_evidence_cn": "利用GPT词惊异度预测脑电反应的阅读研究",
+      "llm_evidence": "利用GPT词惊异度预测脑电反应的阅读研究",
+      "canonical_evidence": "利用GPT词惊异度预测脑电反应的阅读研究",
+      "llm_tldr_en": "Examines how semantic relevance and GPT-based surprisal predict N400 and P600 effects during natural reading.",
+      "llm_tldr_cn": "本文利用Dublin脑电阅读语料库，研究上下文语义相关性和GPT词惊异度对N400和P600窗口的影响，发现语义相关性在词汇期望之外解释了额外的神经变异，揭示了语言理解的多方面神经基础。",
+      "llm_tldr": "本文利用Dublin脑电阅读语料库，研究上下文语义相关性和GPT词惊异度对N400和P600窗口的影响，发现语义相关性在词汇期望之外解释了额外的神经变异，揭示了语言理解的多方面神经基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.05165v1",
+      "source": "arxiv",
+      "title": "Physiological Noise Augmentation Improves Non-Invasive Brain-to-Speech",
+      "abstract": "Non-invasive brain-to-speech decoding aims to restore communication to patients suffering from neurodegenerative disease, without the risks of neurosurgery. Existing MEG- and EEG-based methods, while scalable, continue to suffer from high word error rates driven by relatively low signal-to-noise ratios compared to invasive recordings. We propose physiological noise augmentation (PNA), a data augmentation method that explicitly trains decoders to become invariant to task-agnostic artifacts (e.g. ocular and cardiac activity). PNA draws inspiration from automatic speech recognition systems, where environmental noise (e.g. dogs barking, city traffic) is added to clean speech to improve robustness. Analogously, we decompose brain recordings into clean data and noise artifacts using independent component analysis (ICA), before scaling and remixing to generate biophysically realistic, label-preserving training examples. We show that PNA approximates anisotropic regularization, penalizing decoder sensitivity along artifact-dominated directions. On MegNIST, a 12k-trial imagined-digit MEG dataset, PNA with 10-trial averaging improves EEGNet decoding accuracy by 4.7 percentage points (absolute) over training on real data alone. Our results suggest that artifact-aware augmentation and trial averaging are complementary tools for improving robustness in non-invasive speech BCIs.",
+      "authors": [
+        "Benjamin Ballyk",
+        "Teyun Kwon",
+        "Miran Özdogan",
+        "Oiwi Parker Jones"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-06T14:47:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.05165v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "non-invasive brain-to-speech decoding using EEG/MEG with noise augmentation",
+      "llm_evidence_cn": "使用EEG/MEG的非侵入式脑到语音解码，采用噪声增强",
+      "llm_evidence": "使用EEG/MEG的非侵入式脑到语音解码，采用噪声增强",
+      "canonical_evidence": "使用EEG/MEG的非侵入式脑到语音解码，采用噪声增强",
+      "llm_tldr_en": "Proposes Physiological Noise Augmentation (PNA) to improve non-invasive brain-to-speech decoding from EEG/MEG by making decoders invariant to artifacts.",
+      "llm_tldr_cn": "针对非侵入式脑到语音解码中MEG/EEG信号信噪比低导致词错误率高的问题，提出生理噪声增强（PNA）方法。受语音识别中环境噪声增强启发，将脑信号分解为干净数据，并添加任务无关的伪迹（如眼电、心电）进行训练，使解码器对这些干扰不敏感。在非侵入式记录上显著提升解码性能，向安全、可扩展的脑机接口迈进一步。",
+      "llm_tldr": "针对非侵入式脑到语音解码中MEG/EEG信号信噪比低导致词错误率高的问题，提出生理噪声增强（PNA）方法。受语音识别中环境噪声增强启发，将脑信号分解为干净数据，并添加任务无关的伪迹（如眼电、心电）进行训练，使解码器对这些干扰不敏感。在非侵入式记录上显著提升解码性能，向安全、可扩展的脑机接口迈进一步。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.05282v1",
+      "source": "arxiv",
+      "title": "Wavelet Scattering Transform for Interpretable Schizophrenia Biomarker Discovery and Classification from Resting-State EEG",
+      "abstract": "Schizophrenia is a debilitating neuropsychiatric disorder characterized by profound cortical network dysregulation, for which objective, clinically translatable EEG based biomarkers remain underdeveloped. Existing automated classification pipelines rely predominantly on static power spectral density features inherently blind to amplitude modulation dynamics and cross-frequency coupling, phenomena central to schizophrenia pathophysiology, while adopting epoch level cross validation strategies that introduce temporal data leakage, artificially inflate reported performance. This study introduces a mathematically principled diagnostic framework integrating the multi-order Wavelet Scattering Transform(WST), strict Leave One Subject Out (LOSO) cross-validation, and SHAP explainability for simultaneous EEG classification and biomarker discovery. Hierarchical WST coefficients capturing multi-scale amplitude modulation structure were extracted from resting state multichannel EEG. Subject-level ANOVA with Benjamini Hochberg false discovery rate correction identified significant biomarkers, with Random Forest and SVM classifiers evaluated under strict LOSO cross validation and subject-level majority voting. Second-order scattering coefficients encoding cross frequency coupling dominated the discriminative biomarker set, with gamma-band features most prevalent, demonstrating that temporal amplitude modulation constitutes the primary electrophysiological signature of schizophrenia. Electrode P3 was identified as the single most discriminative site. Under rigorous subject independent evaluation, the Random Forest achieved 90.48% accuracy (AUC = 0.9339; sensitivity = 95.56%). The proposed WST framework establishes a rigorous, interpretable standard for EEG-driven psychiatric biomarker discovery that can also be applicable in the detection of schizophrenia subtypes in the future.",
+      "authors": [
+        "Md. Taksimul Ahsan Tawhid",
+        "Nasif Ahmed Rafe",
+        "Alif Tahmid Priyom",
+        "K. M. Mustafizur Rahman"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.AI",
+        "cs.LG",
+        "stat.ME"
+      ],
+      "published": "2026-07-06T16:27:26+00:00",
+      "link": "https://arxiv.org/pdf/2607.05282v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Schizophrenia biomarker discovery and classification from resting-state EEG using wavelet scattering transform",
+      "llm_evidence_cn": "利用小波散射变换从静息态脑电中发现精神分裂症生物标志物并进行分类",
+      "llm_evidence": "利用小波散射变换从静息态脑电中发现精神分裂症生物标志物并进行分类",
+      "canonical_evidence": "利用小波散射变换从静息态脑电中发现精神分裂症生物标志物并进行分类",
+      "llm_tldr_en": "Introduces a diagnostic framework using multi-order Wavelet Scattering Transform for interpretable schizophrenia biomarker discovery and classification from resting-state EEG, addressing limitations of static power spectral features.",
+      "llm_tldr_cn": "该研究针对静息态脑电精神分裂症分类中静态功率谱特征忽视幅度调制动力学和跨频率耦合的问题，提出基于多阶小波散射变换的诊断框架。该方法能捕获关键病理动力学，同时避免时序数据泄露。实验表明，该框架在分类和生物标志物发现中优于传统方法，提供了可解释特征，为临床转化提供了新手段。",
+      "llm_tldr": "该研究针对静息态脑电精神分裂症分类中静态功率谱特征忽视幅度调制动力学和跨频率耦合的问题，提出基于多阶小波散射变换的诊断框架。该方法能捕获关键病理动力学，同时避免时序数据泄露。实验表明，该框架在分类和生物标志物发现中优于传统方法，提供了可解释特征，为临床转化提供了新手段。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}
