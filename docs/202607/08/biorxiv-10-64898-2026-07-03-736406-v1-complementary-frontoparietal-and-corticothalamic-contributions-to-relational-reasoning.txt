@@ -1,0 +1,1536 @@
+Title: Complementary frontoparietal and corticothalamic contributions to relational reasoning
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.03.736406v1.full.pdf
+
+Number of Pages: 24
+
+Markdown Content:
+Complementary frontoparietal and corticothalamic contributions to relational 1
+
+reasoning 2
+
+Conor N. Robinson 1,2* , Luke J. Hearne 1, Kartik K. Iyer 3, Takuya Ito 4 , James A. Roberts 2,3 , Luca 3
+
+Cocchi 1,2 
+
+4 
+
+> 1
+
+Clinical Brain Networks Group, QIMR Berghofer, Brisbane, QLD, Australia 5 2 Faculty of Health, Medicine and Behavioural Sciences, University of Queensland, Brisbane, QLD, 6
+
+Australia 7 3 Brain Modelling Group, QIMR Berghofer, Brisbane, QLD, Australia 8 4 T.J. Watson Research Center, IBM Research, Yorktown Heights, NY, USA 9
+
+10 
+
+*Corresponding author: conor.robinson@student.uq.edu.au 11 
+
+12 
+
+Classification : Biological Sciences, Neuroscience 13 
+
+14 
+
+Abbreviated title (70 characters) 15 
+
+Reasoning-induced corticothalamic dynamics. 16 
+
+17 
+
+Keywords : frontoparietal, thalamus, reasoning, corticothalamic, EEG, aperiodic, neural field, 18 
+
+complexity, cognitive demands 19 
+
+20 
+
+Number of pages: 24; Number of figures: 4; Number of words: abstract: 177; introduction: 566; 21 
+
+discussion: 909. 22 
+
+23 
+
+Conflict of interest statement 24 
+
+C.N.R., L.J.H., and L.C., are involved in a not-for-profit clinical neuromodulation centre 25 
+
+(Queensland Neurostimulation Centre, QNC) that offers neuroimaging-guided neurotherapeutics. 26 
+
+This centre had no role in this study. L.C. serves as a co-inventor on a patent application by the 27 
+
+National University of Singapore that covers neuroimaging-based personalised TMS. L.C. and 28 
+
+L.J.H. are also involved in the development of imaging-based personalized TMS for depression 29 
+
+with ANT Neuro and Resonait Medical Technologies. The provisional patent and the products of 30 
+
+ANT Neuro and Resonait Medical Technologies are not related to this work. 31 
+
+32 
+
+33 
+
+34 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+2
+
+Abstract 35 
+
+Complex reasoning depends on flexible coordination among frontal, parietal, and thalamic 36 
+
+systems, but the circuit mechanisms that support increasing relational demands remain unclear. 37 
+
+We combined EEG with biologically grounded corticothalamic neural field modelling while 38 
+
+participants solved relational problems of graded complexity. Successful reasoning was 39 
+
+associated with dissociable frontoparietal dynamics. Frontal regions showed increased theta-band 40 
+
+power, whereas parietal regions showed reduced alpha- and beta-band power. Theta-band phase 41 
+
+synchronisation across frontoparietal-network nodes increased with problem complexity but was 42 
+
+not associated with performance. By contrast, stronger beta-band synchronisation across the 43 
+
+same network was associated with slower and less accurate responses as demands approached 44 
+
+the highest complexity, suggesting that stronger coordination is not uniformly beneficial. Neural 45 
+
+field modelling indicated that these regional spectral dynamics reflected specific complexity-46 
+
+dependent circuit adaptations. Parietal regions showed modulation of intracortical and 47 
+
+corticothalamic gains, intrathalamic inhibition, prolonged loop delays, and faster synaptic 48 
+
+filtering, whereas frontal regions primarily adjusted intracortical gains to maintain local 49 
+
+excitatory–inhibitory balance and supported longer temporal integration windows. Together, 50 
+
+these empirical and model-derived findings reveal complementary frontoparietal and 51 
+
+corticothalamic mechanisms for relational reasoning. 52 
+
+53 
+
+Significance statement 54 
+
+A central challenge in cognitive neuroscience is understanding how frontoparietal-thalamic 55 
+
+interactions support the flexible integration of relations during complex reasoning. Using 56 
+
+electroencephalography and biophysical modelling during sudoku-like tasks with varying 57 
+
+relational complexity, we show that frontal and parietal cortices adopt distinct but coordinated 58 
+
+strategies. As complexity increases, frontal regions stabilise processing by tuning excitation– 59 
+
+inhibition balance, whereas parietal regions additionally reorganise corticothalamic and 60 
+
+intrathalamic circuitry. These changes co-occur with band- and region-specific power shifts and 61 
+
+increased frontoparietal synchronisation, indicating that effective reasoning depends not simply 62 
+
+on scaling neural activity, but on coordinated, region-specific circuit reconfigurations. 63 
+
+64 
+
+65 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+3
+
+Introduction 66 
+
+The frontoparietal network (FPN) serves as a central hub for integrating information required for 67 
+
+complex problem-solving and reasoning (1, 2). Across a wide range of cognitively demanding 68 
+
+tasks, increasing task difficulty is accompanied by heightened activity and reconfiguration of 69 
+
+functional connectivity within frontal and parietal cortices (3-7). While these findings establish 70 
+
+the central role of the FPN in reasoning, we still have limited insight into the temporal, spectral, 71 
+
+and circuit-level mechanisms by which relations are integrated, particularly as relational 72 
+
+demands increase. 73 
+
+74 
+
+Relational complexity (RC) provides a principled framework for quantifying reasoning demands, 75 
+
+defined as the maximum number of relations that must be integrated within a single cognitive 76 
+
+operation (8). Across diverse reasoning domains, including non-verbal visuospatial puzzles, 77 
+
+propositional logic, transitive inference, and sentence comprehension tasks, RC functions as a 78 
+
+domain-general marker of processing capacity limits (8-12). Accordingly, increases in relational 79 
+
+complexity reliably impair performance and recruit frontoparietal regions and networks, linking 80 
+
+graded behavioural costs to the neural engagement required for relational integration (4, 5). 81 
+
+82 
+
+The Latin Square Task (LST) is a validated paradigm for manipulating RC (11, 13, 14). In the 83 
+
+LST, participants solve single-constraint visuospatial puzzles in which relational demands are 84 
+
+systematically varied. A prior fMRI–EEG study using the LST identified a 2–4.2 s post-stimulus 85 
+
+window in which the FPN supports relational-complexity integration (15). These delayed 86 
+
+representations are distinct from early stimulus-locked responses and aligned with high-order 87 
+
+computational strategies learned by artificial neural networks trained on the same task (16, 17). 88 
+
+Oscillatory activity in the theta, alpha, and beta bands has been linked to both local processing 89 
+
+and long-range coordination across frontoparietal systems during higher-order cognition (18, 19) 90 
+
+and recent work has begun to characterise the role of frequency-specific neural dynamics in 91 
+
+supporting reasoning under increasing cognitive demands (20-22). However, the mechanisms 92 
+
+coordinating integration within this temporal window remain unresolved. 93 
+
+94 
+
+Corticothalamic interactions provide a plausible mechanism through which modulation of FPN 95 
+
+activity can be achieved to facilitate the processing of RC (23-25). The thalamus is anatomically 96 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+4well-positioned to support the modulation of cortical integration, given its organisation and 97 
+
+extensive cortical connectivity (23, 24). While the thalamus is involved during relational 98 
+
+processing (26, 27), progressive increases in RC do not reliably produce corresponding increases 99 
+
+in mean thalamic activation (1). This functional dissociation suggests that complexity-related 100 
+
+effects may be mediated by distinct changes in thalamo-FPN coordination or gain, rather than by 101 
+
+overall increases in thalamic activity. Increasing relational demands may thus be supported by 102 
+
+thalamic-induced selective amplification of neural activity in frontal or parietal cortices, or by 103 
+
+distinct reconfigurations of corticothalamic loops that shape frontoparietal dynamics. Neural 104 
+
+field theory (NFT) models provide a mechanistic framework for addressing these questions by 105 
+
+linking macroscopic EEG spectra to biologically grounded circuit parameters governing cortico– 106 
+
+cortical, corticothalamic, and intrathalamic interactions (28-35). 107 
+
+108 
+
+Here, we used EEG and corticothalamic NFT to investigate how frontal, parietal, and thalamic 109 
+
+circuits support relational integration as reasoning complexity increases. Focusing on the 110 
+
+established LST RC integration window (15) we characterise complexity-dependent changes in 111 
+
+local spectral power and frequency-specific frontoparietal synchronisation, and their 112 
+
+relationships with behaviour. We then apply NFT modelling to dissociate cortical and 113 
+
+corticothalamic contributions to these effects. Our findings reveal a functional dissociation 114 
+
+between frontal and parietal processing as complexity increases, characterised by region-specific 115 
+
+adjustments in the excitation–inhibition balance and corticothalamic gain. Together, these results 116 
+
+advance mechanistic insight into how the frontoparietal–thalamic system accommodates 117 
+
+increasingly complex relational processes supporting human reasoning. 118 
+
+119 
+
+Results 120 
+
+We started by assessing participants’ behavioural performance. We modified the puzzle format 121 
+
+to accommodate shorter presentation and response times, while keeping stimuli within the 122 
+
+participant’s visual field (Fig. 1A). Each trial presented a 4×4 grid partially filled with four 123 
+
+differently coloured circles. Participants were asked to identify the missing-coloured circle 124 
+
+marked with a red question mark. The relationship between coloured items adhered to a single 125 
+
+rule: each item could appear only once per row and once per column . This rule allowed us to 126 
+
+manipulate relational demands by selectively removing items from the grid (Fig. 1B). 127 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+5
+
+128 
+
+Our task design included four distinct levels of complexity, classified by the minimum number 129 
+
+of chunked relations required to deduce the missing item (Fig. 1B). Control problems (“unary” 130 
+
+condition) presented unsolvable puzzles that violated the abstraction rule by containing duplicate 131 
+
+items within the same row or column. These problems served as a baseline (“null” complexity) 132 
+
+for rule comprehension. Binary problems required participants to combine items within a single 133 
+
+row or column, using an internal representation of the complete set, to determine which of the 134 
+
+four possible items could occupy that position. Increasing the requirement to coordinate 135 
+
+information across both a row and a column yielded ternary problems. Finally, problems 136 
+
+requiring participants to combine information across multiple rows and columns simultaneously 137 
+
+were classified as quaternary , the highest level of relational complexity in the task. 138 
+
+139 
+
+As in previous studies that adopted the LST and related RC tasks, participants’ performance on 140 
+
+our task declined as relational integration demands increased. Across the four complexity levels, 141 
+
+performance accuracy declined as RC increased (Fig. 1D; F(1.43, 62.99) = 111.54, p < 0.001, ηp²142 
+
+= 0.717). Conversely, response times (Fig. 1E) showed a progressive increase with complexity 143 
+
+(Fig. 1E; F(2.20, 96.64) = 144.74, p < 0.001, ηp² = 0.767). 144 
+
+145 
+
+For the remainder of the study, all neurorecording analyses were restricted to correct trials (and 146 
+
+related response times) to isolate neural activity that supports successful relational integration. 147 
+
+Participants with insufficient artifact-free trials to yield reliable estimates were excluded (n = 11; 148 
+
+see Methods and SI Appendix, Fig. S1), leaving a final sample of n = 34. Behavioural effects of 149 
+
+relational complexity were preserved in this subgroup. 150 
+
+151 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+6
+
+152 
+
+Figure 1 . Latin Square Task adapted for concurrent EEG recording (n = 45) . A. At the start of each trial, 153 
+
+a white fixation cross appeared for a variable duration (0.8 – 1.2 seconds), then a Latin-Square puzzle was 154 
+
+presented for a fixed 4.5 seconds, followed by a 1.75-second response screen. B. 192 puzzles presented 155 
+
+different levels of relational complexity (RC): unary/null, binary, ternary, quaternary. C. 48 trials per RC 156 
+
+level were presented across three event-related blocks, separated by a break determined by the participant. 157 
+
+Each colour line depicts puzzles at a particular complexity level (grey, null; blue, binary; green, ternary; 158 
+
+gold, quaternary) presented in pseudo-randomised order. D. Subject-specific and group accuracy, with 159 
+
+chance level (25%) depicted as the grey dotted line and E. response time across RC levels: null (N), 160 
+
+binary (B), ternary (T) and quaternary (Q). For each RC condition, the mean and within-subject 95% 161 
+
+confidence interval are reported; points show individual performance. 162 
+
+163 
+
+Frontal and parietal activity showed dissociable patterns of activity as a function of 164 
+
+increased relational integration demands 165 
+
+Our first goal was to characterise how local neural activity in frontal and parietal cortices 166 
+
+mapped to different RC levels during the relational integration window (2 – 4.2 seconds; (15)). 167 
+
+We computed EEG signal power as a simple proxy for local synchronisation within these 168 
+
+regional circuits. We started by visualising the time-frequency decomposition across participants, 169 
+
+normalised to the pre-stimulus baseline (the inter-trial fixation cross, Fig. 1A). Synchronisation 170 
+
+is thus represented as a percentage change in power following puzzle onset (representative 171 
+
+results from the left hemisphere shown in Fig. 2A). Specifically, we plotted broadband (2 – 45 172 
+
+Hz) and band-specific (theta, alpha, beta, SI Appendix, Methods) changes in signal power over 173 
+
+time, highlighting the predefined relation integration window. 174 
+
+175 
+
+6
+
+al, 
+
+s
+
+ed 
+
+C
+
+nt. 
+
+;
+
+ith ), %es .se ,on ve 45 er 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+7The relative change in group-level power across complexity levels suggested opposing changes 176 
+
+in signal power in left frontal (Fig. 2A) and parietal (Fig. 2B) cortices. Results showed that 177 
+
+frontal mean broadband power increased with relational demands (F(1.20, 39.71) = 4.94, p FDR =178 
+
+0.039, ηp2 = 0.13; Fig. 2C). Conversely, the parietal mean broadband power decreased with 179 
+
+increasing relational demands (F(1.64, 54.08) = 34.70, p FDR < 0.001, ηp2 = 0.51, Fig. 2D). A 180 
+
+similar trend was observed in the right-hemisphere frontal and parietal areas (SI Appendix, Fig. 181 
+
+S2). Inspection of the relative change in the power spectral density (Fig. 2C and D, middle 182 
+
+panels) suggested that regional changes in broadband power were driven by discrete band-183 
+
+specific activity. 184 
+
+185 
+
+Analysis of narrowband EEG showed that broadband increases in left frontal regions were driven 186 
+
+by theta power (Fig 2E , left; F(1.23, 41.69) = 7.31, p FDR = 0.008, ηp2 = 0.181), where beta-band 187 
+
+power (Fig 2E , right ) decreased with complexity (F(2.60, 85.95) = 10.54, p FDR < 0.001, ηp2 =188 
+
+0.242). Frontal alpha power did not significantly differ. Similar results were observed for the 189 
+
+right hemisphere (SI Appendix, Fig. S2). 190 
+
+191 
+
+In the parietal cortex, frequency-resolved power decreased with relational load (Fig. 2F). The 192 
+
+largest reduction in power occurred in the alpha (F(1.34, 44.28) = 20.24, p FDR < 0.001, ηp2 =193 
+
+0.380) and beta bands (F(2.39, 75.68) = 63.17, p FDR < 0.001, ηp2 = 0.657), with comparable 194 
+
+reductions in the right parietal cortex alpha (F(1.52, 50.00) = 14.30, p FDR < 0.001, ηp2 = 0.302) 195 
+
+and beta bands (F(2.28, 75.32) = 32.76, p FDR < 0.001, ηp2 = 0.498; SI Appendix, Fig. S2). Theta 196 
+
+power, by contrast showed hemispheric asymmetry. It decreased with relational load in the left 197 
+
+parietal cortex (F(1.97, 64.99) = 5.87, p FDR = 0.008, ηp2 = 0.151) but did not differ across 198 
+
+conditions in the right parietal cortex (F(2.06, 68.04) = 0.255, p FDR = 0.782, ηp2 = 0.008). 199 
+
+200 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+8
+
+201 Figure 2. Changes in frontal and parietal cortical power as a function of increased relational complexity. 202 
+
+Group-level spectral power dynamics across frontal (left panels) and parietal (right panels) regions during 203 
+
+relational processing (n = 34). (A, B) Time-frequency representations (2-45 Hz) showing percentage 204 
+
+power change from pre-stimulus baseline (-0.3 to -0.05 s) across four complexity conditions (null, binary, 205 
+
+ternary, quaternary). Warm colours indicate increases in EEG signal power; cool colours indicate 206 
+
+decreases in power relative to baseline. (C, D) Broadband power (2-45 Hz) time series across the puzzle 207 
+
+stimulus, with shaded regions representing standard error of the mean. Baseline normalised power spectra 208 
+
+(centre) extracted during the relational integration window (2-4.2 s, highlighted in beige (15)). Interval 209 
+
+plots (right) display condition means with within-subject 95% confidence intervals. (E, F) Band-specific 210 
+
+time-series for theta (4-8 Hz), alpha (8-12 Hz), and beta (13-30 Hz) frequencies, with mean EEG signal 211 
+
+power during the relational integration window below. Asterisks indicate significant differences between 212 
+
+conditions (* p FDR < 0.05, ** p FDR < 0.01, *** p FDR < 0.001). Left hemisphere data shown. 213 
+
+214 
+
+We next asked whether these effects reflect stimulus-locked processes that are consistent across 215 
+
+puzzles or induced activity that varies from trial to trial. We predicted that relational complexity 216 
+
+effects would be driven by induced rather than phase-locked activity processing (36-40). To test 217 
+
+this hypothesis, we decomposed the total spectral power presented in the above analysis into 218 
+
+evoked (phase-locked) and induced (non-phase-locked) components and repeated the broadband 219 
+
+and band-specific analyses across all four RC puzzle conditions (SI Appendix, Methods). Results 220 
+
+showed that the need to bind relations at various RC levels was associated with non-phase-221 
+
+locked activity during the puzzle presentation (SI Appendix, Fig. S3 and S4, and related text). In 222 
+
+the late processing window, the signal was dominated by induced activity, with minimal evoked 223 
+
+8
+
+.
+
+ng ge ry, ate zle tra al fic al en ss ity est to nd lts -In ed 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+9contribution. Accordingly, subsequent analyses were conducted on total power without further 224 
+
+decomposition, consistent with prior work (21, 41, 42). 225 
+
+226 
+
+A concern in prior work is that baseline normalisation may distort low-frequency components of 227 
+
+the spectrum (<10 Hz) (43). Moreover, broadband and band-specific results could be driven by 228 
+
+mechanisms underlying the 1/f-like aperiodic and band-specific periodic oscillations in the 229 
+
+spectrum. To address this, we decomposed the untransformed post-stimulus spectra into 230 
+
+aperiodic and periodic components during the relation integration window (SI Appendix, Fig. S5 231 
+
+and related text). Results from this analysis confirmed that the observed band-specific effects 232 
+
+reflect genuine oscillatory modulations rather than artefacts of normalisation or global spectral 233 
+
+shifts. These results also revealed a regionally dissociable pattern in aperiodic activity, with 234 
+
+frontal regions showing increases in offset and slope, and parietal regions showing the opposite 235 
+
+trend (SI Appendix, Fig. S5). Analyses of periodic activity further showed that frequency-236 
+
+specific modulations occur alongside these broadband changes. These results suggest that 237 
+
+aperiodic and oscillatory dynamics jointly contribute to complexity-related neural processing, 238 
+
+but with distinct regional profiles. 239 
+
+240 
+
+Band-specific frontoparietal activity and phase synchronisation support behavioural 241 
+
+performance across relational demands 242 
+
+Building on the region- and band-specific power effects described above, we next asked whether 243 
+
+reasoning behaviour was linked to changes in FPN synchronisation, as observed in fMRI studies 244 
+
+(4, 5, 44). For each participant, we calculated change scores from lower to higher complexity and 245 
+
+tested whether changes in FPN synchronisation statistically mediated the relationship between 246 
+
+changes in nodal power and changes in performance (Fig. 3). We modelled changes relative to 247 
+
+the highest level of complexity (Quaternary), contrasting Quaternary with Binary (Model 1) and 248 
+
+Quaternary with Ternary (Model 2). This approach isolates neural and behavioural changes 249 
+
+associated with increasing relational demands as task complexity approaches its upper bound. 250 
+
+We found no evidence that changes in FPN synchronisation mediated the relationship between 251 
+
+nodal power and behavioural performance (Fig. 3; SI Appendix, Fig. S6). However, examination 252 
+
+of the individual pathways suggested that the relationships between FPN activity and behavioural 253 
+
+performance differed according to both relational complexity and frequency band. 254 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+10 For the largest increase in relational complexity (Quaternary–Binary; Model 1, Fig. 3A), theta-255 
+
+band activity showed coordinated increases in frontal–parietal power and network 256 
+
+synchronisation. However, these changes were not associated with behavioural performance, 257 
+
+suggesting that while FPN theta dynamics are sensitive to relational demands, they do not 258 
+
+directly account for individual differences in task performance. In contrast, the more incremental 259 
+
+increase in complexity (Quaternary–Ternary; Model 2, Fig. 3B) revealed a behaviourally 260 
+
+relevant dissociation within the FPN beta activity. Increases in beta-band inter-regional 261 
+
+synchronisation were associated with longer response times and reduced accuracy, whereas 262 
+
+increases in nodal beta power showed the opposite pattern, tending to predict faster and more 263 
+
+accurate performance. This suggests that at higher RC levels, behavioural performance results 264 
+
+from a trade-off between local recruitment and inter-regional synchronisation, rather than simply 265 
+
+increased network engagement. Across theta and beta band models, beta-band FPN activity 266 
+
+emerged as a sensitive marker of relational integration performance; all models are reported in SI 267 
+
+Appendix, Fig. S6. 268 
+
+269 
+
+270 
+
+Figure 3. Relationship between changes in frontoparietal network activity and behaviour as relational 271 
+
+complexity demands increase. Mediation models examine how changes in theta and beta FPN power 272 
+
+across nodes influence behaviour (response time, top ; accuracy, bottom ) through changes in network 273 
+
+synchronisation (debiased weighted Phase Lag Index; Methods) for ( A) Model 1: the transition between 274 
+
+low to high (Quaternary minus Binary) levels of complexity and ( B) Model 2: the transition between 275 
+
+medium to high (Quaternary minus Ternary) complexity. Mediation analysis performed using a bias-276 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+11 corrected non-parametric bootstrap method (95%, CI 5000 iterations). Path coefficients and p-values are 277 
+
+reported for each pathway (black arrows). Significant individual regression paths are indicated by red 278 
+
+arrows (p < 0.05). Because response time and accuracy reflect performance in opposite directions, the 279 
+
+signs of the coefficients should be interpreted separately for each outcome. For response time, a positive 280 
+
+coefficient indicates that greater complexity-related increases in power or synchronisation are associated 281 
+
+with slower responses, whereas a negative coefficient indicates faster responses. For accuracy, a positive 282 
+
+coefficient indicates that greater complexity-related increases in power or synchronisation are associated 283 
+
+with higher accuracy, whereas a negative coefficient indicates lower accuracy. 284 
+
+285 
+
+Distinct complexity-related corticothalamic gain modulation in frontal and parietal cortices 286 
+
+Given the observed changes in frontal and parietal activity and cross-regional synchronisation 287 
+
+with increasing relational complexity, we next examined potential circuit-level mechanisms 288 
+
+using a corticothalamic neural field model (CTM) applied to the source-reconstructed EEG 289 
+
+spectra (SI Appendix, Methods, Fig. 4A). Within this framework, scalp EEG activity reflects the 290 
+
+balance between the activity of cortical excitatory pyramidal neurons and inhibitory 291 
+
+interneurons, while thalamic contributions arise from interactions between excitatory activity in 292 
+
+the relay nuclei and inhibitory activity in the reticular nucleus (29, 45). We interpret the fitted 293 
+
+parameters in three families: local cortical gains, corticothalamic loop gains, and temporal 294 
+
+filtering parameters. Local cortical gains index the balance of recurrent excitation and inhibition 295 
+
+within each cortical region. Corticothalamic and intrathalamic gain index estimated feedback 296 
+
+through relay and reticular thalamic populations. Synaptodendritic parameters index the duration 297 
+
+of postsynaptic integration. Because we did not observe significant lateralisation effects in the 298 
+
+parameter estimates (p FDR > 0.05), we averaged the frontal and parietal model parameters across 299 
+
+both hemispheres for subsequent analyses. 300 
+
+301 
+
+Analysis of the circuit subcomponents revealed a coordinated modulation of cortical excitatory 302 
+
+and inhibitory gains as relational complexity increased. Cortical excitability gain (G ee, capturing 303 
+
+recurrent excitation within the cortex) showed a progressive reduction with increasing 304 
+
+complexity in both frontal (F(3, 99) = 4.925, p FDR = 0.007 , ηp² = 0.130) and parietal (F(3, 99) = 305 
+
+3.471, p FDR = 0.035 , ηp² = 0.095) regions (Fig. 4B, top left). Conversely, cortical inhibitory gain 306 
+
+(G ei , local cortical feedback inhibition) was weakened with complexity in both frontal (F(3, 99) = 307 
+
+5.262, p FDR = 0.006 , ηp² = 0.138) and parietal (F(3, 99) = 4.887, p FDR = 0.007 , ηp² = 0.129) regions 308 
+
+(Fig 4B, top left). 309 
+
+310 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+12 Corticothalamic coupling showed a more region-specific pattern. In the parietal cortex, 311 
+
+excitatory corticothalamic loop gain (G ese, capturing the direct positive feedback loop between 312 
+
+the cortex and the thalamic relay nuclei) decreased with increasing complexity (F(3, 99) = 8.696, 313 
+
+p FDR < 0.001, ηp² = 0.209). Conversely, excitatory corticothalamic loops had no significant effect 314 
+
+on frontal activity (F(3, 99) = 1.301, p FDR = 0.360, ηp² = 0.038). Parietal corticothalamic 315 
+
+inhibitory loop gain (G esre , capturing indirect inhibitory feedback via the thalamic reticular 316 
+
+nucleus) was attenuated by relational demands (F(3, 99) = 6.044, p FDR = 0.004, ηp² = 0.155), with 317 
+
+no corresponding change in the frontal cortex (F(3, 99) = 0.242, p FDR = 0.908, ηp² = 0.007; Fig. 318 
+
+4B, top right). Parietal corticothalamic loop delay (t 0) increased as a function of relational 319 
+
+complexity (t 0: F(3, 99) = 5.447, p FDR = 0.006, ηp² = 0.142), indicating slower corticothalamic 320 
+
+signal propagation. Within the thalamus, intrathalamic loop gain (G srs , reticular gating of relay 321 
+
+neurons, capturing local thalamic inhibitory feedback) was weakened as relational demands 322 
+
+increased (F(3, 99) = 12.477, p FDR < 0.001, ηp² = 0.274). No significant complexity-related 323 
+
+changes were observed for frontal intrathalamic loop gain (F(3, 99) = 2.463, p FDR = 0.105, ηp² = 324 
+
+0.069) or corticothalamic delay (t 0: F(3, 99) = 1.633, p FDR = 0.257, ηp² = 0.047; Fig. 4B, bottom 325 
+
+right). 326 
+
+327 
+
+Synaptodendritic temporal parameters, which govern the temporal filtering of synaptic inputs 328 
+
+throughout the corticothalamic system, exhibited opposing regional adaptations in postsynaptic 329 
+
+rise and decay with increasing relational complexity (Fig. 4B, bottom left). In parietal regions, 330 
+
+the synaptic decay rate constant ( , the rate at which postsynaptic potentials decay at the soma) 331 
+
+increased with complexity, suggesting a shorter integration window. In contrast, synaptic rise ( ‐,332 
+
+the rate of postsynaptic potential onset) remained unchanged (decay: F(3, 99) = 7.667, p FDR <333 
+
+0.001, ηp² = 0.189; rise: F(3, 99) = 1.168, p FDR = 0.398, ηp² = 0.034). Conversely, results in 334 
+
+frontal regions showed decreases in both synaptic decay and rise rate constants with increasing 335 
+
+relational complexity (decay: F(3, 99) = 3.980, p FDR = 0.020, ηp² = 0.108; rise: F(3, 99) = 4.136, 336 
+
+p FDR = 0.018, ηp² = 0.111). Together, these opposing synaptodendritic tuning patterns 337 
+
+demonstrate a regional dissociation in the temporal integration of post-synaptic potentials. 338 
+
+Parietal regions exhibit faster filtering of synaptic inputs, whereas frontal regions support more 339 
+
+sustained synaptic integration as relational demands increase. 340 
+
+341 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+13 We also examined a reduced model in which circuit stability is characterised by the net gains in 342 
+
+cortico–cortical (X), corticothalamic (Y), and intrathalamic (Z) loop feedback (SI Appendix, 343 
+
+Methods Equations 13-15, Fig. 4C). Neither cortico–cortical nor corticothalamic loops showed a 344 
+
+significant net gain with relational demands (all p FDR > 0.05), suggesting that increasing 345 
+
+relational integration demands were not accompanied by broad circuit-wide reorganisation at the 346 
+
+cortical or corticothalamic level. Instead, stability was maintained through parameter-specific 347 
+
+gain adjustments that balanced excitatory and inhibitory dynamics within the circuit (see above, 348 
+
+Fig. 4B). Intrathalamic net gain, however, exhibited a significant complexity-dependent decrease 349 
+
+in parietal regions (F(3, 99) = 9.362, p FDR < 0.001, ηp² = 0.221). Frontal regions exhibited a 350 
+
+similar but non-significant reduction in intrathalamic gain (F(3, 99) = 3.105, p FDR = 0.051, ηp² = 351 
+
+0.086). 352 
+
+353 
+
+As a control, we also examined a cortical set of regions not thought to be primarily involved in 354 
+
+complexity representations: the somatomotor network (5, 15). Moreover, higher-order cognition 355 
+
+appears to engage medial and posterior thalamic neurons, while sensory-motor activity 356 
+
+preferentially activates the anterolateral portion (Fig. 4A; (26)). No significant changes in sub-357 
+
+circuit or net corticothalamic gain parameters were observed across complexity levels (all p FDR >358 
+
+0.05; SI Appendix, Fig. S7). The only effect was an increase in corticothalamic loop delay (F(3, 359 
+
+99) = 4.743, p FDR = 0.044, ηp² = 0.125; summarised in Fig. 4), suggesting that the prolonged 360 
+
+delay observed during relational processing may reflect a more general task-induced slowing in 361 
+
+thalamo-cortical coupling. These control modelling findings highlight that changes in gain and 362 
+
+stability observed in frontoparietal regions reflect regionally specific adaptations associated with 363 
+
+relational integration. 364 
+
+365 366 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+14 
+
+367 Figure 4. Model-derived engagement of the cortico-thalamic system during the encoding of 368 
+
+relational complexity. A. Schematic of the corticothalamic model (CTM): cortical excitatory 369 
+
+(Gee) and inhibitory (Gei) populations, inhibitory thalamic reticular (Gsrs) and excitatory 370 
+
+thalamic relay neural populations (Gese), corticothalamic inhibitory loop gain (Gesre) and their 371 
+
+connections to frontal (orange) and parietal (teal) regions. Synaptic rise and decay ‐ describe 372 
+
+the synaptodendritic dynamics. B. CTM parameters across increasing relational complexity 373 
+
+levels (N = null, B = binary, T = ternary, Q = quaternary relations). Colour fades from dark to 374 
+
+light as complexity progresses. Top panels show cortical and corticothalamic excitatory and 375 
+
+inhibitory gains; bottom panels show synaptodendritic rise and decay, intrathalamic loop gain, 376 
+
+and corticothalamic loop delay. C. Net cortical (left), corticothalamic (middle), and intrathalamic 377 
+
+(right) gain across complexity levels. Bottom: Schematic summary illustrating differential 378 
+
+corticothalamic circuit reorganisation as a function of increasing complexity for frontal (left) and 379 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+15 parietal (right) regions. Significant main complexity effect for each region *p FDR < 0.05, **p FDR 380 
+
+<0.01, ***p FDR <0.001. Data show mean ± 95% within-subject confidence intervals. 381 
+
+Discussion 382 
+
+Humans can integrate multiple relations, enabling reasoning beyond simple associations (46). 383 
+
+Here, we showed that frontal and parietal regions may support this process through distinct 384 
+
+neural mechanisms. As complexity increased, frontal and parietal regions exhibited distinct load-385 
+
+dependent changes in oscillatory power and synchronisation. Biophysical modelling extended 386 
+
+these results by revealing a circuit-level division. The frontal cortex supported longer-sustained 387 
+
+neural integration by modulating the local excitatory-inhibitory balance, while parietal regions 388 
+
+reorganised thalamocortical loops to accommodate relational integration demands. Together, 389 
+
+these findings reframe frontoparietal interactions not as a uniform recruitment of shared 390 
+
+resources, but as regionally differentiated computational strategies in which synchronisation is 391 
+
+necessary but not sufficient for problem-solving, and in which excitatory–inhibitory rebalancing, 392 
+
+rather than gain amplification, is likely key to supporting relational reasoning. 393 
+
+394 
+
+At the regional level, increasing relational complexity was associated with opposing shifts in 395 
+
+broadband power at the frontal and parietal cortices. Spectral parameterisation indicated that 396 
+
+these effects were driven by region-specific changes in aperiodic activity, alongside selective 397 
+
+recruitment of periodic oscillations. Frontal regions showed an upward shift in aperiodic activity 398 
+
+with increasing demand, whereas parietal regions showed a downward shift, indicating divergent 399 
+
+adaptations across the frontoparietal system. Aperiodic spectral features have recently emerged 400 
+
+as a sensitive, domain-general index of cognitive demand across tasks, including serial 401 
+
+subtraction, working memory, task switching, and interference paradigms (20, 22). Extending 402 
+
+this literature, the present findings demonstrate that aperiodic adaptations during relational 403 
+
+integration are not uniform but regionally differentiated, suggesting distinct computational roles 404 
+
+within the frontoparietal system. 405 
+
+406 
+
+Superimposed on these broadband shifts were dissociable band-limited effects. Increased 407 
+
+relational complexity was characterised in the frontal cortex by enhanced theta power and 408 
+
+attenuated beta power, whereas the parietal cortex showed reductions in both alpha and beta 409 
+
+power. This spectral profile differs from prior representational analyses of the same time 410 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+16 window, which showed that behaviourally relevant representations of relational complexity are 411 
+
+primarily encoded in frontoparietal alpha and beta bands, consistent with dynamic redistribution 412 
+
+of representational weight as demands increase (15, 16). Together, these findings suggest that 413 
+
+stable encoding and online construction of relations rely on partly separable mechanisms: alpha 414 
+
+and beta support representational stability, while frontal theta increases with demand, reflecting 415 
+
+dynamic coordination for binding multiple elements. This interpretation supports functional 416 
+
+accounts linking lateral frontal theta to top-down control and adaptive network coordination 417 
+
+during cognitively demanding operations (47-50). Accordingly, Lu, Dermody, Duncan and 418 
+
+Woolgar (22) demonstrated frontal theta recruitment across distinct cognitive control paradigms 419 
+
+that did not explicitly manipulate relational integration. The present findings extend previous 420 
+
+work by showing that lateral frontal theta recruitment is sensitive to the problem's complexity, 421 
+
+suggesting that integrative binding demands may be a specific computational driver of control-422 
+
+related theta dynamics. 423 
+
+424 
+
+Consistent with prior work, increasing relational demands were accompanied by reductions in 425 
+
+parietal alpha and beta activity, often linked to higher cognitive load and active processing (21, 426 
+
+41, 42). However, this pattern is not universal; some studies report increases in these bands with 427 
+
+task difficulty (22). This discrepancy may reflect differences in task structure. Our multi-level 428 
+
+complexity manipulation revealed nonlinear neural recruitment that simpler dual-level contrasts 429 
+
+may have missed. More broadly, these findings suggest that spectral modulation depends on how 430 
+
+information is used. Beta attenuation may reflect a shift from stable maintenance to flexible 431 
+
+processing, indicating that relational integration preferentially engages dynamic updating rather 432 
+
+than sustained representations. 433 
+
+434 
+
+Our mediation analysis identified that covarying frontoparietal theta and beta power and inter-435 
+
+regional synchronisation differentiate discrete levels in relational processing demands, building 436 
+
+on previous fMRI research showing increased integration during relational tasks (2, 4, 5, 7, 51, 437 
+
+52). Beta activity was behaviourally relevant, but greater synchrony was not always beneficial. 438 
+
+Excessive network engagement predicted poorer performance at higher complexity. This may 439 
+
+indicate that efficient coordination, rather than maximal activation, supports reasoning. Beta 440 
+
+effects were linked to transitions to the highest complexity, consistent with a role in large-scale 441 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+17 coordination. These findings highlight the importance of interhemispheric and long-range 442 
+
+synchronisation for higher-order relational processing, with disruptions in such coordination 443 
+
+likely constraining the formation of complex relational abstractions (44, 53, 54). 444 
+
+445 
+
+Complementing the empirical results, the CTM modelling results suggest that increasing 446 
+
+complexity was associated with reduced excitatory and inhibitory cortical gains, maintaining 447 
+
+balance. In addition, relational encoding demands induced regionally dissociable adjustments in 448 
+
+synaptodendritic temporal dynamics. Parietal cortex exhibited faster synaptic decay as 449 
+
+complexity increased, consistent with a narrowing of the temporal integration window. 450 
+
+Conversely, the frontal cortex showed concurrent slowing of both rise and decay kinetics, 451 
+
+supporting more sustained integration (29, 30, 55). These opposing adjustments suggest 452 
+
+complementary temporal regimes, in which faster parietal decay may enhance temporal precision 453 
+
+and rapid updating of relational representations, while prolonged frontal integration may support 454 
+
+sustained maintenance and manipulation over extended time scales. 455 
+
+456 
+
+Cortico-cortical and corticothalamic net gain remained largely unchanged across complexity, 457 
+
+indicating that stability is maintained through compensatory local adjustments rather than large-458 
+
+scale reconfiguration (30). The exception was a selective reduction in intra-thalamic gain in 459 
+
+parietal circuits, suggesting downregulation of thalamic feedback specific to higher-order 460 
+
+processing. Together, these findings suggest that relational complexity is supported by targeted 461 
+
+local modulation in local gain, synaptic timing, and thalamic feedback while preserving global 462 
+
+circuit stability; a pattern that may generalise across other cognitive demands and domains (20, 463 
+
+22, 42, 56, 57). 464 
+
+465 
+
+In summary, the current work offers a novel multiscale perspective on how fronto-parietal-466 
+
+thalamic neural dynamics at regional, inter-regional, and circuit levels adapt to increasing 467 
+
+relational complexity. The results show that relational complexity is resolved by region-specific 468 
+
+modulations in neural activity that maintain the global system’s stability. 469 
+
+470 
+
+471 472 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+18 
+
+Materials and Methods 473 
+
+Participants 474 
+
+Forty-seven participants (mean age = 25; age range = 19 - 33; 62% female) were recruited from 475 
+
+the Brisbane Metropolitan area. Ethics approval was granted by the QIMR Berghofer Research 476 
+
+Ethics Committee (P3644). Participants provided written informed consent and were eligible if 477 
+
+they were aged between 18 and 35 years and had no previous reported history of mental health or 478 
+
+neurological disorder. Of the 47 recruited participants, 2 were excluded due to poor data 479 
+
+acquisition, leaving 45 participants for behavioural analyses; a further 11 were excluded from 480 
+
+EEG analyses for failing to meet the minimum correct trial threshold ( ≥20 trials per condition), 481 
+
+yielding a final EEG analysis sample of 34 participants. 482 
+
+483 
+
+Latin Square Task 484 
+
+The LST is a nonverbal relational reasoning paradigm that systematically varies processing 485 
+
+demands by manipulating the number of relations that must be interrelated simultaneously (10). 486 
+
+Participants are presented with a four-by-four grid containing coloured circles and a target 487 
+
+question mark (Fig. 1A). Participants must solve for the question mark by applying the rule that 488 
+
+an item (in this case, one of four colours) can appear only once in a row or column. Task 489 
+
+complexity is manipulated across four levels based on the number of relations that must be 490 
+
+processed simultaneously to determine the solution. Unary relations (control puzzles) 491 
+
+intentionally violate the task's underlying logic and are unsolvable, as indicated by the 'x' 492 
+
+response option. Binary relations require processing along a single dimension (either a row or a 493 
+
+column). Ternary relations require integrating information across a single row and a single 494 
+
+column. Quaternary relations demand simultaneous processing across multiple rows and 495 
+
+columns. 496 
+
+497 
+
+EEG acquisition and analysis 498 
+
+EEG data were recorded using a 64-channel ANT-Neuro system (eego sports) with electrodes 499 
+
+positioned according to the international 10-20 system. EEG data were preprocessed offline 500 
+
+using custom scripts adopting EEGLAB functions (58) in MATLAB (v2019b). Only correct 501 
+
+trials were included in the final analysis, excluding incorrect or missing responses. Source 502 
+
+modelling of scalp-level EEG sensor recordings was implemented using the M/EEG toolbox 503 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+19 Brainstorm (59). Time-series of FPN regions and the somatomotor network (control region) were 504 
+
+extracted using the Schaefer parcellation (60) registered to the Brainstorm ICBM152 anatomical 505 
+
+template (SI Appendix, Fig. S8). 506 
+
+507 
+
+Temporal and spectral decomposition of the frontal and parietal time series was performed using 508 
+
+a set of complex Morlet wavelets, defined as complex sine waves tapered by a Gaussian (61). 509 
+
+Subsequent analysis was performed on the broadband and narrowband (theta, alpha, and beta) 510 
+
+EEG signal during the pre-defined relational integration window (2.0 to 4.2 seconds post-511 
+
+stimulus onset) (15). Modelling of the neural power spectra aperiodic and periodic task-induced 512 
+
+activity was implemented using the spectral parameterization algorithm (version 2.0.0rc2; 513 
+
+https://specparam-tools.github.io/; (62)). Phase synchronisation between ROI pairs was 514 
+
+quantified using the debiased weighted Phase Lag Index (dwPLI; (63)). Mediation analyses were 515 
+
+conducted to investigate how task-induced changes in the average theta and beta FPN power and 516 
+
+synchronisation influenced behaviour between complexity levels (64, 65). 517 
+
+518 
+
+Statistical Analysis 519 
+
+Task accuracy, response time, and regional power were analysed using a one-way within-520 
+
+subjects ANOVA to assess a main RC effect, implemented in JASP. Where a Mauchly’s test 521 
+
+indicated that the assumption of sphericity was violated (p < 0.05), a Greenhouse-Geisser 522 
+
+correction was applied. Normality was initially assessed using a Shapiro-Wilk test and inspection 523 
+
+of the distribution. A log transformation was applied to the raw power values as the power 524 
+
+spectra follow a log-normal distribution. The main effects of complexity from the power analysis 525 
+
+were false discovery rate (FDR) corrected for multiple comparisons using the Benjamini-526 
+
+Hochberg method implemented in MATLAB to correct for the four ROIs, power components, 527 
+
+and frequency bands (66). For the CTM modelling analysis, FDR correction was applied across 528 
+
+ROIs and the number of fitted parameters. 529 
+
+530 
+
+Corticothalamic Modelling of the EEG spectra 531 
+
+We applied an experimentally established biophysical corticothalamic model (CTM) (29) to 532 
+
+estimate the spectral parameters underpinning the frontal, parietal and somatomotor power 533 
+
+spectra during the relational integration window. The CTM was fitted using the BrainTrak 534 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+20 software library (28, 32), which applies neural field theory to describe interactions between four 535 
+
+coupled cortical and thalamic neuronal populations: cortical excitatory pyramidal neurons (e) 536 
+
+and cortical inhibitory interneurons (i), together with excitatory thalamic relay neurons in the 537 
+
+specific relay nuclei (s) and inhibitory thalamic reticular neurons (r). Model parameters and 538 
+
+limits are reported in SI Appendix, Table 1. Additional details can be found in the expanded SI 539 
+
+Appendix, Materials and Methods; SI Appendix, Fig. S9. 540 
+
+541 
+
+Data, Materials, and Software Availability 542 
+
+The EEG data will be made available to researchers following the execution of a data transfer 543 
+
+agreement with QIMR Berghofer. Analyses reported in the current manuscript were carried out 544 
+
+with MATLAB using open-source toolboxes (EEGLAB, (58); Brainstorm (59); Braintrak (32)), 545 
+
+and Python using open-source packages spectral parameterization algorithm (version 2.0.0rc2; 546 
+
+https://specparam-tools.github.io/ (62)); Pingouin (version 0.5.4; (65)). Analysis scripts to 547 
+
+reproduce all figures are available on GitHub (released upon publication). 548 
+
+549 
+
+Acknowledgments 550 
+
+C.R is supported by an Australian Government Research Training Program Scholarship and a 551 
+
+Living Stipend through the administration of the University of Queensland. C.R is also supported 552 
+
+by a QIMR-administered Living Stipend extension funded by L.J.H. This work was supported by 553 
+
+the Australian NHMRC (LC: GN2001283 and GNT2027597, LJH: APP1194070). 554 
+
+555 
+
+Author contributions 556 
+
+C.N.R. conceptualised the research goals, collected and pre-processed the data, formally 557 
+
+analysed the data and wrote the first draft. L.J.H. and T.I. analysed the data and supervised the 558 
+
+investigation. K.K.I. and J.A.R. supervised the neural field modelling. L.C. supervised the 559 
+
+investigation and wrote the first draft. All authors interpreted the data, reviewed and edited the 560 
+
+manuscript. 561 
+
+562 
+
+563 
+
+564 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+21 
+
+References 565 
+
+1. M. Assem, M. F. Glasser, D. C. Van Essen, J. Duncan, A Domain-General Cognitive 566 
+
+Core Defined in Multimodally Parcellated Human Cortex. Cereb Cortex 30 , 4361-4380 567 
+
+(2020). 568 
+
+2. K. J. Holyoak, M. M. Monti, Relational Integration in the Human Brain: A Review and 569 
+
+Synthesis. Journal of Cognitive Neuroscience 33 , 341-356 (2021). 570 
+
+3. S. Shashidhara, D. J. Mitchell, Y. Erez, J. Duncan, Progressive Recruitment of the 571 
+
+Frontoparietal Multiple-demand System with Increased Task Complexity, Time Pressure, 572 
+
+and Reward. J Cogn Neurosci 31 , 1617-1630 (2019). 573 
+
+4. L. Cocchi et al. , Complexity in relational processing predicts changes in functional brain 574 
+
+network dynamics. Cereb Cortex 24 , 2283-2296 (2014). 575 
+
+5. L. J. Hearne, L. Cocchi, A. Zalesky, J. B. Mattingley, Reconfiguration of Brain Network 576 
+
+Architectures between Resting-State and Complexity-Dependent Cognitive Reasoning. J577 
+
+Neurosci 37 , 8399-8411 (2017). 578 
+
+6. M. W. Cole et al. , Multi-task connectivity reveals flexible hubs for adaptive task control. 579 
+
+Nature neuroscience 16 , 1348-1355 (2013). 580 
+
+7. B. L. Parkin, P. J. Hellyer, R. Leech, A. Hampshire, Dynamic network mechanisms of 581 
+
+relational integration. J Neurosci 35 , 7660-7673 (2015). 582 
+
+8. G. S. Halford, W. H. Wilson, S. Phillips, Processing capacity defined by relational 583 
+
+complexity: implications for comparative, developmental, and cognitive psychology. 584 
+
+Behav Brain Sci 21 , 803-831; discussion 831-864 (1998). 585 
+
+9. D. P. Birney, G. S. Halford, Cognitive complexity of suppositional reasoning: An 586 
+
+application of the relational complexity metric to the knight-knave task. Thinking & 587 
+
+Reasoning 8, 109-134 (2002). 588 
+
+10. D. P. Birney, G. S. Halford, G. Andrews, Measuring the Influence of Complexity on 589 
+
+Relational Reasoning: The Development of the Latin Square Task. Educational and 590 
+
+Psychological Measurement 66 , 146-171 (2006). 591 
+
+11. G. Andrews, D. Birney, G. S. Halford, Relational processing and working memory 592 
+
+capacity in comprehension of relative clause sentences. Mem Cognit 34 , 1325-1340 593 
+
+(2006). 594 
+
+12. G. S. Halford, R. Baker, J. E. McCredden, J. D. Bain, How many variables can humans 595 
+
+process? Psychol Sci 16 , 70-76 (2005). 596 
+
+13. L. J. Hearne, D. P. Birney, L. Cocchi, J. B. Mattingley, The Latin Square Task as a 597 
+
+measure of relational reasoning: A replication and assessment of reliability. European 598 
+
+Journal of Psychological Assessment 36 , 296-302 (2020). 599 
+
+14. J. Hartung, B. Goecke, U. Schroeders, F. Schmitz, O. Wilhelm, Latin square tasks: A 600 
+
+multi-study evaluation. Intelligence 94 , 101683 (2022). 601 
+
+15. C. Robinson, L. Cocchi, T. Ito, L. Hearne, Relational Integration Demands Are Tracked 602 
+
+by Temporally Delayed Neural Representations in Alpha and Beta Rhythms Within 603 
+
+Higher-Order Cortical Networks. Human Brain Mapping 46 , e70272 (2025). 604 
+
+16. L. J. Hearne, C. Robinson, L. Cocchi, T. Ito, Aligning transformer circuit mechanisms to 605 
+
+neural representations in relational reasoning. bioRxiv 10.1101/2025.10.29.685457, 606 
+
+2025.2010.2029.685457 (2025). 607 
+
+17. T. Ito et al. , Learning interpretable positional encodings in transformers depends on 608 
+
+initialization. arXiv preprint arXiv:2406.08272 (2024). 609 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+22 18. P. Fries, Rhythms for Cognition: Communication through Coherence. Neuron 88 , 220-610 
+
+235 (2015). 611 
+
+19. I. R. Violante et al. , Externally induced frontoparietal synchronization modulates network 612 
+
+dynamics and enhances working memory performance. Elife 6 (2017). 613 
+
+20. L. Pei, G. Northoff, G. Ouyang, Comparative analysis of multifaceted neural effects 614 
+
+associated with varying endogenous cognitive load. Commun Biol 6, 795 (2023). 615 
+
+21. T. Frelih, A. Matkovi č, T. Mlinari č, J. Bon, G. Repovš (2024) Modulation of aperiodic 616 
+
+EEG activity provides sensitive index of cognitive state changes during working memory 617 
+
+task. (eLife Sciences Publications, Ltd). 618 
+
+22. R. Lu, N. Dermody, J. Duncan, A. Woolgar, Aperiodic and oscillatory systems 619 
+
+underpinning human domain-general cognition. Commun Biol 7, 1643 (2024). 620 
+
+23. M. M. Halassa, S. Kastner, Thalamic functions in distributed cognitive control. Nat 621 
+
+Neurosci 20 , 1669-1679 (2017). 622 
+
+24. J. M. Shine, L. D. Lewis, D. D. Garrett, K. Hwang, The impact of the human thalamus on 623 
+
+brain-wide information processing. Nat Rev Neurosci 24 , 416-430 (2023). 624 
+
+25. K. Janacsek et al. , Subcortical Cognition: The Fruit Below the Rind. Annu Rev Neurosci 625 
+
+45 , 361-386 (2022). 626 
+
+26. J. M. Shine et al. , The Low-Dimensional Neural Architecture of Cognitive Complexity Is 627 
+
+Related to Activity in Medial Thalamic Nuclei. Neuron 104 , 849-855.e843 (2019). 628 
+
+27. F. Piras, C. Caltagirone, G. Spalletta, Working memory performance and thalamus 629 
+
+microstructure in healthy subjects. Neuroscience 171 , 496-505 (2010). 630 
+
+28. R. G. Abeysuriya, C. J. Rennie, P. A. Robinson, Physiologically based arousal state 631 
+
+estimation and dynamics. J Neurosci Methods 253 , 55-69 (2015). 632 
+
+29. P. A. Robinson et al. , Prediction of electroencephalographic spectra from 633 
+
+neurophysiology. Phys Rev E Stat Nonlin Soft Matter Phys 63 , 021903 (2001). 634 
+
+30. J. A. Roberts, P. A. Robinson, Corticothalamic dynamics: structure of parameter space, 635 
+
+spectra, instabilities, and reduced model. Phys Rev E Stat Nonlin Soft Matter Phys 85 ,636 
+
+011910 (2012). 637 
+
+31. S. C. O'Connor, P. A. Robinson, Analysis of the electroencephalographic activity 638 
+
+associated with thalamic tumors. J Theor Biol 233 , 271-286 (2005). 639 
+
+32. R. G. Abeysuriya, P. A. Robinson, Real-time automated EEG tracking of brain states 640 
+
+using neural field theory. J Neurosci Methods 258 , 28-45 (2016). 641 
+
+33. T. Morshedzadeh et al. , Corticothalamic modeling of sleep neurophysiology with 642 
+
+applications to mobile electroencephalography. Sleep 10.1093/sleep/zsaf086 (2025). 643 
+
+34. P. R. Johnston, J. D. Griffiths, L. Rokos, A. R. McIntosh, J. A. Meltzer, Secondary 644 
+
+thalamic dysfunction underlies abnormal large-scale neural dynamics in chronic stroke. 645 
+
+Proceedings of the National Academy of Sciences 121 , e2409345121 (2024). 646 
+
+35. S. P. Bastiaens et al. , Corticothalamic circuit mechanisms underlying brain region and 647 
+
+ageing variations in resting-state alpha activity. bioRxiv 10.1101/2025.08.08.669373, 648 
+
+2025.2008.2008.669373 (2025). 649 
+
+36. E. S. Kappenman, S. J. Luck, The Oxford Handbook of Event-Related Potential 650 
+
+Components . E. S. Kappenman, S. J. Luck, Eds. (Oxford University Press, 2011), 651 
+
+10.1093/oxfordhb/9780195374148.001.0001. 652 
+
+37. M. X. Cohen, Analyzing Neural Time Series Data: Theory and Practice (The MIT Press, 653 
+
+2014), 10.7551/mitpress/9609.001.0001. 654 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+23 38. J. Liljefors et al. , Distinct functions for beta and alpha bursts in gating of human working 655 
+
+memory. Nat Commun 15 , 8950 (2024). 656 
+
+39. M. P. Deiber et al. , Distinction between perceptual and attentional processing in working 657 
+
+memory tasks: a study of phase-locked and induced oscillatory brain dynamics. J Cogn 658 
+
+Neurosci 19 , 158-172 (2007). 659 
+
+40. M. McKewen et al. , Task-switching costs have distinct phase-locked and nonphase-660 
+
+locked EEG power effects. Psychophysiology 57 , e13533 (2020). 661 
+
+41. A. L. Proskovec, A. I. Wiesman, E. Heinrichs-Graham, T. W. Wilson, Load effects on 662 
+
+spatial working memory performance are linked to distributed alpha and beta oscillations. 663 
+
+Hum Brain Mapp 40 , 3682-3689 (2019). 664 
+
+42. J. Kaiser, J. M. Oberschulte, M. Heckmann, S. Schutz-Bosbach, Flexible Changes in 665 
+
+Attentional Focus and Task Rules Rely on A Shared Set of Frontoparietal Oscillatory 666 
+
+Dynamics. J Cogn Neurosci 35 , 1075-1091 (2023). 667 
+
+43. M. Gyurkovics, G. M. Clements, K. A. Low, M. Fabiani, G. Gratton, Stimulus-Induced 668 
+
+Changes in 1/f-like Background Activity in EEG. J Neurosci 42 , 7144-7151 (2022). 669 
+
+44. J. A. Waltz et al. , A System for Relational Reasoning in Human Prefrontal Cortex. 670 
+
+Psychological Science 10 , 119-125 (1999). 671 
+
+45. P. L. Nunez, S. J. Williamson (1996) Neocortical dynamics and human EEG rhythms. 672 
+
+(American Institute of Physics). 673 
+
+46. G. S. Halford, W. H. Wilson, S. Phillips, Relational knowledge: the foundation of higher 674 
+
+cognition. Trends Cogn Sci 14 , 497-505 (2010). 675 
+
+47. R. Lu, Linking the multiple-demand cognitive control system to human 676 
+
+electrophysiological activity. Neuropsychologia 210 , 109096 (2025). 677 
+
+48. J. Riddle et al. , Internal Representations Are Prioritized by Frontoparietal Theta 678 
+
+Connectivity and Suppressed by alpha Oscillation Dynamics: Evidence from Concurrent 679 
+
+Transcranial Magnetic Stimulation EEG and Invasive EEG. The Journal of Neuroscience 680 
+
+44 , e1381232024 (2024). 681 
+
+49. M. F. Pagnotta, J. Riddle, M. D'Esposito, Multiplexed Levels of Cognitive Control 682 
+
+through Delta and Theta Neural Oscillations. Journal of Cognitive Neuroscience 36 , 916-683 
+
+935 (2024). 684 
+
+50. C. Kerrén, S. Theves, M. Johansson, P. Gärdenfors, C. Doeller, Inference over hidden 685 
+
+contexts shapes the geometry of conceptual knowledge for flexible behaviour. bioRxiv 686 
+
+10.1101/2025.10.10.681143, 2025.2010.2010.681143 (2025). 687 
+
+51. J. K. Kroger et al. , Recruitment of Anterior Dorsolateral Prefrontal Cortex in Human 688 
+
+Reasoning: a Parametric Study of Relational Complexity. Cerebral Cortex 12 , 477-485 689 
+
+(2002). 690 
+
+52. K. Christoff et al. , Rostrolateral prefrontal cortex involvement in relational integration 691 
+
+during reasoning. Neuroimage 14 , 1136-1149 (2001). 692 
+
+53. L. J. Hearne et al. , Increased cognitive complexity reveals abnormal brain network 693 
+
+activity in individuals with corpus callosum dysgenesis. Neuroimage Clin 21 , 101595 694 
+
+(2019). 695 
+
+54. N. Robin, K. J. Holyoak, "Relational complexity and the functions of prefrontal cortex" 696 
+
+in The cognitive neurosciences. (The MIT Press, Cambridge, MA, US, 1995), pp. 987-697 
+
+997. 698 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.07.03.736406 doi: bioRxiv preprint
+
+24 55. P. A. Robinson, C. J. Rennie, D. L. Rowe, S. C. O'Connor, Estimation of multiscale 699 
+
+neurophysiologic parameters by electroencephalographic means. Hum Brain Mapp 23 ,700 
+
+53-72 (2004). 701 
+
+56. D. Vatansever, D. K. Menon, A. E. Manktelow, B. J. Sahakian, E. A. Stamatakis, Default 702 
+
+Mode Dynamics for Global Functional Integration. J Neurosci 35 , 15254-15262 (2015). 703 
+
+57. K. Zhuang et al. , Diverse functional interaction driven by control-default network hubs 704 
+
+supports creative thinking. Cereb Cortex 33 , 11206-11224 (2023). 705 
+
+58. A. Delorme, S. Makeig, EEGLAB: an open source toolbox for analysis of single-trial 706 
+
+EEG dynamics including independent component analysis. J Neurosci Methods 134 , 9-21 707 
+
+(2004). 708 
+
+59. F. Tadel, S. Baillet, J. C. Mosher, D. Pantazis, R. M. Leahy, Brainstorm: a user-friendly 709 
+
+application for MEG/EEG analysis. Comput Intell Neurosci 2011 , 879716 (2011). 710 
+
+60. A. Schaefer et al. , Local-Global Parcellation of the Human Cerebral Cortex from 711 
+
+Intrinsic Functional Connectivity MRI. Cereb Cortex 28 , 3095-3114 (2018). 712 
+
+61. M. X. Cohen, A better way to define and describe Morlet wavelets for time-frequency 713 
+
+analysis. Neuroimage 199 , 81-86 (2019). 714 
+
+62. T. Donoghue et al. , Parameterizing neural power spectra into periodic and aperiodic 715 
+
+components. Nature Neuroscience 23 , 1655-1665 (2020). 716 
+
+63. M. Vinck, R. Oostenveld, M. van Wingerden, F. Battaglia, C. M. Pennartz, An improved 717 
+
+index of phase-synchronization for electrophysiological data in the presence of volume-718 
+
+conduction, noise and sample-size bias. Neuroimage 55 , 1548-1565 (2011). 719 
+
+64. R. M. Baron, D. A. Kenny, The moderator-mediator variable distinction in social 720 
+
+psychological research: conceptual, strategic, and statistical considerations. J Pers Soc 721 
+
+Psychol 51 , 1173-1182 (1986). 722 
+
+65. R. Vallat, Pingouin: statistics in Python. Journal of Open Source Software 3, 1026 723 
+
+(2018). 724 
+
+66. Y. Benjamini, Y. Hochberg, Controlling the false discovery rate: a practical and powerful 725 
+
+approach to multiple testing. Journal of the Royal statistical society: series B 726 
+
+(Methodological) 57 , 289-300 (1995). 727 
+
+728

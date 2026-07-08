@@ -1,0 +1,2786 @@
+Title: 82492515
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.02.05.704005v2.full.pdf
+
+Number of Pages: 51
+
+Markdown Content:
+Age -related reorganization of locus coeruleus –1
+
+# cortical functional connectivity gradients 2
+
+3
+
+## Arjun Dave 1*† , Shuer Ye 1† , Xiaqing Lan 1, Alireza Salami 2,3,4,5 , Heidi I.L. 4
+
+## Jacobs 6, Maryam Ziaei 1* 
+
+5
+
+6 
+
+> 1
+
+## Kavli Institute for Systems Neuroscience, Norwegian University of 7
+
+## Science and Technology, Trondheim 7030, Norway 8 
+
+> 2
+
+## Umeå Center for Functional Brain Imaging (UFBI), Umeå University, 9
+
+## Umeå, Sweden 10  
+
+> 3
+
+## Department of Medical and Translational Biology, Umeå University, 11 
+
+## Umeå, Sweden 12  
+
+> 4
+
+## Aging Research Center, Karolinska Institutet & Stockholm University, 13 
+
+## Stockholm, Sweden 14  
+
+> 5
+
+## Department of Psychology, Florida State University, Tallahassee, 15 
+
+## Florida, USA 16  
+
+> 6
+
+## Athinoula A. Martinos Center for Biomedical Imaging, Depar tment of 17 
+
+## Radiology, Massachusetts General Hospital, Harvard Medical School, 18 
+
+## Boston, MA 02129, USA 19 
+
+20 
+
+## Shared First Authors †21 
+
+## Corresponding Authors* 22 
+
+## Maryam Ziaei  maryam.ziaei@ntnu.no , maryamziae@gmail.com 23 
+
+## Arjun Dave  arjun.a.dave@ntnu.no 24 
+
+25 
+
+26 
+
+27 
+
+28 
+
+29 
+
+30 
+
+31 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+2
+
+Abstract 32 
+
+The locus coeruleus (LC) regulates attention, arousal , and adaptive behavior via 33 
+
+widespread noradrenergic projections to cortex, yet its large -scale cortical 34 
+
+organization and age -related vulnerability remain poorly understood. Using 7T MRI 35 
+
+during naturalistic movie -viewing with neutral and negative emotional valence, study -36 
+
+specific LC delineation, and PET -derived receptor –transporter maps, we 37 
+
+characterized LC –linked cortical or ganization in younger and older adults. Functional 38 
+
+gradient analysis revealed two dominant axes: a stable primary gradient anchored by 39 
+
+catecholaminergic receptor –transporter distributions, and a context -sensitive 40 
+
+secondary gradient aligning with the visual –somatomotor (V –S) axis in neutral movie -41 
+
+viewing and the sensorimotor –association (S –A) axis in negative movie -viewing .42 
+
+During negative movie -viewing, older adults exhibited higher global and within -43 
+
+frontoparietal control network dispersion, indicating reduced functional differentiation ,44 
+
+a pattern further associated with poorer emotional wellbeing . By revealing 45 
+
+chemoarchitectural and context -sensitive LC –linked cortical organization, current work 46 
+
+identifies mechanisms underlying age -related LC –linked cortical reorganization with 47 
+
+consequences for mental health. 48 
+
+49 
+
+50 
+
+51 
+
+52 
+
+53 
+
+54 
+
+55 
+
+56 
+
+57 
+
+58 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+3
+
+# Introduction 59 
+
+The locus coeruleus (LC) is the brain ’s principal source of noradrenaline (NA). 60 
+
+Through widespread projections to cortical and subcortical regions, the LC –NA system 61 
+
+regulates attention, arousal, stress responses, and adaptive behavior by modulating 62 
+
+large -scale brain dynamics 1–5. LC neurons primarily operate in two firing modes : brief 63 
+
+phasic bursts that enhance tas k-relevant processing and sustained tonic activity that 64 
+
+maintains baseline arousal and behavioral flexibility 5,6 . By modulating neural gain, the 65 
+
+LC –NA facilitates transitions between focused and exploratory behavioral states 5–9.66 
+
+Convergent theoretical accounts, including the adaptive -gain 5, network -reset 4,10 , and 67 
+
+integration –segregation frameworks 11,12 , propose that the LC –NA system shapes 68 
+
+large -scale functional organization to balance global integration and segregation in the 69 
+
+cortex. Anim al studies further demonstrate that elevated tonic LC activity can reshape 70 
+
+long -range communication, supporting the LC ’s role as a neuromodulatory hub for 71 
+
+large -scale cortical dynamics 13 .72 
+
+Given the LC –NA system ’s capacity to influence cortex -wide patterns of activity 4,8,13 –73 
+
+> 15
+
+, a fundamental question arises: how is LC influence organized across the cortex? 74 
+
+Specifically, do cortical regions couple to the LC in systematic patterns that reflect 75 
+
+underlying biologically meaningful functional architecture? This question matters 76 
+
+because the organization of LC –cortex connectivity has direct implications for 77 
+
+cognitive and emotional function 16 –20 . Prior LC connectivity work has largely treated 78 
+
+cortical areas as discrete units or relied on static seed -to -voxel connectivity 20 –22 ,79 
+
+approaches that may not capture the broad organization of the cortex through the lens 80 
+
+of the LC . Gradient -based mapping overcomes this limitation, positioning cortical 81 
+
+regions according to their patterns of LC connectivity to reveal continuous transitions 82 
+
+in LC –cortical functional organization 23 –25 . Crucially, gradients are not merely 83 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+4
+
+functional abstractions. They align closely with underlying molecular architecture, 84 
+
+including spatial distributions of neurotransmitter receptors and transporters, linking 85 
+
+large -scale connectivity patterns to cortical chemoarchitecture 24,26,27 . Applying this 86 
+
+framework to LC –cortical connectivity can reveal a systems -level map of how LC 87 
+
+coupling is organized across the cortex , and how this organization relates to the 88 
+
+underlying molecular architecture. 89 
+
+Aging provides a critical window during which cortical organization changes 90 
+
+substantially. For instance, late adulthood is associated with reduced cortical 91 
+
+differentiation, whereby functional networks become less distinct and less selectively 92 
+
+organized 25,28 –31 . This reduced differentiation is linked to poorer cognitive 93 
+
+performance 25,28,30 and greater vulnerability to mental health difficulties in later life 32 .94 
+
+According to theoretical account developed by Li and colleagues across a sustained 95 
+
+line of work 33 –35 , these age -related changes reflect reduced neuromodulatory 96 
+
+precision, which weakens neural gain control and reduces the selectivity of cortical 97 
+
+responses. The LC is thus a strong mechanistic candidate , given its role as the primary 98 
+
+source of cortical NA and its extensive projections to the cortex 1–7,10 . However, it 99 
+
+remains un known whether aging is associated with a reorganization of LC -cortical 100 
+
+connectivity, and whether this reflects a general loss of cortical differentiation or 101 
+
+network -specific alterations. Answering this question will provide important insight into 102 
+
+the role of neuromodulatory systems in brain aging and inform prevailing theories of 103 
+
+age -related neural reorga nization. 104 
+
+Here, we address the gaps in three critical ways . First, we map the gradients of LC –105 
+
+cortical connectivity to characterize how the LC ’s influence is embedded within large -106 
+
+scale cortical organization . Second, we assess age -related differences by quantifying 107 
+
+dispersion within the LC –cortical functional connectivity gradient space and testing 108 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+5
+
+whether such changes are global or network -specific 36 . Finally, we test whether 109 
+
+variation in LC –linked cortical dispersion relates to self -reported emotional wellbeing, 110 
+
+assessing the behavioral relevance of LC -cortical connectivity topology in later life. 111 
+
+To address these objectives, we leveraged ultra -high field 7 Tesla Magnetic 112 
+
+Resonance Imaging (7 T MRI) , study -specific LC delineation, and a naturalistic movie -113 
+
+viewing paradigm to provide an ecologically valid framework to examine LC –linked 114 
+
+cortical organization. Participants watched two movie clips differing in emotional 115 
+
+valence (neutral and negative). We identified two dominant gradients of LC –cortical 116 
+
+connectivity that explained the highest variance. The primary gradient remained stable 117 
+
+across conditions and was tracked by cortical chemoarchitecture, specifically the 118 
+
+density of catecholaminergic receptor –transporter distributions derived from publicly 119 
+
+available PET -derived maps 37 . In contrast, the secondary gradient exhibited context -120 
+
+dependent organization, aligning with the canonical visual –somatomotor (V –S) axis in 121 
+
+neutra l movie -viewing and with the canonical sensorimotor –association (S –A) axis 23 122 
+
+in negative movie -viewing. Analyses of the LC –linked cortical organization revealed 123 
+
+that older adults exhibit ed higher LC –linked cortical dispersion s pecifically during 124 
+
+negative movie -viewing, with the frontoparietal control network (FPN) emerging as the 125 
+
+pri mary site of age -related vulnerability. Critically, higher global and FPN dispersion in 126 
+
+older adults associated with poorer emotional wellbeing . Collectively, our findings 127 
+
+provide a system s-level map of LC –linked cortical organization and reveal that age -128 
+
+related reduced functional differentiation within this organization carries relevance for 129 
+
+mental health in later life. 130 
+
+# Results 131 
+
+## Two dominant gradients of LC –cortical connectivity organization 132 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+6
+
+We characterized LC –cortical connectivity organization in 140 participants : 72 younger 133 
+
+adults (mean age: 25.70 ± 4.33 years; range: 19 –36 years; 34 females) and 68 older 134 
+
+adults (mean age: 70.90 ± 3.83 years; range: 65 –82 years; 36 females ) during the two 135 
+
+naturalistic movie -viewing conditions (Figure 1a and Figure 1b ). Post movie -viewing ,136 
+
+self -reported valence and arousal ratings confirmed that negative movie -viewing 137 
+
+elicited lower positive valence and higher arousal compared with baseline and neutral 138 
+
+viewing, with comparable effects across age groups (Supplementary Fi gure 1 ). 139 
+
+To derive LC –cortical functional connectivity gradients, we first computed subject -140 
+
+specific LC –cortical connectivity matrices (Figure 1 c) separately for the neutral and 141 
+
+negative movie -viewing conditions , and for the left and right LC . LC voxel -wise time 142 
+
+series was extracted from study -specific LC masks delineated on the magnetization 143 
+
+transfer -weighted turbo flash (MT -TFL ) sequence 38 (Supplementary Figure 2 ), were 144 
+
+correlated with the time series of Schaefer 1,000 parcels atlas 39 with Yeo 7 -network 145 
+
+assignment 36 . Correlati ons were Fisher z -transformed to yield a per -participant LC -146 
+
+voxel × cortical -parcel connectivity matrix . For each condition, individual connectomes 147 
+
+were averaged across participants to form a group -mean LC –cortical matrix. Using the 148 
+
+BrainSpace toolbox 40 , a cortex × cortex affinity matrix was comput ed using the 149 
+
+normalized ang ular (cosine) similarity between cortical parcels based on their LC 150 
+
+connectivity; this quantifies how similarly cortical regions are coupled to the LC. 151 
+
+Diffusion map embedding 41 was then applied to this affinity matrix to derive low -152 
+
+dimensional gradient component s23,40 . The resulting components served as the 153 
+
+condition -specific group reference template. Individual -participant gradients were 154 
+
+further computed and aligned to this template using Procrustes rotation to ensure 155 
+
+cross -subject comparability. Averaging the aligned individual gradients yielded the 156 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+7
+
+group -level gradient map across all participants and separate age -specific maps for 157 
+
+younger and older adults .158 
+
+Gradient 1 (G1) accounted for the largest proportion of variance in LC –cortical 159 
+
+coupling across both movie -viewing conditions (Figure 2; neutral movie -viewing :160 
+
+Right LC = 48%, Left LC = 49%; negative movie -viewing : Right LC = 56%, Left LC 161 
+
+= 61%). G1 exhibited highly consistent spatial topology across emotional conditions 162 
+
+(Supplementary Figure 3; Right LC: ρ = 0. 82 ; pspin < 0.001; Left LC: ρ = 0. 84 ; pspin <163 
+
+0.001) and between the right and left LC, with strong spatial correspondence in both 164 
+
+movie -viewing conditions ( Supplementary Figure 4; negative movie: ρ = 0.9 2; neutral 165 
+
+movie: ρ = 0.9 4; both pspin < 0.001). Because gradient orientation is arbitrary 40,42 , we 166 
+
+examined LC –cortical coupling at the extremes of G1 to characterize its functional 167 
+
+significance in both neutral and negative movie -viewing conditions . Parcels at the 168 
+
+positive extreme (top 5% and top 10% of G1 values) showed strong positive coupling 169 
+
+with the LC, whereas parcels at the negative extreme exhibited weak or negative 170 
+
+coupling (Supplementary Figure 5).171 
+
+The spatial distribution of G1 revealed a graded pattern of LC –cortical coupling across 172 
+
+large -scale networks. Regions within the default mode network (DMN), FPN, and 173 
+
+somatomotor network (SMN) including precuneus, posterior cingulate cortex, medial 174 
+
+prefrontal cortex, and motor regions occupied the positive end of G1, indicating 175 
+
+stronger LC coupling. This pattern is consistent with anatomical and physiological 176 
+
+evidence of broad noradrenergic projections from the LC to association and 177 
+
+sensorimotor cortices, supporting the LC ’s role in influencing dis tributed cortical 178 
+
+systems 43,44 . In contrast, visual, limbic, an d dorsal attention regions occupied the 179 
+
+negative end, reflecting weaker LC coupling. Comparison with canonical cortical 180 
+
+gradients 23 showed nonsignificant alignment of G1 with canonical S–A and V –S ax es181 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+8
+
+across both movie -viewing conditions ( Supplementary Figure 6 ). Neurosynth meta -182 
+
+analytic decoding (Hungarian spin -permutation test 45 , 10,000 spins; pspin < 0.05) 183 
+
+revealed consistent functional associations across both emotional conditions. Parcels 184 
+
+at the positive end of G1 were associated with cognitive control, salience , and 185 
+
+affective -arousal processes , including decision -making, inhibition, monitoring, 186 
+
+anticipat ion, hyperactivity, salience, risk, stress, and pain . Parcels at the negative end 187 
+
+were linked to perceptual and language -related processes, including object and word 188 
+
+recognition, facial expression processing, gaze, discrimination, reading, and 189 
+
+language . This pattern indicates that the primary LC –linked cortical gradient captures 190 
+
+a functional axis from higher -order control and salience processing to perception, 191 
+
+recognition, and language (Extended Data Fig ure 1). 192 
+
+Gradient 2 (G2) explained a smaller propor tion of variance (Figure 2; neutral movie -193 
+
+viewing : Right LC = 20%, Left LC = 19%; negative movie -viewing : Right LC = 19%, 194 
+
+Left LC = 18% ) and captured a distinct and condition -dependent organizational axis. 195 
+
+During neutral movie -viewing, G2 primarily differentiated visual and somatosensory 196 
+
+cortices, aligning with the canonical V –S axis ( Figure 3b; Left LC ρ = 0.57, Right LC 197 
+
+ρ = 0.48; both pspin < .001). In contrast, during negative movie -viewing, G2 was 198 
+
+anchored by higher -order association regions , including posterior cingulate cortex, 199 
+
+prefrontal cortex, and temporal pole on one extreme and by occipital and dorsal 200 
+
+attention regions at the ot her , resembling with the canonical S –A axis ( Figure 3b; Left 201 
+
+LC ρ = 0.75, Right LC ρ = 0.63; both pspin < 0.001). Additionally, G1 showed 202 
+
+significantly stronger cross -condition similarity than G2 (Right LC: z = 4.10, p < 0.001; 203 
+
+Left LC: z = 3.08, p = 0.002), confirming that G1 captures a stable organizational 204 
+
+pattern while G2 exhibits context -dependent reorganization. Neurosynth meta -analytic 205 
+
+decoding of G2 for both conditions are presented in Extended Data Figure 1 .206 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+9
+
+## G1 aligns with catecholaminergic architecture 207 
+
+Functional connectivity gradients have been shown to align with underlying 208 
+
+neuromodulatory architectures 24,26,27 . To characterize the chem oarchitectural basis of 209 
+
+LC –linked cortical organization, we included a broader set of receptors –transporter 210 
+
+distribution maps. Specifically, we used an extension of multiple regression to link 211 
+
+parcel -wise G1 values to thirteen PET -derived receptor –transporter density maps 212 
+
+(Supplementary Table 1) spanning major neurotransmitter systems from JuSpace 213 
+
+toolbox 37 . Because neurotransmitter receptors and transporters s how substantial 214 
+
+spatial overlap 26,46 , we applied dominance analysis 47 to quantify the unique 215 
+
+contribution of each r eceptor –transporter profile to the model ’s adjusted explained 216 
+
+variance (R² adj ), providing estimates of their independent effects. 217 
+
+The receptor –transporter density model explained a large proportion of G1 variance 218 
+
+across both emotional conditions ( Figure 3a; neutral movie -viewing : Right LC R² adj 219 
+
+= 0.667; Left LC R² adj = 0.642 ; negative movie -viewing : Right LC R² adj = 0.678; Left 220 
+
+LC R² adj = 0.675 ). Critically, three catecholaminergic markers: dopamine transporter 221 
+
+(DAT), dopamine D2 receptor (D2), and NAT emerged as dominant predictors, jointly 222 
+
+accounting for 47% (right LC –linked c ort ical G1 ) and 46% (left LC –linked cortical G1 )223 
+
+of total explained variance across conditions. This consistency across emotional 224 
+
+conditions supports the interpretation of G1 as a stable axis of LC –cortical connectivity 225 
+
+tracked by density of cortical catecholaminergic chemoarchitectural organization .226 
+
+To further characterize these relationships, we examined associations between G1 227 
+
+and the dominant catecholaminergic markers. NAT exhibited a positive association 228 
+
+with G1 scores, with strongest within the FPN, DMN, and SMN (Supplementary 229 
+
+Figure 7a ; Right LC : ρ = 0.29, p < 0.001; Left LC: ρ = 0.22, p < 0.001), whereas DAT 230 
+
+showed a negative association (Right LC: ρ = −0.46, p < 0.001; Left LC: ρ = −0.45, p231 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+10 
+
+< 0.001; Supplementary Figure 7b). No significant correlation was observed between 232 
+
+G1 scores and D2 receptor density ( p > 0.05). In contrast, G2 was poorly explained 233 
+
+by the receptor –transporter density profiles, with substantially lower model fits (Right 234 
+
+LC –cortex: R ²adj = 0.23; Left LC –cortex: R ²adj = 0.11 ). 235 
+
+## LC functional organization reflects rostro -caudal differentiation 236 
+
+To validate whether our gradient approach detect s meaningful spatial structure within 237 
+
+the LC, we transposed , for each subject, the LC -voxel × cortical -parcel matrix and 238 
+
+computed normalized an gular (cosine) similarity between LC voxels based on their 239 
+
+cortical connectivity fingerprints and applied diffusion map embedding . The primary 240 
+
+within -LC gradient (G1) accounted for a substantial proportion of variance (Right LC: 241 
+
+75.7%; Left LC: 71.0%) and was s patially correlated with the rostro -caudal axis, 242 
+
+approximated by the MNI Z coordinate ( Supplementary Figure 8; Right LC: r = 0.68, 243 
+
+p < 0.001; Left LC: r = 0.73, p < 0.001). Together, these results replicate recent reports 244 
+
+of rostro -caudal functional differ entiation within the LC 17 .245 
+
+## Age -related differences in LC –linked cortical gradient organization 246 
+
+To characterize age -related differences in LC –linked cortical functional organization, 247 
+
+we compared group -level primary (G1) and secondary (G2) cortical gradient maps 248 
+
+derived from right and left LC seeds between younger and ol der adults, separately 249 
+
+for the neutral and negative movie -viewing conditions. Age effects were quantified at 250 
+
+two complementary levels: (i) positioning of canonical functional networks 36 within 251 
+
+the 2D gradient manifold 25,31 , and (ii) spatial similarity of gradient topography in 252 
+
+younger and older adults .253 
+
+During negative movie -viewing, age -related position shifts were largest in sensory 254 
+
+and attentional networks — the visual network (VIS) for both right and left LC –linked 255 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+11 
+
+cortical gradients, and in the DAN, particularly for the left LC –linked cortical gradient 256 
+
+(Figure 4; Supplementary Table 2 ). During neutral movie -viewing, age -related 257 
+
+shifts were largest in the SMN for both right and left LC –linked cortical gradients 258 
+
+(Supplementary Figure 9; Supplementary Table 3). In both conditions, these shifts 259 
+
+occurred primarily along the G1 , while higher -order association networks (FPN, VAN, 260 
+
+DMN) showed smaller repositioning .261 
+
+Additionally, the overall topography of LC –linked cortical gradients remained largely 262 
+
+preserved across age groups. Across both gradients, LC side , and movie -viewing 263 
+
+conditions , younger - and older -adult group -level gradient maps exhibited high spatial 264 
+
+correlation (Supplementary Figure 10 ). 265 
+
+Together, these analyses indicate that the macroscale topography of LC –linked 266 
+
+cortical organization is largely preserved with age at the group level , consistent with 267 
+
+the previous findings 25,31 . To further examine whether age -related diffe rences 268 
+
+emerge at the individual level, despite preserved group -level organization, we next 269 
+
+quantified dispersion in 2D (G1 × G2) gradient space, following an established 270 
+
+multivariate framework 25,48 .271 
+
+## Age -related increase in LC –linked cortical dispersion during 272 
+
+## negative movie -viewing 273 
+
+For each participant, the first two gradients (G1 and G2) defined the embedding space 274 
+
+for computing three complementary dispersion metrics: global dispersion was defined 275 
+
+as the mean Euclidean distance of all cortical parcels from the whole -cortex centroid; 276 
+
+within -network dispersion as the mean Euclidean distance of parcels within a given 277 
+
+functional network from that network's centroid; and between -network dispersion as 278 
+
+the mean Euclidean distance between the centroids of each network pair 25,48 279 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+12 
+
+(schematic and empirical intuitive illustration in Supplementary Figure 11 and 280 
+
+Supplementary Figure 1 2, respectively). To account for potential confounds related 281 
+
+to age -related cortical atrophy 25 , all statistical models included mean cortical 282 
+
+thickness, sex, and head motion as covariates. 283 
+
+Older adults exhibited significantly higher global dispersion than younger adults during 284 
+
+negative movie -viewing for the right LC –linked global cortical dispersion (Figure 5; t285 
+
+= −2.95, p = 0.004, d = 0.50; 95% CI [−0.145, −0.028]) indicating a more 286 
+
+heterogeneous cortical embedding in gradient space . The left LC –linked global co rtical 287 
+
+dispersion showed a directionally consistent but non -significant trend (t = −1.77, p =288 
+
+.078, d = 0.30, 95% CI [−0.157, 0.009]). 289 
+
+At the network level, we examined within -network cortical dispersion separately for 290 
+
+each of the seven functional networks 36 . For the right LC –linked within -network cortical 291 
+
+dispersion , older adults showed significantly higher within FPN dispersion than 292 
+
+younger adults during negative movie -viewing (Figure 5; t = −2.83, p = 0.005, d =293 
+
+0.48; 95% CI [−0.117, −0.021]), which survived Bonferroni correction across the seven 294 
+
+networks ( padj < 0.05) . The left LC –linked FPN dispersion showed a directionally 295 
+
+consistent but non -significant trend ( t = −1.78, p = 0.077, d = 0.30 , 95% CI [−0.1 39 ,296 
+
+0.00 7]). At the uncorrected threshold, additional age -related effects were observed for 297 
+
+the right LC –linked visual (VIS; t = −2.40, p = 0.018, d = 0.41), ventral 298 
+
+attention/salience (VAN; t = −2.46, p = 0.015, d = 0.42), and limbic (LIM; t = −2.51, p299 
+
+= 0.013, d = 0.42) networks, while no significant age differences were observed in the 300 
+
+DMN, SMN, or DAN (all ps > 0.05). 301 
+
+Between -network dispersion was also significantly higher in older adults for the right 302 
+
+LC during negative movie -viewing (Figure 5; t = −2.44, p = 0.016, d = 0.41; 95% CI 303 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+13 
+
+[−0.066, −0.007]), with the left LC –linked between -network dispersion showing a non -304 
+
+significant effect mirroring the pattern seen for global and within -network dispersion (t305 
+
+= −1.50, p = 0.137, d = 0.25; 95% CI [−0.092, 0.013 ]) .306 
+
+No age effects were detected during neutral movie -viewing for any dispersion measure 307 
+
+or LC side (Supplementary Figure 13), suggesting that age -related differences in 308 
+
+LC –cortical organization emerge specifically under conditions of heightened arousal 309 
+
+and negative emotional valence. 310 
+
+To complement the dispersion analyses , we computed the subject -level range (max 311 
+
+− min) of parcel gradient scores along each axis , which captures the distance 312 
+
+between the cortical regions with the most dissimilar LC –connectivity profiles or in 313 
+
+simple words occupying opposite ends of the gradient . Older adults showed a 314 
+
+significantly wider G1 range than younger adults for the right LC during negative 315 
+
+movie -viewing ( t = −2.94, p = 0.004, d = 0.50), with a directionally consistent but 316 
+
+non -significant effect on the left LC ( t = −1.51, p = 0.133, d = 0.26). Right LC G2 317 
+
+range was also greater in older adults during the negative condition ( t = −2.01, p =318 
+
+0.046, d = 0.34). Under a neutral conditi on, age -related range differences were 319 
+
+attenuated and largely non -significant ( Supplementary Figure 14). This converges 320 
+
+with the dispersion findings, indicating that cortical regions become more 321 
+
+heterogeneous in their LC connectivity profiles with age alon g both the primary (G1) 322 
+
+and secondary (G2) gradient axes, specifically during negative movie -viewing. 323 
+
+## Higher dispersion links with worse emotional wellbeing in aging 324 
+
+Participants completed a comprehensive cognitive and emotional assessment battery. 325 
+
+Principal component analysis of standardized multiple measures of emotional 326 
+
+wellbeing and cognitive task performance yielded two composite indices 38 . an 327 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+14 
+
+Emotional Resilience Index (ERI) and a Cognitive Functioning Index ( see Methods) 328 
+
+with higher scores reflecting better emotional wellbeing and intact cognitive function. 329 
+
+Given that significant age -related differences in dispersion w ere selectively observed 330 
+
+for right LC –linked cortical organization, we next examined whether these specific 331 
+
+alterations carry behavioral relevance by testing age × dispersion interactions on ERI 332 
+
+scores. A significant interaction between age and right LC –li nked cortical global 333 
+
+dispersion was observed ( Figure 5 ; β = 0. 63 , p = 0.0 16 ), indicating that age moderates 334 
+
+the relationship between global dispersion and emotional resilience index. Follow -up 335 
+
+permutation -based correlation analyses (1,000 permutations) showed that higher right 336 
+
+LC –linked cortical global dispersion was associated with lower scores in ERI among 337 
+
+older adults ( Figure 5 ; r = −0.257, pperm = 0.030, 95% CI = [ –0.467, –0.020]), whereas 338 
+
+no significant association was observed among younger adults (r = 0.193, pperm =339 
+
+0.1 12 , 95% CI = [−0.047, 0.407]). 340 
+
+A parallel age × right LC –linked within -network FPN dispersion interaction was 341 
+
+observed ( Figure 5 ; β = 0. 47 , p = 0.0 34 ). Permutation tests confirmed that higher right 342 
+
+LC –linked FPN dispersion was significantly associated with lower ERI scores among 343 
+
+older adults (Figure 5 ; r = −0.264, pperm = 0.027, 95% CI = [−0.473, −0.028]) with no 344 
+
+significant association among younger adul ts (r = 0.157, pperm = 0.198, 95% CI = [ –345 
+
+0.077, 0.375]). We additionally tested moderation effects for the other networks that 346 
+
+showed uncorrected age -related dispersion differences but did not survive Bonferroni 347 
+
+correction (VIS, VAN, LIM). Age × dispersion interactions reached significance in the 348 
+
+VIS ( β = 0.46, p = 0.039) and LIM ( β = 0.6 2, p = 0.023) networks, suggesting broader 349 
+
+age -dependent moderation between right LC –linked network dispersion and ERI. 350 
+
+However, follow -up permutation -based correlations did not reveal significant within -351 
+
+group associations in either network (VIS: younger adult s r = 0.183, pperm = 0.123; older 352 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+15 
+
+adults r = −0.125, pperm = 0.286; LIM: younger adults r = 0.199, pperm = 0.093; older 353 
+
+adults r = −0.20 1, pperm = 0.104 )354 
+
+Associations between right LC –linked cortical dispersion and cognitive functioning 355 
+
+index scores were limit ed. In older adults, higher dispersion within the VIS was 356 
+
+associated with lower cognitive functioning index scores (r = −0.31, pperm = 0.013, 95% 357 
+
+CI = [−0.513, −0.073]). This association was not observed in younger adults ( r = 0.02, 358 
+
+p = 0.787, 95% CI = [−0.23, 0.24]), and the age × dispersion interaction was not 359 
+
+significant ( p > 0.05). No other measures of dispersion i.e., global, within -network, or 360 
+
+between -network significantly associated with cognitive functioning index scores in 361 
+
+either age group (a ll ps > 0.05). 362 
+
+## Validation and Sensitivity Analyses 363 
+
+To assess the robustness and specificity of our findings, we conducted a series of 364 
+
+validation and sensitivity analyses, organized into four categories: (1) methodological 365 
+
+robustness (seed definition, parcellation scheme), (2) gradient reliability (split -half, 5 -366 
+
+fol d cross -validation, leave -one -out individual -to -group correspondence, and inter -367 
+
+individual variability), (3) dispersion -specific sensitivity (gradient dimensionality, high -368 
+
+dispersion exclusion), and (4) confound controls (neuroanatomical specificity, 369 
+
+physi ological and visual artifacts). 370 
+
+Bilateral LC seed : Replicating the gradient analyses using a combined bilateral LC 371 
+
+seed yielded topographies highly consistent with hemisphere -specific solutions 372 
+
+(Supplementary Figure 15; G1 negative: left LC ρ = 0.94, right LC ρ = 0.97; G2 373 
+
+negative: left LC ρ = 0.98, right LC ρ = 0.93; G1 neutral: left LC ρ = 0.95, right LC ρ =374 
+
+0.97). Within -age -group correlations during negative movie -viewing also remained 375 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+16 
+
+high ( Supplementary Figure 16; ρ = 0.85 –0.98 across al l gradients × hemisphere 376 
+
+combinations), confirming that the gradient architecture is robust to seed definition .377 
+
+Parcellation replications : Primary analyses were repeated using an independent 980 -378 
+
+region cortical parcellation 49 . Parcel -wise Spearman correlations between the two 379 
+
+parcellation -derived maps during negative movie -viewing were high for both G1 (right 380 
+
+LC ρ = 0.97; left LC ρ = 0.98) and G2 (right LC ρ = 0.96; left LC ρ = 0.95; 381 
+
+Supplementary Figure 1 7). To further assess replicability across parcel resolution 382 
+
+and parcellation type, we repeated the analysis using the Schaefer -400 functional 383 
+
+parcellation 39 and the structurally defined Destrieux atlas 50 . Gradients derived from the 384 
+
+Schaefer -400 parcellation closely aligned with Schaefer -1000 (G1: right LC ρ = 0.95, 385 
+
+left LC ρ = 0.96; G2: right LC ρ = 0.96, left LC ρ = 0.97) . Moreover, the primary gradient 386 
+
+was reliably recovered with the Destrieux atlas during both negative (right LC ρ = 0.82, 387 
+
+left LC ρ = 0.86) and neutral movie -viewing (right LC ρ = 0.83, left LC ρ = 0.85), 388 
+
+demonstrating that the ob served gradient organization was robust across parcellation 389 
+
+scheme, resolution, and modality. 390 
+
+Reliability and inter -individual consistency : We evaluated gradient reliability using split -391 
+
+half (1,000 iterations) and 5 -fold (200 iterations) cross -validation for the full sample ( N392 
+
+= 140), younger adults ( n = 72), and older adults ( n = 68) across all four LC × condition 393 
+
+combinations. Gradients sho wed high reliability in the combined sample 394 
+
+(Supplementary Figure 18 ; right LC –cortex G1: split -half r = 0.88 , 5 -fold r = 0.83; 395 
+
+right LC –cortex G2: split -half r = 0.92 , 5 -fold r = 0.88 ; and left LC –cortex G1: split -half 396 
+
+r = 0.89, 5 -fold r = 0.84; left LC –cortex G2: split -half r = 0.92, 5 -fold r = 0.88 ). Younger 397 
+
+adults consistently showed higher consistency than older adults during negative 398 
+
+movie -viewing (younger adults right LC –cortex : split -half G1 r = 0.90 , G2 r = 0.92 ; left 399 
+
+LC –cortex : G1 r = 0.8 8, G2 r = 0.8 8; 5-fold: right LC –cortex G1 r = 0.85, G2 r = 0.89 ;400 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+17 
+
+left LC –cortex: G1 r = 0.8 2, G2 r = 0.8 3; older adults right LC –cortex: split -half G1 r =401 
+
+0.80, G2 r = 0.82; left LC –cortex : G1 r = 0.80, G2 r = 0.8 1; 5-fold: right LC –cortex G1 402 
+
+r = 0.73 , G2 r = 0.75 ; left LC –cortex: G1 r = 0.72 , G2 r = 0.74 ; Supplementary Table 403 
+
+4). 404 
+
+To further assess gradient reliability at the individual level , we computed leave -one -405 
+
+out (LOO) spatial Spearman correlations between each participant's parcel -wise 406 
+
+gradient vector and the group -mean gradient derived from all the remaining 407 
+
+participants. Using the full -sample as the reference level, mean correspondences 408 
+
+ranged from ρ = 0.37 –0.54 . Similar levels of correspondence were observed within 409 
+
+age groups, with younger adults show ing ρ = 0.38 –0.53 and older adults ρ = 0.34 –410 
+
+0.46, indicating reliable recovery of the LC -linked cortical gradients at the individual -411 
+
+level in both groups. Correspondence was generally similar in both movie -viewing 412 
+
+conditions (Supplementary Figure 19 ; right LC G2: younger ρ = 0.52 neutral vs 0.54 413 
+
+negative; older ρ = 0.45 neutral vs 0.39 negative; Supplementary Table 5 ). Pairwise 414 
+
+Spearman correlations between individual gradient vectors were positive across all 415 
+
+conditions and LC seeds (G1: ρ = 0.14 –0.24; G2: ρ = 0.14 –0.29), reflecting substantial 416 
+
+but expected inter -individual variability in functional connectivity organization 51 .417 
+
+Younger -adult pairs exhibited greater similarity than older -adult pairs, during negative 418 
+
+movie -viewing ( Supplementary Figure 20; right LC G1: ρ = 0.23 vs 0.14; G2: ρ =419 
+
+0.29 vs 0.18; Supplementary Table 4 ). 420 
+
+Together, these analyses indicate that the LC –linked cortical gradient topographies 421 
+
+are reproducible and present at the individual level in both age groups. A key question 422 
+
+for future work is whether the inter -individual variability observed, especially dur ing 423 
+
+negative movie -viewing in older adults is meaningfully linked to individual differences 424 
+
+in cognition, mental health, and physiology (e.g., heart rate variability). 425 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+18 
+
+Dispersion -specific sensitivity : To verify that the group -level gradient is not dominate d426 
+
+by high -dispersion individuals, we recomputed gradients after excluding participants 427 
+
+with the top 5% ( n = 7) and top 10% ( n = 14) of global dispersion scores for the right 428 
+
+LC –linked cortical gradient during negative movie -viewing . Spatial correlations 429 
+
+be tween full -sample and excluded -sample gradients remained uniformly high 430 
+
+(Supplementary Table 6), indicating that the reported gradient was not dominated by 431 
+
+extreme individuals. 432 
+
+Gradient dimensionality : We retained the first two gradients for all primary analyses 433 
+
+for two reasons. First, G1 and G2 together explained 68 –79% of variance across 434 
+
+conditions and hemispheres, whereas G3 consistently accounted for less than 10% 435 
+
+(7 –9%) that is below the variance lev el commonly used to guide gradient retention in 436 
+
+the cortical -gradient literature 25,52,53 . Second, gradients explaining relatively less 437 
+
+variance tend to have lower reliability and weaker predictive validity 54 , placing G3 438 
+
+within a less -informative range. Importantly, when repeating al l dispersion analyses 439 
+
+(global, within -network, between -network) using a three -gradient solution , the same 440 
+
+pattern of results was observed with modestly attenuated effect sizes (right LC: global 441 
+
+d = 0.41, between -network d = 0.35, FPN d = 0.38; Supplementary Table 7 and 442 
+
+Supplementary Table 8 ). 443 
+
+Confound control . To verify the neuroanatomical specificity of the dominance analysis, 444 
+
+we replaced the LC with the 10 × 10 voxel pontine tegmentum (PT), a neighboring 445 
+
+brainstem structure frequently used as a reference for assessing LC structural 446 
+
+integrity 55 –60 . The PT explained only a negligible proportion of variance (adjusted R ² =447 
+
+0.07), confirming that the chemoarchitectural associations identified are LC specific .448 
+
+Additionally , given the LC's proximity to the fourth ventricle and the potential influence 449 
+
+of physiological noise from cardiac and respiratory pulsations, we performed a post -450 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+19 
+
+hoc control analysis examining correlations between left and right LC signals and 451 
+
+fourth ventricle signal fluctuations. No significant correlations were observed (r < 0.01), 452 
+
+ruling out contamination from ventricular artifacts and supporting the physiological 453 
+
+validity of the LC signal used in our analyses. Lastly, to assess the potential influence 454 
+
+of low -level visual confounds, we tested the association s between lum inance and LC –455 
+
+cortex functional connectivity and observed no reliable associations in either movie, 456 
+
+LC hemisphere, or age group ( Supplementary Table 9 and 10 ). This is consistent 457 
+
+with the prior evidence that the LC is preferentially activated by arousal and emotional 458 
+
+salience rather than by ambient luminance per se 61 –63 (see Supplementary Text for 459 
+
+luminance extraction methods ).460 
+
+# Discussion 461 
+
+We identified two dominant gradients that provide a low -dimensional representation of 462 
+
+cortical organization through the lens of LC connectivity . The primary gradient 463 
+
+remained consistent across both movie -viewing conditions and tracked the cortical 464 
+
+distribution of neurotransmitter receptors and transporters, linking it to the brain's 465 
+
+underlying chemoarchitectur e, whereas the secondary gradient aligned with canonical 466 
+
+fu nctional axes 23 in a context -dependent manner. This organization was particularly 467 
+
+sensitive to aging . During ne gative movie -viewing, older adults exhibited significantly 468 
+
+higher global and network -specific dispersion, a hallmark of functional 469 
+
+dedifferentiation. This reorganization was most prominent within the FPN and carried 470 
+
+behavioral relevance , as higher FPN dispersion was associated with poorer emotional 471 
+
+wellbeing in later life .472 
+
+One major observation from this work is the association of the primary LC –linked 473 
+
+cortical gradient with chemoarchitectural organization in both movie -viewing 474 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+20 
+
+conditions. This finding extends prior work showing that macroscale cortical gradients 475 
+
+align with the spatial distribution of neurotransmitter receptors and transporters 24,26,27 .476 
+
+Using dominance analys is , we found that dopaminergic and noradrenergic receptor –477 
+
+transporter densities explained the lar gest unique proportion of variance, identifying 478 
+
+G1 as a catecholaminergic axis along which cortical regions differ in neuromodulatory 479 
+
+profile. This interpretation is consistent with accumulating evidence that 480 
+
+catecholaminergic receptor –transporter distribu tions shape cortical gain, 481 
+
+responsiveness to neuromodulatory input, and communication across large -scale 482 
+
+cortical networks 64 –67 . Notably, the spatial polarity of G1 , positively associated with 483 
+
+NAT density and negatively associated with DAT density , mirrors established 484 
+
+catecholaminergic gradients across the cortex. NAT -dominant regions, particularly 485 
+
+frontal and somatomotor cortices 68,69 , are positioned to sustain LC influence, as 486 
+
+catecholamine clearance in these regions relies primarily on NAT, which exhibits 487 
+
+slower reuptake and lower affinity than DAT 70,71 . As a result, NA and dopamine co -488 
+
+released from LC terminals persist longer in the extracellular space 72 , supporting 489 
+
+prolonged neuromodulatory effects. Critically, G1 remained stable across both movie -490 
+
+viewing conditions , reflecting a stable, chemoarchitecturally anchored axis within the 491 
+
+low -dimensional manifold of LC –cortical connecti vity. Supporting its specificity, a 492 
+
+neighboring PT control region did not show comparable explained variance in the 493 
+
+dominance analysis, confirming that this organization is LC -specific. 494 
+
+In contrast, G2 exhibited condition -dependent organization. During neutral movie -495 
+
+viewing, LC –cortical coupling was organized along the canonical V –S axis, consistent 496 
+
+with engagement of perceptual systems under low emotional demand. During negative 497 
+
+movie -vi ewing, however, G2 reflected the canonical S –A axis, indicating stronger LC 498 
+
+coupling with higher -order associative networks. These findings are consistent with 499 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+21 
+
+models in which increased noradrenergic tone elevates cortical gain and biases 500 
+
+processing toward networks that support appraisal, regulation, and adaptive 501 
+
+behavior 5,73,74 . These results indicate that LC –linked cortical organization comprises a 502 
+
+stable axis anchored in cortical chemoarchitectur e and a flexible secondary axis that 503 
+
+aligns with distinct canonical axes in the two emotional movie -viewing conditions . This 504 
+
+organization emerged only when LC –cortical connectivity was probed across 505 
+
+emotional contexts, suggesting that the low -dimensional manifold of neuromodulatory 506 
+
+connectivity to cortex may dynamically reorganize with emotional salience. Such 507 
+
+dynamics may therefore be best characterized through naturalistic paradigms . Further ,508 
+
+the within -LC gradient aligned with the rostro -caudal axis replicating prior findings 17 .509 
+
+This provides independent confirmation that our gradient approac h recovers 510 
+
+established functional organization. 511 
+
+Beyond these organizational principles, a marked reorganization within the LC –linked 512 
+
+cortical manifold was observed in late life . O lder adults show ed a significantly higher 513 
+
+global dispersion, indicating that cortical regions were more widely spread across 514 
+
+gradient space . In other words, regions that formed relatively compact clusters in 515 
+
+younger adults occupied a more diffuse, less cohesive arrangement in older adults, 516 
+
+consistent with age -related functional dedifferentiation 25,28 –30 . Importantly, the overall 517 
+
+gradient topography was preserved across age groups, with parcels occupying 518 
+
+broadly similar positions along each gradient in younger and older adults 25,31 . Thus, 519 
+
+what changed with age was not where regions sit in the manifold, but how widely they 520 
+
+spread. The observation that age -related effects emerged selectively during negative 521 
+
+movie -viewing suggests that emotionally salient co ntexts can amplify age -related 522 
+
+differences in LC –linked cortical organization. This condition -dependen t effect aligns 523 
+
+with arousal -biased competition 75 and gain -modulation models 5,6 , which posit that 524 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+22 
+
+heightened arousal increases the influence of LC signaling and, in turn, cortical gain .525 
+
+In younger adults, such modulation may facilitate coordinated LC –cortical coupling. In 526 
+
+older adults, by cont rast, age -related reductions in neuromodulatory precision 33 –35 ,527 
+
+combined with shifts toward elevated tonic and reduced phasic LC activity as observed 528 
+
+in aging animal models 76 , may produce more diffuse, less selective neuromodulatory 529 
+
+signaling to the cortex . Notably, these age -related effects emerged only under an 530 
+
+emotionally salient condition and would have been obscured in a resting -state design. 531 
+
+Emotional arousal may therefore serve as a functional probe that unmasks instability 532 
+
+in LC –linked cortical orga nization in later life. 533 
+
+Network -level analyses further localized these effects. Although several networks 534 
+
+exhibited elevated within -network dispersion in older adults, only the FPN survived 535 
+
+correction for multiple comparisons. This finding is notable given the FPN's relatively 536 
+
+high noradrenergic receptor expression 77,78 and evidence from rodent studies 537 
+
+demonstrating FPN sensitivity to LC -mediated gain modulation under cognitively 538 
+
+demanding conditions 79 . While translating rodent findings to human functional 539 
+
+networks requires caution, the convergence across species supports the interpretation 540 
+
+that the FPN may be particularly vulnerable to age -related changes in LC 541 
+
+neuromodulation 21,80 . Our results show that LC –linked FPN organization becomes 542 
+
+more diffuse with in older adults . This pattern is consistent with neuro modulatory aging 543 
+
+frameworks proposing that reduced receptor –transporter specificity may compromise 544 
+
+the LC ’s ability to deliver selective gain modulation to distributed control circuits 33,35 ,545 
+
+resulting in more variable connectivity. Future studies combining LC –cortical gradient 546 
+
+analyses with individual -level PET measures of receptor and transporter availability, 547 
+
+or longitudinal multimodal designs, will be critical for directly testing this pr oposed 548 
+
+mechanism. 549 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+23 
+
+Notably, higher age -related dispersion was more pronounced in the right LC –linked 550 
+
+cortical organization. One possible explanation is that this lateralization reflects the 551 
+
+specific demands of the current paradigm, in which participants ob served another 552 
+
+individual experiencing acute distress without direct personal threat (a form of 553 
+
+vicarious emotional processing ) that recent rodent work has linked to preferential right -554 
+
+LC engagement 81 . This right -lateralization is thought to arise not from the LC its elf but 555 
+
+from asymmetric afferent input via the bed nucleus of the stria terminalis, which 556 
+
+selectively mediates vicarious fear 81 . The LC –NA system may then further regulate 557 
+
+fear responses by modulating theta oscillations in cingulate –amygdala circuits 82 . While 558 
+
+prior human work has emphasized left -LC involvement in introspective and resting -559 
+
+state contexts 17,83 , our findings provide complementary evidence that higher age -560 
+
+related LC –linked cortical dispersion are right -lateralized during observational 561 
+
+emotional processing . Fut ure work combining neuroimaging with electrophysiology 562 
+
+could test whether the left and right LC are differentially recruited during personal 563 
+
+versus vicarious emotional processing, and whether lateralized oscillatory dynamics 564 
+
+can explain the age effects we observed .565 
+
+Importantly, t his reorganization in late life was behaviorally meaningful. Among older 566 
+
+adults, higher global and LC –linked FPN dispersion during negative movie -viewing 567 
+
+was associated with lower self -reported emotional wellbein g, suggesting that a more 568 
+
+diffuse LC –linked cortical organization, particularly within the FPN, may compromise 569 
+
+emotional regulation network precisely when emotional demands are greatest . This 570 
+
+observation is consistent with recent findings linking higher FPN dispersion to emotion -571 
+
+regulation difficulties and vulnerability to mental health difficulties in aging 32 . Severa l572 
+
+lines of n eurobiological evidence provide a plausible framework for this interpretation .573 
+
+For instance, studies in non -human primates demonstrate that excessive or 574 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+24 
+
+dysregulated NA activity destabilizes prefrontal networks by biasing signaling from 575 
+
+high -affinity α2 A receptors to lower -affinity α1 and β receptors, weakening persistent 576 
+
+activity and top -down control 84,8 5. Age -related alterations in LC firing dynamics may 577 
+
+further exacerbate this vulnerability 76 , reducing the capacity of front oparietal systems 578 
+
+to regulate emotional responses effectively 32 . These findings align with broader 579 
+
+theories of age -related dedifferentiation, which posit that reduced neural specificity 580 
+
+contributes to declines in cognitive performance 25,30,86 . Extending thes e frameworks, 581 
+
+our results suggest that LC –linked global and particularly FPN dedifferentiation may 582 
+
+reflect diminished neuromodulatory precision that undermines emotional wellbeing 583 
+
+under emotionally demanding affective conditions in later life. 584 
+
+Several limitations should be noted. First, analyses were restricted to cortex. Although 585 
+
+the LC also innervates subcortical structures 2, the availability of well -established 586 
+
+cortical gradients and chemoarchitectural maps provide s a principled foundation for 587 
+
+characterizing large -scale LC –cortical connectivity organization . This provides a588 
+
+necessary first step toward extending the framework to subcortical systems . Second, 589 
+
+each valence condition was represented by a single movie clip. Although th e neutral 590 
+
+and negative clips were matched on duration, character composition, and absence of 591 
+
+dialogue through a pilot study 87 , clip -specific semantic influences cannot be 592 
+
+completely ruled out. Future work could employ multiple exemplars per valence 593 
+
+category to strengthen stimulus generalizability . Third, LC measurements are 594 
+
+susceptible to physiological artefacts due to the LC ’s proximity to the fourth ventricle. 595 
+
+Nonetheless, our post -hoc analyses revealed no significant correlation between LC 596 
+
+activity and fourth -ventricle fluctuations, supporting the robustness of our findings. 597 
+
+Fourth, the fixed presentation order of the movie clips, neutral followed by negative, 598 
+
+was chosen to prevent emotional carry -over from the negative film contaminating the 599 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+25 
+
+neutral condition. However, condition differences may still not be fully disentangled 600 
+
+from time -in -scanner effects, such as scanner drift, progressive head motion, and 601 
+
+fatigue, which may affect older adults . Reassuringly, the age -related effects in 602 
+
+dispersion and their associations with emotional wellbeing remained significant after 603 
+
+controlling for head motion , suggesting that the reported effects are unlikely to be 604 
+
+explained by motion -related artifacts . Fifth, our cross -sectional design precludes 605 
+
+inferences about longitudinal change. Whether the observed age differences reflect 606 
+
+developmental trajectories, cohort effects, or both remain uncertain. Longitudinal 607 
+
+studies tracking LC –cortical connectivity across the adult lifespan will be essential for 608 
+
+distinguishing these possibilities. 609 
+
+In summary, this study dem onstrates that LC -linked cortical organization is tracked by 610 
+
+the brain's molecular and canonical functional architecture and becomes increasingly 611 
+
+dispersed with age. Emotional arousal selectively unmasked this reorganization, most 612 
+
+prominently within the FP N, with implications for emotional wellbeing in later life. 613 
+
+These findings extend prevailing theories of neural dedifferentiation and 614 
+
+neuromodulatory aging, indicating that age -related declines in neuromodulatory 615 
+
+precision may propagate to the LC -linked co rtical manifold. Critically, our work 616 
+
+advances beyond the current state of the art. Whereas existing accounts treat locus 617 
+
+coeruleus decline and cortical dedifferentiation as separate processes and rely largely 618 
+
+on static structural or resting -state measures , we show that they are interrelated, and 619 
+
+that negative -valence, high -arousal movie -viewing unmasks this age -related 620 
+
+reorganization otherwise invisible at rest. More broadly, by positioning LC -linked FPN 621 
+
+organization as a potential neural substrate connect ing noradrenergic aging to 622 
+
+emotional vulnerability, our results point to new targets for the early detection and 623 
+
+prevention of mental health difficulties in later life. 624 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+26 
+
+# Materials and Methods 625 
+
+The current study used data from the Trondheim Aging Brain Study (TABS). The study 626 
+
+design and procedures have been described in detail 32,38,87 . We have added a detailed 627 
+
+description in the Supplementary Text outlining how the present study differs from 628 
+
+and extends the prior TABS -based publications. Here, we include the materials and 629 
+
+methods relevant to the current study. TABS was approved by the regional Ethics 630 
+
+Committee NTNU, Norway (Midt -REC). All participants provided written informed 631 
+
+consent prior to testing. 632 
+
+## Participants 633 
+
+Eighty younger and 75 older adults were scanned as part of the TABS, completed two 634 
+
+separate sessions: one imaging and one behavioral -neuropsychological testing 635 
+
+sessions. However, due to incomplete behavioral datasets, technical issues during 636 
+
+data collection, order of stimuli reversed and excessive head motion 88 (mean 637 
+
+framewise displacement ≥0.3 mm), the final sample in the current study included a 638 
+
+total of 140 participants (72 Younger and 68 Older adults). Sex was determined by 639 
+
+self -report and was approximately equally divided within each age group (younger: 34 640 
+
+female s of 72; older: 36 females of 68). Sex differences are reported in the 641 
+
+Supplementary Figure 2 1.642 
+
+Participants were recruited from the local community through paper flyers and online 643 
+
+advertisements. Exclusion criteria included the presence of metallic implants, 644 
+
+claustrophobia, or a history of neurological disorder (e.g., neurodegenerative 645 
+
+diseases), ps ychiatric disorders, or autism spectrum disorder. All participants were 646 
+
+right -handed, had normal or corrected -to -normal vision, and reported normal hearing 647 
+
+abilities. All older participants underwent cognitive screening using the Mini -Mental 648 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+27 
+
+State Examinat ion 89 (MMSE), conducted either in person or via phone using the 22 -649 
+
+point Braztel -MMSE 90 , and participants scored above the respective thresholds of 24 650 
+
+and 15, confirming lack of cognitive deficits. Specifically, MMSE scores ranged from 651 
+
+25 to 30 ( mean = 29.05, SD = 1.22), and telephonic Braztel -MMSE scores ranged from 652 
+
+17 to 22 ( mean = 21.3 4, SD = 0.98). All participants received compensation of 500 653 
+
+Norwegian Kroner in gift cards for their participation. 654 
+
+## Movie clips 655 
+
+During fMRI, participants watched two clips: a neutral clip and a negative -valence clip. 656 
+
+The neutral movie -viewing ‘Pottery ’ (480seconds) depicts a woman making pottery 657 
+
+and was rated as low negative valence and low arousal in a pilot study 87 . The negative 658 
+
+clip ‘Curve ’ (494seconds) shows a woman struggling to avoid falling from a cliff and 659 
+
+was rated high in negative valence and arousal. The clips were selected from a pilot 660 
+
+study in w hich participants rated four candidate videos on valence and arousal; Pottery 661 
+
+and Curve were chosen to represent neutral and negative conditions, respectively. 662 
+
+Prior work from our group shows that Curve reliably elicits high arousal and negative 663 
+
+valence se lf -reported responses, whereas Pottery functions as an emotionally minimal 664 
+
+control 32,87 . To reduce confounds across clips, we matched key features: (1) one 665 
+
+human character appears on screen at a time; (2) all characters are female; (3) no 666 
+
+dialogue, writte n text, or subtitles; and (4) both clips are in color. 667 
+
+## Neuropsychological assessments 668 
+
+During the behavioral testing session, participants completed self -report 669 
+
+questionnaires assessing mental health and emotion -related functioning: Depression, 670 
+
+Anxiety, and Stress Scale 91 (DASS -21), the Difficulties in Emotion Regulation Scale 92 ,671 
+
+the General Health Questionnaire 93 , the Hospital Anxiety and Depression Scale 94 , the 672 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+28 
+
+Connor -Davidson Resilience Scale 95 , the Intolerance of Uncertainty Scale 96,97 , the 673 
+
+Perceived Stress Scale 98 , and the State -Trait Anxiety Inventory 99 .674 
+
+Cognitive performance was assessed using Stroop test 100 , the Trail Making Test 101 ,675 
+
+and the COWAT Phonemic and Semantic Fluency Ta sk 102 , and forward and backward 676 
+
+digit span tests . As multiple emotional and cognitive measures were collected, we 677 
+
+applied principal component analysis (PCA) to reduce dimensionality and derived two 678 
+
+indices: an Emotional Resilience Index (ERI) capturing emotional resilience and 679 
+
+mental wellbeing, and a Cognitive Functioning Index capturing overall cognitive 680 
+
+performance. 681 
+
+## Procedure 682 
+
+Before scanning, participants received written and verbal instructions. The MRI 683 
+
+session began with an ~8 -min anatomical scan, followed by movie -fMRI. The neutral 684 
+
+clip always precedes the negative clip. Participants rated valence (1 = very unpleasant 685 
+
+to 9 = very pleasant) and arousal (1 = very calm to 9 = very excited) using the 9 -point 686 
+
+Self -Assessment Manikin before and after each clip 103 ; they also rated baseline 687 
+
+emotions before entering the scanner. Participants were instructed to watch the videos 688 
+
+naturally while minimizing movement; foam padding stabilized the head. Audio was 689 
+
+delivered vi a MRI -compatible earphones (BOLDfonic, Cambridge Research Systems 690 
+
+Ltd), with volume adjusted individually. The behavioral session was completed within 691 
+
+the same week, typically 3–4 days from scanning session .692 
+
+## Imaging acquisition and preprocessing 693 
+
+Data were acquired on a 7 T Siemens MAGNETOM Terra scanner with a 32 -channel 694 
+
+head coil at the Norwegian 7 T MR Center (St. Olav ’s Hospital). High -resolution 695 
+
+anatomical T1 -weighted images were collected using MP2RAGE 104 (voxel size 0.75 × 696 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+29 
+
+0.75 × 0.75 mm; 224 slices; TR = 4300 ms; TE = 1.99 ms; flip angles = 5°/6°; field -of -697 
+
+view (FOV ) = 240 × 240 × 175 mm; slice thickness = 0.75 mm). To achieve high -698 
+
+resolution imaging of the LC, we acquired magnetization transfer -weighted turbo flash 699 
+
+images 105 (MT -TFL; voxel size 0.4 × 0.4 × 0.5 mm; 60 slices; TR = 400 ms; TE = 2.55 700 
+
+ms; flip angle = 8°). The MT -TFL FOV was positioned appro ximately perpendicular to 701 
+
+the pons, covering the region between the inferior colliculus and the inferior border of 702 
+
+the pons. Functional data were acquired using multiband EPI (92 interleaved slices; 703 
+
+multiband factor = 2; voxel size = 1.25 × 1.25 × 1.25 mm; TR = 2000 ms; TE = 19 ms; 704 
+
+matrix = 160 × 160; FOV = 200 mm; slice thickness = 1.25 mm; flip angle = 80°), 705 
+
+yielding 243 volumes (neutral movie) and 250 volumes (negative movie). 706 
+
+Preprocessing used fMRIPrep v22.0.2 106 , followed by postprocessing in XCP -D707 
+
+v0.3.053 107 . Steps included removal of the first thr ee volumes, motion and slice -timing 708 
+
+correction, co -registration, normalization to MNI space, nuisance regression, and 709 
+
+band -pass filtering (details in Supplementary Methods). Due to small size of the LC, 710 
+
+smoothing was performed with a 2  mm full width at hal f maximum Gaussian kernel, 711 
+
+following the recommendation to use a kernel of at least 1.5 times the native voxel 712 
+
+size 108 , maintaining spatial precision to avoid signal blurring 109 .713 
+
+## Locus coeruleus delineation and spatial transformation 714 
+
+Detailed procedures for LC delineation and spatial transformation are described in 715 
+
+previously published work 38 and LC segmentation followed the established published 716 
+
+protocol 58,59 . Br iefly, MT -TFL images were intensity -normalized by dividing voxel 717 
+
+values by the mean signal from a 10 × 10 pontine tegmentum (PT) ROI on the slice 718 
+
+containing the LC peak voxel, reducing inter -subject variability while preserving LC –719 
+
+PT contrast 55 . A group template was created from normalized MT -TFL images using 720 
+
+Greedy SyN registration with cross -correlation 110,111 . LC was manually segmented on 721 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+30 
+
+the template in ITK -SNAP based on voxel intensity and anatomical landmarks, 722 
+
+repeated after 4 weeks, and thresholded to retain overlapping voxels (Dice: left LC = 723 
+
+0.959; right LC = 0.962). 724 
+
+For spatial transformation, MT -TFL images and LC segmentations were resampled to 725 
+
+isotropic T1w resolution using FreeSurfer mri_convert (v7.1). MT -TFL images were 726 
+
+rigidly registered to native T1w space using antsRegistrationSyN 110 . T1w images were 727 
+
+then nonlinearly registered to MNI152 space using SyN 110,111 , and the T1w image 728 
+
+served as an intermediate bridge for transforming MT -TFL data into MNI space. 729 
+
+Transformations were combined and applied to LC masks using antsApplyTransforms 730 
+
+with nearest -neighbor interpolation to preserve voxel boundaries, minimizing 731 
+
+interpolation error and maintaining LC localization in MNI space. 732 
+
+## Locus coeruleus -cortical gradient analysis 733 
+
+For each participant, movie -viewing condition (neutral and negative), and LC side (left 734 
+
+and right L C) , we constructed an LC –cortical functional connect ivity matrix . LC voxel -735 
+
+wise time series were extracted from study -specific LC masks delineated on the MT -736 
+
+TFL sequence ( Supplementary Figure 2 ), and cortical time series were extracted 737 
+
+fro m 1,000 parcels of the Schaefer atlas 39 spanning seven canonical f unctional 738 
+
+networks 36 . Pairwise Pearson correlations between each LC voxel and cortical parcel 739 
+
+were Fisher z-transformed, yielding a participant -level LC -voxel × cortical -parcel 740 
+
+connectivity matrix. For each movie -viewing condition, individual connect ivity matrix 741 
+
+was averaged across participants to form a group -mean LC –cortical matrix. Using the 742 
+
+BrainSpace toolbox 40 , a cortex × cortex affinity matrix was computed using normalized 743 
+
+ang ular (cosine) similarity between cortical parcels based on their LC connectivity; this 744 
+
+quantifies how similarly cortical regions are coupled to the LC. Diffusion map 745 
+
+embedding 41 was then applied to this affinity matrix to derive low -dimensional gradient 746 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+31 
+
+components capturing the principal axes of variation in LC –cortical connectivity . The 747 
+
+manifold -learning parameter α was set to 0.5, consistent with prior gradient -mapping 748 
+
+work 23,40,112 , balancing the contribution of local versus global connectivity density to 749 
+
+the embedding geometry. The resulting components served as the condition -specific 750 
+
+gr oup reference template. Individual -participant gradients were estimated using the 751 
+
+same procedure and aligned to the corresponding group template via Procrustes 752 
+
+rotation to ensure cross -subject comparability. Aligned individual gradients were then 753 
+
+averaged to obtain a group -level gradient map across all participants, and separately 754 
+
+for younger and older adults. Gradients were ranked by their explained variance. To 755 
+
+characterize functional organization within the LC itself , we transposed the LC -voxel 756 
+
+× cortical -parcel matrix and computed normalized ang ular (cosine) similarity between 757 
+
+LC voxels based on their cortical connectivity profiles. Diffusion map embedding was 758 
+
+then applied to the resulting affinity matrix . All gradient estimation procedures were 759 
+
+implemented in MATLAB using the BrainSpace toolbox 40 .760 
+
+## Age -related differences in dispersion 761 
+
+To quantify age -related differences in LC –linked cortical organization, we computed 762 
+
+dispersion in the two -dimensional gradient space (G1 -G2), adapting the framework 763 
+
+introduced in previous study 25,48 . All dispersion measures were calculated at the 764 
+
+individual level within Procrustes -aligned gradient spac es on the unnormalized 765 
+
+gradient embeddings to preserve the variance structure of the decomposition .766 
+
+Global dispersion was defined as mean Euclidean distance of all cortical parcels to 767 
+
+the global centroid, reflecting whole -cortex spread. 768 
+
+## 𝐷 = 1
+
+𝑁 ∑ ‖𝑔 𝑖 −𝑁 
+
+𝑖 =1 𝜇 ‖ (1) 769 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+32 
+
+Within -network dispersion was calculated as the mean Euclidean distance of parcels 770 
+
+within a given within a given network ’s centroid. 771 
+
+## WD 𝑘 = 1
+
+𝑁 𝑘 
+
+## ∑ ‖𝑔 𝑖 − 𝜇 𝑘 ‖𝑖 ∈𝑘  (2) 772 
+
+Between -network dispersion was computed as the Euclidean distance between pairs 773 
+
+of network centroids. Because cortical atrophy may affect functional embedding, 774 
+
+cortical thickness was included as a covariate 25 .775 
+
+## BD 𝑘 ,𝑙 = ‖𝜇 𝑘 − 𝜇 𝑙 ‖ (3) 776 
+
+𝑔 𝑖 , Coordinates of ROI 𝑖 in the 2 -D gradient space (Gradient 1 and Gradient 2). 777 
+
+𝜇 , global c entroid across all parcels in 2D gradient space. 𝜇 𝑘 , centroid of network 𝑘 in 778 
+
+gradient space 779 
+
+780 
+
+Linear regression models also adjusted for sex and head motion. To examine whether 781 
+
+effects were specific to a gradient dimension, we also computed within -network 782 
+
+dispersion separately along G1 and G2. Additional measures included the numerical 783 
+
+range of eac h gradient (min –max distance) and the standard deviation of eigenvector 784 
+
+values across parcels ( Supplementary Figure 14 ). Control analyses confirmed that 785 
+
+LC –linked dispersion reflected both gradient axes, with G1 and G2 range each 786 
+
+correlating with global di spersion within both age groups, indicating that dispersion 787 
+
+captures spread along both axes rather than a single dominant one ( Supplementary 788 
+
+Figure 22). Association of global dispersion with within -network dispersion is 789 
+
+presented in Supplementary Table 11 .790 
+
+## Meta -analytic functional decoding with Neurosynth 791 
+
+We used Neurosynth 113 volumetric association test maps; 792 
+
+https://github.com/neurosynth/neurosynth) to derive probabilistic associations 793 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+33 
+
+between brain voxels and cognitive/affective terms based on large -scale coordinate -794 
+
+based meta -analysis (>14,000 studies). For each voxel, the association reflects the 795 
+
+probability that a term is reported when activation occurs at that voxel. Terms were 796 
+
+selected from the Cogniti ve Atlas ontology 114 , yielding 123 terms spanning broad 797 
+
+constructs (e.g., “attention ”) and specific processes (e.g., “visual attention ”, “ episodic 798 
+
+memory ”) as well as affective states (e.g., “fear ”, “ pain ”). Neurosynth maps were 799 
+
+parcellated using the Schaefer 1,000 -parcel atlas 39 and z -scored. 800 
+
+Statistical inference was corrected at two levels. First, to control for spatial 801 
+
+autocorrelation 115,116 , significance was assessed using the Hungarian spin -802 
+
+permutation test 117 , yielding two -sided spin -corrected p -values ( pspin ). Second, 803 
+
+because each gradient × condition × hemisphere combination tests ~123 terms, we 804 
+
+applied Benjamini –Hochberg F DR correction 118 across terms within each 805 
+
+combination ( q < 0.05); full term list s with pspin and FDR -corrected values ( pspin FDR) 806 
+
+are reported in Supplementary Tables 1 2–19. For descriptive functional decoding, 807 
+
+terms surviving pspin < 0.05 are visualized in Extended Data Figure 1 , consistent 808 
+
+with prior gradient studies 26,119 .809 
+
+## Neurotransmitter receptors and transporters 810 
+
+Receptor and transporter density maps were obtained from JuSpace library 37 . We 811 
+
+included 13 maps spanning major neuromodula tory systems (Supplementary Figure 812 
+
+23; Supplementary Table 1): dopamine D1, D2 receptors 120,121 , dopamine 813 
+
+transporter 122 , noradrenaline (noradrenaline tr ansporter NAT 123 ), serotonin 124,125 (5 -814 
+
+HT1a, 5 -HT1b, 5 -HT2a, 5 -HT4 receptors; serotonin transporter, S ERT), acetylcholine 815 
+
+(vesicular acetylcholine transporter 126 , VAChT), glutamate (metabotropic glutamate 816 
+
+receptor 5, mGluR5 26 ), gamma -aminobutyric acid type A receptor 37 (GABAa), and N -817 
+
+methyl -D-aspartate receptor 127 (NMDA). Maps were parcellated using the Schaefer 818 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+34 
+
+1,000 -parcel atlas 39 to match the functional gradients ensuring direct comparability 819 
+
+between molecular and functional spaces. 820 
+
+## Dominance analysis 821 
+
+To assess how LC –linked cortical gradient maps are related to neurotransmitter 822 
+
+receptor and transporter distributions, we applied dominance analysis 47 . This method 823 
+
+quantifies the relative contribution of each receptor and transporter density map to the 824 
+
+fit ( adjusted R² ) of a multiple linear regression model. It does so by fit ting models 825 
+
+across all possible combinations of predictors (2 ᵖ − 1 submodels for p predictors). For 826 
+
+each variable, total dominance is defined as the average increase in explained 827 
+
+variance (R²) when that variable is added to each submodel, such that the sum of all 828 
+
+predictors ’ dominance equals the adjusted R ² of the full model. This approach 829 
+
+accounts for collinearity among predictors and provides interpretable estimates of 830 
+
+relative importance. We also computed interactional dominance, defined as the 831 
+
+increment al variance explained when adding a predictor to the model containing all 832 
+
+other predictors, indexing unique variance in the presence of shared effects for 833 
+
+negative ( Supplementary Figure 24) and neutral movie -viewing ( Supplementary 834 
+
+Figure 25). Total and interactional dominance values were normalized by the full 835 
+
+model fit (R² adj ) to facilitate comparisons across analyses. 836 
+
+## Spatial null model 837 
+
+All spatial correspondence analyses between parcel -wise cortical maps including 838 
+
+alignment of LC –linked cortical grad ients with canonical functional gradients, 839 
+
+Neurosynth association maps, condition -to -condition gradient comparisons, and 840 
+
+hemisphere -to -hemisphere gradient comparisons used a consistent spatial -null 841 
+
+pipeline. In brief, spatial associations were quantified u sing Spearman correlations, 842 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+35 
+
+and significance was assessed against a spatial -autocorrelation -preserving null 115,116 843 
+
+using the Hungarian spin test 45 with 10,000 spins. Two -sided spin -corrected p -values 844 
+
+(pspin ) were computed as the proportion of null statist ics equaling or exceeding the 845 
+
+empirical statistic in absolute value, with 1 added to both numerator and denominator 846 
+
+(10,001), giving a minimum possible value of pspin ≈ 0.0001. 847 
+
+Acknowledgment: We would like to thank radiographers and MR physicists at the 7T 848 
+
+MR center at NTNU for their help during this project. We also would like to thank our 849 
+
+participants for their time and effort during the experiment. We thank Stian Framvik, 850 
+
+Avneesh Jain, Jae H ong, Leona Rahel Bätz and Karina Tømmerdal for their help 851 
+
+during data collection. We also thank Carol Barnes and for careful reading of the 852 
+
+manuscript and Martin Dahl, Lynn Nadel, and Mary Peterson for helpful discussions 853 
+
+on the results. This project was s upported by the Research Council of Norway through 854 
+
+its Centers of Excellence scheme, project number 332640 and National Infrastructure 855 
+
+grant from the Research Council of Norway (NORBRAIN, project number 856 
+
+245904/350201). We would like to thank Kavli Foundati on and hjerneforskningsfondet 857 
+
+for their support. 858 
+
+Data availability: PET -derived receptor –transporter density maps were obtained 859 
+
+from the JuSpace toolbox ( https://github.com/juryxy/JuSpace ; Dukart et al., 2 021). 860 
+
+The Schaefer 1000 -parcel cortical atlas was obtained from the Computational Brain 861 
+
+Imaging Group repository 862 
+
+https://github.com /ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellati 863 
+
+on/Schaefer2018_LocalGlobal ; Schaefer et al., 2018). The Yeo 7 -network functional 864 
+
+parcellation was obtained from 865 
+
+https://surfer.nmr.mgh.harvard.edu/fswiki/CorticalParcellation_Yeo2011 ; Yeo et al., 866 
+
+2011). Neurosynth data are available at  https://neurosynth.org/ , and the Cognitive 867 
+
+Atlas is available at  https://www.cognitiveatlas.org/ . Source data are publicly 868 
+
+available at the Open Science Framework ( https://osf.io/dkj7t ). Raw neuroimaging 869 
+
+data are not publicly available due to ethical and d ata -protection restrictions. 870 
+
+Code availability: Gradient analyses were conducted using BrainSpace, an open -871 
+
+access toolbox for macroscale gradient mapping and analysis 872 
+
+(https://github.com/MIC A-MNI/BrainSpace ). Code for computing gradient dispersion 873 
+
+measures is available at  https://github.com/rb643/GradientDispersion . Movie stimuli 874 
+
+and custom analysis scripts are available through the Open Science Framework 875 
+
+(https://osf.io/dkj7t ). 876 
+
+Contributions: A.D. conceptualized the study, performed neuroimaging analyses, 877 
+
+delineated the locus coeruleus mask, and wrote the original manuscript draft. S.Y. 878 
+
+designed the methodological framework, collected data, and provided code for 879 
+
+gradient analyses. X.L. performe d behavioral data analyses. A.S. contributed to 880 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+36 
+
+interpretation of gradient analyses. H.I.L.J. provided expertise on locus coeruleus 881 
+
+segmentation. M.Z. conceptualized the project, acquired funding, supervised the 882 
+
+project, and edited the manuscript. 883 
+
+Bibliogr aphy 884 
+
+1.  Schwarz, L. A. & Luo, L. Organization of the Locus Coeruleus -Norepinephrine 885 
+
+System. Current Biology 25 , R1051 –R1056 (2015). 886 
+
+2.  Samuels, E. R. & Szabadi, E. Functional Neuro anatomy of the Noradrenergic Locus 887 
+
+Coeruleus: Its Roles in the Regulation of Arousal and Autonomic Function Part II: 888 
+
+Physiological and Pharmacological Manipulations and Pathological Alterations of Locus 889 
+
+Coeruleus Activity in Humans. Curr Neuropharmacol 6, 254 –285 (2008). 890 
+
+3.  Poe, G. R. et al. Locus coeruleus: a new look at the blue spot. Nat Rev Neurosci 21 ,891 
+
+644 –659 (2020). 892 
+
+4.  Sara, S. J. The locus coeruleus and noradrenergic modulation of cognition. Nature 893 
+
+reviews. Neuroscience 10 , 211 –223 (2009). 894 
+
+5.  Aston -Jones, G. & Cohen, J. D. AN INTEGRATIVE THEORY OF LOCUS 895 
+
+COERULEUS -NOREPINEPHRINE FUNCTION: Adaptive Gain and Optimal Performance. 896 
+
+Annu. Rev. Neurosci. 28 , 403 –450 (2005). 897 
+
+6.  Berridge, C. W. & Waterhouse, B. D. The locus coeruleus –noradrenergic system: 898 
+
+modulation of behavioral state and state -dependent cognitive processes. Brain Research 899 
+
+Reviews 42 , 33 –84 (2003). 900 
+
+7.  Servan -Schreiber, D., Printz, H. & Cohen, J. D. A Network Mode l of Catecholamine 901 
+
+Effects: Gain, Signal -to -Noise Ratio, and Behavior. Science 249 , 892 –895 (1990). 902 
+
+8.  McBurney -Lin, J., Lu, J., Zuo, Y. & Yang, H. Locus coeruleus -norepinephrine 903 
+
+modulation of sensory processing and perception: A focused review. Neuroscien ce & 904 
+
+Biobehavioral Reviews 105 , 190 –199 (2019). 905 
+
+9.  Usher, M., Cohen, J. D., Servan -Schreiber, D., Rajkowski, J. & Aston -Jones, G. The 906 
+
+Role of Locus Coeruleus in the Regulation of Cognitive Performance. Science 283 , 549 –554 907 
+
+(1999). 908 
+
+10.  Sara, S. J. & Bouret, S. Orienting and Reorienting: The Locus Coeruleus Mediates 909 
+
+Cognition through Arousal. Neuron 76 , 130 –141 (2012). 910 
+
+11.  Shine, J. M. Neuromodulatory influences on integration and segregation in the brain. 911 
+
+Trends in Cognitive Sciences 23 , 572 –583 (2019). 912 
+
+12.  Shine, J. M. et al. The Dynamics of Functional Brain Networks: Integrated Network 913 
+
+States during Cognitive Task Performance. Neuron 92 , 544 –554 (2016). 914 
+
+13.  Grimm, C. et al. Tonic and burst -like locus coeruleus stimulation distinctly shift 915 
+
+network activity a cross the cortical hierarchy. Nat Neurosci 27 , 2167 –2177 (2024). 916 
+
+14.  Zerbi, V. et al. Rapid Reconfiguration of the Functional Connectome after 917 
+
+Chemogenetic Locus Coeruleus Activation. Neuron 103 , 702 -718.e5 (2019). 918 
+
+15.  Wainstein, G., Müller, E. J., Taylor, N., Munn, B. & Shine, J. M. The role of the locus 919 
+
+coeruleus in shaping adaptive cortical melodies. Trends in Cognitive Sciences 26 , 527 –538 920 
+
+(2022). 921 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+37 
+
+16.  Huang, R. & Clewett, D. The Locus Coeruleus: Where Cognitive and Emotional 922 
+
+Processing Meet the Eye. in Modern Pupillometry (eds Papesh, M. H. & Goldinger, S. D.) 3–923 
+
+75 (Springer International Publishing, Cham, 2024). doi:10.1007/978 -3-031 -54896 -3_1. 924 
+
+17.  Veréb, D. et al. Age -related differences in the functional topography of the locus 925 
+
+coeruleus and their imp lications for cognitive and affective functions. eLife 12 , (2023). 926 
+
+18.  Grueschow, M., Kleim, B. & Ruff, C. C. Functional Coupling of the Locus Coeruleus 927 
+
+Is Linked to Successful Cognitive Control. Brain Sciences 12 , 305 (2022). 928 
+
+19.  Prokopiou, P. C. et al. Lower novelty -related locus coeruleus function is associated 929 
+
+with A β-related cognitive decline in clinically healthy individuals. Nat Commun 13 , 1571 930 
+
+(2022). 931 
+
+20.  Zhang, S., Hu, S., Chao, H. H. & Li, C. -S. R. Resting -State Functional Connectivity of 932 
+
+the Locu s Coeruleus in Humans: In Comparison with the Ventral Tegmental Area/Substantia 933 
+
+Nigra Pars Compacta and the Effects of Age. Cereb Cortex 26 , 3413 –3427 (2016). 934 
+
+21.  Lee, T. -H., Kim, S. H., Katz, B. & Mather, M. The Decline in Intrinsic Connectivity 935 
+
+Between t he Salience Network and Locus Coeruleus in Older Adults: Implications for 936 
+
+Distractibility. Front. Aging Neurosci. 12 , (2020). 937 
+
+22.  Jacobs, H. I. L., Müller -Ehrenberg, L., Priovoulos, N. & Roebroeck, A. Curvilinear 938 
+
+locus coeruleus functional connectivity tra jectories over the adult lifespan: a 7T MRI study. 939 
+
+Neurobiology of Aging 69 , 167 –176 (2018). 940 
+
+23.  Margulies, D. S. et al. Situating the default -mode network along a principal gradient 941 
+
+of macroscale cortical organization. Proc Natl Acad Sci U S A 113 , 12574 –12579 (2016 ). 942 
+
+24.  Huntenburg, J. M., Bazin, P. -L. & Margulies, D. S. Large -Scale Gradients in Human 943 
+
+Cortical Organization. Trends in Cognitive Sciences 22 , 21 –31 (2018). 944 
+
+25.  Bethlehem, R. A. I. et al. Dispersion of functional gradients across the adult lifespan. 945 
+
+NeuroImage 222 , 117299 (2020). 946 
+
+26.  Hansen, J. Y. et al. Mapping neurotransmitter systems to the structural and functional 947 
+
+organization of the human neocortex. Nat Neurosci 25 , 1569 –1581 (2022). 948 
+
+27.  Froudist -Walsh, S. et al. Gradients of neurotransmitter receptor expression in the 949 
+
+macaque cortex. Nat Neurosci 26 , 1281 –1294 (2023). 950 
+
+28.  Koen, J. D., Hauck, N. & Rugg, M. D. The Relationship between Age, Neural 951 
+
+Differentiation, and Memory Performance . Journal of Neuroscience 39 , 149 –162 (2018). 952 
+
+29.  Koen, J. D. & Rugg, M. D. Neural dedifferentiation in the aging brain. Trends in 953 
+
+Cognitive Sciences 23 , 547 –559 (2019). 954 
+
+30.  Shen, C., Liu, C., Chen, N. & Qiu, A. Dedifferentiation of brain functional gradie nt 955 
+
+captures cognition performance and stroke occurrence: A UK Biobank study. NeuroImage 956 
+
+311 , 121183 (2025). 957 
+
+31.  Setton, R. et al. Age differences in the functional architecture of the human brain. 958 
+
+Cerebral Cortex 33 , 114 –134 (2022). 959 
+
+32.  Ye, S., Dave, A., S alami, A. & Ziaei, M. Frontoparietal functional dedifferentiation 960 
+
+during naturalistic movie watching among older adults at risk of emotional vulnerability. 961 
+
+Neurobiology of Aging 156 , 150 –162 (2025). 962 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+38 
+
+33.  Li, S. -C. & Rieckmann, A. Neuromodulation and aging: implications of aging neuronal 963 
+
+gain control on cognition. Current Opinion in Neurobiology 29 , 148 –158 (2014). 964 
+
+34.  Li, S. -C. & Lindenberger, U. Cross -level unification : A computational exploration of 965 
+
+the link between deterioration of neurotransmitter syste ms and dedifferentiation of cognitive 966 
+
+abilities in old age. MPG.PuRe (Max Planck Society) 103 –146 (1999). 967 
+
+35.  Li, S. -C., Lindenberger, U. & Sikström, S. Aging cognition: from neuromodulation to 968 
+
+representation. Trends in Cognitive Sciences 5, 479 –486 (2001) .969 
+
+36.  Thomas Yeo, B. T. et al. The organization of the human cerebral cortex estimated by 970 
+
+intrinsic functional connectivity. Journal of Neurophysiology 106 , 1125 –1165 (2011). 971 
+
+37.  Dukart, J. et al. JuSpace: A tool for spatial correlation analyses of magneti c972 
+
+resonance imaging data with nuclear imaging derived neurotransmitter maps. Human Brain 973 
+
+Mapping 42 , 555 –566 (2020). 974 
+
+38.  Dave, A. et al. Age -Related Increase in Locus Ceruleus Activity and Connectivity with 975 
+
+the Prefrontal Cortex during Ambiguity Processing . J. Neurosci. 45 , (2025). 976 
+
+39.  Schaefer, A. et al. Local -Global Parcellation of the Human Cerebral Cortex from 977 
+
+Intrinsic Functional Connectivity MRI. Cerebral Cortex 28 , 3095 –3114 (2017). 978 
+
+40.  De Wael, R. V. et al. BrainSpace: a toolbox for the analysis of macroscale gradients 979 
+
+in neuroimaging and connectomics datasets. Communications Biology 3, 103 (2020). 980 
+
+41.  Coifman, R. R. & Lafon, S. Diffusion maps. Applied and Computational Harmonic 981 
+
+Analysis 21 , 5 –30 (2006). 982 
+
+42.  Haak, K. V. & Beckmann, C. F. Understanding brain organisation in the face of 983 
+
+functional heterogeneity and functional multiplicity. NeuroImage 220 , 117061 (2020). 984 
+
+43.  Chandler, D. J. et al. Redefining noradrenergic neuromodulation of behavior: Impacts 985 
+
+of a Modular locus coeruleus architecture. Journal of Neuroscience 39 , 8239 –8249 (2019). 986 
+
+44.  Chandler, D. J., Gao, W. -J. & Waterhouse, B. D. Heterogeneous organization of the 987 
+
+locus coeruleus projections to prefrontal and motor cortices. Proceedings of the Nati onal 988 
+
+Academy of Sciences 111 , 6816 –6821 (2014). 989 
+
+45.  Kuhn, H. W. The Hungarian method for the assignment problem. Naval Research 990 
+
+Logistics Quarterly 2, 83 –97 (1955). 991 
+
+46.  Hansen, J. Y. et al. Integrating brainstem and cortical functional architectures. Nat 992 
+
+Neurosci 27 , 2500 –2511 (2024). 993 
+
+47.  Azen, R. & Budescu, D. V. The dominance analysis approach for comparing 994 
+
+predictors in multiple regression. Psychological Methods 8, 129 –148 (2003). 995 
+
+48.  Taylor, H. P. et al. Functional hierarchy of the human neocortex acros s the lifespan. 996 
+
+Nature 652 , 955 –964 (2026). 997 
+
+49.  Zalesky, A. et al. Whole -brain anatomical networks: Does the choice of nodes 998 
+
+matter? NeuroImage 50 , 970 –983 (2010). 999 
+
+50.  Destrieux, C., Fischl, B., Dale, A. & Halgren, E. Automatic parcellation of human 1000 
+
+cortic al gyri and sulci using standard anatomical nomenclature. NeuroImage 53 , 1 –15 1001 
+
+(2010). 1002 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+39 
+
+51.  Mueller, S. et al. Individual variability in functional connectivity architecture of the 1003 
+
+human brain.  Neuron  77 , 586 –595 (2013). 1004 
+
+52.  Orlando, I. F. et al. Dopamine al ters functional gradients in Parkinson ’s disease. 1005 
+
+Imaging Neuroscience 3, (2025). 1006 
+
+53.  De Rosa, A. P. et al.  Functional gradients reveal cortical hierarchy changes in 1007 
+
+multiple sclerosis. Human Brain Mapping 45 , e26678 (2024). 1008 
+
+54.  Hong, S. -J. et al. Toward a connectivity gradient -based framework for reproducible 1009 
+
+biomarker discovery. NeuroImage 223 , 117322 (2020). 1010 
+
+55.  Tona, K. -D. et al. In vivo visualization of the locus coeruleus in humans: quantifying 1011 
+
+the test –retest reliability. Brain Struct Funct 222 , 4203 –4217 (2017). 1012 
+
+56.  Dahl, M. J. et al. The integrity of dopaminergic and noradrenergic brain regions is 1013 
+
+associated with different aspects of late -life memory performance. Nat Aging 3, 1128 –1143 1014 
+
+(2023). 1015 
+
+57.  Bueichekú, E. et al. Spatiotemporal pattern s of locus coeruleus integrity predict 1016 
+
+cortical tau and cognition. Nat Aging 4, 625 –637 (2024). 1017 
+
+58 . Van Egroo, M., Van Hooren, R. W. E. & Jacobs, H. I. L. Associations between locus 1018 
+
+coeruleus integrity and nocturnal awakenings in the context of Alzheimer ’s disease plasma 1019 
+
+biomarkers: a 7T MRI study. Alzheimer s Research & Therapy 13 , (2021). 1020 
+
+59.  Van Egroo, M. et al. Ultra -high field imaging, plasma markers and autopsy data 1021 
+
+uncover a specific rostral locus coeruleus vulnerability to hyperphosphorylated tau. 1022 
+
+Molecular Psychiatry 28 , 2412 –2422 (2023). 1023 
+
+60.  Dahl, M. J. et al. Rostral locus coeruleus integrity is associated with better memory 1024 
+
+performance in older adults. Nature Human Behaviour 3, 1203 –1214 (2019). 1025 
+
+61.  Lee, T. -H. et al. Arousal increases neural gain via the locus coeruleus –noradrenaline 1026 
+
+system in younger adults but not in older adults. Nature Human Behaviour 2, 356 –366 1027 
+
+(2018). 1028 
+
+62.  Clewett, D. V., Huang, R., Velasco, R., Lee, T. -H. & Mather, M. Locus coeruleus 1029 
+
+activity strengthens prioritized memories under arousal. Journal of Neuroscience 38 , 1558 –1030 
+
+1574 (2018). 1031 
+
+63.  Balconi, M. & Pozzoli, U. Arousal effect on emotional face comprehension. 1032 
+
+Physiology & Behavior 97 , 455 –462 (2009). 1033 
+
+64.  Shafiei, G. et al. Dopamine signaling modulates the stability and inte gration of 1034 
+
+intrinsic brain networks. Cerebral Cortex 29 , 397 –409 (2018). 1035 
+
+65.  Taylor, N. L. et al. Structural connections between the noradrenergic and cholinergic 1036 
+
+system shape the dynamics of functional brain networks. NeuroImage 260 , 119455 (2022). 1037 
+
+66.  Pe dersen, R. et al. Dopamine D1 -Receptor organization contributes to functional 1038 
+
+brain architecture. Journal of Neuroscience 44 , e0621232024 (2024). 1039 
+
+67.  Van Den Brink, R. L., Pfeffer, T. & Donner, T. H. Brainstem Modulation of Large -Scale 1040 
+
+Intrinsic Cortical A ctivity Correlations. Front. Hum. Neurosci. 13 , 340 (2019). 1041 
+
+68.  Carboni, E., Tanda, G. L., Frau, R. & Di Chiara, G. Blockade of the Noradrenaline 1042 
+
+Carrier Increases Extracellular Dopamine Concentrations in the Prefrontal Cortex: Evidence 1043 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+40 
+
+that Dopamine Is Ta ken up In Vivo by Noradrenergic Terminals. Journal of Neurochemistry 1044 
+
+55 , 1067 –1070 (1990). 1045 
+
+69.  Yamamoto, B. K. & Novotney, S. Regulation of extracellular dopamine by the 1046 
+
+norepinephrine transporter. Journal of Neurochemistry 71 , 274 –280 (1998). 1047 
+
+70.  Sesack, S. R., Hawrylak, V. A., Matus, C., Guido, M. A. & Levey, A. I. Dopamine axon 1048 
+
+varicosities in the prelimbic division of the rat prefrontal cortex exhibit sparse 1049 
+
+immunoreactivity for the dopamine transporter. Journal of Neuroscience 18 , 2697 –2708 1050 
+
+(1998). 1051 
+
+71.  Morón, J. A., Brockington, A., Wise, R. A., Rocha, B. A. & Hope, B. T. Dopamine 1052 
+
+Uptake through the Norepinephrine Transporter in Brain Regions with Low Levels of the 1053 
+
+Dopamine Transporter: Evidence from Knock -Out Mouse Lines. J Neurosci 22 , 389 –395 1054 
+
+(2002). 1055 
+
+72.  Devoto, P. & Flore, G. On the Origin of Cortical Dopamine: Is it a Co -Transmitter in 1056 
+
+Noradrenergic Neurons? CN 4, 115 –125 (2006). 1057 
+
+73.  Munn, B. R., Müller, E. J., Wainstein, G. & Shine, J. M. The ascending arousal 1058 
+
+system shapes neural dynamics to mediate awareness of cognitive states. Nat Commun 12 ,1059 
+
+6016 (2021). 1060 
+
+74.  Berridge, C. W. The Locus Coeruleus -Noradrenergic System and Stress: Impl ications 1061 
+
+for Post -Traumatic Stress Disorder. in Post -Traumatic Stress Disorder (eds LeDoux, J. E., 1062 
+
+Keane, T. & Shiromani, P.) 213 –230 (Humana Press, Totowa, NJ, 2009). doi:10.1007/978 -1-1063 
+
+60327 -329 -9_10. 1064 
+
+75.  Mather, M. & Sutherland, M. R. Arousal -Biased comp etition in perception and 1065 
+
+memory. Perspectives on Psychological Science 6, 114 –133 (2011). 1066 
+
+76.  Kelberman, M. A. et al. Diversity of ancestral brainstem noradrenergic neurons 1067 
+
+across species and multiple biological factors. bioRxiv (Cold Spring Harbor Labora tory) 1068 
+
+https://doi.org/10.1101/2024.10.14.618224 (2024) doi:10.1101/2024.10.14.618224. 1069 
+
+77.  Porrino, L. J. & Goldman ‐Rakic, P. S. Brainstem innervation of prefrontal and anterior 1070 
+
+cingulate cortex in the rhesus monkey revealed by retrograde transport of HRP. The Journal 1071 
+
+of Comparative Neurology 205 , 63 –76 (1982). 1072 
+
+78.  Hernaus, D., Santa, M. M. C., Offermann, J. S. & Van Amelsvoort, T. Noradrenaline 1073 
+
+transporter blockade increases fronto -parietal functional connectivity relevant for working 1074 
+
+memory. European Neuro psychopharmacology 27 , 399 –410 (2017). 1075 
+
+79 . Zhang, Z., Matos, S. C., Jego, S., Adamantidis, A. & Séguéla, P. Norepinephrine 1076 
+
+Drives Persistent Activity in Prefrontal Cortex via Synergistic α1 and α2 Adrenoceptors. 1077 
+
+PLoS ONE 8, e66122 (2013). 1078 
+
+80.  Song, I., Nea l, J. & Lee, T. -H. Age -Related Intrinsic Functional Connectivity Changes 1079 
+
+of Locus Coeruleus from Childhood to Older Adults. Brain Sci 11 , 1485 (2021). 1080 
+
+81.  Kim, J. -H., Choi, D. -E. & Shin, H. -S. The lateralized LC -NAergic system distinguishes 1081 
+
+vicarious versu s direct fear in mice. Nature Communications 16 , 2364 (2025). 1082 
+
+82.  Likhtik, E. & Johansen, J. P. Neuromodulation in circuits of aversive emotional 1083 
+
+learning. Nat Neurosci 22 , 1586 –1597 (2019). 1084 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+41 
+
+83.  Jacobs, H. I. L. et al. Relevance of parahippocampal -locus coeruleus connectivity to 1085 
+
+memory in early dementia. Neurobiology of Aging 36 , 618 –626 (2015). 1086 
+
+84.  Arnsten, A. F. T. Stress signalling pathways that impair prefrontal cortex structure and 1087 
+
+function. Nature reviews. Neurosc ience 10 , 410 –422 (2009). 1088 
+
+85.  Arnsten, A. F. T. Stress weakens prefrontal networks: molecular insults to higher 1089 
+
+cognition. Nature Neuroscience 18 , 1376 –1385 (2015). 1090 
+
+86.  Korkki, S. M. et al. Dedifferentiation of caudate functional organization is linked to 1091 
+
+reduced D1 dopamine receptor availability and poorer memory function in aging. Imaging 1092 
+
+Neuroscience 3, (2025). 1093 
+
+87.  Ye, S., Bätz, L. R., Jain, A., Salami, A. & Ziaei, M. Resilience -related neural similarity 1094 
+
+during naturalistic movie watching. Imaging Neuros cience 4, IMAG.a.1165 (2026). 1095 
+
+88.  Power, J. D., Barnes, K. A., Snyder, A. Z., Schlaggar, B. L. & Petersen, S. E. 1096 
+
+Spurious but systematic correlations in functional connectivity MRI networks arise from 1097 
+
+subject motion. NeuroImage 59 , 2142 –2154 (2011). 1098 
+
+89.  Fo lstein, M. F., Folstein, S. E. & McHugh, P. R. “Mini -mental state ”. Journal of 1099 
+
+Psychiatric Research 12 , 189 –198 (1975). 1100 
+
+90 . Camozzato, A. L., Kochhann, R., Godinho, C., Costa, A. & Chaves, M. L. Validation 1101 
+
+of a telephone screening test for Alzheimer ’s dise ase. Aging, Neuropsychology, and 1102 
+
+Cognition 18 , 180 –194 (2011). 1103 
+
+91.  Lovibond, S. H. & Lovibond, P. F. Depression anxiety stress scales.  (1995) 1104 
+
+doi:10.1037/t01004 -000. 1105 
+
+92.  Gratz, K. L. & Roemer, L. Difficulties in emotion regulation scale. (2004) 1106 
+
+doi:10.1037/t01029 -000. 1107 
+
+93.  Goldberg, D. P. & Hillier, V. F. A scaled version of the General Health Questionnaire. 1108 
+
+Psychological Medicine 9, 139 –145 (1979). 1109 
+
+94.  Zigmond, A. S. & Snaith, R. P. The hospital anxiety and Depression scale. Acta 1110 
+
+Psychiatrica Sca ndinavica 67 , 361 –370 (1983). 1111 
+
+95.  Connor, K. M. & Davidson, J. R. T. Development of a new resilience scale: The 1112 
+
+Connor -Davidson Resilience Scale (CD -RISC). Depression and Anxiety 18 , 76 –82 (2003). 1113 
+
+96.  Freeston, M. H., Rhéaume, J., Letarte, H., Dugas, M. J. & Ladouceur, R. Why do 1114 
+
+people worry? Personality and Individual Differences 17 , 791 –802 (1994). 1115 
+
+97 . Buhr, K. & Dugas, M. J. Intolerance of Uncertainty Scale –English version. (2002) 1116 
+
+doi:10.1037/t01560 -000. 1117 
+
+98.  Cohen, S., Kamarck, T. & Mermelstein, R. Perce ived stress scale. (1983) 1118 
+
+doi:10.1037/t02889 -000. 1119 
+
+99.  Spielberger, C. D. State -Trait anxiety inventory for adults. (1983) doi:10.1037/t06496 -1120 
+
+000. 1121 
+
+100.  Jensen, A. R. & Rohwer, W. D. The stroop color -word test: A review. Acta 1122 
+
+Psychologica 25 , 36 –93 (1966). 1123 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+42 
+
+101.  Reitan, R. The Trail Making Test as an initial screening procedure for 1124 
+
+neuropsychological impairment in older children. Archives of Clinical Neuropsychology 19 ,1125 
+
+281 –288 (2003). 1126 
+
+102.  Newcombe, F. Missile Wounds of the Brain: A Study of Psychological Def icits .1127 
+
+(1969). 1128 
+
+103.  Bradley, M. M. & Lang, P. J. Measuring emotion: The self -assessment manikin and 1129 
+
+the semantic differential. Journal of Behavior Therapy and Experimental Psychiatry 25 , 49 –1130 
+
+59 (1994). 1131 
+
+104.  Marques, J. P. et al. MP2RAGE, a self bias -field c orrected sequence for improved 1132 
+
+segmentation and T1 -mapping at high field. NeuroImage 49 , 1271 –1281 (2009). 1133 
+
+105.  Priovoulos, N. et al. High -resolution in vivo imaging of human locus coeruleus by 1134 
+
+magnetization transfer MRI at 3T and 7T. NeuroImage 168 , 427 –436 (2018 ). 1135 
+
+106.  Esteban, O. et al. fMRIPrep: a robust preprocessing pipeline for functional MRI. 1136 
+
+Nature Methods 16 , 111 –116 (2018). 1137 
+
+107.  Mehta, K. et al. XCP -D: A robust pipeline for the post -processing of fMRI data. 1138 
+
+Imaging Neuroscience 2, (2024). 1139 
+
+108.  Wo rsley, K. J. & Friston, K. J. Analysis of FMRI Time -Series Revisited —Again. 1140 
+
+NeuroImage 2, 173 –181 (1995). 1141 
+
+109.  Yi, Y. -J. et al. It is the locus coeruleus! Or … is it?: a proposition for analyses and 1142 
+
+reporting standards for structural and functional magnetic resonance imaging of the 1143 
+
+noradrenergic locus coeruleus. Neurobiology of Aging 129 , 137 –148 (2023). 1144 
+
+110.  Avants, B. B. et al. A reproducible evaluation of ANTs similarity metric performance in 1145 
+
+brain image registration.  NeuroImage  54 , 2033 –2044 (2010). 1146 
+
+111.  Tustison, N. J. et al. N4ITK: Improved N3 bias correction.  IEEE Transactions on 1147 
+
+Medical Imaging 29 , 1310 –1320 (2010). 1148 
+
+112.  Larivière, S. et al. Multiscale Structure –Function gradients in the neonatal 1149 
+
+connectome. Cerebral Cortex 30 , 47 –58 (2019). 1150 
+
+113.  Yarkoni, T., Poldrack, R. A., Nichols, T. E., Van Essen, D. C. & Wager, T. D. Large -1151 
+
+scale automated synthesis of human functional neuroimaging data. Nature Methods 8, 665 –1152 
+
+670 (2011). 1153 
+
+114.  Poldrack, R. A. Inferring Mental States from Neuroimaging Data: From Reverse 1154 
+
+Inference to Large -Scale Decoding. Neuron 72 , 692 –697 (2011). 1155 
+
+115.  Alexander -Bloch, A. F. et al. On testing for spatial correspondence between maps of 1156 
+
+human brain structure and function. NeuroImage 178 , 540 –551 (2018). 1157 
+
+116.  Markello, R. D. & Misic , B. Comparing spatial null models for brain maps. 1158 
+
+NeuroImage 236 , 118052 (2021). 1159 
+
+117 . Váša, F. et al. Adolescent tuning of association cortex in human structural brain 1160 
+
+networks. Cerebral Cortex 28 , 281 –294 (2017). 1161 
+
+118.  Benjamini, Y. & Hochberg, Y. Control ling the False Discovery Rate: A Practical and 1162 
+
+Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B: 1163 
+
+Statistical Methodology 57 , 289 –300 (1995). 1164 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+43 
+
+119.  Shafiei, G. et al. Topographic gradients of intrinsic dynamics across neocortex. eLife 1165 
+
+9, (2020). 1166 
+
+120.  Kaller, S. et al. Test –retest measurements of dopamine D1 -type receptors using 1167 
+
+simultaneous PET/MRI imaging. European Journal of Nuclear Medicine and Molecular 1168 
+
+Imaging 44 , 1025 –1032 (2017). 1169 
+
+121.  Alakurtti, K. et al. Long -Te rm Test –Retest Reliability of Striatal and Extrastriatal 1170 
+
+Dopamine D2/3 Receptor Binding: Study with [11C]Raclopride and High -Resolution PET. 1171 
+
+Journal of Cerebral Blood Flow & Metabolism 35 , 1199 –1205 (2015). 1172 
+
+122.  Dukart, J. et al. Cerebral blood flow predic ts differential neurotransmitter activity. 1173 
+
+Scientific Reports 8, 4074 (2018). 1174 
+
+123.  Hesse, S. et al. Central noradrenaline transporter availability in highly obese, non -1175 
+
+depressed individuals. European Journal of Nuclear Medicine and Molecular Imaging 44 ,1176 
+
+10 56 –1064 (2017). 1177 
+
+124.  Savli, M. et al. Normative database of the serotonergic system in healthy subjects 1178 
+
+using multi -tracer PET. NeuroImage 63 , 447 –459 (2012). 1179 
+
+125.  Beliveau, V. et al. A High -ResolutionIn VivoAtlas of the human brain ’s serotonin 1180 
+
+system. Journal of Neuroscience 37 , 120 –128 (2016). 1181 
+
+126.  Aghourian, M. et al. Quantification of brain cholinergic denervation in Alzheimer ’s1182 
+
+disease using PET imaging with [18F] -FEOBV. Molecular Psychiatry 22 , 1531 –1538 (2017). 1183 
+
+127.  Galovic, M. et al. In vivo N -Me thyl -D-Aspartate receptor (NMDAR) density as 1184 
+
+assessed using positron emission tomography during recovery from NMDAR -Antibody 1185 
+
+encephalitis. JAMA Neurology 80 , 211 (2022). 1186 
+
+1187 
+
+1188 
+
+1189 
+
+1190 
+
+1191 
+
+1192 
+
+## Figure Captions 1193 
+
+Figure 1: Overview of the study design and gradient analyses . (a) Ultra -high -field 7 T fMRI 1194 
+
+data were analyzed from 72 younger adults and 68 older adults during naturalistic viewing of 1195 
+
+two movie clips differing in emotional arousal and valence (neutral and negative valence). 1196 
+
+Participants provided self -reported ratings of valence and arousal after each movie -viewing. 1197 
+
+In a separate behavioral session, participants completed a battery of emotional wellbeing 1198 
+
+questionnaires and cognitive tasks. Principal component analysis (PCA) was applied to derive 1199 
+
+two composite indices: an Emotional Resilience Index (ERI) summarizing emotional wellbeing 1200 
+
+measures and a Cognitive Functioning Index summarizing cognitive performance. (b) LC –1201 
+
+cortical functional gradient estimation. For each participant and movie condition, functional 1202 
+
+connectivity was computed between locus coeruleus (LC) voxels and 1,000 cortical parcels 1203 
+
+from the Schaefer atlas 39 , yielding an LC –cortical connectivity matrix. A parcel -by -parcel 1204 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+44 
+
+cortical similarity matrix was constructed based on LC connectivity using Normalized Angular 1205 
+
+(cosine) similarity 40 . Diffusion map embedding 41 was applied to derive low -dimensional 1206 
+
+gradients capturing the principal axes of varia nce in LC –cortical coupling. Gradients were 1207 
+
+ranked by variance explained, and individual gradients were aligned to group -level templates 1208 
+
+using Procrustes rotation prior to statistical analysis. 1209 
+
+Figure 2: Group -level LC –linked cortical gradients shown separ ately for the right and 1210 
+
+left LC under neutral and negative movie -viewing conditions (columns, left to right: right 1211 
+
+LC –cortex neutral, left LC –cortex neutral, right LC –cortex negative, left LC –cortex negative). 1212 
+
+(a) Scree plots showing the percentage of expl ained variance for the first ten gradients; the 1213 
+
+first two gradients (G1, G2) capture the largest proportion of explained variance in all four 1214 
+
+embeddings and are retained for subsequent analyses. (b) Cortical surface projections of 1215 
+
+Gradient 1 (top) and Grad ient 2 (bottom), shown as lateral and medial views of both 1216 
+
+hemispheres; color reflects gradient loading, with colorbar ranges scaled per panel. (c) Joint 1217 
+
+G1 × G2 embedding of cortical parcels, colored by Yeo seven -network assignment 36 .1218 
+
+Network abbreviations: visual (VIS), somatomotor (SMN), dorsal attention (DAN), ventral 1219 
+
+attention (VAN), limbic (LIM), frontoparietal (FPN), and default mode (DMN). 1220 
+
+Figure 3: Chemoarchitectural and canonical -gradient alignment of LC –linked cort ical 1221 
+
+Gradients 1 and 2 across emotional conditions and hemispheres. (a) Dominance 1222 
+
+analysis quantifying the relative contribution of 13 neurotransmitter receptor and transporter 1223 
+
+density maps to the spatial topography of Gradient 1, derived separately for the ri ght and left 1224 
+
+LC under neutral (left two columns) and negative (right two columns) movie -viewing 1225 
+
+conditions. Bars show the relative contribution (%) of each receptor or transporter to the total 1226 
+
+explained variance, with bar color encoding absolute variance c ontribution (Δ R², shaded 1227 
+
+colorbar). Model -level adjusted R² is reported above each panel. (b) Scatter plots showing 1228 
+
+the spatial alignment between Gradient 2 and canonical cortical gradients 23 across the same 1229 
+
+four hemisphere × condition combinations (Spearman's ρ; significance assessed via spin 1230 
+
+permutation, see Methods) . During neutral movie -viewing, G2 align ed with the canonical 1231 
+
+visual –somatomotor (V –S) axis, whereas during negative movie -viewing, G2 aligned with the 1232 
+
+canonical sensorimotor –association (S –A) axis. Inset cortical surfaces show the 1233 
+
+corresponding Gradient 1 and Gradient 2 group -level maps. Receptor/tran sporter 1234 
+
+abbreviations: DAT, dopamine transporter; D 
+
+₁/D
+
+₂, dopamine receptors; NAT, noradrenaline 1235 
+
+transporter; 5 -HT 1a / 5-HT1b / 5-HT2a / 5-HT 4 , serotonin receptor subtypes; SERT, serotonin 1236 
+
+transporter; mGluR 
+
+₅, metabotropic glutamate receptor 5; NMDA, N -methyl -D-aspartate 1237 
+
+receptor; GABAₐ, γ-aminobutyric acid type A receptor; VAChT, vesicular acetylcholine 1238 
+
+transporter. 1239 
+
+Figure 4: Age -related network shifts within the two -dimensional (G1 × G2) manifold of 1240 
+
+LC –linke d cortical organization during negative movie -viewing . (a, b) Group -averaged 1241 
+
+cortical maps of (a) Gradient 1 and (b) Gradient 2 for younger and older adults, derived 1242 
+
+separately from the right LC –linked cortical gradient (left columns) and left LC –linked cortical 1243 
+
+gradient (right columns); color reflects gradient loadings. (c) Joint G1 × G2 embedding of 1244 
+
+cortical parcels for the right LC –linked cortical gradient (left panel) and left LC –linked cortical 1245 
+
+gradient (right panel) of older adults , with parcels col ored by their Yeo seven -network 1246 
+
+assignment 36 (VIS, SMN, DAN, VAN, LIM, FPN, DMN). Marginal histograms above and to 1247 
+
+the right of each scatter plot show the distributions of younger (grey) and older (red) adult 1248 
+
+gradient scores along G1 ( top) and G2 (right) . Arrows depict age -related centroid 1249 
+
+displacement: each arrow originates at the younger -adult network centroid and terminates at 1250 
+
+the older -adult centroid, with arrow length indicating Euclidean displacement and direction 1251 
+
+indicating the r elative ΔG1 and ΔG2 contributions. Network abbreviations: VIS, visual; SMN, 1252 
+
+somatomotor; DAN, dorsal attention; VAN, ventral attention; LIM, limbic; FPN, frontoparietal; 1253 
+
+DMN, default mode. 1254 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+45 
+
+Figure 5: Age -related differences in LC –linked cortical dispersion during negative 1255 
+
+movie -viewing and its associations with emotional wellbeing. (a) Raincloud plots 1256 
+
+showing the distribution of subject -level dispersion values in younger adults (purple) and 1257 
+
+older adults (teal) across three complementary dispersion metrics derived from the right LC –1258 
+
+linked cortical gradient manifold (G1 × G2). Left: global dispersion, computed as the mean 1259 
+
+Euclidean distance of all cortical parcels from the overall centroid. Midd le: within -network 1260 
+
+dispersion for the frontoparietal network (FPN), computed as the mean Euclidean distance of 1261 
+
+FPN parcels from the FPN centroid. Right: between -network dispersion, computed as the 1262 
+
+mean Euclidean distance between all pairs of Yeo seven -netw ork centroids. Each dot 1263 
+
+represents one participant; box plots display the median and interquartile range, and density 1264 
+
+curves show the distribution shape. Inset values report independent -samples t -statistics, p -1265 
+
+values, and Cohen's d for the age -group compar ison. (b) Scatter plots showing the 1266 
+
+association between covariate -adjusted dispersion and the Emotional Resilience Index in 1267 
+
+younger adults (purple) and older adults (teal). Left: global dispersion. Right: FPN 1268 
+
+dispersion. Solid lines and shaded bands show t he linear fit and 95% confidence interval per 1269 
+
+group, and each dot represents one participant. Network abbreviations: FPN, frontoparietal 1270 
+
+network. 1271 
+
+Extended Data Figure 1: Neurosynth functional decoding of LC –linked cortical 1272 
+
+gradients 1 and 2 across emotion al conditions and hemispheres. Cortical surface 1273 
+
+projections of LC –linked cortical gradients and their corresponding Neurosynth meta -analytic 1274 
+
+association maps are shown for Gradient 1 and Gradient 2, separately for the right and left 1275 
+
+LC, under neutral and n egative movie -viewing conditions. Top row: neutral movie; bottom 1276 
+
+row: negative movie. Within each row, panels show, from left to right, Gradient 1 (right LC, 1277 
+
+left LC) and Gradient 2 (right LC, left LC). For each panel, inset cortical surfaces display the 1278 
+
+gradient map and bar plots show the top -ranked Neurosynth association terms ranked by 1279 
+
+Spearman's ρ. Red bars indicate positive correlations between the gradient map and meta -1280 
+
+analytic association maps; blue bars indicate negative correlations. Statistical si gnificance 1281 
+
+was assessed against a spin -test null using the Hungarian method (10,000 spherical 1282 
+
+rotations with optimal parcel reassignment 117 ), which preserves the empirical spatial 1283 
+
+autocorrelation of the cortex; only terms surviving p spin < 0.05 are shown. 1284 
+
+1285 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.02.05.704005 doi: bioRxiv preprint

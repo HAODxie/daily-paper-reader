@@ -1,0 +1,367 @@
+Title: Population-Level Profiling of DSM-5 Depressive Symptoms Among Self-Reported ADHD and ASD Users on Twitter: An Exploratory Study Using Advanced NLP and Statistical Analysis
+
+URL Source: https://arxiv.org/pdf/2607.05626v1
+
+Published Time: Wed, 08 Jul 2026 00:12:38 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# Population-Level Profiling of DSM-5 Depressive Symptoms Among Self-Reported ADHD and ASD Users on Twitter: An Exploratory Study Using Advanced NLP and Statistical Analysis 
+
+Muhammad Rizwan, PhD 1, David Nabergoj, MSc 1, and Jure Demšar, PhD 11Faculty of Computer and Information Science, University of Ljubljana, Slovenia 
+
+Corresponding author: 
+
+Muhammad Rizwan Faculty of Computer and Information Science University of Ljubljana Veˇ cna pot 113, Ljubljana 1000, Slovenia Email: muhammad.rizwan@fri.uni-lj.si 
+
+Abstract Background: Depression frequently co-occurs with attention-deficit/hyperactivity disorder (ADHD) and autism spectrum disorder (ASD). However, population-level differences in how depressive symp-toms are expressed between these groups remains underexplored. 
+
+Objective: This study examined whether social media users with ADHD and ASD differ in how they express Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition (DSM-5) depressive symptoms in their tweets, focusing on the relative prominence of the nine symptoms at population level and testing whether observed differences persist across varying levels of depressive-content filtering. 
+
+Methods: We analysed 1,282,437 tweets from 792 users (622 ADHD; 170 ASD) from a diagnosis-disclosure Twitter dataset. Tweets were pre-filtered for depressive relevance using zero-shot NLI, then classified into nine DSM-5 depressive symptoms using MentalRoBERTa fine-tuned on ReDSM5 (an ex-pert annotated dataset). Nine-symptom profiles were created and mean-centered per user. We applied L1-penalised logistic regression with 5-fold cross-validation to distinguish between ADHD and ASD users, complemented by Pearson correlations to assess symptom co-occurrence. We tested the robust-ness of our approach across five filtering thresholds (0.45–0.65) using 1,000-resample bootstrapping and cross-threshold sign consistency. 
+
+Results: For multi-label depression symptom classification, MentalRoBERTa achieved macro-F1 of 0.901 on a held-out set ( ≥ 0.85 F1 on 8/9 symptoms), substantially outperforming the original ReDSM5 benchmark. ADHD vs ASD classification using fitted logistic regression yielded stable but modest performance (cross-validated ROC-AUC 0.645–0.653 across thresholds). Coefficient analysis revealed that cognitive issues, sleep issues, appetite change, and fatigue consistently leaned toward ADHD, while suicidal ideation and anhedonia consistently leaned toward ASD (bootstrap selection ≥ 0.90 across all thresholds). Psychomotor disturbance showed the same ASD-leaning directional effect with slightly lower stability. Correlation analysis revealed a largely shared symptom co-occurrence structure between groups (17 of 36 pairs individually bootstrap-robust in both groups and in the same direction); no pair met our pre-specified criterion for a robust disorder-specific difference. 
+
+1arXiv:2607.05626v1 [cs.CL] 6 Jul 2026 Conclusions: Population-level differences in depression-related language between self-reporting so-cial media users with ADHD and ASD were consistently observed across multiple analytic thresholds, indicating distinct patterns of depressive symptom expression. These differences reflect population-level reproducibility rather than clinical validity and should be interpreted as exploratory rather than as evi-dence of differing depressive phenomenology at the individual level.  
+
+> Keywords: depression; DSM-5; ADHD; autism spectrum disorder; digital phenotyping; MentalRoBERTa; social media; natural language processing; Twitter.
+
+# 1 Introduction 
+
+Major depressive disorder is one of the most common psychiatric comorbidities in both attention-deficit/hyperactivity disorder (ADHD) [1, 22] and autism spectrum disorder (ASD) [2, 25], two highly prevalent and frequently co-occurring neurodevelopmental conditions [23, 24]. Epidemiological work has consistently reported ele-vated rates of depressive symptoms in both populations relative to neurotypical comparators, with prevalence estimates that vary widely depending on age, sex, and ascertainment. Beyond differing prevalence, sev-eral clinical accounts suggest that the phenomenology of depression itself differs between the two groups, encompassing differences in executive dysfunction [3, 30], autistic burnout and camouflaging-related ex-haustion [4, 27], reward sensitivity and loneliness [5], and suicide risk [26]. Quantitative population-scale evidence that simultaneously profiles all nine DSM-5 symptoms across both conditions, however, has re-mained comparatively scarce [6]. We were motivated by two practical considerations. First, social media discourse provides a substan-tially large, naturalistic window onto how individuals describe their own symptoms, complementing the structured language of clinical interviews [7], and forms part of a broader digital-phenotyping paradigm for inferring behavioural and mental health states from naturalistic data streams [43]. A growing body of work has applied natural language processing to social media posts to study depressive language [8, 9, 33], with approaches ranging from bag-of-words and lexicon-based features [10, 32] to contextual embeddings from transformer-based models such as BERT [11, 34] and its domain-adapted successors such as MentalBERT and MentalRoBERTa [14]. Public diagnosis-disclosure datasets have also enabled characterisations of how individuals who self-report ADHD or ASD describe their experience online [12, 13, 31], though these analy-ses have generally focused on lexical or topical differences rather than formally defined depressive symptom dimensions. Second, the maturation of domain-adapted transformers—in particular MentalRoBERTa [14], which further pre-trains RoBERTa [15] on large mental-health social media corpora—has made it feasible to operationalise the DSM-5 depressive criteria as a multi-label text-classification task with credible sentence-level performance. We build directly on the ReDSM5 corpus [16], in which each sentence is labelled by a licensed psychologist for the presence or absence of each of the nine DSM-5 major depressive episode symptoms. A further methodological challenge motivates our analytical design. Pipelines that combine zero-shot pre-filtering, supervised symptom classification, and downstream group comparisons are sensitive to design choices, particularly the probability threshold used for zero-shot depression-relevance filtering. Rather than selecting a single cutoff, we treat the threshold as a sensitivity parameter and report results across five values (0.45–0.65), requiring findings to remain consistent across this range before interpretation. We further combine within-threshold bootstrap stability with cross-threshold directional consistency to separate robust findings from those with unstable magnitude or no support. We frame this study as exploratory and population level. We do not attempt to screen individuals, to diagnose, or to estimate clinical severity from text. Instead, we ask whether the relative emphasis on each DSM-5 depressive symptom dimension differs systematically between self-reported ADHD and ASD users at population level. This paper makes four contributions. First, it provides an exploratory, population-level characterisation of how the nine DSM-5 depressive symptoms are differentially emphasised across 2the two communities. Second, it introduces a two-stage classification pipeline that couples a zero-shot depression-relevance pre-filter with a MentalRoBERTa multi-label classifier fine-tuned on ReDSM5, with per-label decision-threshold calibration. Third, it contributes a graded robustness scheme that explicitly separates findings supported by both bootstrap stability and cross-threshold consistency from those that are not. Fourth, it adds a user-level co-occurrence analysis that tests whether the two groups differ in how depressive symptoms are organised pairwise.  
+
+> Figure 1: Study workflow for detecting depressive symptom patterns in ADHD and ASD Twitter users. Pipeline for detecting depressive symptoms in ADHD/ASD tweets using a two-stage NLI + fine-tuned classifier, followed by user-level profiling that feeds parallel co-occurrence and discriminative (ADHD vs ASD) analyses.
+
+# 2 Methods 
+
+In this section we first describe our data sources, then our two-stage tweet-level classification pipeline and its calibration. We then turn to how we built user-level symptom profiles and compared users with ADHD and ASD, including our threshold-sensitivity design and bootstrap-based robustness criteria, before closing with a complementary symptom co-occurrence analysis. Figure 1 summarises the overall study workflow. 
+
+2.1 Data Sources 
+
+2.1.1 Twitter Data 
+
+We obtained the Twitter mental health dataset from IEEE DataPort [17]. The source dataset covers self-reported users across several mental health conditions; for this study we consider only the subset of users who self-reported a diagnosis of ADHD or ASD, and we do not analyse the other diagnostic groups this 3dataset contains. The dataset comprises tweets from users who explicitly self-reported a clinical diagnosis of ADHD or ASD within their public posts—not merely an expression of symptoms. Users and timeline posts were identified via the Twitter full-archive API using diagnosis-related search rules, enabling retrieval of historical tweets. All data are publicly available and were collected between September 1, 2020, and August 31, 2021 [17]. We use “Twitter” throughout for consistency with the dataset, noting the platform was rebranded to X after the collection period. The raw corpus comprised 1,009,002 tweets from 622 self-reported ADHD users and 273,435 tweets from 170 self-reported ASD users (total: 1,282,437 tweets from 792 users). 
+
+2.1.2 Annotation Corpus for Classifier Training 
+
+We trained and evaluated the multi-label symptom classifier on ReDSM5 [16], an expert-annotated corpus of Reddit posts in which a licensed psychologist labelled each sentence for the presence or absence of the nine DSM-5 major depressive episode criteria [18] (depressed mood, anhedonia, appetite change, sleep issue, psychomotor disturbance, fatigue, worthlessness, cognitive issues, and suicidal ideation). After pre-processing, the working corpus comprised 1,814 sentences, of which 1,427 (1379 unique) carried at least one DSM-5 symptom label. We found the symptom labels to be distributed unevenly i.e. worthlessness ( n
+
+= 340), depressed mood ( n = 364), suicidal thoughts ( n = 190), fatigue ( n = 140), anhedonia ( n = 137), sleep issue ( n = 112), cognitive issues ( n = 61), appetite change ( n = 48), and psychomotor ( n = 35). This imbalance motivates the class-imbalance handling described under Stage 2 (Multi-Class Model Training), below, and we interpret findings for the sparsest labels with correspondingly greater caution throughout. The sentence-level annotation of ReDSM5 training data mostly mitigates domain shift [19]. Unlike full Reddit posts, sentence-level Reddit data more closely resembles tweets in terms of length and semantic granularity. Since symptom mentions are typically expressed within a single sentence (e.g., “I have a persistent sad-ness”), sentence-level training encourages the model to learn symptom-specific contextual representations rather than relying on long-document context. 
+
+2.2 Tweet-Level Classification Pipeline 
+
+2.2.1 Stage 1: Zero-Shot Depressive Content Screening 
+
+In stage 1, we screened all 1,282,437 tweets for depressive relevance before symptom-level classification, using a zero-shot depression-relevance pre-filter based on natural language inference (NLI): a cross-encoder NLI model (cross-encoder/nli-deberta-v3-large) scored each tweet against two candidate labels, “DSM-5 de-pressive symptom present” and “no DSM-5 depressive symptom.” In brief, NLI-based zero-shot classifica-tion reframes each candidate label as a hypothesis (e.g., “this text expresses a DSM-5 depressive symptom”) and uses a model trained on large-scale entailment data to judge whether the tweet (the premise) entails that hypothesis, which lets the same pre-trained model score arbitrary candidate labels without any label-specific training data. We emphasise that this stage performs binary depressive-relevance screening only: it does not identify which DSM-5 symptom(s) a tweet expresses. That determination is made entirely by the fine-tuned multi-label MentalRoBERTa classifier in Stage 2, which is the only component of the pipeline that produces symptom-level (multi-label) output. It is built on the DeBERTa-v3 architecture [46], and cross-encoder NLI models of this kind report the strongest published accuracy among general-purpose entailment models of comparable size on standard NLI benchmarks [20, 47], trained with the SentenceTransformers Cross-Encoder class on the combined SNLI and MultiNLI corpora [47]. A supervised alternative would require a labelled Twitter depression-relevance corpus that does not exist for this population, and risks conflating relevance filtering with Stage 2’s symptom-level labels. Because our Stage 1 task is itself an entailment judgement (whether a tweet entails the hypothesis that it expresses a DSM-5 depressive symptom), we con-4sider these general-purpose NLI benchmarks directly relevant to its suitability as a depression-relevance screen, rather than requiring a zero-shot-specific benchmark. The conventional default decision boundary for zero-shot NLI classifiers is a positive-label probability of 0.5 [20]. We adopted 0.5 as the nominal default and assessed the stability of all downstream findings by sweeping the threshold across five values (0.45–0.65), as described under Pre-Filter Zero-Shot Threshold Sensitivity Design, below. We deliberately calibrated this stage toward recall rather than precision: a tweet wrongly excluded here (a false negative) is permanently lost to the analysis, since no later stage can re-cover it, whereas a tweet wrongly retained (a false positive) can still be corrected downstream. Two further gates absorb that cost: the per-label calibrated threshold introduced under the section Per-Label Decision Threshold Calibration, below, discards any pre-filtered tweet that fails to clear a symptom-specific evidence threshold, and the per-user quality gate, described under User Symptom Scoring and Quality Gating, below, additionally requires at least 30 doubly-gated tweets before a user’s symptom profile is computed at all. Stage 1 is therefore intentionally a wide, high-recall candidate filter, with precision enforced by the two downstream gates rather than by the zero-shot threshold itself. The same recall-first logic used to justify permissive screening in biomedical text mining, where a missed relevant item cannot be recovered by later stages but a wrongly retained one still can be [48]. A high-recall first-stage filter followed by a higher-precision second-stage model is a good strategy in such applications [49]. In practice, the NLI pre-filter performed well as an initial screen for depressive language, substantially reducing the volume of off-topic tweets. Of the 1,282,437 tweets in the initial corpus, the number retained fell sharply. For instance, 579,569 tweets (45.2%) passed at a threshold of 0.45, dropping to 474,415 (37.0%) at 0.50, 373,667 (29.1%) at 0.55, 280,328 (21.9%) at 0.60, and 197,213 (15.4%) at 0.65. This decline reflects the expected recall-precision trade-off across the sweep: lower thresholds (e.g., 0.45) favour recall, admitting more candidate tweets (and more eventual false positives for the downstream gates to filter out), while higher thresholds (e.g., 0.65) favour precision at the cost of prematurely discarding some genuinely relevant tweets. Supplementary Ta-ble S7 carries these counts forward through the two downstream gates. Only the depressively-relevant subset that survived this screen was then passed to the fine-tuned multi-label DSM-5 symptom classifier described under Stage 2. 
+
+2.2.2 Stage 2: Multi-Class Model Training 
+
+We fine-tuned MentalRoBERTa [14] as the Stage 2 symptom model, since domain-adapted transformers pre-trained on mental-health social media text represent the state-of-the-art approach for symptom-level text classification of this kind [14]. Because a single tweet can express more than one DSM-5 symptom, the underlying task is formally multi-label [35]. MentalRoBERTa’s domain-adaptive pre-training makes it well-suited to the informal, symptom-expressive register of Twitter discourse. We added a classification layer on top of the model: it takes the model’s representation of each post (a 768-number vector) and turns it into nine scores, one for each DSM-5 depression symptom, using a sigmoid function to keep scores between 0 and 1, with dropout used to prevent overfitting. We trained the model using Binary Cross-Entropy with Logits loss (a standard way to score multi-label predictions), extended with inverse-frequency positive-class weighting so that rarer symptoms count for more—a common fix for imbalanced data [36]—plus an optional smoothing step that stops the model from being overconfident about rare symptoms. Each post was shortened or padded to 128 tokens (word pieces), using a batch size of 16. To tune Stage 2 classifier hyperparameters, we ran a grid search over 48 configurations (Table 1), training the classification head at 10 × the encoder learning rate. All runs used AdamW [38] (weight decay 0.01, gradient clipping 1.0), a linear warmup schedule, up to 16 epochs, and early stopping (patience = 3) based on validation macro-F1. Data were split into stratified training (70%), validation (15%), and test (15%) sets (965/207/207 sentences), making sure that no duplicate entry comes in the test set. After selecting the best hyperparameters and epoch count via grid search, we retrained the model on the full dataset using these 5fixed settings to maximise data utilisation.                 
+
+> Table 1: Grid search parameter ranges. Hyperparameter values considered during the 48-cell grid search used to select the Stage 2 best classifier configuration.
+> Hyperparameter Values Considered (Grid Search)
+> Encoder learning rate 8×10 −6,2×10 −5
+> Dropout 0.3, 0.4 Label smoothing 0.0, 0.05 Positive-weight boost multiplier 1.0, 1.5, 2.0 Warmup ratio 0.06, 0.10
+> Best configuration found: encoder learning rate = 2×10 −5; dropout = 0.4; label smoothing = 0.0; boost multiplier = 1.5; warmup ratio = 0.10; converging at epoch 9.
+
+2.2.3 Per-Label Decision Threshold Calibration 
+
+We performed a per-label threshold sweep on the validation set, rather than applying one uniform sigmoid threshold to every symptom, selecting the value that maximised binary F1 for each label independently. The resulting thresholds ranged from 0.150 (Suicidal Thoughts) to 0.825 (Depressed Mood), reflecting differences in base rate and linguistic specificity across symptoms. We use these calibrated thresholds for two purposes: to convert continuous scores into binary decisions for classifier evaluation and reporting (reported later under Classifier Performance), and, as a secondary per-tweet relevance gate, to identify which pre-filtered tweets carry calibration-consistent symptom-level signal before they are aggregated into per-user profiles. As described under User Symptom Scoring and Quality Gating and Per-User Symptom Vectors and User-Level Centering, below, per-user symptom profiles are then formed by averaging the raw calibrated sigmoid scores across a user’s gated, pre-filtered tweets. 
+
+2.2.4 User Symptom Scoring and Quality Gating 
+
+We applied the fine-tuned model to every tweet that passed the zero-shot depression-relevance pre-filter (described above under Stage 1), producing a sigmoid probability score in [0, 1] for each of the nine DSM-5 dimensions per tweet. Before aggregating these scores into per-user profiles, we applied a further per-tweet symptom-relevance gate: a tweet was retained only if at least one of its nine symptom scores exceeded that symptom’s own per-label calibrated decision threshold introduced above (Table 2). This gate ensures that per-user symptom means are computed from tweets carrying calibration-consistent symptom-level signal, rather than being diluted by tweets whose scores are uniformly low across all nine dimensions. For each user, we then formed a per-symptom score by averaging the raw sigmoid scores across that user’s gated, pre-filtered tweets, separately for each of the nine symptoms. We excluded users contributing fewer than 30 depressive relevant tweets, so that each per-user mean vector was computed from a statistically reliable sample. Under a worst-case binomial assumption, the standard error of a per-user mean is at most p0.25 /30 ≈ 0.091 , and falls below 0.03 at realistic per-symptom base rates. At the nominal pre-filter threshold (0.50), the symptom-relevance gate followed by this per-user quality gate retained 560 ADHD and 150 ASD users; the retained counts vary with the pre-filter threshold, as in Supplementary Table S1; the full tweet- and user-level attrition at each filtering stage (Stage 1 pre-filter, per-tweet symptom-score gate, and per-user minimum-tweet gate) is given in Supplementary Table S7. We note that mean scores close to zero are expected here: they reflect base rates of symptom-relevant language in naturalistic Twitter discourse, not individual clinical severity. 62.3 Group-Level Comparison 
+
+2.3.1 Per-User Symptom Vectors and User-Level Centering 
+
+For each retained user, we built a nine-dimensional symptom profile by averaging the raw per-tweet sigmoid scores across that user’s pre-filtered tweets. To remove between-user differences in overall depressive-language intensity and isolate each user’s relative symptom emphasis, we centered each profile on that user’s own average across the nine symptoms—a step we refer to as user-level centering—for user u, the centered value for symptom k is xu,k = su,k minus that user’s own mean across all nine symptom scores. We then standardised each centered feature to zero mean and unit variance across users before fitting the logistic regression (discriminative model) described under L1-Penalised Logistic Regression with Nested Cross-Validation, below. In effect, this two-step procedure asks which symptoms a given user emphasised more or less than their own personal baseline, rather than how much depressive language they produced overall. 
+
+2.3.2 Pre-Filter Zero-Shot Threshold Sensitivity Design 
+
+We re-ran the full downstream analysis at five depression-relevance pre-filter zero-shot thresholds spanning 0.45 to 0.65 in steps of 0.05, to establish whether our group-level findings are robust to the zero-shot pre-filter cutoff. At each threshold we re-derived per-user symptom profiles, re-centered and re-standardised them, and re-fit the discriminative model. Because both the per-tweet symptom-relevance gate and the per-user quality gate ( ≥ 30 gated tweets, as defined above under User Symptom Scoring and Quality Gating) were re-applied at each threshold, the retained sample size decreased across the swept range, from n =719 (ADHD = 567; ASD = 152) at the lowest threshold (0.45) to n = 658 (ADHD = 522; ASD = 136) at the highest (0.65), while the ADHD:ASD ratio remained approximately stable throughout (Supplementary Table S1). 
+
+2.3.3 L1-Penalised Logistic Regression with Nested Cross-Validation 
+
+We trained an L1-penalised (LASSO) logistic regression classifier [39] at each threshold to discriminate ADHD from ASD users from their centered, standardised symptom profiles, using class-balanced weights to compensate for the ADHD:ASD imbalance. We selected the inverse regularisation strength C by 5-fold cross-validated ROC-AUC [40, 42] over a 20-point logarithmic grid (LogisticRegressionCV; liblinear solver; maximum 2,000 iterations). We chose L1 regularisation so that uninformative symptom dimen-sions would be driven to exactly zero, providing an automatic sparsity-based selection signal alongside the bootstrap stability analysis described next. 
+
+2.3.4 Bootstrap Stability and Robustness Criteria 
+
+We performed 1,000 nonparametric bootstrap resamples of users at each threshold (sampling with replace-ment, preserving the original sample size; seed = 42) [41]. For each symptom we derived the bootstrap mean coefficient, the 2.5–97.5 percentile interval, the selection frequency (the proportion of resamples in which the coefficient was non-zero), and a stability flag indicating whether the 95% interval excluded zero. We then applied a pre-specified graded robustness scheme that combines cross-threshold directional consis-tency with within-threshold bootstrap selection frequency. Level 1 (robust; primary findings) required an identical coefficient sign at all five thresholds and bootstrap selection ≥ 0.90 at every threshold. Level 2 (directionally consistent; secondary findings) required an identical sign at all five thresholds and selection 
+
+≥ 0.90, but allowed intervals that include zero. We excluded from interpretation any symptom whose sign flipped across the range, whose selection declined monotonically, or whose non-zero status was confined to 7one end of the range. This scheme privileges direction over magnitude estimates that are inherently noisy under L1 regularisation at small effect sizes. 
+
+2.3.5 Symptom Co-occurrence Analysis 
+
+To complement the discriminative analysis, we computed Pearson correlation coefficients between all 36 pairs of the nine DSM-5 symptom dimensions over the centered per-user symptom profiles, separately for each disorder group (ADHD and ASD) at each pre-filter threshold. Because profiles were user-level centered before correlation, the resulting coefficients describe relative co-emphasis after between-user differences in overall depressive-language intensity have been removed. For each pair and threshold, we additionally performed 1,000 nonparametric bootstrap resamples of users (sam-pling with replacement, preserving the original sample size; seed = 42), yielding a 95% percentile bootstrap confidence interval on each correlation. We classified a pair as sign-stable if its point-estimate correlation retained the same sign at every threshold, and as bootstrap-robust if it was additionally sign-stable and its 95% bootstrap interval excluded zero at every threshold—a stricter criterion analogous to the graded robust-ness scheme used for the discriminative analysis (described above under Bootstrap Stability and Robustness Criteria). To compare groups directly rather than relying on informal inspection of each group’s estimates, we bootstrapped the ADHD − ASD difference in r for each pair at each threshold; because the two groups’ bootstrap resamples are independent, subtracting the resampled correlations element-wise yields a valid em-pirical distribution of the difference. We classified each pair into one of three categories: disorder-specific (the between-group difference was sign-stable and its 95% CI excluded zero at every threshold); shared (both groups’ own correlations were individually bootstrap-robust, in the same direction, and the between-group difference CI included zero at every threshold); or ambiguous (neither criterion was met—for example, be-cause one group’s own estimate was not itself bootstrap-robust, even where the point-estimate gap between groups was large).                                  
+
+> Table 2: MentalRoBERTa test-set performance by DSM-5 depression symptom. Held-out test-set performance of the fine-tuned MentalRoBERTa classifier per DSM-5 symptom, with calibrated threshold and ReDSM5 support; the final row reports overall macro-F1, micro-F1, Hamming loss, and exact-match accuracy together.
+> Symptom Calibrated Threshold Test F1 ReDSM5 Corpus Support
+> Depressed Mood 0.825 0.901 364 Worthlessness 0.575 0.889 340 Suicidal Thoughts 0.150 0.983 190 Fatigue 0.425 0.851 140 Anhedonia 0.425 0.850 137 Sleep Issues 0.600 0.970 112 Cognitive Issues 0.300 0.941 61 Appetite Change 0.450 1.000 48 (Low Support) Psychomotor 0.450 0.727 35 (Low Support)
+> Overall —Macro-F1 0.901 / Micro-F1 0.904 Train: 965 / Val: 207 / Test: 207
+
+83 Results and Discussion 
+
+3.1 Corpus Overview 
+
+The raw corpus comprised 1,282,437 tweets from 792 users (ADHD: 1,009,002 tweets from 622 users; ASD: 273,435 tweets from 170 users). At the nominal pre-filter threshold (positive-class probability ≥ 0.5), the zero-shot depression-relevance pre-filter retained 474,415 tweets (37.0%) as depressively relevant, which were then passed to the fine-tuned MentalRoBERTa classifier. Applying the per-tweet symptom-relevance gate (described under User Symptom Scoring and Quality Gating in the Methods) further narrowed this to 369,300 tweets, and applying the per-user quality gate ( ≥ 30 gated tweets) to those produced the final analytic sample of 710 users (ADHD n = 560; ASD n = 150) and 368,011 tweets. The ADHD-to-ASD ratio reflects the substantially larger ADHD user base in the source dataset [17]. We note that the user counts reported in the threshold-sweep supplementary analysis (Supplementary Table S1) already reflect both the per-tweet symptom-relevance gate and the per-user quality gate applied separately at each of the five swept thresholds, and therefore decrease across the range—from n = 719 at the lowest threshold (0.45) to n = 658 at the highest (0.65). 
+
+3.2 Classifier Performance 
+
+Our fine-tuned MentalRoBERTa model achieved strong multi-label performance on the held-out test set (Table 2): macro-F1 = 0.901, micro-F1 = 0.904, Hamming loss = 0.022, and exact match accuracy = 0.874, establishing the classifier as a suitable measurement instrument for the population-scale compar-isons that follow. For reference, the original ReDSM5 resource paper reported considerably lower baseline performance on the same nine-symptom classification task: its best-performing baseline, a fine-tuned LLM, achieved macro-F1 = 0.49 and micro-F1 = 0.54, while a fine-tuned BERT baseline achieved macro-F1 = 0.36 and micro-F1 = 0.51 [16]. It should be noted that the original authors reported the performance us-ing an 80/20 train-test split, whereas we report our results using a 70/15/15 train/validation/test split. Our domain-adapted MentalRoBERTa classifier, trained with inverse-frequency class weighting and per-label threshold calibration, therefore substantially exceeds these previously published reference benchmarks on the corpus from which it was derived. This methodological contribution stands independent of the down-stream ADHD–ASD analysis. For comparison within our own pipeline, applying a single uniform sigmoid threshold to every symptom, rather than the per-label calibrated thresholds described under Per-Label Deci-sion Threshold Calibration in the Methods, yielded a lower macro-F1 of 0.87 on the same held-out test set, confirming that per-label calibration meaningfully improves classifier performance over a fixed-threshold baseline. We observed generalisation gaps for Fatigue (val-F1 = 0.976 vs test-F1 = 0.851), Anhedonia (0.923 vs 0.850), and Psychomotor (0.909 vs 0.727), likely attributable to limited annotated support for Psychomotor ( n = 35) and to cross-platform linguistic variability in fatigue and anhedonia expressions. We treat the best test-F1 for Appetite Change with corresponding caution, since it reflects a small support set ( n
+
+= 48) rather than a fully generalisable result. 
+
+3.3 ADHD vs ASD Discriminative Symptom Profile 
+
+The L1-penalised logistic classifier achieved modest but stable discrimination across the swept pre-filter thresholds, with 5-fold cross-validated ROC-AUC ranging narrowly from 0.645 (threshold = 0.45) to 0.653 (threshold = 0.50), and training accuracy ranging from 0.673 to 0.681 over the same range (see Supplemen-tary Table S1). Neither metric varied monotonically with threshold: AUC peaked at 0.50 (0.653) and was essentially flat across the remaining four thresholds (0.645–0.649), while training accuracy likewise stayed within a narrow 0.673–0.681 band throughout. This flatness, despite the retained sample shrinking from n
+
+9= 719 (0.45) to n = 658 (0.65), indicates that discrimination performance was not concentrated at either ex-treme of the sweep and was not an artefact of sample size. We consider the modest absolute AUC expected: the task is to separate two populations sharing substantial depressive comorbidity, using only the relative emphasis of nine symptoms after user-level centering. Seven of the nine DSM-5 symptoms retained an identical coefficient sign across all five pre-filter thresh-olds (Table 3, Figure 2), which is the principal robustness signal of the analysis: the ADHD-versus-ASD symptom-profile contrast does not depend on the depression-relevance cutoff. Six symptoms met our Level 1 (robust) criterion, with bootstrap selection ≥ 0.90 at every threshold. Cognitive issues were ADHD-leaning at every threshold (selection 0.99–1.00); sleep disturbance was ADHD-leaning throughout (0.94–1.00); ap-petite change was ADHD-leaning throughout (0.98–1.00; though we note its low annotated support, n =48, as in Table 2); fatigue was ADHD-leaning throughout (0.98–1.00); suicidal ideation was ASD-leaning throughout (0.997–1.00); and anhedonia was ASD-leaning throughout (0.95–0.98). Together, these six symptoms define the discriminative profile we observe: an ADHD-leaning axis of cognitive, sleep, appetite, and fatigue-related depressive expression, contrasted with an ASD-leaning emphasis on suicidal ideation and anhedonia.   
+
+> Figure 2: Bootstrap-mean coefficient trajectory across depressive pre-filter thresholds, with bootstrap selection frequencies. Bootstrap-mean coefficient trajectories across predicted-probability thresholds for each DSM-5 symp-tom. Shaded bands denote the 95% bootstrap confidence interval; solid markers indicate thresholds at which the interval excludes zero; labels report the bootstrap selection frequency (sf) at each threshold. Symptoms are grouped by robustness level (Level 1, Level 2, Unlabelled) and colored by leaning direction (blue = ADHD-leaning, red = ASD-leaning); Worthlessness and Depressed mood are shown in gray, reflecting their unstable, non-interpretable di-rectionality.
+
+One further symptom met our Level 2 (directionally consistent) criterion: an identical sign across all five thresholds, but with bootstrap selection dipping marginally below 0.90 at one end of the range. Psychomotor 10 disturbance was ASD-leaning at every threshold, with selection ranging from 0.89 to 1.00 and dipping just below 0.90 only at the highest threshold (0.65). The remaining two symptoms did not meet our pre-specified criteria. Worthlessness was ADHD-leaning at four of the five thresholds (0.45, 0.50, 0.60, and 0.65), with a coefficient that fell to exactly zero at 0.55; bootstrap selection remained low throughout (0.49–0.78) and never reached 0.90, so we do not interpret it as discriminative. Depressed mood was ASD-leaning at three of the five thresholds (0.50, 0.55, and 0.60; selection 0.73–0.82), with coefficients that fell to exactly zero at both ends of the sweep (0.45 and 0.65); selection across the full sweep ranged from 0.52 (lowest, at 0.65) to 0.82, never reaching 0.90; we likewise do not interpret this symptom as discriminative. The ADHD-leaning emphasis on cognitive complaints aligns broadly with clinical accounts that fore-ground attentional and executive symptoms in adult ADHD presentations of depression [3, 30], and our finding is agnostic to whether such complaints are read as residual ADHD-attributed difficulty or as a de-pressive cognitive symptom. The accompanying ADHD-leaning emphasis on sleep disturbance, appetite change, and fatigue likewise converges with clinical evidence that these somatic correlates are common, frequently under-recognised features of ADHD in adulthood [28, 29]. Suicidal ideation and anhedonia were the two Level 1 ASD-leaning findings: the former is broadly consistent with clinical literature documenting elevated suicide risk in autistic populations [26], and the latter is in line with prior reports that anhedonia is a prominent feature of depression in autistic adults [5], though we discuss both descriptively and at the lan-guage level only. Psychomotor disturbance showed the same ASD-leaning direction at a secondary (Level 2) level of robustness. We caution that our analysis is correlational, language-based, and population-level, and does not establish that any individual would meet diagnostic criteria in a clinical interview. 
+
+Table 3: Graded robustness summary of ADHD- versus ASD-leaning symptoms. Direction, bootstrap selection-frequency range, and assigned robustness level (defined under Bootstrap Stability and Robustness Criteria in the Meth-ods) for each DSM-5 symptom’s association with ADHD or ASD group membership. Level 1 denotes the robust cri-terion (consistent sign, selection ≥ 0.90 at every threshold); Level 2 denotes directionally consistent symptoms whose bootstrap interval includes zero at one or more thresholds; unlabelled symptoms met neither criterion.                                        
+
+> Symptom Coefficient Direction Selection freq. range Level Interpretation
+> Cognitive issues ADHD 0.99–1.00 1Primary finding; consistent sign and selection ≥
+> 0.90 at every threshold Sleep disturbance ADHD 0.94–1.00 1Primary finding Fatigue ADHD 0.98–1.00 1Primary finding Anhedonia ASD 0.95–0.98 1Primary finding Suicidal ideation ASD 0.99–1.00 1Primary finding Appetite change ADHD 0.98–1.00 1Primary finding; interpret with some caution given low annotated support ( n=48) Psychomotor ASD 0.89–1.00 2Directionally consistent (ASD-leaning); selection dips marginally below 0.90 at threshold 0.65 Depressed mood ASD (unsta-ble) 0.52–0.82 —ASD-leaning at three of five thresholds (0.50– 0.60); coefficient zero at both the lowest (0.45) and highest (0.65) thresholds; selection never reaches 0.90; not interpreted Worthlessness ADHD 0.49–0.78 —ADHD-leaning at four of five thresholds; coeffi-cient zero at threshold 0.55; bootstrap selection remains low throughout, never reaching 0.90; not interpreted
+
+11 3.4 Symptom Co-occurrence Structure 
+
+The pairwise symptom co-occurrence structure was largely stable across the swept pre-filter thresholds: 34 of 36 symptom pairs (94%) retained the same correlation sign at every threshold in the ADHD group and 31 of 36 (86%) in the ASD group. Applying our stricter bootstrap-robustness criterion (sign-stable and 95% CI excluding zero at every threshold), 26 of 36 pairs (72%) were bootstrap-robust in ADHD and 20 of 36 (56%) in ASD. We interpret the sign-unstable pairs in each group (2 in ADHD, 5 in ASD), all of which showed weak mean Pearson coefficients ( −0.06 to +0 .07 ), as noise rather than substantive co-occurrence relationships. A shared co-occurrence backbone was evident across both groups: a somatic cluster in which fatigue, sleep, psychomotor disturbance, and appetite change were positively intercorrelated—fatigue–sleep being the strongest pair within this shared cluster in both disorders (ADHD mean r = +0 .53 ; ASD mean r =
+
++0 .52 ). A mood trade-off structure in which depressed mood, worthlessness, anhedonia, and suicidal thoughts (together with sleep- and cognitive-related language) were mutually negatively correlated, indi-cating that emphasising one symptom register comes at the expense of others. The worthlessness–suicidal pair was the sole consistently positive association within the affective set in both groups (ADHD mean r =
+
++0 .32 ; ASD mean r = +0 .30 ). In total, 17 of 36 pairs met our criteria for a shared pattern—individually bootstrap-robust in both groups, in the same direction, with a between-group difference whose 95% CI included zero at every threshold (full details in Supplementary Table S2).   
+
+> Figure 3: ADHD versus ASD differential symptom co-occurrence. (Left) Symmetric heatmap of the mean ADHD
+> −ASD correlation difference for all 36 symptom pairs; no pair met the pre-specified disorder-specific criterion (sign-stable difference with 95% bootstrap CI excluding zero at every threshold), so no cells are marked. (Right) The three most differential pairs by point estimate, with 95% bootstrap CI at a representative threshold, shown for descriptive comparison only; orange bars indicate a stronger association in ADHD, purple a stronger association in ASD.
+
+No pairwise relationship met our stricter disorder-specific criterion—a between-group difference that is sign-stable and whose 95% bootstrap CI excludes zero at every threshold. Under the fully gated pipeline described under User Symptom Scoring and Quality Gating in the Methods, every pair that showed a large point-estimate gap between ADHD and ASD also had at least one threshold at which the between-group difference’s bootstrap interval touched zero, at least one group’s own within-group estimate that was not itself bootstrap-robust, or both. We therefore do not report a confirmed disorder-specific co-occurrence 12 pattern; the closest candidates are described below as exploratory only (Table 4, Figure 3). These findings illustrate the complementary value of co-occurrence analysis alongside conventional discriminative modelling in population-level digital phenotyping studies. The remaining 19 of 36 pairs showed inconsistent or underpowered evidence for either a shared or a disorder-specific pattern under our stricter joint test and are not interpreted as confirmed findings (Supplementary Tables S3–S4). The three pairs with the largest point-estimate group gaps illustrate why: fatigue–cognitive coupling was bootstrap-robust and positive in ASD (mean r = +0 .31 ) but only weakly and non-robustly positive in ADHD (mean 
+
+r = +0 .07 ); depressed mood–anhedonia was bootstrap-robust and negative in both groups but noticeably stronger in ADHD (mean r = −0.44 ) than in ASD (mean r = −0.26 ), with the between-group difference itself not consistently significant across the sweep. Suicidal ideation–sleep language was bootstrap-robust and negative in ADHD (mean r = −0.13 ) but sign-unstable in ASD (mean r = +0 .02 ). In each case, at least one side of the comparison falls short of our pre-specified robustness bar, so we flag these three pairs as candidates for confirmation in future, larger samples rather than treating any of them as an established disorder-specific finding.                                         
+
+> Table 4: Most differential (but non-robust) symptom-pair co-occurrence patterns. Three symptom pairs with the largest point-estimate ADHD −ASD gap in mean Pearson r, shown for descriptive comparison only: none met our pre-specified disorder-specific criterion (defined under Symptom Co-occurrence Analysis in the Methods), because at least one group’s within-group estimate was not itself bootstrap-robust, the between-group difference’s 95% CI did not exclude zero at every threshold, or both. ∆ris the ASD −ADHD difference in mean r.
+> Symptom pair ADHD mean rASD mean r∆rPattern
+> Fatigue ×Cognitive +0 .07 +0 .31 +0 .24 Bootstrap-robust and positive in ASD; only weakly, non-robustly positive in ADHD Suicidal ×Sleep −0.13 +0 .02 +0 .16 Bootstrap-robust and negative in ADHD; sign-unstable in ASD Dep. Mood ×Anhedonia −0.44 −0.26 +0 .18 Bootstrap-robust and negative in both groups; between-group difference not consistently significant across the sweep
+
+3.5 Summary of Results 
+
+The discriminative model identified six robust ADHD- or ASD-leaning symptoms (Table 3): cognitive is-sues, sleep disturbance, appetite change, and fatigue leaned ADHD, while suicidal ideation and anhedonia leaned ASD, with psychomotor disturbance showing the same ASD-leaning pattern at secondary robust-ness. The co-occurrence analysis showed a broadly shared symptom backbone across groups (17 of 36 pairs; Supplementary Table S2); no pair met our pre-specified disorder-specific criterion, and the remaining 19 pairs—including fatigue–cognitive, depressed mood–anhedonia, and suicidal ideation–sleep, the three largest point-estimate gaps between groups (Table 4)—showed ambiguous or underpowered evidence and are not interpreted as confirmed findings. 
+
+# 4 Limitations 
+
+Several limitations should be considered when interpreting these findings. First, classifier performance is less certain for the sparsest symptom categories (psychomotor, n = 35; appetite change, n = 48) and MentalRoBERTa was fine-tuned and evaluated entirely on Reddit-based annotated sentences, so the reported 13 macro-F1 = 0.901 (Table 2) may not fully transfer to the tweets it was applied to. Manual inspection of tweet-level scores suggests some activations reflect lexical or topical cues rather than genuine symptom content; per-user averaging over many tweets should dilute such isolated misfires. Second, logistic regression accuracy is appropriate for detecting population-level signal but insuffi-cient for individual-level prediction, screening, or clinical application; the modest ROC-AUC (0.645–0.653) means our robustness checks establish that the signal is stable, not that it is large or clinically valid, so the discriminative findings should be read as reproducible but modest language-level tendencies. The study relies on unverified self-reported ADHD/ASD diagnoses, which may include misdiagnosis or self-diagnosis, potentially affecting the validity of the findings. It is also subject to selection bias, as only users who publicly disclose their diagnosis are included, making the sample unrepresentative. Finally, without a neurotypical control group, the results can distinguish ADHD from ASD but cannot determine how either group differs from the general population. Finally, the use of Twitter data introduces additional constraints on generalisability, as the user popula-tion is likely biased toward adults in a limited set of predominantly English-speaking regions, and may not reflect symptom expression across different age groups, languages, or cultural contexts. 
+
+# 5 Conclusion 
+
+Self-reported social media discourse contains a small but consistent population-level signal distinguishing how DSM-5 depressive symptoms are expressed and organised in ADHD and ASD communities, with ADHD users showing a cognitive/sleep/appetite/fatigue-leaning profile and ASD users showing greater em-phasis on anhedonia and suicidal ideation. These differences remained stable across multiple preprocessing thresholds, suggesting that they are not artefacts of a single analytic setting but reflect reproducible pat-terns in language use. While the effects are modest and not suitable for individual-level diagnosis, they nonetheless indicate systematic differences in how depressive experiences are communicated across neu-rodevelopmental conditions. Together, the discriminative and co-occurrence results point to a modest but reproducible signal, potentially useful as a corroborating observational source for clinical hypotheses about phenomenological differences between the two disorders [6]. 
+
+# Ethics Statement 
+
+All data analysed were publicly available under restricted access subject to specific terms and conditions, already anonymised, and obtained from existing public research resources (described under Data Sources in the Methods); we did not use any private messages, protected accounts, or direct identifiers, and we do not republish any individual content, consistent with established guidance on the ethical use of public social media data for population-level mental health research [44]. We also interpret our findings in light of well-documented biases and methodological pitfalls inherent to social-media-derived samples [45]. No new human-subjects data were collected for this study. 
+
+# Data and Code Availability 
+
+The Twitter dataset used in this study is publicly available on IEEE DataPort [17]. The ReDSM5 annotation corpus is available from the original authors [16]. Analysis code, trained model checkpoints, per-label cali-brated thresholds, and robustness-level outputs are available at https://github.com/rizwan2phd/ dsm5-adhd-asd-twitter .14 Acknowledgements & Funding 
+
+This research work has received funding from the European Union’s Horizon Europe research and innova-tion programme under the Marie Skłodowska-Curie COFUND Postdoctoral Programme, grant agreement No. 101081355 (SMASH), and by the Republic of Slovenia and the European Union from the European Regional Development Fund. The authors also acknowledge the support of the Slovenian Research and Innovation Agency (ARIS) through the research programme P2-0442, Data Science and Digital Transfor-mation .Generative artificial intelligence (Claude, Anthropic) was used during manuscript preparation to assist with polishing the writing (copyediting for grammar, clarity, and consistency) and to provide coding assis-tance during development of the analysis pipeline. All AI-assisted text and code were reviewed, verified, and edited by the authors, who take full responsibility for the accuracy and integrity of the final manuscript and analysis. 
+
+# Disclaimer 
+
+Co-funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or European Research Executive Agency. Neither the European Union nor the granting authority can be held responsible for them. 
+
+# Conflicts of Interest 
+
+The authors declare no conflicts of interest. 
+
+# Abbreviations 
+
+ADHD: attention-deficit/hyperactivity disorder; ASD: autism spectrum disorder; AUC: area under the re-ceiver operating characteristic curve; DSM-5: Diagnostic and Statistical Manual of Mental Disorders, 5th edition; NLI: natural language inference; NLP: natural language processing; ReDSM5: Reddit DSM-5 an-notation corpus; ROC: receiver operating characteristic. 
+
+# References 
+
+[1] McIntosh D, Kutcher S, Binder C, Levitt A, Fallu A, Rosenbluth M. Adult ADHD and comorbid de-pression: a consensus-derived diagnostic algorithm for ADHD. Neuropsychiatr Dis Treat 2009;5:137– 150. doi: https://doi.org/10.2147/ndt.s4720 
+
+[2] Hollocks MJ, Lerh JW, Magiati I, Meiser-Stedman R, Brugha TS. Anxiety and depression in adults with autism spectrum disorder: a systematic review and meta-analysis. Psychol Med 2019;49(4):559– 572. doi: https://doi.org/10.1017/s0033291718002283 
+
+[3] Knouse LE, Barkley RA, Murphy KR. Does executive functioning (EF) predict depression in clinic-referred adults?: EF tests vs. rating scales. J Affect Disord 2012;145(2):270–275. doi: https:// doi.org/10.1016/j.jad.2012.05.064 
+
+[4] Raymaker DM, Teo AR, Steckler NA, Lentz B, Scharer M, Delos Santos A, Kapp SK, Hunter M, Joyce A, Nicolaidis C. “Having All of Your Internal Resources Exhausted Beyond Measure and Being 15 Left with No Clean-Up Crew”: Defining autistic burnout. Autism Adulthood 2020;2(2):132–143. doi: 
+
+https://doi.org/10.1089/aut.2019.0079 
+
+[5] Han GT, Tomarken AJ, Gotham KO. Social and nonsocial reward moderate the relation between autism symptoms and loneliness in adults with ASD, depression, and controls. Autism Res 2019;12(6):884– 896. doi: https://doi.org/10.1002/aur.2088 
+
+[6] Fried EI, Nesse RM. Depression is not a consistent syndrome: an investigation of unique symptom patterns in the STAR*D study. J Affect Disord 2015;172:96–102. doi: https://doi.org/10. 1016/j.jad.2014.10.010 
+
+[7] Guntuku SC, Yaden DB, Kern ML, Ungar LH, Eichstaedt JC. Detecting depression and mental illness on social media: an integrative review. Curr Opin Behav Sci 2017;18:43–49. doi: https://doi. org/10.1016/j.cobeha.2017.07.005 
+
+[8] Liu D, Feng XL, Ahmed F, Shahid M, Guo J. Detecting and measuring depression on social media using a machine learning approach: systematic review. JMIR Ment Health 2022;9(3):e27244. doi: 
+
+https://doi.org/10.2196/27244 
+
+[9] Tadesse MM, Lin H, Xu B, Yang L. Detection of depression-related posts in Reddit social media forum. IEEE Access 2019;7:44883–44893. doi: https://doi.org/10.1109/access.2019. 2909180 
+
+[10] Rude SS, Gortner EM, Pennebaker JW. Language use of depressed and depression-vulnerable college students. Cogn Emot 2004;18(8):1121–1133. doi: https://doi.org/10.1080/ 02699930441000030 
+
+[11] Devlin J, Chang MW, Lee K, Toutanova K. BERT: pre-training of deep bidirectional transformers for language understanding. In: Proceedings of NAACL-HLT 2019. 2019:4171–4186. doi: https: //doi.org/10.18653/v1/N19-1423 
+
+[12] Guntuku SC, Ramsay JR, Merchant RM, Ungar LH. Language of ADHD in adults on so-cial media. J Atten Disord 2019;23(12):1475–1485. doi: https://doi.org/10.1177/ 1087054717738083 
+
+[13] Jaiswal A, Washington P. Using #ActuallyAutistic on Twitter for precision diagnosis of autism spec-trum disorder: machine learning study. JMIR Form Res 2024;8:e52660. doi: https://doi.org/ 10.2196/52660 
+
+[14] Ji S, Zhang T, Ansari L, Fu J, Tiwari P, Cambria E. MentalBERT: publicly available pretrained lan-guage models for mental healthcare. In: Proceedings of LREC 2022. 2022:7184–7190. doi: https: //doi.org/10.63317/2d7umxifj8wz 
+
+[15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. RoBERTa: a robustly optimized BERT pretraining approach. arXiv:1907.11692 [Preprint]. 2019. doi: 
+
+https://doi.org/10.48550/arXiv.1907.11692 
+
+[16] Bao E, Pérez A, Parapar J. ReDSM5: a Reddit dataset for DSM-5 depression detection. In: Proceedings of CIKM ’25. 2025. doi: https://doi.org/10.1145/3746252.3761610 
+
+[17] Villa-Pérez ME, Trejo LA, Moin MB, Stroulia E. Extracting mental health indicators from English and Spanish social media: a machine learning approach. IEEE Access 2023;11:128135–128152. doi: 
+
+https://doi.org/10.1109/access.2023.3332289 
+
+16 [18] American Psychiatric Association. Diagnostic and Statistical Manual of Mental Disorders. 5th ed. Washington, DC: American Psychiatric Publishing; 2013. doi: https://doi.org/10.1176/ appi.books.9780890425787 
+
+[19] Nguyen VC, Lu N, Kane JM, Birnbaum ML, De Choudhury M. Cross-platform detection of psychiatric hospitalization via social media data: comparison study. JMIR Ment Health 2022;9(12):e39747. doi: 
+
+https://doi.org/10.2196/39747 
+
+[20] Laurer M, van Atteveldt W, Casas A, Welbers K. Building efficient universal classifiers with natu-ral language inference. arXiv:2312.17543. 2023 Dec 29. doi: https://doi.org/10.48550/ arXiv.2312.17543 
+
+[21] Stupinski AM, Alshaabi T, Arnold MV, Adams JL, Minot JR, Price M, Dodds PS, Danforth CM. Quantifying changes in the language used around mental health on Twitter over 10 years: observational study. JMIR Ment Health 2022;9(3):e33685. doi: https://doi.org/10.2196/33685 
+
+[22] Faraone SV, Banaschewski T, Coghill D, Zheng Y, Biederman J, Bellgrove MA, et al. The World Federation of ADHD International Consensus Statement: 208 evidence-based conclusions about the disorder. Neurosci Biobehav Rev 2021;128:789–818. doi: https://doi.org/10.1016/j. neubiorev.2021.01.022 
+
+[23] Rommelse NN, Franke B, Geurts HM, Hartman CA, Buitelaar JK. Shared heritability of attention-deficit/hyperactivity disorder and autism spectrum disorder. Eur Child Adolesc Psychiatry 2010;19(3):281–295. doi: https://doi.org/10.1007/s00787-010-0092-x 
+
+[24] Maenner MJ, Warren Z, Williams AR, Amoakohene E, Bakian AV, Bilder DA, et al. Prevalence and characteristics of autism spectrum disorder among children aged 8 years — Autism and Developmental Disabilities Monitoring Network, 11 sites, United States, 2020. MMWR Surveill Summ 2023;72(2):1– 14. doi: https://doi.org/10.15585/mmwr.ss7202a1 
+
+[25] Lai MC, Kassee C, Besney R, Bonato S, Hull L, Mandy W, et al. Prevalence of co-occurring mental health diagnoses in the autism population: a systematic review and meta-analysis. Lancet Psychiatry 2019;6(10):819–829. doi: https://doi.org/10.1016/s2215-0366(19)30289-5 
+
+[26] Cassidy S, Rodgers J. Understanding and prevention of suicide in autism. Lancet Psychiatry 2017;4(6):e11. doi: https://doi.org/10.1016/s2215-0366(17)30162-1 
+
+[27] Hull L, Petrides KV, Allison C, Smith P, Baron-Cohen S, Lai MC, Mandy W. “Putting on my best normal”: social camouflaging in adults with autism spectrum conditions. J Autism Dev Disord 2017;47(8):2519–2534. doi: https://doi.org/10.1007/s10803-017-3166-5 
+
+[28] van der Ham M, Bijlenga D, Böhmer M, Beekman ATF, Kooij JJS. Sleep problems in adults with ADHD: prevalences and their relationship with psychiatric comorbidity. J Atten Disord 2024;28(9):1228–1240. doi: https://doi.org/10.1177/10870547241284477 
+
+[29] Nazar BP, Bernardes C, Peachey G, Sergeant J, Mattos P, Treasure J. The risk of eating disorders comorbid with attention-deficit/hyperactivity disorder: a systematic review and meta-analysis. Int J Eat Disord 2016;49(12):1045–1057. doi: https://doi.org/10.1002/eat.22643 
+
+[30] Snyder HR. Major depressive disorder is associated with broad impairments on neuropsychological measures of executive function: a meta-analysis and review. Psychol Bull 2013;139(1):81–132. doi: 
+
+https://doi.org/10.1037/a0029301 
+
+17 [31] Coppersmith G, Dredze M, Harman C, Hollingshead K. From ADHD to SAD: analyzing the language of mental health on Twitter through self-reported diagnoses. In: Proceedings of the 2nd Workshop on Computational Linguistics and Clinical Psychology. 2015:1–10. doi: https://doi.org/10. 3115/v1/w15-1201 
+
+[32] Tausczik YR, Pennebaker JW. The psychological meaning of words: LIWC and computerized text analysis methods. J Lang Soc Psychol 2010;29(1):24–54. doi: https://doi.org/10.1177/ 0261927x09351676 
+
+[33] Zhang T, Schoene AM, Ji S, Ananiadou S. Natural language processing applied to mental illness detection: a narrative review. NPJ Digit Med 2022;5(1):46. doi: https://doi.org/10.1038/ s41746-022-00589-7 
+
+[34] Vaswani A, Shazeer N, Parmar N, Uszkoreit J, Jones L, Gomez AN, Kaiser L, Polosukhin I. Attention is all you need. Adv Neural Inf Process Syst 2017;30:5998–6008. doi: https://doi.org/10. 48550/arXiv.1706.03762 
+
+[35] Tsoumakas G, Katakis I. Multi-label classification: an overview. Int J Data Warehous Min 2007;3(3):1–13. doi: https://doi.org/10.4018/jdwm.2007070101 
+
+[36] Johnson JM, Khoshgoftaar TM. Survey on deep learning with class imbalance. J Big Data 2019;6(1):27. doi: https://doi.org/10.1186/s40537-019-0192-5 
+
+[37] Hinton GE, Srivastava N, Krizhevsky A, Sutskever I, Salakhutdinov RR. Improving neural networks by preventing co-adaptation of feature detectors. arXiv:1207.0580. 2012. doi: https://doi.org/ 10.48550/arXiv.1207.0580 
+
+[38] Loshchilov I, Hutter F. Decoupled weight decay regularization. In: Proceedings of ICLR 2019. 2019. doi: https://doi.org/10.48550/arXiv.1711.05101 
+
+[39] Tibshirani R. Regression shrinkage and selection via the lasso. J R Stat Soc Series B 1996;58(1):267– 288. doi: https://doi.org/10.1111/j.2517-6161.1996.tb02080.x 
+
+[40] Kohavi R. A study of cross-validation and bootstrap for accuracy estimation and model selection. In: Proceedings of IJCAI-95. 1995:1137–1145. doi: https://doi.org/10.5555/1643031. 1643047 
+
+[41] Efron B. Bootstrap methods: another look at the jackknife. Ann Stat 1979;7(1):1–26. doi: https: //doi.org/10.1214/aos/1176344552 
+
+[42] Hanley JA, McNeil BJ. The meaning and use of the area under a receiver operating characteristic (ROC) curve. Radiology 1982;143(1):29–36. doi: https://doi.org/10.1148/radiology. 143.1.7063747 
+
+[43] Onnela JP, Rauch SL. Harnessing smartphone-based digital phenotyping to enhance behavioral and mental health. Neuropsychopharmacology 2016;41(7):1691–1696. doi: https://doi.org/10. 1038/npp.2016.7 
+
+[44] Mikal J, Hurst S, Conway M. Ethical issues in using Twitter for population-level depression moni-toring: a qualitative study. BMC Med Ethics 2016;17(1):22. doi: https://doi.org/10.1186/ s12910-016-0105-5 
+
+18 [45] Olteanu A, Castillo C, Diaz F, Kıcıman E. Social data: biases, methodological pitfalls, and ethi-cal boundaries. Front Big Data 2019;2:13. doi: https://doi.org/10.3389/fdata.2019. 00013 
+
+[46] He P, Gao J, Chen W. DeBERTaV3: improving DeBERTa using ELECTRA-style pre-training with gradient-disentangled embedding sharing. In: Proceedings of ICLR 2023. 2023. doi: https: //doi.org/10.48550/arXiv.2111.09543 
+
+[47] cross-encoder/nli-deberta-v3-large [Machine learning model]. Hugging Face. URL: https:// huggingface.co/cross-encoder/nli-deberta-v3-large [accessed 2026-07-05]. [48] O’Mara-Eves A, Thomas J, McNaught J, Miwa M, Ananiadou S. Using text mining for study iden-tification in systematic reviews: a systematic review of current approaches. Syst Rev 2015;4:5. doi: 
+
+https://doi.org/10.1186/2046-4053-4-5 
+
+[49] Nogueira R, Cho K. Passage re-ranking with BERT. arXiv:1901.04085 [Preprint]. 2019. doi: https: //doi.org/10.48550/arXiv.1901.04085 
+
+# Supplementary Material 
+
+Table S1: Cross-threshold discrimination performance of the L1-penalised logistic classifier. For each swept pre-filter threshold, the number of users retained after the per-tweet symptom-relevance gate and the per-user quality gate ( n users, n ADHD, n ASD), the cross-validated regularisation strength (Chosen C), training accuracy, and 5-fold cross-validated ROC-AUC (mean ± SD). These figures complement the ADHD vs ASD Discriminative Symptom Profile section, showing that discrimination accuracy was not an artefact of any single threshold: training accuracy (0.673–0.681) and CV AUC (0.645–0.653) both varied only narrowly and non-monotonically across the sweep, with CV AUC peaking at threshold 0.50 rather than at either extreme, despite the retained sample shrinking steadily from 719 to 658 users. 
+
+Pre-filter thr. n users n ADHD n ASD Chosen C Train acc. (CV AUC mean ± SD) 
+
+0.45 719 567 152 29.76 0.673 (0.645 ± 0.041) 0.50 710 560 150 78.48 0.681 (0.653 ± 0.042) 0.55 694 550 144 206.91 0.678 (0.646 ± 0.045) 0.60 679 538 141 206.91 0.681 (0.649 ± 0.052) 0.65 658 522 136 1.6238 0.675 (0.646 ± 0.051) 
+
+Table S3: ADHD — symptom-pair correlation stability across pre-filter thresholds (0.45–0.65). User-level Pear-son correlation between each of the 36 DSM-5 symptom-pair combinations, computed separately at each of the five swept pre-filter thresholds (0.45, 0.50, 0.55, 0.60, 0.65) in the ADHD group. Mean r, SD, and Range r summarise the distribution of the five threshold-specific correlation coefficients for each pair; Sign-stable indicates whether the cor-relation retained the same sign at every threshold; Bootstrap-robust indicates whether it was additionally sign-stable with a 95% bootstrap CI excluding zero at every threshold. Pairs are ordered by descending mean r.
+
+Symptom pair Mean r SD Range r Sign-stable Bootstrap-robust 
+
+Fatigue × Sleep +0 .526 0.023 0.072 Yes Yes Fatigue × Psychomotor +0 .360 0.041 0.112 Yes Yes Worthless × Suicidal +0 .323 0.025 0.073 Yes Yes 19 Table S3 (continued) 
+
+Symptom pair Mean r SD Range r Sign-stable Bootstrap-robust 
+
+Appetite × Psychomotor +0 .297 0.016 0.046 Yes Yes Sleep × Psychomotor +0 .263 0.020 0.061 Yes Yes Fatigue × Appetite +0 .230 0.027 0.078 Yes Yes Anhedonia × Cognitive +0 .194 0.045 0.128 Yes Yes Sleep × Appetite +0 .189 0.006 0.018 Yes Yes Cognitive × Psychomotor +0 .163 0.033 0.089 Yes No Fatigue × Cognitive +0 .073 0.040 0.114 Yes No Dep. Mood × Sleep +0 .069 0.058 0.145 No No Dep. Mood × Fatigue +0 .026 0.018 0.049 No No Suicidal × Appetite −0.019 0.010 0.031 Yes No Dep. Mood × Suicidal −0.033 0.013 0.037 Yes No Sleep × Cognitive −0.046 0.019 0.051 Yes No Anhedonia × Psychomotor −0.079 0.012 0.026 Yes No Dep. Mood × Psychomotor −0.080 0.047 0.132 Yes No Dep. Mood × Appetite −0.111 0.010 0.027 Yes Yes Cognitive × Appetite −0.130 0.023 0.059 Yes No Suicidal × Sleep −0.135 0.011 0.032 Yes Yes Anhedonia × Appetite −0.154 0.002 0.004 Yes Yes Suicidal × Fatigue −0.167 0.022 0.065 Yes Yes Worthless × Appetite −0.188 0.019 0.049 Yes Yes Anhedonia × Sleep −0.205 0.018 0.048 Yes Yes Fatigue × Anhedonia −0.214 0.017 0.041 Yes Yes Worthless × Cognitive −0.244 0.045 0.127 Yes Yes Suicidal × Psychomotor −0.255 0.023 0.064 Yes Yes Worthless × Anhedonia −0.255 0.051 0.147 Yes Yes Suicidal × Cognitive −0.290 0.017 0.044 Yes Yes Dep. Mood × Worthless −0.309 0.009 0.027 Yes Yes Suicidal × Anhedonia −0.321 0.042 0.118 Yes Yes Dep. Mood × Cognitive −0.357 0.026 0.070 Yes Yes Worthless × Psychomotor −0.438 0.040 0.110 Yes Yes Dep. Mood × Anhedonia −0.438 0.024 0.072 Yes Yes Worthless × Fatigue −0.462 0.006 0.014 Yes Yes Worthless × Sleep −0.482 0.005 0.012 Yes Yes   
+
+> Table S4: ASD — symptom-pair correlation stability across pre-filter thresholds (0.45–0.65). Columns are de-fined as in Supplementary Table S3. Pairs are ordered by descending mean r.
+
+Symptom pair Mean r SD Range r Sign-stable Bootstrap-robust 
+
+Fatigue × Sleep +0 .517 0.010 0.026 Yes Yes Fatigue × Psychomotor +0 .355 0.047 0.117 Yes Yes Sleep × Psychomotor +0 .347 0.032 0.080 Yes Yes Fatigue × Cognitive +0 .309 0.046 0.133 Yes Yes Worthless × Suicidal +0 .300 0.045 0.108 Yes Yes 20 Table S4 (continued) 
+
+Symptom pair Mean r SD Range r Sign-stable Bootstrap-robust 
+
+Sleep × Appetite +0 .295 0.029 0.086 Yes Yes Appetite × Psychomotor +0 .213 0.051 0.150 Yes Yes Cognitive × Psychomotor +0 .204 0.034 0.093 Yes Yes Fatigue × Appetite +0 .162 0.023 0.058 Yes No Sleep × Cognitive +0 .107 0.049 0.150 Yes No Anhedonia × Cognitive +0 .103 0.052 0.152 Yes No Suicidal × Appetite +0 .100 0.010 0.025 Yes No Dep. Mood × Sleep +0 .052 0.032 0.077 Yes No Suicidal × Sleep +0 .023 0.037 0.099 No No Cognitive × Appetite −0.022 0.029 0.085 No No Dep. Mood × Fatigue −0.049 0.063 0.163 No No Anhedonia × Psychomotor −0.049 0.046 0.118 No No Worthless × Appetite −0.056 0.054 0.151 No No Suicidal × Fatigue −0.079 0.028 0.084 Yes No Fatigue × Anhedonia −0.084 0.024 0.069 Yes No Dep. Mood × Psychomotor −0.085 0.039 0.111 Yes No Suicidal × Psychomotor −0.138 0.059 0.164 Yes No Anhedonia × Appetite −0.164 0.020 0.055 Yes Yes Dep. Mood × Suicidal −0.183 0.019 0.059 Yes No Suicidal × Cognitive −0.192 0.023 0.052 Yes No Worthless × Cognitive −0.194 0.011 0.033 Yes Yes Anhedonia × Sleep −0.198 0.016 0.037 Yes Yes Dep. Mood × Appetite −0.221 0.021 0.060 Yes Yes Dep. Mood × Anhedonia −0.258 0.052 0.157 Yes Yes Worthless × Anhedonia −0.348 0.080 0.221 Yes Yes Dep. Mood × Cognitive −0.352 0.003 0.008 Yes Yes Worthless × Psychomotor −0.417 0.045 0.130 Yes Yes Suicidal × Anhedonia −0.422 0.044 0.114 Yes Yes Worthless × Fatigue −0.426 0.037 0.092 Yes Yes Worthless × Sleep −0.447 0.027 0.075 Yes Yes Dep. Mood × Worthless −0.456 0.008 0.022 Yes Yes 21 Table S2: Symptom pairs with shared, cross-group-stable co-occurrence structure. Symptom pairs meeting our pre-specified “shared” criterion: individually bootstrap-robust in both groups (sign-stable with 95% CI excluding zero at every threshold), in the same direction, with a between-group difference whose 95% CI included zero at every threshold (as defined under Symptom Co-occurrence Analysis in the Methods), complementing the exploratory pairs in Table 4. ADHD/ASD mean r and SD are computed across the five thresholds and reported to three decimal places. Cluster labels each pair as somatic (positive intercorrelations among fatigue, sleep, psychomotor disturbance, and ap-petite change) or affective (trade-off) (negative intercorrelations involving depressed mood, anhedonia, worthlessness, suicidal thoughts, or cognitive/sleep language, except the positively correlated worthlessness–suicidal pair). 
+
+Symptom pair ADHD mean r ADHD SD ASD mean r ASD SD Cluster 
+
+Fatigue × Sleep +0 .526 0.023 +0 .517 0.010 Somatic Fatigue × Psychomotor +0 .360 0.041 +0 .355 0.047 Somatic Worthless × Suicidal +0 .323 0.025 +0 .300 0.045 Affective Appetite × Psychomotor +0 .297 0.016 +0 .213 0.051 Somatic Sleep × Psychomotor +0 .263 0.020 +0 .347 0.032 Somatic Sleep × Appetite +0 .189 0.006 +0 .295 0.029 Somatic Dep. Mood × Appetite −0.111 0.010 −0.221 0.021 Affective (trade-off) Anhedonia × Appetite −0.154 0.002 −0.164 0.020 Affective (trade-off) Anhedonia × Sleep −0.205 0.018 −0.198 0.016 Affective (trade-off) Worthlessness × Cognitive −0.244 0.045 −0.194 0.011 Affective (trade-off) Worthlessness × Anhedonia −0.255 0.051 −0.348 0.080 Affective (trade-off) Dep. Mood × Worthlessness −0.309 0.009 −0.456 0.008 Affective (trade-off) Suicidal × Anhedonia −0.321 0.042 −0.422 0.044 Affective (trade-off) Dep. Mood × Cognitive −0.357 0.026 −0.352 0.003 Affective (trade-off) Worthlessness × Psychomotor −0.438 0.040 −0.417 0.045 Affective (trade-off) Worthlessness × Fatigue −0.462 0.006 −0.426 0.037 Affective (trade-off) Worthlessness × Sleep −0.482 0.005 −0.447 0.027 Affective (trade-off) 
+
+Table S5: Sample tweet-level zero-shot and raw DSM-5 symptom scores. Representative pre-filtered tweets (user mentions already removed in original dataset), alongside the zero-shot depression-relevance score (from Stage 1) and the nine raw, per-tweet sigmoid symptom scores produced by the fine-tuned MentalRoBERTa classifier. These examples are provided only to illustrate how scores are calculated for each symptom and do not represent the full set of thousands of depressive tweets. The tweets have been rephrased to the closest equivalent options in accordance with ethical guidelines.                                                              
+
+> Sample Tweet (Paraphrased) & Dis-order NLI Dep. Mood Worth. Suic. Fatigue Anhed. Sleep Cog. Appet. Psych.
+> One last attempt before I call it a night. (ADHD)
+> 0.740 0.008 0.505 0.092 0.002 0.002 0.535 0.003 0.002 0.002
+> Icompletely agree—people acting so selfishly is incredibly frustrating. (ASD)
+> 0.736 0.899 0.861 0.003 0.001 0.006 0.001 0.001 0.001 0.001
+> I’d never want to handle a gun—they honestly make me feel uneasy. (ASD)
+> 0.639 0.043 0.021 0.811 0.000 0.014 0.001 0.005 0.001 0.040
+> That’s probably the most exciting thing that’s happened to me in a while. (ADHD)
+> 0.600 0.446 0.002 0.001 0.007 0.977 0.002 0.006 0.001 0.007
+> You’re one step closer now—keep go-ing! (ADHD)
+> 0.545 0.017 0.176 0.027 0.031 0.026 0.001 0.012 0.001 0.004
+
+22 Table S6: Example user-level DSM-5 symptom scores. User-level raw scores are each user’s mean calibrated sigmoid activation for each DSM-5 symptom computed over their pre-filtered tweets, where the mean is taken across all tweets for that user. Mean-centered scores are obtained by subtracting each user’s own mean from the corresponding symptom mean score. These centered values are used as inputs for the discriminative and co-occurrence analyses. Values are shown for three random users (U01–U03). 
+
+U01 U02 U03 Symptom Mean Centered Mean Centered Mean Centered Depressed Mood 0.339 +0 .225 0.166 +0 .021 0.240 +0 .127 
+
+Worthlessness 0.167 +0 .052 0.344 +0 .199 0.297 +0 .184 
+
+Suicidal Thoughts 0.011 −0.103 0.003 −0.142 0.063 −0.049 
+
+Fatigue 0.039 −0.076 0.037 −0.108 0.049 −0.063 
+
+Anhedonia 0.231 +0 .116 0.470 +0 .324 0.216 +0 .104 
+
+Sleep Issues 0.057 −0.057 0.005 −0.141 0.027 −0.086 
+
+Cognitive Issues 0.093 −0.022 0.256 +0 .110 0.035 −0.078 
+
+Appetite Change 0.020 −0.094 0.003 −0.143 0.022 −0.090 
+
+Psychomotor 0.073 −0.041 0.026 −0.120 0.065 −0.047 
+
+Table S7: Tweet- and user-level attrition across the three-stage filtering pipeline. All rows start from the same raw corpus of 1,282,437 tweets from 792 users (622 ADHD; 170 ASD); only the pre-filter threshold varies across rows. The table shows tweets and users remaining after each successive filtering stage: the Stage 1 zero-shot depression-relevance pre-filter, the per-tweet symptom-score gate, and the per-user minimum-tweet quality gate ( ≥ 30 gated tweets). “Users with ≥ 1 pre-filtered tweet” is below the full cohort of 792 only at threshold 0.65, where 2 users had no tweets clearing the Stage 1 filter.                                          
+
+> Thr. Tweets after After symptom-Users after Users retained Tweets after ADHD / ASD Stage 1 filter score gate symptom gate after min gate ( ≥30) min gate Users
+> 0.45 579,569 449,045 792 719 447,766 567 / 152 0.50 474,415 369,300 792 710 368,011 560 / 150 0.55 373,667 292,916 792 694 291,494 550 / 144 0.60 280,328 222,099 792 679 220,643 538 / 141 0.65 197,213 158,136 790 658 156,601 522 / 136
+
+23

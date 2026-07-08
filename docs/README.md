@@ -6,88 +6,64 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-07
-- 运行时间：2026-07-07 22:16:08 UTC
+- 最新运行日期：2026-07-08
+- 运行时间：2026-07-08 20:48:16 UTC
 - 运行状态：成功
-- 本次总论文数：22
-- 精读区：11
-- 速读区：11
+- 本次总论文数：14
+- 精读区：6
+- 速读区：8
 
 ### 今日简报（AI）
-今天共调研22篇论文，重点精读了2篇高分脑电研究。  
-最值得关注的两个方向：基于面部表情代理的EEG情绪识别（9.0分）与堆叠LoRA适应型运动想象解码基础模型（9.0分）。  
-普通读者可重点关注这些脑电技术未来在心理健康与康复辅助中的潜在应用。
-- 详情：[/202607/07/README](/202607/07/README)
+1) 今日围绕抑郁症分析与脑机接口展开，精读两篇高分论文。  
+2) 最值得看：187k ChatGPT对话揭示抑郁症状与关系模式；DS-MTNet实现多任务EEG解码用于人机协作。  
+3) 建议关注AI辅助抑郁筛查及脑机接口在协作任务中的应用。
+- 详情：[/202607/08/README](/202607/08/README)
 
 ### 精读区论文标签
-1. [See the Emotion: A Facial Emoji Proxy Modeling for EEG Emotion Recognition](/202607/07/2607.02912v1-see-the-emotion-a-facial-emoji-proxy-modeling-for-eeg-emotion-recognition)  
+1. [Depression Symptoms and Relational Patterns in 187k ChatGPT Histories](/202607/08/2607.05685v1-depression-symptoms-and-relational-patterns-in-187k-chatgpt-histories)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于深度学习的脑电情绪识别生成代理模型
-2. [Stacked LoRA for Subject-Adaptive EEG Foundation Models in Motor Imagery Decoding](/202607/07/2607.03094v1-stacked-lora-for-subject-adaptive-eeg-foundation-models-in-motor-imagery-decoding)  
+   evidence：分析大规模ChatGPT对话历史中的抑郁症状
+2. [DS-MTNet:Structured Multi-Task EEG Decoding for Human-Machine Collaboration](/202607/08/2607.06297v1-ds-mtnetstructured-multi-task-eeg-decoding-for-human-machine-collaboration)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用EEG基础模型结合LoRA适应进行BCI运动想象解码
-3. [Can Conversational Temporal Dynamics Improve Depression Detection in Dyads? A Preliminary Investigation in Multi-Modality Perspectives](/202607/07/2607.03744v1-can-conversational-temporal-dynamics-improve-depression-detection-in-dyads-a-preliminary-investigation-in-multi-modality-perspectives)  
+   evidence：结构化的多任务EEG解码用于人机协作
+3. [Night-to-night sleep EEG variability over one year](/202607/08/biorxiv-10-64898-2026-07-02-736125-v1-night-to-night-sleep-eeg-variability-over-one-year)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：从临床访谈中自动检测抑郁，直接属于心理健康研究
-4. [EEG-Based Imagined Speech Decoding Using a Hybrid CNN-SNN Architecture](/202607/07/2607.03844v1-eeg-based-imagined-speech-decoding-using-a-hybrid-cnn-snn-architecture)  
+   evidence：一年内睡眠脑电变异性研究（皮下EEG记录）
+4. [Serotonin reuptake inhibition rapidly enhances affect-reward coupling and improves mood over time](/202607/08/biorxiv-10-64898-2026-07-03-736315-v1-serotonin-reuptake-inhibition-rapidly-enhances-affect-reward-coupling-and-improves-mood-over-time)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于脑电的想象语音解码，用于脑机接口
-5. [NeuroOnline: Bridging Pretraining and Online Adaptation for EEG Foundation Models](/202607/07/2607.03925v1-neuroonline-bridging-pretraining-and-online-adaptation-for-eeg-foundation-models)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：脑电基础模型，在线适应，多视角一致性学习
-6. [Masked Generative-Contrastive Representation Learning for Cross-Dataset EEG-Based Emotion Recognition](/202607/07/2607.04139v1-masked-generative-contrastive-representation-learning-for-cross-dataset-eeg-based-emotion-recognition)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：基于自监督学习的跨数据集脑电情绪识别
-7. [WPG-MoE: Weak-Prior-Guided Dense Mixture-of-Experts for User-Level Social Media Depression Detection](/202607/07/2607.04350v1-wpg-moe-weak-prior-guided-dense-mixture-of-experts-for-user-level-social-media-depression-detection)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：基于LLM骨干的社交媒体抑郁检测
-8. [Beyond travel mode: urban context shapes active mobility's mental health effects over time](/202607/07/2607.04520v1-beyond-travel-mode-urban-context-shapes-active-mobilitys-mental-health-effects-over-time)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：主动出行对心理健康影响的因果机器学习研究
-9. [EEG-SpikeAgent: Agentic Closed-Loop Program Synthesis for Automated EEG Spike Detection](/202607/07/2607.04558v1-eeg-spikeagent-agentic-closed-loop-program-synthesis-for-automated-eeg-spike-detection)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：使用大语言模型代理系统进行脑电尖峰检测
-10. [SleepBand: Single-Source Domain Generalization for Sleep Staging via Physiologically Structured Spectral Modeling](/202607/07/2607.04851v1-sleepband-single-source-domain-generalization-for-sleep-staging-via-physiologically-structured-spectral-modeling)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：基于频谱建模的睡眠分期
-11. [Lightweight ML-Based Automatic Sleep Staging Framework with Constrained CNN and Mamba for Small-Sample EEG Datasets](/202607/07/2607.04934v1-lightweight-ml-based-automatic-sleep-staging-framework-with-constrained-cnn-and-mamba-for-small-sample-eeg-datasets)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：基于轻量级深度学习的EEG自动睡眠分期
+   evidence：选择性血清素再摄取抑制剂增强情绪-奖赏耦合并改善情绪
+5. [Contextual Semantic Relevance and Word Surprisal Predict N400 and P600 Dynamics During Naturalistic Reading](/202607/08/2607.04107v2-contextual-semantic-relevance-and-word-surprisal-predict-n400-and-p600-dynamics-during-naturalistic-reading)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：使用基于GPT的词惊奇度预测阅读时的脑电图反应
+6. [Population-Level Profiling of DSM-5 Depressive Symptoms Among Self-Reported ADHD and ASD Users on Twitter: An Exploratory Study Using Advanced NLP and Statistical Analysis](/202607/08/2607.05626v1-population-level-profiling-of-dsm-5-depressive-symptoms-among-self-reported-adhd-and-asd-users-on-twitter-an-exploratory-study-using-advanced-nlp-and-statistical-analysis)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：基于NLP的ADHD/ASD推特用户抑郁症状剖析
 
 ### 速读区论文标签
-1. [Mental Health Disorder Detection Beyond Social Media: A Systematic Review of Available Datasets](/202607/07/2607.03540v1-mental-health-disorder-detection-beyond-social-media-a-systematic-review-of-available-datasets)  
+1. [Uncovering Latent Depression Severity for Binary Depression Detection via Advantage-weighting Ranking](/202607/08/2607.05901v1-uncovering-latent-depression-severity-for-binary-depression-detection-via-advantage-weighting-ranking)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：非社交媒体心理健康数据集的系统综述
-2. [Explainable AI for Screening Abuse-Related Trauma in Bangladeshi Children: A Training-Free Multimodal Framework Evaluated on Noise-Aware Synthetic Data](/202607/07/2607.04010v1-explainable-ai-for-screening-abuse-related-trauma-in-bangladeshi-children-a-training-free-multimodal-framework-evaluated-on-noise-aware-synthetic-data)  
+   evidence：使用音视频多模态深度学习进行抑郁检测
+2. [Advantages of using Empirical Mode Decomposition and Hilbert Transformation for Delineating Resting State Functional Brain Networks](/202607/08/biorxiv-10-64898-2026-04-23-719165-v2-advantages-of-using-empirical-mode-decomposition-and-hilbert-transformation-for-delineating-resting-state-functional-brain-networks)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：用于儿童心理健康筛查的多模态AI框架
-3. [Machine Learning for Depression Screening and Intervention: an Original Circadian Rhythm Score-based Methodology](/202607/07/2607.04648v1-machine-learning-for-depression-screening-and-intervention-an-original-circadian-rhythm-score-based-methodology)  
+   evidence：利用经验模态分解和希尔伯特变换进行静息态功能磁共振脑网络分析
+3. [Prediction of Q-CHAT scores based on Functional Connectivity in Healthy Newborns](/202607/08/biorxiv-10-64898-2026-06-30-735645-v1-prediction-of-q-chat-scores-based-on-functional-connectivity-in-healthy-newborns)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于昼夜节律评分的抑郁症筛查方法
-4. [Direct Model State Migration for Elastic Training of Large Language Models](/202607/07/2607.04749v1-direct-model-state-migration-for-elastic-training-of-large-language-models)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：大语言模型的弹性训练状态迁移框架
-5. [Physiological Noise Augmentation Improves Non-Invasive Brain-to-Speech](/202607/07/2607.05165v1-physiological-noise-augmentation-improves-non-invasive-brain-to-speech)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：使用EEG/MEG的非侵入式脑到语音解码，采用噪声增强
-6. [Wavelet Scattering Transform for Interpretable Schizophrenia Biomarker Discovery and Classification from Resting-State EEG](/202607/07/2607.05282v1-wavelet-scattering-transform-for-interpretable-schizophrenia-biomarker-discovery-and-classification-from-resting-state-eeg)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：利用小波散射变换从静息态脑电中发现精神分裂症生物标志物并进行分类
-7. [A Granularity-Aware EEG Feature Framework for Psychopathology Dimension Prediction](/202607/07/2607.02670v1-a-granularity-aware-eeg-feature-framework-for-psychopathology-dimension-prediction)  
+   evidence：使用fMRI连接性预测自闭症筛查分数
+4. [Rethinking Brain Decoding with CLIP: The Role of Adversarial Robustness](/202607/08/2607.03165v1-rethinking-brain-decoding-with-clip-the-role-of-adversarial-robustness)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：用于精神病理预测的EEG特征框架
-8. [psytechlab at CLPsych 2026: Utilising Natural Language Processing methods and Large Language Models for Social Media Text Analysis](/202607/07/2607.03003v1-psytechlab-at-clpsych-2026-utilising-natural-language-processing-methods-and-large-language-models-for-social-media-text-analysis)  
+   evidence：对抗鲁棒性CLIP表示改善fMRI脑解码
+5. [Age-related reorganization of locus coeruleus-cortical functional connectivity gradients](/202607/08/biorxiv-10-64898-2026-02-05-704005-v2-age-related-reorganization-of-locus-coeruleus-cortical-functional-connectivity-gradients)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用NLP和LLM方法分析社交媒体文本中的心理健康
-9. [Rethinking Brain Decoding with CLIP: The Role of Adversarial Robustness](/202607/07/2607.03165v1-rethinking-brain-decoding-with-clip-the-role-of-adversarial-robustness)  
+   evidence：利用fMRI研究蓝斑-皮层功能连接的年龄相关重组及情绪效价影响
+6. [Glia mediate brain-wide activity and sleep behavior during sickness through an adrenergic-glutamatergic axis](/202607/08/biorxiv-10-64898-2026-07-02-736189-v1-glia-mediate-brain-wide-activity-and-sleep-behavior-during-sickness-through-an-adrenergic-glutamatergic-axis)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用CLIP和对抗鲁棒性进行fMRI脑解码
-10. [Semantic Integration and Lexical Expectation Shape N400 and P600 Dynamics During Naturalistic Reading](/202607/07/2607.04107v1-semantic-integration-and-lexical-expectation-shape-n400-and-p600-dynamics-during-naturalistic-reading)  
+   evidence：果蝇模型揭示胶质细胞介导疾病时的睡眠行为
+7. [Adversity and adolescent brain development: differential associations with grey and white matter across two longitudinal cohorts](/202607/08/biorxiv-10-64898-2026-07-06-736703-v1-adversity-and-adolescent-brain-development-differential-associations-with-grey-and-white-matter-across-two-longitudinal-cohorts)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用GPT词惊异度预测脑电反应的阅读研究
-11. [Network and hierarchical organization of intrinsic timescales in the human brain](/202607/07/biorxiv-10-64898-2026-07-01-735904-v1-network-and-hierarchical-organization-of-intrinsic-timescales-in-the-human-brain)  
+   evidence：逆境与青少年大脑发育及心理健康风险的关系
+8. [Complementary frontoparietal and corticothalamic contributions to relational reasoning](/202607/08/biorxiv-10-64898-2026-07-03-736406-v1-complementary-frontoparietal-and-corticothalamic-contributions-to-relational-reasoning)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：使用iEEG和fMRI分析内在时间尺度
+   evidence：结合EEG与神经网络场建模的关系推理研究，分析theta/beta同步
 
 
 <div class="dpr-home-promo-card">

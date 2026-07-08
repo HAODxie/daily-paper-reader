@@ -1,49 +1,12 @@
 {
-  "generated_at": "2026-07-07T22:03:50.657980+00:00",
-  "updated_date": "20260707",
+  "generated_at": "2026-07-08T20:44:51.990881+00:00",
+  "updated_date": "20260708",
   "carryover_days": 9,
   "tag_states": {
     "neuro-mental": {
-      "updated_date": "20260707",
+      "updated_date": "20260708",
       "carryover_days": 9,
-      "items": [
-        {
-          "id": "biorxiv-10-64898-2026-06-28-735149-v1",
-          "source": "biorxiv",
-          "title": "Knowledge-guided Bayesian optimization using pre-trained LLMs speeds up the identification of superior genotypes from germplasm collection",
-          "abstract": "BackgroundGermplasm collections contain wide genetic diversity that is valuable for plant breeding, but conducting phenotypic evaluation for all genotypes in field trials is rarely feasible. Bayesian optimization offers a way to decide, season by season, which genotypes to cultivate in order to identify superior genotypes with fewer evaluations. However, standard Bayesian optimization commonly starts from randomly selected genotypes and mainly relies on surrogate models built from marker genotype information, while the text-based passport information that accompanies germplasm is not fully used. We examined whether pre-trained large language models can provide prior knowledge that improves these decisions in germplasm evaluation.\n\nResultsWe constructed a large-language-model-guided Bayesian optimization framework that introduces large language models into two parts of the Bayesian optimization workflow. In zero-shot warmstarting, a large language model proposes initial genotypes using passport information such as cultivar name, country of origin, and subpopulation, optionally together with principal component scores derived from genome-wide single-nucleotide-polymorphism markers. In addition, we evaluated a large-language-model-based surrogate model that predicts phenotypic values for untested genotypes using in-context learning from previously evaluated genotypes. Using a rice germplasm panel and two target traits (seed number per panicle for maximization and protein content for minimization), we compared strategies. For seed number per panicle, zero-shot warmstarting with a general-purpose instruction-following model reduced the number of evaluated genotypes needed to reach the best genotype, whereas improvements were small for protein content. When genomic information was available, Gaussianprocess-based Bayesian optimization was the strongest overall approach, while the large-language-model-based surrogate model outperformed random baselines and was competitive in some settings. When genomic information was not available, predictions based on passport information improved efficiency compared with fully random strategies.\n\nConclusionsPre-trained large language models can inject useful agronomic knowledge into Bayesian optimization for germplasm evaluation, particularly by improving early-stage genotype selection, and can also support optimization when genomic information is unavailable. As models better handle long genomic sequences together with passport information, large-language-model-guided Bayesian optimization may become a practical and explainable decision-support approach for agricultural optimization.",
-          "authors": [
-            "Hamazaki, K.",
-            "Tsuda, K."
-          ],
-          "primary_category": "bioinformatics",
-          "categories": [
-            "bioinformatics"
-          ],
-          "published": "2026-07-02T00:00:00+00:00",
-          "link": "https://www.biorxiv.org/content/10.64898/2026.06.28.735149v1.full.pdf",
-          "tags": [
-            "keyword:neuro-mental"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Uses pre-trained LLMs to provide prior knowledge guiding Bayesian optimization in plant breeding",
-          "llm_evidence_cn": "利用预训练大语言模型提供先验知识，引导贝叶斯优化在植物育种中的应用",
-          "llm_evidence": "利用预训练大语言模型提供先验知识，引导贝叶斯优化在植物育种中的应用",
-          "canonical_evidence": "利用预训练大语言模型提供先验知识，引导贝叶斯优化在植物育种中的应用",
-          "llm_tldr_en": "Proposes knowledge-guided Bayesian optimization using pre-trained LLMs for genotype identification. Demonstrates that LLMs can effectively utilize text-based passport information to accelerate breeding.",
-          "llm_tldr_cn": "针对传统贝叶斯优化忽略种质资源文本护照信息的问题，提出利用预训练大语言模型提取文本先验知识，引导贝叶斯优化过程。在种质资源评估任务中，该方法显著加速了优良基因型的发现，证明了LLM在科学研究（特别是农业育种）中的潜力。",
-          "llm_tldr": "针对传统贝叶斯优化忽略种质资源文本护照信息的问题，提出利用预训练大语言模型提取文本先验知识，引导贝叶斯优化过程。在种质资源评估任务中，该方法显著加速了优良基因型的发现，证明了LLM在科学研究（特别是农业育种）中的潜力。",
-          "llm_tags": [
-            "query:neuro-mental"
-          ],
-          "matched_query_tag": "query:neuro-mental",
-          "matched_query_text": "large language models in research",
-          "matched_requirement_id": "req-1",
-          "selection_source": "carryover_cache",
-          "paper_id": "biorxiv-10-64898-2026-06-28-735149-v1",
-          "carry_days": 1
-        }
-      ]
+      "items": []
     }
   }
 }
