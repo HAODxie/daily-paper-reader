@@ -6,64 +6,56 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-08
-- 运行时间：2026-07-08 20:48:16 UTC
+- 最新运行日期：2026-07-09
+- 运行时间：2026-07-09 22:08:58 UTC
 - 运行状态：成功
-- 本次总论文数：14
+- 本次总论文数：12
 - 精读区：6
-- 速读区：8
+- 速读区：6
 
 ### 今日简报（AI）
-1) 今日围绕抑郁症分析与脑机接口展开，精读两篇高分论文。  
-2) 最值得看：187k ChatGPT对话揭示抑郁症状与关系模式；DS-MTNet实现多任务EEG解码用于人机协作。  
-3) 建议关注AI辅助抑郁筛查及脑机接口在协作任务中的应用。
-- 详情：[/202607/08/README](/202607/08/README)
+今日精选12篇论文，6篇精读、6篇速读；精读中《A molecular integrator of sleep duration and interruption》获满分10分，揭示睡眠时长与中断的分子机制。最值得关注的方向：睡眠调控的分子整合子与深度二值化神经尖峰分类网络（9分），速读中慢振荡tDCS在睡眠限制后提升认知表现（8分）也具启发。建议普通读者可深入探究睡眠质量对大脑功能的影响，以及二值化神经网络在神经信号分析中的实用潜力。
+- 详情：[/202607/09/README](/202607/09/README)
 
 ### 精读区论文标签
-1. [Depression Symptoms and Relational Patterns in 187k ChatGPT Histories](/202607/08/2607.05685v1-depression-symptoms-and-relational-patterns-in-187k-chatgpt-histories)  
+1. [A molecular integrator of sleep duration and interruption](/202607/09/biorxiv-10-64898-2026-07-03-736427-v1-a-molecular-integrator-of-sleep-duration-and-interruption)  
+   标签：评分：10.0/10、query:neuro-mental
+   evidence：睡眠持续时间和中断的分子整合子
+2. [DBNN: Neural Spike Classification Using a Deep Binarized Neural Network](/202607/09/2607.05590v1-dbnn-neural-spike-classification-using-a-deep-binarized-neural-network)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：分析大规模ChatGPT对话历史中的抑郁症状
-2. [DS-MTNet:Structured Multi-Task EEG Decoding for Human-Machine Collaboration](/202607/08/2607.06297v1-ds-mtnetstructured-multi-task-eeg-decoding-for-human-machine-collaboration)  
+   evidence：用于植入式脑机接口尖峰分类的深度二值化神经网络
+3. [STST-JEPA: Shallow-Target Spatio-Temporal Joint Embedding Prediction Architecture For EEG Self-Supervised Learning](/202607/09/2607.06629v1-stst-jepa-shallow-target-spatio-temporal-joint-embedding-prediction-architecture-for-eeg-self-supervised-learning)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：结构化的多任务EEG解码用于人机协作
-3. [Night-to-night sleep EEG variability over one year](/202607/08/biorxiv-10-64898-2026-07-02-736125-v1-night-to-night-sleep-eeg-variability-over-one-year)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：一年内睡眠脑电变异性研究（皮下EEG记录）
-4. [Serotonin reuptake inhibition rapidly enhances affect-reward coupling and improves mood over time](/202607/08/biorxiv-10-64898-2026-07-03-736315-v1-serotonin-reuptake-inhibition-rapidly-enhances-affect-reward-coupling-and-improves-mood-over-time)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：选择性血清素再摄取抑制剂增强情绪-奖赏耦合并改善情绪
-5. [Contextual Semantic Relevance and Word Surprisal Predict N400 and P600 Dynamics During Naturalistic Reading](/202607/08/2607.04107v2-contextual-semantic-relevance-and-word-surprisal-predict-n400-and-p600-dynamics-during-naturalistic-reading)  
+   evidence：脑电自监督学习用于脑龄预测
+4. [Latent graph encoding of multimodal neuroimaging features with generative AI architectures](/202607/09/2607.07027v1-latent-graph-encoding-of-multimodal-neuroimaging-features-with-generative-ai-architectures)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：使用基于GPT的词惊奇度预测阅读时的脑电图反应
-6. [Population-Level Profiling of DSM-5 Depressive Symptoms Among Self-Reported ADHD and ASD Users on Twitter: An Exploratory Study Using Advanced NLP and Statistical Analysis](/202607/08/2607.05626v1-population-level-profiling-of-dsm-5-depressive-symptoms-among-self-reported-adhd-and-asd-users-on-twitter-an-exploratory-study-using-advanced-nlp-and-statistical-analysis)  
+   evidence：多模态生成式AI用于神经影像特征编码
+5. [TF-Engram: A Train-Free Engram with SSD-Backed Memory for Large Language Models](/202607/09/2607.07388v1-tf-engram-a-train-free-engram-with-ssd-backed-memory-for-large-language-models)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于NLP的ADHD/ASD推特用户抑郁症状剖析
+   evidence：提出一种用于大语言模型的无训练印迹记忆系统，直接贡献于大语言模型研究。
+6. [Effects of EEG Preprocessing on Channel-Wise Attention and Effective Connectivity Alignment in Visual EEG Decoding](/202607/09/biorxiv-10-64898-2026-07-02-736026-v1-effects-of-eeg-preprocessing-on-channel-wise-attention-and-effective-connectivity-alignment-in-visual-eeg-decoding)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：研究EEG预处理对基于Transformer的视觉解码的影响
 
 ### 速读区论文标签
-1. [Uncovering Latent Depression Severity for Binary Depression Detection via Advantage-weighting Ranking](/202607/08/2607.05901v1-uncovering-latent-depression-severity-for-binary-depression-detection-via-advantage-weighting-ranking)  
+1. [Slow Oscillatory Transcranial Direct Current Stimulation during a Restricted Sleep Opportunity Enhances Cognitive Performance during Subsequent Wakefulness](/202607/09/biorxiv-10-64898-2026-07-03-736438-v1-slow-oscillatory-transcranial-direct-current-stimulation-during-a-restricted-sleep-opportunity-enhances-cognitive-performance-during-subsequent-wakefulness)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：使用音视频多模态深度学习进行抑郁检测
-2. [Advantages of using Empirical Mode Decomposition and Hilbert Transformation for Delineating Resting State Functional Brain Networks](/202607/08/biorxiv-10-64898-2026-04-23-719165-v2-advantages-of-using-empirical-mode-decomposition-and-hilbert-transformation-for-delineating-resting-state-functional-brain-networks)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：利用经验模态分解和希尔伯特变换进行静息态功能磁共振脑网络分析
-3. [Prediction of Q-CHAT scores based on Functional Connectivity in Healthy Newborns](/202607/08/biorxiv-10-64898-2026-06-30-735645-v1-prediction-of-q-chat-scores-based-on-functional-connectivity-in-healthy-newborns)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：使用fMRI连接性预测自闭症筛查分数
-4. [Rethinking Brain Decoding with CLIP: The Role of Adversarial Robustness](/202607/08/2607.03165v1-rethinking-brain-decoding-with-clip-the-role-of-adversarial-robustness)  
+   evidence：研究限制睡眠期间慢振荡tDCS对认知表现的增强作用
+2. [External anchors reveal target-population effects hidden by published clinical-trial evidence](/202607/09/2607.04327v1-external-anchors-reveal-target-population-effects-hidden-by-published-clinical-trial-evidence)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：对抗鲁棒性CLIP表示改善fMRI脑解码
-5. [Age-related reorganization of locus coeruleus-cortical functional connectivity gradients](/202607/08/biorxiv-10-64898-2026-02-05-704005-v2-age-related-reorganization-of-locus-coeruleus-cortical-functional-connectivity-gradients)  
+   evidence：应用于失眠总睡眠时间
+3. [Diminishing Arousal Shifts the Balance of Cortical Networks Supporting Spatial Attention](/202607/09/biorxiv-10-64898-2025-12-08-692359-v2-diminishing-arousal-shifts-the-balance-of-cortical-networks-supporting-spatial-attention)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用fMRI研究蓝斑-皮层功能连接的年龄相关重组及情绪效价影响
-6. [Glia mediate brain-wide activity and sleep behavior during sickness through an adrenergic-glutamatergic axis](/202607/08/biorxiv-10-64898-2026-07-02-736189-v1-glia-mediate-brain-wide-activity-and-sleep-behavior-during-sickness-through-an-adrenergic-glutamatergic-axis)  
+   evidence：利用困倦模型结合EEG研究空间注意
+4. [The impact of behavioural activity on the EEG power spectrum, its source localisation, and global functional connectivity in rats](/202607/09/biorxiv-10-64898-2026-07-03-736278-v1-the-impact-of-behavioural-activity-on-the-eeg-power-spectrum-its-source-localisation-and-global-functional-connectivity-in-rats)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：果蝇模型揭示胶质细胞介导疾病时的睡眠行为
-7. [Adversity and adolescent brain development: differential associations with grey and white matter across two longitudinal cohorts](/202607/08/biorxiv-10-64898-2026-07-06-736703-v1-adversity-and-adolescent-brain-development-differential-associations-with-grey-and-white-matter-across-two-longitudinal-cohorts)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：逆境与青少年大脑发育及心理健康风险的关系
-8. [Complementary frontoparietal and corticothalamic contributions to relational reasoning](/202607/08/biorxiv-10-64898-2026-07-03-736406-v1-complementary-frontoparietal-and-corticothalamic-contributions-to-relational-reasoning)  
+   evidence：分析大鼠不同行为活动状态下EEG功率谱、源定位和功能连接的变化
+5. [Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering](/202607/09/2607.06641v1-healthier-llms-retrieval-augmented-generation-for-public-health-question-answering)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：结合EEG与神经网络场建模的关系推理研究，分析theta/beta同步
+   evidence：将大语言模型与检索增强生成用于公共卫生问答
+6. [Spontaneous eye blinks as temporal markers of internal attention](/202607/09/biorxiv-10-64898-2026-07-06-736774-v1-spontaneous-eye-blinks-as-temporal-markers-of-internal-attention)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：利用眨眼锁定EEG分析研究工作记忆中的内部注意聚焦过程
 
 
 <div class="dpr-home-promo-card">

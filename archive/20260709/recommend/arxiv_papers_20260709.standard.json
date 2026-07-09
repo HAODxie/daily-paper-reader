@@ -1,0 +1,482 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-09T21:58:39.979526+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "biorxiv-10-64898-2026-07-03-736427-v1",
+      "source": "biorxiv",
+      "title": "A molecular integrator of sleep duration and interruption",
+      "abstract": "Sleep is regulated across multiple timescales. Transitions between sleep and wake happen within seconds; individual sleep bouts last minutes to hours; and homeostatic sleep need has classically been tracked across multiple bouts. Rapid sleep-to-wake transitions are driven by identified neurons, circuits, and neuromodulators, while slow wave activity correlates with sleep need across hours. However, no signal has been shown to encode sleep history within individual sleep bouts, the timescale at which the brain must continuously monitor how much sleep has occurred and how likely waking is at any given moment. Biochemical signals downstream of sleep/wake-associated neuromodulators display slower dynamics than the neuromodulators themselves, making them candidate encoders of within-bout sleep history. Here, by measuring protein kinase A substrate phosphorylation (PKA-SP) in real time in freely behaving mice, we show that membrane PKA-SP decreases exponentially within each sleep bout with consistent kinetics across bouts, integrates sleep duration and sleep interruption, and continuously forecasts moment-to-moment waking probability. Following sleep deprivation, PKA-SP reaches lower levels at the end of sleep bouts, correlating with increased sleep need dissipation. These findings identify a molecular signal encoding within-bout sleep history, revealing how biochemical dynamics bridge fast arousal circuits and the slow timescale of classical sleep homeostasis.",
+      "authors": [
+        "Tilden, E. I.",
+        "Fontenele, A. J.",
+        "Goggans, K. M.",
+        "Ma, S.",
+        "Gorecki, D.",
+        "Berriman-Rozen, Z. D.",
+        "Oldenborg, A.",
+        "Shew, W. L.",
+        "Chen, Y."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-08T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.03.736427v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "molecular integrator of sleep duration and interruption",
+      "llm_evidence_cn": "睡眠持续时间和中断的分子整合子",
+      "llm_evidence": "睡眠持续时间和中断的分子整合子",
+      "canonical_evidence": "睡眠持续时间和中断的分子整合子",
+      "llm_tldr_en": "Identifies biochemical signals downstream of sleep/wake neuromodulators that encode sleep history within individual sleep bouts.",
+      "llm_tldr_cn": "该研究发现了睡眠/唤醒相关神经调节下游的生化信号，可在单个睡眠回合内编码睡眠历史，作为睡眠持续时间和中断的分子整合子。直接涉及睡眠研究。",
+      "llm_tldr": "该研究发现了睡眠/唤醒相关神经调节下游的生化信号，可在单个睡眠回合内编码睡眠历史，作为睡眠持续时间和中断的分子整合子。直接涉及睡眠研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.05590v1",
+      "source": "arxiv",
+      "title": "DBNN: Neural Spike Classification Using a Deep Binarized Neural Network",
+      "abstract": "Implantable brain-computer interfaces require on-node spike sorting to reduce telemetry bandwidth and power while maintaining reliable neural decoding. This paper presents a hardware-oriented deep binarized neural network (DBNN) spike-sorting system with two binarized hidden layers with 256 neurons and a fixed-point output layer to enable multiplier-free inference dominated by sign-controlled accumulation and bit-wise logic. The proposed classifier operates on compact 16-sample spike waveforms to reduce the implementation cost (16-256-256-3) and achieves a median classification accuracy of 98.7% on both synthetic and in-vivo datasets. An FPGA prototype on a Cyclone V device operates at 50 MHz and requires 528 cycles per spike, corresponding to a 0.01 ms compute latency, while consuming 828 ALMs and 1023 registers with zero DSP blocks. For ASIC feasibility, the DBNN is implemented using FreePDK45-based flow; synthesis in Synopsys Design Compiler indicates an estimated silicon area of 0.014 mm2 and an operating power of 122 nW at 20 kHz under a 1.1 V supply. These results demonstrate that the proposed DBNN spike sorter offers a favorable trade-off between accuracy and implementation cost, supporting low-power, implantable neural interfaces. Overall, the proposed DBNN spike sorter achieves high accuracy (98.7%) with extremely low hardware cost (0.014 mm2, 122 nW at 20 kHz) and multiplier-free operation, making it suitable for low-power, implantable neural interfaces. This paper introduces the first DBNN designed for real-time neural spike sorting, striking an excellent balance between input data size and network complexity.",
+      "authors": [
+        "Binyi Ren",
+        "Luca M. Meyer",
+        "Majid Zamani"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.LG"
+      ],
+      "published": "2026-07-06T19:41:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.05590v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep binarized neural network for spike sorting in implantable BCI",
+      "llm_evidence_cn": "用于植入式脑机接口尖峰分类的深度二值化神经网络",
+      "llm_evidence": "用于植入式脑机接口尖峰分类的深度二值化神经网络",
+      "canonical_evidence": "用于植入式脑机接口尖峰分类的深度二值化神经网络",
+      "llm_tldr_en": "A deep binarized neural network achieves 98.7% median classification accuracy for spike sorting in implantable BCIs with minimal hardware cost.",
+      "llm_tldr_cn": "植入式BCI需要高效的在片尖峰分类以减少带宽和功耗。本文提出一种深度二值化神经网络（DBNN），使用两个二值化隐藏层和定点输出层，实现无乘法推理。在合成和体内数据集上达到98.7%中位分类精度，FPGA原型工作频率50MHz。该工作为资源受限的植入式BCI提供了高精度、低成本的硬件解决方案。",
+      "llm_tldr": "植入式BCI需要高效的在片尖峰分类以减少带宽和功耗。本文提出一种深度二值化神经网络（DBNN），使用两个二值化隐藏层和定点输出层，实现无乘法推理。在合成和体内数据集上达到98.7%中位分类精度，FPGA原型工作频率50MHz。该工作为资源受限的植入式BCI提供了高精度、低成本的硬件解决方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.06629v1",
+      "source": "arxiv",
+      "title": "STST-JEPA: Shallow-Target Spatio-Temporal Joint Embedding Prediction Architecture For EEG Self-Supervised Learning",
+      "abstract": "Brain age -- the age inferred from a physiological recording -- is an emerging biomarker whose deviation from chronological age tracks neurological and psychiatric burden, and EEG is an attractive substrate for it because it is cheap, portable, and temporally rich. Yet EEG brain-age models must contend with cross-site montage heterogeneity, small labelled cohorts, and dominant subject-level non-stationarity, and few EEG foundation models have been shown to deliver competitive age regression across the full pediatric-to-older-adult range in which such a biomarker would actually be deployed. We introduce STST-JEPA, a self-supervised transformer for resting-state and task EEG, pretrained on 47,703 sessions spanning ages 5-81 from the brain.space and Healthy Brain Network (HBN) corpora. The model combines a latent-prediction objective - predicting masked-token representations against an EMA-of-tokenizer target - with an auxiliary signal-reconstruction term, applied to 30-second multi-channel windows under spatiotemporal block masks. A lightweight attentive probe trained on frozen pretrained embeddings achieves a best held-out-validation mean absolute error of 3.06 years (r = 0.924) for age regression on 3,367 sessions, against a predict-the-mean baseline of approximately 10 years MAE. With light task-specific fine-tuning of the model's final layers, the same pretrained encoder achieves rank-1 placements - with the model's native 30-second windows - on the public NeuralBench x brain.space EEG leaderboard for sex classification (balanced accuracy 0.911), age prediction (r = 0.749), and psychopathology composite regression (r = 0.215). We further show that the model's age-prediction residual is negatively correlated with cognitive efficiency over several tasks we examined.",
+      "authors": [
+        "Roy Segal",
+        "Yoni Svechinsky",
+        "Tomer Fekete"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-07T12:19:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.06629v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG self-supervised learning for brain age prediction",
+      "llm_evidence_cn": "脑电自监督学习用于脑龄预测",
+      "llm_evidence": "脑电自监督学习用于脑龄预测",
+      "canonical_evidence": "脑电自监督学习用于脑龄预测",
+      "llm_tldr_en": "Proposes STST-JEPA, a self-supervised transformer for EEG, pretrained on 47,703 sessions for brain age regression.",
+      "llm_tldr_cn": "该文提出STST-JEPA，一种用于脑电的自监督时空联合嵌入预测架构，在47703个会话上预训练，实现全年龄段脑龄回归。直接涉及脑电信号处理和深度学习。",
+      "llm_tldr": "该文提出STST-JEPA，一种用于脑电的自监督时空联合嵌入预测架构，在47703个会话上预训练，实现全年龄段脑龄回归。直接涉及脑电信号处理和深度学习。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.07027v1",
+      "source": "arxiv",
+      "title": "Latent graph encoding of multimodal neuroimaging features with generative AI architectures",
+      "abstract": "While generative models enable encoding of complex neuroimaging data for feature generation and reconstruction, developing optimal architectural frameworks with appropriate encoding and latent space processes is crucial for studying structural and functional properties of the brain. We design a multimodal generative framework for structural and functional magnetic resonance imaging (MRI) features through systematic evaluation of encoding strategies, latent multimodal fusion, and generative model selection. Using structural gray matter volume (GMV) and static functional network connectivity (sFNC) features from a large neuroimaging dataset, we analyze generative frameworks involving variational autoencoders (VAEs), transformers, generative adversarial networks (GANs), and diffusion models. Architectures that employ modality-aware graph encoding of functional connectivity into a lower-dimensional latent space outperform vectorized encoders or direct data space approaches. The proposed multimodal graph VAE (gMMVAE) surpasses alternative generative variants across multiple metrics for generation fidelity, reconstruction quality, efficiency, and latent space discriminability, highlighting its potential for robust multimodal neuroimaging analysis.",
+      "authors": [
+        "Ishaan Batta",
+        "Meenu Ajith",
+        "Vince Calhoun"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-07-08T05:50:09+00:00",
+      "link": "https://arxiv.org/pdf/2607.07027v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multimodal generative AI for neuroimaging feature encoding",
+      "llm_evidence_cn": "多模态生成式AI用于神经影像特征编码",
+      "llm_evidence": "多模态生成式AI用于神经影像特征编码",
+      "canonical_evidence": "多模态生成式AI用于神经影像特征编码",
+      "llm_tldr_en": "Proposes a multimodal generative framework combining VAEs, transformers for fMRI features, enabling integration of neuroimaging data for health monitoring.",
+      "llm_tldr_cn": "该论文设计了一套多模态生成式框架，结合变分自编码器和Transformer对结构灰质体积和静态功能网络连接特征进行潜在图编码和融合，系统评估了不同编码策略和生成模型。结果表明该框架能有效捕获多模态神经影像的联合表征，为多模态AI在睡眠和心理健康监测中的应用提供了可行的技术方案。",
+      "llm_tldr": "该论文设计了一套多模态生成式框架，结合变分自编码器和Transformer对结构灰质体积和静态功能网络连接特征进行潜在图编码和融合，系统评估了不同编码策略和生成模型。结果表明该框架能有效捕获多模态神经影像的联合表征，为多模态AI在睡眠和心理健康监测中的应用提供了可行的技术方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.07388v1",
+      "source": "arxiv",
+      "title": "TF-Engram: A Train-Free Engram with SSD-Backed Memory for Large Language Models",
+      "abstract": "Large Language Models (LLMs) store factual knowledge and domain-specific patterns implicitly in dense Transformer parameters, making knowledge expansion costly through pretraining, fine-tuning, retrieval augmentation, or longer contexts. Engram-style memory offers a compact hidden-state injection pathway, but existing GPU-resident designs often rely on hash-based compression, causing unrelated phrases to collide in shared slots and weakening phrase-level semantic fidelity. We present TF-Engram, a train-free Engram system that constructs phrase-specific semantic memory offline from external corpora, stores large memory tables across a GPU--DRAM--SSD hierarchy, and uses Early-Exit Guided Predictive Prefetching to hide external-memory latency during autoregressive decoding. On Qwen3-0.6B, TF-Engram improves the average downstream score from 57.6 to 59.4, outperforming both the frozen backbone and a parameter-matched LoRA baseline. System evaluation shows that large TF-Engram tables can be built with moderate offline cost, SSD-backed storage substantially reduces GPU memory demand, and predictive prefetching recovers much of the throughput loss caused by external memory access. These results demonstrate that static phrase memory can be integrated into LLM inference as a scalable, train-free, and low-overhead system component.",
+      "authors": [
+        "Yutang Ma",
+        "Kecheng Huang",
+        "Xikun Jiang",
+        "Zili Shao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-07-08T13:19:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.07388v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes a train-free engram memory system for LLMs, directly contributing to large language model research.",
+      "llm_evidence_cn": "提出一种用于大语言模型的无训练印迹记忆系统，直接贡献于大语言模型研究。",
+      "llm_evidence": "提出一种用于大语言模型的无训练印迹记忆系统，直接贡献于大语言模型研究。",
+      "canonical_evidence": "提出一种用于大语言模型的无训练印迹记忆系统，直接贡献于大语言模型研究。",
+      "llm_tldr_en": "Presents TF-Engram, a train-free engram system that stores phrase-specific semantic memory offline and uses a GPU-DRAM-SSD hierarchy with prefetching to reduce latency, enabling efficient knowledge expansion for LLMs.",
+      "llm_tldr_cn": "针对大语言模型知识扩展成本高的问题，提出了TF-Engram系统。该系统离线构建短语语义记忆，通过GPU-内存-SSD层次存储和提前退出引导的预测预取技术，在不降低语义保真度的前提下实现低延迟记忆注入。实验表明TF-Engram在保持紧凑性的同时有效扩展了LLM的知识，避免了传统压缩方法的语义冲突。",
+      "llm_tldr": "针对大语言模型知识扩展成本高的问题，提出了TF-Engram系统。该系统离线构建短语语义记忆，通过GPU-内存-SSD层次存储和提前退出引导的预测预取技术，在不降低语义保真度的前提下实现低延迟记忆注入。实验表明TF-Engram在保持紧凑性的同时有效扩展了LLM的知识，避免了传统压缩方法的语义冲突。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-02-736026-v1",
+      "source": "biorxiv",
+      "title": "Effects of EEG Preprocessing on Channel-Wise Attention and Effective Connectivity Alignment in Visual EEG Decoding",
+      "abstract": "Transformer-based deep learning models have shown great potential for decoding visual EEG signals. However, their internal attention mechanisms are often evaluated primarily on optimization objectives, leaving their alignment with biological brain connectivity an open question. This study empirically evaluates how variations in EEG preprocessing strategies affect these attention representations using the Adaptive Thinking Mapper (ATM) model as a framework. We compared a baseline pipeline (MVNN only) against a comprehensive cleaning pipeline integrating ICA and notch filtering. The models were evaluated through cross-generalization, noise robustness, and spectral-temporal ablation analyses. Furthermore, we investigated the structural correspondence between the model's data-driven attention weights and neurophysiological reference networks (GPDC, PDC, and DTF) using Node Strength Correlation and Representational Similarity Analysis (RSA). The results show that the comprehensive preprocessing successfully suppresses non-neural artifacts, such as frontal noise and electrical interference, while maintaining comparable decoding accuracy and baseline robustness. Alignment analyses revealed that the broad spatial organization of the learned attention patterns remains highly stable across pipelines, capturing key directed connectivity dynamics with subtle, metric-dependent variations in global representational geometry. This work provides an empirical exploration into bridging data-driven attention weights with neurophysiological consistency, offering insights toward more transparent brain-computer interfaces.",
+      "authors": [
+        "Elichatiti, V. V.",
+        "Basari, B.",
+        "Arif, M.",
+        "Ikhsan, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-08T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.02.736026v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Investigates EEG preprocessing effects on transformer-based visual decoding",
+      "llm_evidence_cn": "研究EEG预处理对基于Transformer的视觉解码的影响",
+      "llm_evidence": "研究EEG预处理对基于Transformer的视觉解码的影响",
+      "canonical_evidence": "研究EEG预处理对基于Transformer的视觉解码的影响",
+      "llm_tldr_en": "Evaluates how EEG preprocessing pipelines affect transformer attention mechanisms and connectivity in visual EEG decoding, providing insights for robust BCI design.",
+      "llm_tldr_cn": "该论文针对EEG深度解码中预处理策略对模型内部分布的影响这一关键问题，以Adaptive Thinking Mapper框架为平台，系统比较了基线预处理（仅MVNN）与综合预处理（集成ICA和陷波滤波）的效果。实验发现综合预处理不仅在跨泛化、噪声鲁棒和频谱-时间消融分析中表现更优，还使得Transformer的通道注意力与生物有效连接更一致，从而验证了预处理在脑电深度学习中的核心作用，为脑机接口应用提供了实践指导。",
+      "llm_tldr": "该论文针对EEG深度解码中预处理策略对模型内部分布的影响这一关键问题，以Adaptive Thinking Mapper框架为平台，系统比较了基线预处理（仅MVNN）与综合预处理（集成ICA和陷波滤波）的效果。实验发现综合预处理不仅在跨泛化、噪声鲁棒和频谱-时间消融分析中表现更优，还使得Transformer的通道注意力与生物有效连接更一致，从而验证了预处理在脑电深度学习中的核心作用，为脑机接口应用提供了实践指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "biorxiv-10-64898-2026-07-03-736438-v1",
+      "source": "biorxiv",
+      "title": "Slow Oscillatory Transcranial Direct Current Stimulation during a Restricted Sleep Opportunity Enhances Cognitive Performance during Subsequent Wakefulness",
+      "abstract": "The slow oscillation (SO) of non-rapid eye movement (NREM) sleep has been implicated in the restorative properties of sleep. Slow oscillatory transcranial direct current stimulation (SO-tDCS), involving a positive oscillatory current applied to the scalp at a peak frequency of 0.75 Hz, has been used to enhance SO power during NREM sleep. We examined whether enhancing SO power with SO-tDCS during a restricted nighttime sleep opportunity would accelerate the restorative properties of sleep during an otherwise insufficient sleep period and help sustain performance during subsequent extended wakefulness. A total of twenty-six healthy young adults (ages 18-39, n=16 females) completed a 15-day study. After 7 baseline nights at home and 3 baseline nights in the laboratory, participants entered the laboratory for 5 consecutive days including a baseline day, a 2-hour nighttime sleep period with participants randomized to the SO-tDCS (n=11) or SHAM (n=15) condition, 46 hours of sleep deprivation, and two recovery nights. In the SO-tDCS condition, stimulation was administered for one hour starting exactly 60 minutes after sleep onset, with intervals of five minutes of continuous stimulation followed by one minute of no stimulation. Polysomnographic recordings were conducted during each sleep period. Performance was assessed using the Psychomotor Vigilance Test (PVT) approximately every 75 minutes across baseline, sleep deprivation, and recovery. Prior to the two-hour sleep opportunity, a Paired Words Associate Task was administered. Participants listened to 54-word pairs and were asked to recall 46 of the word pairs, with up to three attempts to successfully recall at least 60% of word pairs (T0). Recall was also assessed 20- (T20) and 120-minutes (T120) after awakening from the two-hour sleep period. Data were analyzed using mixed-effects ANOVA. PVT performance (defined as mean response time and number of response times greater than 1,000 ms) significantly declined across sleep deprivation with performance degradations peaking in the early morning hours. Participants in the STIM condition demonstrated significantly better performance during sleep deprivation relative to the SHAM condition. On the PWAT, participants in the SHAM condition recalled fewer word-pairs upon awakening relative to T0. In sharp contrast, performance of participants in the SO-tDCS condition did not deteriorate at T20 and was actually improved at T120 relative to T0. We conclude that SO-tDCS can robustly accelerate the restorative properties of sleep and can additionally enhance sleep related memory consolidation when sleep opportunity is restricted.",
+      "authors": [
+        "Hughes, J. D.",
+        "Doty, T. J.",
+        "Balkin, T. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.03.736438v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "investigates slow oscillatory tDCS during restricted sleep to enhance cognitive performance",
+      "llm_evidence_cn": "研究限制睡眠期间慢振荡tDCS对认知表现的增强作用",
+      "llm_evidence": "研究限制睡眠期间慢振荡tDCS对认知表现的增强作用",
+      "canonical_evidence": "研究限制睡眠期间慢振荡tDCS对认知表现的增强作用",
+      "llm_tldr_en": "Applying slow oscillatory tDCS during restricted nighttime sleep enhances slow oscillation power and improves cognitive performance during subsequent wakefulness.",
+      "llm_tldr_cn": "慢振荡在非快速眼动睡眠中具有恢复功能。本研究在夜间限制睡眠机会时施加慢振荡经颅直流电刺激（SO-tDCS），结果显示增强慢振荡功率有助于加速睡眠的恢复作用，并在后续清醒期维持认知表现。实验包含26名健康成年人，表明SO-tDCS可缓解睡眠不足导致的认知下降，为睡眠研究提供了潜在干预手段。",
+      "llm_tldr": "慢振荡在非快速眼动睡眠中具有恢复功能。本研究在夜间限制睡眠机会时施加慢振荡经颅直流电刺激（SO-tDCS），结果显示增强慢振荡功率有助于加速睡眠的恢复作用，并在后续清醒期维持认知表现。实验包含26名健康成年人，表明SO-tDCS可缓解睡眠不足导致的认知下降，为睡眠研究提供了潜在干预手段。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.04327v1",
+      "source": "arxiv",
+      "title": "External anchors reveal target-population effects hidden by published clinical-trial evidence",
+      "abstract": "Meta-analyses guide clinical and policy decisions, but they estimate the effect among published trials, not the effect in the population a decision concerns. We introduce reference-anchored meta-analysis, which uses an external untreated-outcome distribution for two purposes: to define the target population, and, through each trial's control-arm mean as an externally anchored instrument, to correct publication selection. In an antidepressant literature with recovered unpublished trials, a strict holdout -- removing the hidden trials from both fitting and anchoring -- recovers a held-out all-trials benchmark. Applied to insomnia total sleep time and the placebo-controlled HbA1c literature in type-2 diabetes, it returns target-population effects materially smaller than the published averages, while a first-stage diagnostic flags, in advance, where the correction should not be attempted. Evidence synthesis becomes a target-explicit estimate with auditable selection assumptions.",
+      "authors": [
+        "Dan Kasumi",
+        "Ryoya Nakano",
+        "Takahiro Hoshino"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-07-05T14:22:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.04327v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "applied to insomnia total sleep time",
+      "llm_evidence_cn": "应用于失眠总睡眠时间",
+      "llm_evidence": "应用于失眠总睡眠时间",
+      "canonical_evidence": "应用于失眠总睡眠时间",
+      "llm_tldr_en": "Introduces reference-anchored meta-analysis correcting publication selection, applied to insomnia total sleep time and antidepressant literature.",
+      "llm_tldr_cn": "该文提出参考锚定元分析，利用外部未治疗结局分布校正发表偏倚，应用于失眠总睡眠时间和抗抑郁药文献，揭示目标人群效应。直接关联睡眠研究。",
+      "llm_tldr": "该文提出参考锚定元分析，利用外部未治疗结局分布校正发表偏倚，应用于失眠总睡眠时间和抗抑郁药文献，揭示目标人群效应。直接关联睡眠研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.06641v1",
+      "source": "arxiv",
+      "title": "Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering",
+      "abstract": "Large language models (LLMs) achieve promising results on medical question answering benchmarks, yet their use in public health is constrained by hallucinations and the rapid evolution of official guidance. Retrieval-Augmented Generation (RAG) mitigates these risks by grounding responses in an explicitly maintained corpus, but end-to-end performance depends critically on retrieval configuration and on evaluation beyond multiple-choice formats. We extend PubHealthBench, a question answering (QA) benchmark of 7,929 questions derived from UK Government public health guidance, into a retrieval-augmented setting and systematically evaluate retrieval and generation choices. We compare dense, sparse, and hybrid retrieval across multiple embedding models and corpus variants, and show that hybrid retrieval consistently improves recall and ranking quality, with chunk length and topic interacting with ranking performance. Providing retrieved context substantially increases multiple-choice accuracy across a diverse set of LLMs, enabling smaller open-weight models to match or outperform larger models used without retrieval, with gains primarily driven by retrieval quality and careful context selection. To assess realistic free-form answering, we introduce a rubric-based LLM-as-a-judge covering faithfulness, completeness, clarity, and factual consistency, and validate it against dual human annotations. Judge-human agreement is strongest for faithfulness and completeness, while factual consistency and clarity are less reliably reproduced, motivating caution when interpreting those dimensions at scale. Overall, our results highlight retrieval as a primary lever for reliable public health QA and provide practical guidance for building and evaluating RAG systems grounded in official guidance.",
+      "authors": [
+        "Felix Feldman",
+        "Joshua Harris",
+        "Timothy Laurence",
+        "Leo Loman",
+        "Ollie Higgins",
+        "Fan Grayson",
+        "Poonam Soma",
+        "Bethany Pace-Bonello",
+        "Michael Borowitz",
+        "Toby Nonnenmacher"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T14:47:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.06641v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLMs for public health QA with RAG",
+      "llm_evidence_cn": "将大语言模型与检索增强生成用于公共卫生问答",
+      "llm_evidence": "将大语言模型与检索增强生成用于公共卫生问答",
+      "canonical_evidence": "将大语言模型与检索增强生成用于公共卫生问答",
+      "llm_tldr_en": "Proposes RAG framework for public health QA, evaluating retrieval choices on PubHealthBench.",
+      "llm_tldr_cn": "大型语言模型在医学问答中表现良好，但存在幻觉和指南更新慢的问题。本文提出检索增强生成（RAG）框架，在PubHealthBench上系统评估了密集、稀疏和混合检索配置，为可靠的健康问答提供了方法指导。",
+      "llm_tldr": "大型语言模型在医学问答中表现良好，但存在幻觉和指南更新慢的问题。本文提出检索增强生成（RAG）框架，在PubHealthBench上系统评估了密集、稀疏和混合检索配置，为可靠的健康问答提供了方法指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2025-12-08-692359-v2",
+      "source": "biorxiv",
+      "title": "Diminishing Arousal Shifts the Balance of Cortical Networks Supporting Spatial Attention",
+      "abstract": "Spatial attention becomes biased toward the right side of space when alertness wanes, but the neural mechanisms underlying this shift remain unresolved. Competing theories propose that spatial attention depends either on a dominant right hemisphere, interhemispheric competition, or interactions between dorsal and ventral attention networks. Here, we used drowsiness as a model to investigate how diminishing alertness reshapes the cortical dynamics supporting auditory spatial attention. Thirty healthy participants completed a lateralised auditory localisation task while high-density EEG was recorded during wakefulness and drowsiness. Behaviourally, drowsiness selectively impaired localisation accuracy for left-sided stimuli, replicating the typical neglect-like rightward attentional bias observed with lower arousal in healthy people, and pathological attention deficits in brain injury patients. Using Dynamic Causal Modelling and Parametric Empirical Bayes, we identified a striking reconfiguration of effective cortico-cortical connectivity across arousal states. During wakefulness, spatial attention was characterised by reciprocal interhemispheric signalling between inferior frontal regions, consistent with balanced bilateral coordination. During drowsiness, this pattern shifted toward reduced right frontoparietal connectivity together with increased left-hemispheric parietofrontal connectivity. These findings suggest that waning alertness destabilises balanced interhemispheric control and allows left-hemispheric processing to dominate attentional processing. Rather than fully supporting existing theories of spatial attention, our results point toward a hybrid mechanism in which neglect-like spatial bias emerges from the interaction between right-hemispheric dysconnection and left-hemispheric dominance under low arousal. Diminishing alertness reshapes interhemispheric coordination rather than simply reducing right-hemisphere function.",
+      "authors": [
+        "Niedernhuber, M.",
+        "Carmel, D.",
+        "Bekinschtein, T.",
+        "Bareham, C."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-07T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2025.12.08.692359v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses drowsiness as a model to study spatial attention with EEG",
+      "llm_evidence_cn": "利用困倦模型结合EEG研究空间注意",
+      "llm_evidence": "利用困倦模型结合EEG研究空间注意",
+      "canonical_evidence": "利用困倦模型结合EEG研究空间注意",
+      "llm_tldr_en": "this EEG study investigates how diminishing alertness (drowsiness) shifts cortical networks supporting auditory spatial attention, finding rightward bias and impaired left-side localization",
+      "llm_tldr_cn": "该研究以困倦为模型，利用高密度EEG记录清醒和困倦状态下被试完成听觉空间定位任务时的脑活动。行为上，困倦选择性损害左侧刺激的定位准确率。结果表明，警觉性降低会重塑支持空间注意的皮层网络平衡，为理解注意偏侧化机制提供了神经生理学证据。",
+      "llm_tldr": "该研究以困倦为模型，利用高密度EEG记录清醒和困倦状态下被试完成听觉空间定位任务时的脑活动。行为上，困倦选择性损害左侧刺激的定位准确率。结果表明，警觉性降低会重塑支持空间注意的皮层网络平衡，为理解注意偏侧化机制提供了神经生理学证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-06-736774-v1",
+      "source": "biorxiv",
+      "title": "Spontaneous eye blinks as temporal markers of internal attention",
+      "abstract": "Eye blinks are among the largest physiological artefacts in electroencephalography and are typically removed from neural recordings. Yet their timing may carry information about cognition. Here, we asked whether the temporal distribution of spontaneous blinks across trials provides a time-resolved behavioural signature of internal attentional focusing in working memory. In Experiment 1, blink-locked EEG analyses showed that blink timing was aligned with neural activity reflecting attentional focusing on a relevant internal representation. In Experiment 2, participants remembered the same visual information across conditions, but the relevant item was revealed either early, by a cue before report, or later, at report. Blink-frequency profiles shifted accordingly, increasing after the cue when selection was possible early and after the probe when selection was delayed. Post-cue blinks in the early-selection condition were also associated with better memory performance. Thus, more generally, spontaneous blinks provide an unobtrusive chronometric signal for tracking latent cognitive processing.",
+      "authors": [
+        "Schneider, D.",
+        "Oezdemir, S.",
+        "Wascher, E.",
+        "Arnau, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-08T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.06.736774v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses blink-locked EEG analysis to study internal attention focusing in working memory",
+      "llm_evidence_cn": "利用眨眼锁定EEG分析研究工作记忆中的内部注意聚焦过程",
+      "llm_evidence": "利用眨眼锁定EEG分析研究工作记忆中的内部注意聚焦过程",
+      "canonical_evidence": "利用眨眼锁定EEG分析研究工作记忆中的内部注意聚焦过程",
+      "llm_tldr_en": "Demonstrates that spontaneous blink timing serves as a temporal marker of internal attention in working memory, with blink-locked EEG aligning with neural attentional processes, revealing a low-cost cognitive marker.",
+      "llm_tldr_cn": "通常被当作伪迹去除的眨眼信号，其时间分布可能携带认知信息。本研究通过两个实验，发现自发眨眼的时间分布能够反映工作记忆中内部注意聚焦的动态变化。眨眼锁定EEG分析显示，眨眼时机与注意相关神经活动一致。该发现揭示了眨眼作为一种低成本的认知时间标记的潜力。",
+      "llm_tldr": "通常被当作伪迹去除的眨眼信号，其时间分布可能携带认知信息。本研究通过两个实验，发现自发眨眼的时间分布能够反映工作记忆中内部注意聚焦的动态变化。眨眼锁定EEG分析显示，眨眼时机与注意相关神经活动一致。该发现揭示了眨眼作为一种低成本的认知时间标记的潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-03-736278-v1",
+      "source": "biorxiv",
+      "title": "The impact of behavioural activity on the EEG power spectrum, its source localisation, and global functional connectivity in rats",
+      "abstract": "The behavioural activity of freely moving animals is a confounding factor that affects the recording, analysis, and final results of animal EEG experiments. Along with the lack of standardisation in animal in vivo electrophysiology experiments, this could lead to huge inconsistencies, especially in the analysis of centrally acting drugs. Therefore, the main aim of this paper is to investigate the effects of behavioural activity versus inactivity on the multichannel EEG in freely moving rats. In a large sample (n = 116) of waking recordings from 12 cortical electrodes (ECoG) in Wistar rats, we evaluated behavioural activity-related changes in the power spectrum, current source density, and power-based global functional connectivity (GFC) in a 3D rat brain model, according to the TOHOKU Rat Brain Atlas. The main findings were that behavioural activity induced 1) a robust power increase in 6-8 Hz, peaking at 7 Hz with maximum changes over the parietal and temporal cortex, 2) an increase in gamma power (30-80 Hz) across the whole brain, 3) a decrease in delta (1-4 Hz) and beta (12-30 Hz) power across the whole cortex. Changes were also localised in subcortical regions, particularly in the diencephalon/thalamus. The GFC analysis showed a similar pattern of power changes across the 6-8 Hz, delta, and beta bands; however, GFC in the gamma band decreased. Again, the GFC analysis revealed changes in connectivity within subcortical structures, primarily in the thalamus. None of the measures was affected in the alpha band (8-12 Hz). These findings emphasise behavioural state as a critical factor influencing EEG outcomes, with important implications for the standardisation and translational validity of preclinical neurophysiological studies.",
+      "authors": [
+        "Vejmola, C.",
+        "Jiricek, S.",
+        "Bochin, M.",
+        "Koudelka, V.",
+        "Palenicek, T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-08T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.03.736278v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Analyzes EEG power spectrum, source localization, and functional connectivity under different behavioral activity states in rats",
+      "llm_evidence_cn": "分析大鼠不同行为活动状态下EEG功率谱、源定位和功能连接的变化",
+      "llm_evidence": "分析大鼠不同行为活动状态下EEG功率谱、源定位和功能连接的变化",
+      "canonical_evidence": "分析大鼠不同行为活动状态下EEG功率谱、源定位和功能连接的变化",
+      "llm_tldr_en": "Quantifies the confounding effect of behavioral activity on EEG measures in freely moving rats (n=116), showing significant changes in power spectrum, source localization, and functional connectivity, highlighting the need for standardization.",
+      "llm_tldr_cn": "为量化行为活动对EEG实验的混淆效应，本研究在大样本（n=116）自由移动大鼠上进行多通道ECoG记录，比较活动与静止状态下的功率谱、电流源密度和功能连接。结果显示，行为活动显著改变各频段功率和脑网络连接模式，提示在动物EEG实验中必须考虑行为状态的影响。",
+      "llm_tldr": "为量化行为活动对EEG实验的混淆效应，本研究在大样本（n=116）自由移动大鼠上进行多通道ECoG记录，比较活动与静止状态下的功率谱、电流源密度和功能连接。结果显示，行为活动显著改变各频段功率和脑网络连接模式，提示在动物EEG实验中必须考虑行为状态的影响。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

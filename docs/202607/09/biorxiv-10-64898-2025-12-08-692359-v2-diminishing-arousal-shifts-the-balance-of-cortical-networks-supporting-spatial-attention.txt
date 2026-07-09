@@ -1,0 +1,724 @@
+Title: Diminishing Arousal Shifts the Balance of Cortical Networks Supporting Spatial Attention
+
+URL Source: https://www.biorxiv.org/content/10.64898/2025.12.08.692359v2.full.pdf
+
+Number of Pages: 47
+
+Markdown Content:
+1Running head: AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Diminishing Arousal Shifts the Balance of Cortical Networks Supporting Spatial Attention 
+
+Maria Niedernhuber 1,2 , David Carmel 4, Tristan A. Bekinschtein 1, & Corinne A. Bareham 3 
+
+> 1
+
+Consciousness and Cognition Lab, Department of Psychology, University of Cambridge, United Kingdom  
+
+> 2
+
+Department of Psychology, Queen Mary University of London, United Kingdom  
+
+> 3
+
+Department of Psychology, Massey University, New Zealand  
+
+> 4
+
+School of Psychological Sciences, Victoria University of Wellington, New Zealand 
+
+Author note 
+
+The authors made the following contributions. Maria Niedernhuber: Conceptualization, Data analysis, Writing - Original Draft Preparation, Writing - Review & Editing; David Carmel: Writing - Review & Editing, Supervision, Conceptualisation, Ethics Preparation, Supervision of 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+2AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+data collection; Tristan Bekinschtein: Writing - Review & Editing, Supervision; Corinne Bareham: Conceptualisation, Writing - Review & Editing, Supervision, Ethics preparation, Data Collection, Supervision of data collection. 
+
+Correspondence concerning this article should be addressed to Maria Niedernhuber, Department of Psychology, University of Cambridge; Department of Psychology, Queen Mary 
+
+University of London. E-mail:  mn473@cam.ac.uk 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+3AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Abstract 
+
+Spatial attention becomes biased toward the right side of space when alertness wanes, but the neural mechanisms underlying this shift remain unresolved. Competing theories propose that spatial attention depends either on a dominant right hemisphere, interhemispheric competition, or interactions between dorsal and ventral attention networks. Here, we used drowsiness as a model to investigate how diminishing alertness reshapes the cortical dynamics supporting auditory spatial attention. Thirty healthy participants completed a lateralised auditory localisation task while high-density EEG was recorded during wakefulness and drowsiness. Behaviourally, drowsiness selectively impaired localisation accuracy for left-sided stimuli, replicating the typical neglect-like rightward attentional bias observed with lower arousal in healthy people, and pathological attention deficits in brain injury patients. Using Dynamic Causal Modelling and Parametric Empirical Bayes, we identified a striking reconfiguration of effective cortico-cortical connectivity across arousal states. During wakefulness, spatial attention was characterised by reciprocal interhemispheric signalling between inferior frontal regions, consistent with balanced bilateral coordination. During drowsiness, this pattern shifted toward reduced right frontoparietal connectivity together with increased left-hemispheric parietofrontal connectivity. These findings suggest that waning alertness destabilises balanced interhemispheric control and allows left-hemispheric processing to dominate attentional processing. Rather than fully supporting existing theories of spatial attention, our results point toward a hybrid mechanism in which neglect-like spatial bias emerges from the interaction between right-hemispheric dysconnection and left-hemispheric dominance under low arousal. Diminishing alertness reshapes interhemispheric coordination rather than simply reducing right-hemisphere function. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+4AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Keywords: spatial attention, effective connectivity, auditory, EEG 
+
+.CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint 5AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Effective Connectivity Reveals a Shift to Left-Hemispheric Dominance for Spatial Attention with Diminishing Arousal 
+
+Introduction 
+
+Adaptive behavior requires optimal use of spatial attention, the ability to prioritise the processing of sensory input from specific regions in space (Corbetta & Shulman, 2002; Posner, 1980). Although numerous competing theories have been suggested (Bartsch et al., 2023; Brunetti et al., 2008; Chambers, Stokes, & Mattingley, 2004; Clément & Tallon-Baudry, 2025; Corbetta & Shulman, 2011; Desimone & Duncan, 1995; Gaillard & Hamed, 2022; Heilman & Van Den Abell, 1979; Kaiser, Lutzenberger, Preissl, Ackermann, & Birbaumer, 2000; Kinsbourne, 1970; Mesulam, 1981; Shomstein & Gottlieb, 2016; Szczepanski, Konen, & Kastner, 2010; Thiebaut de Schotten et al., 2011; Toba, Migliaccio, Potet, Pradat-Diehl, & Bartolomeo, 2022; Tünçok, Carrasco, & Winawer, 2025; Xia, Chen, Engel, & Moore, 2024; Zuanazzi & Noppeney, 2019), the neural mechanisms of spatial attention remain disputed. An interesting experimental model to adjudicate between competing theories of spatial attention is provided by lateral biases. Typically, healthy and awake individuals exhibit a small attention bias towards the left side of space during visuospatial tasks (pseudoneglect) (Chen et al., 2019; Dickinson & Intraub, 2009; Foulsham, Gray, Nasiopoulos, & Kingstone, 2013; Jewell & McCourt, 2000). However, this attention bias can be reversed under various conditions. Some patients with a stroke in the right hemisphere go on to develop a neuropsychological condition termed hemispatial neglect, characterised by marked inattention to the left side of space (Heilman & Valenstein, 1979; Ting et al., 2011). More subtle rightward attention biases have been observed 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+6AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+in neurological and psychiatric conditions such as Parkinson’s Disease (Albert, Bernasconi, Potheegadoo, & Blanke, 2025), or ADHD (Sheppard, Bradshaw, Mattingley, & Lee, 1999). Interestingly, healthy individuals can also experience temporary rightward spatial attention biases (e.g., during vestibular stimulation (Karnath, Himmelbach, & Perenin, 2003)). Numerous studies have documented a transient rightward bias in spatial attention during sleep onset (Bareham, Manly, Pustovaya, Scott, & Bekinschtein, 2014; Chandrakumar et al., 2019; Fimm, Willmes, & Spijkers, 2006; Jagannathan, Bareham, & Bekinschtein, 2022; Manly, Dobler, Dodds, & George, 2005). Similar to clinical neglect (Corbetta & Shulman, 2011; Dietz, Nielsen, Roepstorff, & Garrido, 2021; He et al., 2007), drowsiness is accompanied by a breakdown of frontoparietal connectivity (Goupil & Bekinschtein, 2012; Horovitz et al., 2009; Lacaux, Strauss, Bekinschtein, & Oudiette, 2024; Laufs et al., 2006; Ogilvie, 2001; Sämann et al., 2011). Although several theories explain these neglect-like rightward attentional biases (Bareham et al., 2014; Dobler et al., 2005; Fimm et al., 2006; M. George, Dobler, Nicholls, & Manly, 2005; Manly et al., 2005), they entail distinct predictions about the neural mechanisms which govern them. 
+
+According to the right hemisphere dominance theory, the left hemisphere mainly controls attention to the right side of space, whereas the right hemisphere processes information from both left and right spatial fields (Dietz, Friston, Mattingley, Roepstorff, & Garrido, 2014; Heilman & Valenstein, 1979; Heilman & Van Den Abell, 1979; Kaiser et al., 2000; Mesulam, 1981; Thiebaut de Schotten et al., 2011). Therefore, reduced alertness or damage to the right hemisphere leaves only the left to allocate attention, resulting in a systematic rightward bias (Mesulam, 1981; Sadaghiani et al., 2010). At a mechanistic level, the right hemisphere dominance theory of spatial 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+7AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+attention predicts disrupted connectivity between early sensory and frontoparietal regions within the right hemisphere when alertness wanes (Dietz et al., 2014; Dietz et al., 2021). 
+
+Kinsbourne’s opponent processor theory suggests that inhibition of the ipsilateral cortical hemisphere orients attention toward the opposite side of space (Kinsbourne, 1970). According to this theory, each cerebral hemisphere automatically directs visuospatial attention toward the opposite (contralateral) side of space (the left hemisphere orients to the right, and the right hemisphere orients to the left).The two hemispheres are engaged in a competitive, mutually inhibitory tug-of-war. When one hemisphere becomes highly active, it actively suppresses the orienting mechanisms of the opposite hemisphere. In most individuals, the left hemisphere exerts a slightly stronger orienting drive and inhibition than the right. During drowsiness or neglect then, the right hemisphere no longer inhibits the left, resulting in a bias towards the right side of space (Kinsbourne, 1987). This theory predicts that we will observe an increase in interhemispheric directional connectivity from the right to the left hemisphere (but not vice versa) together with an increase in connectivity within the left hemisphere when alertness wanes (Dietz et al., 2014; Dietz et al., 2021). 
+
+Combining aspects of both the right hemisphere and opponent processor theories, the dual network theory states that spatial attention arises from interactions between a dorsal (DAN) and a ventral attention network (VAN) (Corbetta & Shulman, 2002, 2011). The DAN relies on a hemispheric balance, with each hemisphere orienting attention contralaterally (Corbetta & Shulman, 2002, 2011), whereas the right-lateralised VAN is sensitive to novel or salient stimuli. Accordingly, decreasing alertness selectively compromises the VAN, which in turn destabilises 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+8AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+the DAN and results in a rightward attentional shift (Dodds, Müller, & Manly, 2009; M. S. George, Mercer, Walker, & Manly, 2008; Malhotra, Parton, Greenwood, & Husain, 2006; Robertson, Mattingley, Rorden, & Driver, 1998). Mechanistically, drowsiness will reduce coupling between regions within the right-hemispheric VAN. This will diminish activity in the connected right-hemispheric DAN but increase connectivity within the left-hemispheric DAN which then dominates spatial attention processing. 
+
+Figure 1. Each theory predicts distinct connectivity modulations for a contrast between left vs right trials in drowsiness. Since these theories were not originally formulated in terms of directed effective connectivity, the predictions shown represent our interpretation of how each account would map onto these connectivity changes within the present DCM framework. 
+
+Here we set out to disambiguate these theories of spatial attention using reduced alertness as a model. We recorded high-density EEG during an auditory spatial attention task with left and right-sided stimulation when participants were either awake or drowsy. For each state of alertness, we used Dynamic Causal Modelling (DCM) and Parametric Empirical Bayes (PEB) to 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+9AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+estimate the context-dependent modulation of effective connectivity induced by left versus right stimulation within a bilateral network spanning auditory temporal, parietal and frontal regions. Rather than a model comparison approach contrasting theories (Dietz et al., 2014, 2014), we applied Bayesian Model Reduction to prune away parameters which do not contribute evidence to the model. Our findings reveal a shift from interhemispheric frontal connectivity in wakefulness to a dominant left frontoparietal network in drowsiness. 
+
+Methods 
+
+Participants 
+
+30 healthy right-handed participants (self-reported gender: 20 women and 10 men, age mean = 23.73, SD = 4.88) with normal hearing took part in the study. Handedness was confirmed using the Edinburgh Handedness Inventory (Oldfield, 1971), indicating right-hand dominance across the group (mean Edinburgh score 76.986, SD = 17.884). The mean Epworth sleepiness score (Johns, 1991) for the group was 8.5 (SD = 2.968), indicating normal levels of daytime sleepiness. Participants provided written informed consent prior to the experiment and were reimbursed with NZD $30 worth of cinema vouchers for participation in the study. We initially recruited 36 participants but excluded six EEG datasets from the analysis due to noise. The study was approved by the Victoria University of Wellington Human Ethics Committee committee (approval number 27785). 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+10 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Experimental Design 
+
+.CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint 11 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+.CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint 12 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Figure 2. Experimental Design and behavioural performance. (A) Experimental setup. To promote drowsiness, participants remained reclined in a quiet, dark room with their eyes closed throughout the task. During wakefulness, participants sat upright with eyes closed. (B) A schematic depiction of the lateralised auditory spatial localisation task. Participants listened to tones presented from various angles to the left or right of the midline. Spatial locations were categorised into three azimuthal bins per hemispace: near-midline (blue), intermediate (green), and peripheral (purple). (C) Error proportions (1-accuracy) per arousal state and stimulus laterality showing differences between wakefulness and drowsiness for left but not right stimuli. (D) Slower mean reaction times in drowsiness than wakefulness (collapsed across left and right stimuli). Raincloud plots show subject-wise average scores adjacent to a boxplot (indicating median and interquartile range), and kernel density distributions. (E) As expected, overall accuracy (collapsed across left and right stimuli) is highest for the more strongly lateralised tones and gradually reduces towards chance as tones approach midpoint. Raincloud plots show subject-wise average scores adjacent to a boxplot (indicating median and interquartile range), and kernel density distributions. ∗p<.05, ∗∗∗ p<.001. 
+
+Participants performed a lateralised auditory spatial localisation task under two levels of alertness: awake and drowsy (Figure 2 A). Following Bareham et al. (Bareham et al., 2014), we presented complex harmonic tones at azimuthal positions ranging from -60 to 60 degrees relative to the participants’ egocentric midline. We used guitar chords (D major, D3 at 146.382 Hz) with a duration of 400 ms as auditory stimuli (Bareham, Bekinschtein, Scott, & Manly, 2015) (Figure 2 B). Stimuli were derived from free-field recordings captured via in-ear microphones and reused from previous studies employing this paradigm (Bareham et al., 2014; Jagannathan et al., 2022). 
+
+To eliminate non-spatial acoustic cues, the stimulus set comprised both the original recordings and their channel-inverted stereo-flipped counterparts. Stimuli were presented across three azimuthal ranges in each hemispace: near-midline (±0–12 degrees), intermediate (±15–35 degrees), and peripheral (±40–60 degrees). Negative values denote the left hemispace and positive values denote the right hemispace. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+13 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+First, the participants completed the task while instructed to remain awake and seated upright with eyes closed (awake condition). The stimulus set comprised 100 tones which were balanced across space. Four tones were presented at the midline; the remaining 96 tones were distributed equally between the left and right hemispaces. Specifically, 48 tones were presented in the near-midline range, and 24 tones were each allocated to the intermediate and peripheral ranges. Participants then performed the auditory spatial localisation task while drowsy (drowsy condition). To promote drowsiness, participants switched to a reclined position in a dark, quiet room with eyes closed. They were instructed not to worry about falling asleep as they would be gently roused by the experimenter after three missed trials. In the drowsy condition, 488 tones were presented. 8 tones were presented on the midline and the remaining stimuli were equally divided across both hemispaces; the near-midline range comprised 240 trials whereas the intermediate and peripheral ranges each accounted for 120 trials. Trials were weighted toward the midline to increase task difficulty and evaluate behavioral responses under high perceptual uncertainty during drowsiness, since we did not expect evidence of spatial bias during wakefulness based on previous work (Bareham et al., 2014; Jagannathan et al., 2022). 
+
+Regardless of condition, the order in which stimuli were presented was random. To manipulate participants’ temporal expectations of auditory stimulation, each tone was preceded by a variable interstimulus interval. Following previous work (Bareham et al., 2014; Jagannathan et al., 2022), we used interstimulus intervals between 1-2s in the awake condition and 5-8s in the drowsy condition to facilitate the induction of drowsiness. Participants indicated the direction of the tone (either left or right) via a button press with the left and right index finger on the “z” and 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+14 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+“m” keys on a keyboard. They were instructed to respond as quickly and accurately as possible. If no response was detected within 5 s of stimulus onset, the trial timed out and the experiment proceeded to the next trial. The task lasted ~45 minutes depending on response times and omissions. To validate the state of arousal for each trial, EEG data from the 4-s pre-stimulus interval were classified as either belonging to the awake or drowsy condition using the micromeasures algorithm (Jagannathan et al., 2018). We retained only those trials where the algorithmic classification was congruent with the experimental condition. We only included correct trials in our EEG analysis. During wakefulness, we recorded 85.1% correct responses for left-sided stimuli and 89.6% for right-sided stimuli. When participants were drowsy, they gave 78.8% correct responses for left-sided stimuli and 87.5% for right-sided stimuli. 
+
+Behavioural Analysis 
+
+Differences in reaction times between wakefulness and drowsiness were assessed using paired-samples t-tests. To investigate whether performance impairments induced by drowsiness are specific to a hemifield, we employed linear mixed-effects models using the lme4 and lmerTest packages in R. Accuracy was modeled with fixed effects of arousal, stimulus laterality and their interaction. We included subject-specific random intercepts to account for the hierarchical structure of the data and inter-individual variability. We determined significance for the fixed effects using likelihood ratio tests comparing full models against nested models excluding the effect of interest. To perform post-hoc comparisons, we employed Kenward-Roger degrees-of-freedom approximations using the emmeans package in R. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+15 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+EEG Acquisition and Preprocessing 
+
+Continuous EEG data were recorded using a 64-channel BrainVision actiCHamp system with a sampling rate of 500 Hz. EEG data were further preprocessed in Matlab using EEGLAB. Initially, EEG data were downsampled from 500 Hz to 250 Hz and bandpass filtered between 0.5 and 50 Hz. We epoched the data in a time window between -100 to 1000 ms relative to stimulus onset. EEG data were baseline-corrected using a 100 ms pre-stimulus interval. We rejected trials contaminated with noise arising from movements and sweat by visual inspection. To remove physiological noise artefacts, independent component analysis was performed using the EEGLAB Infomax. Components were visually inspected and rejected based on their spatial topography and power spectrum. To prevent classifier bias during multivariate decoding and to ensure equivalent signal-to-noise ratios for PEB/DCM, we equalised trial numbers across the four combinations of arousal state (drowsy/awake) and stimulus laterality (left/right) by randomly deselecting superfluous trials to match the condition with the fewest trials. Having converted EEGLAB to SPM format, we performed source modelling in SPM. EEG sensor positions were projected in 3D space and co-registered to individual structural MRIs. Participants’ MRIs were obtained at the Wellington Hospital prior to the EEG data collection session. Subject-specific forward models were computed using the boundary element method, and the quality of mesh and co-registration was manually verified. 
+
+Decoding 
+
+To demonstrate mid-latency differences in auditory neural responses, we employed Time-resolved Multivariate Pattern Analysis (MVPA) for EEG to decode left and right trials in 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+16 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+each state of arousal. We down-sampled EEG data to 100 Hz and applied an average mastoid reference (Grootswagers, Wardle, & Carlson, 2017; Trammel, Khodayari, Luck, Traxler, & Swaab, 2023). For each dataset (with at least 25 trials per condition), we trained a decoding pipeline using Z-score normalisation and Linear Discriminant Analysis with automated Ledoit-Wolf shrinkage to discriminate left and right trials within each arousal state. To balance the four classes, we equalised trial counts by randomly discarding trials in the majority classes. This procedure was bootstrapped across 15 iterations per subject to ensure robust estimates. Classification performance was evaluated using 5-fold stratified cross-validation with five repeats and the Area Under the Curve (AUC-ROC) as a classification performance metric. We smoothed the resulting AUC-ROC time series using a Gaussian kernel (σ=2) to improve the signal-to-noise ratio. Using cluster-based permutation tests, we identified adjacent time points at which stimulus laterality classification performance in each the awake and drowsy condition differed from chance. Cluster-based permutation tests implemented a Monte Carlo algorithm with 4096 random 
+
+partitions and used one-sample two-tailed t-tests for significance testing at  (Maris & α =. 05 
+
+Oostenveld, 2007). Finally, we reconstructed spatial classifier pattern weights from the multivariate filters using an inverse transform, yielding pattern weights (Haufe et al., 2014). Following previous work (Jagannathan et al., 2022), we compared the resulting spatial activation patterns for the drowsy and awake condition in two time windows (early: 0-400 ms, late: 400-800 ms). Differences between conditions were determined using cluster-based permutation tests with 
+
+1000 random partitions based on one-sample two-tailed t-tests at  .α =. 05 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+17 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Parametric Empirical Bayes 
+
+We used DCM for Event-Related Potentials (ERPs) (David et al., 2006; Kiebel, Garrido, Moran, & Friston, 2008) and PEB in SPM12 (Zeidman, Jafarian, Corbin, et al., 2019; Zeidman, Jafarian, Seghier, et al., 2019) to estimate commonalities and differences in effective connectivity supporting lateral spatial attention between wakefulness and drowsiness. DCM estimates the directed influence that one neural population exerts over another by fitting a generative model to observed neural responses. For that, DCM uses biologically informed neural mass models to simulate voltage amplitude within and between cortical sources. Each source consists of interacting excitatory and inhibitory neuronal subpopulations arranged across canonical cortical layers. Forward, backward, and lateral projections between cortical regions are modeled in accordance with anatomical pathways in the cortical hierarchy. We used DCM to estimate connectivity differences between left and right auditory event-related responses, allowing inference of connectivity changes that best explain observed event-related potentials (David et al., 2006; Friston et al., 2016; Kiebel et al., 2008; Stephan et al., 2010). DCMs contrasting left and right trials were constructed for each participant and arousal state (awake, drowsy) using an ERP model with eight sources in the auditory cortical hierarchy: bilateral A1, STG, IFG and IPC. Sources were modelled as a single equivalent current dipole. We selected eight sources in the ventral frontoparietal pathway based on a previous DCM study contrasting theories of auditory spatial attention (Dietz et al., 2014). Source locations were manually defined based on previous DCM studies of auditory spatial attention and neglect (see Table 1) (Chennu et al., 2016; Dietz et al., 2014; Marta I. Garrido, Kilner, Kiebel, & Friston, 2009; Niedernhuber, Raimondo, Sitt, & Bekinschtein, 2022). Subject-specific head models and forward solutions were used for dipole 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+18 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+fitting. We set the number of modes to 8 and the onset to 60 ms. After equalising trial numbers per participant for each of the four folds (left/awake, right/awake, left/drowsy, right/drowsy) by randomly deselecting superfluous trials, models were fitted to EEG data epoched from 0 to 400 ms relative to stimulus onset. 
+
+Once individual subject-wise DCMs were estimated for each condition, we applied PEB modelling to characterise group-level effects. PEB is a hierarchical Bayesian Method which treats DCM parameters at the subject-level as inputs to a second-level general linear model. The resulting PEB model can be used to model group-level commonalities and differences in effective connectivity between experimental conditions. We constructed a PEB model over DCM parameters which represent stimulus laterality modulations (left vs right) for each participant and condition. Then, we used PEB to estimate group-level commonalities and differences between awake and drowsy conditions. Using Bayesian Model Reduction, we iteratively tested simplified versions of the parent model by removing expected probability (Ep) parameters with little evidence. Reduced models were then combined using Bayesian Model Averaging (Zeidman, Jafarian, Corbin, et al., 2019; Zeidman, Jafarian, Seghier, et al., 2019), and thresholded at a 
+
+posterior probability (Pp)  .95. ≥
+
+Results 
+
+Drowsiness reduces auditory spatial localisation performance in left hemifield 
+
+First, we confirmed that our dataset replicates previous findings (Bareham et al., 2014; Jagannathan et al., 2022) of an association between drowsiness and a right-ward bias, whereby 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+19 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+the decrease in accuracy that arises with drowsiness is greater for stimuli presented on the left (Figure 2, C, D). Replicating previous studies which identified longer reaction times during drowsiness in this task (Jagannathan et al., 2022), we observed that overall reaction times were prolonged during drowsiness compared to wakefulness (mean difference = 207.51 ms, 95% CI [−291.68, −123.33], t(29)=−5.04, p<.001). 
+
+To determine how arousal and stimulus laterality influence performance, we fit linear mixed-effects models on subject-level accuracy with subject-specific random intercepts. Sequential model comparisons via likelihood ratio tests revealed significant main effects for both 
+
+arousal state (  , ), stimulus laterality (  , ), and an χ(1) 2 = 4. 52  𝑝 = 0. 034  χ(1) 2 = 19. 05  𝑝 < 0. 001 
+
+interaction between arousal and laterality (  , ). Post-hoc tests identified χ(2) 2 = 22. 40  𝑝 < 0. 001 
+
+degraded accuracy within the left hemifield (  , , ,𝑒𝑠𝑡𝑖𝑚𝑎𝑡𝑒 = 0. 065  𝑆𝐸 = 0. 024  𝑡 (93.1) = 2. 75 
+
+). In contrast, right-hemifield performance remained stable across states ( 𝑝 = 0. 007 
+
+, , , ). Consistent with previous work 𝑒𝑠𝑡𝑖𝑚𝑎𝑡𝑒 = 0. 015  𝑆𝐸 = 0. 024  𝑡 (93.1) = 0. 64  𝑝 = 0. 521 
+
+(Bareham et al., 2014; Jagannathan et al., 2022), these findings demonstrate that drowsiness selectively compromises spatial localization accuracy within the left visual field. 
+
+We next asked whether drowsiness impaired spatial target detection uniformly, or if the deficit was dependent on stimulus distance. Sequential likelihood ratio tests revealed that adding an interaction term between arousal state and stimulus distance significantly improved model fit ( 
+
+, ), confirming that behavioural performance reduction in drowsiness is χ(3) 2 = 28. 10  𝑝 < 0. 001 
+
+asymmetrically distributed across the visual field. Compared to the awake state, drowsiness was 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+20 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+associated with relative reductions in accuracy at 12° (  , ), 35° ( 𝑂𝑅 = 1. 29  𝑝 < 0. 001 
+
+, ) and 60° (  , ). Taken together, the effect of 𝑂𝑅 = 3. 01  𝑝 < 0. 001  𝑂𝑅 = 3. 53  𝑝 < 0. 001 
+
+drowsiness becomes stronger the further away from the midline the target appears. 
+
+Drowsiness alters cortical representations of auditory spatial attention 
+
+To demonstrate arousal-dependent mid-latency differences in auditory spatial information processing, we compared auditory neural responses to left and right trials using MVPA in wakefulness and drowsiness (Figure 3). Decoding performance was above chance in the awake condition (t = 3.976, p = .0032, time window: 550 - 800 ms) and drowsy condition (t = 6.096, p = .0002, time window: 280 - 800 ms). We also revealed a difference in spatial voltage patterns between the awake and drowsy conditions in a cluster from 250 to 370 ms (t = −535.87,p = .024). No differences emerged in the late time window (400–800 ms). 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+21 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+.CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint 22 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Figure 3. (A) Time-resolved MVPA decoding of stimulus laterality. Mean classifier performance (AUC-ROC) against chance is shown for the awake (red) and drowsy (blue) conditions, with shaded regions indicating the standard error of the mean (SEM). Periods of significant decoding performance are highlighted by thickened lines and shaded underlays. (B) Grand-average scalp topographies for right (R) and left (L) stimuli in both conditions shown in 100 ms intervals post-stimulus. (C) Mean spatial classifier weights pattern time series for the awake and drowsy conditions are plotted with the SEM shaded. Differences between conditions are denoted by thickened lines and grey shading. A vertical dotted line marks the peak difference between conditions. The topographical map showing the difference between the drowsy and awake condition at this time point is displayed on the left. 
+
+Diminishing arousal reconfigures effective connectivity within the auditory attention network 
+
+We employed Dynamic Causal Modeling for Event-Related Potentials and Parametric Empirical Bayes to examine how lateralised auditory stimuli modulate effective connectivity in the auditory cortical hierarchy under varying arousal states. Initially, we modelled effective connectivity modulated by spatial location (i.e., the contrast of right versus left trials) within the awake and drowsy states independently, and then we tested for differences between these states. Our analysis revealed arousal-dependent altered connectivity in the auditory cortical hierarchy during drowsiness. 
+
+We examined differences in effective connectivity between left and right trials (left > right) during wakefulness and drowsiness. Both the dual network and right hemisphere theories predict that right-hemispheric connectivity will be stronger for left compared to right stimuli during wakefulness, but that this asymmetry will diminish during drowsiness. According to the right hemisphere dominance theory, this asymmetry arises because leftward attention mostly recruits on right hemisphere, whereas rightward attention engages both hemispheres. Similar to 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+23 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+the right hemisphere theory, the dual-network model posits this asymmetry since left-sided targets recruit the right VAN for stimulus-driven alerting. However, the dual-network model locates these effects to the VAN (STG, IFG, and IPC), whereas right-hemispheric theory posits that these differences emerge across the entire right-hemispheric hierarchy, including in early sensory areas (A1, STG, IFG, and IPC). According to the opponent processor theory, spatial attention relies on mutually inhibitory interhemispheric interactions. For a left vs right contrast during wakefulness, we will observe increased connectivity across regions in the right hemisphere (A1, STG, IFG, IPC). This will be accompanied by increased inhibition from the right to the left IPC. During drowsiness, mutual inhibition between hemispheres will decrease. Therefore, we expect increased left-hemispheric and decreased right-hemispheric connectivity alongside increased inhibition from the left to the right IPC (Figure 1). 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+24 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+.CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint 25 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Figure 4. Arousal-dependent modulation of effective connectivity for lateralised auditory attention. PEB results show group-level changes in effective connectivity for the contrast of right versus left auditory trials across different arousal states. PEBs were constructed over DCMs which encoded the contrast between left vs right trials in wakefulness (row 1) and drowsiness (row 2). A PEB-of-PEBs modelled the difference between PEBs for the awake and drowsy states (row 3). Each row depicts effective connectivity modulations between regions in the auditory cortical hierarchy on a glass brain (left), followed by a heatmap of expected probability values (middle) and associated posterior probabilities between connections (right). In the glass brains, arrows indicate modulations of effective connections (B-matrix) between brain areas and their expected probability, plotted on a blue-to-red gradient. In the first two rows, red indicates increasing connection strength between regions when left-sided stimuli are presented (relative to right-sided stimuli), and blue indicates a decrease. In the third row, warm colours indicate that connections are strengthened in drowsiness relative to wakefulness (and cold colours vice versa). All displayed connections are thresholded at a posterior probability of .95. 
+
+During wakefulness, we observed increased interhemispheric connectivity between bilateral IFGs when participants processed tones on their left versus their right (depicted using recurrent red arrows in Figure 4, top panel). During drowsiness, we found that connectivity from the right IPC to the left IPC and from the left IPC to the left IFG was increased for left relative to right trials (shown with red arrows between the respective IPCs and left IFG, Figure 4, middle panel). In contrast, connectivity from the right IFG to IPC decreased (displayed with a blue arrow, Figure 4, middle panel). 
+
+Finally, we constructed a second-level PEB model contrasting lateralised attention in the awake and drowsy states. When wakefulness was compared to drowsiness directly, we found reduced interhemispheric connectivity from the right to the left IFG (Ep=-0.15, Pp=.98) and from the left to the right STG (Ep=-0.16, Pp=.99) when participants were drowsy vs awake (blue arrows between ROIs, Figure 4, bottom panel). In contrast, connectivity increased from left IPC to IFG (Ep=0.18, Pp>.99) during drowsiness relative to wakefulness (red arrow between ROIs, 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+26 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Figure 4, bottom panel). We also observed more local self-inhibition within the left A1 during drowsiness (Ep=0.13, Pp>.99; red arrow, Figure 4, bottom panel). In a direct comparison between wakefulness and drowsiness, there was positive (but not strong) evidence for a dysconnection from the right IFG to IPC during drowsiness (Ep= -0.06, Pp = 0.88; not shown in plot). 
+
+To link behavioural performance and connectivity, we also tested whether accuracy predicts PEB parameters encoding the interaction of arousal and stimulus laterality. We found that the modulatory influence of stimulus laterality on left-right STG connectivity is dependent 
+
+on an interaction between arousal state and task accuracy (  , ). This suggests 𝐸 𝑝 = 2. 80  𝑃 𝑝 = 1. 0 
+
+that a decrease in interhemispheric connectivity between STGs is linked to impaired task performance during drowsiness. 
+
+Taken together, our hierarchical analysis of effective connectivity provides a mechanistic account for how diminishing arousal reconfigures connectivity in the auditory cortical hierarchy when spatial attention is engaged. Overall, our results reveal a fundamental shift from a balanced, bilateral network during wakefulness to a left-lateralised network encoding the difference between left and right trials in drowsiness. Rather than the widespread right-lateralised connectivity predicted by the right hemisphere theory, our results showed reciprocal, bilateral interhemispheric signalling between IFGs. We also did not observe the predicted breakdown of connectivity across all levels of the right-hemispheric auditory cortical hierarchy during drowsiness. Instead, we found a reduction in right-hemispheric frontoparietal connectivity during drowsiness, which matches the dual-network theory’s prediction of a compromised right VAN. While the dual network theory predicts left-hemispheric dominance, we identified voltage within 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+27 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+the VAN rather than the hypothesised DAN. While wakefulness lacked the unilateral right-to-left inhibition predicted by the opponent processor theory, its prediction for drowsiness aligns with our finding of increased connectivity from the right to the left IPC, as well as from the left IPC to the left IFG. 
+
+Discussion 
+
+Our study used a lateralised auditory localisation task across varying levels of alertness to contrast theories of spatial attention. Initially, we replicated behavioural biases in auditory spatial attention during drowsiness (Bareham et al., 2014; Jagannathan et al., 2022), and confirmed differences between neural responses to left-sided and right-sided stimuli in wakefulness and drowsiness. Using temporal decoding, we identified patterns of brain classification weights discriminating left and right auditory stimuli which emerged from ~280 ms in drowsiness and from ~550 ms in wakefulness. This finding is consistent with the idea that drowsiness leads to asymmetric neural dynamics between hemispheres in a mid-latency time window, which might underpin the behavioural biases observed when alertness wanes. Using PEB/DCM, we discovered that left-sided stimuli elicit stronger interhemispheric connectivity between inferior frontal and superior temporal regions than right-sided stimuli in wakefulness. Conversely, drowsiness amplified connectivity between frontal and parietal nodes within the left hemisphere, but decreased connectivity in the right hemisphere. Extending previous findings (Bareham et al., 2014), this result suggests that the influence of the left hemisphere in the auditory cortical hierarchy increases as alertness wanes, leading to the characteristic rightward attentional biases observed behaviourally during sleep onset (Bareham et al., 2014; Manly et al., 2005). 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+28 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Our results do not fully align with any of the theories proposed. For a contrast between left and right trials in wakefulness, the opponent processor theory predicts that the left hemisphere inhibits the right (Kinsbourne, 1970, 1987, 2006), whereas we observed increased interhemispheric flow between IFGs for left compared to right stimuli. For the drowsiness model, our findings comprise elements of both the dual network and opponent processor theories. We identified reduced signaling between the right IFG and IPC for left relative to right trials during drowsiness, which aligns with previous studies showing dysconnection between right frontoparietal regions (Bartolomeo, Thiebaut de Schotten, & Doricchi, 2007; Di Gregorio et al., 2023; Dietz et al., 2014; Dietz et al., 2021; Masina et al., 2022). This observation is congruent with the dual network model’s prediction of dysconnection in the right-hemispheric VAN during drowsiness compared to wakefulness (Corbetta & Shulman, 2011; Dietz et al., 2014). Simultaneously, we identified increased connectivity from the left IPC to the IFG, coupled with decreased connectivity from the right IFG to the IPC for left compared to right stimuli during drowsiness. This finding supports the opponent processor theory’s prediction of left-hemispheric dominance. While the dual network theory also encompasses the hypothesis that left-hemispheric activity or pattern will increase during neglect, this hyperactivation is thought to be localised in the DAN (Corbetta & Shulman, 2011), and therefore does not align with our observations. Finally, our connectivity findings are situated within the VAN and do not involve connections between A1 and STG predicted by the right hemisphere dominance theory for the contrast between left and right trials (Dietz et al., 2014; Dietz et al., 2021; Heilman & Van Den Abell, 1979; Kaiser et al., 2000; Mesulam, 1981). We also considered whether our results can be explained by theories of spatial attention beyond these accounts. In 2015, Duecker and Sack 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+29 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+inferred a hybrid model of spatial attention that incorporates elements of both the right-hemispheric dominance and the dual-network theory, developed using visual tasks such as line bisection (Duecker & Sack, 2015). The hybrid model of attention emphasises interhemispheric competition involving parietal regions and the frontal eye fields. Since our study uses auditory stimulation, our model did not include the frontal eye field as a region of interest since it is mostly implicated in visual attention tasks (Schall, 2004). In DCM/PEB analysis, connectivity parameters are estimated between a limited number of pre-selected regions, and therefore, our results cannot be used to adjudicate between theories based on predictions about regions not included in the model. Overall, we conclude that the findings presented here do not align with any of the above theories. 
+
+Instead, we suggest an alternative structure for connectivity when spatial attention is engaged. Considering the ongoing debate around whether clinical neglect is driven by left-hemisphere hyperactivity or right-hemisphere dysconnection (Bagattini, Mele, Brignani, & Savazzi, 2015; Bartolomeo & Chokron, 1999; Bartolomeo et al., 2007; Brancaccio, Lanza, & Schintu, 2026; Dietz et al., 2014; Dietz et al., 2021; Kaiser et al., 2000; Kaufmann et al., 2024; Koch et al., 2008; Nakamura et al., 2012; Savazzi, Mele, Brignani, & Bagattini, 2013; Thiebaut de Schotten et al., 2011; Toba et al., 2022; Umarova et al., 2011), we propose that both mechanisms might play a role for neglect during drowsiness. Our results indicate that spatial biases during drowsiness emerge from a combination of left-hemispheric decrease in voltage or classification weights and right-hemispheric dysconnection in frontoparietal areas, driven primarily by interhemispheric uncoupling. As alertness decreases, the reciprocal interhemispheric 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+30 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+signalling that maintains spatial equilibrium during wakefulness is disrupted. This uncoupling is accompanied by a functional dysconnection within the right frontoparietal network, which concurrently allows the left parietofrontal pathway to become dominant. Consequently, the rightward auditory spatial bias observed in drowsiness is best understood as an emergent network imbalance, demonstrating how interhemispheric decoupling facilitates both right-sided dysconnection and left-sided dominance in frontal and parietal regions. 
+
+More recently, predictive coding was used as a framework to explain biased attention in neglect. In previous studies, biased attention in neglect was associated with abnormal precision-weighting of left-sided sensory prediction errors, altered interhemispheric gain control, and disrupted right-hemispheric frontoparietal predictive signalling (Dietz et al., 2021; Doricchi et al., 2021; Marta I. Garrido & Deouell, 2021; Parr & Friston, 2018; Parr, Rees, & Friston, 2018; Vossel et al., 2025). From a predictive processing perspective, our results can be framed as alterations in precision-weighting of sensory prediction errors within the left hemisphere, interhemispheric gain control, and frontoparietal prediction error messaging within the right hemisphere. Within this framework, the behavioral shifts observed during drowsiness reflect a reduction in the precision afforded to left-sided sensory evidence, leading to the selective impairment of targets within the left hemifield. As right-sided influence recedes, this leads to imbalanced interhemispheric gain control, which in turn allows left-hemispheric predictive processes to dominate the attentional hierarchy and bias spatial processing rightward. We note, however, that the predictive coding account can provide a computational framework within 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+31 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+which these network-level changes can be interpreted, complementing rather than replacing anatomical theories of spatial attention. 
+
+We previously suggested that neglect-like spatial biases during drowsiness might mirror those observed in post-stroke neglect (Bareham et al., 2015, 2014; Manly et al., 2005). In support of this, we found that connectivity from IFG to IPC decreases within the right and increases within the left hemisphere when participants process left-sided stimuli during drowsiness. While dysconnection within the right-hemispheric VAN was previously identified as a neural mechanism for neglect in patients (Dietz et al., 2021; He et al., 2007), there is lively debate around whether the left hemisphere might drive spatial biases in neglect. Various studies supported a view of neglect as driven by right hyperattention, leading to a rightward orienting bias. Theories of post-stroke neglect stipulate that the rightward attention biases seen in neglect patients result from hyperactivity (in PET or fMRI) in the left posterior parietal cortex after a lesion in the right hemisphere (Bartolomeo & Chokron, 1999; Corbetta & Shulman, 2011; Kinsbourne, 2006; Koch et al., 2008; Nakamura et al., 2012). In healthy individuals, parietal transcranial direct current stimulation was found to induce neglect-like spatial bias towards the contralateral hemifield (Geers et al., 2024). However, other groups did not identify a link between left-hemispheric hyperactivity and spatial bias in clinical neglect (Kaufmann et al., 2024; Umarova et al., 2011) or in neuromodulation studies in healthy individuals (Bagattini et al., 2015; Killington, Barr, Loetscher, & Bradnam, 2016). Further work is thus needed to test directly whether similar neural mechanisms govern spatial attention biases in drowsiness and post-stroke neglect, or whether left-hemispheric dominance is specific to spatial bias in drowsiness. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+32 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+While our findings provide a novel mechanistic account of how alertness modulates spatial attention, it is important to acknowledge that our conclusions rely on EEG-based effective connectivity, which is contingent upon the spatial precision of the specified source model as well as predefined sources. Investigations combining EEG with fMRI data could explore both cortical and subcortical regions that might contribute to spatial attention in wakefulness and drowsiness. Furthermore, our investigation was confined to the auditory modality, and it remains to be seen whether our findings generalise to other sensory modalities such as the visual domain which is primarily affected in neglect patients (Driver & Mattingley, 1998). 
+
+In conclusion, our findings provide a mechanistic account of how waning alertness alters cortical networks governing spatial attention. We demonstrate that a rightward spatial attention bias is supported by left-hemispheric dominance and a concomitant reduction in right-hemispheric frontoparietal information messaging. Critically, these results suggest that none of the candidate theories considered in this study fully account for the observed connectivity patterns. Instead, rightward attention biases in drowsiness might be supported by both increased left-hemispheric signaling and right-hemispheric disconnection in frontoparietal regions. 
+
+Code and data 
+
+Link to code:  https://osf.io/qc9h8/ . Link to data:  https://doi.org/10.5281/zenodo.19693758 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+33 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Funding 
+
+This work was funded by a Repatriation Fellowship (1839 RF) and a Small Project Grant (1946 SPG) from the Neurological Foundation of New Zealand, as well as a Marsden Fast-Start Grant (MAU2011) from the Royal Society of New Zealand, awarded to CAB. 
+
+References 
+
+Albert, L., Bernasconi, F., Potheegadoo, J., & Blanke, O. (2025). Home-based online line bisection test detects visuo-spatial neglect and pseudoneglect in Parkinson’s disease. 
+
+Parkinsonism & Related Disorders , 130 , 107195. 
+
+https://doi.org/10.1016/j.parkreldis.2024.107195 
+
+Bagattini, C., Mele, S., Brignani, D., & Savazzi, S. (2015). No causal effect of left hemisphere hyperactivity in the genesis of neglect-like behavior. Neuropsychologia , 72 , 12–21. 
+
+https://doi.org/10.1016/j.neuropsychologia.2015.04.010 
+
+Bareham, C. A., Bekinschtein, T. A., Scott, S. K., & Manly, T. (2015). Does left-handedness confer resistance to spatial bias? Scientific Reports , 5(1), 9162. 
+
+https://doi.org/10.1038/srep09162 
+
+Bareham, C. A., Manly, T., Pustovaya, O. V., Scott, S. K., & Bekinschtein, T. A. (2014). Losing the left side of the world: Rightward shift in human spatial attention with sleep onset. 
+
+Scientific Reports , 4(1), 5092.  https://doi.org/10.1038/srep05092 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+34 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Bartolomeo, P., & Chokron, S. (1999). Left unilateral neglect or right hyperattention? Neurology ,
+
+53 (9), 2023–2023.  https://doi.org/10.1212/WNL.53.9.2023 
+
+Bartolomeo, P., Thiebaut de Schotten, M., & Doricchi, F. (2007). Left Unilateral Neglect as a Disconnection Syndrome. Cerebral Cortex , 17 (11), 2479–2490. 
+
+https://doi.org/10.1093/cercor/bhl181 
+
+Bartsch, M. V., Merkel, C., Strumpf, H., Schoenfeld, M. A., Tsotsos, J. K., & Hopf, J.-M. (2023). A cortical zoom-in operation underlies covert shifts of visual spatial attention. Science 
+
+Advances , 9(10), eade7996.  https://doi.org/10.1126/sciadv.ade7996 
+
+Brancaccio, A., Lanza, C. M., & Schintu, S. (2026). Investigating the attentional state dependency of interhemispheric interactions - a TMS-EEG study. Brain Stimulation: Basic, Translational, and Clinical Research in Neuromodulation , 19 (1). 
+
+https://doi.org/10.1016/j.brs.2025.103011 
+
+Brunetti, M., Della Penna, S., Ferretti, A., Del Gratta, C., Cianflone, F., Belardinelli, P., … Romani, G. L. (2008). A Frontoparietal Network for Spatial Attention Reorienting in the Auditory Domain: A Human fMRI/MEG Study of Functional and Temporal Dynamics. 
+
+Cerebral Cortex , 18 (5), 1139–1147.  https://doi.org/10.1093/cercor/bhm145 
+
+Chambers, C. D., Stokes, M. G., & Mattingley, J. B. (2004). Modality-specific control of strategic spatial attention in parietal cortex. Neuron , 44 (6), 925–930. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+35 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Chandrakumar, D., Keage, H. A. D., Gutteridge, D., Dorrian, J., Banks, S., & Loetscher, T. (2019). Interactions between spatial attention and alertness in healthy adults: A 
+
+meta-analysis. Cortex , 119 , 61–73.  https://doi.org/10.1016/j.cortex.2019.03.016 
+
+Chen, J., Kaur, J., Abbas, H., Wu, M., Luo, W., Osman, S., & Niemeier, M. (2019). Evidence for a common mechanism of spatial attention and visual awareness: Towards construct validity of pseudoneglect. PLOS ONE , 14 (3), e0212998. 
+
+https://doi.org/10.1371/journal.pone.0212998 
+
+Chennu, S., Noreika, Gueorguiev, Shtyrov, Bekinschtein, & Henson, R. (2016). Silent Expectations: Dynamic Causal Modeling of Cortical Prediction and Attention to Sounds That Weren’t. Journal of Neuroscience , 36 (32), 8305–8316. 
+
+https://doi.org/10.1523/JNEUROSCI.1125-16.2016 
+
+Clément, A., & Tallon-Baudry, C. (2025). Mental Images from Long-Term Memory Differ from Perception: Evidence for Distinct Spatial Formats and Distinct Mechanisms of Spatial Attention Orientation. Journal of Neuroscience , 45 (49). 
+
+https://doi.org/10.1523/JNEUROSCI.0691-25.2025 
+
+Corbetta, M., & Shulman, G. L. (2002). Control of goal-directed and stimulus-driven attention in the brain. Nature Reviews Neuroscience , 3(3), 201–215. 
+
+Corbetta, M., & Shulman, G. L. (2011). Spatial Neglect and Attention Networks. Annual Review 
+
+of Neuroscience , 34 (1), 569–599.  https://doi.org/10.1146/annurev-neuro-061010-113731 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+36 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+David, O., Kiebel, S. J., Harrison, L. M., Mattout, J., Kilner, J. M., & Friston, K. J. (2006). Dynamic causal modeling of evoked responses in EEG and MEG. NeuroImage , 30 (4), 
+
+1255–1272.  https://doi.org/10.1016/j.neuroimage.2005.10.045 
+
+Desimone, R., & Duncan, J. (1995). Neural mechanisms of selective visual attention. Annual Review of Neuroscience , 18 (1), 193–222. 
+
+Di Gregorio, F., Petrone, V., Casanova, E., Lullini, G., Romei, V., Piperno, R., & La Porta, F. (2023). Hierarchical psychophysiological pathways subtend perceptual asymmetries in 
+
+Neglect. NeuroImage , 270 , 119942.  https://doi.org/10.1016/j.neuroimage.2023.119942 
+
+Dickinson, C. A., & Intraub, H. (2009). Spatial asymmetries in viewing and remembering scenes: Consequences of an attentional bias? Attention, Perception, & Psychophysics , 71 (6), 
+
+1251–1262.  https://doi.org/10.3758/APP.71.6.1251 
+
+Dietz, M. J., Friston, K. J., Mattingley, J. B., Roepstorff, A., & Garrido, M. I. (2014). Effective connectivity reveals right-hemisphere dominance in audiospatial perception: Implications for models of spatial neglect. Journal of Neuroscience , 34 (14), 5003–5011. 
+
+Dietz, M. J., Nielsen, J. F., Roepstorff, A., & Garrido, M. I. (2021). Reduced effective connectivity between right parietal and inferior frontal cortex during audiospatial perception in neglect patients with a right-hemisphere lesion. Hearing Research , 399 ,
+
+108052.  https://doi.org/10.1016/j.heares.2020.108052 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+37 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Dobler, V. B., Anker, S., Gilmore, J., Robertson, I. H., Atkinson, J., & Manly, T. (2005). Asymmetric deterioration of spatial awareness with diminishing levels of alertness in normal children and children with ADHD. Journal of Child Psychology and Psychiatry ,
+
+46 (11), 1230–1248.  https://doi.org/10.1111/j.1469-7610.2005.00421.x 
+
+Dodds, C., Müller, U., & Manly, T. (2009). Effects of psychostimulants on alertness and spatial bias in healthy participants. Journal of Cognitive Neuroscience , 21 (3), 529–537. 
+
+Doricchi, F., Pinto, M., Pellegrino, M., Marson, F., Aiello, M., Campana, S., … Lasaponara, S. (2021). Deficits of hierarchical predictive coding in left spatial neglect. Brain 
+
+Communications , 3(2), fcab111.  https://doi.org/10.1093/braincomms/fcab111 
+
+Driver, J., & Mattingley, J. B. (1998). Parietal neglect and visual awareness. Nature 
+
+Neuroscience , 1(1), 17–22.  https://doi.org/10.1038/217 
+
+Duecker, F., & Sack, A. T. (2015). The hybrid model of attentional control: New insights into hemispheric asymmetries inferred from TMS research. Neuropsychologia , 74 , 21–29. 
+
+https://doi.org/10.1016/j.neuropsychologia.2014.11.023 
+
+Fimm, B., Willmes, K., & Spijkers, W. (2006). The effect of low arousal on visuo-spatial attention. Neuropsychologia , 44 (8), 1261–1268. 
+
+https://doi.org/10.1016/j.neuropsychologia.2006.01.027 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+38 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Foulsham, T., Gray, A., Nasiopoulos, E., & Kingstone, A. (2013). Leftward biases in picture scanning and line bisection: A gaze-contingent window study. Vision Research , 78 , 14–25. 
+
+https://doi.org/10.1016/j.visres.2012.12.001 
+
+Friston, K., Litvak, V., Oswal, A., Razi, A., Stephan, K. E., van Wijk, B. C. M., … Zeidman, P. (2016). Bayesian model reduction and empirical Bayes for group (DCM) studies. 
+
+NeuroImage , 128 , 413–431.  https://doi.org/10.1016/j.neuroimage.2015.11.015 
+
+Gaillard, C., & Hamed, S. B. (2022). The neural bases of spatial attention and perceptual rhythms. European Journal of Neuroscience , 55 (11-12), 3209–3223. 
+
+https://doi.org/10.1111/ejn.15044 
+
+Garrido, Marta I., & Deouell, L. Y. (2021). Unilateral neglect within the predictive processing framework. Brain Communications , 3(3), fcab193. 
+
+https://doi.org/10.1093/braincomms/fcab193 
+
+Garrido, Marta I., Kilner, J. M., Kiebel, S. J., & Friston, K. J. (2009). Dynamic Causal Modeling of the Response to Frequency Deviants. Journal of Neurophysiology , 101 (5), 2620–2631. 
+
+https://doi.org/10.1152/jn.90291.2008 
+
+Geers, L., Dormal, V., Bonato, M., Vandermeeren, Y., Masson, N., & Andres, M. (2024). Modulation of initial leftward bias in visual search by parietal tDCS. PLOS ONE , 19 (12), 
+
+e0315715.  https://doi.org/10.1371/journal.pone.0315715 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+39 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+George, M. S., Mercer, J. S., Walker, R., & Manly, T. (2008). A demonstration of endogenous modulation of unilateral spatial neglect: The impact of apparent time-pressure on spatial bias. Journal of the International Neuropsychological Society , 14 (1), 33–41. 
+
+George, M., Dobler, V., Nicholls, E., & Manly, T. (2005). Spatial awareness, alertness, and ADHD: The re-emergence of unilateral neglect with time-on-task. Brain and Cognition ,
+
+57 (3), 264–275. 
+
+Goupil, L., & Bekinschtein, T. (2012). Cognitive processing during the transition to sleep. 
+
+Archives Italiennes de Biologie , 150 (2/3), 140–154. 
+
+Grootswagers, T., Wardle, S. G., & Carlson, T. A. (2017). Decoding Dynamic Brain Patterns from Evoked Responses: A Tutorial on Multivariate Pattern Analysis Applied to Time Series Neuroimaging Data. Journal of Cognitive Neuroscience , 29 (4), 677–697. 
+
+https://doi.org/10.1162/jocn_a_01068 
+
+Haufe, S., Meinecke, F., Görgen, K., Dähne, S., Haynes, J.-D., Blankertz, B., & Bießmann, F. (2014). On the interpretation of weight vectors of linear models in multivariate neuroimaging. NeuroImage , 87 , 96–110. 
+
+https://doi.org/10.1016/j.neuroimage.2013.10.067 
+
+He, B. J., Snyder, A. Z., Vincent, J. L., Epstein, A., Shulman, G. L., & Corbetta, M. (2007). Breakdown of Functional Connectivity in Frontoparietal Networks Underlies Behavioral Deficits in Spatial Neglect. Neuron , 53 (6), 905–918. 
+
+https://doi.org/10.1016/j.neuron.2007.02.013 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+40 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Heilman, K. M., & Valenstein, E. (1979). Mechanisms underlying hemispatial neglect. Annals of 
+
+Neurology , 5(2), 166–170.  https://doi.org/10.1002/ana.410050210 
+
+Heilman, K. M., & Van Den Abell, T. (1979). Right hemispheric dominance for mediating cerebral activation. Neuropsychologia , 17 (3-4), 315–321. 
+
+Horovitz, S. G., Braun, A. R., Carr, W. S., Picchioni, D., Balkin, T. J., Fukunaga, M., & Duyn, J. H. (2009). Decoupling of the brain’s default mode network during deep sleep. Proceedings of the National Academy of Sciences , 106 (27), 11376–11381. 
+
+https://doi.org/10.1073/pnas.0901435106 
+
+Jagannathan, S. R., Bareham, C. A., & Bekinschtein, T. A. (2022). Decreasing Alertness Modulates Perceptual Decision-Making. Journal of Neuroscience , 42 (3), 454–473. 
+
+https://doi.org/10.1523/JNEUROSCI.0182-21.2021 
+
+Jagannathan, S. R., Ezquerro-Nassar, A., Jachs, B., Pustovaya, O. V., Bareham, C. A., & Bekinschtein, T. A. (2018). Tracking wakefulness as it fades: Micro-measures of alertness. 
+
+NeuroImage , 176 , 138–151.  https://doi.org/10.1016/j.neuroimage.2018.04.046 
+
+Jewell, G., & McCourt, M. E. (2000). Pseudoneglect: A review and meta-analysis of performance factors in line bisection tasks. Neuropsychologia , 38 (1), 93–110. 
+
+https://doi.org/10.1016/S0028-3932(99)00045-7 
+
+Johns, M. W. (1991). A new method for measuring daytime sleepiness: The Epworth Sleepiness Scale. Sleep , 14 (6), 540–545. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+41 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Kaiser, J., Lutzenberger, W., Preissl, H., Ackermann, H., & Birbaumer, N. (2000). Right-hemisphere dominance for the processing of sound-source lateralization. Journal of Neuroscience , 20 (17), 6631–6639. 
+
+Karnath, H.-O., Himmelbach, M., & Perenin, M.-T. (2003). Neglect-like behavior in healthy subjects. Experimental Brain Research , 153 (2), 231–238. 
+
+https://doi.org/10.1007/s00221-003-1596-0 
+
+Kaufmann, B. C., Pastore-Wapp, M., Bartolomeo, P., Geiser, N., Nyffeler, T., & Cazzoli, D. (2024). Severity-Dependent Interhemispheric White Matter Connectivity Predicts Poststroke Neglect Recovery. Journal of Neuroscience , 44 (21). 
+
+https://doi.org/10.1523/JNEUROSCI.1311-23.2024 
+
+Kiebel, S. J., Garrido, M. I., Moran, R. J., & Friston, K. J. (2008). Dynamic causal modelling for EEG and MEG. Cognitive Neurodynamics , 2(2), 121–136. 
+
+https://doi.org/10.1007/s11571-008-9038-0 
+
+Killington, C., Barr, C., Loetscher, T., & Bradnam, L. V. (2016). Variation in left posterior parietal-motor cortex interhemispheric facilitation following right parietal continuous theta-burst stimulation in healthy adults. Neuroscience , 330 , 229–235. 
+
+https://doi.org/10.1016/j.neuroscience.2016.05.056 
+
+Kinsbourne, M. (1970). The cerebral basis of lateral asymmetries in attention. Acta Psychologica ,
+
+33 , 193–201. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+42 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Kinsbourne, M. (1987). Mechanisms of Unilateral Neglect. In Advances in Psychology (Vol. 45, 
+
+pp. 69–86). North-Holland.  https://doi.org/10.1016/S0166-4115(08)61709-4 
+
+Kinsbourne, M. (2006). From Unilateral Neglect to the Brain Basis of Consciousness. Cortex ,
+
+42 (6), 869–874.  https://doi.org/10.1016/S0010-9452(08)70430-1 
+
+Koch, G., Oliveri, M., Cheeran, B., Ruge, D., Gerfo, E. L., Salerno, S., … Caltagirone, C. (2008). Hyperexcitability of parietal-motor functional connections in the intact left-hemisphere of 
+
+patients with neglect. Brain , 131 (12), 3147–3155.  https://doi.org/10.1093/brain/awn273 
+
+Lacaux, C., Strauss, M., Bekinschtein, T. A., & Oudiette, D. (2024). Embracing sleep-onset complexity. Trends in Neurosciences , 47 (4), 273–288. 
+
+https://doi.org/10.1016/j.tins.2024.02.002 
+
+Laufs, H., Holt, J. L., Elfont, R., Krams, M., Paul, J. S., Krakow, K., & Kleinschmidt, A. (2006). Where the BOLD signal goes when alpha EEG leaves. Neuroimage , 31 (4), 1408–1418. 
+
+Malhotra, P. A., Parton, A. D., Greenwood, R., & Husain, M. (2006). Noradrenergic modulation of space exploration in visual neglect. Annals of Neurology , 59 (1), 186–190. 
+
+https://doi.org/10.1002/ana.20701 
+
+Manly, T., Dobler, V. B., Dodds, C. M., & George, M. A. (2005). Rightward shift in spatial awareness with declining alertness. Neuropsychologia , 43 (12), 1721–1728. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+43 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Maris, E., & Oostenveld, R. (2007). Nonparametric statistical testing of EEG- and MEG-data. 
+
+Journal of Neuroscience Methods , 164 (1), 177–190. 
+
+https://doi.org/10.1016/j.jneumeth.2007.03.024 
+
+Masina, F., Pezzetta, R., Lago, S., Mantini, D., Scarpazza, C., & Arcara, G. (2022). Disconnection from prediction: A systematic review on the role of right temporoparietal junction in aberrant predictive processing. Neuroscience & Biobehavioral Reviews , 138 ,
+
+104713.  https://doi.org/10.1016/j.neubiorev.2022.104713 
+
+Mesulam, M.-M. (1981). A cortical network for directed attention and unilateral neglect. Annals 
+
+of Neurology , 10 (4), 309–325.  https://doi.org/10.1002/ana.410100402 
+
+Nakamura, K., Oga, T., Takahashi, M., Kuribayashi, T., Kanamori, Y., Matsumiya, T., … Yamamoto, M. (2012). Symmetrical hemispheric priming in spatial neglect: A hyperactive left-hemisphere phenomenon? Cortex , 48 (4), 421–428. 
+
+https://doi.org/10.1016/j.cortex.2010.12.008 
+
+Niedernhuber, M., Raimondo, F., Sitt, J. D., & Bekinschtein, T. A. (2022). Sensory Target Detection at Local and Global Timescales Reveals a Hierarchy of Supramodal Dynamics in the Human Cortex. Journal of Neuroscience , 42 (46), 8729–8741. 
+
+https://doi.org/10.1523/JNEUROSCI.0658-22.2022 
+
+Ogilvie, R. D. (2001). The process of falling asleep. Sleep Medicine Reviews , 5(3), 247–270. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+44 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Oldfield, R. C. (1971). The assessment and analysis of handedness: The Edinburgh inventory. 
+
+Neuropsychologia , 9(1), 97–113.  https://doi.org/10.1016/0028-3932(71)90067-4 
+
+Parr, T., & Friston, K. J. (2018). The computational anatomy of visual neglect. Cerebral Cortex ,
+
+28 (2), 777–790.  https://doi.org/10.1093/cercor/bhx316 
+
+Parr, T., Rees, G., & Friston, K. J. (2018). Computational Neuropsychology and Bayesian Inference. Frontiers in Human Neuroscience , 12 .
+
+https://doi.org/10.3389/fnhum.2018.00061 
+
+Posner, M. I. (1980). Orienting of Attention*. Quarterly Journal of Experimental Psychology ,
+
+32 (1), 3–25.  https://doi.org/10.1080/00335558008248231 
+
+Robertson, I. H., Mattingley, J. B., Rorden, C., & Driver, J. (1998). Phasic alerting of neglect patients overcomes their spatial deficit in visual awareness. Nature , 395 (6698), 169–172. 
+
+Sadaghiani, S., Scheeringa, R., Lehongre, K., Morillon, B., Giraud, A.-L., & Kleinschmidt, A. (2010). Intrinsic connectivity networks, alpha oscillations, and tonic alertness: A simultaneous electroencephalography/functional magnetic resonance imaging study. 
+
+Journal of Neuroscience , 30 (30), 10243–10250. 
+
+Sämann, P. G., Wehrle, R., Hoehn, D., Spoormaker, V. I., Peters, H., Tully, C., … Czisch, M. (2011). Development of the Brain’s Default Mode Network from Wakefulness to Slow 
+
+Wave Sleep. Cerebral Cortex , 21 (9), 2082–2093.  https://doi.org/10.1093/cercor/bhq295 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+45 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Savazzi, S., Mele, S., Brignani, D., & Bagattini, C. (2013). Is the contralesional hemisphere hyperactivated in neglect? 
+
+Schall, J. D. (2004). On the role of frontal eye field in guiding attention and saccades. Vision 
+
+Research , 44 (12), 1453–1467.  https://doi.org/10.1016/j.visres.2003.10.025 
+
+Sheppard, D. M., Bradshaw, J. L., Mattingley, J. B., & Lee, P. (1999). Effects of stimulant medication on the lateralisation of line bisection judgements of children with attention deficit hyperactivity disorder. Journal of Neurology, Neurosurgery & Psychiatry , 66 (1), 
+
+57–63.  https://doi.org/10.1136/jnnp.66.1.57 
+
+Shomstein, S., & Gottlieb, J. (2016). Spatial and non-spatial aspects of visual attention: Interactive cognitive mechanisms and neural underpinnings. Neuropsychologia , 92 , 9–19. 
+
+https://doi.org/10.1016/j.neuropsychologia.2016.05.021 
+
+Stephan, K. E., Penny, W. D., Moran, R. J., den Ouden, H. E. M., Daunizeau, J., & Friston, K. J. (2010). Ten simple rules for dynamic causal modeling. NeuroImage , 49 (4), 3099–3109. 
+
+https://doi.org/10.1016/j.neuroimage.2009.11.015 
+
+Szczepanski, S. M., Konen, C. S., & Kastner, S. (2010). Mechanisms of spatial attention control in frontal and parietal cortex. Journal of Neuroscience , 30 (1), 148–160. 
+
+Thiebaut de Schotten, M., Dell’Acqua, F., Forkel, S., Simmons, A., Vergani, F., Murphy, D. G., & Catani, M. (2011). A lateralized brain network for visuo-spatial attention. Nature Precedings , 1–1. 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+46 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Ting, D. S. J., Pollock, A., Dutton, G. N., Doubal, F. N., Ting, D. S. W., Thompson, M., & Dhillon, B. (2011). Visual Neglect Following Stroke: Current Concepts and Future Focus. 
+
+Survey of Ophthalmology , 56 (2), 114–134. 
+
+https://doi.org/10.1016/j.survophthal.2010.08.001 
+
+Toba, M. N., Migliaccio, R., Potet, A., Pradat-Diehl, P., & Bartolomeo, P. (2022). Right-side spatial neglect and white matter disconnection after left-hemisphere strokes. Brain 
+
+Structure and Function , 227 (9), 2991–3000.  https://doi.org/10.1007/s00429-022-02541-7 
+
+Trammel, T., Khodayari, N., Luck, S. J., Traxler, M. J., & Swaab, T. Y. (2023). Decoding semantic relatedness and prediction from EEG: A classification method comparison. 
+
+NeuroImage , 277 , 120268.  https://doi.org/10.1016/j.neuroimage.2023.120268 
+
+Tünçok, E., Carrasco, M., & Winawer, J. (2025). Spatial attention selectively alters visual cortical representation during target anticipation. Nature Communications , 16 (1), 8746. 
+
+https://doi.org/10.1038/s41467-025-63795-3 
+
+Umarova, R. M., Saur, D., Kaller, C. P., Vry, M.-S., Glauche, V., Mader, I., … Weiller, C. (2011). Acute visual neglect and extinction: Distinct functional state of the visuospatial attention 
+
+system. Brain , 134 (11), 3310–3325.  https://doi.org/10.1093/brain/awr220 
+
+Vossel, S., Käsbauer, A.-S., Mengotti, P., Schmidt, C. C., Saliger, J., Karbe, H., & Fink, G. R. (2025). Neglect symptoms are related to a prediction-hypersensitivity in ipsilesional space. 
+
+Cortex , 184 , 1–18.  https://doi.org/10.1016/j.cortex.2024.12.007 
+
+> .CC-BY-NC 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 7, 2026. ;https://doi.org/10.64898/2025.12.08.692359 doi: bioRxiv preprint
+
+47 AROUSAL-DEPENDENT CONNECTIVITY MODULATIONS IN AUDITORY SPATIAL ATTENTION 
+
+Xia, R., Chen, X., Engel, T. A., & Moore, T. (2024). Common and distinct neural mechanisms of attention. Trends in Cognitive Sciences , 28 (6), 554–567. 
+
+https://doi.org/10.1016/j.tics.2024.01.005 
+
+Zeidman, P., Jafarian, A., Corbin, N., Seghier, M. L., Razi, A., Price, C. J., & Friston, K. J. (2019). A guide to group effective connectivity analysis, part 1: First level analysis with DCM for fMRI. NeuroImage , 200 , 174–190. 
+
+https://doi.org/10.1016/j.neuroimage.2019.06.031 
+
+Zeidman, P., Jafarian, A., Seghier, M. L., Litvak, V., Cagnan, H., Price, C. J., & Friston, K. J. (2019). A guide to group effective connectivity analysis, part 2: Second level analysis with 
+
+PEB. NeuroImage , 200 , 12–25.  https://doi.org/10.1016/j.neuroimage.2019.06.032 
+
+Zuanazzi, A., & Noppeney, U. (2019). Distinct Neural Mechanisms of Spatial Attention and Expectation Guide Perceptual Inference in a Multisensory World. Journal of 
+
+Neuroscience , 39 (12), 2301–2312.  https://doi.org/10.1523/JNEUROSCI.2873-18.2019

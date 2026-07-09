@@ -1,0 +1,1684 @@
+Title: The impact of behavioural activity on the EEG power spectrum, its source localisation, and global functional connectivity in rats
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.03.736278v1.full.pdf
+
+Number of Pages: 39
+
+Markdown Content:
+1
+
+The impact of behavioural activity on the EEG power spectrum, its source 1
+
+localisation , and global functional connectivity in rats 2
+
+Behavioural modulation of rat EEG dynamics 3
+
+4
+
+Čestmír Vejmola [1, 2] & Stanislav Jiříček [3,4,5], Marcel Bochin [1, 6], Vlastimil Koudelka [3] &5
+
+Tomáš Páleníček [1, 2]6
+
+7
+
+1) Psychedelic Research Cente r, National Institute of Mental Health, Topolova 748, Klecany, 8
+
+25067, Czechia 9
+
+2) Third Faculty of Medicine, Charles University in Prague, Ruska 87, Prague, 10000, Czechia 10 
+
+3) Clinical Research Program, National Institute of Mental Health, Topolova 748, Klecany, 11 
+
+25067, Czechia 12 
+
+4) Department of Complex Systems, Institute of Computer Science of the Czech Academy of 13 
+
+Sciences, Prague, Czechia 14 
+
+5) Department of Cybernetics, Faculty of Electrical Engineering, Czech Technical University in 15 
+
+Prague, Prague, Czechia 16 
+
+6) Faculty of Science, Ch arles University, Albertov 6, Prague, Czechia 17 
+
+18 
+
+corresponding author: 19 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+2
+
+Tomáš Páleníček 20 
+
+Phone: +420 283 088 443 21 
+
+Address: National Institute of Mental Health , Topolová 748 , 250 67 , Klecany , Czech Republic 22 
+
+Email: tomas. palenicek@nudz.cz 23 
+
+24 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint 3
+
+Abstract 25 
+
+The behavioural activity of freely moving animals is a confounding factor that affects the 26 
+
+recording, analysis, and final results of animal EEG experiments. Along with the lack of 27 
+
+standardisation in animal in vivo electrophysiology experiments, this could lead to huge 28 
+
+inconsistencies , especially in the analysis of centrally acting drugs. Therefore, the main aim of 29 
+
+this paper is to investigate the effects of behavioural activity versus inactivity on the 30 
+
+multichannel EEG in freely moving rats. In a large samp le ( n = 116) of waking recordings from 31 
+
+12 cortical electrodes (ECoG) in Wistar rats, we evaluated behavioural activity -related changes 32 
+
+in the power spectrum, current source density, and power -based global functional 33 
+
+connectivity (GFC) in a 3D rat brain mod el, according to the TOHOKU Rat Brain Atlas . The main 34 
+
+findings were that behavioural activity induced 1) a robust power increase in 6 -8 Hz, peaking 35 
+
+at 7 Hz with maximum changes over the parietal and temporal cortex, 2) an increase in gamma 36 
+
+power (30 -80 Hz) across the whole brain, 3) a decrease in delta (1 -4 Hz) and beta (12 -30 Hz) 37 
+
+power across the whole cortex. Changes were also localised in subcortical regions, particularly 38 
+
+in the diencephalon/thalamus. The GFC analysis showed a similar pattern of power ch anges 39 
+
+across the 6 -8 Hz, delta, and beta bands; however, GFC in the gamma band decreased. Again, 40 
+
+the GFC analysis revealed changes in connectivity within subcortical structures, primarily in 41 
+
+the thalamus . None of the measures was affected in the alpha band (8 -12 Hz). These findings 42 
+
+emphasise behavioural state as a critical factor influencing EEG outcomes, with important 43 
+
+implications for the standardisation and translational validity of preclinical neurophysiological 44 
+
+studies. 45 
+
+46 
+
+Keywords: EEG , ECoG , source -localisation , connectivity , theta , thalamus , behavio ur47 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+4
+
+Introduction 48 
+
+Standards and guidelines for EEG recording and analysis in animal research are still lacking due 49 
+
+to non -standardized electrode positions, recording parameters, electrode types, an d other 50 
+
+methodological differences. As a result, the translational validity of animal EEG to human EEG 51 
+
+remains limited. Compared with human studies, where data are typically collected from 52 
+
+electrodes covering the entire brain, most animal studies focus on a specific region and use 53 
+
+fewer electrodes. Consequently, they fail to reveal global effects, further limiting the use of 54 
+
+modern computational methods for source localisation , as in human research (1). 55 
+
+Other significant sources of variability are related t o behavioural activity (BA) versus inactivity 56 
+
+and to open - versus closed -eye conditions. While in humans the resting -state (RS) EEG is 57 
+
+usually recorded under clearly defined conditions of open/closed eyes , this is not possible in 58 
+
+freely moving, awake animals. In such cases, differences between BA and RS during active, 59 
+
+fully awake states, as well as the uncontrolled eye state, can lead to significant confounds. 60 
+
+These effects are inevitably amplified when centrally acting drugs are used, as they t ypically 61 
+
+alter the locomotor activity of animals (e.g., stimulants vs. sedatives, serotonergics, 62 
+
+antipsychotics). 63 
+
+Our group has previously introduced a 12 -electrode cortical electroencephalography (ECoG) 64 
+
+system developed at the National Institute of Mental Health (Klecany, Czech Republic) and 65 
+
+evaluated its performance for electrical source imaging (ESI) in rats. Recent advances in data 66 
+
+collection, as well as in the development and adaptation of methods for 3D brain mapping (2), 67 
+
+source localisation , and func tional connectivity in the rat model (1,3 –5), have enabled us to 68 
+
+extend the current understanding of electrophysiological changes associated with BA and 69 
+
+provide more translationally valid results. 70 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+5
+
+In our studies, we have collected an extensive dataset usin g the 12 -electrode system, with 71 
+
+electrodes placed over the frontal, parietal, and temporal cortices of both hemispheres, and 72 
+
+a reference electrode over the olfactory bulbs. This placement, together with previous 73 
+
+evaluations of source localisation and condu ctivity in rat head phantoms and forward models, 74 
+
+enables the effective use of whole -brain inverse source localisation methods, including the 75 
+
+localisation of thalamic components of event -related potentials (ERPs ) (1,6 –8). 76 
+
+In addition to electrode -based func tional connectivity measures (4,5,9,10), we can now 77 
+
+compute functional connectivity from source -localised data, such as power -based global 78 
+
+functional connectivity (GFC). This metric, commonly used in fMRI research, represents the 79 
+
+average connectivity of a brain area with the rest of the brain (11 –13). The EEG band -limited 80 
+
+power (BLP) used for GFC computation is a strong correlate of the BOLD signal in fMRI (14 –16) 81 
+
+and shows a similar connectivity structure to BOLD (17,18). Our recent EEG –fMRI integration 82 
+
+re sults (19) underscore the importance of using both modalities, as connectivity structures, 83 
+
+though sometimes spatially similar, can carry different functional meanings. 84 
+
+In our previous pharmaco -EEG studies, we observed a substantial behavioural influence on 85 
+
+ECoG changes induced by ketamine, amphetamine, and several psychedelics (3 –5,10,20). It 86 
+
+has also been suggested that BA, particularly running, induces a pronounced peak in the theta 87 
+
+band at 6 –8 Hz (theta peak) and a concurrent spectral power decrease in t he delta and beta 88 
+
+bands (21) in rats . However, in that study, only four electrodes were used over the motor and 89 
+
+parietal cortices , limiting the ability to localise the observed changes. 90 
+
+Taken together, these findings motivated us to implement systematic co -registration of BA 91 
+
+and RS conditions in all subsequent experiments. The present study aims to determine how 92 
+
+BA affects the EEG in freely moving rats. Importantly, unlike many previous a nimal EEG 93 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+6
+
+studies , which are limited by small sample sizes and high inter -individual variability, our work 94 
+
+benefits from a large dataset of N = 116 ten -minute baseline recordings collected over an 95 
+
+extended period without pharmacological manipulation. This dataset allows for a statistically 96 
+
+robust evaluation of RS/BA -related changes in EEG power spectra, source localisation , and 97 
+
+global functional connectivity. 98 
+
+99 
+
+Materials and methods 100 
+
+Animals 101 
+
+Experiments were conducted on adult, experimentally naïve male Wist ar rats (Velaz s.r.o., 102 
+
+Konárovice, Czech Republic). Each animal was used in a single experiment. Rats were 103 
+
+acclimated to the animal facility for at least 1 week prior to surgery and housed in pairs in 104 
+
+plastic cages under a 12 -h light/dark cycle (lights on at 6:00 a.m.), with a temperature of 21 –105 
+
+24 °C and a relative humidity of 60%. Standard diet (ST2 pellets) and water were available ad 106 
+
+libitum. All experimental procedures were approved by the Expert Committee for Protection 107 
+
+of Experimental Animals of the 3 rd Faculty of Medicine, Charles University (Prague, Czech 108 
+
+Republic) and conducted in accordance with the Czech Animal Protection Act and EU Council 109 
+
+Directive 86/609/EU. 110 
+
+Stereotactic surgery 111 
+
+Rats were anaesthetised with isoflurane (2.5 –3%) and positioned in a stereotactic frame 112 
+
+(Stoelting) using atraumatic ear bars. The scalp was shaved, disinfected (betadine), incised, 113 
+
+and the periosteum removed. Coordinates for electrode implantation were taken from the 114 
+
+Paxinos Ra t Brain Atlas (22), referenced to bregma: frontal association cortex (F3/F4: A + 5.0, 115 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+7
+
+L ± 2.0 mm), primary motor cortex (C3/C4: A + 2.2, L ± 3.2 mm), medial parietal association 116 
+
+cortex (P3/P4: A − 3.8, L ± 2.5 mm), lateral parietal association cortex (P5/P 6: A − 4.5, L ± 4.5 117 
+
+mm), secondary auditory cortex (T3/T4: A − 3.6, L ± 7.2 mm), and temporal association cortex 118 
+
+(T5/T6: A − 8.3, L ± 5.8 mm). Holes (0.5 mm) were drilled using a Meisinger micro -drill, and 119 
+
+gold -plated electrodes (Mill -Max, 0.48 mm tail) we re implanted so that the tips touched the 120 
+
+dura. Twelve recording electrodes were implanted bilaterally, with a reference above the 121 
+
+olfactory bulb and a ground electrode subcutaneously in the occipital region. Electrodes were 122 
+
+secured with Dentalon® cement. Animals recovered without weight loss or infection and were 123 
+
+housed individually to protect the implant. One day before recordings, a connector was 124 
+
+attached under brief isoflurane anaesthesia .125 
+
+Data collection 126 
+
+Data were collected over a series of pharmaco -electroencephalography (pharmaco -EEG) 127 
+
+experiments, in which each animal underwent a baseline recording before any 128 
+
+pharmacological intervention. Over the course of more than two years, this resulted in over 129 
+
+132 baseline EEG recordings from freely moving rats . Some of these datasets were excluded 130 
+
+from subsequent analyses following the quality control procedure described below. 131 
+
+Recordings took place seven days after surgery, during the lights -on phase of the light/dark 132 
+
+cycle. Approximately 10 minutes prior to d ata acquisition, animals were connected to the EEG 133 
+
+apparatus in their home cages to habituate to the setup. The recording session began with 10 134 
+
+minutes of baseline (no pharmacological manipulation), followed by drug administration in 135 
+
+the original experimen ts (data not presented here). 136 
+
+Throughout the sessions, rats were allowed to move freely in their home cages while tethered 137 
+
+via a lightweight cable to the amplifier. EEG was acquired with the BrainScope system (M&I, 138 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+8
+
+Prague, Czech Republic) at 16 -bit resolut ion (7.63 nV/bit; ∼130 bit/μV), ±500 μV dynamic 139 
+
+range, and 1 kHz sampling rate. Behavioural states were continuously monitored by a trained 140 
+
+observer, who marked events in real time using predefined keyboard keys. Behavioural 141 
+
+activity (BA) epochs included g rooming, sniffing, rearing, and locomotion; resting state -like 142 
+
+(RS) epochs represented periods of immobility. Artefact markers were used when the animal 143 
+
+had to be handled (e.g., to untangle cables); these intervals were excluded from all further 144 
+
+analyses. 145 
+
+EEG signal preprocessing 146 
+
+Data were subsequently segmented into BA and RS epochs for three primary analyses: A) 147 
+
+spectral power analysis at the electrode level, B) source -space power (POW) analysis, and C) 148 
+
+global functional connectivity (GFC), performed acro ss standard frequency bands: delta (δ, 1 –149 
+
+4 Hz), theta ( ϑ, 4 –8 Hz), alpha (α, 8 –12 Hz), beta (β, 12 –25 Hz), high -beta (h -β, 25 –30 Hz), 150 
+
+gamma (γ, 30 –40 Hz) and high gamma (h -γ, 55 –100 Hz), as well as a narrow 6 –8 Hz theta peak 151 
+
+associated with running behavio ur (23). The chosen band definitions were based on 152 
+
+methodological standards proposed for rodent EEG and widely used in translational research, 153 
+
+aiming to align preclinical frequency ranges with those applied in human EEG studies. Two 154 
+
+additional analyses wer e conducted for the 6–8 Hz band: D) seed -based functional 155 
+
+connectivity (SFC), and E) cross -frequency coupling (CFC). 156 
+
+Signal preprocessing was performed using BrainVision® Analyzer 2.1. Signals were re -157 
+
+referenced to the average reference (AVG), band -pass fi ltered between 0.5 and 100 Hz (8° 158 
+
+slope), and notch filtered at 50 Hz. All recordings were visually inspected by an experienced 159 
+
+EEG specialist to remove gross artefacts, including contaminated epochs and malfunctioning 160 
+
+electrodes. Behavioural segmentation was based on the event markers described above, 161 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+9
+
+yielding quasi -continuous BA and RS intervals. Only datasets containing at least one minute of 162 
+
+clean EEG in each condition were retained. Of the original 132 recordings, 116 met this 163 
+
+criterion ; therefore, the signal from 116 rats was analysed . For source locali sation and 164 
+
+connectivity analyses, data were exported from BrainVision® Analyzer using an in -house 165 
+
+MATLAB (MathWorks, Natick, MA, USA) script. 166 
+
+Spectral power analysis 167 
+
+Preprocessed data were segmented int o 2 -second epochs with 75% overlap. Fast Fourier 168 
+
+Transform (FFT) with the following parameters: 0.5 Hz resolution, voltage output, non -169 
+
+complex, half -spectrum. A Hanning window (length = 10% of the segment, periodic, variance -170 
+
+corrected) was applied, and seg ments were zero -padded prior to transformation. FFT was 171 
+
+applied to each epoch, and mean spectral power was calculated for each subject , each 172 
+
+electrode, and each condition (BA and resting state, RS). Differences in spectral power 173 
+
+between BA and RS condition s were statistically evaluated using a cluster -based permutation 174 
+
+test (24) implemented in the FieldTrip toolbox (25). To identify the neural generators 175 
+
+underlying BA –RS power differences, we applied a source localisation approach developed by 176 
+
+our group (1) . A homogeneous isotropic rat brain model (7) with realistic geometry and co -177 
+
+registered 12 -electrode positions (Fig. 1C) was used to compute the forward model via the 178 
+
+Finite Element Method (FEM) implemented in FieldTrip (26). The brain volume was sampled 179 
+
+using a 1 mm isotropic grid. EEG time series were band -pass filtered to the frequency ranges 180 
+
+defined above, segmented into 2 -second epochs, and projected onto the grid of equivalent 181 
+
+dipoles (voxels) using the eLORETA algorithm (27). For each voxel, a single representative time 182 
+
+series was derived as the first principal component of the three orthogonal dipole moment 183 
+
+time series. The mean power across all segments was then calculated for each voxel in each 184 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+10 
+
+subject. Group -level differences in source -space power (POW) between BA and RS were tested 185 
+
+separately for each frequency band using a nonparametric, cluster -corrected dependent t -test 186 
+
+(24) (cluster α = 0.05; p < 0.05, two -sided, corrected). Significant t -values were mapped onto 187 
+
+the TOHOKU Rat Brain Atlas™ (28 ) to enable identification and interpretation of functional 188 
+
+brain regions exhibiting significant changes in EEG power between conditions. 189 
+
+Global functional connectivity (GFC) analysis 190 
+
+Global functional connectivity (GFC) was assessed for each predefined fr equency band .191 
+
+Source -projected EEG data were first downsampled to 250 Hz. For each dipole, seed -based 192 
+
+connectivity was computed using the orthogonalized amplitude envelope correlation (oAEC) 193 
+
+method (18) . In this approach, the time series of each tested dip ole was orthogonalized with 194 
+
+respect to the seed dipole time series to minimise signal leakage. The analytic signal envelopes 195 
+
+of both the orthogonalized and seed time series were then obtained as the absolute values of 196 
+
+their Hilbert transforms . Connectivity between the seed and each tested dipole was quantified 197 
+
+as the absolute value of the Spearman correlation between their envelopes. To reduce 198 
+
+computational load, the number of tested dipoles per seed was downsampled by a factor of 199 
+
+eight . For e ach recording, a subset of tested dipoles was randomly selected prior to analysis. 200 
+
+For each seed dipole, GFC was defined as the median connectivity across the selected tested 201 
+
+dipoles, yielding a single GFC map for each recording and frequency band. At the group level, 202 
+
+differences in GFC between BA and RS conditions were evaluated using a non -parametric, 203 
+
+cluster -based permutation test (24,25) applied to the GFC maps for each frequency band. 204 
+
+Significant t -values were interpolated onto the TOHOKU Rat Brain Atl as™ (28), enabling 205 
+
+anatomical interpretation of functional connectivity changes associated with behavioural 206 
+
+activity. 207 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+11 
+
+Seed -based functional connectivity (SFC) 208 
+
+To further focus on the narrow -band theta peak (6 –8 Hz) frequency component, a seed -based 209 
+
+functi onal connectivity (SFC) analysis was performed. Seeds were defined in regions showing 210 
+
+the strongest source -level power (POW) increase at the theta peak. Based on the group -level 211 
+
+t-maps, the right primary visual cortex (V1M) and the bilateral hippocampal fo rmation were 212 
+
+identified as major hubs, since these regions exhibited the most pronounced BA –RS 213 
+
+differences (V1M t ≈ 5.7; hippocampus t ≈ 5.7 bilaterally). Both seeds were therefore selected 214 
+
+for SFC analysis to capture the complementary roles of sensory and mnemonic circuits. The 215 
+
+connectivity of each seed with all other dipoles was calculated using the orthogonalized 216 
+
+amplitude envelope correlation (oAEC) method, which minimises the effects of volume 217 
+
+conduction and signal leakage by orthogonalisation of the t ested dipole time series relative to 218 
+
+the seed. Connectivity values were estimated for each subject and condition, and group -level 219 
+
+contrasts between BA and RS were tested using the same cluster -based permutation 220 
+
+procedure as applied for global functional co nnectivity (GFC). This approach allowed the 221 
+
+identification of large -scale networks specifically synchronised with theta -oscillatory hub 222 
+
+activity in V1M and the hippocampus during behavioural activity. 223 
+
+Cross -frequency coupling CFC 224 
+
+Source localisation was pe rformed on narrowband -filtered EEG signals spanning 0.1 -100 Hz, 225 
+
+with a resolution of 1 Hz. Seed -based functional connectivity was computed for each 226 
+
+frequency within this range using the same connectivity metric as described for GFC. This 227 
+
+procedure yielded a spatio –frequency map of functional connectivity with dimensions Nv × 228 
+
+Nf, where Nv is the number of voxels and Nf the number of frequency samples. Differences 229 
+
+between BA and RS conditions were calculated, and the resulting thresholded maps were used 230 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+12 
+
+to id entify frequency ranges of interest – specifically, low -frequency theta and high -frequency 231 
+
+gamma bands – for subsequent CFC analysis. The goal was to determine whether CFC 232 
+
+facilitates coupling between spatially distinct active cortical patches (29). For th ese selected 233 
+
+bands, EEG signals were filtered , projected into source space, and phase –amplitude coupling 234 
+
+(PAC) was computed within each voxel using the method of Tort et al. (30). PAC strength was 235 
+
+quantified using the Mean Vector Length (MVL) metric (31). To correct for biases inherent in 236 
+
+MVL estimation, values were normalised using a surrogate distribution obtained by 237 
+
+introducing random time shifts between phase and amplitude signals over 150 iterations (31). 238 
+
+The final PAC metric was expressed as a Z -value , representing the number of standard 239 
+
+deviations from the surrogate mean. 240 
+
+241 
+
+Results 242 
+
+Spectral power analysis 243 
+
+Amplitude spectral power was compared between resting -state -like (RS) and behavioural 244 
+
+activity (BA) conditions. A prominent increase in power was observed in a narrow spectral 245 
+
+range from 6 to 8 Hz during BA, with a clearly identifiable peak around 7 ± 1 Hz. This theta 246 
+
+peak was selected as a region of interest for further seed -based functio nal connectivity and 247 
+
+cross -frequency coupling analyses. The grand -average power spectra across all electrodes and 248 
+
+recordings (Fig. 1A) showed a global increase in both the theta peak and gamma -band power 249 
+
+above 30 Hz. When spectra of individual electrodes w ere inspected (Fig. 1B), the theta peak 250 
+
+was found to be most pronounced over parietal (P3/P4) and temporal (T3/T4) sites, which was 251 
+
+consistent with the T -statistic map (Fig. 1D). In contrast, spectral power in lower frequencies 252 
+
+spanning delta through beta bands was significantly reduced across most electrodes (Fig. 1D). 253 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+13 
+
+A localized increase around 1 Hz was additionally detected in temporal regions. All changes 254 
+
+were distributed largely symmetrically across hemispheres. Representative raw EEG traces 255 
+
+(Fig. 1E) further illustrate the differences between conditions, with BA epochs characterised 256 
+
+by more prominent rhythmic activity compared to RS. 257 
+
+258 
+
+Figure 1. Spectral characteristics of EEG during behavioural activity (BA) and resting state 259 
+
+(RS) in rats. A) Grand -average EEG power spectra (1 –100 Hz) across all 12 electrodes and 116 260 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+14 
+
+rats during BA (red) and RS (blue). A prominent theta peak and global gamma power increase 261 
+
+during BA are evi dent. B) Power spectra from selected electrodes (F3 – frontal, C3 – central, 262 
+
+P5 – parietal) showing changes in theta (4 –10 Hz) and gamma (30 –40 Hz) bands. C) 3D 263 
+
+rendering of the rat brain showing positions of all 12 epidural ECoG electrodes. D) T-statistic 264 
+
+map showing significant spectral power differences (BA vs RS) across all electrodes and 265 
+
+frequencies (1 –100 Hz). Warmer colours indicate an increase in power during BA; cooler 266 
+
+colours indicate a decrease in power . Black dots mark significant differences (p < 0.05, cluster -267 
+
+based permutation test) . E) Representative 1 -second segments of raw EEG traces from all 12 268 
+
+electrodes during BA (left) and RS (right), illustrating characteristic waveform differences. 269 
+
+270 
+
+Canonical band source -level spectral power and global functional connectivity 271 
+
+Spider plots summarise the relative magnitudes of effects across canonical frequency bands. 272 
+
+Based on this overview, detailed source -space results are presented for the delta, beta, high -273 
+
+beta, gamma, and high -gamma bands in spectral power (POW; Fig. 2B, left) and for the theta, 274 
+
+beta, high -beta, and gamma bands in global functional connectivity (GFC; Fig. 2C, left). 275 
+
+Within the delta band, BA was associated with a widespread reduction in power, most 276 
+
+prominent in the medial prefrontal cortex (prelimbic/infralimbic; right t = –4.17, left t = –4.07) 277 
+
+and anterior cingulate (Cg1 ; left t = –3.27 , right t = –3.13). Suppression extended through 278 
+
+insula, ventral striatum (accumbens ; right t = –3.38, left t = –2.99), and sensorimotor cortex 279 
+
+(e.g., S1Sh ; left t = –3.38). Posterior cortical netw orks were also reduced, including parietal 280 
+
+association, retrosplenial, and visual areas (V1 ; left t = –3.25). Subcortical decreases involved 281 
+
+the diencephalon (left t = –2.64), hypothalamus (left t = –2.41), pallidum, and midbrain. No 282 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+15 
+
+significant difference s in the theta band emerged among the POWs . In the beta band, power 283 
+
+reductions centred on diencephalon (right t = –4.37, left t = –4.06), BNST (left t = –4.16), 284 
+
+hippocampus (right t = –4.10), and hypothalamus (left t = –4.00, right t = –3.98). These effect s285 
+
+extended into the somatosensory cortex (S1HL ; right t = –3.88) and the visual cortex (V1 ; left 286 
+
+t = –3.62) as well as the retrosplenial and cingulate cortices. The high -beta band showed a 287 
+
+right -lateralized decrease, peaking in the right diencephalon (t = –2.43) and right sensorimotor 288 
+
+cortex (S1HL ; t = –2.24), with smaller bilateral effects in the hippocampus, retrosplenial, and 289 
+
+cingulate areas . In contrast, the gamma band exhibited a robust, widespread power increase 290 
+
+during BA. The largest effects were fou nd in somatosensory cortex (S1Sh ; left t = 6.86), visual 291 
+
+cortex (V1M ; left t = 6.22), motor areas (M1 ; left t = 5.31), and hippocampal –entorhinal regions 292 
+
+(hippocampus ; right t = 6.57). Subcortical structures, including diencephalon (right t = 6.34), 293 
+
+hypoth alamus (left t = 5.85), BNST (left t = 6.59), accumbens, striatum, and septum, also 294 
+
+showed pronounced increases. In the high -gamma band, BA was associated with strong and 295 
+
+widespread power increases, most prominent in the medial prefrontal cortex 296 
+
+(prelimbic /infralimbic; right t = 8.04, left t = 7.33) and anterior cingulate cortex (Cg1 ; left t = 297 
+
+7.66 , right t = 6.45). Additional increases were observed in frontal association and secondary 298 
+
+motor cortices (t ≈ 6.5), nucleus accumbens (t ≈ 6.1 right , 5.1 left), and septum (t ≈ 5.9 right; 299 
+
+5.7 left). Robust effects extended into orbital and insular cortices, retrosplenial regions, and 300 
+
+subcortical structures, including hypothalamus, diencephalon, striatum, pallidum, and 301 
+
+midbrain (t ≈ 4 –5). Weaker but consistent incr eases were also present in hippocampal –302 
+
+entorhinal and posterior sensory areas. Overall, high -gamma power increases were more 303 
+
+frontally distributed than gamma -band power increases .304 
+
+In the theta band, BA led to decreased connectivity within the diencephalon (left t = –3.37), 305 
+
+hypothalamus (left t = –2.60), ventral striatum/BNST (BNST ; left t = –2.94; accumbens ; right t 306 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+16 
+
+= –2.85), and septum. Reductions were also evident in prefrontal, cingulate, motor, insula, and 307 
+
+somatosensory regions. The beta band displayed the most extensive GFC suppression, 308 
+
+dominated by hypothalamus (left t = –6.09) and diencephalon (left t = –5.96), with parallel 309 
+
+decreases in BNST (left t = –5.64), striatum, amygdala, midbrain, and substantia nigra. The 310 
+
+sensorimotor network (S1FL ; left t = –5.00) and cingulate cortex (Cg1 left t = –5.04) were 311 
+
+similarly affected, along with retrosplenial and visual cortices. In the high -beta band, 312 
+
+connectivity decreases were smaller and somewhat right -lateralized, affecting the cingulate 313 
+
+(Cg1 ; right t = –2.58), BNST, prefrontal, and motor regions, with additional reductions in the 314 
+
+striatum, accumbens, and amygdala. Despite gamma power increases, gamma GFC was 315 
+
+reduced, particularly in the left hemisphere across BNST (t = –2.61), frontal –cingulate –moto r316 
+
+cortex, septum, accumbens, and striatum, indicating a decoupling of local high -frequency 317 
+
+activity from large -scale network coherence. By contrast to POW, no significant differences 318 
+
+were detected in the high -gamma band for GFC. 319 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+17 
+
+320 
+
+Figure 2. Source localisation of power and connectiv ity changes between behavioural 321 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint 18 
+
+activity (BA) and resting state (RS) in rats. A) 3D anatomical model of the rat brain indicating 322 
+
+the positions of the displayed cutting planes: horizontal slice at -6 mm ventro -dorsally (blue), 323 
+
+sagittal slice at +0.5 mm late rally (green), and four coronal slices at +3.5 mm (yellow), 0 mm 324 
+
+(light orange), -3.5 mm (dark orange), and -7 mm (red) from bregma. Coloured brain structures 325 
+
+follow the TOHOKU Rat Brain Atlas™ (28): Isocortex (light blue), Pallidum (black), Hippocampus 326 
+
+(gold), Hypothalamus (coral), Diencephalon (purple), Midbrain (light green), and Striatum 327 
+
+(cyan). B) Left: A spider plot summarizing the relative strength (normalized t -values) of effects 328 
+
+across all frequency ba nds, including delta (δ, 1 –4 Hz), theta ( ϑ, 4 –8 Hz), alpha (α, 8 –12 Hz), 329 
+
+beta (β, 12 –25 Hz), high -beta (h -β, 25 –30 Hz), gamma (γ, 30 –40 Hz), and high gamma (h -γ, 55 –330 
+
+100 Hz). Right: Group -level source -localised t-value maps of differences in band -limited EE G331 
+
+power (POW) between BA and RS conditions. Only frequency bands with significant effects 332 
+
+are shown. Voxels with significant differences (cluster -based permutation test, p < 0.05) are 333 
+
+shown, interpolated in Waxholm space, and mapped to corresponding anatom ical regions. 334 
+
+Warmer (red) colours indicate increased activity or connectivity during BA; cooler (blue) 335 
+
+colours indicate decreases. C) Left: A spider plot summarising the relative strength (normalised 336 
+
+t-values) of effects across all frequency bands. Right: Group -level source -localised t-value 337 
+
+maps of differences in global functional connectivity (GFC) between BA and RS. Only frequency 338 
+
+bands with significant effects are shown. 339 
+
+340 
+
+Theta -peak (7 ± 1 Hz) sourc e-level dynamics 341 
+
+Focusing on the narrow theta peak revealed a coherent pattern across metrics (Fig. 3B –C). 342 
+
+Power in source space (POW) was strongly increased and maximally localised to the visual 343 
+
+system and hippocampus, with peak effects in V2ML (t = 6.04) , V1B (t = 5.73), V1/V1M (t = 344 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+19 
+
+5.70/5.70), and bilateral hippocampal formation (t = 5.72 right , t = 5.71 left). Increases 345 
+
+extended over posterior parietal cortex (PtPD/PtPR/PtPC; t up to 5.69), retrosplenial cortex 346 
+
+(RSGb/RSD/RSGc; t up to 5.53), lateral par ietal association cortex (LPtA; t = 5.46 left , t = 4.11 347 
+
+right), primary somatosensory fields (S1Sh/S1Tr/S1/S1BF; t up to 5.48), temporal 348 
+
+association/auditory cortices (TeA/AuD/Au1/AuV; t up to 5.06), and subcortically to 349 
+
+diencephalon and hypothalamus (t = 4.93/4.90 and t = 3.95/4.10, respectively). 350 
+
+Global functional connectivity (GFC) in the theta peak was increased and centred on posterior 351 
+
+sensory –parietal hubs and hypothalamus. The largest effects were observed in the right 352 
+
+hypothalamus (t = 3.47) and lef t hypothalamus (t = 3.36), followed by right V1B (t = 3.42), right 353 
+
+MPtA (t = 3.37), right V2L/V2ML/V2MM (t up to 3.33), bilateral posterior parietal subfields 354 
+
+(PtPD/PtPR/PtPC; t up to 3.26), and primary somatosensory regions (S1/S1Tr/S1BF/S1Sh; t up 355 
+
+to 3.1 0). Additional increases were present in retrosplenial cortex (RSGc/RSD; t ≈ 2.47 –2.20), 356 
+
+temporal/auditory cortices (TeA/AuD/Au1/AuV; t ≈ 2.83 –2.45), hippocampal formation (t = 357 
+
+2.54 left , t = 2.54 right), and preoptic/BNST regions (t = 2.12 –1.76). 358 
+
+To test whether the posterior visual cortex or hippocampus acts as a hub at this frequency, 359 
+
+seed -based functional connectivity (SFC) was computed using right V1M and the whole 360 
+
+hippocampus as the seed. For V1M, SFC increases were strongest in subcortical integrativ e361 
+
+nodes: hypothalamus (t = 5.68 left , t = 5.13 right), BNST (t = 4.76 left , t = 4.10 right), preoptic 362 
+
+area (t = 4.32 right , t = 3.72 left), and diencephalon (t = 4.22 left , t = 3.92 right). Robust effects 363 
+
+also involved insular (GI/DI; t up to 4.01), cingul ate (Cg1/Cg2; t up to 3.60), retrosplenial 364 
+
+(RSGc/RSGb/RSD; t up to 3.91), basal ganglia/striatal territories (striatum/pallidum/substantia 365 
+
+nigra; t up to 3.72), septum (t ≈ 3.88 –3.88), anterior commissure (t = 3.63 left , t = 3.63 right), 366 
+
+and several primar y somatosensory subfields (S1DZO/S1J/S1FL/S1ULp/S1HL; t up to 4.01). 367 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+20 
+
+Hippocampus and entorhinal cortex were also engaged (t ≈ 2.74 –3.13). For the hippocampus, 368 
+
+SFC increases were the strongest. 369 
+
+Finally, cross -frequency coupling (CFC) using theta -phase (6 –9 Hz) and within -high -gamma -370 
+
+amplitude (80 –100 Hz) revealed focal increases and predominantly left -lateralized decreases 371 
+
+(Fig. 3A, B). PAC increased in medial prefrontal cortex —prelimbic/infralimbic (t = 1.18 left ,372 
+
+0.80 right) —and in right nucleus accumbens ( t = 1.16) and right frontal association cortex (t = 373 
+
+1.13). Decreases were strongest in the left insular cortex (GI+DI; t = –1.92), left dorsal -374 
+
+intermediate entorhinal cortex (t = –1.55), left perirhinal and ectorhinal cortices (t = –1.37 and 375 
+
+–1.35), and le ft ventral -auditory cortex (t = –1.38), with additional modest reductions across 376 
+
+left medial/ventral entorhinal and temporal association areas. 377 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+21 
+
+378 
+
+Figure 3. Electrophysiological correlates of behavioural activity at the theta peak frequency. 379 
+
+A) Grand -averaged, statistically masked difference map of GFC (BA –RS) across frequencies (1 –380 
+
+100 Hz) and all voxels in Waxholm space. Highlighted regions of inter est (ROI 1: 6 –8 Hz for 381 
+
+phase, ROI 2: 80 –100 Hz for amplitude) were used to define phase and amplitude carriers in 382 
+
+subsequent CFC analysis. Only the differences above the third quartile are shown here 383 
+
+(differences below this threshold are masked out). B) 3D anatomical model of the rat brain 384 
+
+indicating the positions of the displayed cutting planes: horizontal slice at −6 mm 385 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+22 
+
+dorsoventrally (blue), sagittal slice at +0.5 mm laterally (green), and four coronal slices at +3.5 386 
+
+mm (yellow), 0 mm (light orange), −3. 5 mm (dark orange), and −7 mm (red) from bregma. C) 387 
+
+Source -locali sed statistical t -maps showing significant changes between behavioural activity 388 
+
+(BA) and resting state (RS) in: – POW: power in source space, – GFC: global functional 389 
+
+connectivity, – SFC: see d-based functional connectivity from hippocampus (HIPP) and right 390 
+
+V1M (primary visual cortex), and – CFC: cross -frequency coupling between theta (phase) and 391 
+
+gamma (amplitude) frequencies. Maps show only significant areas (cluster -based permutation 392 
+
+test, p < 0.05), colour -coded by t -value (red indicates an increase in BA, blue indicates a 393 
+
+decrease). 394 
+
+395 
+
+Discussion 396 
+
+Behavioural activity in freely moving rats is associated with a characteristic, frequency -specific 397 
+
+reorganisation of EEG dynamics that was consistent across power (POW), global functional 398 
+
+connectivity (GFC), seed -based connectivity (SFC), and cross -frequency coupling (CFC). We 399 
+
+first identified relative effect magnit udes across bands, then focused source -space analyses 400 
+
+on those bands showing robust effects .401 
+
+The most salient spectral feature of active behaviour was a narrowband theta peak at ~7 ± 402 
+
+1 Hz. Source localisation placed this increase predominantly in posterior sensory cortices 403 
+
+(visual, somatosensory, auditory) and hippocampal formation, with little or no engagement of 404 
+
+the primary motor cortex. Such a topography argues against movement artefact and instead 405 
+
+points to recruitment of sensory , associative, and mnemo nic circuitry during exploration. The 406 
+
+association between voluntary movement and theta oscillations in the 6 –8 Hz range is well -407 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+23 
+
+established (32,34,35). Theta power and phase organise hippocampal and parahippocampal 408 
+
+firing during navigation and decision -mak ing, scale with locomotor speed, and support 409 
+
+sensorimotor integration and spatial memory (36 –40). Theta also accompanies intentional 410 
+
+acts beyond locomotion, including frontal theta during consummatory behaviours such as 411 
+
+licking (41), underscoring its broad role in coordinating action with sensory feedback. Our 412 
+
+localisation to retrosplenial and posterior parietal fields dovetails with their established 413 
+
+contributions to visuospatial orientation and memory -guided locomotion (35,38 ) and is 414 
+
+consistent with our e arlier electrode -level indications of a parietal maximum for the ~7 Hz 415 
+
+peak (4,20). 416 
+
+Gamma power increased widely across the cortex and subcortex during behavioural activity, 417 
+
+with prominent effects in sensory and motor neocortex, hippocampus –entorhinal area s, basal 418 
+
+ganglia, and diencephalon. Gamma oscillations index local circuit engagement and are 419 
+
+enhanced by arousal, sensorimotor processing, and active environmental sampling . In 420 
+
+rodents, running amplifies gamma activity in the visual cortex, thereby improv ing visual 421 
+
+processing during movement. Additionally, gamma activity in motor/somatosensory regions 422 
+
+accompanies movement initiation and proprioceptive feedback (42 –44). Functionally, a global 423 
+
+gamma upshift implies that the brain enters a computation -rich re gime in which fast local 424 
+
+assemblies dominate information transmission and sensory –motor integration (43). Gamma 425 
+
+often couples to theta such that theta phase modulates gamma amplitude, a mechanism 426 
+
+proposed to organise fine -scale (gamma) content within theta cycles during active cognition 427 
+
+(45 –47). The parallel upregulation of theta and gamma power in our data thus aligns with an 428 
+
+“activated” cortical state , in which posterior sensory –hippocampal networks and subcortical 429 
+
+integrators cooperate to support the exp loration and guidance of movement. 430 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+24 
+
+Countervailing decreases in lower frequencies were equally systematic. Delta power (1 –4 Hz) 431 
+
+fell broadly, with maxima in medial prefrontal and anterior cingulate regions and extensions 432 
+
+into insula, ventral striatum, and p osterior cortices. Delta is a hallmark of drowsiness, slow -433 
+
+wave sleep, and pharmacological sedation; it diminishes with arousal and behavioural 434 
+
+activation (48). Our delta suppression, therefore, may reflect a state transition from an idling, 435 
+
+synchronous mo de to an alert, desynchronized mode characteristic of active wakefulness. 436 
+
+Beta -band power (12 –25 Hz) and high -beta power (25 –30 Hz) also declined, with the strongest 437 
+
+beta reductions observed in the diencephalon, hypothalamus, basal ganglia, hippocampus, 438 
+
+an d sensorimotor/visual cortices, and a right -lateralized pattern in high -beta power .439 
+
+Movement -related beta desynchronization is a robust phenomenon in both human and 440 
+
+animal studies, indexing release from a status quo motor set and enabling movement initiation 441 
+
+and updating (49 –53). The involvement of basal ganglia and diencephalic structures in our 442 
+
+maps is consistent with beta’s generation within cortico -basal ganglia –thalamic loops and with 443 
+
+dopaminergic modulation of these rhythms. Pathologically exaggerated beta in Parkinson’s 444 
+
+disease reflects impaired dopamine transmission, whereas dopaminergic stimulation tends to 445 
+
+reduce beta synchrony (54,55). Pharmacological evidence in rodents likewise shows that 446 
+
+stimulants decre asing beta can accompany hyperlocomotion, while dopamine antagonism can 447 
+
+elevate beta (56 –59). Mechanistically, the beta decrease during movement plausibly arises 448 
+
+from increased inhibitory drive and desynchronization within GABAergic interneuron 449 
+
+networks an d basal ganglia output nuclei, thereby facilitating flexible motor output (60 –62). 450 
+
+The right -dominant high -beta suppression we observed resembles lateralized beta 451 
+
+desynchronization reported with asymmetric motor preparation and may reflect hemispheric 452 
+
+spec ialisation or subtle behavioural asymmetries (63). 453 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+25 
+
+Connectivity analyses revealed a complementary reorganisation at the network level. Using 454 
+
+orthogonalized amplitude -envelope correlations to index GFC, we found predominantly 455 
+
+reduced long -range synchronisat ion during behavioural activity in broad theta (4 –8 Hz), beta, 456 
+
+high -beta, and gamma ranges. Suppression was strongest in thalamic/hypothalamic 457 
+
+compartments, the BNST/ventral striatum, the amygdala, midbrain, and substantia nigra, and 458 
+
+extended to the cingul ate, retrosplenial, visual, and motor cortices. This decoupling, despite 459 
+
+concurrent power increases in higher bands, suggests a shift toward segregated, locally driven 460 
+
+processing during active states: fast rhythms amplify within regions, while slow inter -areal 461 
+
+coherence recedes. The pattern is expected for gamma, whose spatial coherence is typically 462 
+
+local, and accords with the known breakdown of resting -state beta/theta coherence when 463 
+
+animals initiate movement (64,65). It also helps reconcile discrepancies between natural 464 
+
+behaviour and pharmacological hyperlocomotion: drug -induced states (e.g., NMDA 465 
+
+antagonists, psychostimulants) can introduce additional, sometimes aberrant coherences, 466 
+
+whereas voluntary movement alone primarily diminishes slow -band global co upling (4,33). 467 
+
+These findings reinforce the importance of controlling for locomotor state in pharmaco -EEG, 468 
+
+because active versus inactive periods differ markedly in baseline connectivity, potentially 469 
+
+obscuring or mimicking drug effects (33). 470 
+
+An important e xception to the overall GFC reduction emerged at the narrow theta peak (~7 471 
+
+Hz), where connectivity increased among posterior sensory –parietal hubs and key subcortical 472 
+
+nodes. Theta -peak GFC rose in primary/secondary visual cortex, posterior parietal and 473 
+
+ret rosplenial areas, primary somatosensory fields, and in hypothalamus/diencephalon. This 474 
+
+focal enhancement supports the view that the locomotor theta rhythm coordinates a task -475 
+
+specific communication backbone linking perception, spatial mapping, and state con trol. The 476 
+
+hypothalamus and adjacent diencephalic structures participate in locomotor drive, head -477 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+26 
+
+direction, and arousal systems; their increased theta coupling with posterior cortex points to 478 
+
+tight integration of environmental sampling with internal state and motor set during 479 
+
+exploration (36,66,67). In humans, analogous theta -range cortico -hippocampal/parietal 480 
+
+couplings emerge during active navigation, suggesting a conserved role for theta in binding 481 
+
+distributed sensorimotor computations into a coherent nav igation loop. 482 
+
+Seed -based analysis centred on the right V1M at 7 Hz further clarified the architecture of this 483 
+
+loop. During behavioural activity, V1’s theta phase/envelope synchronisation strengthened 484 
+
+with hypothalamus, BNST, preoptic area, and diencephalon , as well as with insula (GI/DI), 485 
+
+cingulate (Cg1/Cg2), retrosplenial subfields, basal ganglia (striatum, pallidum, substantia 486 
+
+nigra), septum, and commissural pathways; hippocampus and entorhinal cortex were also 487 
+
+engaged. This pattern suggests that sensory cortical oscillations are temporally aligned with 488 
+
+subcortical integrators that govern arousal, motivation, and movement vigour . BNST and 489 
+
+preoptic –hypothalamic regions regulate contextual anxiety, reward seeking, 490 
+
+thermoregulation, and autonomic set; their c oupling to the visual cortex at the theta peak 491 
+
+suggests that salient visual cues during exploration are rapidly routed to systems that shape 492 
+
+locomotor strategy and internal milieu. The concomitant engagement of 493 
+
+retrosplenial/posterior parietal areas , cruci al for route computation and spatial memory ,494 
+
+completes a plausible circuit by which theta aligns environmental sampling, internal state 495 
+
+regulation, and motor output. 496 
+
+Crucially, we computed cross -frequency coupling and found that behavioural activity 497 
+
+reconf igured theta –gamma phase –amplitude coupling (PAC) in a region -specific manner. PAC 498 
+
+increased in medial prefrontal cortex (prelimbic/infralimbic) and in right nucleus accumbens 499 
+
+and right frontal association cortex , but decreased predominantly in the left he misphere 500 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+27 
+
+across insular cortex (GI+DI), dorsal -intermediate entorhinal cortex, perirhinal/ectorhinal 501 
+
+cortices, and ventral auditory cortex. Theta –gamma PAC has been proposed to underpin 502 
+
+multiscale information processing —embedding gamma -encoded content with in theta cycles 503 
+
+to coordinate encoding, working memory, and decision -making (45 –47,68 –70). The observed 504 
+
+PAC enhancement in the mPFC and accumbens aligns with their roles in action selection, 505 
+
+reward prediction, and top –down control during exploration, where aligning local gamma 506 
+
+bursts with theta phase may optimise gating and routing of task -relevant information (71). 507 
+
+Conversely, PAC reductions in insular and entorhinal/perirhinal territories suggest a dynamic 508 
+
+reprioritisation: during active outward -oriented behaviour , interoceptive and certain 509 
+
+mnemonic gateway computations may be less tightly bound to theta timing, while posterior 510 
+
+sensory –parietal and frontostriatal loops take precedence. Together with the theta -peak 511 
+
+GFC/SFC results, these PAC effects indicat e that behavioural activity does not merely scale 512 
+
+oscillations but retunes which cross -frequency channels are used by which circuits, 513 
+
+emphasising frontostriatal control and posterior sensory –hypothalamic integration while 514 
+
+down -weighting others. 515 
+
+Several lim itations should be acknowledged. First, although the rat EEG source -localisation 516 
+
+framework enables area -level inferences (1), resolution for deep structures remains 517 
+
+inherently constrained by the EEG inverse problem and by the distribution of surface sensor s518 
+
+(72). This is particularly relevant to our findings in the hypothalamic, BNST, and midbrain ;519 
+
+convergent evidence from depth electrophysiology would therefore be highly valuable. 520 
+
+Second, spontaneous behaviour is heterogeneous; while our BA/RS labelling mi nimised gross 521 
+
+confounds, a finer parsing of behavioural sub -states (e.g., gait, rearing, grooming) might reveal 522 
+
+more specific oscillatory motifs. Third, an additional limitation concerns the electrode system. 523 
+
+Although our 14 -channel array provides above -st andard coverage for rodent EEG and samples 524 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+28 
+
+the most relevant cortical regions, it does not uniformly cover the cortical surface. A denser ,525 
+
+more homogeneous electrode layout would likely increase the spatial precision of source 526 
+
+localisation and refine the a natomical interpretation of the results. 527 
+
+528 
+
+Conclusion 529 
+
+In conclusion, behavioural activity reorganises rat brain dynamics along clear spectral and 530 
+
+network axes. Theta (~7 Hz) and gamma power increases —localised to posterior sensory 531 
+
+cortices, hippocampus, and subcortical integrators —coexist with widespread delta and beta 532 
+
+power decreases, including a right -dominant high -beta desynchronization in sensorimotor 533 
+
+and diencephalic territories. At the network level, GFC diminishes across broad theta, beta, 534 
+
+high -beta, and gamma bands, indicating reduced long -range coherence during movement . In 535 
+
+contrast, the narrow theta peak supports stronger, task -specific coupling among posterior 536 
+
+sensory –parietal hubs and the hypothalamu s. Seed -based analyses from the visual cortex 537 
+
+highlight theta synchronisation with hypothalamic/BNST and basal ganglia nodes, and CFC 538 
+
+reveals a redistribution of theta –gamma coupling that emphasises medial prefrontal and 539 
+
+accumbens circuits while attenuatin g coupling in insular and entorhinal/perirhinal regions. 540 
+
+Together, these findings outline a coherent physiological picture: in active wakefulness, the 541 
+
+rat brain shifts toward a locally amplified, selectively coupled, theta -anchored regime 542 
+
+optimised for vis uospatial navigation, action selection, and state control. Beyond providing a 543 
+
+behaviourally grounded baseline for pharmaco -EEG (4,33), this framework should help parse 544 
+
+how neuromodulators and candidate therapeutics reshape the interplay of power, 545 
+
+connectiv ity, and cross -frequency coupling across sensory, limbic, and motor circuits. 546 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+29 
+
+Acknowledgment 547 
+
+This work was supported by the Science Foundation of Charles University in Prague (project 548 
+
+no.: 385221), Czech Science Foundation (project no.: 23 -07578K), Minist ry of the Interior of 549 
+
+the Czech Republic (project VK01010212), Long -term conceptual development of research 550 
+
+organization (RVO 00023752), and program INTER -EXCELLENCE (subprogram INTER -ACTION 551 
+
+LUAIZ24146), ERDF -Project Brain dynamics, No. CZ.02.01.01/00/22_0 08/0004643, project VVI 552 
+
+CZECRIN (LM2023049), PsyPal project from Horizon Europe (grant no. 101137378, HORIZON -553 
+
+HLTH -2023 -DISEASE -03 -01) and Charles University research program Cooperatio -554 
+
+Neurosciences and private funds obtained via PSYRES, Psychedelic Resea rch Foundation 555 
+
+(https://psyresfoundation.eu ).556 
+
+557 
+
+Conflict of interest 558 
+
+Tomáš Páleníček declares to have shares in „Psyon s.r.o.,“ and in “Společnost pro podporu 559 
+
+neurovědního výzkumu s.r.o. ” He founded „PSYRES – Psychedelic Research Foundation“. TP 560 
+
+also reports consulting fees from GH Research and CB21 -Pharma outside the submitted work. 561 
+
+TP is involved in Compass Pathways trials with psilocybin and the MAPS clinical trial with 562 
+
+MDMA outside th e submitted work. 563 
+
+564 
+
+References 565 
+
+1. Jiricek S, Koudelka V, Lacik J, Vejmola C, Kuratko D, Wójcik DK, et al. (2021): Electrical 566 
+
+Source Imaging in Freely Moving Rats : Evaluation of Twelve -electrode Cortical EEG 567 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+30 
+
+System. Front Neuroinform 14: 68. 568 
+
+2. Piorecka V, Krajca V, Tyls F, Palenicek T (2018): Methods for animal brain mapping. 569 
+
+Radioengineering 27: 806 –812. 570 
+
+3. Vejmola Č, Tylš F, Piorecká V, Koudelka V, Kadeřábek L, Novák T, Páleníček T (2021): 571 
+
+Psilocin, LSD, mescaline, and DOB all induce broadband desynch ronization of EEG 572 
+
+and disconnection in rats with robust translational validity. Transl Psychiatry 11: 1 –573 
+
+8. 574 
+
+4. Páleníček T, Fujáková M, Brunovský M, Balíková M, Horáček J, Gorman I, et al. (2011): 575 
+
+Electroencephalographic spectral and coherence analysis of ketamine in rats: 576 
+
+Correlation with behavioral effects and pharmacokinetics. Neuropsychobiology 63: 577 
+
+202 –218. 578 
+
+5. Tylš F, Vejmola Č, Koudelka V, Piorecká V, Kadeřábek L, Bochin M, et al. (202 3): 579 
+
+Underlying pharmacological mechanisms of psilocin -induced broadband 580 
+
+desynchronization and disconnection of EEG in rats. Front Neurosci 17: 1 –13. 581 
+
+6. Lacik J, Koudelka V, Kuratko D, Raida Z, Wojcik DK, Mikulasek T, et al. (2020): Rat 582 
+
+Head Phantom for Tes ting of Electroencephalogram Source Localization 583 
+
+Techniques. IEEE Access 8. https://doi.org/10.1109/ACCESS.2020.3000581_rfseq1 584 
+
+7. Lacik J, Koudelka V, Vejmola C, Kuratko D, Vanek J, Wojcik DK, et al. (2022): 585 
+
+Anisotropic Conductivity of Rat Head Phantom and its Influence on 586 
+
+Electroencephalogram Source Localization. IEEE Access 10: 9877 –9888. 587 
+
+8. Kuratko D, Lacik J, Koudelka V, Vejmola C, Wojcik DK, Raida Z (2022): Forward Model 588 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+31 
+
+of Rat Electroencephalogram: Comparative Study of Numerical Simulations With 589 
+
+Measu rements on Rat Head Phantoms. IEEE Access 10: 92023 –92035. 590 
+
+9. Piorecka V, Vejmola C (2021): Microstate analysis in rats ’ EEG recordings. 591 
+
+10. Páleníček T, Fujáková M, Brunovský M, Horáček J, Gorman I, Balíková M, et al. 592 
+
+(2013): Behavioral, neurochemical an d pharmaco -EEG profiles of the psychedelic 593 
+
+drug 4 -bromo -2,5 -dimethoxyphenethylamine (2C -B) in rats. Psychopharmacology 594 
+
+(Berl) 225: 75 –93. 595 
+
+11. Tagliazucchi E, Roseman L, Kaelen M, Orban C, Muthukumaraswamy SD, Murphy K, 596 
+
+et al. (2016): Increased Global Funct ional Connectivity Correlates with LSD -Induced 597 
+
+Ego Dissolution. Curr Biol 26: 1043 –1050. 598 
+
+12. Franzmeier N, Caballero MÁA, Taylor ANW, Simon -Vermot L, Buerger K, Ertl -Wagner 599 
+
+B, et al. (2017): Resting -state global functional connectivity as a biomarker of 600 
+
+co gnitive reserve in mild cognitive impairment. Brain Imaging Behav 11: 368 –382. 601 
+
+13. Preller KH, Duerler P, Burt JB, Ji JL, Adkinson B, Stämpfli P, et al. (2020): Psilocybin 602 
+
+Induces Time -Dependent Changes in Global Functional Connectivity. Biol 603 
+
+Psychiatry 88 : 197 –207. 604 
+
+14. Laufs H, Kleinschmidt A, Beyerle A, Eger E, Salek -Haddadi A, Preibisch C, Krakow K 605 
+
+(2003): EEG -correlated fMRI of human alpha activity. Neuroimage 19: 1463 –1476. 606 
+
+15. Gonçalves SI, De Munck JC, Pouwels PJW, Schoonhoven R, Kuijer JPA, Maurits NM, 607 
+
+et al. (2006): Correlating the alpha rhythm to BOLD using simultaneous EEG/fMRI: 608 
+
+Inter -subject variability. Neuroimage 30: 203 –213. 609 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+32 
+
+16. Stern (2002): Simultaneous EEG and fMRI of the alpha rhythm. Neuroreport 13: 610 
+
+2487 –2492. 611 
+
+17. Liu Q, Farahibozorg S, P orcaro C, Wenderoth N, Mantini D (2017): Detecting large -612 
+
+scale networks in the human brain using high -density electroencephalography. 613 
+
+Hum Brain Mapp 38: 4631 –4643. 614 
+
+18. Hipp JF, Hawellek DJ, Corbetta M, Siegel M, Engel AK (2012): Large -scale cortical 615 
+
+correl ation structure of spontaneous oscillatory activity. Nat Neurosci 15: 884 –890. 616 
+
+19. Jiricek S, Koudelka V, Mantini D, Marecek R, Hlinka J (2025): Spatial (mis)match 617 
+
+between EEG and fMRI signal patterns revealed by spatio -spectral source -space 618 
+
+EEG decomposit ion. Front Neurosci 19. 619 
+
+https://doi.org/10.3389/fnins.2025.1549172 620 
+
+20. Fujáková M, Páleníček T, Brunovský M, Gorman I, Tylš F, Kubešová A, et al. (2014): 621 
+
+The effect of (( -)-2-oxa -4-aminobicyclo[3.1.0]hexane -2,6 -dicarboxylic acid 622 
+
+(LY379268), an mGlu2/3 rece ptor agonist, on EEG power spectra and coherence in 623 
+
+ketamine model of psychosis. Pharmacol Biochem Behav 122: 212 –221. 624 
+
+21. Vyazovskiy V V., Tobler I (2012): The Temporal Structure of Behaviour and Sleep 625 
+
+Homeostasis. PLoS One 7: 1 –11. 626 
+
+22. Paxinos G, Watson C (2014): The Rat Brain in Stereotaxic Coordinates , 7th Editio. 627 
+
+Elsevier Inc. 628 
+
+23. Vyazovskiy V V., Tobler I (2005): Theta activity in the waking EEG is a marker of sleep 629 
+
+propensity in the rat. Brain Res 1050: 64 –71. 630 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+33 
+
+24. Maris E, Oostenveld R (20 07): Nonparametric statistical testing of EEG - and MEG -631 
+
+data. J Neurosci Methods 164: 177 –190. 632 
+
+25. Oostenveld R, Fries P, Maris E, Schoffelen JM (2011): FieldTrip: Open source 633 
+
+software for advanced analysis of MEG, EEG, and invasive electrophysiological 634 
+
+dat a. Comput Intell Neurosci 2011. https://doi.org/10.1155/2011/156869 635 
+
+26. Vorwerk J, Oostenveld R, Piastra MC, Magyari L, Wolters CH (2018): The FieldTrip -636 
+
+SimBio pipeline for EEG forward solutions. Biomed Eng Online 17: 1 –17. 637 
+
+27. Pascual -Marqui RD, Lehmann D , Koukkou M, Kochi K, Anderer P, Saletu B, et al. 638 
+
+(2011): Assessing interactions in the brain with exact low -resolution 639 
+
+electromagnetic tomography. Philos Trans R Soc A Math Phys Eng Sci 369: 3768 –640 
+
+3784. 641 
+
+28. Valdés -Hernández PA, Sumiyoshi A, Nonaka H, Haga R, Aubert -Vásquez E, Ogawa T, 642 
+
+et al. (2011): An in vivo MRI template set for morphometry, tissue segmentation, 643 
+
+and fMRI localization in rats. Front Neuroinform 5: 1 –19. 644 
+
+29. Buzsáki G, Watson BO (2012): Brain rhythms and neural syntax: Implications for 645 
+
+effi cient coding of cognitive content and neuropsychiatric disease. Dialogues Clin 646 
+
+Neurosci 14: 345 –367. 647 
+
+30. Tort ABL, Komorowski R, Eichenbaum H, Kopell N (2010): Measuring phase -648 
+
+amplitude coupling between neuronal oscillations of different frequencies. J649 
+
+Neu rophysiol 104: 1195 –1210. 650 
+
+31. Cohen MX (2014): Analyzing Neural Time Series Data , 1st ed. MIT Press. 651 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+34 
+
+https://doi.org/10.5948/9781614441144.002 652 
+
+32. Vanderwolf CH (1969): Hippocampal electrical activity and voluntary movement in 653 
+
+the rat. Electroencephalogr C lin Neurophysiol April: 407 –418. 654 
+
+33. Hansen IH, Agerskov C, Arvastson L, Bastlund JF, Sørensen HBD, Herrik KF (2019): 655 
+
+Pharmaco -electroencephalographic responses in the rat differ between active and 656 
+
+inactive locomotor states. Eur J Neurosci 50: 1948 –1971. 657 
+
+34. Chrobak JJ, Buzsáki G (1994): Selective activation of deep layer (V -VI) 658 
+
+retrohippocampal cortical neurons during hippocampal sharp waves in the 659 
+
+behaving rat. J Neurosci 14: 6160 –6170. 660 
+
+35. O’Keefe J, Nadel L (1979): The Hippocampus as a Cognitive Map. Am erican Journal 661 
+
+of Psychiatry , vol. 136. Clarendon press. https://doi.org/10.1176/ajp.136.10.1353 662 
+
+36. Bender F, Gorbati M, Cadavieco MC, Denisova N, Gao X, Holman C, et al. (2015): 663 
+
+Theta oscillations regulate the speed of locomotion via a hippocampus to lat eral 664 
+
+septum pathway. Nat Commun 6. https://doi.org/10.1038/ncomms9521 665 
+
+37. Bush D, Bisby JA, Bird CM, Gollwitzer S, Rodionov R, Diehl B, et al. (2017): Human 666 
+
+hippocampal theta power indicates movement onset and distance travelled. Proc 667 
+
+Natl Acad Sci U S A 114: 12297 –12302. 668 
+
+38. Buzsáki G (2002): Theta oscillations in the hippocampus. Neuron 33: 325 –340. 669 
+
+39. Dunn SLS, Town SM, Bizley JK, Bendor D (2022): Behaviourally modulated 670 
+
+hippocampal theta oscillations in the ferret persist during both locomotion and 671 
+
+imm obility. Nat Commun 13. https://doi.org/10.1038/s41467 -022 -33507 -2672 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+35 
+
+40. Penley SC, Hinman JR, Sabolek HR, Escabí MA, Markus EJ, Chrobak JJ (2012): Theta 673 
+
+and gamma coherence across the septotemporal axis during distinct behavioral 674 
+
+states. Hippocampus 22: 1164 –1175. 675 
+
+41. Amarante LM, Caetano MS, Laubach M (2017): Medial frontal theta is entrained to 676 
+
+rewarded actions. J Neurosci 37: 10757 –10769. 677 
+
+42. Kay LM (2003): Two species of gamma oscillations in the olfactory bulb: dependence 678 
+
+on behavioral state and synaptic interactions. J Integr Neurosci 2: 31 –44. 679 
+
+43. Talakoub O, Sayegh P, Womelsdorf T, Zinke W, Fries P, Lewis C M, Hoffman K L 680 
+
+(2019): Hippocampal and neocortical oscillations are tuned to behavioral state in 681 
+
+freely -behaving macaques. bioRxiv .682 
+
+44. Yo shimoto A, Shibata Y, Kudara M, Ikegaya Y, Matsumoto N (2022): Enhancement of 683 
+
+Motor Cortical Gamma Oscillations and Sniffing Activity by Medial Forebrain 684 
+
+Bundle Stimulation Precedes Locomotion. eNeuro 9: 1 –14. 685 
+
+45. Canolty RT, Edwards E, Dalal SS, Soltani M , Nagarajan SS, Kirsch HE, et al. (2006): 686 
+
+High gamma power is phase -locked to theta oscillations in human neocortex. 687 
+
+Science (80 - ) 313: 1626 –1628. 688 
+
+46. Lisman JE, Jensen O (2013): The Theta -Gamma Neural Code. Neuron 77: 1002 –1016. 689 
+
+47. Tort ABL, Komorowski RW, Manns JR, Kopell NJ, Eichenbaum H (2009): Theta -690 
+
+gamma coupling increases during the learning of item -context associations. Proc 691 
+
+Natl Acad Sci U S A 106: 20942 –20947. 692 
+
+48. Xi C, Sun S, Pan C, Ji F, Cui X, Li T (2018): Different effects of propofol and 693 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+36 
+
+dexmedetomidine sedation on electroencephalogram patterns: Wakefulness, 694 
+
+moderate sedation, deep sedation and recovery. PLoS One 13: 1 –15. 695 
+
+49. Brovelli A, Ding M, Ledberg A, Chen Y, Nakamura R, Bressler SL (2004): Beta 696 
+
+oscillations in a large -scale sensorimotor cortical network: Directional influences 697 
+
+revealed by Granger causality. Proc Natl Acad Sci U S A 101: 9849 –9854. 698 
+
+50. Pfurtscheller G, Daly I, Bauernfeind G, Müller -Put z GR (2012): Coupling between 699 
+
+intrinsic prefrontal Hbo2 and central EEG beta power oscillations in the resting 700 
+
+brain. PLoS One 7: 1 –9. 701 
+
+51. Liang M, Starrett MJ, Ekstrom AD (2018): Dissociation of frontal -midline delta -theta 702 
+
+and posterior alpha oscillations : A mobile EEG study. Psychophysiology 55: 1 –14. 703 
+
+52. Stettner GM, Rukhadze I, Mann GL, Lei Y, Kubin L (2013): Respiratory modulation of 704 
+
+lingual muscle activity across sleep -wake states in rats. Respir Physiol Neurobiol 705 
+
+188: 308 –317. 706 
+
+53. Heinrichs -Graham E, Kurz MJ, Gehringer JE, Wilson TW (2017): The functional role of 707 
+
+post -movement beta oscillations in motor termination. Brain Struct Funct 222: 708 
+
+3075 –3086. 709 
+
+54. Mallet N, Pogosyan A, Sharott A, Csicsvari J, Bolam JP, Brown P, Magill PJ (2008): 710 
+
+Disrupted dopam ine transmission and the emergence of exaggerated beta 711 
+
+oscillations in subthalamic nucleus and cerebral cortex. J Neurosci 28: 4795 –4806. 712 
+
+55. Yoshimura M, Koenig T, Irisawa S, Isotani T, Yamada K, Kikuchi M, et al. (2007): A 713 
+
+pharmaco -EEG study on antipsych otic drugs in healthy volunteers. 714 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+37 
+
+Psychopharmacology (Berl) 191: 995 –1004. 715 
+
+56. Nisijima K, Kuboshima K, Shioda K, Yoshino T, Iwamura T, Kato S (2012): Memantine 716 
+
+attenuates 3,4 -methylenedioxymethamphetamine -induced hyperthermia in rats. 717 
+
+Neurosci Lett 531: 1 98 –203. 718 
+
+57. Emilien G (1989): Effect of drugs acting on monoaminergic and cholinergic systems 719 
+
+on the quantified EEG of rats. Neuropsychobiology 21: 205 –215. 720 
+
+58. Gutiérrez RG, Egaña JI, Maldonado FA, Sáez IA, Reyes FI, Soulat H, et al. (2021): 721 
+
+Association b etween Lower Preoperative Cognition with Intraoperative 722 
+
+Electroencephalographic Features Consistent with Deep States of Anesthesia in 723 
+
+Older Patients: An Observational Cohort Study. Anesth Analg 133: 205 –214. 724 
+
+59. Gauvin D V., Briscoe RJ, Baird TJ, Vallett M , Carl KL, Holloway FA (1997): 725 
+
+Physiological and subjective effects of acute cocaine withdrawal (crash) in rats. 726 
+
+Pharmacol Biochem Behav 57: 923 –934. 727 
+
+60. Makowka S, Mory LN, Mouthon M, Mancini C, Guggisberg AG, Chabwine JN (2023): 728 
+
+EEG Beta functional connectivity decrease in the left amygdala correlates with the 729 
+
+affective pain in fibromyalgia: A pilot study. PLoS One 18: 1 –12. 730 
+
+61. Villalobos N, Almazán -Alvarado S, Magdaleno -Madrigal VM (2022): Elevation of 731 
+
+GABA levels in the globus pallidus disinhibits the thalamic reticular nucleus and 732 
+
+desynchronized cortical beta oscillations. J Physiol Sci 72. 733 
+
+https://doi.org/10.1186/s12576 -022 -00843 -3734 
+
+62. Prokic EJ, Weston C, Yamawaki N, Hall SD, Jones RSG, Stanford IM, et al. (2015): 735 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+38 
+
+Cortical oscillatory dynamics and benzodiazepine -site modulation of tonic 736 
+
+inhibition in fast spiking interneurons. Neuropharmacology 95: 192 –205. 737 
+
+63. Mamad O, Delaville C, Benjelloun W, Benazzouz A (2015): Dopaminergic control of 738 
+
+the globus pallidus throu gh activation of D2 receptors and its impact on the 739 
+
+electrical activity of subthalamic nucleus and substantia nigra reticulata neurons. 740 
+
+PLoS One 10: 1 –16. 741 
+
+64. Leventhal DK, Gage GJ, Schmidt R, Pettibone JR, Case AC, Berke JD (2012): Basal 742 
+
+ganglia beta osci llations accompany cue utilization. Neuron 73: 523 –536. 743 
+
+65. Brazhnik E, Cruz A V., Avila I, Wahba MI, Novikov N, Ilieva NM, et al. (2012): State -744 
+
+dependent spike and local field synchronization between motor cortex and 745 
+
+substantia nigra in hemiparkinsonian r ats. J Neurosci 32: 7869 –7880. 746 
+
+66. Noga BR, Sanchez FJ, Villamil LM, O’Toole C, Kasicki S, Olszewski M, et al. (2017): LFP 747 
+
+oscillations in the mesencephalic locomotor region during voluntary locomotion. 748 
+
+Front Neural Circuits 11: 1 –17. 749 
+
+67. Sinnamon HM (2005 ): Hippocampal theta activity and behavioral sequences in a 750 
+
+reward -directed approach locomotor task. Hippocampus 15: 518 –534. 751 
+
+68. Tamura M, Spellman TJ, Rosen AM, Gogos JA, Gordon JA (2017): Hippocampal -752 
+
+prefrontal theta -gamma coupling during performance of a spatial working memory 753 
+
+task. Nat Commun 8. https://doi.org/10.1038/s41467 -017 -02108 -9754 
+
+69. Catani M, Ffytche DH (2005): The rises and falls of disconnection syndromes. Brain 755 
+
+128: 2224 –2239. 756 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 8, 2026. ;https://doi.org/10.64898/2026.07.03.736278 doi: bioRxiv preprint
+
+39 
+
+70. Estefan DP, Zucca R, Arsiwalla X, Principe A, Zhang H, Rocam ora R, et al. (2021): 757 
+
+Volitional learning promotes theta phase coding in the human hippocampus. Proc 758 
+
+Natl Acad Sci U S A 118: 1 –12. 759 
+
+71. Cavanagh JF, Frank MJ (2014): Frontal theta as a mechanism for cognitive control. 760 
+
+Trends Cogn Sci 18: 414 –421. 761 
+
+72. Halle z H, Vanrumste B, Grech R, Muscat J, De Clercq W, Vergult A, et al. (2007): 762 
+
+Review on solving the forward problem in EEG source analysis. J Neuroeng Rehabil 763 
+
+4. https://doi.org/10.1186/1743 -0003 -4-46 764
