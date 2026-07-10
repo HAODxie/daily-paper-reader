@@ -6,56 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-09
-- 运行时间：2026-07-09 22:08:58 UTC
+- 最新运行日期：2026-07-10
+- 运行时间：2026-07-10 21:55:12 UTC
 - 运行状态：成功
-- 本次总论文数：12
+- 本次总论文数：17
 - 精读区：6
-- 速读区：6
+- 速读区：11
 
 ### 今日简报（AI）
-今日精选12篇论文，6篇精读、6篇速读；精读中《A molecular integrator of sleep duration and interruption》获满分10分，揭示睡眠时长与中断的分子机制。最值得关注的方向：睡眠调控的分子整合子与深度二值化神经尖峰分类网络（9分），速读中慢振荡tDCS在睡眠限制后提升认知表现（8分）也具启发。建议普通读者可深入探究睡眠质量对大脑功能的影响，以及二值化神经网络在神经信号分析中的实用潜力。
-- 详情：[/202607/09/README](/202607/09/README)
+今日聚焦EEG情绪识别与睡眠基础模型两大创新突破。最值得关注图正则化深度学习的心理学标签结构优化，以及Omni-Sleep层次对比学习的CNS-ANS动态建模。建议深入探索多模态数据融合框架在脑电与睡眠领域的临床应用潜力。
+- 详情：[/202607/10/README](/202607/10/README)
 
 ### 精读区论文标签
-1. [A molecular integrator of sleep duration and interruption](/202607/09/biorxiv-10-64898-2026-07-03-736427-v1-a-molecular-integrator-of-sleep-duration-and-interruption)  
+1. [Graph-Regularized Deep Learning for EEG-Based Emotion Recognition with Psychologically-Grounded Label Structure](/202607/10/2607.07773v1-graph-regularized-deep-learning-for-eeg-based-emotion-recognition-with-psychologically-grounded-label-structure)  
    标签：评分：10.0/10、query:neuro-mental
-   evidence：睡眠持续时间和中断的分子整合子
-2. [DBNN: Neural Spike Classification Using a Deep Binarized Neural Network](/202607/09/2607.05590v1-dbnn-neural-spike-classification-using-a-deep-binarized-neural-network)  
+   evidence：基于深度学习的EEG情感识别，用于心理健康和脑机接口
+2. [Omni-Sleep: A Sleep Foundation Model via Hierarchical Contrastive Learning of CNS--ANS Dynamic](/202607/10/2607.07720v1-omni-sleep-a-sleep-foundation-model-via-hierarchical-contrastive-learning-of-cns--ans-dynamic)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：用于植入式脑机接口尖峰分类的深度二值化神经网络
-3. [STST-JEPA: Shallow-Target Spatio-Temporal Joint Embedding Prediction Architecture For EEG Self-Supervised Learning](/202607/09/2607.06629v1-stst-jepa-shallow-target-spatio-temporal-joint-embedding-prediction-architecture-for-eeg-self-supervised-learning)  
+   evidence：使用多导睡眠图信号构建睡眠基础模型
+3. [MentalHospital: A Virtual Environment for Evaluating Psychiatric Clinical Encounters](/202607/10/2607.08257v1-mentalhospital-a-virtual-environment-for-evaluating-psychiatric-clinical-encounters)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑电自监督学习用于脑龄预测
-4. [Latent graph encoding of multimodal neuroimaging features with generative AI architectures](/202607/09/2607.07027v1-latent-graph-encoding-of-multimodal-neuroimaging-features-with-generative-ai-architectures)  
+   evidence：基于LLM的精神科临床交互评估虚拟环境
+4. [TogoMCP: Natural Language Querying of Life-Science Knowledge Graphs via Schema-Guided LLMs and the Model Context Protocol](/202607/10/biorxiv-10-64898-2026-03-19-713030-v3-togomcp-natural-language-querying-of-life-science-knowledge-graphs-via-schema-guided-llms-and-the-model-context-protocol)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：基于LLM的生命科学知识图谱自然语言查询系统
+5. [Sleep-Related Respiratory Disruption is Associated with Altered Spindle Morphology and Poorer Attention in Children](/202607/10/biorxiv-10-64898-2026-07-06-736760-v1-sleep-related-respiratory-disruption-is-associated-with-altered-spindle-morphology-and-poorer-attention-in-children)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：睡眠呼吸障碍与EEG睡眠纺锤波
+6. [STST-JEPA: Shallow-Target Spatio-Temporal Joint Embedding Prediction Architecture For EEG Self-Supervised Learning](/202607/10/2607.06629v2-stst-jepa-shallow-target-spatio-temporal-joint-embedding-prediction-architecture-for-eeg-self-supervised-learning)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：多模态生成式AI用于神经影像特征编码
-5. [TF-Engram: A Train-Free Engram with SSD-Backed Memory for Large Language Models](/202607/09/2607.07388v1-tf-engram-a-train-free-engram-with-ssd-backed-memory-for-large-language-models)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：提出一种用于大语言模型的无训练印迹记忆系统，直接贡献于大语言模型研究。
-6. [Effects of EEG Preprocessing on Channel-Wise Attention and Effective Connectivity Alignment in Visual EEG Decoding](/202607/09/biorxiv-10-64898-2026-07-02-736026-v1-effects-of-eeg-preprocessing-on-channel-wise-attention-and-effective-connectivity-alignment-in-visual-eeg-decoding)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：研究EEG预处理对基于Transformer的视觉解码的影响
+   evidence：EEG自监督学习用于脑龄预测
 
 ### 速读区论文标签
-1. [Slow Oscillatory Transcranial Direct Current Stimulation during a Restricted Sleep Opportunity Enhances Cognitive Performance during Subsequent Wakefulness](/202607/09/biorxiv-10-64898-2026-07-03-736438-v1-slow-oscillatory-transcranial-direct-current-stimulation-during-a-restricted-sleep-opportunity-enhances-cognitive-performance-during-subsequent-wakefulness)  
+1. [Coordinate-Based fMRI Meta-Analyses of Episodic Memory Encoding and Retrieval in Depression](/202607/10/biorxiv-10-64898-2026-04-14-718401-v3-coordinate-based-fmri-meta-analyses-of-episodic-memory-encoding-and-retrieval-in-depression)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：研究限制睡眠期间慢振荡tDCS对认知表现的增强作用
-2. [External anchors reveal target-population effects hidden by published clinical-trial evidence](/202607/09/2607.04327v1-external-anchors-reveal-target-population-effects-hidden-by-published-clinical-trial-evidence)  
+   evidence：抑郁症记忆编码和提取的fMRI元分析
+2. [BCCWJ-Brain: A Multi-Modal fMRI, MEG, and EEG Dataset of Naturalistic Japanese Reading](/202607/10/biorxiv-10-64898-2026-07-05-736621-v1-bccwj-brain-a-multi-modal-fmri-meg-and-eeg-dataset-of-naturalistic-japanese-reading)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：为大型语言模型提供多模态神经影像基准数据集
+3. [Integrating Neural Encoders in Bayesian Generalized Linear Mixed Models for Multimodal Data](/202607/10/2607.04647v1-integrating-neural-encoders-in-bayesian-generalized-linear-mixed-models-for-multimodal-data)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：应用于失眠总睡眠时间
-3. [Diminishing Arousal Shifts the Balance of Cortical Networks Supporting Spatial Attention](/202607/09/biorxiv-10-64898-2025-12-08-692359-v2-diminishing-arousal-shifts-the-balance-of-cortical-networks-supporting-spatial-attention)  
+   evidence：将神经编码器与贝叶斯广义线性混合模型集成，用于多模态神经科学数据分析
+4. [The complexities of patient-centred conversational artificial intelligence](/202607/10/2607.08625v1-the-complexities-of-patient-centred-conversational-artificial-intelligence)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用困倦模型结合EEG研究空间注意
-4. [The impact of behavioural activity on the EEG power spectrum, its source localisation, and global functional connectivity in rats](/202607/09/biorxiv-10-64898-2026-07-03-736278-v1-the-impact-of-behavioural-activity-on-the-eeg-power-spectrum-its-source-localisation-and-global-functional-connectivity-in-rats)  
+   evidence：研究真实患者-聊天机器人对话用于心理健康症状评估
+5. [Spectral envelopes of facial movements predict intention, cortical representations, and neural prosthetic control](/202607/10/biorxiv-10-1101-2025-09-10-675423-v4-spectral-envelopes-of-facial-movements-predict-intention-cortical-representations-and-neural-prosthetic-control)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：分析大鼠不同行为活动状态下EEG功率谱、源定位和功能连接的变化
-5. [Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering](/202607/09/2607.06641v1-healthier-llms-retrieval-augmented-generation-for-public-health-question-answering)  
+   evidence：通过面部运动解码实现神经假体控制
+6. [A Common Neural Signal of Evidence Accumulation for Perceptual and Mnemonic Decisions](/202607/10/biorxiv-10-1101-2025-11-13-688140-v2-a-common-neural-signal-of-evidence-accumulation-for-perceptual-and-mnemonic-decisions)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：利用EEG中心顶叶正电位作为证据累积的神经信号
+7. [Central and peripheral dynamics of acute stress: evidence from functional cortical gradients](/202607/10/biorxiv-10-64898-2026-07-08-732866-v1-central-and-peripheral-dynamics-of-acute-stress-evidence-from-functional-cortical-gradients)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：急性应激的fMRI皮层梯度研究
+8. [Human medial temporal lobe neurons link future reward coding with intertemporal choice and impulsivity](/202607/10/biorxiv-10-64898-2026-07-09-737293-v1-human-medial-temporal-lobe-neurons-link-future-reward-coding-with-intertemporal-choice-and-impulsivity)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：研究冲动性和跨期选择的单神经元相关物，与心理健康相关
+9. [Temporal Processing during Decision Making under Uncertainty.](/202607/10/biorxiv-10-64898-2026-06-30-735611-v1-temporal-processing-during-decision-making-under-uncertainty)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：将大语言模型与检索增强生成用于公共卫生问答
-6. [Spontaneous eye blinks as temporal markers of internal attention](/202607/09/biorxiv-10-64898-2026-07-06-736774-v1-spontaneous-eye-blinks-as-temporal-markers-of-internal-attention)  
+   evidence：颅内脑电时间决策研究
+10. [Shared but temporally distinct neural representations support semantic matching across word and picture formats: evidence from EEG decoding and temporal generalization analyses](/202607/10/biorxiv-10-64898-2026-07-06-736728-v1-shared-but-temporally-distinct-neural-representations-support-semantic-matching-across-word-and-picture-formats-evidence-from-eeg-decoding-and-temporal-generalization-analyses)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：利用眨眼锁定EEG分析研究工作记忆中的内部注意聚焦过程
+   evidence：脑电解码和时间泛化分析用于语义匹配
+11. [Selective convergence and graded divergence of hippocampal and amygdala subregions using functional connectivity](/202607/10/biorxiv-10-64898-2026-07-06-736898-v1-selective-convergence-and-graded-divergence-of-hippocampal-and-amygdala-subregions-using-functional-connectivity)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：杏仁核和海马的fMRI功能连接
 
 
 <div class="dpr-home-promo-card">

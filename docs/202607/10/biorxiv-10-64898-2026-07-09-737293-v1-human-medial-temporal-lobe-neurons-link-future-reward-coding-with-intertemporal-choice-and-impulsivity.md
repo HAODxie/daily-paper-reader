@@ -1,0 +1,25 @@
+---
+title: Human medial temporal lobe neurons link future reward coding with intertemporal choice and impulsivity
+title_zh: 人类内侧颞叶神经元将未来奖赏编码与跨期选择和冲动性联系起来
+authors: "Kehl, M. S., Dürschmid, S., Borger, V., Surges, R., Mormann, F."
+date: 2026-07-10
+pdf: "https://www.biorxiv.org/content/10.64898/2026.07.09.737293v1.full.pdf"
+tags: ["query:neuro-mental"]
+score: 7.0
+evidence: 研究冲动性和跨期选择的单神经元相关物，与心理健康相关
+tldr: 人类延迟折扣的单神经元机制一直未知。本研究记录了内侧颞叶单神经元活动，发现杏仁核和海马神经元可预测决策，内嗅皮层和海马编码延迟，且海马群体活动编码预期时间周期。冲动个体的神经元时间编码减弱，仅在决策前短暂预测。揭示了不同MTL区域在跨期决策中的分工及冲动性的神经特征。
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1648, \"height\": 994, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1610, \"height\": 1043, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 1569, \"height\": 1089, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 1591, \"height\": 481, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 1320, \"height\": 1073, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-006.webp\", \"caption\": \"\", \"page\": 0, \"index\": 6, \"width\": 1125, \"height\": 913, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-007.webp\", \"caption\": \"\", \"page\": 0, \"index\": 7, \"width\": 1434, \"height\": 628, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-008.webp\", \"caption\": \"\", \"page\": 0, \"index\": 8, \"width\": 1630, \"height\": 1006, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-009.webp\", \"caption\": \"\", \"page\": 0, \"index\": 9, \"width\": 1556, \"height\": 591, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-010.webp\", \"caption\": \"\", \"page\": 0, \"index\": 10, \"width\": 744, \"height\": 734, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/fig-011.webp\", \"caption\": \"\", \"page\": 0, \"index\": 11, \"width\": 1043, \"height\": 585, \"label\": \"Figure\"}]"
+tables_json: "[{\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/table-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 779, \"height\": 1013, \"label\": \"Table\"}, {\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-09-737293-v1/table-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1357, \"height\": 340, \"label\": \"Table\"}]"
+motivation: 探究人类内侧颞叶单神经元如何编码未来奖励延迟并影响跨期选择及冲动性。
+method: 记录人类内侧颞叶（杏仁核、海马、内嗅皮层）单神经元活动，分析其在跨期选择任务中的决策与延迟编码。
+result: 杏仁核和海马神经元预测决策，内嗅皮层和海马编码延迟；海马群体活动编码预期时间；冲动个体时间编码减弱且仅提前预测决策。
+conclusion: 不同MTL区域通过编码延迟和预测决策支持跨期选择，冲动性削弱了前瞻性时间编码。
+---
+
+## 摘要
+延迟满足的能力在生命早期出现，并与长期健康和经济成功相关。相反，以偏好即时奖赏为特征的高冲动性可能与精神疾病有关。尽管人类延迟折扣的过程已在行为和宏观神经层面得到研究，但在单神经元层面仍难以捉摸。具体而言，尚不清楚人类神经元如何编码长延迟并预测跨期选择，以及这些过程如何受冲动性影响。本文记录人类内侧颞叶（MTL）的单神经元活动，探索决策和延迟编码。我们在杏仁核和海马体中识别出预测即将到来的决策的神经元。内嗅皮层和海马体的神经元编码奖赏延迟，尤其是海马体群体活动编码前瞻性时间段。重要的是，冲动个体的神经元活动表现出减弱的前瞻性时间编码，并且仅在报告选择前不久预测决策。我们的发现揭示了不同MTL区域如何参与跨期决策，并为冲动性背后的神经特征提供了见解。
+
+## Abstract
+The ability to delay gratification emerges early in life and is linked to long-term health and economic success. Conversely, high impulsivity, marked by a preference for immediate rewards, can be associated with psychiatric disorders. Although processes underlying human delay discounting have been studied at behavioural and macroscopic neural levels, they remain elusive at the single-neuron level. Specifically, it is unknown how human neurons encode extended delays and predict intertemporal choices, and how these processes are impacted by impulsivity. Here, we record single-neuron activity in the human medial temporal lobe (MTL) to explore decision and delay coding. We identify neurons that predict upcoming decisions in the amygdala and hippocampus. Neurons in the entorhinal cortex and hippocampus encode reward delays, with particularly hippocampal population activity coding prospective temporal periods. Importantly, neuronal activity in impulsive individuals shows diminished prospective temporal coding and predicts decisions only shortly before choices are reported. Our findings reveal how distinct MTL regions contribute to intertemporal decisions and provide insight into the neuronal signatures underlying impulsivity.

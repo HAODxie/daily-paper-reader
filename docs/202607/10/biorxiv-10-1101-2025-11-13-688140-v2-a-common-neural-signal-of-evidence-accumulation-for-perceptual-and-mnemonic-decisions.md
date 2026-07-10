@@ -1,0 +1,24 @@
+---
+title: A Common Neural Signal of Evidence Accumulation for Perceptual and Mnemonic Decisions
+title_zh: 感知与记忆决策中证据积累的共同神经信号
+authors: "Tsvinev, A., Pilipenko, A., Hausman, H., Samaha, J."
+date: 2026-07-06
+pdf: "https://www.biorxiv.org/content/10.1101/2025.11.13.688140v2.full.pdf"
+tags: ["query:neuro-mental"]
+score: 7.0
+evidence: 利用EEG中心顶叶正电位作为证据累积的神经信号
+tldr: 人类决策常依赖外部知觉或内部记忆证据，但神经基础是否共享尚不明确。本研究通过两个EEG实验，在知觉、语义和情景记忆任务中考察中央顶叶正波（CPP）信号。发现CPP上升斜率与证据强度、反应时间和置信度一致相关。结果表明CPP是跨决策领域的通用证据累积神经标志，为统一决策理论提供了神经证据。
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1987, \"height\": 1780, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 2051, \"height\": 1516, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 1944, \"height\": 1532, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 2077, \"height\": 1540, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 1641, \"height\": 745, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-006.webp\", \"caption\": \"\", \"page\": 0, \"index\": 6, \"width\": 1813, \"height\": 1658, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-007.webp\", \"caption\": \"\", \"page\": 0, \"index\": 7, \"width\": 2067, \"height\": 831, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-008.webp\", \"caption\": \"\", \"page\": 0, \"index\": 8, \"width\": 1997, \"height\": 774, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-1101-2025-11-13-688140-v2/fig-009.webp\", \"caption\": \"\", \"page\": 0, \"index\": 9, \"width\": 2085, \"height\": 810, \"label\": \"Figure\"}]"
+motivation: 探究中央顶叶正波（CPP）是否为知觉与记忆决策中证据积累的通用神经信号。
+method: 两个EEG实验，分别采用亮度辨别、语义判断和词识别任务，操纵证据强度，分析CPP斜率。
+result: CPP斜率随知觉、语义和情景记忆证据强度增加而增加，并与反应时间和置信度相关。
+conclusion: CPP是跨知觉和记忆决策的通用证据累积神经标志。
+---
+
+## 摘要
+人类经常根据外部环境的感觉输入或从记忆中检索到的信息做出决策。中央顶区正电位（CPP）是一种事件相关脑电电位，最近被确定为知觉决策任务中感觉证据积累的神经关联。然而，目前尚不清楚该成分是否也反映了基于语义和情景长时记忆的决策过程中的证据积累。通过两个实验，我们研究了CPP是否作为证据积累的领域通用神经信号。在实验1中，参与者完成了不同证据强度水平的2AFC知觉和语义记忆任务。知觉判断涉及对字母数字字符串进行亮度辨别，通过三个亮度差异水平来控制知觉证据强度；语义记忆判断涉及根据人口普查数据区分美国各州的人口差异，定义了三个记忆证据强度区间。在两个任务中都观察到CPP成分，其累积速率（即斜率）与证据强度、反应时间和置信度在刺激锁定和反应锁定分析中均呈比例关系。将这一发现扩展到情景记忆，实验2的参与者完成了一项两择一迫选词汇再认任务，其中目标词在学习过程中的呈现频率不同以控制情景记忆强度。我们再次发现CPP斜率与记忆强度、反应时间和置信度呈比例关系。这些结果共同支持CPP作为跨知觉、语义和情景记忆决策中证据积累的领域通用神经标记。
+
+## Abstract
+Humans frequently make decisions based on sensory input from the external environment or information retrieved from memory. The centro-parietal positivity (CPP), an event-related EEG potential, has recently been identified as a neural correlate of sensory evidence accumulation during perceptual decision-making tasks. However, it remains unclear whether this component also reflects the accumulation of evidence in service of decisions grounded in semantic and episodic long-term memory. Across two experiments, we investigated whether the CPP serves as a domain-general neural signal of evidence accumulation. In Experiment 1, participants completed 2AFC perceptual and semantic memory tasks with varying levels of evidence strength. Perceptual judgements involved luminance discrimination of alphanumeric strings with three luminance difference levels controlling perceptual evidence strength. Semantic memory judgements involved discriminating population differences between U.S. states with census data used to define three bins of memory evidence strength. A CPP component was observed in both tasks whose build-up rate (i.e., slope) scaled with evidence strength, response time, and confidence in both stimulus-and response-locked analyses. Extending these findings to episodic memory, participants in Experiment 2 completed a two-alternative forced-choice word recognition task with target words varying in exposure frequency during learning to control episodic memory strength. Again, we found that CPP slopes scaled with memory strength, response time, and confidence. Together, these findings support the CPP as a domain-general neural signature of evidence accumulation across perceptual, semantic, and episodic mnemonic decisions.

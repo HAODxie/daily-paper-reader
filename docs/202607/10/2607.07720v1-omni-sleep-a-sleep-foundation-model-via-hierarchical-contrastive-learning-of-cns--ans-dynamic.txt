@@ -1,0 +1,368 @@
+Title: Omni-Sleep: A Sleep Foundation Model via Hierarchical Contrastive Learning of CNS–ANS Dynamic
+
+URL Source: https://arxiv.org/pdf/2607.07720v1
+
+Published Time: Fri, 10 Jul 2026 00:01:50 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+> 2026-7-10
+
+# Omni-Sleep: A Sleep Foundation Model via Hierarchical Contrastive Learning of CNS–ANS Dynamics 
+
+Zhoujie Hou *1,3 , Song Wang *1,3 , Kexin Lou *1,3 , Mo Wang 1,3 , Chen Wei 1,3 , Quanying Liu B1,2,3   
+
+> 1Department of Biomedical Engineering, Southern University of Science and Technology, Shenzhen, China, 2Shenzhen Loop Area Institute, Shenzhen, China, 3Omni-Intelligence, Shenzhen, China
+
+Sleep physiology arises from the coordinated dynamics of the central nervous system (CNS) and autonomic nervous system (ANS), as reflected by multimodal polysomnography signals including EEG, EOG, EMG, ECG, and respiration. However, existing sleep foundation models often fuse heterogeneous biosignals in a topology-agnostic manner, overlooking their physiological organization. We introduce Omni-Sleep, a sleep foundation model that uses the CNS/ANS partition as a physiological prior for topology-constrained representation learning. Omni-Sleep learns structured representations through three objectives: intra-system consistency, which captures shared subsystem-level factors within neural and cardio-respiratory signals; inter-system synchronization, which aligns subsystem trajectories to model brain–body dynamics; and latent-space masked temporal modeling, which captures long-horizon sleep dynamics. Pre-trained on over 100,000 hours of multi-center multimodal PSG data, Omni-Sleep is evaluated on sleep staging and multi-disease classification. Across datasets and modality-ablation settings, Omni-Sleep outperforms strong foundation-model baselines, showing improved label efficiency, cross-dataset generalization, and robustness to missing modalities. These results highlight the value of physiological hierarchy for generalizable sleep representation learning. Code is available at https://github.com/AutoBrain-sleep/OmniSleep .
+
+Keywords: Sleep; self-supervised learning; multimodal PSG; foundation model 
+
+Code: https: // github. com/ AutoBrain-sleep/ OmniSleep 
+
+1. Introduction 
+
+Sleep is a dynamic physiological process governed by coordinated interactions between central neural activity and autonomic cardio-respiratory regulation [3, 26]. In clinical practice, this brain–body coupling is captured by polysomnography (PSG), which records heterogeneous signals spanning EEG, EOG, EMG, ECG and respiratory channels. These signals are informative not only for sleep staging, but also for assessing multi-system health risks that manifest through altered sleep physi-ology [1, 8, 11, 18, 24]. Recent self-supervised foundation models for neural data, have shown that large-scale pretraining can learn transferable brain representations and reduce reliance on costly expert labels [5, 13, 27 –31]. This paradigm has also been adopted for sleep analysis through large-scale pretraining on polysomnographic recordings [9, 24]. However, existing multimodal methods often align heterogeneous physiological signals in a unified representation space, overlooking their physiological organization [17,20,23,24]. This flat fusion neglects a key property of PSG: CNS-derived signals and ANS-related signals follow distinct physiological manifolds, yet exhibit stage-dependent and time-varying synchronization [6, 32]. In real-world deployments, these limitations are amplified under domain shifts and missing modalities. [5]. 
+
+> *
+
+Equal contribution. BCorrespondence to: liuqy@sustech.edu.cn. arXiv:2607.07720v1 [cs.LG] 4 Jul 2026 Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics Modalities Missing  Local-global Synchrony  Label Scarcity    
+
+> Real-world Deployment Challenges Clinical PSG with Multimodal Signals
+> EEG
+> Resp
+> ECG
+> EMG EOG
+> Central Nervous System
+> Autonomic Nervous System
+> Disease Sleep Stage
+> Downstream Tasks
+> Sleep Staging Sleep Disorder
+> Sleep Related
+> Cardiovascular
+> Risk
+> Psychological
+> Risk
+> Disease Related
+
+Figure 1 | Omni-Sleep targets real-world PSG deployment. 
+
+To bridge this gap, we propose Omni-Sleep, a sleep foundation model that uses the CNS/ANS partition as a physiological prior for topology-constrained sleep representation learning. Pretrained on over 100,000 hours of multi-center PSG data, Omni-Sleep combines hierarchical contrastive learning to capture intra-system consistency and inter-system coupling with long-horizon latent prediction to model macro-scale sleep dynamics. Across multiple independent cohorts, Omni-Sleep demonstrates strong generalization and robustness in sleep staging and sleep-disorder assessment under label scarcity and missing-modality settings. The main contributions of this work are summarized as follows: 
+
+• Structure-Aware Foundation Model: We propose Omni-Sleep, a sleep foundation model that uses the CNS/ANS split as a physiological prior while learning subsystem-level and cross-system representations. 
+
+• Hierarchical Pretraining framework: Omni-Sleep combines intra-system contrastive learning, inter-system alignment, and long-horizon latent prediction to capture structured CNS–ANS sleep dynamics. 
+
+• SOTA Performance across Tasks: Across datasets and modality-ablation settings, Omni-Sleep consistently improves out-of-domain transfer, label efficiency, and robustness to missing modali-ties, outperforming state-of-the-art baselines in sleep staging and multi-disease classification. 
+
+2. Related Work 
+
+2.1. CNS-ANS Coupling in Sleep 
+
+Sleep physiology reflects coordinated CNS-ANS dynamics, exhibiting stage-dependent and time-varying coupling between cortical activity and cardio-autonomic rhythms [3, 18, 26]. Such coupling is closely linked to sleep-stage transitions through systematic changes in heart rate variability and other autonomic markers, and shows structured temporal organization beyond static correlation [6]. Recent work further models brain–heart interactions by jointly analyzing EEG and cardiac dynamics across sleep [1]. These findings motivate structure-aware learning objectives that distinguish stable within-group patterns from cross-group synchronization, rather than relying on a single flat fusion operator. 
+
+2.2. Multimodal PSG Representation Learning 
+
+Multimodal PSG models typically improve performance via architectural fusion [34], including early/late fusion [7], cross-attention [19], modality-specific encoders with shared heads [15], and task-specific encoders with hand-crafted feature fusion [20, 23]. While combining neural and cardio-respiratory signals benefits sleep staging and related tasks, most approaches still treat modalities as 
+
+> 2Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+exchangeable views and align them in a unified representation space via generic attention or feature concatenation [17, 24], overlooking their physiological organization. This motivates moving from flat fusion toward topology-aware objectives that respect structured cross-signal dependencies grounded in CNS–ANS physiology [6]. 
+
+2.3. Limited Supervision and Partial Observability 
+
+Real-world sleep monitoring is constrained by scarce expert labels, incomplete acquisition due to sensor dropouts and heterogeneous protocols, and distribution shifts across clinical sites and record-ing equipment [9]. Inspired by recent self-supervised foundation models that learn transferable neural representations from large-scale brain recordings [13, 29, 30], sleep-specific SSL methods reduce label dependence via masked modeling and contrastive cross-modal alignment [5, 24], and improve robustness to missing modalities through imputation, distillation, or subset-based fusion [15]. However, many pipelines still emphasize waveform reconstruction or flat global alignment in a single shared embedding space, which can blur complementary cues and degrade under partial observability and domain shift. We instead adopt a structured contrastive objective that enforces consistency within related signal groups while aligning across groups, yielding a representation that is more robust under real-world deployment conditions. 
+
+2.4. Local–Global Synchrony in Sleep Dynamics 
+
+Sleep modeling requires capturing both within-epoch micro-structures (e.g., spindles and K-complexes) and night-level, non-stationary dynamics [32]. Many pipelines process 30-second epochs and inject longer context using a downstream temporal module [23], typically an RNN/LSTM or, more recently, a Transformer [21, 24]. JEPA-style learning instead emphasizes latent-space prediction, prioritizing structured temporal regularities over waveform reconstruction for long-horizon dynamics [2, 16]. Motivated by this, we design complementary micro- and macro-scale pretraining pathways and enforce their consistency to induce local–global synchrony in the representation space. 
+
+3. Methodology 
+
+3.1. Problem Formulation 
+
+PSG comprises a set of synchronized physiological modalities X = {𝑋 (𝑚 ) }𝑚 ∈ M , where each 𝑋 (𝑚 ) is segmented into a sequence of 30 s epochs. We explicitly encode the physiological information M by partitioning modalities into CNS subset M𝐶 (EEG, EOG and EMG) and ANS subset M𝐴 (ECG and respiration) with M = M𝐶 ∪ M 𝐴 . Our goal is to pretrain a multimodal encoder that preserves both within-group consistency and cross-group synchrony. 
+
+3.2. Modality encoders 
+
+For each modality 𝑚 , we transform the raw epoch signal 𝑋 (𝑚 ) into a sequence of latent tokens using a lightweight 1D convolutional patch encoder: 
+
+H(𝑚 ) = 𝑓 (𝑚 ) (X(𝑚 ) ), H(𝑚 ) ∈ ℝ𝑇 ×𝐷 , (1) where 𝑇 is the token length and 𝐷 is the latent dimension. To model long-range temporal dependencies, tokens are passed through a modality-specific sequence encoder 𝑔 (𝑚 ) 
+
+> seq
+
+(RoFormer with rotary positional encoding), providing contextualized tokens S(𝑚 ) =
+
+> 3
+
+Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics Sequence Encoder 
+
+> Sequence Decoder
+> L1 Loss
+> Random
+> Mask
+> MAE Block
+> Micro-scale Pretraining
+> Modality Encoders
+> Modality Encoders
+> Resp
+> ECG
+> 1h30m
+> Pooling
+> Pooling
+> EMG
+> EOG
+> EEG
+> Macro-scale Pretraining
+> Autonomic Nervous System Central Nervous System
+> EEG
+> EOG
+> Modality Encoder
+> Modality Encoder
+> Modality Encoder
+> EMG
+> 30s
+> Similarity
+> ECG
+> Modality Encoder
+> Modality Encoder
+> Resp
+> 30s
+> Contrastive Loss
+> Contrastive Loss
+> Contrastive Learning
+> MAE
+> Blocks
+> MAE
+> Blocks
+
+Figure 2 | Omni-Sleep pretraining . Micro-level objectives capture intra-system consistency within CNS and ANS signals, while macro-level objectives model inter-system synchronization and long-horizon sleep dynamics. 
+
+𝑔 (𝑚 )
+
+seq (H(𝑚 ) ), S(𝑚 ) ∈ ℝ𝑇 ×𝐷 and an epoch-level embedding obtained by pooling: 
+
+s(𝑚 ) = Pool 
+
+
+
+𝑆 (𝑚 ) 
+
+∈ ℝ𝐷 . (2) We denote the projected representation for contrastive learning as z(𝑚 ) = 𝜓 (s(𝑚 ) ), where 𝜓 (·) is a small MLP projection head. 
+
+3.3. Hierarchical Contrastive Learning 
+
+Omni-Sleep optimizes a hierarchical contrastive objective that (i) enforces intra-system consistency 
+
+within CNS and within ANS (micro-scale), and (ii) preserves inter-system coupling between pooled CNS and pooled ANS summaries (macro-scale). 
+
+InfoNCE objective. Given an anchor representation z𝑖 and its positive z+
+
+𝑖 , we use standard InfoNCE: 
+
+ℓNCE (z𝑖 , z+
+
+𝑖 ) = − log exp (sim (z𝑖 , z+
+
+𝑖 )/ 𝜏 )
+
+Í𝐵 𝑗 =1 exp (sim (z𝑖 , z𝑗 )/ 𝜏 ) , (3) where sim (· , ·) is cosine similarity, 𝜏 is a temperature, 𝐵 is the batch size, and negatives are other samples in the mini-batch. 
+
+4Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics 
+
+Micro-scale (intra-system) contrastive learning. For each modality 𝑚 within a subsystem S ∈ {M 𝐶 , M𝐴 }, we construct the positive as the mean of the other modalities in the same subsystem and same epoch: 
+
+z(𝑚 )+ = 1
+
+|S| − 1∑︁ 𝑚 ′ ∈ S\{ 𝑚 }
+
+z(𝑚 ′ ) . (4) The intra-system loss is 
+
+Lintra =∑︁   
+
+> S ∈ { M 𝐶 ,M𝐴 }
+
+∑︁ 𝑚 ∈ S 
+
+ℓNCE 
+
+
+
+z(𝑚 ) , z(𝑚 )+ 
+
+. (5) This encourages each modality to agree with the shared subsystem representation, improving robust-ness when some channels are absent. 
+
+Macro-scale (inter-system) alignment. To explicitly model brain–body coupling, we form pooled subsystem summaries 
+
+z𝐶 = 1
+
+|M 𝐶 |∑︁ 𝑚 ∈ M 𝐶 
+
+z(𝑚 ) , z𝐴 = 1
+
+|M 𝐴 |∑︁ 𝑚 ∈ M 𝐴 
+
+z(𝑚 ) . (6) We then align CNS and ANS summaries using a symmetric InfoNCE: 
+
+Linter = ℓNCE (z𝐶 , z𝐴 ) + ℓNCE (z𝐴 , z𝐶 ). (7) 
+
+Contrastive objective. The topology-aware contrastive loss is 
+
+L𝑐 = Lintra + 𝜆 Linter , (8) where 𝜆 controls the strength of CNS–ANS coupling. 
+
+3.4. Long-horizon latent masked modeling (macro-scale) 
+
+Local morphology within a single epoch is insufficient to capture long-range sleep dynamics. We therefore introduce a long-horizon masked prediction objective over windows comprising multiple consecutive epochs (e.g., an extended context such as 1.5 h). For each modality 𝑚 , we collect the epoch embeddings in a window: 
+
+E(𝑚 ) = [h(𝑚 ) 
+
+> 1
+
+, . . . , h(𝑚 ) 
+
+> 𝐿
+
+] ∈ ℝ𝐿 ×𝐷 , (9) where 𝐿 is the number of epochs in the long window. We randomly mask a subset of epoch positions Ω
+
+and feed the unmasked sequence to a temporal RoFormer to predict embeddings at masked positions: 
+
+ˆh(𝑚 ) 
+
+> 𝑡
+
+= 𝑔 (𝑚 )
+
+> pred
+
+
+
+E(𝑚 )\Ω
+
+
+
+, 𝑡 ∈ Ω. (10) We use an ℓ1 reconstruction loss to encourage robust, long-horizon representations: 
+
+L𝑝 =∑︁ 
+
+> 𝑚 ∈ M
+
+∑︁ 𝑡 ∈Ω
+
+h(𝑚 ) 
+
+> 𝑡
+
+− ˆh(𝑚 )  
+
+> 𝑡 1
+
+. (11) This objective complements L𝑐 by enforcing consistency over extended temporal context, improving transfer under domain shift and incomplete observations. 
+
+> 5Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+3.5. Overall training objective and schedule 
+
+The final pretraining loss is 
+
+L = 𝛼 L𝑐 + 𝛽 L𝑝 , (12) with weights 𝛼 and 𝛽 . We use a two-stage schedule: (i) warm-up pretraining with topology-aware contrastive learning ( L𝑐 ), followed by (ii) joint optimization of L𝑐 and long-horizon masked prediction (L𝑝 ). 
+
+3.6. Implementation details 
+
+Omni-Sleep contains about 56 M parameters in total. Pretraining is conducted on a single NVIDIA A800 GPU for 40 epochs, with ∼40 minutes per epoch. We optimize using AdamW with a cosine learning-rate schedule. 
+
+4. Experiments 
+
+To evaluate the efficacy of Omni-Sleep in learning unified and robust representations, we designed an experimental protocol spanning multiple scales of data availability, domain shifts, and clinical pathologies. 
+
+4.1. Experimental Setup Datasets. Our pre-training corpus comprises over 100,000 hours of multi-center PSG recordings from SHHS [22], WSC [33], and MESA [4]. A random subset of 1,159 SHHS subjects was strictly held out for downstream disease classification. For independent out-of-domain (OOD) evaluation, we utilized ISRUC-Sleep Subgroup I (100 subjects) [14] and CinC (994 subjects) [10], ensuring absolute separation from the pre-training phase. All PSG recordings underwent subject-specific normalization. To efficiently standardize multimodal inputs, high-frequency channels (EEG, EOG, EMG, ECG) were uniformly resampled to 100 Hz, while lower-frequency respiratory and airflow channels were resampled to 10 Hz. 
+
+Implementation Details. Omni-Sleep is implemented in PyTorch and optimized with AdamW using a cosine learning rate schedule. We compare Omni-Sleep (56M parameters) with SleepFM (4.4M) and SleepGPT (134M) as baselines. Representations are evaluated using both linear probing with a frozen backbone and full fine-tuning in few-shot settings. Performance is measured by Macro F1-score, Cohen’s Kappa ( 𝜅 ), and Accuracy for sleep staging, and by AUROC for disease classification. 
+
+4.2. Out-of-Domain Generalization 
+
+To assess intrinsic feature quality and transferability, we evaluated Omni-Sleep on the external CinC 2018 dataset under strict linear probing. By explicitly modeling the distinct manifolds of the CNS and ANS during pre-training, Omni-Sleep extracts invariant features that generalize to unseen clinical environments, outperforming existing flat-fusion foundation models without task-specific weight updates. As detailed in Table 1, Omni-Sleep consistently establishes new state-of-the-art benchmarks across all evaluated channel combinations. In the Full modality setting, our model achieves an Accuracy of 77.8% and a Macro F1 of 77.3%, yielding substantial absolute improvements over existing models. Crucially, Omni-Sleep demonstrates remarkable resilience to sensor dropouts; even in restricted scenarios such as ANS-only or EEG-only, it substantially exceeds the performance of both SleepFM and SleepGPT. This validates that our hierarchical alignment strategy effectively extracts generalized and robust representations independent of sensor availability. 
+
+> 6Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+Table 1 | Linear-probing performance on sleep staging across PSG channel sets. We evaluate frozen representations using different channel configurations. Omni-Sleep (ours) denotes the final proposed strategy. CNS and ANS refer to central and autonomic nervous system signal sets, respectively. Best results are highlighted in bold .
+
+Modality Model Overall ( ↑) Class-wise F1 ( ↑)
+
+Acc. 𝜅 MF1 W N1 N2 N3 REM 
+
+EEG 
+
+SleepFM [24] 65.8 0.54 64.3 76.1 37.8 74.2 73.4 59.9 SleepGPT [12] 68.6 0.59 67.2 79.7 45.1 72.3 75.4 63.6 Omni-Sleep (ours) 74.0 0.66 73.5 82.7 56.4 75.7 77.1 75.6 CNS 
+
+SleepFM [24] 70.5 0.61 69.1 78.8 42.6 78.9 74.1 71.1 SleepGPT [12] 70.8 0.62 69.9 80.3 48.8 73.9 76.3 70.3 Omni-Sleep (ours) 76.7 0.70 76.2 84.2 59.6 78.4 78.5 80.3 ANS SleepFM [24] 58.4 0.42 57.1 62.5 30.2 69.8 71.5 51.5 Omni-Sleep (ours) 66.3 0.56 65.3 71.5 44.8 69.7 74.7 66.1 Full SleepFM [24] 71.8 0.63 70.0 79.0 43.9 79.3 74.3 71.7 SleepGPT [12] 70.8 0.62 69.9 80.3 48.8 73.9 76.3 70.3 Omni-Sleep (ours) 77.8 0.71 77.3 85.1 60.6 79.5 78.9 82.4 
+
+Figure 3 | Few-shot sleep staging on ISRUC-I. 
+
+> 7Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+4.3. Label Efficiency in Clinical Scenarios 
+
+To evaluate label efficiency under realistic low-annotation settings, we fine-tuned the model using 2%– 80% labeled data. As shown in Fig. 3, Omni-Sleep consistently outperformed SleepGPT and SleepFM across all ratios, remaining competitive even at 2% supervision and progressively approaching the fully supervised regime as label availability increased. These findings indicate that the proposed temporal predictive pre-training effectively captures clinically meaningful transition dynamics, thereby reducing downstream annotation requirements. 
+
+4.4. Multi-Label Disease Classification 
+
+We evaluated Omni-Sleep for multi-disease classification on SHHS1 across sleep-related, psychiatric, respiratory, and cardiovascular conditions. Binary labels were defined using established clinical criteria, including AHI > 5 for OSA, ESS ≥ 12 for hypersomnia, MCS ≤ 42 for clinical depression, and “So Blue” score ≥ 3 for depressive affect. Respiratory outcomes, including COPD and emphysema, and cardiovascular outcomes, including heart failure and stroke, were derived from physician-confirmed diagnoses. As shown in Table 2, linear probing on frozen Omni-Sleep representations consistently outperforms demographic baselines and prior foundation models. The ablation variant Omni-Sleep ∗
+
+further suggests that long-horizon temporal modeling contributes to classification of respiratory and cardiovascular conditions, while modality-aggregation results demonstrate robustness to partial observability and sensor dropouts. Table 2 | Performance comparisons on multi-label disease classification. We report AUROC across disease classification tasks via linear probing. Values are reported as mean ± standard deviation over five runs, with the best results highlighted in bold . Omni-Sleep ∗ denotes an ablation variant without the RoFormer module. 
+
+Method Sleep Disorders Respiratory Disorders OSA Hypersomnia COPD Emphysema Demographic [25] 0.774 ±0.017 0.423 ±0.328 0.562 ±0.175 0.632 ±0.201 SleepGPT [12] 0.597 ±0.029 0.460 ±0.123 0.626 ±0.119 0.649 ±0.071 Omni-Sleep ∗ 0.789 ±0.044 0.471 ±0.053 0.665 ±0.191 0.692 ±0.060 Omni-Sleep (ours) 0.841 ±0.012 0.551 ±0.109 0.750 ±0.158 0.750 ±0.043 
+
+Method Psychological Cardiovascular Clin. Depression Depressive Affect Heart Fail Stroke Demographic [25] 0.513 ±0.037 0.545 ±0.124 0.625 ±0.024 0.707 ±0.144 SleepGPT [12] 0.516 ±0.078 0.583 ±0.091 0.409 ±0.147 0.507 ±0.043 Omni-Sleep ∗ 0.545 ±0.057 0.565 ±0.053 0.796 ±0.063 0.735 ±0.078 Omni-Sleep (ours) 0.519 ±0.051 0.623 ±0.041 0.825 ±0.066 0.739 ±0.078 
+
+5. Conclusion 
+
+We propose Omni-Sleep, a novel multimodal foundation model that uses the CNS/ANS partition as a physiological prior for topology-constrained sleep representation learning. Pre-trained on over 
+
+> 8Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+100,000 hours of multimodal PSG data, Omni-Sleep combines intra-system consistency, inter-system synchronization, and long-horizon latent prediction to capture subsystem-level factors, CNS–ANS coupling, and macro-scale sleep dynamics. Across datasets and modality-ablation settings, Omni-Sleep improves generalization, few-shot label efficiency, and missing-modality robustness for sleep staging and sleep-related disorder classification, highlighting the value of physiological hierarchy for sleep representation learning. 
+
+Acknowledgements 
+
+This work was supported in part by the National Natural Science Foundation of China, under Grant Nos. 3254100307 and 62472206; the Brain Science and Brain-like Intelligence Technology National Science and Technology Major Project, under Grant No. 2021ZD0200500; the National Key R&D Program of China, under Grant No. 2025YFC3410000; and the Shenzhen Science and Technology Innovation Committee, under Grant Nos. RCYX20231211090405003 and JCYJ20220818100213029. Additional support was provided by the Guangdong Basic and Applied Basic Research Foundation, under Grant No. 2026B1515020099; the Guangdong S&T Program, under Grant No. 2026B0101110003; the Shanghai Municipal Special Program for Basic Research on General AI Foundation Models, under Grant No. 2025SHZDZX026D05; the Shenzhen Loop Area Institute, under Grant No. FPF10120250012; the open research fund of the Guangdong Provincial Key Laboratory of Mathematical and Neural Dynamical Systems; the Center for Computational Science and Engineering at Southern University of Science and Technology; and the Shenzhen Key Laboratory of Smart Healthcare Engineering. 
+
+Competing Interests 
+
+The authors have no competing interests to declare that are relevant to the content of this article. 
+
+References 
+
+[1] Helmi Abdalbari, Mohammad Durrani, Shivam Pancholi, Nikhil Patel, Slawomir J Nasuto, and Nicoletta Nicolaou. Brain and brain-heart granger causality during wakefulness and sleep. 
+
+Frontiers in Neuroscience , 16:927111, 2022. [2] Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bojanowski, Pascal Vincent, Michael Rabbat, Yann LeCun, and Nicolas Ballas. Self-supervised learning from images with a joint-embedding predictive architecture. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 15619–15629, 2023. [3] Amir Bashan, Ronny P Bartsch, Jan W Kantelhardt, Shlomo Havlin, and Plamen Ch Ivanov. Network physiology reveals relations between network topology and physiological function. 
+
+Nature communications , 3(1):702, 2012. [4] Xiaoli Chen, Rui Wang, Phyllis Zee, Pamela L Lutsey, Sogol Javaheri, Carmela Alcántara, Chandra L Jackson, Michelle A Williams, and Susan Redline. Racial/ethnic differences in sleep disturbances: the multi-ethnic study of atherosclerosis (mesa). Sleep , 38(6):877–888, 2015. [5] Hsiang-Yun Sherry Chien, Hanlin Goh, Christopher M Sandino, and Joseph Y Cheng. Maeeg: Masked auto-encoder for eeg representation learning. arXiv preprint arXiv:2211.02625 , 2022. [6] Massimiliano de Zambotti, John Trinder, Alessandro Silvani, Ian M Colrain, and Fiona C Baker. Dynamic coupling between the central and autonomic nervous systems during sleep: a review. 
+
+Neuroscience & Biobehavioral Reviews , 90:84–103, 2018. 
+
+> 9Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+[7] Lijuan Duan, Mengying Li, Changming Wang, Yuanhua Qiao, Zeyu Wang, Sha Sha, and Mingai Li. A novel sleep staging network based on data adaptation and multimodal fusion. Frontiers in human neuroscience , 15:727139, 2021. [8] Benjamin Fox, Joy Jiang, Sajila D. Wickramaratne, Patricia Kovatch, Mayte Suarez-Farinas, Neomi A Shah, Ankit Parekh, and Girish N Nadkarni. A foundational transformer leveraging full night, multichannel sleep study data accurately classifies sleep stages. Sleep , 2025. [9] Bethany Gerardy, Samuel T Kuna, Allan Pack, Clete A Kushida, James K Walsh, Bethany Staley, Grace W Pien, and Magdy Younes. An approach for determining the reliability of manual and digital scoring of sleep stages. Sleep , 46(11):zsad248, 2023. [10] Mohammad M Ghassemi, Benjamin E Moody, Li-wei H Lehman, Christopher Song, Qiao Li, Haoqi Sun, M Brandon Westover, and Gari D Clifford. You snooze, you win: the physionet/computing in cardiology challenge 2018. In 2018 Computing in Cardiology Conference (CinC) , volume 45, pages 1–4. IEEE, 2018. [11] Miriam Goldammer, Sebastian Zaunseder, Moritz D Brandt, Hagen Malberg, and Felix Gräßer. Investigation of automated sleep staging from cardiorespiratory signals regarding clinical appli-cability and robustness. Biomedical Signal Processing and Control , 71:103047, 2022. [12] Weixuan Huang, Yan Wang, Hanrong Cheng, Wei Xu, Tingyue Li, Xiuwen Wu, Hui Xu, Pan Liao, Zaixu Cui, Qihong Zou, and Jiahong Gao. A unified time-frequency foundation model for sleep decoding. Nature Communications , 17, 2026. [13] Wei-Bang Jiang, Liming Zhao, and Bao-Liang Lu. Large brain model for learning generic representations with tremendous eeg data in bci. In International Conference on Learning Representations , volume 2024, pages 16405–16426, 2024. [14] Sirvan Khalighi, Teresa Sousa, José Moutinho Santos, and Urbano Nunes. Isruc-sleep: A com-prehensive public dataset for sleep researchers. Computer methods and programs in biomedicine ,124:180–192, 2016. [15] Konstantinos Kontras, Christos Chatzichristos, Huy Phan, Johan Suykens, and Maarten De Vos. Core-sleep: A multimodal fusion framework for time series robust to imperfect modalities. IEEE Transactions on Neural Systems and Rehabilitation Engineering , 32:840–849, 2024. [16] Yann LeCun. A path towards autonomous machine intelligence version 0.9. 2, 2022-06-27. 
+
+Open Review , 62(1):1–62, 2022. [17] Peng Liu, Wei Qian, Hua Zhang, Yabin Zhu, Qi Hong, Qiang Li, and Yudong Yao. Automatic sleep stage classification using deep learning: signals, data representation, and neural networks. 
+
+Artificial Intelligence Review , 57(11):301, 2024. [18] Juntong Lyu, Chien-Hung Yeh, Wenbin Shi, and Thomas Penzel. Dynamic brain-heart interaction in sleep characterized by variational phase-amplitude coupling framework. Communications Biology , 8(1):1235, 2025. [19] Sahar Hassanzadeh Mostafaei, Jafar Tanha, and Amir Sharafkhaneh. A novel deep learning model based on transformer and cross modality attention for classification of sleep stages. 
+
+Journal of Biomedical Informatics , 157:104689, 2024. [20] Huy Phan, Oliver Y Chén, Minh C Tran, Philipp Koch, Alfred Mertins, and Maarten De Vos. Xsleepnet: Multi-view sequential model for automatic sleep staging. IEEE Transactions on Pattern Analysis and Machine Intelligence , 44(9):5903–5915, 2021. 
+
+> 10 Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+[21] Huy Phan, Kaare Mikkelsen, Oliver Y Chén, Philipp Koch, Alfred Mertins, and Maarten De Vos. Sleeptransformer: Automatic sleep staging with interpretability and uncertainty quantification. 
+
+IEEE Transactions on Biomedical Engineering , 69(8):2456–2467, 2022. [22] Stuart F Quan, Barbara V Howard, Conrad Iber, James P Kiley, F Javier Nieto, George T O’Connor, David M Rapoport, Susan Redline, John Robbins, Jonathan M Samet, et al. The sleep heart health study: design, rationale, and methods. Sleep , 20(12):1077–1085, 1997. [23] Hogeon Seo, Seunghyeok Back, Seongju Lee, Deokhwan Park, Tae Kim, and Kyoobin Lee. Intra-and inter-epoch temporal context network (iitnet) using sub-epoch features for automatic sleep scoring on raw single-channel eeg. Biomedical signal processing and control , 61:102037, 2020. [24] Rahul Thapa, Bryan He, Magnus Ruud Kjaer, Hyatt Moore IV, Gauri Ganjoo, Emmanuel Mignot, and James Y Zou. Sleepfm: Multi-modal representation learning for sleep across ecg, eeg and respiratory signals. In AAAI 2024 Spring Symposium on Clinical Foundation Models , 2024. [25] Rahul Thapa, Magnus Ruud Kjaer, Bryan He, Ian Covert, IV HyattMoore, Umaer Hanif, Gauri Ganjoo, M. Brandon Westover, Poul Jennum, Andreas Brink-Kjaer, Emmanuel Mignot, James Zou, and Magnus Rønneberg Ruud. A multimodal sleep foundation model for disease prediction. 
+
+Nature Medicine , 32:752 – 762, 2026. [26] Robert Joseph Thomas, Joseph E Mietus, Chung-Kang Peng, and Ary L Goldberger. An electrocardiogram-based technique to assess cardiopulmonary coupling during sleep. Sleep ,28(9):1151–1161, 2005. [27] Mo Wang, Junfeng Xia, Wenhao Ye, Enyu Liu, Kaining Peng, Jianfeng Feng, Quanying Liu, and Hongkai Wen. Slim-brain: A data-and training-efficient foundation model for fmri data analysis. 
+
+arXiv preprint arXiv:2512.21881 , 2025. [28] Mo Wang, Wenhao Ye, Junfeng Xia, Minghao Xu, Hongkai Wen, and Quanying Liu. Flexibrain: Resolution-agnostic voxel-level encoding for native fmri. arXiv preprint arXiv:2606.11500 , 2026. [29] Mo Wang, Wenhao Ye, Junfeng Xia, Junxiang Zhang, Xuanye Pan, Minghao Xu, Haotian Deng, Hongkai Wen, and Quanying Liu. Omni-fmri: A universal atlas-free fmri foundation model. 
+
+arXiv preprint arXiv:2601.23090 , 2026. [30] Junfeng Xia, Wenhao Ye, Xuanye Pan, Xinke Shen, Mo Wang, and Quanying Liu. Brain-dit: A universal multi-state fmri foundation model with metadata-conditioned pretraining. arXiv preprint arXiv:2604.12683 , 2026. [31] Junfeng Xia, Wenhao Ye, Junxiang Zhang, Xuanye Pan, Mo Wang, and Quanying Liu. Brainworld: A structural-prior-conditioned generative model for whole-brain 4d fmri dynamics. arXiv preprint arXiv:2606.17742 , 2026. [32] Benjamin D Yetton, Elizabeth A McDevitt, Nicola Cellini, Christian Shelton, and Sara C Mednick. Quantifying sleep architecture dynamics and individual differences using big data and bayesian networks. PloS one , 13(4):e0194604, 2018. [33] Terry Young. Rationale, design, and findings from the wisconsin sleep cohort study: toward understanding the total societal burden of sleep-disordered breathing. Sleep medicine clinics ,4(1):37–46, 2009. 
+
+> 11 Omni-Sleep: Hierarchical Contrastive Learning of CNS–ANS Dynamics
+
+[34] Huijun Yue, Zhuqi Chen, Wenbin Guo, Lin Sun, Yidan Dai, Yiming Wang, Wenjun Ma, Xiaomao Fan, Weiping Wen, and Wenbin Lei. Research and application of deep learning-based sleep staging: Data, modeling, validation, and clinical practice. Sleep Medicine Reviews , 74:101897, 2024.

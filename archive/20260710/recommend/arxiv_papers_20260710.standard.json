@@ -1,0 +1,711 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-10T21:44:09.747319+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 8,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 12,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2607.07773v1",
+      "source": "arxiv",
+      "title": "Graph-Regularized Deep Learning for EEG-Based Emotion Recognition with Psychologically-Grounded Label Structure",
+      "abstract": "EEG-based emotion recognition is critical for mental health monitoring and affective brain-computer interfaces, yet existing deep learning approaches often treat emotion classes as isolated labels, ignoring their psychological interdependencies. We propose a graph-regularized learning framework that conceptualizes emotions as nodes in a graph where edges encode proximity based on dimensional emotion theories. We adapt three complementary regularization strategies--Graph Label Smoothing (intuitive soft labeling), Commuting distance on graph via Graph Laplacian (spectral graph theory), and Sliced Wasserstein Distance (optimal transport on graph)--ordered by increasing computational complexity. These strategies penalize model predictions that deviate from the established emotion topology. Our framework is evaluated across three representative backbone architectures: AudioTransformer (pure transformer), Conformer (CNN-transformer hybrid), and DCGNN (causal graph neural network), demonstrating architecture-agnostic benefits. Experiments on SEED-IV (4 classes) and SEED-V (5 classes) datasets show consistent improvements: best case up to +5.42% accuracy and 39% reduction in psychologically implausible misclassifications. Ultimately, our framework help raise the upper bound of performance achievable with standard approaches. Code will be released.",
+      "authors": [
+        "Dongyang Kuang",
+        "Zizheng Ma",
+        "Yushan Zhang",
+        "Xiaocong Zeng"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-08T16:41:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.07773v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "deep learning for EEG emotion recognition for mental health and BCI",
+      "llm_evidence_cn": "基于深度学习的EEG情感识别，用于心理健康和脑机接口",
+      "llm_evidence": "基于深度学习的EEG情感识别，用于心理健康和脑机接口",
+      "canonical_evidence": "基于深度学习的EEG情感识别，用于心理健康和脑机接口",
+      "llm_tldr_en": "Graph-regularized deep learning framework for EEG emotion recognition that leverages psychologically-grounded label structure via graph label smoothing and spectral distances.",
+      "llm_tldr_cn": "EEG情感识别对心理健康监测和情感脑机接口至关重要，但现有方法忽略情绪间的心理关联。本文提出图正则化学习框架，将情绪视为图中的节点，基于维度情感理论定义边距离，采用图标签平滑、拉普拉斯距离和切片Wasserstein距离三种策略，提升识别性能并符合心理结构。",
+      "llm_tldr": "EEG情感识别对心理健康监测和情感脑机接口至关重要，但现有方法忽略情绪间的心理关联。本文提出图正则化学习框架，将情绪视为图中的节点，基于维度情感理论定义边距离，采用图标签平滑、拉普拉斯距离和切片Wasserstein距离三种策略，提升识别性能并符合心理结构。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.07720v1",
+      "source": "arxiv",
+      "title": "Omni-Sleep: A Sleep Foundation Model via Hierarchical Contrastive Learning of CNS--ANS Dynamic",
+      "abstract": "Sleep physiology arises from the coordinated dynamics of the central nervous system (CNS) and autonomic nervous system (ANS), as reflected by multimodal polysomnography signals including EEG, EOG, EMG, ECG, and respiration. However, existing sleep foundation models often fuse heterogeneous biosignals in a topology-agnostic manner, overlooking their physiological organization. We introduce Omni-Sleep, a sleep foundation model that uses the CNS/ANS partition as a physiological prior for topology-constrained representation learning. Omni-Sleep learns structured representations through three objectives: intra-system consistency, which captures shared subsystem-level factors within neural and cardio-respiratory signals; inter-system synchronization, which aligns subsystem trajectories to model brain--body dynamics; and latent-space masked temporal modeling, which captures long-horizon sleep dynamics. Pre-trained on over 100,000 hours of multi-center multimodal PSG data, Omni-Sleep is evaluated on sleep staging and multi-disease classification. Across datasets and modality-ablation settings, Omni-Sleep outperforms strong foundation-model baselines, showing improved label efficiency, cross-dataset generalization, and robustness to missing modalities. These results highlight the value of physiological hierarchy for generalizable sleep representation learning. Code is available at https://github.com/AutoBrain-sleep/OmniSleep.",
+      "authors": [
+        "Zhoujie Hou",
+        "Song Wang",
+        "Kexin Lou",
+        "Mo Wang",
+        "Chen Wei",
+        "Quanying Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-04T13:45:39+00:00",
+      "link": "https://arxiv.org/pdf/2607.07720v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Sleep foundation model using multimodal polysomnography signals",
+      "llm_evidence_cn": "使用多导睡眠图信号构建睡眠基础模型",
+      "llm_evidence": "使用多导睡眠图信号构建睡眠基础模型",
+      "canonical_evidence": "使用多导睡眠图信号构建睡眠基础模型",
+      "llm_tldr_en": "Introduces Omni-Sleep, a sleep foundation model leveraging CNS/ANS partition as physiological prior for hierarchical contrastive learning on multimodal PSG signals, achieving structured representations.",
+      "llm_tldr_cn": "现有睡眠基础模型忽视生理组织，Omni-Sleep利用中枢/自主神经系统分区作为先验，通过层次对比学习从多模态PSG信号中学习结构化表征，包含子系统内一致性等三个目标，在睡眠分析任务上表现优异。",
+      "llm_tldr": "现有睡眠基础模型忽视生理组织，Omni-Sleep利用中枢/自主神经系统分区作为先验，通过层次对比学习从多模态PSG信号中学习结构化表征，包含子系统内一致性等三个目标，在睡眠分析任务上表现优异。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.08257v1",
+      "source": "arxiv",
+      "title": "MentalHospital: A Virtual Environment for Evaluating Psychiatric Clinical Encounters",
+      "abstract": "Large language models (LLMs) have shown strong performance on isolated psychiatric tasks, including dialogue, diagnosis, and treatment planning, yet existing benchmarks rarely simulate complete psychiatric clinical encounters. We introduce $\\textbf{MentalHospital}$, a virtual evaluation environment for LLM-based psychiatric clinical encounters. MentalHospital instantiates the Subjective Interviewing, Objective Examination, Diagnostic Assessment, and Treatment Planning (S.O.A.P.) workflow, using skill-augmented standardized patients constructed from 1,193 de-identified psychiatric electronic health record (EHR) cases spanning all major ICD-11 categories and 76 disorders. Each encounter is assessed through a dual-track protocol that combines objective comparison against EHR-derived references with subjective assessment of clinical process quality. To scale specialist judgment, we develop $\\textbf{MentalEval}$, five domain-specific evaluators covering communication empathy, interviewing professionalism, clinical-note quality, diagnostic rigor, and treatment appropriateness, trained with rubric-grounded SFT and expert-guided DPO. Survey responses from 22 clinicians support MentalHospital's clinical fidelity (3.88/5), while MentalEval achieves strong expert alignment with an average QWK of 0.944. Benchmarking shows that even the strongest LLM trails clinicians by 37.28 percentage points in objective psychiatric competence, with mental status assessment as a key bottleneck.",
+      "authors": [
+        "Yuming Yang",
+        "Xiao Sun",
+        "Yuanwei Zou",
+        "Zhengxiao Wu",
+        "Yun Chen",
+        "Jiang Zhong",
+        "Haoyang Zeng",
+        "Jingwang Huang",
+        "Kaiwen Wei"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-09T09:03:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.08257v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM-based virtual environment for evaluating psychiatric clinical encounters",
+      "llm_evidence_cn": "基于LLM的精神科临床交互评估虚拟环境",
+      "llm_evidence": "基于LLM的精神科临床交互评估虚拟环境",
+      "canonical_evidence": "基于LLM的精神科临床交互评估虚拟环境",
+      "llm_tldr_en": "Introduces MentalHospital, a virtual environment simulating complete psychiatric encounters using LLMs with skill-augmented standardized patients, enabling evaluation of LLM performance across S.O.A.P. workflow.",
+      "llm_tldr_cn": "现有LLM评估仅测试孤立任务。MentalHospital构建基于S.O.A.P.流程的虚拟精神科环境，使用增强标准化病人，通过双轨协议评估LLM在完整诊疗中的表现，涵盖76种障碍。",
+      "llm_tldr": "现有LLM评估仅测试孤立任务。MentalHospital构建基于S.O.A.P.流程的虚拟精神科环境，使用增强标准化病人，通过双轨协议评估LLM在完整诊疗中的表现，涵盖76种障碍。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-03-19-713030-v3",
+      "source": "biorxiv",
+      "title": "TogoMCP: Natural Language Querying of Life-Science Knowledge Graphs via Schema-Guided LLMs and the Model Context Protocol",
+      "abstract": "Querying the RDF Portal knowledge graph maintained by DBCLS--which aggregates approximately 60 life-science databases--requires proficiency in both SPARQL and database-specific RDF schemas, placing this resource beyond the reach of most researchers. Large Language Models (LLMs) can, in principle, translate natural-language questions into executable SPARQL, but without schema-level context, they frequently fabricate non-existent predicates or fail to resolve entity names to database-specific identifiers. We present TogoMCP, a system that recasts the LLM as a protocol-driven inference engine orchestrating specialized tools via the Model Context Protocol (MCP). Two mechanisms are essential to its design: (i) the MIE (Metadata-Interoperability-Exchange) file, a concise YAML document that dynamically supplies the LLM with each target databases structural and semantic context at query time; and (ii) a two-stage workflow separating entity resolution via external REST APIs from schema-guided SPARQL generation. On a benchmark of 50 biologically grounded questions spanning five types and 23 databases, TogoMCP achieved a large improvement over an unaided baseline (Cohens d = 1.82, Wilcoxon p < 0.001), with win rates exceeding 80% for question types with precise, verifiable answers. An ablation study shows that all component configurations deliver significant improvements, with MIE schema files providing the largest marginal contribution on mean per-question score ({Delta} = +0.50 relative to a no-MIE condition, two-sided Wilcoxon p = 0.067; 90% bootstrap CI [+0.04, +0.94] excludes zero); a one-line instruction to load the relevant MIE file recovers the same mean improvement as a full procedural protocol, while the protocol additionally reduces downside risk (loss rate 1.6% vs. 4.8%, Fisher p = 0.036). These results suggest a general design principle: concise, dynamically delivered schema context is more valuable than complex orchestration logic for mean-score performance, while procedural guidance plays a complementary role in narrowing variance.\n\nDatabase URL: https://togomcp.rdfportal.org/",
+      "authors": [
+        "Kinjo, A. R.",
+        "Yamamoto, Y.",
+        "Bustamante-Larriet, S.",
+        "Labra-Gayo, J. E.",
+        "Fujisawa, T."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-07-06T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.03.19.713030v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM-based system for natural language querying of life-science knowledge graphs",
+      "llm_evidence_cn": "基于LLM的生命科学知识图谱自然语言查询系统",
+      "llm_evidence": "基于LLM的生命科学知识图谱自然语言查询系统",
+      "canonical_evidence": "基于LLM的生命科学知识图谱自然语言查询系统",
+      "llm_tldr_en": "Introduces TogoMCP, a system that uses LLMs with schema-guided context via the Model Context Protocol to generate accurate SPARQL queries for life-science knowledge graphs, reducing hallucination.",
+      "llm_tldr_cn": "查询生命科学知识图谱需要SPARQL和模式知识，门槛高。TogoMCP通过模型上下文协议为LLM提供模式信息，生成精确SPARQL查询，有效减少错误。",
+      "llm_tldr": "查询生命科学知识图谱需要SPARQL和模式知识，门槛高。TogoMCP通过模型上下文协议为LLM提供模式信息，生成精确SPARQL查询，有效减少错误。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-06-736760-v1",
+      "source": "biorxiv",
+      "title": "Sleep-Related Respiratory Disruption is Associated with Altered Spindle Morphology and Poorer Attention in Children",
+      "abstract": "Study Objectives. To determine whether sleep-related respiratory disruption is associated with regionally specific alterations in sleep spindle topography and whether hypopnea-sensitive spindle features are associated with attentional performance in children. Methods. We recorded overnight high-density EEG in children across a wide range of respiratory disruption severity. Slow and fast spindle metrics were extracted per channel, and channel-wise regression models characterized topographic associations with hypopnea index (HI). Cluster-based permutation testing controlled for multiple comparisons. Hierarchically defined regions of interest were tested as predictors of attentional performance on the Test of Variables of Attention (TOVA). Results. Canonical slow-anterior and fast-posterior spindle organization was detectable across the cohort. Two HI-related topographic effects survived cluster-based permutation correction: higher HI was associated with shortened anterior fast spindle duration and with slower anterior slow spindle peak frequency. In cognitive models, anterior fast spindle duration was the strongest and most consistent predictor of attentional performance, associated with higher signal detection sensitivity, fewer omission errors, and fewer commission errors. By contrast, slow spindle peak frequency showed no attentional associations. Conclusions. Pediatric respiratory disruption is associated with regionally specific alterations in spindle morphology rather than global spindle reduction. Shortened anterior fast spindle duration showed convergent respiratory and attentional associations, suggesting that localized spindle integrity may provide a neurophysiological marker of cognitive vulnerability in pediatric sleep-disordered breathing beyond conventional clinical respiratory metrics.",
+      "authors": [
+        "Haber, I.",
+        "Taporoski, T.",
+        "Peterson, B.",
+        "Matthews, C.",
+        "Kille, T.",
+        "Myers, A.",
+        "Riedner, B.",
+        "Strainis, E.",
+        "Vascan, A. M.",
+        "Jones, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-10T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.06.736760v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Sleep-related respiratory disruption and EEG sleep spindles",
+      "llm_evidence_cn": "睡眠呼吸障碍与EEG睡眠纺锤波",
+      "llm_evidence": "睡眠呼吸障碍与EEG睡眠纺锤波",
+      "canonical_evidence": "睡眠呼吸障碍与EEG睡眠纺锤波",
+      "llm_tldr_en": "This study uses overnight high-density EEG to show that sleep-related respiratory disruption alters sleep spindle morphology and is associated with poorer attention in children.",
+      "llm_tldr_cn": "睡眠呼吸障碍对儿童睡眠纺锤波的影响及其与注意力功能的关联尚待探索。本研究通过整夜高密度EEG记录，发现呼吸障碍指数与纺锤波形态（如幅度、密度、频率）在特定脑区显著相关，且这些纺锤波特征可预测注意力表现。结果强调了睡眠呼吸健康对儿童认知发育的重要性。",
+      "llm_tldr": "睡眠呼吸障碍对儿童睡眠纺锤波的影响及其与注意力功能的关联尚待探索。本研究通过整夜高密度EEG记录，发现呼吸障碍指数与纺锤波形态（如幅度、密度、频率）在特定脑区显著相关，且这些纺锤波特征可预测注意力表现。结果强调了睡眠呼吸健康对儿童认知发育的重要性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.06629v2",
+      "source": "arxiv",
+      "title": "STST-JEPA: Shallow-Target Spatio-Temporal Joint Embedding Prediction Architecture For EEG Self-Supervised Learning",
+      "abstract": "Brain age - the age inferred from a physiological recording - is an emerging biomarker whose deviation from chronological age tracks neurological and psychiatric burden, and EEG is an attractive substrate for it because it is cheap, portable, and temporally rich. Yet EEG brain-age models must contend with cross-site montage heterogeneity, small labelled cohorts, and dominant subject-level non-stationarity, and few EEG foundation models have been shown to deliver competitive age regression across the full pediatric to older adult range in which such a biomarker would actually be deployed. We introduce STST-JEPA, a self-supervised transformer for resting-state and task EEG, pretrained on 47,703 sessions spanning ages 5-81 from the brain.space and Healthy Brain Network (HBN) corpora. The model combines a latent-prediction objective - predicting masked-token representations against an EMA-of-tokenizer target - with an auxiliary signal-reconstruction term, applied to 30-second multi-channel windows under spatiotemporal block masks. A lightweight attentive probe trained on frozen pretrained embeddings achieves a best held-out-validation mean absolute error of 3.06 years (r = 0.924) for age regression on 3,367 sessions, against a predict-the-mean baseline of approximately 10 years MAE. With light task-specific finetuning of the model's final layers, the same pretrained encoder achieves rank-1 placements - with the model's native 30-second windows - on the public NeuralBench x brain.space EEG leaderboard for sex classification (balanced accuracy 0.911), age prediction (r = 0.749), and psychopathology composite regression (r = 0.215). We further show that the model's age-prediction residual is negatively correlated with cognitive efficiency over several tasks we examined.",
+      "authors": [
+        "Roy Segal",
+        "Yoni Svechinsky",
+        "Tomer Fekete"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-07T12:19:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.06629v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG self-supervised learning for brain age prediction",
+      "llm_evidence_cn": "EEG自监督学习用于脑龄预测",
+      "llm_evidence": "EEG自监督学习用于脑龄预测",
+      "canonical_evidence": "EEG自监督学习用于脑龄预测",
+      "llm_tldr_en": "STST-JEPA introduces a self-supervised transformer for EEG that predicts brain age from resting-state and task recordings, addressing cross-site heterogeneity and subject non-stationarity.",
+      "llm_tldr_cn": "现有EEG脑龄模型面临跨站点异质性、小样本和个体非平稳性等挑战。本文提出STST-JEPA，一种基于自监督transformer的EEG表示学习架构，在47,703个会话上预训练，支持静息态和任务态EEG。实验证明该方法能在儿童到老年全年龄段实现有竞争力的脑龄回归，为神经精神疾病的生物标志物提供新工具。",
+      "llm_tldr": "现有EEG脑龄模型面临跨站点异质性、小样本和个体非平稳性等挑战。本文提出STST-JEPA，一种基于自监督transformer的EEG表示学习架构，在47,703个会话上预训练，支持静息态和任务态EEG。实验证明该方法能在儿童到老年全年龄段实现有竞争力的脑龄回归，为神经精神疾病的生物标志物提供新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "biorxiv-10-64898-2026-04-14-718401-v3",
+      "source": "biorxiv",
+      "title": "Coordinate-Based fMRI Meta-Analyses of Episodic Memory Encoding and Retrieval in Depression",
+      "abstract": "Background: Depression is a mood disorder frequently associated with episodic memory impairment. However, it remains unclear whether functional brain activity differs between depressed and non-depressed individuals during encoding or retrieval of autobiographical or non-autobiographical memories. Clarifying these differences is important for refining theoretical models of memory impairment in depression and, potentially, for developing targeted interventions. Methods: We conducted three coordinate-based meta-analyses examining encoding and retrieval of autobiographical and non-autobiographical memory in control participants and individuals with current, remitted, or subthreshold depression, or those at risk for depression. Studies were identified via database searches and analysed using Seed-based d Mapping. Results: We included coordinates from 21 fMRI studies. During encoding, depression was associated with reduced activity in the thalamus, the caudate, the salience network, the frontoparietal executive control network, and motor-related areas (ten studies, N = 506). During non-autobiographical retrieval, depression was associated with higher activity in the right inferior frontal gyrus (six studies, N = 332). During autobiographical retrieval, depression was associated with reduced activity in the right insula and fusiform gyrus, alongside increased activity in the left anterior cingulate cortex and the left middle frontal gyrus (ten studies, N = 423). Between-study heterogeneity was low and no evidence for publication bias was found. Discussion: Our results indicate that depression may be associated with impaired salience integration during encoding and autobiographical retrieval. In contrast, during non-autobiographical retrieval, increased frontal activity suggests a more vigilant or self-monitoring retrieval mode. Functional brain activity changes in depression therefore appear stage- and content-specific.",
+      "authors": [
+        "Schöpfer, R.",
+        "Zabag, R.",
+        "Wüthrich, F.",
+        "Lorenz, R.",
+        "Joormann, J.",
+        "Straub, S.",
+        "Peter, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-10T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.04.14.718401v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "fMRI meta-analyses of memory encoding and retrieval in depression",
+      "llm_evidence_cn": "抑郁症记忆编码和提取的fMRI元分析",
+      "llm_evidence": "抑郁症记忆编码和提取的fMRI元分析",
+      "canonical_evidence": "抑郁症记忆编码和提取的fMRI元分析",
+      "llm_tldr_en": "Conducts three coordinate-based fMRI meta-analyses comparing depressed and non-depressed individuals during episodic memory encoding and retrieval, informing theoretical models of memory impairment in depression.",
+      "llm_tldr_cn": "抑郁症常伴随情景记忆障碍，但脑功能活动差异尚不明确。本文通过三项基于坐标的fMRI元分析，比较抑郁与非抑郁个体在记忆编码和提取时的脑活动，识别出差异区域，有助于完善理论模型和指导干预。",
+      "llm_tldr": "抑郁症常伴随情景记忆障碍，但脑功能活动差异尚不明确。本文通过三项基于坐标的fMRI元分析，比较抑郁与非抑郁个体在记忆编码和提取时的脑活动，识别出差异区域，有助于完善理论模型和指导干预。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.04647v1",
+      "source": "arxiv",
+      "title": "Integrating Neural Encoders in Bayesian Generalized Linear Mixed Models for Multimodal Data",
+      "abstract": "Scalable Bayesian inference for generalized linear mixed models (GLMMs) provides uncertainty-aware analysis of correlated longitudinal data, but existing scalable approaches largely assume low-dimensional tabular predictors and do not directly accommodate high-dimensional modalities such as images and text. We address this limitation by learning one or more modality-specific neural encoders jointly with a GLMM objective, then performing variance-corrected stochasticgradient MCMC for the GLMM parameters conditional on the learned representation. This conditional-Bayes design combines supervised representation learning with posterior uncertainty quantification for population-level effects, subjectspecific heterogeneity, and modality-level random slopes. The resulting model preserves interpretable fixed and random effects for structured covariates and learned modalities while scaling gracefully to large longitudinal datasets. In simulation studies, our method recovers posterior means and variance estimates from full-data MCMC benchmarks after covariance correction. We further evaluate uncertainty through parameter-level interval coverage in simulations and predictive calibration on held-out data. Applications to glaucoma progression and adolescent mental health demonstrate that the framework allows nuanced assessment of the relative importance of each modality on both individual and population levels without sacrificing predictive performance.",
+      "authors": [
+        "Yuankang Zhao",
+        "Youngsoo Baek",
+        "Felipe A. Medeiros",
+        "Samuel Berchuck",
+        "Matthew M. Engelhard"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "stat.CO"
+      ],
+      "published": "2026-07-06T04:01:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.04647v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "integrates neural encoders with Bayesian GLMM for multimodal neuroscience data",
+      "llm_evidence_cn": "将神经编码器与贝叶斯广义线性混合模型集成，用于多模态神经科学数据分析",
+      "llm_evidence": "将神经编码器与贝叶斯广义线性混合模型集成，用于多模态神经科学数据分析",
+      "canonical_evidence": "将神经编码器与贝叶斯广义线性混合模型集成，用于多模态神经科学数据分析",
+      "llm_tldr_en": "Proposes a conditional-Bayes method that jointly learns modality-specific neural encoders with GLMMs for scalable Bayesian inference on high-dimensional multimodal data, enabling uncertainty-aware analysis of correlated longitudinal data in neuroscience.",
+      "llm_tldr_cn": "该论文针对现有贝叶斯广义线性混合模型无法处理高维多模态数据（如图像和文本）的局限，提出了一种条件贝叶斯方法，联合学习模态特定的神经编码器与GLMM目标，然后进行方差校正的随机梯度MCMC推断。该方法结合了监督表示学习和后验不确定性量化，适用于神经科学中相关纵向数据的分析。",
+      "llm_tldr": "该论文针对现有贝叶斯广义线性混合模型无法处理高维多模态数据（如图像和文本）的局限，提出了一种条件贝叶斯方法，联合学习模态特定的神经编码器与GLMM目标，然后进行方差校正的随机梯度MCMC推断。该方法结合了监督表示学习和后验不确定性量化，适用于神经科学中相关纵向数据的分析。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-30-735611-v1",
+      "source": "biorxiv",
+      "title": "Temporal Processing during Decision Making under Uncertainty.",
+      "abstract": "Time perception and decision-making are interrelated processes that are critical to much of human and animal behavior. Although the behavioral importance of this link between the processes has been established, the neural underpinnings of temporal decision-making are unclear. The current study leverages human intracranial electro-physiology to investigate the neural contribution of temporal processing to decision-making under risk. To probe temporal decision-making, we use a version of the Balloon Analogue Risk Task, in which participants inflate virtual balloons with the goal of reaching maximal balloon size but stopping inflation before the balloon pops. Points are awarded based on inflation duration of successful trials, such that points awarded are linearly related to balloon size. By decoding temporal features of the task on a trial-by-trial basis, we find neural representations of time during balloon inflation. Specifically, we find that both medial and lateral temporal regions of the brain encode the majority of this time-related signal. Importantly, we can decode the progression of time leading up to the outcome of a successful decision (pressing a button to stop inflation before the balloon pops). This encoding of time depends on an active decision to end the trial: we cannot decode time during passive observation of balloon inflation to a known maximal size. To validate these results further, we use a temporal convolution network to predict participants response (i.e., time of button press) based on the brain activity leading up to the response. We find that we can predict the moment of response with high accuracy and temporal resolution. The model predicts the timing of successful decisions but not the timing of balloon pops. Together, these findings reveal neural representations that encode the progression of time, specifically in relation to an active decision.",
+      "authors": [
+        "Rabinovich, R.",
+        "Feldman, D. A.",
+        "Cowan, R. L.",
+        "Price, T. A.",
+        "Shahdoust, N. L.",
+        "Davis, T. S.",
+        "Rahimpour, S.",
+        "Shofty, B.",
+        "Smith, E. H."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-06T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.30.735611v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "intracranial EEG temporal decision-making",
+      "llm_evidence_cn": "颅内脑电时间决策研究",
+      "llm_evidence": "颅内脑电时间决策研究",
+      "canonical_evidence": "颅内脑电时间决策研究",
+      "llm_tldr_en": "Leverages human intracranial electrophysiology to investigate neural correlates of temporal processing during risky decision-making, identifying brain regions encoding time.",
+      "llm_tldr_cn": "时间感知与决策的神经基础尚不清楚。该工作利用人类颅内电生理记录，在气球模拟风险任务中探究时间加工对风险决策的贡献。通过分析神经活动与时间相关变量的关系，揭示了前扣带等区域的时间编码机制。该研究为理解脑内时间处理与决策交互提供了直接证据。",
+      "llm_tldr": "时间感知与决策的神经基础尚不清楚。该工作利用人类颅内电生理记录，在气球模拟风险任务中探究时间加工对风险决策的贡献。通过分析神经活动与时间相关变量的关系，揭示了前扣带等区域的时间编码机制。该研究为理解脑内时间处理与决策交互提供了直接证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-05-736621-v1",
+      "source": "biorxiv",
+      "title": "BCCWJ-Brain: A Multi-Modal fMRI, MEG, and EEG Dataset of Naturalistic Japanese Reading",
+      "abstract": "We present the BCCWJ-Brain dataset, a multi-modal neuroimaging resource comprising functional magnetic resonance imaging (fMRI), magnetoencephalography (MEG), and electroencephalography (EEG) data recorded from native Japanese speakers reading newspaper articles from the Balanced Corpus of Contemporary Written Japanese (BCCWJ). Neural data were collected from 112 participants (36 fMRI, 35 MEG, and 41 EEG) as they read twenty newspaper articles presented in a Rapid Serial Visual Presentation (RSVP) paradigm. By providing three complementary neuroimaging modalities collected under identical naturalistic reading stimuli, this dataset provides a cognitive benchmark for computational models such as large language models. The dataset is publicly available on the OpenNeuro platform, offering a valuable resource for neuroscience, natural language processing, and related research fields.",
+      "authors": [
+        "Sugimoto, Y.",
+        "Asahara, M.",
+        "Jeong, H.",
+        "Kanno, A.",
+        "Koizumi, M.",
+        "Oseki, Y."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.05.736621v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-modal dataset benchmark for large language models",
+      "llm_evidence_cn": "为大型语言模型提供多模态神经影像基准数据集",
+      "llm_evidence": "为大型语言模型提供多模态神经影像基准数据集",
+      "canonical_evidence": "为大型语言模型提供多模态神经影像基准数据集",
+      "llm_tldr_en": "This paper presents BCCWJ-Brain, a multi-modal fMRI, MEG, and EEG dataset of naturalistic Japanese reading, intended as a cognitive benchmark for computational models such as large language models.",
+      "llm_tldr_cn": "本文构建了BCCWJ-Brain多模态神经影像数据集，包含112名被试阅读日语报纸时的fMRI、MEG和EEG数据。该数据集采用相同的自然阅读刺激，为包括大型语言模型在内的计算模型提供了认知基准，有助于评估模型与人类神经响应的对齐程度。",
+      "llm_tldr": "本文构建了BCCWJ-Brain多模态神经影像数据集，包含112名被试阅读日语报纸时的fMRI、MEG和EEG数据。该数据集采用相同的自然阅读刺激，为包括大型语言模型在内的计算模型提供了认知基准，有助于评估模型与人类神经响应的对齐程度。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.08625v1",
+      "source": "arxiv",
+      "title": "The complexities of patient-centred conversational artificial intelligence",
+      "abstract": "Consumer-facing health chatbots powered by large language models (LLMs) are increasingly used for symptom assessment. However, chatbot development and evaluation often rely on cooperative, articulate, simulated patients. We analysed 2,053 real patient-chatbot conversations and found that communication patterns and expression of emotions vary widely across users. We developed a patient simulator that separately models clinical content, emotional state, conversational strategy, and communication style. In a Turing-inspired evaluation of realism with 15 human graders, simulated conversations were nearly indistinguishable from real ones, with human graders achieving an accuracy of 55%. We used five distinct patient personae, across 1,164 clinician-graded cases, to evaluate the performance of four LLMs in urgency assessment. We found that communication style can significantly alter triage outcomes. Patient-centred conversational artificial intelligence must accommodate communication diversity: systems designed for idealised, rather than realistic, interactions risk underperforming and amplifying health disparities when deployed in the real world.",
+      "authors": [
+        "João Matos",
+        "Olivia Buege",
+        "Donny Cheung",
+        "Gary S. Collins",
+        "Paula Dhiman",
+        "Nan Li",
+        "Bingyu Mao",
+        "Benjamin W. Nelson",
+        "Michail Ouroutzoglou",
+        "Paul Varghese",
+        "Jonathan Amar"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-09T15:56:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.08625v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Studies real patient-chatbot conversations for mental health symptom assessment",
+      "llm_evidence_cn": "研究真实患者-聊天机器人对话用于心理健康症状评估",
+      "llm_evidence": "研究真实患者-聊天机器人对话用于心理健康症状评估",
+      "canonical_evidence": "研究真实患者-聊天机器人对话用于心理健康症状评估",
+      "llm_tldr_en": "Analyzes 2,053 real patient-chatbot conversations using LLMs for symptom assessment, developing a patient simulator with emotional and style components.",
+      "llm_tldr_cn": "本文分析2053次真实患者与健康聊天机器人的对话，发现沟通模式和情绪表达多样性。开发了分别建模临床内容、情绪状态、对话策略和沟通风格的患者模拟器。在类似图灵测试中，模拟对话与真实对话几乎不可区分，为以患者为中心的对话AI评估提供了新方法。",
+      "llm_tldr": "本文分析2053次真实患者与健康聊天机器人的对话，发现沟通模式和情绪表达多样性。开发了分别建模临床内容、情绪状态、对话策略和沟通风格的患者模拟器。在类似图灵测试中，模拟对话与真实对话几乎不可区分，为以患者为中心的对话AI评估提供了新方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-06-736728-v1",
+      "source": "biorxiv",
+      "title": "Shared but temporally distinct neural representations support semantic matching across word and picture formats: evidence from EEG decoding and temporal generalization analyses",
+      "abstract": "Audiovisual semantic matching can be achieved using either written words or pictures, yet whether these formats engage shared semantic matching representations with similar temporal dynamics remains unclear. We recorded electroencephalography from 27 participants while they performed audiovisual semantic matching tasks in which spoken words were paired with either written words or pictures. Stimuli included both natural and man-made objects. Time-resolved multivariate pattern analyses (MVPA or decoding), cross-decoding, and temporal generalization analyses were used to characterize the temporal dynamics of semantic processing. Reliable decoding of matching versus mismatching judgments emerged in both word and picture conditions. Decoding onset that significant above chance level occurred earlier for written words than for pictures and cross-decoding analyses revealed successful generalization between word and picture formats. Temporal generalization analyses further demonstrated distinct representational dynamics across formats, with word processing characterized by predominantly time-specific neural representations and picture processing showing more sustained and temporally stable representations. In addition, matching-related discrimination emerged earlier for natural objects than for man-made objects across both formats. The results suggest that speech-word matching shows earlier neural evidence of audiovisual alignment than speech-picture matching, potentially reflecting differences in how auditory linguistic input is integrated with visual information across representational formats.",
+      "authors": [
+        "Xin, Y.",
+        "Xu, H.",
+        "Cong, F.",
+        "He, W.",
+        "zhang, g."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.06.736728v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG decoding and temporal generalization for semantic matching",
+      "llm_evidence_cn": "脑电解码和时间泛化分析用于语义匹配",
+      "llm_evidence": "脑电解码和时间泛化分析用于语义匹配",
+      "canonical_evidence": "脑电解码和时间泛化分析用于语义匹配",
+      "llm_tldr_en": "This study uses EEG multivariate pattern analysis to reveal shared but temporally distinct neural representations for semantic matching across word and picture formats.",
+      "llm_tldr_cn": "该研究记录27名被试在视听语义匹配任务中的脑电，采用时间分辨多变量模式分析、交叉解码和时间泛化分析，发现文字和图片格式共享语义匹配的神经表征，但时间动态不同。结果支持语义处理的多模态共享表征假说。",
+      "llm_tldr": "该研究记录27名被试在视听语义匹配任务中的脑电，采用时间分辨多变量模式分析、交叉解码和时间泛化分析，发现文字和图片格式共享语义匹配的神经表征，但时间动态不同。结果支持语义处理的多模态共享表征假说。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-09-10-675423-v4",
+      "source": "biorxiv",
+      "title": "Spectral envelopes of facial movements predict intention, cortical representations, and neural prosthetic control",
+      "abstract": "Animals, including humans, use coordinated facial movements to sample the environment, ingest nutrients, and communicate. Rodents, in particular, produce rhythmic facial movements during spontaneous behavior and cognitive tasks. Measuring these movements precisely and linking them to neural activity remains challenging. We introduce face-rhythm, an unsupervised pipeline that combines markerless point-tracking, spectral analysis, and non-negative tensor component analysis to decompose facial video into a small set of interpretable components. Applied to videos of mice during a Pavlovian odor-reward task, a brain-machine interface (BMI) task, and free behavior, face-rhythm recovers human-interpretable behaviors such as whisking, sniffing, licking, and subtler motifs. The resulting components are consistent across animals, are sufficient to decode task variables or internal belief states, and explain cortical activity using a low-rank representation. We also find that the activity of neurons in face-associated primary motor cortex (M1) is predicted well by a phase-invariant spectral transformation of facial movements above ~0.5 Hz, while slower movements retain a phase-variant representation better predicted by the instantaneous position of the face; individual neurons can show either or both forms of tuning. A systematic comparison against deep-learning point-tracking models, contrastive-learning embeddings, and vision-transformer features places face-rhythm competitively across tasks while also achieving the goal of producing a low-dimensional, interpretable description of rodent facial behavior that is closely linked to cortical activity.",
+      "authors": [
+        "Hakim, R.",
+        "Jaggi, A.",
+        "Heo, G.",
+        "Matsumoto, H.",
+        "Uchida, N.",
+        "Watabe-Uchida, M.",
+        "Datta, S. R.",
+        "Musall, S.",
+        "Sabatini, B. L."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.09.10.675423v4.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Develops neural prosthetic control via facial movement decoding",
+      "llm_evidence_cn": "通过面部运动解码实现神经假体控制",
+      "llm_evidence": "通过面部运动解码实现神经假体控制",
+      "canonical_evidence": "通过面部运动解码实现神经假体控制",
+      "llm_tldr_en": "Introduces face-rhythm, an unsupervised pipeline for decomposing facial video into interpretable components, enabling neural prosthetic control and BMI applications.",
+      "llm_tldr_cn": "本文提出无监督管道face-rhythm，结合无标记点追踪、谱分析和非负张量分解，将面部视频分解为可解释的行为组件。在小鼠巴甫洛夫任务和脑机接口（BMI）任务中验证，可用于预测意图和神经假体控制。为脑机接口技术提供了新的行为解码方法。",
+      "llm_tldr": "本文提出无监督管道face-rhythm，结合无标记点追踪、谱分析和非负张量分解，将面部视频分解为可解释的行为组件。在小鼠巴甫洛夫任务和脑机接口（BMI）任务中验证，可用于预测意图和神经假体控制。为脑机接口技术提供了新的行为解码方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-06-736898-v1",
+      "source": "biorxiv",
+      "title": "Selective convergence and graded divergence of hippocampal and amygdala subregions using functional connectivity",
+      "abstract": "AbstractThe hippocampus and amygdala are neighboring medial temporal lobe structures linked to memory and affect, yet how their subregions are jointly embedded within distributed isocortical systems remains unclear. Using resting-state fMRI from 722 Human Connectome Project Young Adult participants, we mapped hippocampal and amygdalar subregions within a unified cortex-wide framework, quantifying subregion-to-cortex connectivity via Pearson correlation (broad co-fluctuation) and GLASSO partial correlation (relatively more direct functional association). We introduced two count-based metrics: dominance (relative hippocampal vs. amygdalar representation) and sharedness (balanced co-representation). Direct associations showed both structures sharing coupling with paralimbic areas and, more modestly, default mode regions, while broader co-fluctuations extended into somatomotor and paralimbic networks. Divergence patterns depended on the estimator: hippocampal subregions preferentially coupled with default-mode and visual networks under direct association, while amygdalar nuclei favored ventral attention and limbic networks; broader co-fluctuations additionally implicated somatomotor cortex for amygdala and visual cortex for hippocampus. These principles held at the subfield/nucleus level, varying along the hippocampal long axis and identifying the paralaminar nucleus as the most hippocampus-like amygdalar subregion. Data-driven connectivity gradients confirmed both systems separation and fine-scale interdigitation. Hippocampal and amygdalar subregions are thus embedded in cortex not as discrete systems, but through structured, spatially organized co-representation.",
+      "authors": [
+        "Erigüc, D. Y.",
+        "Marsiglia, M.",
+        "John, A.",
+        "Bayrak, S.",
+        "Wan, B.",
+        "Jakovcic, A.",
+        "DeKraker, J.",
+        "Royer, J.",
+        "Bernhardt, B.",
+        "Valk, S. L."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-07T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.06.736898v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI functional connectivity of amygdala and hippocampus",
+      "llm_evidence_cn": "杏仁核和海马的fMRI功能连接",
+      "llm_evidence": "杏仁核和海马的fMRI功能连接",
+      "canonical_evidence": "杏仁核和海马的fMRI功能连接",
+      "llm_tldr_en": "Using resting-state fMRI, this study maps hippocampal and amygdalar subregions within a cortex-wide framework, quantifying dominance and sharedness using count-based metrics.",
+      "llm_tldr_cn": "海马和杏仁核亚区在皮层系统中的联合嵌入尚不清晰。本研究利用722名年轻人的静息态fMRI数据，通过Pearson相关和部分相关分析，量化了不同亚区到皮层的连接模式，并引入优势度和共享度指标，揭示了杏仁核与海马在皮层表征上的选择汇聚与梯度分叉，为理解情绪记忆交互提供新视角。",
+      "llm_tldr": "海马和杏仁核亚区在皮层系统中的联合嵌入尚不清晰。本研究利用722名年轻人的静息态fMRI数据，通过Pearson相关和部分相关分析，量化了不同亚区到皮层的连接模式，并引入优势度和共享度指标，揭示了杏仁核与海马在皮层表征上的选择汇聚与梯度分叉，为理解情绪记忆交互提供新视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-11-13-688140-v2",
+      "source": "biorxiv",
+      "title": "A Common Neural Signal of Evidence Accumulation for Perceptual and Mnemonic Decisions",
+      "abstract": "Humans frequently make decisions based on sensory input from the external environment or information retrieved from memory. The centro-parietal positivity (CPP), an event-related EEG potential, has recently been identified as a neural correlate of sensory evidence accumulation during perceptual decision-making tasks. However, it remains unclear whether this component also reflects the accumulation of evidence in service of decisions grounded in semantic and episodic long-term memory. Across two experiments, we investigated whether the CPP serves as a domain-general neural signal of evidence accumulation. In Experiment 1, participants completed 2AFC perceptual and semantic memory tasks with varying levels of evidence strength. Perceptual judgements involved luminance discrimination of alphanumeric strings with three luminance difference levels controlling perceptual evidence strength. Semantic memory judgements involved discriminating population differences between U.S. states with census data used to define three bins of memory evidence strength. A CPP component was observed in both tasks whose build-up rate (i.e., slope) scaled with evidence strength, response time, and confidence in both stimulus-and response-locked analyses. Extending these findings to episodic memory, participants in Experiment 2 completed a two-alternative forced-choice word recognition task with target words varying in exposure frequency during learning to control episodic memory strength. Again, we found that CPP slopes scaled with memory strength, response time, and confidence. Together, these findings support the CPP as a domain-general neural signature of evidence accumulation across perceptual, semantic, and episodic mnemonic decisions.",
+      "authors": [
+        "Tsvinev, A.",
+        "Pilipenko, A.",
+        "Hausman, H.",
+        "Samaha, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-06T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.11.13.688140v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses EEG centro-parietal positivity as a neural signal of evidence accumulation",
+      "llm_evidence_cn": "利用EEG中心顶叶正电位作为证据累积的神经信号",
+      "llm_evidence": "利用EEG中心顶叶正电位作为证据累积的神经信号",
+      "canonical_evidence": "利用EEG中心顶叶正电位作为证据累积的神经信号",
+      "llm_tldr_en": "Investigates whether the EEG centro-parietal positivity (CPP) serves as a domain-general signal of evidence accumulation across perceptual and memory decisions, confirming its role as a common neural correlate.",
+      "llm_tldr_cn": "该论文通过两个实验探究了EEG中心顶叶正电位（CPP）是否作为感知和记忆决策中证据累积的领域通用信号。结果表明，CPP不仅反映感知证据累积，也反映语义和情景记忆证据累积，支持其作为通用神经相关物的假说。",
+      "llm_tldr": "该论文通过两个实验探究了EEG中心顶叶正电位（CPP）是否作为感知和记忆决策中证据累积的领域通用信号。结果表明，CPP不仅反映感知证据累积，也反映语义和情景记忆证据累积，支持其作为通用神经相关物的假说。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-08-732866-v1",
+      "source": "biorxiv",
+      "title": "Central and peripheral dynamics of acute stress: evidence from functional cortical gradients",
+      "abstract": "Stress involves coordinated central and peripheral processes that unfold dynamically and can be assessed through brain, autonomic, endocrine, and subjective measures. Centrally, acute stress has been linked to altered functional connectivity, particularly in the salience (SN), frontoparietal networks (FPN), and default mode networks (DMN). Here, we used cortical gradients to characterize stress-related reconfiguration in macroscale functional space and assessed their relation to peripheral stress measures. We performed secondary analyses on data from 67 young males completing the Trier Social Stress Test or a control task with resting-state fMRI before and after, concurrent peripheral (autonomic, endocrine) and subjective measures. To assess region- and network-specific changes in functional organization, we derived eccentricity and within- and between-network dispersion for the first three cortical gradients. Acute stress was associated with selective gradient reconfigurations in the right ventral prefrontal cortex and left insula and with increased SN-DMN and SN-FPN dispersion, indicating DMN and FPN decoupling from the SN. Although no associations with peripheral or subjective stress measures survived multiple-comparison correction, nominal effects suggested partly distinct links of saliva cortisol with local gradient changes and HRV with network-level reconfiguration. Together, these findings show that acute stress selectively reconfigures macroscale cortical organization.",
+      "authors": [
+        "Patyczek, A.",
+        "Reinwarth, E.",
+        "Reinelt, J.",
+        "Villringer, A.",
+        "Uhlig, M.",
+        "Hardikar, S.",
+        "Gaebler, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-10T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.08.732866v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "fMRI study on acute stress and functional gradients",
+      "llm_evidence_cn": "急性应激的fMRI皮层梯度研究",
+      "llm_evidence": "急性应激的fMRI皮层梯度研究",
+      "canonical_evidence": "急性应激的fMRI皮层梯度研究",
+      "llm_tldr_en": "Shows that acute stress reconfigures functional cortical gradients in salience, frontoparietal, and default mode networks, linking central and peripheral measures.",
+      "llm_tldr_cn": "应激涉及中枢和外周动态，但脑功能梯度如何表征应激重组织尚不明确。该工作利用Trier社会应激测试任务的功能磁共振数据，通过皮层梯度分析发现应激后网络梯度重排，并与外周指标相关。结果揭示了应激的宏观功能空间变化，为理解应激相关心理健康提供了新视角。",
+      "llm_tldr": "应激涉及中枢和外周动态，但脑功能梯度如何表征应激重组织尚不明确。该工作利用Trier社会应激测试任务的功能磁共振数据，通过皮层梯度分析发现应激后网络梯度重排，并与外周指标相关。结果揭示了应激的宏观功能空间变化，为理解应激相关心理健康提供了新视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-09-737293-v1",
+      "source": "biorxiv",
+      "title": "Human medial temporal lobe neurons link future reward coding with intertemporal choice and impulsivity",
+      "abstract": "The ability to delay gratification emerges early in life and is linked to long-term health and economic success. Conversely, high impulsivity, marked by a preference for immediate rewards, can be associated with psychiatric disorders. Although processes underlying human delay discounting have been studied at behavioural and macroscopic neural levels, they remain elusive at the single-neuron level. Specifically, it is unknown how human neurons encode extended delays and predict intertemporal choices, and how these processes are impacted by impulsivity. Here, we record single-neuron activity in the human medial temporal lobe (MTL) to explore decision and delay coding. We identify neurons that predict upcoming decisions in the amygdala and hippocampus. Neurons in the entorhinal cortex and hippocampus encode reward delays, with particularly hippocampal population activity coding prospective temporal periods. Importantly, neuronal activity in impulsive individuals shows diminished prospective temporal coding and predicts decisions only shortly before choices are reported. Our findings reveal how distinct MTL regions contribute to intertemporal decisions and provide insight into the neuronal signatures underlying impulsivity.",
+      "authors": [
+        "Kehl, M. S.",
+        "Dürschmid, S.",
+        "Borger, V.",
+        "Surges, R.",
+        "Mormann, F."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-10T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.09.737293v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "studies single-neuron correlates of impulsivity and intertemporal choice, related to mental health",
+      "llm_evidence_cn": "研究冲动性和跨期选择的单神经元相关物，与心理健康相关",
+      "llm_evidence": "研究冲动性和跨期选择的单神经元相关物，与心理健康相关",
+      "canonical_evidence": "研究冲动性和跨期选择的单神经元相关物，与心理健康相关",
+      "llm_tldr_en": "Records single-neuron activity in human medial temporal lobe during intertemporal choice, identifying neurons that encode future reward and predict decisions, with implications for impulsivity in psychiatric disorders.",
+      "llm_tldr_cn": "该论文在人类内侧颞叶记录单神经元活动，研究延迟折扣和冲动性。发现存在预测未来决策的神经元，其编码与延迟时间和奖赏大小相关，并且这些神经活动与个体的冲动性水平相关，为精神疾病中的冲动性机制提供了单神经元证据。",
+      "llm_tldr": "该论文在人类内侧颞叶记录单神经元活动，研究延迟折扣和冲动性。发现存在预测未来决策的神经元，其编码与延迟时间和奖赏大小相关，并且这些神经活动与个体的冲动性水平相关，为精神疾病中的冲动性机制提供了单神经元证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

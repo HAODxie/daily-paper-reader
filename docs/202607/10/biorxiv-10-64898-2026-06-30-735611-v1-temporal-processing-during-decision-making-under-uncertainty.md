@@ -1,0 +1,24 @@
+---
+title: Temporal Processing during Decision Making under Uncertainty.
+title_zh: 不确定性决策过程中的时间加工
+authors: "Rabinovich, R., Feldman, D. A., Cowan, R. L., Price, T. A., Shahdoust, N. L., Davis, T. S., Rahimpour, S., Shofty, B., Smith, E. H."
+date: 2026-07-06
+pdf: "https://www.biorxiv.org/content/10.64898/2026.06.30.735611v1.full.pdf"
+tags: ["query:neuro-mental"]
+score: 6.0
+evidence: 颅内脑电时间决策研究
+tldr: 时间知觉与决策过程相互关联，但其神经机制尚不清楚。本研究利用人类颅内电生理记录，在气球模拟风险任务中通过解码时间特征发现内侧和外侧颞叶区域编码了成功决策前的时间进程，而被动观察时无法解码。进一步使用时间卷积网络能高精度预测主动决策的按键时机，但不能预测气球爆炸时间。这些发现揭示了与主动决策相关的时间编码神经表征，为理解不确定性下时间决策的神经基础提供了新见解。
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1803, \"height\": 602, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 844, \"height\": 761, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 865, \"height\": 837, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 1852, \"height\": 758, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 1648, \"height\": 563, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-006.webp\", \"caption\": \"\", \"page\": 0, \"index\": 6, \"width\": 1716, \"height\": 1005, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-06-30-735611-v1/fig-007.webp\", \"caption\": \"\", \"page\": 0, \"index\": 7, \"width\": 1606, \"height\": 839, \"label\": \"Figure\"}]"
+motivation: 探究不确定性决策中时间处理的神经机制，弥补时间知觉与决策行为间的认知空白。
+method: 采用颅内电生理记录，在气球模拟风险任务中解码时间特征，并使用时间卷积网络预测按键时机。
+result: 内侧和外侧颞叶编码成功决策前的时间信号，且能高精度预测主动决策按键时机，但无法预测气球爆炸时间。
+conclusion: 颞叶区域编码与主动决策相关的动态时间进程，为时间决策的神经基础提供直接证据。
+---
+
+## 摘要
+时间感知与决策是相互关联的过程，对许多人类和动物行为至关重要。尽管已有研究确立了这一过程之间联系的行为重要性，但时间决策的神经基础尚不清楚。本研究利用人类颅内电生理学，探讨时间加工对风险决策的神经贡献。为探究时间决策，我们使用气球模拟风险任务的一个变体，参与者充气虚拟气球，目标是达到最大气球尺寸，但在气球爆炸前停止充气。成功试次根据充气时长获得点数，点数与气球尺寸线性相关。通过逐试次解码任务的时间特征，我们发现气球充气过程中存在时间的神经表征。具体而言，大脑的内侧和外侧颞叶区域编码了大部分与时间相关的信号。重要的是，我们可以解码通向成功决策结果（在气球爆炸前按下按钮停止充气）的时间进程。这种时间编码依赖于主动决定结束试次：在被动观察气球充气至已知最大尺寸时，我们无法解码时间。为进一步验证这些结果，我们使用时间卷积网络，基于反应前的大脑活动预测参与者的反应（即按钮按下的时间）。我们发现能够以高准确度和时间分辨率预测反应时刻。该模型预测成功决策的时间，但不预测气球爆炸的时间。综合来看，这些发现揭示了编码时间进程的神经表征，特别是与主动决策相关的表征。
+
+## Abstract
+Time perception and decision-making are interrelated processes that are critical to much of human and animal behavior. Although the behavioral importance of this link between the processes has been established, the neural underpinnings of temporal decision-making are unclear. The current study leverages human intracranial electro-physiology to investigate the neural contribution of temporal processing to decision-making under risk. To probe temporal decision-making, we use a version of the Balloon Analogue Risk Task, in which participants inflate virtual balloons with the goal of reaching maximal balloon size but stopping inflation before the balloon pops. Points are awarded based on inflation duration of successful trials, such that points awarded are linearly related to balloon size. By decoding temporal features of the task on a trial-by-trial basis, we find neural representations of time during balloon inflation. Specifically, we find that both medial and lateral temporal regions of the brain encode the majority of this time-related signal. Importantly, we can decode the progression of time leading up to the outcome of a successful decision (pressing a button to stop inflation before the balloon pops). This encoding of time depends on an active decision to end the trial: we cannot decode time during passive observation of balloon inflation to a known maximal size. To validate these results further, we use a temporal convolution network to predict participants response (i.e., time of button press) based on the brain activity leading up to the response. We find that we can predict the moment of response with high accuracy and temporal resolution. The model predicts the timing of successful decisions but not the timing of balloon pops. Together, these findings reveal neural representations that encode the progression of time, specifically in relation to an active decision.
