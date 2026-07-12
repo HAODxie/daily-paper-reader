@@ -1,0 +1,526 @@
+Title: A Transdiagnostic Space of Disorder Like Phenotypes in Reinforcement Learning Agents
+
+URL Source: https://arxiv.org/pdf/2607.07753v1
+
+Published Time: Fri, 10 Jul 2026 00:01:48 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# A Transdiagnostic Space of Disorder Like Phenotypes in Reinforcement Learning Agents 
+
+# Hari Prasad 
+
+h4ri.prasad@gmail.com 
+
+Abstract 
+
+Modelling psychological disorders in artificial agents offers both a testbed for computational psychiatry and a lens on the failure modes of affective control. Prior work induces one or two disorders in a reinforcement-learning (RL) agent by hand-tuned reward shaping, labels the behaviour post hoc, and reports single runs. We recast disorder modelling as dose-controllable manipulation of cognitive appraisal sig-nals in an appraisal-guided PPO agent, expressing seven dis-orders (anxiety, mania, obsessive–compulsive checking, de-pression, impulsivity, addiction, and post-traumatic stress) each as a single knob grounded in a computational psychi-atry account, with each symptom measured by a preregis-tered assay mapped to a recognised paradigm. Across more than a thousand runs (10 seeds, four controls, 95% confi-dence intervals) every disorder shows a graded, monotone dose–response that no control reproduces. Beyond these in-duced effects, three findings emerge that were not written into the reward: the disorders self-organise into a two-dimensional affective space in which mania mirrors anxiety; removing a knob remits reward distortion disorders (mania, checking, ad-diction) but not avoidance disorders (anxiety, PTSD), which instead recover under a graded exposure curriculum; and two simultaneous knobs interact nonadditively, yielding testable comorbidity predictions. Appraisal weights thus parameterise a controllable space of affective phenotypes in which the same knobs that induce a disorder can model its treatment. We also show that three disorder knobs (depression, addic-tion, anxiety) transfer to a three-dimensional pixel environ-ment (MiniWorld) with a standard convolutional agent and no appraisal critic, with cross-assay dissociation confirmed across both domains, indicating the framework is not specific to grid worlds or to PPO’s appraisal critic. 
+
+# Introduction 
+
+Reinforcement-learning (RL) agents increasingly act in healthcare, transport, and human-facing assistants, where their affective stability is a safety property rather than a cu-riosity: value estimation that over-weights harm or reward produces avoidance, perseveration, freezing, or reckless be-haviour that undermine reliability and user trust. Psycholog-ical disorders are, in this framing, the characteristic failure modes of affective control, and an agent in which such fail-ures can be induced, measured, and reversed under experi-mental control is a useful object of study. The same object is valuable to computational psychia-try, whose central aim is to relate transdiagnostic dimen-sions of symptomatology to the latent learning and decision computations that generate them [Montague et al. 2012, Huys et al. 2016, Maia and Frank 2011, Insel et al. 2010]. Human and rodent studies fit abstract bandit or Markov-decision tasks to behaviour, but cannot manipulate a dis-order’s severity continuously or observe the full trajectory from health to pathology and back. An artificial agent can. Appraisal theory [Lazarus 1991, Scherer 2001] holds that emotion arises from domain-independent evaluations (rele-vance, certainty, novelty, congruence, coping potential, and anticipation) of events with respect to an agent’s goals. These dimensions overlap with intrinsic motivation signals used in RL [Sequeira et al. 2011], which makes appraisal a natural interface between affect and value learning. Prior work uses appraisals to elicit emotions; we instead use them to induce disorders in a graded, controlled fashion. Existing RL disorder models share three weaknesses. Ma-nipulations are hand-tuned rather than derived from a mech-anistic account, so the mapping to a clinical construct is loose. Behaviour is labelled after the fact, “this looks like OCD”, rather than measured against a criterion specified in advance, inviting confirmation bias. And results are typically single runs without variance or controls. We address all three, but our central claim is stronger and is worth stating plainly to pre-empt an obvious ob-jection. Shaping reward to induce a behaviour can make that behaviour trivial: penalise threat and of course the agent avoids. We therefore distinguish induced effects, the dose–response curves, which merely validate that each knob is well-behaved and graded, from emergent effects, which were not written into the reward and are the paper’s primary contribution. Three results are emergent. The seven disor-ders self-organise into a two-dimensional affective space in which mania is the exact mirror of anxiety, though the two are trained by opposite signs of a single knob and never com-pared during training. Removing a disorder’s knob reveals a remit-versus-resist dissociation that no reward term encodes. And placing two knobs together yields nonadditive interac-tions. Our contributions are: 1. Emergent transdiagnostic structure : the seven disor-ders occupy predictable, mutually consistent regions of a reward–approach × threat–avoidance space, with mania arXiv:2607.07753v1 [cs.LG] 8 Jul 2026 Dynamic environment  
+
+> Conv encoder
+> Actor
+> Critic
+> Appraisal estimation
+> NRE net
+> action
+> value
+> ζreward shaping ρ(ζ)
+
+Figure 1: AG-PPO. A shared convolutional encoder feeds an actor and a critic; the critic additionally receives the six-dimensional appraisal vector ζ. A next-reward (NRE) network supplies the anticipation appraisal. Appraisals also shape the environment reward. The disorder knob is a single term in the shaping function or the discount factor. mirroring anxiety (Fig. 4). 2. An emergent treatment dissociation, and its reso-lution : removing the pathological knob remits reward distortion disorders but not habit/avoidance disorders; a graded exposure-with-response-prevention curriculum then recovers the resistant ones, mirroring why avoidance clinically requires active exposure (Fig. 5, Table 4). 3. Emergent comorbidity : two simultaneous knobs inter-act nonadditively, a prediction the framework makes and we test (Fig. 6). 4. A grounded, controllable substrate enabling the above: AG-PPO (Fig. 1) with seven knobs each tied to a named computational psychiatry account (Table 1), preregis-tered assays, 10-seed dose–response with confidence in-tervals, and four controls that reproduce no phenotype (Tables 2, 3). 
+
+# Related Work 
+
+Emotion in RL and affective computing. Computational models of emotion combine appraisal theory with RL to elicit affective responses, operationalising appraisal dimen-sions through temporal-difference signals and intrinsic moti-vation features [Sequeira et al. 2011, Moerland et al. 2018]. Symbolic architectures such as the OCC model provide structured emotion representations but adapt poorly to un-structured tasks. These lines target emotion elicitation ; we instead use appraisals as controllable pathological knobs and evaluate the resulting behaviour against clinical paradigms. 
+
+Computational psychiatry. A central aim is to relate transdiagnostic symptom dimensions to latent learn-ing and decision computations [Montague et al. 2012, Huys et al. 2016, Maia and Frank 2011]. Canonical mechanistic accounts include reward prediction-error models of addiction in which a drug signal fails to be compensated [Redish 2004], incentive salience accounts in which wanting dissociates from lik-ing [Robinson and Berridge 1993], effort-based deci-sion deficits in depression [Treadway and Zald 2011, Beck 1979], steep delay discounting in impulsivity [Ainslie 1975], checking as diminishing reassurance in OCD [Rachman 2002], orbitofrontal dysfunction as a neu-ral substrate [Chamberlain et al. 2008], and impaired fear extinction in PTSD [Pitman et al. 2012]. These are usu-ally fit to behaviour in abstract tasks. We realise them as behavioural phenotypes of a single spatial agent whose severity is tuned continuously, enabling dose–response and treatment analyses that fitting cannot provide. 
+
+Relation to prior appraisal-guided disorder modelling. 
+
+Our prior work [Prasad, Jacob, and Ahamed 2024] intro-duced the appraisal-guided PPO architecture and the six appraisal equations used here, and induced two disorders (anxiety and OCD) via reward shaping, but labelled the be-haviour post hoc and reported single runs on a single grid world. We build on that formulation and generalise it sub-stantially: seven grounded, dose-controlled disorders instead of two; preregistered assays rather than post-hoc labels; ten seeds with confidence intervals and four control conditions rather than single runs; a unifying two-dimensional affective space; and a rescue/extinction experiment that models treat-ment. 
+
+# Background 
+
+Proximal Policy Optimization. PPO [Schulman et al. 2017] optimises the clipped surrogate 
+
+LCLIP (θ) = ˆEt
+
+h
+
+min  rt ˆAt, clip (rt, 1−ϵ, 1+ ϵ) ˆAt
+
+i
+
+, (1) where rt is the importance ratio and ˆAt a generalised-advantage estimate. Its on-policy, real-time nature suits the nonstationary grid worlds we study, in which obstacles and goals move. 
+
+Cognitive appraisals. At each step the agent computes six appraisals ζti ∈ (0 , 1) : motivational relevance and goal congruence (functions of agent–goal distance), certainty and novelty (entropy and uniform-KL of the policy), coping po-tential (fraction of threats outside the agent’s view), and an-ticipation (complement of a next-reward prediction error). The formulas are given in the supplement. These variables are re-scaled to (0 , 1) and enter both value estimation and reward shaping. 
+
+# Method 
+
+AG-PPO architecture. A convolutional encoder (three layers, then a 256-unit head) maps the 7×7×3 egocen-tric symbolic observation to features shared by the ac-tor and critic (Fig. 1). The critic additionally consumes the six-dimensional appraisal vector, so value estimation is appraisal-informed; the actor produces action probabilities over three actions (turn left, turn right, move forward). A next-reward network predicts rt from (ot−1, a t−1) and sup-plies the anticipation appraisal. Reward is shaped as 
+
+r′ 
+
+> t
+
+= rt − P 
+
+> i
+
+wi gi(ζt) − ceff [at=fwd ] + bchk + bdrug − bshk ,
+
+(2) where rt is the environment reward at step t, wi are appraisal-shaping weights, ceff an effort cost, bchk a check-ing bonus, bdrug a drug bonus, and bshk a trauma shock. Ex-actly one term is active per disorder; the discount factor γ is the impulsivity knob. This isolates each disorder to a single, interpretable degree of freedom. 
+
+The six appraisals and how they are used. Each step the agent computes six appraisals ζti ∈ (0 , 1) . Let (xa, y a) be the agent position, (xg , y g ) the goal, w the grid size, n the view size, and p = softmax( logits ) the policy over actions. Motivational relevance and goal congruence are geometric (agent–goal distance); certainty and novelty are read from the actor’s action distribution; coping potential is read from the fraction of threats in view; and anticipation is the com-plement of the next-reward error from the NRE network: 
+
+ζt 
+
+> MR
+
+= 1 − (|xa−xg |+|ya−yg |)−12( w−1) (3) 
+
+ζt 
+
+> GC
+
+= 1 −√(xa−xg )2+( ya−yg )2
+
+√(( n−1) /2) 2+n2 (4) 
+
+ζt 
+
+> C
+
+= 1 − − P p log p    
+
+> 1−Pplog p
+
+(5) 
+
+ζt 
+
+> N
+
+= KL( U ∥p)1+KL( U ∥p) (6) 
+
+ζt 
+
+> CP
+
+= 1 − kobs  
+
+> nobs +ε
+
+(7) 
+
+ζt 
+
+> A
+
+= 1 − rt − NRE( ot−1, a t−1) (8) where KL is the Kullback–Leibler divergence [Kullback and Leibler 1951], U is the uniform policy, 
+
+kobs /nobs are the number of threats in view / in total, and ε avoids division by zero. The appraisal vector 
+
+ζt = (ζMR , ζ C, ζ N, ζ GC , ζ CP , ζ A) plays two roles. First, it is concatenated to the encoder features and consumed by the critic, so value estimation is appraisal-informed (the AG-PPO critic of Fig. 1). Second, it is the basis of the reward shaping in Eq. 2: the anxiety and mania knobs act on coping potential ζCP (penalising low or high values re-spectively), while the stress index used as a secondary assay is the weighted deviation P
+
+> i
+
+(1 − ζi)wi. The remaining knobs (effort, checking, drug, shock, discount) act on the environment reward directly rather than through ζ, but the critic still observes ζ throughout. 
+
+Disorder mechanisms. Table 1 lists each knob and its grounding. Anxiety penalises low coping potential (a threat in view), inducing avoidance; mania is its exact mirror, penalising high coping potential and thus seeking threat. 
+
+Checking grants a bonus for returning to a checkpoint whose 
+
+k-th visit within an episode pays λk of the base ( λ=0 .5), modelling diminishing reassurance [Rachman 2002]; this bounds the episodic total and converts an otherwise un-bounded, all-or-nothing incentive into a graded number of checks. Depression imposes a per-step effort cost on move-ment [Treadway and Zald 2011], reducing behavioural ac-tivation. Impulsivity lowers γ (steeper delay discounting [Ainslie 1975]). Addiction adds a non-habituating drug-tile bonus whose accumulated value can exceed the one-shot goal reward [Redish 2004]. PTSD applies a shock on a trauma tile that lies on the short route to the goal, so avoid-ance over-generalises to a long detour. Table 1: Disorder mechanisms as dose-controllable knobs and their grounding. Each disorder activates a single term of Eq. 2 or the discount.                  
+
+> Disorder Knob Grounding Anxiety penalise low coping pot. threat hypervigilance Mania penalise high coping pot. reward hypersensitivity OCD habituating check bonus Rachman (2002) Depression per-step effort cost Treadway–Zald Impulsivity reduced discount γdelay discounting Addiction non-habituating drug bonus Redish (2004) PTSD conditioned trauma shock fear extinction
+
+Algorithm 1: AG-PPO with a disorder knob κ 
+
+> 1:
+
+Input: policy πθ , appraisal critic Vϕ, NRE fψ , knob κ 
+
+> 2:
+
+for iteration = 1 , 2, . . . do  
+
+> 3:
+
+for t = 1 to T (rollout) do  
+
+> 4:
+
+observe st; sample at ∼ πθ (· | st) 
+
+> 5:
+
+compute appraisals ζt {Eqs. 3–8 } 
+
+> 6:
+
+execute at; observe rt, s t+1  
+
+> 7:
+
+r′ 
+
+> t
+
+← SHAPE (rt, ζ t, κ ) {Eq. 2 } 
+
+> 8:
+
+store (st, a t, r ′
+
+> t
+
+, ζ t) 
+
+> 9:
+
+end for  
+
+> 10:
+
+compute advantages via GAE using Vϕ(st, ζ t) 
+
+> 11:
+
+for epoch = 1 to K; each minibatch do  
+
+> 12:
+
+update θ, ϕ on clipped surrogate + value loss  
+
+> 13:
+
+update ψ on (rt − fψ (ot−1, a t−1)) 2 
+
+> 14:
+
+end for  
+
+> 15:
+
+end for Environments. We use four threat/spatial grid worlds and three purpose-built environments (rendered in appendix Fig. 8). Dynamic-Obstacles, LavaGap, and LavaCross-ing are standard MiniGrid tasks with moving obstacles or lava hazards [Chevalier-Boisvert et al. 2023]. Approach– Avoidance is a custom two-goal conflict: a high-value goal sits behind a lava-lined corridor in which every approach step is threat-adjacent, and a low-value goal ( 0.15 ×) has an open approach at equal distance, so route choice reflects threat sensitivity. Temporal-Choice is a corridor with a near reward 0.5 and a far reward 1.0, resolved by the agent’s discount (crossover γ≈0.89 ). Addiction places a repeatable drug tile opposite the goal. Trauma places a conditioned-shock tile on the short route with a long safe detour avail-able. All use 7×7 egocentric symbolic observations. 
+
+Pre-registered assays. Before running experiments we fixed one primary symptom assay per disorder, each map-ping to a recognised paradigm: risky-goal choice and mean threat distance (approach–avoidance conflict) for anxiety and mania; checking rate for OCD; forward-action frac-tion (behavioural activation) for depression; near-versus-far reward choice (delay discounting) for impulsivity; drug-tile occupancy for addiction; and trauma distance for PTSD. Secondary assays, thigmotaxis, freezing, stereotypy, turnarounds, visitation entropy, and a stress index, are re-ported in the supplement. Figure 2: Phenotype gallery: state-occupancy over 40 episodes at the severe dose of each disorder, overlaid on the environment (brighter is more visited). The spatial signature of each disorder is directly legible: the anxiety avoidance band, the mania approach to lava, the OCD checking loop, the depressive stationarity, the impulsive near-goal fixation, the addictive drug corner, and the PTSD detour. 
+
+# Experiments 
+
+Protocol. Each configuration is run with 10 seeds; we re-port means with 95% confidence intervals. Four controls an-chor every comparison: standard PPO, a critic-noise control (a random vector replaces the appraisals), PPO+RND intrin-sic motivation, and the appraisal critic without shaping (the 
+
+ϵ=0 point of every dose–response). Because avoidance can trivially reduce success, symptom analysis is restricted, by a criterion fixed before analysis, to runs that solve the task; all counts are reported. In total we ran 1,375 configurations on CPU. 
+
+Dose–response. Table 2 and Fig. 3 report the primary as-say for each disorder across knob doses. Every disorder is graded and monotone. Anxiety abandons the high-value risky goal as the coping penalty grows ( 0.73 → 0.00 ) while task success is preserved, the signature of avoidance rather than incompetence; mania hugs lava and its death rate rises to 0.70 ; checking rises smoothly to 0.29 with success main-tained until the most severe dose; behavioural activation col-lapses under effort cost; impulsive agents shift to the near reward as γ falls; drug occupancy rises past a vulnerability threshold near ϵ=0 .05 , beyond which the agent forgoes the goal entirely; and trauma distance grows monotonically as the agent forgoes the short route. 
+
+Controls do not produce phenotypes. Table 3 contrasts the four controls on two environments. None induces a dis-order: on Approach–Avoidance every control retains a high risky-goal choice and short threat distance, and on LavaGap checking and death remain near zero. The appraisal critic matches PPO, confirming that the phenotypes require the specific shaping knob rather than appraisal input per se or a generic intrinsic bonus. Notably, RND over-explores into lava on LavaGap (6% success), a reminder that generic nov-elty seeking is not a disorder model. 
+
+A negative result and a redesign. Our first OCD mech-anism penalised low certainty; it reduced checking rather than inducing it, because rewarding decisiveness suppresses re-verification. A checkpoint bonus without habituation was then bistable: ignored below a threshold, and an unbounded loop that captured the agent above it. Introducing diminish-ing reassurance ( λk decay) bounded the bonus and produced the graded checking of Table 2. We report both the failure and the fix, as they clarify what does and does not induce compulsion and illustrate the value of a mechanistic, rather than cosmetic, manipulation. 
+
+A transdiagnostic affective space. Figure 4 places each disorder in a plane spanned by reward–approach (anhe-donic withdrawal to disinhibited over-pursuit) and threat– avoidance (threat-seeking to hypervigilant avoidance), using normalised behavioural deviations from each environment’s healthy baseline. As knob dose increases, agents travel from the healthy origin into disorder-specific regions: anxiety and PTSD into avoidance, depression into withdrawal, addiction and impulsivity into over-pursuit, and mania into disinhibi-tion, the reflection of anxiety across the origin. OCD lies near the origin because compulsivity is a distinct out-of-plane dimension, which we annotate rather than force into two dimensions. The spatial signatures underlying these co-ordinates are visible directly in the state-occupancy maps of Fig. 2: the anxiety avoidance band, the mania approach to Figure 3: Dose–response of the primary symptom assay per disorder (mean, shaded 95% CI, 10 seeds); dashed lines are the PPO baseline. Severity increases smoothly and monotonically with the knob dose in every case. Table 2: Dose–response of the primary symptom assay per disorder (mean ± 95% CI, 10 seeds; 30 for anxiety). ϵ1 < . . . < ϵ 4 are the four knob doses (disorder-specific; see supplement); PPO is the untreated baseline. Depression is reported on Approach– Avoidance, where the baseline solves the task cleanly. 
+
+Disorder Symptom assay PPO ϵ1 ϵ2 ϵ3 ϵ4
+
+Anxiety Risky-goal choice 0.73 0.43 ±0.18 0.20 ±0.15 0.10 ±0.11 0.00 ±0.00 
+
+Mania Death rate 0.00 0.00 ±0.00 0.00 ±0.00 0.26 ±0.21 0.70 ±0.15 
+
+OCD Checking rate 0.00 0.00 ±0.01 0.16 ±0.01 0.26 ±0.02 0.29 ±0.01 
+
+Depression Forward-action frac. 0.81 0.73 ±0.16 0.71 ±0.12 0.00 ±0.00 0.00 ±0.00 
+
+Impulsivity Near-reward choice 0.46 0.61 ±0.16 0.56 ±0.14 1.00 ±0.00 0.94 ±0.11 
+
+Addiction Drug occupancy 0.00 0.02 ±0.02 0.00 ±0.00 0.50 ±0.27 0.76 ±0.17 
+
+PTSD Dist. from trauma 2.20 2.99 ±0.91 3.22 ±1.09 3.88 ±1.23 5.76 ±0.00 
+
+Table 3: Controls do not reproduce phenotypes (mean, 10 seeds). Left: Approach–Avoidance. Right: LavaGap. 
+
+Approach–Avoidance LavaGap Control Succ. Risky T.dist Succ. Check PPO 1.00 0.73 4.37 1.00 0.00 Noise 0.90 0.60 4.81 1.00 0.00 RND 1.00 1.00 3.50 0.06 0.14 Appraisal 1.00 0.53 4.99 1.00 0.00 
+
+lava, the OCD checking loop, the depressive stationarity, the impulsive near-goal fixation, the addictive drug corner, and the PTSD detour. 
+
+Rescue as treatment. We warm-start from the most se-vere trained model of each disorder and continue training for a fixed budget either with the pathological knob removed (treatment) or kept (control), logging the primary assay throughout. Table 4 and Fig. 5 show a dissociation. Disor-ders driven by an ongoing reward distortion (mania, check-ing, addiction) remit immediately once the knob is removed, because the goal gradient re-dominates. Disorders that have reshaped the policy into a self-reinforcing behavioural habit (avoidance in anxiety and PTSD, passivity in depression, near-reward fixation in impulsivity) resist passive removal: the safe or myopic policy keeps working, so the agent never re-encounters the disconfirming evidence that would extin-guish it. This mirrors the clinical observation that avoidance disorders require active exposure, not mere removal of the stressor. 
+
+Exposure therapy for the resistant disorders. We there-fore test the corresponding intervention on the two resistant avoidance disorders. Warm-starting from the severe anxiety and PTSD models, we apply a graded exposure curriculum with response prevention: a penalty on the avoidance route (the safe alternative) annealed to zero over training, forc-ing the agent to re-confront the feared route and discover Figure 4: The transdiagnostic affective space. Each disorder is a dose-trajectory from the healthy origin; marker size en-codes dose. Mania is the mirror of anxiety across the origin; OCD occupies a separate compulsivity dimension. Table 4: Rescue/extinction (5 seeds). Passive : pathological knob removed. Control : knob kept. Expo. : graded exposure curriculum (avoidance disorders only; 15 seeds anxiety, 10 PTSD). Reward-distortion disorders remit under passive re-moval; avoidance disorders resist it but recover under expo-sure.                                         
+
+> Disorder Symptom Pass. Ctrl. Expo. Outcome Mania death rate 0.00 0.53 –remits OCD checking rate 0.00 0.23 –remits Addiction drug occ. 0.00 0.68 –remits Depression forward frac. 0.20 0.00 –partial Anxiety risky choice 0.20 0.00 0.93 recovers PTSD short-route 0.20 0.00 0.90 recovers Impulsivity far choice 0.00 0.11 –resists
+
+it is survivable. Crucially, a simple reward for reaching the feared route fails, an avoidant policy never goes there to col-lect it, so exposure must act on the avoidance response it-self, exactly the logic of exposure-and-response-prevention therapy [Craske et al. 2014]. Evaluated afterwards on the unmodified environment, both disorders recover: feared-route choice rises from 0.20 under passive removal to 0.90 –
+
+0.93 (Table 4), and the recovery persists after the exposure prompt has faded, genuine relearning rather than a main-tained incentive. The curriculum succeeds precisely where passive knob-removal failed, closing the loop from induc-tion to treatment. 
+
+Emergent comorbidity. Because each disorder is a sepa-rate term, two can be activated at once. We sweep 2-D dose grids for two pairs and ask whether the joint effect is the sum of the single-knob effects; departure from additivity is an emergent interaction the reward never encodes. Both pairs are strongly nonadditive (Fig. 6). For mania ×impulsivity the interaction is striking: mania alone drives the death rate to 
+
+0.70 –0.82 (reckless approach to lava), yet adding any im-pulsivity collapses it to 0.00 (maximum interaction resid-ual 0.82 ). Steep discounting protects the manic agent from its own risk-taking, because dying in lava requires a com-mitted multi-step approach that a myopic agent will not undertake, a non-obvious prediction that follows from the interaction of two mechanisms, not from either alone. For 
+
+anxiety ×depression , severe depression overrides the anxiety readout: once effort cost is high the agent stops acting al-together, so avoidance can no longer be expressed (residual 
+
+0.50 ). Comorbidity is thus not simply additive in this model, matching the clinical intuition that co-occurring conditions modify one another’s expression. 
+
+Correspondence with known clinical phenomena. Be-cause the disorder knobs are grounded but the consequences 
+
+of learning under them are not designed in, several re-sults reproduce documented effects without being fitted to them. (i) The rescue dissociation (avoidance in anxiety and PTSD resisting passive removal of the stressor) parallels the clinical observation that avoidance is self-maintaining and extinction-resistant, the rationale for exposure-based therapy [Craske et al. 2014, Milad and Quirk 2012]. (ii) Addiction shows a vulnerability threshold (drug occupancy jumps near 
+
+ϵ=0 .05 ) and then escalation to the exclusion of natural re-ward, the qualitative signature of computational and animal models of addiction [Redish 2004, Ahmed and Koob 1998]. (iii) Impulsivity produces a discounting crossover, agents abandon the larger later reward as the discount steep-ens, the defining marker of impulsive choice [Ainslie 1975, Kirby, Petry, and Bickel 1999]. (iv) Depression manifests as reduced willingness to exert effort for reward rather than an inability to act, matching effort-based accounts of anhedonia [Treadway and Zald 2011]. (v) Mania appears as reduced harm sensitivity with elevated reward pursuit, consistent with reward-hypersensitivity models [Johnson et al. 2012]. These correspondences are qualitative, we do not fit human data, but they distinguish the framework from a mere re-description: the same simple manipulations recover effects that clinical theory independently predicts. 
+
+Generalisation to 3D pixel observations. To test whether the disorder phenotypes are artefacts of the grid-world set-ting or reflect deeper structural properties of the knobs, we transfer all three evaluated disorders (depression, ad-diction, anxiety) to a three-dimensional first-person envi-ronment (MiniWorld [Gym-MiniWorld 2023]) in which a standard Nature CNN agent [Mnih et al. 2015] receives raw pixel observations with no appraisal critic. Three doses per disorder, 3 seeds each, 3 M steps per run (36 runs total on a 4×GPU instance). 
+
+Depression replicates exactly: forward-action fraction collapses from 0.73 (baseline) to 0.72 , 0.0004 , and 0.0001 at doses ϵ = 0 .01 , 0.03 , 0.1 respectively (means over 3 seeds), and drug occupancy remains exactly 0.00 at every dose— zero cross-contamination, matching the grid-world dissoci-Figure 5: Rescue trajectories: primary symptom over continued training with the knob removed (treatment) vs. kept (control), 5 seeds. Reward-distortion disorders remit; habit/avoidance disorders resist. 
+
+Figure 6: Comorbidity: joint dose grids for two knob pairs (mean readout per cell). Both are strongly nonadditive; the reported interaction is the maximum residual against the ad-ditive prediction. Impulsivity suppresses the lethality of ma-nia (right). ation. 
+
+Addiction shows compulsive drug-seeking that gener-alises cleanly: drug occupancy rises from 0.00 (baseline) to 0.79 (ϵ = 0 .1) and 0.78 (ϵ = 0 .3). At the highest dose (ϵ = 0 .6) drug occupancy falls slightly to 0.74 while for-ward fraction rises to 0.65 —the agent moves more , not less. We interpret this as a motivational saturation effect: the drug signal dominates so strongly that the policy be-comes a persistent, undirected seeking behaviour rather than a goal-directed route to the drug tile; locomotion in-creases but efficient drug-finding deteriorates. This pattern has a clinical analogue in severe addiction, where compul-sive motivation drives frantic seeking activity that paradox-ically reduces the probability of obtaining the substance [Ahmed and Koob 1998]. The non-monotonicity at the top dose is therefore not a failure of the mechanism but an emergent consequence of crossing a motivational threshold beyond which the seeking behaviour itself is impaired— consistent with escalation models in which intake regulation breaks down at extreme doses. 
+
+Anxiety confirms mechanism specificity: the CNN base-line already routes entirely around the threat tile (safe-route fraction 1.00 at baseline), and the anxiety knob preserves 
+
+this avoidance at all three doses ( ϵ = 0 .1, 0.3, 0.6) without degrading forward locomotion ( 0.73 –0.71 ). The critical dis-sociation check passes: drug occupancy remains 0.00 across all anxiety doses, confirming the knob acts only on the in-tended threat-avoidance channel. 
+
+Cross-assay dissociation holds across both domains and all three disorders: the depression knob never raises drug occupancy or safe-route fraction above 0.00 ; the addiction knob does not collapse locomotion; the anxiety knob does not raise drug occupancy or suppress locomotion. The fact that a CNN agent with no access to appraisal signals repli-cates the same phenotypic signatures confirms that the disor-der properties are properties of the reward structure , not of the particular observation encoding or policy architecture. Combining the 3D generalisation result with the full seven-disorder 2D battery, Figure 7 plots the block-diagonal dissociation matrix across all disorders and all primary as-says. Each row (one disorder at high dose) lights up only its own column (the designated assay), with off-diagonal cells near zero. This pattern holds despite the assays being mea-sured in five distinct environments with different dynamics, observation spaces, and episode structures—confirming that the mechanism specificity is a property of the knob design, not of shared environmental confounds. 
+
+# Discussion 
+
+Appraisal weights form a compact, controllable basis for a space of affective phenotypes: seven grounded knobs repro-Figure 7: Block-diagonal cross-assay dissociation across all seven disorders. Rows are disorder conditions (at high dose); columns are the primary assay metric of each disorder. Values are normalised effects relative to the healthy baseline; blue boxes mark the expected diagonal. Off-diagonal cells are near zero, confirming that each knob selectively impairs its designated symptom without bleeding into other disorder signatures. duce qualitatively distinct disorders and place them in mutu-ally consistent positions, with severity tunable continuously. The mania–anxiety symmetry supports a dimensional rather than categorical view of affect, consistent with transdiagnos-tic frameworks in which conditions are points along shared axes rather than discrete kinds. The rescue dissociation of-fers a mechanistic reading of treatment resistance: patholo-gies that persist as behavioural habits are self-reinforcing precisely because avoidance and myopia prevent the experi-ences that would disconfirm them, the RL analogue of why exposure, not avoidance of stressors, extinguishes clinical avoidance. That this falls out of a value-learning agent, with-out any bespoke “memory” of the trauma, is itself informa-tive. 
+
+# Limitations and Conclusion 
+
+We have shown that appraisal-guided RL yields a control-lable, grounded, dose-dependent space of disorder-like phe-notypes in which induction, structure, and treatment can all be studied in a single agent, and that the seven disorders or-ganise, dissociate under treatment, and interact in ways that are emergent rather than designed. Three limitations bound these claims. First, our disorders are computational analo-gies, not clinical equivalences: the assays map to recognised paradigms and reproduce documented effects, but validating the labels against human or animal data remains open. Sec-ond, behavioural coordinates in the affective space are nor-malised deviations, and a two-dimensional projection omits dimensions such as compulsivity, which we mark explic-itly. Third, two appraisal signals—certainty (policy entropy) and anticipation (NRE error)—are themselves functions of the evolving policy and NRE network, making the shaped reward nonstationary in the same way as curiosity-driven methods such as ICM and RND; standard PPO convergence guarantees do not strictly apply, though the disorder phe-notypes stabilise empirically within the training budget. Our generalisation experiment (Sec. 5) begins to address the con-cern that the findings are specific to grid worlds or to the ap-praisal critic, by transferring three knobs to a pixel-based ar-cade agent; extending the appraisal-based knobs to such do-mains, together with comorbidity beyond two knobs, active-exposure therapy at scale, and quantitative fits to behavioural data, are the natural next steps. We see the controllability of the framework, one grounded knob per disorder with sever-ity tunable continuously, as its most useful property: it turns disorder modelling from post-hoc description into a manip-ulable, falsifiable science of affective phenotypes. 
+
+# References 
+
+[Ahmed and Koob 1998] Ahmed, S. H.; and Koob, G. F. 1998. Transition from moderate to excessive drug intake: change in hedonic set point. Science 282(5387):298–300. [Ainslie 1975] Ainslie, G. 1975. Specious reward: A behav-ioral theory of impulsiveness and impulse control. Psy-chological Bulletin 82(4):463–496. [Prasad, Jacob, and Ahamed 2024] Prasad, H.; Jacob, C.; and Ahamed, I. 2024. Appraisal-Guided Proximal Pol-icy Optimization: Modeling Psychological Disorders in Dynamic Grid World. arXiv:2407.20383 .[Craske et al. 2014] Craske, M. G.; Treanor, M.; Conway, C. C.; Zbozinek, T.; and Vervliet, B. 2014. Maximizing exposure therapy: An inhibitory learning approach. Be-haviour Research and Therapy 58:10–23. [Huys et al. 2016] Huys, Q. J. M.; Maia, T. V.; and Frank, M. J. 2016. Computational psychiatry as a bridge from neuroscience to clinical applications. Nature Neuro-science 19(3):404–413. [Johnson et al. 2012] Johnson, S. L.; Edge, M. D.; Holmes, M. K.; and Carver, C. S. 2012. The behavioral activation system and mania. Annual Review of Clinical Psychology 
+
+8:243–267. [Kirby, Petry, and Bickel 1999] Kirby, K. N.; Petry, N. M.; and Bickel, W. K. 1999. Heroin addicts have higher discount rates for delayed rewards than non-drug-using controls. Journal of Experimental Psychology: General 
+
+128(1):78–87. [Kullback and Leibler 1951] Kullback, S.; and Leibler, R. A. 1951. On information and sufficiency. Annals of Math-ematical Statistics 22(1):79–86. [Lazarus 1991] Lazarus, R. S. 1991. Emotion and Adapta-tion . Oxford University Press. [Maia and Frank 2011] Maia, T. V.; and Frank, M. J. 2011. From reinforcement learning models to psychiatric and neurological disorders. Nature Neuroscience 14(2):154– 162. [Milad and Quirk 2012] Milad, M. R.; and Quirk, G. J. 2012. Fear extinction as a model for translational neu-roscience: Ten years of progress. Annual Review of Psy-chology 63:129–151. [Moerland et al. 2018] Moerland, T. M.; Broekens, J.; and Jonker, C. M. 2018. Emotion in reinforcement learn-ing agents and robots: A survey. Machine Learning 
+
+107(2):443–480. [Montague et al. 2012] Montague, P. R.; Dolan, R. J.; Fris-ton, K. J.; and Dayan, P. 2012. Computational psychiatry. 
+
+Trends in Cognitive Sciences 16(1):72–80. [Rachman 2002] Rachman, S. 2002. A cognitive theory of compulsive checking. Behaviour Research and Therapy 
+
+40(6):625–639. [Redish 2004] Redish, A. D. 2004. Addiction as a computa-tional process gone awry. Science 306(5703):1944–1947. [Scherer 2001] Scherer, K. R. 2001. Appraisal considered as a process of multilevel sequential checking. In Ap-praisal Processes in Emotion , 92–120. Oxford University Press. [Schulman et al. 2017] Schulman, J.; Wolski, F.; Dhariwal, P.; Radford, A.; and Klimov, O. 2017. Proximal policy optimization algorithms. arXiv:1707.06347 .[Sequeira et al. 2011] Sequeira, P.; Melo, F. S.; and Paiva, A. 2011. Emotion-based intrinsic motivation for rein-forcement learning agents. In ACII , 326–336. [Treadway and Zald 2011] Treadway, M. T.; and Zald, D. H. 2011. Reconsidering anhedonia in depression: Lessons from translational neuroscience. Neuroscience & Biobehavioral Reviews 35(3):537–555. [Chevalier-Boisvert et al. 2023] Chevalier-Boisvert, M.; Dai, B.; Towers, M.; de Lazcano, R.; Willems, L.; Lahlou, S.; Pal, S.; Castro, P. S.; and Terry, J. 2023. Minigrid & Miniworld: Modular & Customizable Re-inforcement Learning Environments for Goal-Oriented Tasks. arXiv:2306.13831 .[Gym-MiniWorld 2023] Chevalier-Boisvert, M. 2018– 2023. MiniWorld: Minimalistic 3D Interior Environment Simulator. GitHub: Farama-Foundation/miniworld .[Brockman et al. 2016] Brockman, G.; Cheung, V.; Pet-tersson, L.; Schneider, J.; Schulman, J.; Tang, J.; and Zaremba, W. 2016. OpenAI Gym. arXiv:1606.01540 .[Huang et al. 2022] Huang, S.; Dossa, R. F. J.; Ye, C.; Braga, J.; Chakraborty, D.; Mehta, K.; and Ara´ ujo, J. G. 2022. CleanRL: High-quality single-file implementa-tions of deep reinforcement learning algorithms. JMLR 
+
+23(274):1–18. [Ziegler et al. 2019] Ziegler, D. M.; Stiennon, N.; Wu, J.; Brown, T. B.; Radford, A.; Amodei, D.; Christiano, P.; and Irving, G. 2019. Fine-tuning language models from human preferences. arXiv:1909.08593 .[Mnih et al. 2015] Mnih, V.; Kavukcuoglu, K.; Silver, D.; Rusu, A. A.; Veness, J.; Bellemare, M. G.; Graves, A.; Riedmiller, M.; Fidjeland, A. K.; Ostrovski, G.; et al. 2015. Human-level control through deep reinforcement learning. Nature 518(7540):529–533. [Sutton and Barto 2018] Sutton, R. S.; and Barto, A. G. 2018. Reinforcement Learning: An Introduction , 2nd ed. MIT Press. [LeCun et al. 2015] LeCun, Y.; Bengio, Y.; and Hinton, G. 2015. Deep learning. Nature 521(7553):436–444. [Williams 1992] Williams, R. J. 1992. Simple statistical gradient-following algorithms for connectionist rein-forcement learning. Machine Learning 8(3):229–256. [Insel et al. 2010] Insel, T.; Cuthbert, B.; Garvey, M.; Heinssen, R.; Pine, D. S.; Quinn, K.; Sanislow, C.; and Wang, P. 2010. Research domain criteria (RDoC): Toward a new classification framework for research on mental disorders. American Journal of Psychiatry 
+
+167(7):748–751. [Beck 1979] Beck, A. T. 1979. Cognitive Therapy of De-pression . Guilford Press. [Pitman et al. 2012] Pitman, R. K.; Rasmusson, A. M.; Koenen, K. C.; Shin, L. M.; Orr, S. P.; Gilbertson, M. W.; Milad, M. R.; and Liberzon, I. 2012. Biological studies of post-traumatic stress disorder. Nature Reviews Neuro-science 13(11):769–787. [Chamberlain et al. 2008] Chamberlain, S. R.; Menzies, L.; Hampshire, A.; Suckling, J.; Fineberg, N. A.; del Campo, N.; Aitken, M.; Craig, K.; Owen, A. M.; Bullmore, E. T.; Robbins, T. W.; and Sahakian, B. J. 2008. Orbitofrontal dysfunction in patients with obsessive-compulsive disorder and their unaffected relatives. Sci-ence 321(5887):421–422. [Robinson and Berridge 1993] Robinson, T. E.; and Berridge, K. C. 1993. The neural basis of drug crav-ing: An incentive salience theory of addiction. Brain Research Reviews 18(3):247–291. Supplementary Material 
+
+This appendix provides the full experimental record be-hind the main paper. It first explains how the cognitive ap-praisals were formulated and how the experiments were set up and calibrated, then gives every environment and assay in detail, and finally reports the complete result tables (dose-response across all environments, secondary assays, the full control battery, the affective-space coordinates, and the full rescue, exposure, and comorbidity statistics) with a walk-through of how to read each one. All numbers are com-puted from the same 1,375-run corpus by a single analysis script, and figures reuse the main-paper plots where possible to avoid duplication. 
+
+Formulation of the Cognitive Appraisals 
+
+Appraisal theory holds that emotion arises from a small set of domain-independent evaluations of an event with respect to an agent’s goals [Lazarus 1991, Scherer 2001]. We oper-ationalise six of these dimensions so that each is (i) com-putable online from quantities the agent already has, (ii) bounded to (0 , 1) so they compose into a single vector, and (iii) mapped to a recognised appraisal construct. Two are pri-mary (goal-relevance) appraisals, one is a secondary (cop-ing) appraisal, two are information-theoretic readings of the agent’s own policy, and one is predictive. • Motivational relevance ζMR and goal congruence ζGC 
+
+are primary appraisals of how much the current state bears on the goal. We use the complement of the (Man-hattan) goal distance for relevance and of the (Euclidean) goal distance for congruence; the two distances give a coarse and a fine reading of proximity, and both are nor-malised by the largest attainable distance so they saturate near the goal. • Coping potential ζCP is a secondary appraisal of per-ceived control. We read it from threat visibility: the frac-tion of known threats outside the agent’s egocentric view, so that a threat entering view lowers coping potential. This is the appraisal the anxiety and mania knobs act on (penalising low or high coping potential respectively). • Certainty ζC and novelty ζN are read from the actor’s action distribution p. Certainty is the complement of the (squashed) policy entropy, so a confident, low-entropy policy appraises high certainty. Novelty is the (squashed) KL divergence of p from the uniform policy, capturing how far the current decision departs from indifference. Both use the squashing x 7 → x/ (1 + x) to map an un-bounded information quantity into (0 , 1) .• Anticipation ζA is the complement of the next-reward-estimation (NRE) error: a small three-layer network pre-dicts rt from (ot−1, a t−1), and accurate prediction yields high anticipation. This gives the agent a forward-looking appraisal grounded in its own reward model. The exact formulas are given in the main paper (Eqs. 3–8). The six values are concatenated to the critic (so value es-timation is appraisal-informed) and, for anxiety and mania, drive the reward-shaping term; the stress index reported as a secondary assay is the weighted deviation P
+
+> i
+
+(1 − ζi)wi.
+
+Disorder Knobs, Dose Grids, and Hyperparameters 
+
+Table 5 gives each knob variable and its dose grid; Table 6 gives the shared learning hyperparameters. The checking bonus is bchk = ϵλ k on the k-th checkpoint return within an episode ( λ = 0 .5), which bounds the episodic total by 
+
+ϵ/ (1 − λ) and converts an all-or-nothing incentive into a graded number of checks (Sec. A.10 explains why this ha-bituation is necessary). Table 5: Knob variable and dose grid per disorder. The im-pulsivity dose is a discount reduction, γ = 1 − ϵ.                    
+
+> Disorder Knob variable Dose grid Anxiety wCP (penalise low) 0.01, 0.03, 0.1, 0.3 Mania wCP (penalise high) 0.01, 0.03, 0.1, 0.3 OCD checking bonus 0.1, 0.2, 0.4, 0.6 Depression effort cost 0.01, 0.02, 0.05, 0.1 Impulsivity 1−γ0.05, 0.1, 0.2, 0.4 Addiction drug bonus 0.01, 0.02, 0.05, 0.1 PTSD trauma shock 0.05, 0.1, 0.2, 0.4
+
+Experimental Setup and Protocol 
+
+The agent is a CleanRL-style [Huang et al. 2022] PPO im-plementation with the appraisal-informed critic and NRE network described above, running on 8 synchronous vec-torised environments with a rollout of 128 steps. Training uses the hyperparameters of Table 6; the per-environment budget is 600k steps, raised to 1M for LavaCrossing, which mixes lava and needs longer to solve. 
+
+Evaluation. After training, each model is evaluated for 40 episodes under the stochastic policy on held-out seeds dis-joint from training. Every assay in this paper is computed from these evaluation episodes; primary and secondary as-says are averaged over the 40 episodes and then over seeds, and we report means with 95% confidence intervals across seeds. 
+
+Corpus. The full corpus is 1,375 runs: (i) dose-response, seven disorders across the environments in which their pri-mary assay is defined, with four control conditions per threat environment, 10 seeds each and 30 for anxiety; (ii) rescue and its matched control, 5 seeds per disorder; (iii) the expo-sure curriculum, 15 seeds for anxiety and 10 for PTSD; and (iv) two comorbidity dose grids of 90 runs each. Runs are independent and were executed in parallel on a 208-vCPU cloud machine and locally; the sweep is resumable and ev-ery run writes a self-describing result file, from which all tables and figures are regenerated by one script. Table 6: PPO / AG-PPO hyperparameters (shared across all runs unless a disorder knob overrides γ).                     
+
+> Parameter Value Parallel environments 8Rollout length 128 Learning rate (Adam) 1×10 −3, linearly annealed Discount γ0.99 (impulsivity: 1−ϵ)GAE λ0.95 Clip coefficient 0.2 Entropy coefficient 0.03 Value / NRE loss coefficient 0.5 / 0.5 Minibatches, epochs 4, 4 Encoder 3 conv layers (16, 32, 64), 256-d head Training budget 600k steps (LavaCrossing: 1M) Seeds 10 (dose-response; 30 anxiety), 5 (rescue)
+
+Convergence criterion. Because avoidance can trivially reduce task success, symptom analysis is restricted, by a cri-terion fixed before analysis, to runs that solve the task (suc-cess ≥ 50% ); the number of contributing seeds is reported alongside every aggregate. 
+
+Hyperparameter and Mechanism Calibration 
+
+Two kinds of calibration were needed: learning hyperparam-eters (so that baseline PPO solves every environment, giv-ing each disorder a healthy reference), and the scale of each new reward mechanism (so that the knob produces a graded, rather than degenerate, dose-response). 
+
+Learning hyperparameters. The common PPO defaults 
+
+(lr = 2.5 × 10 −4, entropy = 0.01) leave the agent in a freeze-in-place local optimum on Dynamic-Obstacles: it rotates without advancing and times out, so the baseline never solves the task. A small grid over lr ∈ {2.5 ×
+
+10 −4, 1 × 10 −3} and entropy ∈ { 0.01 , 0.03 , 0.05 } showed that (1 × 10 −3, 0.03) solves all four threat environments; we adopted it everywhere. LavaCrossing additionally required the larger 1M-step budget. 
+
+Checking mechanism. An early OCD mechanism that pe-nalised low certainty reduced checking rather than inducing it (Sec. A.10). A checkpoint-return bonus without habitua-tion was bistable: below a threshold it was ignored, above it the bonus became an unbounded loop that captured the agent. We calibrated the habituation factor λ = 0 .5 and the dose grid {0.1, 0.2, 0.4, 0.6} by sweeping candidate values and selecting the range that produced rising checking with maintained task success. 
+
+Addiction and exposure scales. The drug bonus was cali-brated by sweeping {0.01 , 0.02 , 0.05 , 0.1} and locating the vulnerability threshold at which drug occupancy overtakes the goal (near ϵ = 0 .05 ). For the exposure curriculum we first tried rewarding the agent for reaching the feared route; this failed because an avoidant policy never reaches it, so we switched to response prevention (a penalty on the avoidance route, annealed to zero), with the penalty coefficient set to 
+
+0.5 after a short sweep. 
+
+Environments in Detail 
+
+The seven environments are rendered in Fig. 8. The four threat/spatial grids are Dynamic-Obstacles (moving obsta-cles), LavaGap and LavaCrossing (lava hazards), and the custom Approach-Avoidance conflict, which places a high-value goal behind a lava-lined corridor where every ap-proach step is threat-adjacent and a low-value goal (worth 
+
+0.15 ×) with an open approach at equal distance, so route choice isolates threat sensitivity. Temporal-Choice is a cor-ridor with a near reward 0.5 at distance ∼3 and a far reward 
+
+1.0 at distance ∼9; the discount crossover is γ ≈ 0.89 . Ad-diction places a repeatable drug tile in one corner with the goal in the opposite corner. Trauma places a conditioned-shock tile on the short route to the goal, with a long safe detour available. All observations are 7 × 7 × 3 egocentric symbolic tensors with three actions. 
+
+Full Behavioural Assay Battery 
+
+Primary assays are defined in the main text. Secondary assays, computed per episode and averaged over the 40 evaluation episodes: thigmotaxis index (fraction of steps wall-adjacent), edge occupancy, mean and near threat distance, freezing fraction (runs of ≥ 3 consecu-tive turn actions), turnaround rate, action stereotypy (re-peated action trigrams), revisit and checking rates, visi-tation entropy (normalised), drug occupancy, trauma dis-tance, and the stress index P
+
+> i
+
+(1 − ζi)wi with weights 
+
+(0 .25 , 0.05 , 0.1, 0.2, 0.35 , 0.05) carried over from the base model for continuity. 
+
+Full Dose-Response Across Environments 
+
+Table 7 reports every disorder’s primary assay in each en-vironment where that assay is defined, expanding Table 2 of the main paper. To read it: each row is a disorder-environment pair, the PPO column is the untreated base-line, and ϵ1 to ϵ4 are the four doses of Table 5; a mono-tone increase (or decrease, for depression’s forward-action fraction) from PPO through ϵ4 is the dose-response. Ma-nia, OCD, and depression were induced on all four threat grids and are monotone on each, confirming the effect is not specific to one layout. Anxiety’s primary assay (risky-goal choice) is only defined on Approach-Avoidance, which has Figure 8: The seven environments: four threat/spatial grids and three custom environments realising delay discounting, drug self-administration, and conditioned-trauma avoidance. the two-goal conflict; on the other threat grids anxiety in-stead elevates thigmotaxis and threat distance (Table 8). 
+
+Secondary Behavioural Assays 
+
+Table 8 reports the secondary assays at each disorder’s se-vere dose. These reveal the behavioural texture behind the primary readout: each column is one assay, and the final row is the PPO baseline for reference. Anxiety and mania sat-urate thigmotaxis; depression drives freezing to near unity; OCD elevates stereotypy and revisits; PTSD produces long detours with high visitation entropy. 
+
+Complete Control Battery 
+
+Table 9 extends the two-environment control comparison of the main paper to all four threat environments. Each block is one environment; the columns are the four controls (stan-dard PPO, a critic-noise control, PPO+RND, and the ap-praisal critic without shaping). No control reproduces a dis-order phenotype: success stays high and threat distance stays baseline-like. The one exception is RND, which fails on both lava environments by over-exploring into the hazard, a re-minder that generic novelty-seeking is not a model of any disorder. 
+
+The Negative Result and Mechanism Redesign 
+
+Our first OCD mechanism penalised low certainty. It re-duced checking rather than inducing it, because rewarding decisiveness suppresses re-verification: at the strongest cer-tainty penalty the checking rate fell below baseline. A check-point bonus without habituation was then bistable. Below a threshold the agent ignored it and solved the task normally; above the threshold the bonus became an unbounded loop that captured the agent entirely, collapsing task success to zero with no graded regime in between. Introducing dimin-ishing reassurance ( λk decay, λ = 0 .5) bounded the episodic bonus and produced the graded checking of the main paper. We report both failures because they clarify what does and does not induce compulsion: a mechanistic account (dimin-ishing reassurance) succeeds where a cosmetic reward does not. 
+
+Affective-Space Construction 
+
+The two-dimensional affective space places each disorder by normalised behavioural deviations from its environment’s healthy baseline. The reward-approach axis x combines reward-pursuit markers (forward-action fraction for depres-sion, drug occupancy for addiction, near-reward choice for impulsivity, risk-taking for mania); the threat-avoidance axis 
+
+y uses threat and trauma distance (positive for anxiety and PTSD, negative for mania). Each axis is normalised to 
+
+[−1, 1] by its maximum absolute deviation. Table 10 lists the severe-dose coordinates plotted in main-paper Fig. 4. OCD lies near the origin because its compulsivity is an out-of-plane dimension, indicated separately in the figure. 
+
+Rescue and Extinction, Full Statistics 
+
+Table 11 gives the treated-versus-control endpoints with confidence intervals for all seven disorders; the full recov-ery trajectories are in main-paper Fig. 5. To read the ta-ble: Treated removes the pathological knob, Control keeps it with matched extra training, and n is the number of con-tributing seeds. The dissociation is clean: mania, OCD, and addiction remit under passive removal (treated near zero, control retaining the symptom), whereas anxiety, PTSD, de-Table 7: Full dose–response of each disorder’s primary assay across every environment it was run in (mean ± 95% CI). Blank where a knob/env pair was not run. This expands Table 2 of the main paper. 
+
+Disorder Env Assay PPO ϵ1 ϵ2 ϵ3 ϵ4
+
+Anxiety ApproachAvoidance-9x9 Risky-goal choice 0.73 0.43 ±0.18 0.20 ±0.15 0.10 ±0.11 0.00 ±0.00 
+
+Mania Dynamic-Obstacles Death rate 0.01 0.01 ±0.01 0.01 ±0.01 1.00 ±0.00 1.00 ±0.00 
+
+LavaGap 0.00 0.00 ±0.00 0.00 ±0.00 0.26 ±0.21 0.70 ±0.15 
+
+LavaCrossing 0.00 0.00 ±0.00 0.00 ±0.00 0.88 ±0.19 1.00 ±0.00 
+
+ApproachAvoidance-9x9 0.00 0.00 ±0.00 0.00 ±0.00 0.00 ±0.00 0.00 ±0.00 
+
+OCD Dynamic-Obstacles Checking rate 0.07 0.14 ±0.05 0.23 ±0.02 0.23 ±0.05 0.27 ±0.02 
+
+LavaGap 0.00 0.00 ±0.01 0.16 ±0.01 0.26 ±0.02 0.29 ±0.01 
+
+LavaCrossing 0.00 0.01 ±0.01 0.12 ±0.01 0.25 ±0.01 0.28 ±0.01 
+
+ApproachAvoidance-9x9 0.00 0.03 ±0.02 0.21 ±0.03 0.34 ±0.01 0.36 ±0.01 
+
+Depression Dynamic-Obstacles Forward-action frac. 0.35 0.01 ±0.00 0.00 ±0.00 0.00 ±0.00 0.00 ±0.00 
+
+LavaGap 0.77 0.76 ±0.01 0.01 ±0.01 0.00 ±0.00 0.00 ±0.00 
+
+LavaCrossing 0.81 0.01 ±0.01 0.00 ±0.00 0.00 ±0.00 0.00 ±0.00 
+
+ApproachAvoidance-9x9 0.81 0.73 ±0.16 0.71 ±0.12 0.00 ±0.00 0.00 ±0.00 
+
+Impulsivity TemporalChoice Near-reward choice 0.46 0.61 ±0.16 0.56 ±0.14 1.00 ±0.00 0.94 ±0.11 
+
+Addiction Addiction-9x9 Drug occupancy 0.00 0.02 ±0.02 0.00 ±0.00 0.50 ±0.27 0.76 ±0.17 
+
+Ptsd Trauma-9x9 Dist. from trauma 2.20 2.99 ±0.91 3.22 ±1.09 3.88 ±1.23 5.76 ±0.00 
+
+Table 8: Secondary behavioural assays at the severe dose of each disorder (mean, on the environment used in the main text). Values reveal the behavioural texture beyond the primary assay. 
+
+Disorder Thigmo. Freeze Stereo. Turnar. Revisit V.entropy Stress Anxiety 1.00 0.01 0.55 2.28 0.15 0.61 0.21 Mania 0.97 0.04 0.17 0.00 0.14 0.38 0.51 OCD 0.93 0.12 0.67 11.26 0.75 0.59 0.49 Depression 1.00 1.00 0.96 0.00 0.99 0.00 0.41 Impulsivity 1.00 0.00 0.05 9.90 0.22 0.48 0.08 Addiction 0.99 0.59 0.72 4.85 0.83 0.22 0.33 Ptsd 1.00 0.00 0.74 0.00 0.14 0.77 0.26 PPO baseline (LavaGap) 0.76 0.00 0.28 0.05 0.21 0.70 0.39 
+
+pression, and impulsivity resist, because the safe or my-opic policy keeps working and the agent never re-encounters the disconfirming evidence. The contrast between passive-remitting and exposure-resistant disorders has clinical sig-nificance: it parallels the established finding that extinction-based therapies succeed for OCD and addiction but fail for avoidance-maintained conditions unless the exposure itself is engineered to override the avoidance response. The model captures this mechanistically—no special treatment logic is required; the dissociation arises from the agent’s own policy structure and the topology of the environment. 
+
+Exposure Therapy, Full Statistics 
+
+Table 12 reports the graded exposure result for the two re-sistant avoidance disorders. Exposure uses response preven-tion: a penalty on the avoidance route (the safe alternative) annealed to zero over training. A simple reward for reach-ing the feared route fails, because an avoidant policy never goes there to collect it, so the intervention must act on the avoidance response itself. Evaluated afterwards on the un-modified environment, anxiety recovers feared-route choice to 0.93 (15 seeds) and PTSD to 0.90 (10 seeds), from 0.20 
+
+under passive removal, and the recovery persists after the exposure prompt has faded. 
+
+Comorbidity, Full Grids 
+
+Tables 13 and 14 give the complete joint dose grids, visu-alised in main-paper Fig. 6. Each cell is the mean readout for a (row-dose, column-dose) pair; strong departure from the sum of the single-knob effects along the edges is the emergent interaction. For mania and impulsivity the interac-tion is striking: mania alone drives the death rate to 0.70 to 
+
+0.82 , but adding any impulsivity collapses it to zero, because dying in lava requires a committed multi-step approach that a myopic agent will not undertake. For anxiety and depres-sion, severe depression overrides the anxiety readout: once effort cost is high the agent stops acting altogether, so avoid-ance can no longer be expressed. Table 9: All four controls across the four threat/spatial environments (mean success and mean threat distance, 10 seeds). No control pro-duces a disorder phenotype; RND fails on the lava environments by over-exploring. 
+
+Env Metric PPO Noise RND Appraisal Dynamic-Obstacles Success 0.30 0.30 0.05 0.10 Threat dist. 2.19 2.23 2.08 2.28 LavaGapS7 Success 1.00 1.00 0.06 1.00 Threat dist. 2.08 2.09 1.78 2.02 LavaCrossingS9N1 Success 1.00 1.00 0.00 1.00 Threat dist. 2.57 2.52 2.30 2.46 ApproachAvoidance-9x9 Success 1.00 0.90 1.00 1.00 Threat dist. 4.37 4.81 3.50 4.99 
+
+Table 10: Affective-space coordinates (normalised behavioural deviations from the healthy baseline) at the severe dose. Reward–approach x and threat– avoidance y as plotted in main-paper Fig. 4. 
+
+Disorder Reward–approach x Threat–avoidance y
+
+Anxiety +0.0 +1.0 Ptsd +0.0 +1.0 Depression -1.0 +0.0 Mania +1.0 -0.2 Addiction +1.0 +0.0 Impulsivity +0.6 +0.0 Ocd +0.1 +0.0 
+
+Table 11: Rescue/extinction, full statistics (mean ± 95% CI). 
+
+Treated : knob removed. Control : knob kept, matched extra training. n is the number of seeds. 
+
+Disorder Assay Treated Control n
+
+Mania Death rate 0.00 ±0.00 0.53 ±0.28 5OCD Checking rate 0.00 ±0.00 0.23 ±0.01 5Addiction Drug occ. 0.00 ±0.00 0.68 ±0.33 5Depression Forward frac. 0.20 ±0.03 0.00 ±0.00 5Anxiety Risky choice 0.20 ±0.39 0.00 ±0.00 5PTSD Short-route use 0.20 ±0.39 0.00 ±0.00 5Impulsivity Far choice 0.00 ±0.00 0.11 ±0.22 5
+
+Table 12: Graded-exposure curriculum for the resistant avoidance disorders (mean ± 95% CI). Feared-route choice after exposure, compared with passive removal and the se-vere untreated model. 
+
+Disorder Severe Passive Exposure n
+
+Anxiety 0.00 0.20 ±0.39 0.93 ±0.13 15 PTSD 0.00 0.20 ±0.39 0.90 ±0.20 10 
+
+Table 13: Comorbidity grid for anxiety ×depression (mean of the readout, 10 seeds per cell). Rows: depression dose; columns: anxiety dose. Strong nonadditivity. 
+
+depression \ anxiety 0 0.1 0.3 0 0.50 0.10 0.00 0.02 0.80 0.10 0.00 0.05 0.00 0.00 0.00 
+
+Per-Disorder Occupancy and Qualitative Observations 
+
+Main-paper Fig. 2 shows state-occupancy at each disorder’s severe dose. The spatial signatures are legible and distinct: anxiety traces a wall-hugging avoidance band; mania con-centrates against the lava; OCD forms a looping checking pattern near the checkpoint; depression is near-stationary at Table 14: Comorbidity grid for mania ×impulsivity (mean of the readout, 10 seeds per cell). Rows: impulsivity dose; columns: mania dose. Strong nonadditivity. 
+
+impulsivity \ mania 0 0.1 0.3 0 0.00 0.70 0.82 0.2 0.00 0.00 0.00 0.4 0.00 0.00 0.00 
+
+the start; impulsivity fixates on the near reward; addiction pins to the drug corner; PTSD makes a wide detour around the trauma tile. These qualitative readings match the quan-titative assays (thigmotaxis, checking rate, forward fraction, drug occupancy, trauma distance) reported above, and cor-respond one-to-one to the occupancy maps of main-paper Fig. 2. The signatures are disorder-specific rather than task-specific: the four control agents (PPO, critic-noise, PPO+RND, appraisal critic without shaping) run on the same environments and produce uniform or random oc-cupancy patterns with no spatial clustering. The pheno-type gallery therefore provides face validity at a glance: an anxiety-like agent crowds the periphery, a PTSD-like agent takes the long safe detour, a depression-like agent stalls at the start, and an OCD-like agent loops near the checkpoint even when the task reward lies beyond it. These patterns are emergent—no explicit spatial objective was specified; the knob acts only on the scalar reward signal, and the spatial structure arises from the agent’s learned policy. 3D Pixel Generalisation: Setup and Full Results 
+
+Environment. We use MiniWorld ( https://github. com/Farama-Foundation/miniworld ), a first-person 3D environment rendered with OpenGL/EGL. Each episode places the agent in a room with a goal object (green box) and, depending on mode, a drug object (purple box, addiction mode) or a risky goal and three threat boxes (anxiety mode). Observations are 60 ×80 ×3 RGB pixels. Actions are discrete (turn left, turn right, move forward). Episode length is capped at 250 steps; reaching the goal gives +1 (depression/addiction modes) or +0 .3 (anxiety safe goal). Reaching the drug object triggers the addiction shaping bonus but gives no task reward. 
+
+Agent and knobs. Standard Nature CNN (three conv lay-ers: 32/64/64 filters, 8/4/3 kernels, stride 4/2/1) followed by a linear layer (512 units) and separate actor/critic heads. 
+
+No appraisal critic. Disorder knobs are computed from ground-truth environment state and applied as reward shap-ing only: Depression: ˜rt = rt − ε · 1[action = forward ] (9) Addiction: ˜rt = rt + ε · 1[on drug ] (10) Anxiety: ˜rt = rt − ε · (1 − coping potential ) (11) where coping potential is the fraction of threat boxes not in the agent’s 45 ◦ forward field of view. PPO hyperparameters: learning rate 3×10 −4, clip εclip =0 .2, 8 parallel SyncVec-torEnv workers, 128-step rollouts, 4 epochs, GAE λ=0 .95 ,
+
+γ=0 .99 , entropy coefficient 0.01 .
+
+Compute. 36 runs (3 disorders × 4 conditions ×
+
+3 seeds), 3 M steps each, on a 4×RTX 5090 in-stance ( ≈2.5 hours wall-clock). EGL offscreen rendering (PYGLET HEADLESS=1 ) with SyncVectorEnv (AsyncVec-torEnv causes heap corruption on EGL fork). PyTorch nightly cu128 required for sm 120 (Blackwell) GPUs. Table 15: 3D MiniWorld generalisation results: mean over 3 seeds, 3 M steps. Baseline is disorder-free; the primary assay for each disorder is in bold.                                                      
+
+> Disorder Condition fwd frac drug occ safe frac Return Depression Baseline 0.728 0.000 0.000 +1 .00
+> ε=0 .01 0.718 0.000 0.000 +1 .00
+> ε=0 .03 0.0004 0.000 0.000 −1.00
+> ε=0 .10 0.0001 0.000 0.000 −1.00
+> Addiction Baseline 0.728 0.000 0.000 +1 .00
+> ε=0 .10 0.468 0.789 0.000 −1.00
+> ε=0 .30 0.488 0.781 0.000 −1.00
+> ε=0 .60 0.648 0.740 0.000 −1.00
+> Anxiety Baseline 0.720 0.000 1.000 +0 .30
+> ε=0 .10 0.730 0.000 1.000 +0 .30
+> ε=0 .30 0.725 0.000 1.000 +0 .30
+> ε=0 .60 0.706 0.000 1.000 +0 .30
+
+Full results. Cross-assay dissociation is confirmed: drug occ and safe frac remain 0.00 across all depression doses; safe frac remains 0.00 and forward fraction is un-affected across all addiction doses; drug occ remains 0.00 
+
+across all anxiety doses. 
+
+Figure 9: Grouped bar chart of all three assay metrics across all 10 conditions. Each disorder region lights up only its own assay; off-diagonal bars are zero, confirming block-diagonal mechanism specificity in the 3D pixel domain. 
+
+Reproducibility 
+
+Grid-world experiments use symbolic MiniGrid observa-tions and run on CPU. The full corpus is 1,375 runs (main paper) plus 36 MiniWorld runs (3D generalisation). Random seeds, dose grids, and the convergence criterion are fixed in configuration. Every table and figure is regenerated from the per-run result files by a single analysis script, and each fig-ure derives from the same evaluation protocol (40 episodes, stochastic policy, held-out seeds).

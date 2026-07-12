@@ -6,47 +6,61 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-11
-- 运行时间：2026-07-11 20:09:37 UTC
+- 最新运行日期：2026-07-12
+- 运行时间：2026-07-12 21:21:43 UTC
 - 运行状态：成功
-- 本次总论文数：9
-- 精读区：4
-- 速读区：5
+- 本次总论文数：13
+- 精读区：6
+- 速读区：7
 
 ### 今日简报（AI）
-今日推荐聚焦VR无感交互与睡眠记忆巩固机制，另有视觉语言模型幻觉缓解及脑活动预测新方法。最值得关注两项：眼动+被动脑机接口实现VR无缝意图解码；编码后睡眠连续性显著预测个体记忆准确性。建议关注多模态交互技术落地与睡眠健康对认知的长期影响。
-- 详情：[/202607/11/README](/202607/11/README)
+今日精读6篇速读7篇，聚焦视觉语言模型奖励评估与脑影像对比学习模型。  
+最值得精读《Reward Valuation in Vision Language Models》揭示快感缺乏的因果机制，以及《NiCLIP》实现脑激活图像到文本预测。  
+建议优先啃这两篇高分论文，再速读跨诊断强化学习行为生成与层次统计学习建模，夯实跨领域基础。
+- 详情：[/202607/12/README](/202607/12/README)
 
 ### 精读区论文标签
-1. [Seamless interaction in VR: decoding user intent with eye gaze and passive brain-computer interfaces](/202607/11/biorxiv-10-64898-2026-07-06-736575-v1-seamless-interaction-in-vr-decoding-user-intent-with-eye-gaze-and-passive-brain-computer-interfaces)  
+1. [Reward Valuation in Vision Language Models: Causal Mechanisms Underlying Anhedonia](/202607/12/2607.06626v1-reward-valuation-in-vision-language-models-causal-mechanisms-underlying-anhedonia)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用基于EEG的被动脑机接口在虚拟现实中解码交互意图
-2. [Individual differences in post-encoding sleep continuity predict context memory accuracy and supporting ERPs in younger and older adults](/202607/11/biorxiv-10-64898-2026-07-06-736892-v1-individual-differences-in-post-encoding-sleep-continuity-predict-context-memory-accuracy-and-supporting-erps-in-younger-and-older-adults)  
+   evidence：视觉语言模型研究奖赏评估与快感缺失
+2. [NiCLIP: Neuroimaging contrastive language-image pretraining model for predicting text from brain activation images](/202607/12/biorxiv-10-1101-2025-06-14-659706-v4-niclip-neuroimaging-contrastive-language-image-pretraining-model-for-predicting-text-from-brain-activation-images)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：睡眠连续性，脑电，记忆
-3. [Understanding Axes of Difficulty For Long Context Tasks Via PredicateLongBench](/202607/11/2607.08284v1-understanding-axes-of-difficulty-for-long-context-tasks-via-predicatelongbench)  
+   evidence：结合大语言模型和对比学习用于神经影像元分析，直接关联大语言模型在神经科学研究中的应用
+3. [Simple Geometric Recentering Rivals Deep Sequence Models for Cross-Session EEG Motor-Imagery Decoding](/202607/12/biorxiv-10-64898-2026-07-07-736991-v1-simple-geometric-recentering-rivals-deep-sequence-models-for-cross-session-eeg-motor-imagery-decoding)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：脑电运动想象解码用于脑机接口
+4. [Cortical Activity During Sustained Isometric Ankle Contractions Following Chronic Sleep Restriction: A High-Density EEG Study](/202607/12/biorxiv-10-64898-2026-07-07-737078-v1-cortical-activity-during-sustained-isometric-ankle-contractions-following-chronic-sleep-restriction-a-high-density-eeg-study)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：慢性睡眠限制与高密度脑电研究
+5. [Functional ultrasound imaging through a human cranial window for mesoscopic mapping of motor effector encoding within the sensorimotor cortex](/202607/12/biorxiv-10-64898-2026-07-03-735688-v1-functional-ultrasound-imaging-through-a-human-cranial-window-for-mesoscopic-mapping-of-motor-effector-encoding-within-the-sensorimotor-cortex)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：大语言模型长上下文基准PredicateLongBench，直接涉及大语言模型研究
-4. [Protracted Maturation of Proactive and Reactive Systems Predicts Cognitive Stability and Psychopathology : A longitudinal multi-cohort study](/202607/11/biorxiv-10-64898-2026-07-07-736457-v1-protracted-maturation-of-proactive-and-reactive-systems-predicts-cognitive-stability-and-psychopathology--a-longitudinal-multi-cohort-study)  
+   evidence：功能超声用于脑机接口映射
+6. [Optimizing MR-based gaze-decoding for eyes-closed eye-tracking in fMRI](/202607/12/biorxiv-10-64898-2026-07-07-736972-v1-optimizing-mr-based-gaze-decoding-for-eyes-closed-eye-tracking-in-fmri)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：功能磁共振，精神病理学，认知控制发展
+   evidence：用于fMRI眼动解码的深度学习框架
 
 ### 速读区论文标签
-1. [SeeMe: Mitigating Hallucinations in Large Vision-Language Models through Effective Visual Token Engineering](/202607/11/2607.04163v1-seeme-mitigating-hallucinations-in-large-vision-language-models-through-effective-visual-token-engineering)  
+1. [A Transdiagnostic Space of Disorder Like Phenotypes in Reinforcement Learning Agents](/202607/12/2607.07753v1-a-transdiagnostic-space-of-disorder-like-phenotypes-in-reinforcement-learning-agents)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：通过视觉标记工程减轻大视觉语言模型的幻觉
-2. [RABBiT: Rapidly adaptive BOLD foundation model via brain-tuning for accurate zero-shot and few-shot prediction of speech-elicited responses in the brain](/202607/11/2607.05171v1-rabbit-rapidly-adaptive-bold-foundation-model-via-brain-tuning-for-accurate-zero-shot-and-few-shot-prediction-of-speech-elicited-responses-in-the-brain)  
+   evidence：计算精神病学建模多种障碍
+2. [Using hierarchical statistical learning models to model individual statistical learning](/202607/12/2607.05822v1-using-hierarchical-statistical-learning-models-to-model-individual-statistical-learning)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：基于深度学习的fMRI响应预测基础模型
-3. [AT-Attn: Temporal-Aware Cross-Attention for Longitudinal Multimodal Alzheimer's Disease Diagnosis](/202607/11/2607.07091v1-at-attn-temporal-aware-cross-attention-for-longitudinal-multimodal-alzheimers-disease-diagnosis)  
+   evidence：EEG统计学习建模
+3. [A Multi-Analyst LLM Pipeline for Auditable Rule Discovery Across 68 Public Physiological Corpora](/202607/12/2607.06802v1-a-multi-analyst-llm-pipeline-for-auditable-rule-discovery-across-68-public-physiological-corpora)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：使用时间感知交叉注意力的纵向多模态阿尔茨海默诊断，涉及深度学习在神经科学中的应用
-4. [Spontaneous eye blinks as temporal markers of internal attention](/202607/11/biorxiv-10-64898-2026-07-06-736774-v2-spontaneous-eye-blinks-as-temporal-markers-of-internal-attention)  
+   evidence：使用LLM流水线从生理语料库发现规则
+4. [AI-guided stimuli discovery and generation to optimize facial emotion perception studies in autism](/202607/12/2607.08533v1-ai-guided-stimuli-discovery-and-generation-to-optimize-facial-emotion-perception-studies-in-autism)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：眼跳脑电分析用于注意研究
-5. [Learning complex temporal dependencies via local synaptic plasticity](/202607/11/biorxiv-10-64898-2026-07-09-737423-v1-learning-complex-temporal-dependencies-via-local-synaptic-plasticity)  
+   evidence：AI引导的自闭症情绪感知研究
+5. [Data-driven oscillatory network modeling with condition-dependent coupling laws: Identifying directed neural interactions in working memory attention dynamics](/202607/12/biorxiv-10-64898-2026-07-06-736523-v1-data-driven-oscillatory-network-modeling-with-condition-dependent-coupling-laws-identifying-directed-neural-interactions-in-working-memory-attention-dynamics)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：提出时间预测编码作为生物合理的时序依赖学习算法
+   evidence：基于神经记录的数据驱动振荡网络建模
+6. [Encoding and Retrieval in Parallel: ERP Correlates of Continuous Recognition Memory for Natural Scenes](/202607/12/biorxiv-10-64898-2026-07-07-736108-v1-encoding-and-retrieval-in-parallel-erp-correlates-of-continuous-recognition-memory-for-natural-scenes)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：连续识别记忆的事件相关电位关联
+7. [Attention reshapes the information dynamics of thalamic and cortical prediction-error learning](/202607/12/biorxiv-10-64898-2026-07-10-737794-v1-attention-reshapes-the-information-dynamics-of-thalamic-and-cortical-prediction-error-learning)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：颅内脑电和互信息分析
 
 
 <div class="dpr-home-promo-card">

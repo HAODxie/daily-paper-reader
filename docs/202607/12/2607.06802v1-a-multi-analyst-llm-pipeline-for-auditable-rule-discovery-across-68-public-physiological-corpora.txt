@@ -1,0 +1,192 @@
+Title: A Multi-Analyst LLM Pipeline for Auditable Rule Discovery Across 68 Public Physiological Corpora
+
+URL Source: https://arxiv.org/pdf/2607.06802v1
+
+Published Time: Thu, 09 Jul 2026 00:11:56 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# A Multi-Analyst LLM Pipeline for Auditable Rule Discovery Across 68 Public Physiological Corpora 
+
+## D¯ ovy Paukstys Komori Care, LLC Waterford, Virginia, USA dovy@komoricare.com 7/7/26 
+
+## Abstract 
+
+Open physiological corpora are heterogeneous: they use different sensors, labels, sampling rates, recording settings, and clinical endpoints. They can support detector design, but they do not directly specify which detector rules should be built for a new contactless monitoring platform. We report a controlled four-analyst large-language-model (LLM) workflow for converting 68 public physiological corpora, screened for commercial-use compatibility, into an auditable library of candidate rule shapes for prospective validation. Four independent commercial LLM families read the cor-pus documentation under a controlled prompt and produced 695 candidate rule markers (top-markers). Deduplication retained 649 rule records; a threshold-bounds audit then flagged 51 sanity violations for clamping or curator review. Cross-corpus consolidation produced 436 unique rule shapes. Gate-tagging against two hard invariants, native target-hardware channel availability and no multi-night per-patient personalization, identified 94 build-now detector com-ponents across four detector-family buckets. The pipeline does not produce a validated clinical detector. It produces an auditable engineering cascade in which analyst disagreement, threshold checks, curator review, and automated continuous-integration (CI) checks route literature-derived rules toward prospective hardware validation. 
+
+Keywords— large language models, biomedical signal processing, rule discovery, physiological corpora, contactless monitoring 
+
+## I. Introduction 
+
+Single-corpus detector work is brittle: a rule that per-forms well on one dataset may fail after a sensor change, a label change, or a deployment-context change. We needed a detector-rule library for a contactless nocturnal-monitoring platform that uses millimeter-wave radar, WiFi channel-state information (CSI), low-resolution thermal sensing, on-device acoustic features, and am-bient sensors (light, temperature, humidity, barometric pressure, and CO 2). Public corpora cover many relevant physiological phenomena, but to our knowledge none of the public corpora we screened were recorded on this target hardware, and none directly specify an engineer-ing rule library. The exact per-modality acquisition pa-rameters (radar center frequency and chirp/frame struc-ture, thermal resolution and frame rate, CSI sampling, on-chip detection settings, and host-visible outputs) are part of the proprietary hardware configuration summa-rized only at the channel-availability level in Table 2; this paper evaluates whether a rule maps to a channel that exists on the platform, not the channel’s calibrated performance. The deployment target is nocturnal in-bed monitoring, but the source corpora span both nocturnal and non-nocturnal recordings (e.g., daytime cardiac and postural datasets), which is one reason hardware gates are applied per rule. The literature base is broad but fragmented. The cor-pus and prior-art pool includes SeizeIT2 and its vali-dation work [1, 2], CHB-MIT [3], SUDEP and noctur-nal/wearable seizure-detection literature [4–12], cardiac and public physiological repositories [13, 14], neona-tal EEG seizure data [15], radar vital-sign work [16], clinical large-language-model (LLM) prior work [17], posture-response physiology [18, 19], and WiFi CSI vital-sign work [20]. These sources are valuable, but they mix clinical labels, sensor modalities, patient pop-ulations, and feasibility assumptions. Table 1 positions this work against these adjacent sources of evidence, stat-ing what each contributes and what it does not provide. This paper makes three claims. First, no single pub-lic corpus can scope a multi-sensor contactless detec-tor library. Second, a single analyst, human or model, risks systematic blind spots when extracting rules across dozens of heterogeneous corpora. Third, disagreement between independent analysts can be used as a triage sig-nal: it exposes contested extractions and routes curator 1arXiv:2607.06802v1 [eess.SP] 7 Jul 2026 Inputs 
+
+> 68 public
+> physiology
+> corpora
+> Analysts
+> 4 LLM
+> families
+> 695 markers
+> Normalize
+> deduplicate
+> threshold
+> audit
+> Consolidate
+> 649 records
+> 436 rule
+> shapes
+> Gate
+> native channel
+> no multi-night
+> personalization
+> Output
+> 94 build-now
+> components
+> 4 detector families
+> Claim boundary
+> rule discovery
+> not validated
+> clinical detector
+> Next step
+> prospective
+> hardware
+> validation
+
+Auditable rule-discovery pipeline and claim boundary 
+
+> Agreement routes curator attention; hard invariants determine build-now eligibility. No sensitivity, specificity, or false-alarm claim is made.
+
+Figure 1: The workflow converts heterogeneous public-corpus documentation into gated detector-component candidates. The output is a rule-discovery artifact, not a validated clinical detector. attention, but it does not itself establish correctness. Our contribution is not a new clinical detector and not a benchmark of LLM vendors. The contribution is a con-strained engineering cascade: four independent analyst outputs are normalized, deduplicated, audited for thresh-old sanity, gate-tagged against target hardware, checked by continuous-integration (CI) invariants, and routed to-ward prospective validation. The observed cascade was: 
+
+695 analyst top-markers → 649 retained rule records → 436 unique rule shapes → 94 build-now detector components. 
+
+Fig. 1 summarizes the pipeline and claim boundary. The contributions are: • A controlled multi-analyst extraction workflow for turning heterogeneous physiological-corpus docu-mentation into normalized candidate rule shapes. • A staged audit cascade—deduplication, threshold-bounds checking, curator review, and CI-enforced hardware invariants—that prevents literature-derived rules from becoming unvalidated product claims. • A disagreement analysis showing that analyst agree-ment routes attention but does not determine imple-mentability. • A disclosure pattern for reporting aggregate prove-nance while withholding proprietary rule defini-tions, thresholds, prompts, and gate rationales. We deliberately do not report sensitivity, specificity, false-alarm rate, or latency. Those metrics require prospective hardware validation against medical-grade ground truth. 
+
+## II. Method 
+
+A. Corpus Selection and Disclosure Boundary 
+
+The pipeline ingests 68 public physiological corpora whose use was screened for commercial compatibility. Each corpus required: (i) a public release or controlled public archive with documented access terms; (ii) doc-umented sensor modality and sampling rate; and (iii) at least one nocturnal-monitoring-relevant label or phe-nomenon, such as heart rate, respiration, body position, sleep stage, seizure event, autonomic response, bed-exit behavior, or postictal (after-seizure) recovery. The 68 corpora span the modality and label families cited above ([1–3, 13–16, 20] are representative public anchors); the cited datasets are representative anchors, and the full enumerated registry (corpus key, license note, and modality tag per entry) is provided in the re-viewer bundle as a redacted manifest rather than inline, because the complete list and prioritization expose prod-uct scope. The full corpus registry, license notes, and derived rule artifacts are version-controlled. The registry can sup-port audit of the input set, but public disclosure is lim-ited because raw rule definitions, thresholds, prompt text, provider-specific disagreements, and gate rationales ex-pose proprietary product logic. This manuscript there-fore reports aggregate counts, methods, audit stages, and 2Table 1: Positioning Against Adjacent Sources of Evidence                                   
+
+> Evidence line What it contributes What it does not provide Role in this paper Public physiological cor-pora [3, 13–15] Heterogeneous labels, sensors, sampling rates, and physiological phenomena A target-hardware detector library or deployable contactless perfor-mance Input evidence for candidate rule-shape extraction, not direct validation. Wearable/nocturnal seizure detection studies [1, 2, 6–12] Clinically relevant event families, endpoints, and failure modes Transfer guarantees to radar/CSI/thermal/audio con-tactless sensing Source of rule families and cautionary constraints, routed through hardware gates. Radar and WiFi sensing work [16, 20] Sensor-specific physiological fea-sibility under defined hardware assumptions Proof that extracted rules work on the target hardware or operating point Supplies modality priors; build-now status still requires native-channel and no-personalization gates. Clinical LLM work [17] Evidence that LLMs can en-code and manipulate biomedical knowledge A rule-discovery audit cascade or detector engineering workflow Motivates careful use of LLM analysts while keeping them non-authoritative. This paper An auditable extraction, consoli-dation, and gate-tagging method over 68 corpora Sensitivity, specificity, false-alarm rate, latency, or clinical utility Produces candidate components for prospective hardware valida-tion.
+
+disclosure boundaries rather than releasing the produc-tion rule library. This paper reports no primary human-subjects data. All analyses were performed on previously published, de-identified public corpora or public corpus documen-tation governed by their original release terms. 
+
+B. Four-Analyst Design 
+
+Four independent commercial LLM families served as analyst pipelines. We do not rank vendors and do not report provider-specific performance. Independence at the model-family level was the design requirement. Each analyst used the same controlled prompt, which specified a normalized rule representation, citation requirements, and a build-readiness gate taxonomy. Pairwise analyst-comparison records (internally, the battle output ) capture which family surfaced which marker and are withheld from public release. The analysts were used as parallel extractors, not au-thorities. Agreement prioritizes review, but it does not determine implementability. A 4/4-agreement rule can be gated out if it violates the native-sensor invariant. A 1/4-agreement rule can remain eligible if it passes invari-ants and curator review. The workflow uses disagreement to route scrutiny rather than treating LLM agreement as truth. 
+
+C. Normalization, Deduplication, and Threshold Au-dit 
+
+The four analysts produced 695 top-markers (candidate rules each analyst surfaced as most salient for a corpus). Deduplication retained 649 rule records (93.4%) using signal/modality canonicalization, time-window normal-ization, citation provenance, and rule-shape matching. A separate threshold-bounds audit over the retained records flagged 51 sanity violations for clamping or curator re-view. The threshold audit is part of the contribution: it shows where model-derived or literature-derived thresh-olds are unsafe to carry forward without review. Cross-corpus consolidation then produced 436 unique rule shapes. The deduplication and correction code is unit-tested and runs in CI when outputs are regenerated. For example, four differently worded seizure-literature rules describing post-burst stillness can normalize to one canonical motion-modality rule shape: short post-burst stillness, thresholded against a session-local baseline in-side the event window. The threshold is drawn from the controlled vocabulary or routed through the threshold-bounds audit, not accepted from one analyst’s wording. The session-local baseline is not a multi-night personal-ized baseline. 
+
+D. Gate-Tagging and Hard Invariants 
+
+Each of the 436 unique rule shapes was tagged by build-readiness: build-now component, tier-2 probe, feature prior, clinician review, or archive. The final gate-tagging classifier (internal pipeline milestone Phase 0.3) assigned the distribution in Table 3: The non-build-now actions are: tier-2 probe (plausible but requires a follow-up feasibility probe before promo-tion), feature prior (informs a feature but is not itself a detector rule), clinician review (clinically consequential, needs domain sign-off), and archive (incompatible with the target hardware or out of scope). Two invariants are asserted before a rule can remain in the build-now bucket: 1. Native sensor channel: every build-now component must read from a sensor channel that exists natively on the target hardware. No proxy substitution. 2. No per-patient personalization: no build-now com-ponent may require multi-night per-patient baseline learning or individualized user-profile setup. 3Table 2: Disclosure Boundary for Auditability Without Publishing Proprietary Rule Logic                       
+
+> Layer Public or reviewer-safe disclosure Withheld from public release Input set Corpus count, corpus-selection criteria, license-screen method, modality/label categories Full internal registry if it exposes product prioritiza-tion or unreleased licensing notes Analyst runs Aggregate marker counts, analyst-family indepen-dence design, prompt-control principles, run hashes or redacted audit card Raw prompts, provider-specific raw outputs, provider-specific disagreements, per-pair analyst-comparison records (battle output), scorecards Rule records Aggregate transitions: 695 →649 →436 →94; category-level agreement table Raw rule definitions, thresholds, rule text, detection logic, curator rationales, gate-decision logs Quality gates Threshold-bounds audit count, native-channel in-variant, no-personalization invariant, CI invariant concept Exact threshold-bounds vocabulary, product-specific hardware gate logic, proprietary CI rules Validation path Statement that all components require prospective target-hardware validation Any implication of validated clinical performance before prospective data exist
+
+Table 3: Final gate-tagging distribution (internal pipeline milestone Phase 0.3).        
+
+> Action Rule shapes Build-now component 94 Tier-2 probe 97 Feature prior 81 Clinician review 100 Archive 64 Total 436
+
+These are engineering gates, not clinical validation. A pull request or regeneration step that leaves a build-now rule violating either invariant fails. Personalization-heavy or proxy-heavy literature is retained as a probe, feature prior, or future regulatory claim rather than pro-moted to a build-now component. 
+
+E. Curator Review and Failure Modes 
+
+Each of the 436 unique rule shapes was reviewed by one human curator against a fixed rubric: semantic dis-tinctness, literature support, native-channel availability, threshold sanity, and absence of multi-night personaliza-tion. The curator decision is an engineering triage deci-sion, not clinical ground truth. Observed failure modes included hallucinated ci-tations, threshold drift, over-claimed build-readiness, label-overlap confusion, model-version drift, and prompt sensitivity. Mitigations include citation verification, threshold-bounds audit, CI invariant checks, artifact hashes for run provenance, and curator review before fi-nal gate-tagging. A secondary AI spot check of 50 retained rule-map records found that about half required probe-first or gate-clarification treatment, mainly because of native-channel, contactless-proxy, or baseline-scope risk. This supports the conservative gate taxonomy but is not an in-dependent inter-rater study (two or more independent hu-man reviewers scoring the same items). Table 4 lays out the audit ladder: for each question the pipeline answers, it pairs the artifact or metric, the audit check, and the claim boundary that bounds it. 
+
+## III. Results 
+
+A. Cascade 
+
+The end-to-end cascade is summarized in Fig. 2 and Ta-ble 5. Reduction is curation, not loss. Non-build-now rules remain useful as tier-2 probes, feature priors, clinician-review candidates, or archived incompatible rules. 
+
+B. Build-Now Detector-Family Buckets 
+
+The 94 build-now components map to four detector-family buckets (Table 6) that share an event interface and temporal-state model: Autonomic surge with failed recovery (a sharp heart-rate/respiration rise that does not return to baseline) con-tains the largest native-channel component pool. Pos-tictal respiratory compromise is retained as a separate family because it depends on respiratory-channel readi-ness and has a distinct failure mode. Bed-exit after high-movement event is small but well-defined (a single, di-rectly measurable bed-exit event). Postictal recovery risk is clinically important but currently has only two build-now components; it should not be treated as an indepen-dently validated detector family before prospective vali-dation. The shared temporal model is baseline → motor burst 
+
+→ rhythmic clonic (repetitive jerking) or high-movement interval → post-event stillness/recovery. The same event interface lets conservative build-now components coex-ist with probe-first literature-derived candidates without turning unvalidated probes into product claims. 
+
+C. Inter-Analyst Disagreement 
+
+A rule marker is a candidate rule surfaced by one or more analyst pipelines. Agreement level is the number of ana-lyst pipelines that surfaced the marker. Two-thirds of top-markers (67.2%) carried 3/4 or 4/4 agreement. Single-AI-only markers were 17.0%. 4Table 4: Audit Ladder and Claim Boundary 
+
+Question Artifact or metric Audit check Claim boundary Can heterogeneous corpora be converted into candidate rule shapes? 68 screened corpora, 695 ana-lyst top-markers, 649 retained records Corpus screen, normalized represen-tation, deduplication trace Shows extraction coverage and curation flow, not cor-rectness of every candidate rule. Does analyst agreement de-termine survival? Agreement table and inclusion-rate comparison across 4/4, 3/4, 2/4, and 1/4 markers Chi-square comparison and category-level disagreement re-view Agreement is a triage signal; it is not treated as truth or im-plementability. Are unsafe thresholds routed out of the build path? Threshold-bounds audit with 51 flagged sanity violations Clamp or curator-review route be-fore consolidation and gating Demonstrates a safety filter; does not validate any thresh-old on target hardware. Can target-hardware con-straints be enforced? 436 rule shapes gate-tagged into five action buckets; 94 build-now components Native-channel and no-multi-night-personalization invariants checked in CI Build-now means engineering-ready for prospective testing, not clinically validated. Is the pipeline auditable un-der proprietary constraints? Hashes, run metadata, stage counts, redacted one-corpus audit-card pattern Disclosure boundary in Table 2 Supports provenance audit without releasing product rule logic. 68 public 
+
+> physiological
+> corpora
+> 4 LLM
+> analyst
+> pipelines
+> 695
+> top-markers
+> 649 retained
+> rule records
+> post-dedup
+> 51 threshold
+> sanity flags
+> triaged
+> 436 unique
+> rule shapes
+> cross-corpus
+> 94 build-now
+> components
+> post-gate
+> 4 detector
+> family buckets
+
+Figure 2: Four-analyst rule-discovery cascade. Counts shown are aggregate engineering artifacts, not detector-performance metrics. Table 5: End-to-end cascade counts. 
+
+Stage Count Interpretation Analyst top-markers 695 Candidate markers surfaced by ana-lyst pipelines Retained rule records 649 Records retained after deduplica-tion, with threshold defects routed for correction/review Threshold-bounds flags 51 Sanity violations flagged for clamp-ing or curator review (a subset of the 649, not a separate reduction step) Unique rule shapes 436 Consolidated cross-corpus rule shapes Build-now compo-nents 94 Native-channel, no-personalization components after the build-readiness gates 
+
+Per-agreement-level retention rate (retained category-assignments / top-markers at that level) was essentially uniform: 93.0%, 93.4%, 93.6%, and 94.9% for 4/4, 3/4, 2/4, and 1/4 respectively (chi-square = 0.52, p = 0.91, df = 3; inclusion computed over the 650 marker-category assignments spanning the 649 retained records, since one record carries two category labels). Agreement did not predict survival. Instead, agreement changed where cu-Table 6: Build-now components by detector-family bucket. 
+
+Detector-family bucket Components Autonomic surge with failed recovery 62 Postictal respiratory compromise 24 Bed-exit after high-movement event 6Postictal recovery risk 2Total 94 
+
+rator attention was directed. The agreement-by-category breakdown is given in Ta-ble 8. Unlike Table 7, which is computed over all 695 top-markers, this category breakdown is computed over the 649 retained records; the per-row % single-AI is therefore on the retained basis and is not directly compa-rable to the 17.0% single-AI figure reported for the full 695-marker set. Total mapped marker-category assign-ments were 650 across 649 retained records because one record was assigned to two categories. Cardiac markers dominated the cohort and showed the highest consensus. Seizure markers showed more disagreement, consistent with transfer difficulty across patients, sensors, and event 5Table 7: Inter-analyst agreement across 695 top-markers. Library-inclusion rate did not differ across agreement levels (chi-square=0.52, df=3, p=0.91).             
+
+> Agreement Markers Fraction 4/4 256 36.8% 3/4 211 30.4% 2/4 110 15.8% 1/4 118 17.0% Total 695 100.0%
+
+Table 8: Agreement by marker category, over the 650 category assignments on the 649 retained records (cf. Table 7, which is over all 695 top-markers). Seizure vs Cardiac single-AI rate differs (Fisher exact OR=2.97, p=0.0012). 
+
+Category 4/4 3/4 2/4 1/4 Total % single-AI Cardiac 133 107 45 40 325 12.3% Screening 6 6 8 3 23 13.0% Thermal 6 4 2 2 14 14.3% Autonomic 11 17 4 6 38 15.8% Audio 2 1 2 1 6 16.7% Respiratory 28 20 20 14 82 17.1% Movement 16 15 9 11 51 21.6% Sleep 12 10 5 8 35 22.9% Seizure 24 16 8 20 68 29.4% Composite 0 1 0 7 8 87.5% 
+
+definitions. The Cardiac-versus-Seizure difference was statistically significant: seizure markers were about three times more likely than cardiac markers to be single-AI-only (2x2: Seizure 20 single-AI vs 48 multi-AI of 68; Cardiac 40 single-AI vs 285 multi-AI of 325; Fisher’s exact test, odds ratio OR = 2.97, p = 0.00124, where the odds ratio is the relative odds of a marker being single-AI-only). Audio and Composite categories are small-n descriptive categories and should not be overinterpreted. Agreement triages. Invariants determine imple-mentability. 
+
+D. Audit Trail 
+
+Every cascade transition is attributable to a recorded de-cision: corpus selection, analyst output, deduplication, threshold audit, gate-tagging, CI invariant check, and cu-rator review. Table 9 lists the artifact logged at each stage and its reviewer value. As detailed in the disclosure boundary (Table 2), the rule library, raw prompts, gate-decision logs, and pipeline code are withheld. To demonstrate audit struc-ture without publishing rule substance, the accompany-ing ancillary/reviewer bundle includes a redacted one-corpus audit card, audit-artifact manifest, public corpus-registry schema, claim-to-evidence matrix, reproducibil-ity protocol, and release-boundary note. These files dis-close corpus key, run metadata, artifact hash, aggregate marker counts, stage-level artifacts, and redaction policy while withholding marker names, thresholds, detection methods, provider-specific positions, curator rationales, and gate logic. They support auditability and reviewer inspection, not public bit-for-bit reproduction of the rule library. 
+
+## IV. Discussion 
+
+This paper describes a methodology, not a detector. The 94 build-now components are scoping-stage rule shapes and component candidates, not alert-ready clinical de-tectors. Performance metrics will be reported only after prospective hardware validation against medical-grade ground truth. The fact that a rule is literature-supported, multi-analyst-surfaced, and invariant-clean is not evi-dence of sensitivity, specificity, false-alarm rate, or clini-cal utility. The main result is that disagreement was useful, but not in the naive way. Agreement did not predict inclu-sion into the retained library. Instead, disagreement ex-posed where curator review mattered most. Cardiac rules were relatively canonical. Seizure and Composite mark-ers were more contested. That is precisely the setting in which a single-reader extraction would be easiest to overtrust. The novelty is also narrower and more defensible than “LLMs read biomedical papers.” LLMs have already been studied for clinical reasoning [17]. The contribution here is a constrained signal-processing workflow: inde-pendent LLM analysts, normalized rule-shape represen-tation, threshold-bounds auditing, hard target-hardware invariants, and gate-tagged routing to prospective valida-tion. The gate taxonomy prevents literature findings from becoming unvalidated product claims. For example, bed-side radar work can report strong vital-sign performance under specific capture geometry, frame-rate, windowing, and range-bin assumptions [16]. In this workflow such results become probe-first or hardware-readiness-gated until the same assumptions are tested on target hard-ware. Similarly, wearable or multimodal seizure-detector studies [6–12] inform rule families without implying that their performance transfers to contactless sensing. The paper has important limitations. First, the final gate-tagging review was performed by a single human curator. That is acceptable for engineering triage but not for clinical ground truth; an independent human domain-review spot check would strengthen the work. Second, the raw rule library and prompts are withheld (see Ta-ble 2), so the paper claims auditable provenance rather than public bit-for-bit reproducibility. Third, prompt sen-sitivity and commercial model-version drift remain risks. 6Table 9: Audit artifacts logged at each stage.                   
+
+> Stage Artifact logged Reviewer value Corpus selection Corpus manifest hash, license note, modality tags Fixes the input set and commercial-use screen Analyst run Prompt identifier, run date, model-family/version string when exposed, output hash Bounds model and prompt provenance Normalization Vocabulary version, deduplication code version, threshold-bounds report Makes the 695 →649 →436 transition in-spectable Gate-tagging Classifier version, gate-decision log, CI invariant report Makes build-now vs probe-first decisions in-spectable Curator review Rubric version, decision timestamp, rationale cat-egory Exposes human judgment instead of hiding it
+
+Fourth, the source corpora differ in label quality, sen-sor placement, recording context, and patient popula-tion. Fifth, four analysts were useful here, but the study does not prove that four is the optimal number of analyst pipelines in every domain. These limitations define the next validation steps. The candidate components must be tested prospectively on target hardware, against independent ground truth, with pre-specified operating points and false-alarm account-ing. The audit framework should also be tested with an independent human reviewer or second-curator sam-ple, and the controlled-disclosure package should expose enough artifact hashes and redacted audit cards for re-viewers to verify that the cascade exists without releasing proprietary rule definitions. 
+
+## V. Conclusion 
+
+We built a four-analyst LLM pipeline over 68 pub-lic physiological corpora screened for commercial-use compatibility. The pipeline produced 695 analyst top-markers, retained 649 rule records, consolidated them into 436 unique rule shapes, and identified 94 build-now detector components after native-channel and no-personalization invariants. The output is not a vali-dated clinical detector. It is an auditable, conserva-tive rule-discovery cascade for moving heterogeneous open-corpus evidence toward prospective contactless-hardware validation. 
+
+## Data, Code, and Artifact Availability 
+
+The article source package includes an ancillary/reviewer bundle under anc/paper_A_reviewer_release_ bundle_2026-07-07/ . The bundle contains a redacted one-corpus audit card, audit-artifact manifest, public corpus-registry schema, claim-to-evidence matrix, con-trolled reproducibility protocol, and release-boundary note. The production rule library, raw prompts, full analyst outputs, thresholds, gate rationales, and im-plementation code are proprietary and are not publicly released. Confidential review of selected hashes or redacted artifacts can be supported without disclosing rule substance. 
+
+## Acknowledgement 
+
+No vendor sponsored this work. The four analyst pipelines are independent commercial LLM families; no per-vendor comparison is made and the methodology is intended to be vendor-agnostic. D. Paukstys is founder of Komori Care, LLC. The pro-duction rule library and implementation artifacts are pro-prietary (disclosure boundary in Table 2). This paper re-ports the rule-discovery methodology and aggregate au-dit cascade, not a validated detector or released product. Manuscript drafting and editorial review were assisted by AI tools (OpenAI ChatGPT and Anthropic Claude) for organization, wording, critique, and polishing across the abstract, introduction, methods, discussion, availabil-ity, and limitation sections. This editorial assistance is distinct from the four-analyst LLM pipeline described in the research methodology. The author is solely responsi-ble for all data, analyses, citations, methods, claims, and conclusions. 
+
+## References 
+
+[1] M. Bhagubai, C. Chatzichristos, L. Swinnen, J. Macea, J. Zhang, L. Lagae, K. Jansen, A. Schulze-Bonhage, F. Sales, B. Mahler, Y. Weber, W. Van Paesschen, and M. De Vos, “SeizeIT2: Wearable dataset of patients with focal epilepsy,” Sci. Data ,vol. 12, no. 1, p. 1228, 2025, PMID: 40664714, doi: 10.1038/s41597-025-05580-x. [2] L. Swinnen, M. Bhagubai, C. Chatzichristos, 
+
+et al. , “A multicenter, video-EEG-based valida-tion of a multimodal wearable device for focal seizure detection in adults: The SeizeIT2 study,” 
+
+Epilepsia Open , 2026, PMID: 41949013, doi: 10.1002/epi4.70260. [3] A. H. Shoeb, “Application of machine learning to epileptic seizure onset detection and treatment,” Ph.D. dissertation, Health Sciences and Technol-ogy Division, Massachusetts Institute of Technol-ogy, Cambridge, MA, USA, 2009. [Online]. Avail-able: https://dspace.mit.edu/handle/1721.1/54669 7[4] P. Ryvlin, L. Nashef, S. D. Lhatoo, et al. , “In-cidence and mechanisms of cardiorespiratory ar-rests in epilepsy monitoring units (MORTEMUS): A retrospective study,” Lancet Neurol. , vol. 12, no. 10, pp. 966–977, 2013, PMID: 24012372, doi: 10.1016/S1474-4422(13)70214-X. [5] L. Vilella, N. Lacuey, J. P. Hampson, et al. ,“Postconvulsive central apnea as a biomarker for sudden unexpected death in epilepsy (SUDEP),” Neurology , vol. 92, no. 3, pp. e171–e182, 2019, PMID: 30568003, doi: 10.1212/WNL.0000000000006785. [6] S. Beniczky, T. Polster, T. W. Kjaer, and H. Hjalgrim, “Detection of generalized tonic–clonic seizures by a wireless wrist accelerometer: Aprospective, multicenter study,” Epilepsia , vol. 54, no. 4, pp. e58–e61, 2013, PMID: 23398578, doi: 10.1111/epi.12120. [7] S. Beniczky, I. Conradsen, O. Henning, M. Fabri-cius, and P. Wolf, “Automated real-time de-tection of tonic–clonic seizures using a wear-able EMG device,” Neurology , vol. 90, no. 5, pp. e428–e434, 2018, PMID: 29305441, doi: 10.1212/WNL.0000000000004893. [8] F. Onorati, G. Regalia, C. Caborni, et al. , “Mul-ticenter clinical assessment of improved wearable multimodal convulsive seizure detectors,” Epilep-sia , vol. 58, no. 11, pp. 1870–1879, 2017, PMID: 28980315, doi: 10.1111/epi.13899. [9] S. Beniczky, S. Wiebe, J. Jeppesen, et al. , “Au-tomated seizure detection using wearable devices: A clinical practice guideline of the International League Against Epilepsy and the International Federation of Clinical Neurophysiology,” Epilep-sia , vol. 62, no. 3, pp. 632–646, 2021, PMID: 33666944, doi: 10.1111/epi.16818. [10] J. Arends, R. D. Thijs, T. Gutter, et al. , “Mul-timodal nocturnal seizure detection in a res-idential care setting: A long-term prospec-tive trial,” Neurology , vol. 91, no. 21, pp. e2010–e2019, 2018, PMID: 30355702, doi: 10.1212/WNL.0000000000006545. [11] J. van Andel, C. Ungureanu, J. Arends, et al. , “Mul-timodal, automated detection of nocturnal motor seizures at home: Is a reliable seizure detector fea-sible?,” Epilepsia Open , vol. 2, no. 4, pp. 424–431, 2017, PMID: 29588973, doi: 10.1002/epi4.12076. [12] E. Bruno, P. F. Viana, M. R. Sperling, and M. P. Richardson, “Seizure detection at home: Do de-vices on the market match the needs of people liv-ing with epilepsy and their caregivers?,” Epilep-sia , vol. 61, no. S1, pp. S11–S24, 2020, PMID: 32385909, doi: 10.1111/epi.16521. [13] G. B. Moody and R. G. Mark, “The impact of the MIT-BIH Arrhythmia Database,” IEEE Eng. Med. Biol. Mag. , vol. 20, no. 3, pp. 45–50, 2001, doi: 10.1109/51.932724. [14] A. L. Goldberger, L. A. N. Amaral, L. Glass, et al. , “PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for com-plex physiologic signals,” Circulation , vol. 101, no. 23, pp. e215–e220, 2000, PMID: 10851218, doi: 10.1161/01.CIR.101.23.e215. [15] N. J. Stevenson, K. Tapani, L. Lauronen, and S. Vanhatalo, “A dataset of neonatal EEG record-ings with seizure annotations,” Sci. Data , vol. 6, p. 190039, 2019, PMID: 30835259, doi: 10.1038/sdata.2019.39. [16] B. Szmola, L. Hornig, J. P. Vox, et al. , “Radar mul-tiple bin selection for breathing and heart rate mon-itoring in acute stroke patients in a clinical setting,” 
+
+Sensors (Basel) , vol. 26, no. 1, p. 251, 2026, PMID: 41516684, doi: 10.3390/s26010251. [17] K. Singhal, S. Azizi, T. Tu, et al. , “Large lan-guage models encode clinical knowledge,” Nature ,vol. 620, no. 7972, pp. 172–180, 2023, PMID: 37438534, doi: 10.1038/s41586-023-06291-2. [18] R. S. Sheldon, B. P. Grubb, B. Olshansky, et al. , “2015 Heart Rhythm Society Expert Consen-sus Statement on the Diagnosis and Treatment of Postural Tachycardia Syndrome, Inappropriate Si-nus Tachycardia, and Vasovagal Syncope,” Heart Rhythm , vol. 12, no. 6, pp. e41–e63, 2015, PMID: 25980576, doi: 10.1016/j.hrthm.2015.03.029. [19] T. Heldt, M. B. Oefinger, M. Hoshiyama, and R. G. Mark, “Circulatory response to passive and active changes in posture,” in Computers in Cardiology , vol. 30, pp. 263–266, 2003, doi: 10.1109/CIC.2003.1291141. [20] J. Liu, Y. Wang, Y. Chen, J. Yang, X. Chen, and J. Cheng, “Tracking vital signs during sleep leveraging off-the-shelf WiFi,” in 
+
+Proc. ACM MobiHoc , 2015, pp. 267–276, doi: 10.1145/2746285.2746303. 8
