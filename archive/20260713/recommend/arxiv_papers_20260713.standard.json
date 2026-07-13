@@ -1,0 +1,332 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-13T21:27:00.780322+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2607.08855v1",
+      "source": "arxiv",
+      "title": "Spatial Neighboring Scattering Transform: A Cross-Channel Amplitude Coupling Measure for EEG Connectivity",
+      "abstract": "The functional organization of the brain relies on coordinated activity across spatially distributed regions, making the analysis of inter-regional dependencies fundamental. Existing connectivity measures address this predominantly through phase synchronization, which is vulnerable to volume conduction artifacts and discards amplitude-domain coupling. This study introduces the Spatial Neighboring Scattering Transform, which extends the wavelet scattering transform to the multichannel setting, yielding two descriptors that jointly capture amplitude-envelope coupling between channels and its modulation across frequency scales. SNST was evaluated on the BCI Competition IV-2a motor imagery dataset using a bias-corrected, false-discovery-rate-controlled statistical pipeline, with the validation criterion defined as spatial consistency of significant coupling across subjects. The first-order descriptor identified statistically significant amplitude coupling within a central-parietal electrode neighborhood, reproduced consistently across all subjects and both imagery conditions. The second-order descriptor revealed that this coupling is periodically gated by slow rhythms, indicating a cross-frequency amplitude-modulation structure absent from single-frequency connectivity measures. Phase lag index and weighted phase lag index, computed under an identical correction procedure and verified robust to volume conduction, identified negligible significant coupling with zero overlap with SNST findings, demonstrating that amplitude envelope coupling constitutes a largely distinct connectivity signal. These results establish SNST as a cross-channel scattering-based connectivity descriptor that recovers amplitude-envelope and cross-frequency coupling structure systematically, applicable to any multichannel EEG analysis where amplitude-domain inter-regional dependence is of interest.",
+      "authors": [
+        "Md. Taksimul Ahsan Tawhid",
+        "Nasif Ahmed Rafe",
+        "Alif Tahmid Priyom",
+        "K. M. Mustafizur Rahman"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "eess.SP",
+        "stat.AP"
+      ],
+      "published": "2026-07-09T18:24:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.08855v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "New EEG connectivity measure: Spatial Neighboring Scattering Transform",
+      "llm_evidence_cn": "新的EEG连接性度量：空间邻近散射变换",
+      "llm_evidence": "新的EEG连接性度量：空间邻近散射变换",
+      "canonical_evidence": "新的EEG连接性度量：空间邻近散射变换",
+      "llm_tldr_en": "Introduces SNST, an EEG connectivity measure capturing cross-channel amplitude coupling, evaluated on a BCI motor imagery dataset.",
+      "llm_tldr_cn": "现有EEG功能连接度量多基于相位同步，易受容积传导影响且忽略幅度耦合。本文提出空间邻近散射变换，扩展小波散射变换至多通道，提取跨通道幅度包络耦合及其频率调制。在BCI竞赛IV-2a运动想象数据集上验证了有效性。",
+      "llm_tldr": "现有EEG功能连接度量多基于相位同步，易受容积传导影响且忽略幅度耦合。本文提出空间邻近散射变换，扩展小波散射变换至多通道，提取跨通道幅度包络耦合及其频率调制。在BCI竞赛IV-2a运动想象数据集上验证了有效性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.09543v1",
+      "source": "arxiv",
+      "title": "CoCoT-EEG: Contrastive-Pretrained Multiscale Convolutional Transformer for EEG Decoding",
+      "abstract": "Self-supervised pretrained foundation models (FM) have shown early promise for non-invasive electroencephalogram (EEG) decoding applications. Many recent large-scale models converged on the approach of tokenizing raw EEG followed by masked reconstruction pretraining. However, this recipe has been shown to be suboptimal for data, like EEG, with high noise amplitude and information confined to limited dimensions such as narrow frequency bands. Building on this insight, we develop a novel contrastive-pretrained EEG model with multiscale temporal convolution input layers and Transformer encoder blocks (CoCoT). CoCoT matches or beats state-of-the-art reconstruction-pretrained EEG models on extensive benchmark decoding tasks with heterogeneous electrode configurations. Furthermore, CoCoT trained from scratch outperforms previous single-task decoding models and even rivals pretrained models, showcasing the architecture's flexibility and data efficiency. Through systematic ablations, including model architecture and pretraining objective, we demonstrate the viability of contrastive learning for building EEG FMs while suggesting key architectural design considerations, prompting further investigations in alternative large-scale pretraining strategies.",
+      "authors": [
+        "Gabriel Mahuas",
+        "Victoria Shevchenko",
+        "Ugo Tanielian",
+        "Yassir Bendou",
+        "Richard Gao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-10T15:48:15+00:00",
+      "link": "https://arxiv.org/pdf/2607.09543v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG decoding with contrastive-pretrained transformer",
+      "llm_evidence_cn": "使用对比预训练Transformer进行脑电解码",
+      "llm_evidence": "使用对比预训练Transformer进行脑电解码",
+      "canonical_evidence": "使用对比预训练Transformer进行脑电解码",
+      "llm_tldr_en": "Proposes CoCoT, a contrastive-pretrained multiscale convolutional transformer for EEG decoding, achieving state-of-the-art on multiple benchmarks by addressing limitations of masked reconstruction pretraining for noisy EEG data.",
+      "llm_tldr_cn": "针对现有基于掩码重建的EEG预训练模型在噪声环境下表现不佳的问题，本文提出CoCoT模型，结合多尺度时间卷积输入层和Transformer编码器，采用对比预训练策略。在多个基准解码任务上，CoCoT匹配或超过了最先进的预训练EEG模型。该方法为EEG信号处理提供了更鲁棒的自监督学习框架，有望推动脑机接口和神经科学研究。",
+      "llm_tldr": "针对现有基于掩码重建的EEG预训练模型在噪声环境下表现不佳的问题，本文提出CoCoT模型，结合多尺度时间卷积输入层和Transformer编码器，采用对比预训练策略。在多个基准解码任务上，CoCoT匹配或超过了最先进的预训练EEG模型。该方法为EEG信号处理提供了更鲁棒的自监督学习框架，有望推动脑机接口和神经科学研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.09262v1",
+      "source": "arxiv",
+      "title": "Geopolitical alignment: Endorsement effects in large language models",
+      "abstract": "Large language models (LLMs) are increasingly used to summarize and evaluate policy-relevant information, but it remains unclear whether their judgments are implicitly shaped by geopolitical cues. I study this question with an endorsement experiment in which four LLMs evaluate the same international economic and security policies after each policy is randomly described as supported by the United States, the European Union, China, or Russia. In the numeric-only condition, GPT-5, Claude Sonnet, and Gemini rate China- and Russia-endorsed policies substantially lower than identical policies endorsed by the United States or the European Union; DeepSeek is the main exception. A second condition asks models to provide a short justification with the score. This request leaves the broad Western/non-Western gap intact for GPT-5 and Claude Sonnet, attenuates Gemini's penalties, and sharply activates China and Russia penalties in DeepSeek. The justifications indicate that Western endorsement is often treated as a credibility cue, whereas Chinese and Russian endorsement is treated as a cue for data security, sovereignty, surveillance, or geopolitical risk. These findings show that LLM policy evaluations can depend on the identity of a foreign endorser even when policy content is held fixed.",
+      "authors": [
+        "Maxim Chupilkin"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY",
+        "cs.AI"
+      ],
+      "published": "2026-07-10T10:26:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.09262v1",
+      "tags": [
+        "keyword:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Large language models show geopolitical endorsement effects",
+      "llm_evidence_cn": "大语言模型表现出地缘政治背书效应",
+      "llm_evidence": "大语言模型表现出地缘政治背书效应",
+      "canonical_evidence": "大语言模型表现出地缘政治背书效应",
+      "llm_tldr_en": "Investigates whether LLMs implicitly biased by geopolitical cues when evaluating policies, finding that models rate policies endorsed by US/EU higher than those endorsed by China/Russia.",
+      "llm_tldr_cn": "大语言模型越来越多用于政策评估，但其判断是否受地缘政治线索影响尚不清楚。本文通过实验让四个LLM评估相同政策但随机附上不同国家支持标签，发现GPT-5、Claude Sonnet和Gemini评分偏向美欧，而DeepSeek例外。揭示了LLM的潜在偏见。",
+      "llm_tldr": "大语言模型越来越多用于政策评估，但其判断是否受地缘政治线索影响尚不清楚。本文通过实验让四个LLM评估相同政策但随机附上不同国家支持标签，发现GPT-5、Claude Sonnet和Gemini评分偏向美欧，而DeepSeek例外。揭示了LLM的潜在偏见。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.09662v1",
+      "source": "arxiv",
+      "title": "PHINN-EEG: Topological Time-Series Analysis of Dream-State EEG -- Dynamic Betti Curves for Dream Content Classification and Topology-Conditioned Neural Signal Synthesis",
+      "abstract": "Current electroencephalography (EEG)-based dream detection relies on power spectral density (PSD) and statistical moment features, achieving a state-of-the-art area under the receiver operating characteristic curve (AUC) of approximately 0.70 on the DREAM database (Wong et al., 2025, Nature Communications). We introduce PHINN-EEG (Persistent Homology Inspired Neural Network for EEG), the first topological time-series framework for dream mentation analysis. Using sliding-window Takens delay embeddings and Vietoris-Rips filtrations on multichannel pre-awakening EEG epochs, we extract Dynamic Betti Curves that characterize the geometric architecture of neural activity, not merely its energy. These topological invariants, combined with topology-conditioned flow matching, are analytically projected to outperform existing PSD and catch22 benchmarks, targeting AUC = 0.82-0.90 on the 1,462-awakening open-access subset of the DREAM database (drawn from a full registry of 3,191 total awakenings from 263 participants across 20 independent laboratories). We further introduce a topology-conditioned rectified flow model for dream-state EEG synthesis-with a spectral-conditioned flow model of comparable feature dimensionality as an additional ablation baseline to isolate the value of topological conditioning specifically-and propose a set of candidate Betti transition archetypes linking topology to phenomenological dream report categories, presented as an exploratory hypothesis space pending empirical validation. If validated, this work represents a paradigm shift from spectral energy to phase-space geometry in neural rare-event detection, with potential future implications for wearable BCI dream monitoring.",
+      "authors": [
+        "Ren Takahashi",
+        "Emre Yusuf",
+        "Jayabrata Bhaduri"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.AI",
+        "cs.LG",
+        "eess.SP",
+        "math.AT"
+      ],
+      "published": "2026-07-10T17:59:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.09662v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dream-state EEG analysis using topological time-series framework",
+      "llm_evidence_cn": "基于拓扑时间序列框架的梦境脑电分析",
+      "llm_evidence": "基于拓扑时间序列框架的梦境脑电分析",
+      "canonical_evidence": "基于拓扑时间序列框架的梦境脑电分析",
+      "llm_tldr_en": "PHINN-EEG introduces a topological time-series framework for dream mentation analysis from EEG, using dynamic Betti curves to achieve dream content classification and neural signal synthesis, surpassing traditional PSD-based methods.",
+      "llm_tldr_cn": "现有脑电梦境检测依赖功率谱特征，性能有限。PHINN-EEG首次提出拓扑时间序列框架，通过滑动窗口Takens嵌入和Vietoris-Rips过滤提取动态Betti曲线，表征脑电几何结构，在梦境内容分类和信号合成任务上超越了传统方法，为梦境研究提供了新工具。",
+      "llm_tldr": "现有脑电梦境检测依赖功率谱特征，性能有限。PHINN-EEG首次提出拓扑时间序列框架，通过滑动窗口Takens嵌入和Vietoris-Rips过滤提取动态Betti曲线，表征脑电几何结构，在梦境内容分类和信号合成任务上超越了传统方法，为梦境研究提供了新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.09523v1",
+      "source": "arxiv",
+      "title": "Epilepsy Online Social Support: Characterizing Topics and Challenges Shared in the r/Epilepsy Community",
+      "abstract": "Epilepsy is one of the most common neurological conditions, and people living with epilepsy (PLWE) often use social media as a resource. However, a comprehensive understanding of the topics represented in epilepsy-specific communities where PLWE may be more honest is essential to designing better technologies to address epilepsy self-management. To understand the main topics and concerns of PLWE, we collected 23,944 r/Epilepsy subreddit posts and performed topic modeling, thematic, and psycho-linguistic analyses. We found five major themes for those topics: symptoms and triggers (e.g., mental health and memory, sleep/nocturnal, and photosensitivity), treatment and healthcare experience (e.g., medication, understanding epilepsy), daily functions ( e.g., perceived level of independence and finances), seizure activity (e.g., auras and ictal symptoms), and support for PLWE (assisting PLWE and support for PLWE). We highlight the top psycho-linguistic characteristics of posts across different topics. Our contributions include providing an understanding of the challenges of an online epilepsy community and their social support needs, and implications for designing technologies.",
+      "authors": [
+        "Jessica Y. Medina",
+        "Jordyn Young",
+        "Aehong Min",
+        "Patrick C. Shih",
+        "Wendy R. Miller",
+        "Afsaneh Razi"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY"
+      ],
+      "published": "2026-07-10T15:33:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.09523v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "mental health topics in epilepsy community",
+      "llm_evidence_cn": "癫痫社区中的心理健康话题",
+      "llm_evidence": "癫痫社区中的心理健康话题",
+      "canonical_evidence": "癫痫社区中的心理健康话题",
+      "llm_tldr_en": "Analyzes 23,944 r/Epilepsy posts via topic modeling and psycholinguistic analysis, identifying five major themes including mental health and sleep as key concerns for people living with epilepsy.",
+      "llm_tldr_cn": "本研究收集了23944条Reddit r/Epilepsy社区的帖子，通过主题建模和心理语言学分析，揭示了癫痫患者最关心的五大主题，其中心理健康和睡眠/夜间发作是重要议题。研究为设计更好的癫痫自我管理技术提供了用户需求洞察，直接关联心理健康和睡眠领域。",
+      "llm_tldr": "本研究收集了23944条Reddit r/Epilepsy社区的帖子，通过主题建模和心理语言学分析，揭示了癫痫患者最关心的五大主题，其中心理健康和睡眠/夜间发作是重要议题。研究为设计更好的癫痫自我管理技术提供了用户需求洞察，直接关联心理健康和睡眠领域。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-02-10-704998-v2",
+      "source": "biorxiv",
+      "title": "Connectivity patterns predictive of cognition, but not affect, reflect a segregated intrinsic network architecture",
+      "abstract": "The brains intrinsic organization into resting-state networks has long been suggested to be fundamental for the offline support of mental processes. Extensive task-based evidence support the relevance of the crosstalk between network segregation, supporting systems specialization, and network integration, allowing to flexibly implement complex behavior. However, only scarce evidence focusing on few behavioral measures directly link changes in these network properties at rest with interindividual differences in behavior.\n\nIn this work, using a comprehensive set of behavioral measures together with resting-state functional magnetic resonance imaging from the human connectome project, we assessed whether connectivity patterns predictive of behavior reflected segregation or integration based on GINNA, a 33 resting-state-networks atlas with cognitive characterization.\n\nWe found that connectivity relevant for behavior organizes into 3 main latent dimensions, summarizing Cognition, Positive Affect and Negative Affect. Crucially, we found that connectivity predictive of Cognition, but not Affect, was associated with global network segregation and reduced network integration. We further reveal differential resting-state-networks involvements, with Cognition associated with the segregation of higher-level resting-state-networks, and the integration of lower-level, visual networks.\n\nAll in all, the present results suggest that cognition may rest upon a segregated, modular intrinsic brain architecture.\n\nAuthor summaryHow psychological processes are maintained when the brain is not engaged in an explicit task remains unclear. Resting-state networks offer a candidate intrinsic architecture, but whether interindividual differences in diverse behavioral domains relate to this architecture in similar ways is unknown. We combined Human Connectome Project resting-state fMRI with 58 behavioral measures to identify functional connectivity patterns predictive of behavior and examine how they relate to network segregation and integration. These patterns organized into three latent dimensions summarizing Cognition, Positive Affect, and Negative Affect. Cognition-related patterns aligned with a segregated intrinsic architecture, showing stronger within-network and weaker between-network connectivity, particularly among higher-order resting-state networks, with complementary integration of visual networks. Affective patterns showed less consistent network signatures, suggesting a more distributed or context-dependent intrinsic organization.",
+      "authors": [
+        "Gillig, A.",
+        "Jobard, G.",
+        "Cremona, S.",
+        "Joliot, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.02.10.704998v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI connectivity patterns predicting cognition and affect",
+      "llm_evidence_cn": "fMRI连接模式预测认知和情感",
+      "llm_evidence": "fMRI连接模式预测认知和情感",
+      "canonical_evidence": "fMRI连接模式预测认知和情感",
+      "llm_tldr_en": "Using resting-state fMRI from the Human Connectome Project, this study finds that connectivity patterns predictive of cognitive abilities reflect segregated network architecture, while those for affective measures do not, suggesting distinct organizational principles.",
+      "llm_tldr_cn": "利用人类连接组项目的静息态fMRI数据，本研究发现预测认知能力的连接模式反映分离的网络架构，而预测情感测量的模式则不反映，提示认知和情感依赖于不同的脑网络组织原则。",
+      "llm_tldr": "利用人类连接组项目的静息态fMRI数据，本研究发现预测认知能力的连接模式反映分离的网络架构，而预测情感测量的模式则不反映，提示认知和情感依赖于不同的脑网络组织原则。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-08-737156-v1",
+      "source": "biorxiv",
+      "title": "BraiNN: A Modern Simulator for Clinically Feasible Personalized Whole-Brain Network Modeling",
+      "abstract": "Personalized whole-brain modeling aims to transform treatment planning for neurological disorders by enabling patient-specific simulations of brain network dynamics. Neural mass models (NMMs) offer a tractable compromise between biophysical detail and computational cost and can be directly linked to macroscopic observables such as EEG. However, scaling NMMs to whole-brain networks with realistic connectivity, conduction delays, and cortical surface resolution - and fitting them to individual patient data - imposes computational demands that existing frameworks cannot meet at clinically relevant timescales. Here we introduce BraiNN, a JAX-based Python framework for large-scale neural mass modeling that achieves speedups of up to two to three orders of magnitude over existing tools by leveraging GPU/TPU-accelerated, XLA-compiled array computation. BraiNN combines a region-level Jansen-Rit network with a subject-specific cortical surface mesh of coupled neural mass models and biophysically grounded EEG forward modeling via reciprocity-based lead fields. Its fully differentiable computational graph enables a hybrid personalization pipeline that pairs Bayesian optimization for global parameter exploration with gradient-based refinement, completing EEG-driven spectral fitting of an eight-dimensional parameter space in approximately 2-3 hours on a single consumer GPU - compared to multiple days with conventional neural mass modeling software. Numerical verification against established benchmarks confirms that BraiNN faithfully reproduces canonical synchronization and bifurcation dynamics of Jansen-Rit networks. By reducing the time requirements for personalizing a high-detail whole-brain surface model from days to a few hours on consumer-grade hardware, BraiNN brings personalized brain network modeling closer to practical use in clinical contexts. We anticipate that BraiNN will serve as a foundation for patient-specific digital twins and EEG-guided neuromodulation planning.",
+      "authors": [
+        "Fasse, A.",
+        "Billi, C.",
+        "Garvalov, V.",
+        "Morvan, M.",
+        "Newton, T.",
+        "Kuster, N.",
+        "Neufeld, E."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-13T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.08.737156v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Whole-brain modeling linked to EEG",
+      "llm_evidence_cn": "全脑建模可链接到EEG",
+      "llm_evidence": "全脑建模可链接到EEG",
+      "canonical_evidence": "全脑建模可链接到EEG",
+      "llm_tldr_en": "BraiNN is a JAX-based neural mass model simulator for personalized whole-brain network modeling, achieving speedups up to two orders of magnitude and directly linking to EEG observables, enabling clinically feasible simulations.",
+      "llm_tldr_cn": "本研究提出BraiNN，一个基于JAX的神经质量模型模拟器，可实现个性化全脑网络建模并与EEG等宏观观测直接关联。通过加速计算（提速两个数量级），使得在临床时间尺度上拟合患者数据成为可能，有望推动神经精神疾病治疗规划。",
+      "llm_tldr": "本研究提出BraiNN，一个基于JAX的神经质量模型模拟器，可实现个性化全脑网络建模并与EEG等宏观观测直接关联。通过加速计算（提速两个数量级），使得在临床时间尺度上拟合患者数据成为可能，有望推动神经精神疾病治疗规划。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-08-737201-v1",
+      "source": "biorxiv",
+      "title": "Maternal separation recalibrates prefrontal mitochondrial function and protects against stress-induced negative cognitive bias",
+      "abstract": "Ambiguity represents a form of uncertainty in which outcome probabilities cannot be explicitly learned, making decisions dependent on emotional states and cognitive biases. Early-life stress (ELS) increases the risk of adverse mental and physical health outcomes and alters affective processing and learning. ELS may thus affect how ambiguous information is processed, which may depend on interactions with adulthood stress (AS) and mechanistically on bioenergetic mechanisms mediated by top-down cognitive control systems within the prefrontal cortex (PFC). The present study investigated the effects of AS in rats exposed to early maternal separation (MS), a rodent model of ELS, on a task assessing cognitive bias, together with putatively accompanying alterations in PFC mitochondrial function. Cognitive bias was assessed using an ambiguous cue task (ACT) in MS and non-separated control rats tested at baseline and following repeated unpredictable mild stress during adulthood. MS did not affect baseline cognitive bias but increased response latencies. Following AS, control animals showed a significant negative shift in cognitive bias, whereas MS animals were resistant to this shift. MS was also associated with greater PFC mitochondrial respiratory capacity and uncoupling of oxidative phosphorylation following AS. These findings suggest that ELS is associated with a recalibrated phenotype that buffers against the affective consequences of later stress. Enhanced PFC mitochondrial bioenergetics may underlie this resilience, highlighting the importance of developmental context in shaping affective-cognitive responses to stress.",
+      "authors": [
+        "Stupart, O.",
+        "Marti-Prats, L.",
+        "Holzner, L. M. W.",
+        "Ibegbulam, S.",
+        "Milton, A. L.",
+        "Lawson, R. P.",
+        "Murray, A. J.",
+        "Velazquez-Sanchez, C.",
+        "Dalley, J. W."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-11T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.08.737201v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "early-life stress effects on cognitive bias and mental health",
+      "llm_evidence_cn": "早期生活压力对认知偏差和心理健康的影响",
+      "llm_evidence": "早期生活压力对认知偏差和心理健康的影响",
+      "canonical_evidence": "早期生活压力对认知偏差和心理健康的影响",
+      "llm_tldr_en": "This study shows that maternal separation in rats recalibrates prefrontal mitochondrial function and protects against stress-induced negative cognitive bias, linking early-life stress to mental health outcomes.",
+      "llm_tldr_cn": "该研究表明，大鼠母体分离重塑前额叶线粒体功能，并保护免受应激诱导的负性认知偏差，将早期生活压力与心理健康结局联系起来。通过行为学和生物能量学分析，揭示了前额叶皮层在情绪调节中的作用。",
+      "llm_tldr": "该研究表明，大鼠母体分离重塑前额叶线粒体功能，并保护免受应激诱导的负性认知偏差，将早期生活压力与心理健康结局联系起来。通过行为学和生物能量学分析，揭示了前额叶皮层在情绪调节中的作用。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
