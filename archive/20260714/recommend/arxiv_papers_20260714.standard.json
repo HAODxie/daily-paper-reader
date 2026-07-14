@@ -1,0 +1,652 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-14T21:32:05.939556+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 10,
+    "quick_skim_target": 11,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2607.10476v1",
+      "source": "arxiv",
+      "title": "Hallucination Detection in Large Language Models Using Diversion Decoding",
+      "abstract": "Large language models (LLMs) have emerged as a powerful tool for retrieving knowledge through seamless, human-like interactions. Despite their advanced text generation capabilities, LLMs exhibit hallucination tendencies, where they generate factually incorrect statements and fabricate knowledge, undermining their reliability and trustworthiness. Multiple studies have explored methods to evaluate LLM uncertainty and detect hallucinations. However, existing approaches are often probabilistic and computationally expensive, limiting their practical applicability. In this paper, we introduce diversion decoding, a novel method for developing an LLM uncertainty heuristic by actively challenging model-generated responses during the decoding phase. Through diversion decoding, we extract features that capture the LLM's resistance to produce alternative answers and utilize these features to train a machine-learning model to develop a heuristic measure of the LLM's uncertainty. Our experimental results demonstrate that diversion decoding outperforms existing methods with significantly lower computational complexity, making it an efficient and robust solution for evaluating hallucination detection.",
+      "authors": [
+        "Basel Abdeen",
+        "S M Tahmid Siddiqui",
+        "Meah Tahmeed Ahmed",
+        "Anoop Singhal",
+        "Latifur Khan",
+        "Punya Parag Modi",
+        "Ehab Al-Shaer"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-07-11T20:56:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.10476v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "LLM hallucination detection method",
+      "llm_evidence_cn": "大语言模型幻觉检测方法",
+      "llm_evidence": "大语言模型幻觉检测方法",
+      "canonical_evidence": "大语言模型幻觉检测方法",
+      "llm_tldr_en": "Proposes diversion decoding, a novel method to detect hallucinations in LLMs by actively challenging generated responses during decoding, providing an efficient uncertainty heuristic.",
+      "llm_tldr_cn": "该论文提出分流解码（Diversion Decoding）方法，通过在解码阶段主动挑战模型生成的内容来检测大语言模型的幻觉，提供了一种高效的不确定性启发式方法，有效降低计算开销。该工作直接针对大语言模型可靠性问题。",
+      "llm_tldr": "该论文提出分流解码（Diversion Decoding）方法，通过在解码阶段主动挑战模型生成的内容来检测大语言模型的幻觉，提供了一种高效的不确定性启发式方法，有效降低计算开销。该工作直接针对大语言模型可靠性问题。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.10439v1",
+      "source": "arxiv",
+      "title": "Learning the Brain's Dynamics as a Port-Hamiltonian System",
+      "abstract": "We model human motor cortex during a wrist-extension BCI task as a port-Hamiltonian system (pHS): a conservative interconnection (gyroscopic coupling between neural phasors) plus a dissipative port (power-law energy decay driven by a GNN surrogate). A metriplectic integrator evolves the phasor state; a Fluctuation--Dissipation-consistent noise channel produces stochastic trajectories at body temperature. Training on \\FitTrainN\\ real EEG cycles (PhysioNet EEGMMIDB, 3 held-out subjects) reaches a test MSE of \\FitTestMSE\\ and passes three scale-free criticality rungs: near-critical branching ratio ($σ\\approx1$), $1/f$ power-law spectrum, and long-range DFA correlations. The model generates closed-loop neuromodulation signals that restore phase-locking in silico when applied to de-synchronised inputs, suggesting a path toward structure-preserving BCI decoders.",
+      "authors": [
+        "Dibakar Sigdel"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.AI"
+      ],
+      "published": "2026-07-11T18:44:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.10439v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "BCI task modeling and closed-loop neuromodulation from EEG",
+      "llm_evidence_cn": "基于脑电的BCI任务建模与闭环神经调控",
+      "llm_evidence": "基于脑电的BCI任务建模与闭环神经调控",
+      "canonical_evidence": "基于脑电的BCI任务建模与闭环神经调控",
+      "llm_tldr_en": "Models motor cortex dynamics during wrist-extension BCI as a port-Hamiltonian system, trained on EEG, and generates closed-loop neuromodulation signals restoring phase-locking.",
+      "llm_tldr_cn": "脑机接口任务中的脑动力学建模对闭环神经调控至关重要。本文将手腕伸展BCI任务中运动皮层建模为端口-哈密顿系统，利用EEG数据训练，并生成闭环神经调控信号恢复相位锁定。模型通过了临界性指标验证，为BCI和神经调控提供了全新框架。",
+      "llm_tldr": "脑机接口任务中的脑动力学建模对闭环神经调控至关重要。本文将手腕伸展BCI任务中运动皮层建模为端口-哈密顿系统，利用EEG数据训练，并生成闭环神经调控信号恢复相位锁定。模型通过了临界性指标验证，为BCI和神经调控提供了全新框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.10871v1",
+      "source": "arxiv",
+      "title": "Toward Contemplative LLM: A Modular Framework for Evaluating and Enhancing LLM Alignment in Mental Health",
+      "abstract": "Contemplative traditions have long guided ethical behavior and prosocial interaction, and recent work suggests that contemplative principles (e.g., mindfulness, compassion, non-dual reasoning) may offer a promising paradigm for aligning large language models (LLMs), improving cooperation and reducing ethical violations in LLM outputs. However, as new models, evaluation metrics, and benchmarks emerge rapidly, it remains challenging to systematically assess whether and how contemplative principles enhance LLM alignment across diverse and evolving scenarios, and existing approaches are often ad hoc and fail to generalize. We present a modular, extensible evaluation framework, initially targeted at the mental health domain, that enables seamless integration of new models, metrics, and benchmarks through a reusable pipeline. The framework currently reproduces existing state-of-the-art results and supports systematic cross-evaluation by flexibly mixing and matching models, metrics, and benchmarks, enabling fair comparison and deeper insight. Its plug-and-play prompting module offers a principled pathway for incorporating ethical perspectives such as contemplative principles, allowing domain experts to define alignment criteria without requiring technical expertise. Although initially focused on mental health, the framework is domain-agnostic and extends naturally to areas such as decision-making, moral reasoning, and human-AI collaboration. By bridging computational evaluation with human-centered ethical reasoning, this work lays the groundwork for interdisciplinary research spanning cognitive science, behavioral economics, philosophy, and system design, toward robust, trustworthy, and socially beneficial human-AI ecosystems.",
+      "authors": [
+        "Asher Sprigler",
+        "Yang-Yang Feng",
+        "Iftach Amir",
+        "Jonathan E. Bogard",
+        "Todd S Braver",
+        "Yi Ding",
+        "David Kinney",
+        "Yixue Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-07-12T18:23:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.10871v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM alignment framework for mental health using contemplative principles",
+      "llm_evidence_cn": "利用静观原则的心理健康大语言模型对齐框架",
+      "llm_evidence": "利用静观原则的心理健康大语言模型对齐框架",
+      "canonical_evidence": "利用静观原则的心理健康大语言模型对齐框架",
+      "llm_tldr_en": "Proposes a modular evaluation framework for aligning LLMs with contemplative principles, initially targeted at mental health applications.",
+      "llm_tldr_cn": "大语言模型在心理健康领域的对齐至关重要，但现有评估方法孤立且难以泛化。本文提出模块化可扩展的评估框架，将静观原则（正念、慈悲等）融入LLM对齐。初始聚焦心理健康领域，旨在系统评估和增强LLM的伦理行为。为LLM在心理健康的安全应用奠定基础。",
+      "llm_tldr": "大语言模型在心理健康领域的对齐至关重要，但现有评估方法孤立且难以泛化。本文提出模块化可扩展的评估框架，将静观原则（正念、慈悲等）融入LLM对齐。初始聚焦心理健康领域，旨在系统评估和增强LLM的伦理行为。为LLM在心理健康的安全应用奠定基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "How do large language models impact sleep and mental health",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.11530v1",
+      "source": "arxiv",
+      "title": "Learning Residual Kinematic Corrections for Continuous Neural Decoding via Reinforcement Learning",
+      "abstract": "Decoding continuous three-dimensional (3D) motor imagery (MI) using non-invasive electroencephalography (EEG)-based brain--computer interfaces (BCIs) remains challenging due to signal variability and residual decoding errors. Deep learning architectures such as convolutional neural network--long short-term memory (CNN--LSTM) models can capture spatial and temporal dynamics for continuous kinematic decoding; however, systematic residual errors persist in predicted trajectories. We propose a two-stage decoding framework that applies reinforcement learning (RL) to perform residual kinematic correction on the outputs of a CNN--LSTM decoder (CNN--LSTM--RL). The RL agent is trained offline without direct EEG input and instead operates on predicted kinematic trajectories to optimize movement accuracy relative to target trajectories. Decoding performance was quantified using Pearson correlation coefficients ($r$) and Root Mean Square Errors (RMSE) along the $x, y$, and $z$ axes. Compared to CNN--LSTM applied alone, CNN--LSTM--RL improved the mean correlation from $0.5076$ to $0.7181$ ($p = 0.0005$) in 2D and from $0.6420$ to $0.7780$ ($p = 0.0059$) in VR, with relative gains of $41.5\\%$ and $21.2\\%$, respectively. Correspondingly, RMSE was reduced from $0.0890$ to $0.0532$ (2D, $p < 0.0001$) and from $0.0714$ to $0.0441$ (VR, $p < 0.0001$), representing relative reductions of $40.2\\%$ and $38.2\\%$. These findings demonstrate that this scalable framework enhances 3D BCI MI decoding by correcting kinematic errors via offline residual RL without extra neural data, advancing neurorehabilitation, prosthetics, and virtual interaction.",
+      "authors": [
+        "Jiamian Li",
+        "Niall McShane",
+        "Attila Korik",
+        "Naomi du Bois",
+        "Karl McCreadie",
+        "Leen Jabban",
+        "Benjamin Metcalfe",
+        "Özgür Şimşek",
+        "Damien Coyle"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T13:15:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.11530v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-based BCI with deep learning and reinforcement learning",
+      "llm_evidence_cn": "基于EEG的脑机接口结合深度学习和强化学习",
+      "llm_evidence": "基于EEG的脑机接口结合深度学习和强化学习",
+      "canonical_evidence": "基于EEG的脑机接口结合深度学习和强化学习",
+      "llm_tldr_en": "Proposes a CNN-LSTM decoder with reinforcement learning residual correction for continuous 3D motor imagery decoding from EEG, improving trajectory accuracy.",
+      "llm_tldr_cn": "针对非侵入式脑电信号解码连续三维运动想象中的残差误差问题，提出一种两阶段解码框架，结合CNN-LSTM和强化学习进行残差运动修正。实验表明，该框架有效减少了轨迹预测的系统性误差，提升了脑机接口在运动解码任务中的性能，为基于EEG的神经假肢控制提供了新思路。",
+      "llm_tldr": "针对非侵入式脑电信号解码连续三维运动想象中的残差误差问题，提出一种两阶段解码框架，结合CNN-LSTM和强化学习进行残差运动修正。实验表明，该框架有效减少了轨迹预测的系统性误差，提升了脑机接口在运动解码任务中的性能，为基于EEG的神经假肢控制提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.11578v1",
+      "source": "arxiv",
+      "title": "DiffEEG: A Self-Supervised Denoising Diffusion Model for Learning EEG Generic Representations",
+      "abstract": "Deep learning for EEG-based seizure detection faces critical challenges: severe annotation scarcity and extreme class imbalance, where ictal events comprise less than 10\\% of clinical recordings. We present DiffEEG, a 9.6M-parameter self-supervised foundation model that addresses both limitations through denoising diffusion pre-training and reinforcement learning (RL)-based fine-tuning. Pre-trained on 1.3M unlabeled segments from the Temple University Hospital Seizure Corpus (TUHSZ), DiffEEG learns generic neural representations via a 1D U-Net with multi-head self-attention. For downstream adaptation, a reinforced decision layer employs policy gradient optimization to directly maximize F1-score, prioritizing sensitivity to rare seizure events over overall accuracy. Under strict patient-wise evaluation (279 patients, Leave-One-Fold-Out), DiffEEG achieves 61\\% accuracy and 59\\% F1 for 4-class seizure subtyping, and 81\\% accuracy with 85\\% weighted F1 for binary detection, maintaining clinically viable seizure recall (59\\%) despite extreme imbalance (6.7\\% prevalence). Segment-level evaluation establishes an upper bound of 97.6\\% accuracy, confirming strong architectural capacity. DiffEEG demonstrates that diffusion-based pre-training combined with metric-aware reinforcement learning enables clinically deployable seizure monitoring with minimal labeled data requirements.",
+      "authors": [
+        "Abdulkader Helwan",
+        "Lina Abou-Abbas",
+        "Hussein El Amouri",
+        "Belkacem Chikhaoui",
+        "Khadidja Henni"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV",
+        "eess.SP"
+      ],
+      "published": "2026-07-13T13:59:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.11578v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Self-supervised diffusion model for EEG representation learning",
+      "llm_evidence_cn": "用于脑电表示学习的自监督扩散模型",
+      "llm_evidence": "用于脑电表示学习的自监督扩散模型",
+      "canonical_evidence": "用于脑电表示学习的自监督扩散模型",
+      "llm_tldr_en": "Proposes DiffEEG, a 9.6M-parameter self-supervised denoising diffusion model pre-trained on 1.3M EEG segments, fine-tuned with RL for seizure detection.",
+      "llm_tldr_cn": "脑电深度学习面临注释稀缺和类别不平衡问题。本文提出DiffEEG，一个9.6M参数的自监督去噪扩散基础模型，在130万无标签脑电片段上预训练，利用强化学习微调以直接优化F1分数，优先检测罕见癫痫事件。在癫痫检测任务上展现出优越性能，证明了自监督扩散模型在脑电表示学习中的潜力。",
+      "llm_tldr": "脑电深度学习面临注释稀缺和类别不平衡问题。本文提出DiffEEG，一个9.6M参数的自监督去噪扩散基础模型，在130万无标签脑电片段上预训练，利用强化学习微调以直接优化F1分数，优先检测罕见癫痫事件。在癫痫检测任务上展现出优越性能，证明了自监督扩散模型在脑电表示学习中的潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-10-22-684047-v2",
+      "source": "biorxiv",
+      "title": "Tokenizing single-cell transcriptomes as a native language for large language models",
+      "abstract": "Large language models (LLMs) can process diverse forms of information once they are represented as tokens in a shared sequence space. However, single-cell transcriptomes remain a foreign modality to LLMs because they are continuous, high-dimensional molecular profiles rather than discrete linguistic units. Here, we propose CellTok, a tokenized single-cell language modeling approach that converts transcriptomic profiles into compact cellular token sequences and incorporates them into the vocabulary of a pretrained LLM. By representing cells as native tokens, CellTok enables cellular measurements, textual instructions, biological context, and multi-cell populations to be jointly processed within the same autoregressive modeling framework. Across diverse tasks, CellTok enable LLMs to recognize individual cells, interpret homogeneous and heterogeneous cell populations, infer disease-associated cellular states, predict cell-cell communication, model developmental trajectories, and generate cellular states. Moreover, prompt-based experiments show that providing appropriate biological context improves performance, indicating that CellTok can leverage LLM knowledge and contextual reasoning to support cellular data interpretation. These results demonstrate that single-cell transcriptomes can be transformed from a foreign molecular modality into a native language for LLMs, establishing a unified interface for modeling cells, populations, and biological knowledge in a shared token space.",
+      "authors": [
+        "Xiao, C.",
+        "Ding, Y.",
+        "Bian, H.",
+        "Chen, Y.",
+        "Wei, L.",
+        "Zhang, X."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-07-11T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.10.22.684047v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "using LLM to process single-cell transcriptomes via tokenization",
+      "llm_evidence_cn": "使用大语言模型通过标记化处理单细胞转录组",
+      "llm_evidence": "使用大语言模型通过标记化处理单细胞转录组",
+      "canonical_evidence": "使用大语言模型通过标记化处理单细胞转录组",
+      "llm_tldr_en": "CellTok tokenizes single-cell transcriptomes into cell token sequences for LLM processing, enabling joint analysis of cellular data and textual instructions within the same autoregressive framework.",
+      "llm_tldr_cn": "针对单细胞转录组作为连续高维分子谱难以被大语言模型直接处理的问题，本文提出CellTok方法，将转录组数据压缩为紧凑的细胞标记序列，并嵌入预训练大语言模型的词汇表中。这使得细胞测量、文本指令和生物上下文能在同一自回归框架中联合处理，扩展了大语言模型在单细胞组学中的应用。",
+      "llm_tldr": "针对单细胞转录组作为连续高维分子谱难以被大语言模型直接处理的问题，本文提出CellTok方法，将转录组数据压缩为紧凑的细胞标记序列，并嵌入预训练大语言模型的词汇表中。这使得细胞测量、文本指令和生物上下文能在同一自回归框架中联合处理，扩展了大语言模型在单细胞组学中的应用。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10245v1",
+      "source": "arxiv",
+      "title": "PTEI: Integrating Personality Traits to Enhance Emotional Intelligence in Large Language Models",
+      "abstract": "Despite advances in Emotional Intelligence (EI), Large Language Models (LLMs) still significantly underperform humans in complex emotional reasoning. This gap originates partly from the limited incorporation of individual differences, particularly personality traits, which are fundamental to human emotional inference. To address this, we propose PTEI, a novel framework for integrating Personality Traits into Emotional Intelligence tasks using LLMs. In PTEI, MBTI and OCEAN personality traits are first extracted directly from the given emotional scenarios and then utilized as contextual knowledge within personality-aware prompts, guiding LLMs to accurately infer emotions and their underlying causes. To ensure optimal contextual grounding, we employ Contrastive Learning to construct an optimized retrieval system that surfaces emotionally and personally aligned scenarios, enhancing reasoning quality. Extensive experiments on established EI benchmarks show that PTEI enhances the Emotional Understanding (EU) capabilities of various LLMs, with the strongest improvement observed in GPT models. Combining PTEI with Chain-of-Thought (CoT) reasoning yields an additional 4 percent increase in accuracy. These findings underscore PTEI's contribution toward advancing AI systems with more sophisticated social and psychological grounding.",
+      "authors": [
+        "Amir Reza Jafari",
+        "Praboda Rajapaksha",
+        "Reza Farahbakhsh",
+        "Noel Crespi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-07-11T10:20:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.10245v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes PTEI framework integrating personality traits into LLMs for emotional intelligence",
+      "llm_evidence_cn": "提出PTEI框架，将人格特征融入大语言模型以提升情绪智能",
+      "llm_evidence": "提出PTEI框架，将人格特征融入大语言模型以提升情绪智能",
+      "canonical_evidence": "提出PTEI框架，将人格特征融入大语言模型以提升情绪智能",
+      "llm_tldr_en": "PTEI integrates personality traits into LLMs to improve emotional reasoning, addressing a key gap in current LLM performance.",
+      "llm_tldr_cn": "针对大语言模型在复杂情绪推理上表现不足的问题，本文提出PTEI框架，从情感场景中提取MBTI和OCEAN人格特征并用于提示词，引导大语言模型准确推断情绪及其原因。该方法显著提升了情绪智能任务的表现，推动了大语言模型在情感计算和人机交互中的应用。",
+      "llm_tldr": "针对大语言模型在复杂情绪推理上表现不足的问题，本文提出PTEI框架，从情感场景中提取MBTI和OCEAN人格特征并用于提示词，引导大语言模型准确推断情绪及其原因。该方法显著提升了情绪智能任务的表现，推动了大语言模型在情感计算和人机交互中的应用。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.09278v1",
+      "source": "arxiv",
+      "title": "Structural Brain Predictors of Visual Attention Gradient Modulated by Trait Anxiety",
+      "abstract": "Dynamic allocation of attention across the visual field, quantified as a visuospatial attention gradient, is essential for maintaining perceptual breadth. Disruptions to this flexibility may contribute to altered spatial attentional bias and may be influenced by trait anxiety. We investigated whether individual differences in structural brain morphology predict spatial attentional deployment as a function of trait anxiety. Sixty participants, recruited based on an a priori sample size calculation, completed a visuospatial attention gradient task incorporating brief partial facial emotion cues. Although discrete emotional cues did not significantly modulate attention gradients, structural neuroimaging analyses revealed that greater grey matter volume in bilateral cerebellar lobule VI and increased cortical thickness in the left precentral gyrus and paracentral lobule were associated with reduced interaction between the magnitude of the spatial attention gradient (averaged across emotions) and trait anxiety. Machine-learning models further predicted individual attention-anxiety profiles from these neuroanatomical features. These findings suggest that greater structural integrity in cerebellar and sensorimotor regions is associated with more flexible spatial attentional deployment in individuals with lower trait anxiety. Together, the results highlight the contribution of cerebellar and sensorimotor regions, beyond their traditional motor functions, to individual differences in visual spatial attention and cognitive-affective interactions, while demonstrating the predictive utility of structural brain markers.",
+      "authors": [
+        "Suhail Rafiq Mir",
+        "Dolcy Dhar",
+        "Ishita Singh",
+        "Prakrati Gupta",
+        "Varsha Singh",
+        "Mrinmoy Chakrabarty"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC"
+      ],
+      "published": "2026-07-10T10:47:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.09278v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "trait anxiety and mental health, structural neuroimaging",
+      "llm_evidence_cn": "特质焦虑与心理健康，结构神经影像",
+      "llm_evidence": "特质焦虑与心理健康，结构神经影像",
+      "canonical_evidence": "特质焦虑与心理健康，结构神经影像",
+      "llm_tldr_en": "This study finds that gray matter volume in specific regions predicts visuospatial attention gradients modulated by trait anxiety, linking brain structure to anxiety-related attention bias.",
+      "llm_tldr_cn": "本研究探讨特质焦虑如何影响视觉空间注意梯度的动态分配，通过结构神经影像分析发现，特定脑区的灰质体积可预测注意梯度。尽管情绪线索未显著调节注意，但结果揭示了焦虑相关的注意偏倚与脑结构形态的关联，为焦虑障碍的神经基础提供证据。",
+      "llm_tldr": "本研究探讨特质焦虑如何影响视觉空间注意梯度的动态分配，通过结构神经影像分析发现，特定脑区的灰质体积可预测注意梯度。尽管情绪线索未显著调节注意，但结果揭示了焦虑相关的注意偏倚与脑结构形态的关联，为焦虑障碍的神经基础提供证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.10678v1",
+      "source": "arxiv",
+      "title": "Personalized Emotional Intelligence in Generative AI through Symbolic Affective Reasoning",
+      "abstract": "Emotional intelligence enables humans to recognize emotions, infer their causes, reason about interventions, and modify their environment to achieve desired affective states. Despite recent advances in artificial intelligence (AI), current models remain largely limited to generating realistic content or performing semantic reasoning, with little capacity for understanding, predicting, and personalizing human emotional responses. Here we introduce Emotion-augmented geneRatiOn System (EROS), a hybrid AI framework that integrates symbolic reasoning with deep learning to enable personalized emotion augmentation through visual content. Leveraging large-scale image-emotion datasets, EROS discovers generalizable affective rules, identifies emotion-relevant image regions, and predicts context-aware visual modifications that preserve scene semantics while steering emotional responses toward desired targets. To account for individual variability, EROS incorporates an expandable memory bank that supports inference-time personalization without model fine-tuning, yielding interpretable emotional profiles and rapid adaptation to new users. Across extensive human psychophysics experiments, EROS elicits target emotional responses more effectively than state-of-the-art large multimodal models while adapting to individual affective preferences. Beyond affective computing, EROS provides a foundation for AI systems that can understand, reason about, and augment human cognitive states, with potential applications in mental health, adaptive media, education, and human-computer interaction.",
+      "authors": [
+        "Qing Lin",
+        "Mengmi Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-12T09:51:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.10678v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses symbolic reasoning and deep learning for personalized emotion augmentation, relevant to AI in mental health research",
+      "llm_evidence_cn": "结合符号推理与深度学习实现个性化情感增强，与AI在心理健康研究中的应用相关",
+      "llm_evidence": "结合符号推理与深度学习实现个性化情感增强，与AI在心理健康研究中的应用相关",
+      "canonical_evidence": "结合符号推理与深度学习实现个性化情感增强，与AI在心理健康研究中的应用相关",
+      "llm_tldr_en": "EROS integrates symbolic reasoning with deep learning to personalize emotion augmentation via visual content, discovering generalizable affective rules for generative AI.",
+      "llm_tldr_cn": "该论文针对当前AI模型在理解、预测和个性化人类情绪响应方面的不足，提出了情感增强生成系统（EROS），将符号规则与传统深度学习相结合。通过大规模图像-情感数据集，系统学习可泛化的情感规则，实现基于视觉内容的个性化情感增强。这为生成式AI赋予情感智能提供了新框架，促进了AI在心理健康等领域的应用。",
+      "llm_tldr": "该论文针对当前AI模型在理解、预测和个性化人类情绪响应方面的不足，提出了情感增强生成系统（EROS），将符号规则与传统深度学习相结合。通过大规模图像-情感数据集，系统学习可泛化的情感规则，实现基于视觉内容的个性化情感增强。这为生成式AI赋予情感智能提供了新框架，促进了AI在心理健康等领域的应用。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.10633v1",
+      "source": "arxiv",
+      "title": "Auditing Construct Overlap in Explainable Machine Learning: Evidence from Burnout-Depression Prediction Across Student Cohorts",
+      "abstract": "Explainable machine learning (XML) pipelines applied to composite mental health outcomes can produce apparently-robust, cross-population-stable risk hierarchies that are largely artefacts of how the outcome was constructed. We demonstrate this using an ElasticNet pipeline applied to 886 medical students at the University of Lausanne (primary cohort, 2022), validated across 2,580 longitudinal observations at three time points and 701 non-medical students from eight faculties; all three datasets share identical instruments. The pipeline produces a hierarchy in which trait anxiety and health satisfaction dominate wherever the outcome is measured, with Kendall $τ= 1.0$ for the top-two positions across all five evaluation sets and consistent transfer performance ($R^2$: 0.41-0.49). Two residualization experiments, which isolate shared variance between correlated variables via regression, reveal the mechanism: when trait anxiety (STAI-T) is residualized against the co-included depression subscale (CES-D, $r = 0.72$), model $R^2$ drops from 0.41 to 0.16 and STAI-T falls from rank 1 to rank 6; when burnout subscales are residualized against CES-D, $R^2$ collapses to 0.016. Prediction intervals average 35.4 units on a 0-100 scale (2.4 outcome standard deviations), independently ruling out individual-level deployment. The residualization protocol is the paper's transferable contribution: any XAI study combining correlated predictor and outcome constructs should apply this check before interpreting apparent stability as a finding.",
+      "authors": [
+        "Alireza Dehghan",
+        "Negin Ashrafi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-12T07:56:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.10633v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "explainable ML for burnout-depression prediction, directly relevant to mental health studies",
+      "llm_evidence_cn": "可解释机器学习用于倦怠-抑郁预测，直接相关心理健康研究",
+      "llm_evidence": "可解释机器学习用于倦怠-抑郁预测，直接相关心理健康研究",
+      "canonical_evidence": "可解释机器学习用于倦怠-抑郁预测，直接相关心理健康研究",
+      "llm_tldr_en": "Auditing construct overlap in explainable ML for burnout-depression prediction reveals that stable risk hierarchies may be artifacts of outcome construction.",
+      "llm_tldr_cn": "可解释机器学习在复合心理健康结局中可能产生伪稳健的风险层级。本文使用弹性网络在886名医学生及多队列验证中发现，焦虑和健康满意度始终占据主导地位，这并非真实风险因素，而是构念重叠的产物。该研究警示心理健康预测中构念构建的重要性。",
+      "llm_tldr": "可解释机器学习在复合心理健康结局中可能产生伪稳健的风险层级。本文使用弹性网络在886名医学生及多队列验证中发现，焦虑和健康满意度始终占据主导地位，这并非真实风险因素，而是构念重叠的产物。该研究警示心理健康预测中构念构建的重要性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.10451v1",
+      "source": "arxiv",
+      "title": "Threat Vectors and the State of the Art in Defense Methods for Security in Neurotechnology",
+      "abstract": "Brain-computer interfaces (BCIs) are a class of diverse hardware modalities, associated software, and connected devices which are widely used in a variety of fields, including neurosurgery, biomedical data analysis, and neuroimaging. Recent years have seen rapid advancements in BCI technology, and neurotechnology more broadly, with the first devices now passing clinical trials, early examples of consumer hardware entering the market, and many variants of consumer and medical hardware with increasingly extensive capabilities being developed rapidly. However, research and development in security for BCIs--known as neurosecurity--lags significantly behind the capabilities of BCIs themselves. In an effort to address as many vulnerabilities as feasible immediately, in this paper we review the current state of the art in neurosecurity, thoroughly survey the breadth and complexity of both firmly established and highly probable security threats to BCI systems, and provide recommendations of existing methods from cybersecurity, hardware security, and machine learning which can immediately be applied to address some of these gaps in neurosecurity.",
+      "authors": [
+        "Bryce-Allen Bagley",
+        "Nathaniel Rose",
+        "Quintus Kilbourn",
+        "Matthew Canham"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.ET",
+        "cs.HC",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-11T19:28:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.10451v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Survey of security threats and defenses for brain-computer interfaces",
+      "llm_evidence_cn": "脑机接口安全威胁与防御综述",
+      "llm_evidence": "脑机接口安全威胁与防御综述",
+      "canonical_evidence": "脑机接口安全威胁与防御综述",
+      "llm_tldr_en": "Comprehensive survey on neurosecurity, covering threat vectors and defense methods for BCI hardware, software, and connectivity.",
+      "llm_tldr_cn": "脑机接口技术快速发展，但神经安全性研究严重滞后。本文系统回顾了BCI中的安全威胁向量（硬件、软件、连接）及最先进的防御方法。涵盖医疗和消费级BCI，强调了神经安全的紧迫性。为BCI领域的安全研究提供了全面参考。",
+      "llm_tldr": "脑机接口技术快速发展，但神经安全性研究严重滞后。本文系统回顾了BCI中的安全威胁向量（硬件、软件、连接）及最先进的防御方法。涵盖医疗和消费级BCI，强调了神经安全的紧迫性。为BCI领域的安全研究提供了全面参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-07-736915-v1",
+      "source": "biorxiv",
+      "title": "Assessment of sensorimotor cortical beta oscillations from peripheral electromyography and force recordings",
+      "abstract": "The beta oscillations of the human primary sensorimotor cortex (SM1) play a crucial role in regulating motor and cognitive behavior in health and disease. However, their assessment relies on costly and complex neuroimaging techniques, limiting scalability and translational applications. We present a novel method for assessing beta oscillations from easily obtained peripheral electromyography and force recordings. We show that movement-induced modulations in SM1 beta oscillations can be assessed from the electromyography or force recordings of a contracted contralateral hand muscle. We demonstrate the fidelity of this method in young and elderly healthy participants and in Parkinson's disease patients. We also demonstrate that the resting-state SM1 beta interhemispheric coupling can be assessed from an interhand coupling between the electromyography or force of contracted homologous hand muscles. This methodology enables scalable and cost-effective investigations of beta oscillations for all fields of human neuroscience and for the development of accessible disease/therapeutic markers.",
+      "authors": [
+        "Georgiev, C.",
+        "Cabaraux, P.",
+        "Yanguma Munoz, N.",
+        "Digileva, D.",
+        "Mongold, S. J.",
+        "Wens, V.",
+        "Hakkak Moghadam Torbati, A.",
+        "Moumdjian, L.",
+        "Naeije, G.",
+        "De Tiege, X.",
+        "Bourguignon, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-11T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.07.736915v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "peripheral assessment of cortical beta oscillations via EMG and force",
+      "llm_evidence_cn": "通过外周肌电图和力记录评估皮层beta振荡",
+      "llm_evidence": "通过外周肌电图和力记录评估皮层beta振荡",
+      "canonical_evidence": "通过外周肌电图和力记录评估皮层beta振荡",
+      "llm_tldr_en": "Presents a novel method to assess sensorimotor cortical beta oscillations from peripheral EMG and force recordings, validated in young, elderly, and Parkinson's patients, offering a scalable alternative to neuroimaging.",
+      "llm_tldr_cn": "该论文提出一种从外周肌电图和力记录中评估感觉运动皮层beta振荡的新方法，在健康年轻、老年及帕金森患者中验证了其准确性，为神经振荡评估提供了低成本、可扩展的替代方案，与EEG信号处理方法互补。",
+      "llm_tldr": "该论文提出一种从外周肌电图和力记录中评估感觉运动皮层beta振荡的新方法，在健康年轻、老年及帕金森患者中验证了其准确性，为神经振荡评估提供了低成本、可扩展的替代方案，与EEG信号处理方法互补。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-02-20-706969-v3",
+      "source": "biorxiv",
+      "title": "From Variability to Synchrony: Non-linear Development of Auditory Neural Responses During the First Year of Life",
+      "abstract": "In humans, the first year of life is characterized by rapid developmental changes, including substantial brain maturation. As a result, neural responses to auditory stimuli undergo marked changes during this period. In this study, we followed 69 infants across their first year of life and recorded high-density electroencephalography (hdEEG) at 2 weeks, 6 months, and 12 months postpartum. Infants were presented with pure beep tones to examine the development of neural responses to auditory stimulation. We analysed event-related potentials (ERPs), inter-trial phase coherence (ITPC), and time-frequency (TF) responses to the beep tones and controlled for arousal state during stimulus presentation. We found that with increasing age, neural responses became more pronounced and showed reduced trial-to-trial variability. Phase synchronization increased from 2 weeks to later developmental stages in a broad low-frequency range (0 to 11 Hz), indicating improved temporal alignment of brain responses over time. However, phase synchronization decreased from 6 to 12 months, suggesting a developmental transition towards more differentiated brain activity. Taken together, these findings demonstrate that auditory maturation during the first year of life follows a non-linear trajectory driven by dynamic changes in neural synchronization, reflecting the progressive refinement of functional neural circuits. Our results thus provide a critical benchmark for understanding the neural dynamics underlying sensory development during this period.",
+      "authors": [
+        "Reisenberger, E.",
+        "Schabus, M.",
+        "Florea, C.",
+        "Angerer, M.",
+        "Reimann-Ayiköz, M.",
+        "Preiss, J.",
+        "Roehm, D.",
+        "Heib, D. P. J.",
+        "Fazelnia, C.",
+        "Ameen, M. S."
+      ],
+      "primary_category": "developmental biology",
+      "categories": [
+        "developmental biology"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.02.20.706969v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "High-density EEG analysis of auditory development across first year",
+      "llm_evidence_cn": "高密度脑电分析婴儿第一年听觉发育",
+      "llm_evidence": "高密度脑电分析婴儿第一年听觉发育",
+      "canonical_evidence": "高密度脑电分析婴儿第一年听觉发育",
+      "llm_tldr_en": "Longitudinal hdEEG study (69 infants) tracks non-linear development of auditory neural responses from 2 weeks to 12 months using ERPs, ITPC, and TF analysis.",
+      "llm_tldr_cn": "婴儿第一年大脑快速发育，听觉神经反应变化显著。本文对69名婴儿在出生后2周、6个月、12个月时进行高密度脑电记录，分析纯音诱发的ERP、ITPC和时频响应。发现听觉反应从早期变异逐渐转向同步化，呈现非线性发展模式。为理解婴幼儿听觉系统发育提供了重要脑电证据。",
+      "llm_tldr": "婴儿第一年大脑快速发育，听觉神经反应变化显著。本文对69名婴儿在出生后2周、6个月、12个月时进行高密度脑电记录，分析纯音诱发的ERP、ITPC和时频响应。发现听觉反应从早期变异逐渐转向同步化，呈现非线性发展模式。为理解婴幼儿听觉系统发育提供了重要脑电证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-08-737184-v1",
+      "source": "biorxiv",
+      "title": "Testing the Cross-Paradigm Convergence of Behavioral and Neural Measures of Attention",
+      "abstract": "Attention abilities, that are critical for most real-life cognitive task, can vary greatly across individuals. A plethora of behavioral and neural metric are commonly utilized to quantify attention; however, these often yield inconsistent and non-replicable results, raising questions as to which measures reliably account for and capture individual differences. To address this tension, here we employed a within-subject cross-paradigm design and quantified both behavioral and EEG-based neural measures associated with attention functioning, to test which measures converged across a gradient of artificial and ecological tasks. We found Inter-Subject Correlation (ISC), which quantifies the similarity in the pattern of neural response across individuals, captured consistent individual differences across both an artificial (Auditory Oddball) and ecological (Attention to Speech) task, with some correlation with performance. Moreover, we found that P300 neural responses to surprising events were qualitatively similar across artificial and ecological tasks, supporting their generalization across contexts. Interestingly, traditional cognitive-behavioral measures of attention - both from speeded response-time tasks and self-report of ADHD symptoms (ASRS) were not correlated with each other nor did they explain variance in neural metrics, nor were they explained by variation in general cognitive abilities (working memory or fluid intelligence). While these results demonstrate the shortcomings of many established measures of attention to generalize across contexts, they also point to the potential of neural measures, and specifically ISC, to serve as reliable indicators of individual differences and to bridge the gap between artificial and ecological studies of attention functioning.",
+      "authors": [
+        "Waxman, R.",
+        "Levy, O.",
+        "Okada, S.",
+        "Zion Golumbic, E."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-13T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.08.737184v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG-based attention measures across paradigms",
+      "llm_evidence_cn": "跨范式脑电图注意力测量",
+      "llm_evidence": "跨范式脑电图注意力测量",
+      "canonical_evidence": "跨范式脑电图注意力测量",
+      "llm_tldr_en": "This study evaluates convergence of behavioral and EEG-based attention measures across paradigms, finding inter-subject correlation as a reliable metric.",
+      "llm_tldr_cn": "该研究采用被试内跨范式设计，定量比较行为和脑电图注意力指标的收敛性，发现被试间相关（ISC）是稳健的个体差异指标，为注意力测量的可靠性提供了实证。",
+      "llm_tldr": "该研究采用被试内跨范式设计，定量比较行为和脑电图注意力指标的收敛性，发现被试间相关（ISC）是稳健的个体差异指标，为注意力测量的可靠性提供了实证。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-08-737343-v1",
+      "source": "biorxiv",
+      "title": "Diffusion Latent Representations for Neural Decoding",
+      "abstract": "Neural decoding can be viewed as a representation learning problem in which neural activity is mapped into an intermediate representation before downstream reconstruction. The choice of intermediate representation influences both performance and learning difficulty. Here we developed a novel framework for studying how intermediate representation choice influences downstream learning and reconstruction. As a proof-of-concept, we instantiated our framework using diffusion latent representations extracted from different diffusion timesteps for neural speech decoding. Component-wise evaluation showed that reconstruction performance differed substantially across diffusion timesteps, with teacher-forced Word Error Rates of 44.7%, 7.5%, and 3.5% for different latent models. These results demonstrate that diffusion latent representations can serve as effective intermediate representations for learning from neural activity, but that their effectiveness depends strongly on the selected diffusion timestep. More broadly, our framework provides a basis for systematically studying how intermediate representation choice influences downstream learning and reconstruction.",
+      "authors": [
+        "Wong, B.",
+        "Laschowski, B."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-13T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.08.737343v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "diffusion latent representations for neural speech decoding",
+      "llm_evidence_cn": "扩散潜表示用于神经语音解码",
+      "llm_evidence": "扩散潜表示用于神经语音解码",
+      "canonical_evidence": "扩散潜表示用于神经语音解码",
+      "llm_tldr_en": "Develops a framework using diffusion latent representations at different timesteps for neural speech decoding, showing that the choice of timestep significantly affects reconstruction performance, with the best WER of 3.5%.",
+      "llm_tldr_cn": "该论文开发了一种利用不同扩散时间步的潜表示进行神经语音解码的框架，发现中间表示的选择对下游重建性能影响显著，最佳词错误率达3.5%。这为神经解码和脑机接口中的表示学习提供了新思路。",
+      "llm_tldr": "该论文开发了一种利用不同扩散时间步的潜表示进行神经语音解码的框架，发现中间表示的选择对下游重建性能影响显著，最佳词错误率达3.5%。这为神经解码和脑机接口中的表示学习提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-11-737996-v1",
+      "source": "biorxiv",
+      "title": "Prior Context Scaffolds Sentential Semantic Integration during Noisy Speech Comprehension",
+      "abstract": "Understanding speech in noise is a central challenge of everyday communication, yet listeners often succeed by using prior context. How the brain uses such context remains debated: it may refine predictions about upcoming words, or it may provide a higher-level framework that helps degraded speech cohere into meaning. Here we combined simultaneous EEG-fNIRS recording with hierarchical multivariate encoding models to track how prior context shapes speech processing from acoustics to words and sentential meaning. Participants listened to natural spoken narratives under clear speech, noisy speech, and context-supported noisy speech conditions. Context brought comprehension of noisy speech close to clear-speech levels. EEG revealed that contextual support reduced neural encoding of lexical surprisal and entropy, indicating weaker tracking of local word-level prediction demands. In contrast, when context was available, fNIRS showed enhanced encoding of sentence-level semantic integration across frontal regions and the right angular gyrus, and stronger angular gyrus encoding predicted better comprehension. By combining EEG and fNIRS to capture complementary electrophysiological and hemodynamic signals, this multimodal approach reveals a hierarchical shift in degraded speech comprehension: prior context does not simply improve word-by-word prediction, but scaffolds the integration of noisy input into coherent discourse.",
+      "authors": [
+        "Zhang, X.",
+        "Li, Z.",
+        "Zhang, D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-13T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.11.737996v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG encoding models of speech comprehension",
+      "llm_evidence_cn": "EEG编码模型研究语音理解",
+      "llm_evidence": "EEG编码模型研究语音理解",
+      "canonical_evidence": "EEG编码模型研究语音理解",
+      "llm_tldr_en": "Combines EEG-fNIRS with multivariate encoding models to show how prior context scaffolds sentential semantic integration in noise.",
+      "llm_tldr_cn": "本研究结合EEG-fNIRS同步记录与分层多变量编码模型，探究上下文如何支持噪声中的语音理解。实验包含三种条件：清晰语音、噪声语音和上下文支持的噪声语音。结果表明，上下文使噪声语音理解接近清晰水平，EEG揭示上下文促进了语义水平的整合。该研究为噪声环境下的认知增强方法提供了神经依据。",
+      "llm_tldr": "本研究结合EEG-fNIRS同步记录与分层多变量编码模型，探究上下文如何支持噪声中的语音理解。实验包含三种条件：清晰语音、噪声语音和上下文支持的噪声语音。结果表明，上下文使噪声语音理解接近清晰水平，EEG揭示上下文促进了语义水平的整合。该研究为噪声环境下的认知增强方法提供了神经依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
