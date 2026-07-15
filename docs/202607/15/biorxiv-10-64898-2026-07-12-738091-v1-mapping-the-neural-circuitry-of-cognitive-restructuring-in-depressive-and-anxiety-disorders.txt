@@ -1,0 +1,1754 @@
+Title: Mapping the neural circuitry of cognitive restructuring in depressive and anxiety disorders
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.12.738091v1.full.pdf
+
+Number of Pages: 25
+
+Markdown Content:
+Running head: COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+Title: Mapping the neural circuitry of cognitive restructuring in depressive and anxiety 7
+
+disorders 8
+
+9
+
+10 
+
+11 
+
+12 
+
+Author list: *Alec J Jamieson 1, Trevor Steward 1,2 , Kim L Felmingham 2, Christopher G 13 
+
+Davey 1, Sevil Ince 1,2 , James A Agathos 1,3 , Bradford A Moffat 4, Rebecca K Glarin 4, Ben J 14 
+
+Harrison 1
+
+15 
+
+Affiliations: 1 Department of Psychiatry, The University of Melbourne, Parkville, Australia 16  
+
+> 2
+
+Melbourne School of Psychological Sciences, The University of Melbourne, Parkville, 17 
+
+Australia 18  
+
+> 3
+
+Centre for Mental Health and Brain Sciences, Swinburne University of Technology, 19 
+
+Hawthorn, Australia 20  
+
+> 4
+
+The Melbourne Brain Centre Imaging Unit, Department of Radiology, The University of 21 
+
+Melbourne, Parkville, Australia 22 
+
+23 
+
+24 
+
+25 
+
+26 
+
+27 
+
+*Corresponding author: Dr Alec Jamieson. Department of Psychiatry, The University of 28 
+
+Melbourne. Level 3, 161 Barry St. Carlton, VIC 3053. Email: alec.jamieson@unimelb.edu.au 29 
+
+Keywords: Emotion regulation; Effective connectivity; Depressive disorders; Anxiety 30 
+
+disorders 31 
+
+Word count: 3998 32 
+
+33 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+2
+
+Abstract 34 
+
+Background: Cognitive restructuring, the process of identifying and challenging negative 35 
+
+thoughts, is a key technique for treating depressive and anxiety disorders. Although 36 
+
+neuroimaging studies have characterised the brain systems supporting cognitive restructuring 37 
+
+in healthy individuals, it remains unclear how these systems are altered in depression and 38 
+
+anxiety, or whether each disorder is associated with distinct neural dysfunction. 39 
+
+Methods: Seventy-three clinical participants with depressive or anxiety disorders and 70 40 
+
+healthy controls completed a cognitive restructuring paradigm during 7 Tesla functional 41 
+
+magnetic resonance imaging (fMRI). The task required participants to either repeat a series of 42 
+
+negative statements or challenge them using Socratic questioning. Group-level fMRI analyses 43 
+
+examined the effects of depressive and anxiety symptom severity on brain activation, while 44 
+
+dynamic causal modelling characterized the directional neural influences between implicated 45 
+
+regions. 46 
+
+Results: During challenging compared to repeating statements, greater depressive symptoms 47 
+
+were associated with reduced dorsolateral prefrontal cortex (dlPFC) activation. Conversely, 48 
+
+greater anxiety symptoms were associated with greater dlPFC activation. Effective 49 
+
+connectivity results revealed that depressive symptoms were associated with greater 50 
+
+inhibition from the ventrolateral prefrontal cortex (vlPFC) to the ventromedial prefrontal 51 
+
+cortex, whereas anxiety symptoms were associated with greater excitation from the dlPFC to 52 
+
+amygdala and greater inhibition from the vlPFC to amygdala. 53 
+
+Conclusions: While clinical participants modified negative beliefs as effectively as healthy 54 
+
+controls, depressive and anxiety symptoms were associated with dissociable neural signatures 55 
+
+during restructuring. This suggests that cognitive behavioral therapy may engage partially 56 
+
+distinct mechanisms depending on symptom profile, a possibility that warrants longitudinal 57 
+
+investigation of treatment response. 58 
+
+59 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+3
+
+Cognitive models of depression and anxiety posit that deeply ingrained negative beliefs are 60 
+
+core features in the development and maintenance of these disorders (1). Once activated by 61 
+
+subsequent stressors, these beliefs act to bias the processing of information (2-4). As a key 62 
+
+component of cognitive behavioral therapy (CBT), cognitive restructuring represents a 63 
+
+process that assists patients in identifying, evaluating, and modifying maladaptive automatic 64 
+
+thought patterns (5). Through this, cognitive restructuring represents a key therapeutic 65 
+
+mechanism underlying symptom improvement in depression and anxiety disorders. Although 66 
+
+often used interchangeably, cognitive restructuring and cognitive reappraisal differ in their 67 
+
+primary targets. Reappraisal explicitly regulates emotion by reinterpreting a stimulus (6), 68 
+
+whereas cognitive restructuring modifies underlying automatic thought patterns, with changes 69 
+
+in affect emerging as a downstream consequence. Consequently, while cognitive restructuring 70 
+
+likely shares neural systems with reappraisal, its heavier reliance on self-referential 71 
+
+processing implicates circuitry that remains poorly characterised, thereby limiting the clinical 72 
+
+utility of current mechanistic models 73 
+
+Growing evidence indicates that cognitive restructuring involves complex interactions 74 
+
+between brain systems implicated in self-belief processing and affect regulation (7-10). The 75 
+
+ventromedial prefrontal cortex (vmPFC), as a core hub of the default mode network, is 76 
+
+central to these functions, including supporting cognitive representations of the self (11). This 77 
+
+role in self-referential processing is thought to reflect the vmPFC’s broader function in 78 
+
+encoding the subjective and affective value of stimuli (12-14). Affect regulation also appears 79 
+
+to be important for successful restructuring, as heightened negative affect limits the 80 
+
+integration of novel positive information needed to revise negative beliefs (15, 16), thereby 81 
+
+constraining belief updating. This regulation is supported by the cognitive control network, 82 
+
+which contributes to the metacognitive process that allows self-representations to become the 83 
+
+objects of attention (17). Within this network, the presupplementary motor area (preSMA) is 84 
+
+hypothesized to aid in strategy selection by modulating lateral prefrontal regions through its 85 
+
+roles in directing internal attention (18) and inhibitory control (19). The dorsolateral 86 
+
+prefrontal cortex (dlPFC) is subsequently suggested to maintain and manipulate strategy-87 
+
+relevant representations and regulatory goals in working memory (20), while the ventrolateral 88 
+
+prefrontal cortex (vlPFC) is more directly implicated in suppressing affective responses 89 
+
+during reappraisal (21). The regulatory influence of lateral prefrontal regions is, in turn, 90 
+
+thought to act on the amygdala (6). The relatively sparse anatomical connectivity between the 91 
+
+lateral prefrontal cortex and the amygdala (22-24), however, indicates that intermediary 92 
+
+regions including the vmPFC also play an important role in mediating this regulation (25-27). 93 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+4
+
+Given the central role of cognitive restructuring in the treatment of anxiety and 94 
+
+depressive disorders, growing research has sought to characterize dysfunction within this 95 
+
+circuitry and its relationship with symptom expression. Accordingly, widespread prefrontal 96 
+
+alterations have been shown across depressive and anxiety disorder studies investigating 97 
+
+representations of the self (28). Specifically, depression appears to be more strongly 98 
+
+associated with increased anterior cingulate cortex activation, whereas anxiety is associated 99 
+
+with increased insula and dlPFC activation (28). The clinical relevance of these activation 100 
+
+patterns is highlighted by the fact that CBT has been shown to normalize hyperactivation 101 
+
+across the dorsal anterior cingulate, dlPFC, and insula in anxiety disorders (29). Conversely, 102 
+
+the cognitive reappraisal and emotion regulation literature has reported reduced activity in the 103 
+
+dlPFC, vlPFC, and dorsal anterior cingulate cortex across both anxiety and depressive 104 
+
+disorders (30, 31), although more recent work has also yielded inconsistent findings (32, 33). 105 
+
+These inconsistencies may reflect the opposing effects of depressive and anxiety symptoms 106 
+
+being masked at the disorder level due to the high rates of comorbidity between these 107 
+
+conditions (34-36). Such symptom divergence has previously been observed during 108 
+
+interoceptive processing, where anxiety and depressive symptoms demonstrated opposing 109 
+
+neural associations (37), highlighting the need for dimensional approaches to resolve 110 
+
+apparent neural heterogeneity. 111 
+
+To address this, we examined the neurocircuitry of cognitive restructuring in a 112 
+
+transdiagnostic clinical sample, predominantly with anxiety and depressive disorders, using 7-113 
+
+Tesla (7T) fMRI and a novel cognitive restructuring task (38). We assessed both task-evoked 114 
+
+activation and dynamic causal modelling (DCM; 39) to characterize how depressive and 115 
+
+anxiety symptoms were differentially associated with regional activity and directional 116 
+
+influences among prefrontal-subcortical regions. We hypothesized that depressive symptoms 117 
+
+would be associated with hypoactivation of the dlPFC and vlPFC (30, 31) and reduced 118 
+
+inhibitory connectivity from lateral prefrontal regions to the amygdala (40), with the vmPFC 119 
+
+serving as the principal mediating node. Conversely, we hypothesized that anxiety symptoms 120 
+
+would be associated with greater activity in the insula, amygdala, and dlPFC (28), alongside 121 
+
+greater inhibitory prefrontal-to-amygdala connectivity (41), also routed through the vmPFC. 122 
+
+123 
+
+Methods 124 
+
+Participants 125 
+
+A transdiagnostic sample of 82 clinical participants with symptoms of depression and anxiety 126 
+
+were recruited from The University of Melbourne Psychology Clinic and the School of 127 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+5
+
+Psychological Sciences. Participants were assessed using the Diagnostic Interview for 128 
+
+Anxiety, Mood, and OCD and Related Neuropsychiatric Disorders (42) to identify those who 129 
+
+met DSM-5 diagnostic criteria for a depressive and/or anxiety disorder. Participants meeting 130 
+
+criteria for a stress and/or eating disorder were also included, given the high level of 131 
+
+depressive and anxiety symptoms present in these conditions (43, 44). Exclusion criteria for 132 
+
+this group included meeting criteria for psychosis, bipolar disorder, paraphilic disorder, 133 
+
+dissociative disorder, conduct disorder, or being actively suicidal. 134 
+
+In addition, we recruited 88 healthy control participants through online 135 
+
+advertisements. These participants had no current or past diagnosis of a mental health 136 
+
+disorder as assessed through the Mini-International Neuropsychiatric Interview-7 (45). All 137 
+
+participants included in this study were aged 18 to 40 years, fluent English speakers, had no 138 
+
+MRI contraindications, and possessed normal or corrected-to-normal vision. Prior to 139 
+
+participation, and following a complete description of the study protocol, all participants 140 
+
+provided written informed consent. The University of Melbourne Human Research and 141 
+
+Ethics Committee approved this study and its procedures. To assess symptom severity, the 142 
+
+Depression, Anxiety, and Stress Scale (DASS) was administered, and subscale scores for 143 
+
+depression, anxiety, and stress-tension were obtained (46). 144 
+
+Of the original sample, twenty-seven participants were excluded: eight for technical 145 
+
+issues during acquisition (three controls, five clinical), ten for non-completion or incorrect 146 
+
+completion of the fMRI paradigm (eight controls, two clinical), and nine for excessive head 147 
+
+movement during scanning (seven controls, two clinical; see Supplementary Methods for 148 
+
+details). The final sample comprised 70 healthy controls and 73 clinical participants. 149 
+
+150 
+
+Cognitive restructuring paradigm 151 
+
+All participants completed a previously detailed cognitive restructuring paradigm (10, 38). 152 
+
+Prior to scanning, participants were trained in cognitive restructuring techniques including 153 
+
+active rebuttal, reinterpretation, and perspective shifting, which use Socratic questioning to 154 
+
+challenge negative self-perceptions, akin to those employed in cognitive psychotherapy (47). 155 
+
+Once participants' proficiency was determined by the research staff, the paradigm was 156 
+
+administered during concurrent fMRI scanning. The cognitive restructuring task consisted of 157 
+
+a single run consisting of 16 blocks ( Fig. 1 ). Each block began with the on-screen 158 
+
+presentation of a negative self-cognition statement drawn from CBT and psychopathology 159 
+
+literature (Supplementary Table S1) (48, 49). Participants then indicated via button press 160 
+
+whether they would repeat or restructure the given statement using their pre-learned 161 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+6
+
+strategies, with instructions to balance the two across the run. After 9 seconds, the statement 162 
+
+reappeared and participants engaged in their chosen strategy for 12 seconds: either 163 
+
+restructuring the statement (Challenge condition) or repeating it (Repeat condition). This was 164 
+
+followed by a fixation period, which occurred for an average of 6 seconds, after which the 165 
+
+next block began with a new statement. The paradigm was developed and presented using E-166 
+
+Prime 3.0 software (Psychology Software Tools, Pittsburgh, PA). 167 
+
+168 
+
+169 
+
+Fig. 1 . Schematic representation of the cognitive restructuring task. For each block, a) 170 
+
+participants were first shown a negative statement for 4 seconds, then they had b) 9 seconds 171 
+
+to decide whether to challenge the statement using Socratic questioning techniques or repeat 172 
+
+the statement to themselves. After their choice, participants c) either cognitively restructured 173 
+
+or repeated the statement for 12 seconds. Finally, d) a jittered fixation cross was shown for an 174 
+
+average of 6 seconds. 175 
+
+176 
+
+Before and after the task, all participants rated their endorsement of each of the 16 177 
+
+negative statements on a 7-point self-report scale (1 = strongly disagree; 7 = strongly agree). To 178 
+
+assess the effectiveness of cognitive restructuring, pre- and post-scan endorsement levels of 179 
+
+negative self-beliefs were compared between groups using a mixed-model analysis of 180 
+
+variance (ANOVA), with time (pre vs post) as the within-subjects factor and group as the 181 
+
+between-subjects factor. We additionally investigated heart rate during the task to assess the 182 
+
+influence of task conditions on the functioning of the autonomic nervous system (see 183 
+
+Supplementary Materials for details). Heart rate is a sensitive marker of autonomic arousal 184 
+
+during emotional and cognitive processing (50). Altered physiological responses, including 185 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+7
+
+heart rate, to emotional and psychological stressors have also been observed in individuals 186 
+
+with elevated depressive symptoms (51). A linear mixed-effects model was therefore used to 187 
+
+examine the effects of condition and depressive and anxiety symptom severity on heart rate. 188 
+
+189 
+
+General linear modelling 190 
+
+Following preprocessing of the fMRI data (see Supplementary Methods), first-level general 191 
+
+linear model (GLM) analyses were conducted for each participant using SPM12. Regressors 192 
+
+for the challenge, repeat, and decide conditions were specified using the onsets and durations 193 
+
+of each block, convolved with a canonical hemodynamic response function. Physiological 194 
+
+noise regressors were then added to the GLM, and a high-pass filter (1/128 seconds) was 195 
+
+applied to account for low-frequency drifts. The FAST method was used to estimate temporal 196 
+
+autocorrelations due to its enhanced performance at short repetition times (52). Primary 197 
+
+contrast images from each participant (Challenge > Repeat and Challenge < Repeat) were 198 
+
+carried forward to second-level analyses using the summary statistics approach to random-199 
+
+effects analyses. At the second level, we modelled the three DASS subscales as separate 200 
+
+regressors within a single GLM to isolate the effects of each symptom domain, adjusting for 201 
+
+age and sex as covariates of no interest. To ensure that collinearity between regressors did not 202 
+
+bias the estimates, we examined the variance inflation factor (VIF) of the three DASS 203 
+
+subscales. This revealed a VIF of 2.1 for the depression subscale, 2.6 for the anxiety subscale, 204 
+
+and 2.9 for the stress subscale. As these values are under 5, this indicates an acceptable level 205 
+
+of collinearity between factors (53). 206 
+
+207 
+
+Dynamic causal modelling 208 
+
+DCM estimates the rate of change in the activity of a region as a function of activity in 209 
+
+another (i.e., effective connectivity, measured in Hertz; Hz). In task-based DCM, connectivity 210 
+
+is decomposed into a baseline component (intrinsic connectivity) and a component modulated 211 
+
+by the experimental condition of interest (54). Positive values are indicative of a putative 212 
+
+excitatory influence between regions, while negative values represent a putative inhibitory 213 
+
+influence. Self or within-region connections are conversely represented by unitless log 214 
+
+scaling parameters that modify the default inhibitory connectivity of -0.5 Hz. For these self-215 
+
+connections, positive values for these parameters are indicative of greater inhibition, whereas 216 
+
+negative values represent reduced inhibition. 217 
+
+218 
+
+Timeseries extraction, model specification, estimation and inference 219 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+8
+
+Our model space for DCM consisted of five regions of interest: the preSMA, dlPFC, vlPFC, 220 
+
+vmPFC, and amygdala ( Supplementary Fig. S1 ). These regions were chosen based on prior 221 
+
+evidence implicating them in cognitive restructuring for healthy individuals (38, 55). 222 
+
+Representative timeseries were extracted from each region at the subject-level following 223 
+
+published guidelines (54). For full details of the extraction methodology, see Supplementary 224 
+
+Methods. The candidate model was specified using DCM version 12.5 in SPM12. Intrinsic 225 
+
+connectivity was modelled as bidirectional between all regions, except between the preSMA 226 
+
+and amygdala, which was assumed to be mediated via other prefrontal areas, given their lack 227 
+
+of anatomical connection. Modulation by the Challenge condition was also specified across 228 
+
+these connections. The ‘Task’ condition (onset of all Challenge and Repeat blocks) was 229 
+
+defined as the driving input into the preSMA, given this region drove the largest input effect 230 
+
+in prior investigations (38). This input was additionally mean-centered, so that the intrinsic 231 
+
+connectivity represented the average connectivity. Parametric empirical Bayes (PEB) was 232 
+
+then used to estimate symptom-related effects on effective connectivity (for additional 233 
+
+estimation and inference details see Supplementary Methods). Leave-one-out cross-validation 234 
+
+(LOOCV) in the PEB framework was finally used to evaluate the ability of connectivity 235 
+
+parameters to predict individual differences in symptoms (Supplementary Methods and 236 
+
+Results). 237 
+
+238 
+
+Results 239 
+
+Demographic and behavioral results 240 
+
+No significant between-group differences were observed in age, sex, or handedness (Table 1). 241 
+
+As expected, clinical participants exhibited significantly higher symptom severity than 242 
+
+healthy controls across all three DASS subscales. Mann–Whitney U tests indicated 243 
+
+significant group differences for depression scores ( U = 4807.50, z = 9.12, p < .001), anxiety 244 
+
+scores ( U = 4566.50, z = 8.17, p < .001), and stress scores ( U = 4586.00, z = 8.22, p < .001). 245 
+
+Before scanning, participants rated their endorsement of each negative statement used 246 
+
+in the task. Clinical participants endorsed most statements more strongly than healthy 247 
+
+controls (Supplementary Results; Supplementary Fig. S2 ). After scanning, participants re-248 
+
+rated their endorsement of the negative statements. Endorsement of challenged statements 249 
+
+decreased significantly from pre- to post-paradigm ( F(1, 140) = 159.19, p < 0.001), 250 
+
+indicating that cognitive restructuring was successful. Although clinical participants endorsed 251 
+
+statements more strongly at both timepoints ( F(1, 140) = 93.88, p < 0.001), the group × time 252 
+
+interaction was not significant ( F(1, 140) = 1.39, p = 0.240), indicating that the magnitude of 253 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+9
+
+restructuring-related reduction did not differ between groups ( Fig. 2 ). There were no 254 
+
+significant correlations between pre-to-post changes in endorsement and either depression or 255 
+
+anxiety symptoms ( p = 0.104 and p = 0.070, respectively). 256 
+
+257 
+
+258 
+
+Fig. 2 . Violin plots depicting the change in challenged negative statement endorsement scores 259 
+
+from pre-scan to post-scan. Results show a significant difference between healthy controls 260 
+
+and clinical participants at both timepoints, as well as significant reductions following 261 
+
+challenging. Stars represent statistical significance after Bonferroni correction for multiple 262 
+
+comparisons, with **** representing p < 0.0001. 263 
+
+264 
+
+Heart rate results 265 
+
+There was a robust main effect of condition on heart rate, such that heart rate was 266 
+
+significantly higher during the Repeat condition relative to Challenge ( b = −0.86, t = −30.54, 267 
+
+P < .001). There was also a significant main effect of time, indicating a gradual decrease in 268 
+
+heart rate over the course of the trial ( b = −0.05, t = −17.10, p < .001). Neither anxiety nor 269 
+
+depression showed significant main effects on heart rate ( b = 0.58, t = 0.39, p = .697; β = 270 
+
+−2.33, t = −1.57, p = .119, respectively), however, significant interaction effects were 271 
+
+observed for both symptoms ( Fig. 3B ). Specifically, higher anxiety was associated with a 272 
+
+reduced condition effect on heart rate ( b = −0.11, t = −3.03, p = .002), indicating attenuated 273 
+
+heart rate differences between Repeat and Challenge as anxiety increased. In contrast, 274 
+
+depression showed a significant positive moderation of the condition effect ( b = 0.34, t =275 
+
+9.09, p < .001), suggesting that higher depressive severity amplified condition-related 276 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+10 
+
+differences in heart rate. For full results, see Supplementary Table S2. For analyses of group 277 
+
+and condition ( Fig. 3A ), including for the linear mixed-effects model, see Supplementary 278 
+
+Materials. 279 
+
+280 
+
+281 
+
+Fig. 3 . Task-related and symptom-modulated changes in heart rate. A) Mean heart rate over 282 
+
+time during the Repeat (Rep) and Challenge (Chal), stratified by Group (healthy controls 283 
+
+[HC] vs clinical participants [CP]), with shaded bands representing the standard error of the 284 
+
+mean. B) Model-derived estimates of the differential effect of condition (Challenge vs 285 
+
+Repeat) on heart rate as a function of symptom severity. Lines represent predicted effects 286 
+
+from the linear mixed-effects model. Positive values indicate a higher heart rate in the 287 
+
+Challenge condition relative to the Repeat condition. 288 
+
+289 
+
+General linear modelling results 290 
+
+We first characterized the broad activation pattern associated with cognitive restructuring by 291 
+
+examining regions more active during challenging than repeating negative statements 292 
+
+(Challenge > Repeat). Consistent with our previous work (8, 10, 38), we observed increased 293 
+
+activity in the preSMA extending to the dorsal anterior cingulate cortex, bilateral caudate 294 
+
+nucleus extending to the dorsomedial thalamus, cerebellum (right posterior lobe and vermis), 295 
+
+left supplementary motor area, left posterior dlPFC extending to the vlPFC, posterior 296 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+11 
+
+cingulate cortex extending to the retrosplenial cortex, bilateral temporal pole, vmPFC, and 297 
+
+left inferior parietal lobule ( Fig. 4 ). 298 
+
+Conversely, several brain regions displayed greater deactivation during challenging 299 
+
+compared to repeating negative statements (or alternatively stated, were more active during 300 
+
+repeating than challenging; Challenge < Repeat). These regions included the bilateral angular 301 
+
+gyrus extending to the posterior operculum, dorsal posterior cingulate cortex/precuneus, left 302 
+
+fusiform gyrus, right anterior vlPFC, bilateral posterior insula, and the amygdala ( Fig. 4 ). For 303 
+
+full results, see Supplementary Table S3 and S4. 304 
+
+305 
+
+306 
+
+Fig. 4 . Significant activation during challenging compared with repeating negative 307 
+
+statements. Shown are one-sample t-tests across all participants for Challenge > Repeat 308 
+
+(warm) and Challenge < Repeat (cool). Results were thresholded at PFDR < 0.001. Color bars 309 
+
+represent t-statistics. Results visualized on the “Synthesized_FLASH25” (500 μm, MNI 310 
+
+space) ex vivo template 101 . Left = Left. 311 
+
+312 
+
+Associations with symptom severity 313 
+
+Within the same model, we examined how each DASS subscale was associated with brain 314 
+
+activation during cognitive restructuring. Depressive symptoms were negatively associated 315 
+
+with activation of the inferior orbitofrontal cortex (peak: x=-2, y=27, z=-27; cluster size = 88; 316 
+
+t = 5.52) and the left dlPFC (peak: x=-48, y=22, z=27; cluster size = 88; t = 4.52). In 317 
+
+overlapping voxels of the left dlPFC, anxiety symptoms showed the opposite pattern, 318 
+
+being positively associated with activation (peak: x=-45, y=16, z=21; cluster size = 110; t =319 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+12 
+
+4.54; all clusters PFDR < 0.05, cluster-forming threshold p < 0.001; Fig. 5 ). No effect was 320 
+
+observed for the stress subscale. 321 
+
+322 
+
+323 
+
+Fig. 5. Significant associations with depressive and anxiety symptom severity and brain 324 
+
+activation during challenging compared with repeating negative statements. Positive 325 
+
+associations with anxiety symptom severity (warm) and negative associations with depressive 326 
+
+symptom severity (cool). No significant associations were observed with stress severity. P <327 
+
+0.001, FDR cluster-wise corrected. Color bars represent t-statistics. Results visualized on the 328 
+
+“Synthesized_FLASH25” (500 μm, MNI space) ex vivo template 101 . Left = Left. 329 
+
+330 
+
+Network modulation during cognitive restructuring 331 
+
+We next examined how these symptoms related to prefrontal–subcortical dynamics during 332 
+
+cognitive restructuring. Connectivity was estimated both during the challenging of negative 333 
+
+statements and intrinsically (non-modelled parts of the task; Supplementary Results). 334 
+
+Across all participants, challenging negative statements was associated with strong 335 
+
+excitatory modulation from the preSMA to the dlPFC, vlPFC and vmPFC, and from the 336 
+
+amygdala to dlPFC and vlPFC ( Fig. 6A ). Inhibitory modulation was observed from the dlPFC 337 
+
+to vlPFC and vmPFC, from the amygdala to vmPFC, and from both the vlPFC and vmPFC to 338 
+
+all other regions. Challenging negative statements, therefore, engaged both ‘top-down’ and ' 339 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+13 
+
+bottom-up’ pathways linking the preSMA and amygdala, though the dominant pattern was 340 
+
+one of prefrontal-driven inhibition of the amygdala 341 
+
+Depressive symptoms were associated with greater inhibition from the vlPFC to 342 
+
+vmPFC during challenging ( Fig. 6B and D), in a direction that was opposite to the intrinsic 343 
+
+connectivity between these regions (see Supplementary Results for intrinsic effects). 344 
+
+Conversely, anxiety symptoms were associated with reduced inhibition from the vmPFC to 345 
+
+the preSMA, greater excitation from the dlPFC to the amygdala, and greater inhibition from 346 
+
+the vlPFC to the amygdala ( Fig. 6C and E). In summary, depressive symptoms were 347 
+
+primarily associated with altered inhibition between prefrontal regions, whereas anxiety 348 
+
+symptoms were associated with a mixed pattern of reduced prefrontal inhibition and 349 
+
+enhanced 'top-down' cortical influence on the amygdala. 350 
+
+351 
+
+352 
+
+Fig. 6. Challenge related modulation of effective connectivity across healthy controls and 353 
+
+clinical participants. Adjacency matrices show the average effects observed in A) all 354 
+
+participants, B) the effect of depressive symptoms, and C) the effect of anxiety symptoms. 355 
+
+For A) red cells indicate excitatory connections, whereas blue cells indicate inhibitory 356 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+14 
+
+connections. For B) and C) these values add (red) to or subtract (blue) from the connectivity 357 
+
+in A) . Cells representing connectivity between two regions are measured in Hz and diagonal 358 
+
+cells indicate inhibitory self-connections, which are unitless log scaling parameters. D) and 359 
+
+E) illustrate effective connectivity parameters associated with depressive and anxiety 360 
+
+symptoms, respectively. Image created with BioRender (www.biorender.com). 361 
+
+362 
+
+Discussion 363 
+
+This study examined the neurocircuitry of cognitive restructuring and its links to depressive 364 
+
+and anxiety symptoms. Challenging negative statements engaged the dlPFC differently by 365 
+
+symptom type: anxiety was associated with increased activation, depression with reduced 366 
+
+activation. Heart rate data also supported this divergence. Depressive symptoms were also 367 
+
+linked to altered vlPFC–vmPFC connectivity, while anxiety showed broader connectivity 368 
+
+changes, including with the amygdala. Together, these findings show that although clinical 369 
+
+participants restructured negative statements as efficiently as healthy controls, depression and 370 
+
+anxiety were marked by dissociable patterns of prefrontal-subcortical circuitry and autonomic 371 
+
+regulation. 372 
+
+373 
+
+Anxiety and depressive symptom associations with the posterior dlPFC 374 
+
+We observed that dlPFC activation associated with depression and anxiety symptoms during 375 
+
+restructuring was localized to the posterior portion of this region. The dlPFC is involved in 376 
+
+monitoring and manipulation of working memory contents (56) and exhibits a posterior-to-377 
+
+anterior functional gradient (57). Within this gradient, the posterior dlPFC tracks dynamic 378 
+
+changes in the environment and individual, and the anterior dlPFC supports more abstract 379 
+
+representations (58, 59). The posterior dlPFC is therefore thought to support the integrative 380 
+
+process underpinning cognitive control (60). Evidence indicates that posterior dlPFC activity 381 
+
+reflects the cognitive effort required to overcome a heightened affective load and implement 382 
+
+cognitive control, with reappraisal of high-intensity emotions eliciting greater activation than 383 
+
+low-intensity emotions (61). Consistent with this role, transcranial magnetic stimulation 384 
+
+(TMS) targeting peak dlPFC activation during cognitive restructuring accelerated heart rate 385 
+
+regulation and increased subsequent use of cognitive restructuring, despite not reducing 386 
+
+overall distress (62). Together, these findings implicate the posterior dlPFC as a key locus for 387 
+
+the efficient instantiation of cognitive control, particularly while under affective load. 388 
+
+Expanding on this work, we observed that posterior dlPFC activation during 389 
+
+restructuring tracked anxiety and depressive symptoms in opposite directions. Anxiety and 390 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+15 
+
+depression primarily differ phenomenologically in their temporal focus (future versus past) 391 
+
+and content specificity (threat versus hopelessness/helplessness) (63). For anxiety in 392 
+
+particular, Attentional Control Theory proposes that threat-related stimuli capture attentional 393 
+
+resources, increasing the cognitive effort required for regulating non-threat content (64, 65). 394 
+
+Anxiety is therefore hypothesized to impair processing efficiency rather than performance 395 
+
+effectiveness (65), with those with anxiety having preserved performance by investing 396 
+
+compensatory effort (65), which manifests as increased dlPFC activation (66) and greater 397 
+
+affect regulation. 398 
+
+In contrast, depressive symptoms were associated with hypoactivation of the dlPFC – 399 
+
+a pattern previously interpreted as impaired inhibition of negative information (67, 68). Such 400 
+
+inhibitory failures have been thought to reflect the intrusion of self-related thought into task-401 
+
+relevant processing, consistent with established links between inhibitory deficits and 402 
+
+rumination (69). Notably, both reduced rumination and increased self-efficacy have been 403 
+
+identified as mediators of CBT effectiveness for social anxiety (70) and depressive disorders 404 
+
+(71, 72). Although the capacity for cognitive restructuring appears to be preserved across 405 
+
+depressive and anxiety disorders (73), it is not enacted in relevant contexts (74). As such, 406 
+
+these findings suggest that the primary constraint on cognitive restructuring in depressive and 407 
+
+anxiety disorders is not the capacity for implementation, but the initiation and efficient 408 
+
+deployment of the process in the face of competing demands. Similar dissociations between 409 
+
+anxiety, depression, and dlPFC function have been reported during recall of negative events 410 
+
+(75) and the explicit processing of negative emotional expressions (76), indicating that these 411 
+
+alterations generalize across tasks requiring the manipulation of negative stimuli in working 412 
+
+memory. 413 
+
+414 
+
+Network associations with anxiety symptoms 415 
+
+Anxiety symptoms were also associated with enhanced regulatory influences from lateral 416 
+
+prefrontal regions to the amygdala during restructuring negative statements, alongside altered 417 
+
+intrinsic connectivity involving these same regions. Given the well-established link between 418 
+
+anxiety and exaggerated threat appraisal (5, 77), there has been substantial neuroscientific 419 
+
+focus on the amygdala (78). Despite this focus, associations between amygdala function and 420 
+
+anxiety have been inconsistent (78). This inconsistency likely reflects multiple factors, 421 
+
+including the amygdala’s complex functional architecture (78) as well as compensatory 422 
+
+mechanisms within that downregulate altered amygdala responses. Although our activation 423 
+
+analyses did not reveal an association between amygdala activation and anxiety, the 424 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+16 
+
+connectivity analyses revealed both greater intrinsic self-inhibition of the amygdala and 425 
+
+greater modulatory influences from the vlPFC and dlPFC to the amygdala during 426 
+
+restructuring. This pattern is consistent with a compensatory role for the lateral prefrontal 427 
+
+regions, whereby their enhanced influence over the amygdala may support successful belief 428 
+
+changes in those with greater anxiety symptoms (79). Although this finding is consistent with 429 
+
+the dlPFC’s proposed regulatory role, the lateral prefrontal cortex has sparse direct 430 
+
+anatomical connectivity with the amygdala (80). Together, this pattern of connectivity 431 
+
+alterations suggests that additional polysynaptic pathways may also contribute to observed 432 
+
+vlPFC and dlPFC modulation of the amygdala and their association with anxiety symptoms. 433 
+
+434 
+
+Network associations with depressive symptoms 435 
+
+Depressive symptoms were also associated with greater inhibitory influence from the vlPFC 436 
+
+to the vmPFC. Processing of self-related stimuli is associated with activity of the default 437 
+
+mode network (81, 82), particularly the vmPFC (83), whose activity has been shown to track 438 
+
+the perceived veracity of self-referential statements (83). Given this role, increased inhibition 439 
+
+from the vlPFC may reflect a mechanism for modifying deeply held negative beliefs. 440 
+
+Notably, vmPFC activity and connectivity are commonly disrupted in depression and have 441 
+
+been shown to predict treatment response (84-86). During task-based studies, these vmPFC 442 
+
+alterations have been interpreted as reflecting the suppression of affective and self-referential 443 
+
+content that conflicts with task engagement (85, 87). Although vmPFC connectivity also 444 
+
+predicts treatment response at rest (88), whether it generalizes to contexts like cognitive 445 
+
+restructuring, where vmPFC is engaged rather than suppressed, remains an open question. 446 
+
+447 
+
+Limitations 448 
+
+While participants were trained in cognitive restructuring techniques, including active 449 
+
+rebuttal, reinterpretation, and perspective shifting, we did not record which strategy was 450 
+
+deployed on each trial. This information could provide clearer insight into the observed 451 
+
+associations, given that different strategies engage distinct prefrontal regions (21). The 452 
+
+strategies may also have varied systematically across groups and symptom profiles. 453 
+
+Moreover, the sample comprised predominantly young female participants. Although this 454 
+
+demographic profile is consistent with the epidemiology of depressive and anxiety disorders, 455 
+
+and age and sex were adjusted for in all analyses, replication in more age- and sex-balanced 456 
+
+samples is needed to establish the generalizability of these findings. While we use the terms 457 
+
+"bottom-up" and "top-down" to describe interactions between the prefrontal cortex and 458 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+17 
+
+amygdala, these labels are best considered heuristic rather than literal descriptions of their 459 
+
+relationship. Consistent with contemporary models, both regions provide complementary 460 
+
+contextual information that shapes neural activity through dynamic, recurrent interactions 461 
+
+rather than a strictly hierarchical regulatory process. Our connectivity findings are consistent 462 
+
+with this framework, although the specific computational roles of these reciprocal 463 
+
+interactions warrant further investigation. 464 
+
+465 
+
+Conclusions 466 
+
+Our findings illustrated that cognitive restructuring reduced the endorsement of negative 467 
+
+statements in clinical participants, yet the underlying neurobiology diverged by symptom 468 
+
+profile. Depressive and anxiety symptoms demonstrated differential associations with dlPFC 469 
+
+function, downstream prefrontal–subcortical circuitry, as well as heart rate during cognitive 470 
+
+restructuring, suggesting processes central to CBT may engage partially distinct mechanisms 471 
+
+across symptom presentations. Longitudinal studies are needed to determine whether these 472 
+
+neural signatures prospectively predict treatment response and inform the targeting of 473 
+
+cognitive interventions. 474 
+
+475 
+
+Code availability 476 
+
+MATLAB and R scripts used to generate the 2 nd level results and associated figures of this 477 
+
+study are also available at: https://github.com/alecJamieson/CNBT_depression_anxiety. 478 
+
+479 
+
+Acknowledgements 480 
+
+The authors thank Braden Thai, Holly Carey and Amy Nielson for their contributions to data 481 
+
+collection. The authors also acknowledge the facilities and scientific and technical assistance 482 
+
+of the National Imaging Facility, a National Collaborative Research Infrastructure Strategy 483 
+
+(NCRIS) capability, at the Melbourne Brain Centre Imaging Unit, University of Melbourne. 484 
+
+In addition, the authors are grateful to Siemens for providing the MP2RAGE sequence as a 485 
+
+“works in progress package” and CMRR (University of Minnesota) for sharing the multiband 486 
+
+EPI sequence. 487 
+
+488 
+
+Competing Interests Statement 489 
+
+The authors declare no biomedical financial interests or potential conflicts of interest. 490 
+
+491 
+
+Funding 492 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+18 
+
+This study was supported by National Health and Medical Research Council of Australia 493 
+
+(NHMRC) Project Grants (1161897) to BJH and (1073041) to KLF. BJH is supported by an 494 
+
+NHMRC Investigator Grant (2041108). TS is supported by an NHMRC Investigator Grant 495 
+
+for TS (GNT2040972). 496 
+
+497 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+19 
+
+References 498 
+
+1. Wahl K, Ehring T, Kley H, Lieb R, Meyer A, Kordon A, et al. (2019): Is repetitive 499 
+
+negative thinking a transdiagnostic process? A comparison of key processes of RNT in 500 
+
+depression, generalized anxiety disorder, obsessive-compulsive disorder, and community 501 
+
+controls. J Behav Ther Exp Psychiatry . 64:45-53. 502 
+
+2. Beck AT (2008): The evolution of the cognitive model of depression and its 503 
+
+neurobiological correlates. Am J Psychiatry . 165:969-977. 504 
+
+3. Bower GH (1981): Mood and memory. Am Psychol . 36:129-148. 505 
+
+4. Roiser JP, Elliott R, Sahakian BJ (2012): Cognitive mechanisms of treatment in 506 
+
+depression. Neuropsychopharmacology . 37:117-136. 507 
+
+5. Clark DA, Beck AT (2010): Cognitive theory and therapy of anxiety and depression: 508 
+
+convergence with neurobiological findings. Trends Cogn Sci . 14:418-424. 509 
+
+6. Braunstein LM, Gross JJ, Ochsner KN (2017): Explicit and implicit emotion 510 
+
+regulation: a multi-level framework. Soc Cogn Affect Neurosci . 12:1545-1557. 511 
+
+7. Steward T, Kung PH, Davey CG, Moffat BA, Glarin RK, Jamieson AJ, et al. (2022): 512 
+
+A thalamo-centric neural signature for restructuring negative self-beliefs. Mol Psychiatry .513 
+
+8. Agathos J, Steward T, Davey CG, Felmingham KL, Ince S, Moffat BA, et al. (2023): 514 
+
+Differential engagement of the posterior cingulate cortex during cognitive restructuring of 515 
+
+negative self- and social beliefs. Soc Cogn Affect Neurosci . 18. 516 
+
+9. Kung PH, Greaves MD, Guerrero-Hreins E, Harrison BJ, Davey CG, Felmingham 517 
+
+KL, et al. (2025): Habenula contributions to negative self-cognitions. Nat Commun . 16:4231. 518 
+
+10. Agathos JA, Harrison BJ, Felmingham KL, Davey CG, Bryant RA, Korgaonkar MS, 519 
+
+et al. (2026): Cognitive restructuring and thalamocortical circuit alterations in post-traumatic 520 
+
+stress disorder. Nature Mental Health . 4:594-604. 521 
+
+11. Davey CG, Harrison BJ (2022): The self on its axis: a framework for understanding 522 
+
+depression. Transl Psychiatry . 12:23. 523 
+
+12. D'Argembeau A (2013): On the role of the ventromedial prefrontal cortex in self-524 
+
+processing: the valuation hypothesis. Front Hum Neurosci . 7:372. 525 
+
+13. Winecoff A, Clithero JA, Carter RM, Bergman SR, Wang L, Huettel SA (2013): 526 
+
+Ventromedial prefrontal cortex encodes emotional value. J Neurosci . 33:11032-11039. 527 
+
+14. Roy M, Shohamy D, Wager TD (2012): Ventromedial prefrontal-subcortical systems 528 
+
+and the generation of affective meaning. Trends Cogn Sci . 16:147-156. 529 
+
+15. Kube T, Kirchner L, Gartner T, Glombiewski JA (2023): How negative mood hinders 530 
+
+belief updating in depression: results from two experimental studies. Psychol Med . 53:1288-531 
+
+1301. 532 
+
+16. Kube T (2023): Biased belief updating in depression. Clin Psychol Rev . 103:102298. 533 
+
+17. Dixon ML, Gross JJ (2021): Dynamic network organization of the self: implications 534 
+
+for affective experience. Curr Opin Behav Sci . 39:1-9. 535 
+
+18. Nobre AC, Gresch D (2025): How the brain shifts between external and internal 536 
+
+attention. Neuron . 113:2382-2398. 537 
+
+19. Swann NC, Tandon N, Pieters TA, Aron AR (2013): Intracranial 538 
+
+electroencephalography reveals different temporal profiles for dorsal- and ventro-lateral 539 
+
+prefrontal cortex in preparing to stop action. Cereb Cortex . 23:2479-2488. 540 
+
+20. Sikka P, Stenberg J, Vorobyev V, Gross JJ (2022): The neural bases of expressive 541 
+
+suppression: A systematic review of functional neuroimaging studies. Neurosci Biobehav 542 
+
+Rev . 138:104708. 543 
+
+21. Zhao J, Mo L, Bi R, He Z, Chen Y, Xu F, et al. (2021): The VLPFC versus the DLPFC 544 
+
+in Downregulating Social Pain Using Reappraisal and Distraction Strategies. J Neurosci .545 
+
+41:1331-1339. 546 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+20 
+
+22. Ray RD, Zald DH (2012): Anatomical insights into the interaction of emotion and 547 
+
+cognition in the prefrontal cortex. Neuroscience and Biobehavioral Reviews . 36:479-501. 548 
+
+23. Phillips ML, Drevets WC, Rauch SL, Lane R (2003): Neurobiology of emotion 549 
+
+perception I: The neural basis of normal emotion perception. Biol Psychiatry . 54:504-514. 550 
+
+24. Ghashghaei HT, Hilgetag CC, Barbas H (2007): Sequence of information processing 551 
+
+for emotions based on the anatomic dialogue between prefrontal cortex and amygdala. 552 
+
+Neuroimage . 34:905-923. 553 
+
+25. Ochsner KN, Silvers JA, Buhle JT (2012): Functional imaging studies of emotion 554 
+
+regulation: a synthetic review and evolving model of the cognitive control of emotion. Ann N 555 
+
+Y Acad Sci . 1251:E1-24. 556 
+
+26. Steward T, Davey CG, Jamieson AJ, Stephanou K, Soriano-Mas C, Felmingham KL, 557 
+
+et al. (2021): Dynamic Neural Interactions Supporting the Cognitive Reappraisal of Emotion. 558 
+
+Cereb Cortex . 31:961-973. 559 
+
+27. Urry HL, van Reekum CM, Johnstone T, Kalin NH, Thurow ME, Schaefer HS, et al. 560 
+
+(2006): Amygdala and ventromedial prefrontal cortex are inversely coupled during regulation 561 
+
+of negative affect and predict the diurnal pattern of cortisol secretion among older adults. J562 
+
+Neurosci . 26:4415-4425. 563 
+
+28. Sabbah SG, Northoff G (2025): The self in depression and anxiety as a 564 
+
+transdiagnostic and differential-diagnostic neural marker: A systematic review. Neurosci 565 
+
+Biobehav Rev . 169:106034. 566 
+
+29. Schrammen E, Roesmann K, Rosenbaum D, Redlich R, Harenbrock J, Dannlowski U, 567 
+
+et al. (2022): Functional neural changes associated with psychotherapy in anxiety disorders – 568 
+
+A meta-analysis of longitudinal fMRI studies. Neuroscience & Biobehavioral Reviews .569 
+
+142:104895. 570 
+
+30. Rive MM, van Rooijen G, Veltman DJ, Phillips ML, Schene AH, Ruhe HG (2013): 571 
+
+Neural correlates of dysfunctional emotion regulation in major depressive disorder. A 572 
+
+systematic review of neuroimaging studies. Neurosci Biobehav Rev . 37:2529-2553. 573 
+
+31. Zilverstand A, Parvaz MA, Goldstein RZ (2017): Neuroimaging cognitive reappraisal 574 
+
+in clinical populations to define neural targets for enhancing emotion regulation. A systematic 575 
+
+review. Neuroimage . 151:105-116. 576 
+
+32. Pico-Perez M, Radua J, Steward T, Menchon JM, Soriano-Mas C (2017): Emotion 577 
+
+regulation in mood and anxiety disorders: A meta-analysis of fMRI cognitive reappraisal 578 
+
+studies. Prog Neuropsychopharmacol Biol Psychiatry . 79:96-104. 579 
+
+33. Dalton SDP, Cooper H, Jennings B, Cheeta S (2025): Neural correlates of implicit 580 
+
+emotion regulation in mood and anxiety disorders: an fMRI meta-analytic review. Sci Rep .581 
+
+15:19564. 582 
+
+34. Ter Meulen WG, Draisma S, van Hemert AM, Schoevers RA, Kupka RW, Beekman 583 
+
+ATF, et al. (2021): Depressive and anxiety disorders in concert-A synthesis of findings on 584 
+
+comorbidity in the NESDA study. J Affect Disord . 284:85-97. 585 
+
+35. Fava M, Alpert JE, Carmin CN, Wisniewski SR, Trivedi MH, Biggs MM, et al. 586 
+
+(2004): Clinical correlates and symptom patterns of anxious depression among patients with 587 
+
+major depressive disorder in STAR* D. Psychological medicine . 34:1299-1308. 588 
+
+36. Kessler RC, Sampson NA, Berglund P, Gruber MJ, Al-Hamzawi A, Andrade L, et al. 589 
+
+(2015): Anxious and non-anxious major depressive disorder in the World Health Organization 590 
+
+World Mental Health Surveys. Epidemiol Psychiatr Sci . 24:210-226. 591 
+
+37. Bednarek L, Harrison BJ, Davey CG, Steward T, Jamieson AJ (2026): Neural 592 
+
+correlates of altered interoception in depressive and anxiety disorders: a systematic review 593 
+
+and meta-analysis. Eur Arch Psy Clin N .594 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+21 
+
+38. Steward T, Kung PH, Davey CG, Moffat BA, Glarin RK, Jamieson AJ, et al. (2022): 595 
+
+A thalamo-centric neural signature for restructuring negative self-beliefs. Mol Psychiatry .596 
+
+27:1611-1617. 597 
+
+39. Friston KJ, Harrison L, Penny W (2003): Dynamic causal modelling. Neuroimage .598 
+
+19:1273-1302. 599 
+
+40. Kung PH, Davey CG, Harrison BJ, Jamieson AJ, Felmingham KL, Steward T (2023): 600 
+
+Frontoamygdalar Effective Connectivity in Youth Depression and Treatment Response. Biol 601 
+
+Psychiatry . 94:959-968. 602 
+
+41. Young KS, Burklund LJ, Torre JB, Saxbe D, Lieberman MD, Craske MG (2017): 603 
+
+Treatment for social anxiety disorder alters functional connectivity in emotion regulation 604 
+
+neural circuitry. Psychiatry Res Neuroimaging . 261:44-51. 605 
+
+42. Tolin D, Bowe W, Davis E, Hannan S, Springer K, Worden B, et al. (2016): 606 
+
+Diagnostic Interview for anxiety, mood, and OCD and related neuropsychiatric disorders 607 
+
+(DIAMOND). Hartford, CT: The Institute of Living, Hartford Healthcare Corporation .608 
+
+43. Swinbourne J, Hunt C, Abbott M, Russell J, St Clare T, Touyz S (2012): The 609 
+
+comorbidity between eating disorders and anxiety disorders: prevalence in an eating disorder 610 
+
+sample and anxiety disorder sample. Aust N Z J Psychiatry . 46:118-131. 611 
+
+44. Spinhoven P, Penninx BW, van Hemert AM, de Rooij M, Elzinga BM (2014): 612 
+
+Comorbidity of PTSD in anxiety and depressive disorders: prevalence and shared risk factors. 613 
+
+Child Abuse Negl . 38:1320-1330. 614 
+
+45. Sheehan DV, Lecrubier Y, Sheehan KH, Amorim P, Janavs J, Weiller E, et al. (1998): 615 
+
+The Mini-International Neuropsychiatric Interview (MINI): the development and validation 616 
+
+of a structured diagnostic psychiatric interview for DSM-IV and ICD-10. J Clin Psychiat .617 
+
+59:22-33. 618 
+
+46. Lovibond SH (1995): Manual for the depression anxiety stress scales. Sydney 619 
+
+psychology foundation .620 
+
+47. Beck JS (2020): Cognitive behavior therapy: Basics and beyond . Guilford 621 
+
+Publications. 622 
+
+48. Beck AT, Dozois DJ (2011): Cognitive therapy: current status and future directions. 623 
+
+Annu Rev Med . 62:397-409. 624 
+
+49. Osmo F, Duran V, Wenzel A, Reis de Oliveira I, Nepomuceno S, Madeira M, et al. 625 
+
+(2018): The Negative Core Beliefs Inventory: Development and Psychometric Properties. J626 
+
+Cogn Psychother . 32:67-84. 627 
+
+50. Kreibig SD (2010): Autonomic nervous system activity in emotion: a review. Biol 628 
+
+Psychol . 84:394-421. 629 
+
+51. Bylsma LM, Morris BH, Rottenberg J (2008): A meta-analysis of emotional reactivity 630 
+
+in major depressive disorder. Clin Psychol Rev . 28:676-691. 631 
+
+52. Corbin N, Todd N, Friston KJ, Callaghan MF (2018): Accurate modeling of temporal 632 
+
+correlations in rapidly sampled fMRI time series. Hum Brain Mapp . 39:3884-3897. 633 
+
+53. Marcoulides KM, Raykov T (2019): Evaluation of variance inflation factors in 634 
+
+regression models using latent variable modeling methods. Educational and psychological 635 
+
+measurement . 79:874-882. 636 
+
+54. Zeidman P, Jafarian A, Corbin N, Seghier ML, Razi A, Price CJ, et al. (2019): A guide 637 
+
+to group effective connectivity analysis, part 1: First level analysis with DCM for fMRI. 638 
+
+Neuroimage . 200:174-190. 639 
+
+55. Kung P-H, Davey CG, Harrison BJ, Jamieson AJ, Felmingham KL, Steward T (2023): 640 
+
+Frontoamygdalar Effective Connectivity in Youth Depression and Treatment Response. Biol 641 
+
+Psychiat . 94:959-968. 642 
+
+56. Friedman NP, Robbins TW (2022): The role of prefrontal cortex in cognitive control 643 
+
+and executive function. Neuropsychopharmacology . 47:72-89. 644 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+22 
+
+57. Tan PK, Tang C, Herikstad R, Pillay A, Libedinsky C (2023): Distinct Lateral 645 
+
+Prefrontal Regions Are Organized in an Anterior-Posterior Functional Gradient. J Neurosci .646 
+
+43:6564-6572. 647 
+
+58. Constantinidis C, Qi XL (2018): Representation of Spatial and Feature Information in 648 
+
+the Monkey Dorsal and Ventral Prefrontal Cortex. Front Integr Neurosci . 12:31. 649 
+
+59. Badre D, D'Esposito M (2009): Is the rostro-caudal axis of the frontal lobe 650 
+
+hierarchical? Nat Rev Neurosci . 10:659-669. 651 
+
+60. Cieslik EC, Zilles K, Caspers S, Roski C, Kellermann TS, Jakobs O, et al. (2013): Is 652 
+
+there "one" DLPFC in cognitive action control? Evidence for heterogeneity from co-653 
+
+activation-based parcellation. Cereb Cortex . 23:2677-2689. 654 
+
+61. Silvers JA, Weber J, Wager TD, Ochsner KN (2015): Bad and worse: neural systems 655 
+
+underlying reappraisal of high- and low-intensity negative emotions. Soc Cogn Affect 656 
+
+Neurosci . 10:172-179. 657 
+
+62. Neacsiu AD, Beynel L, Graner JL, Szabo ST, Appelbaum LG, Smoski MJ, et al. 658 
+
+(2022): Enhancing cognitive restructuring with concurrent fMRI-guided neurostimulation for 659 
+
+emotional dysregulation-A randomized controlled trial. J Affect Disord . 301:378-389. 660 
+
+63. Eysenck MW, Fajkowska M (2018): Anxiety and depression: toward overlapping and 661 
+
+distinctive features. Cogn Emot . 32:1391-1400. 662 
+
+64. Berggren N, Derakshan N (2013): Attentional control deficits in trait anxiety: why 663 
+
+you see them and why you don't. Biol Psychol . 92:440-446. 664 
+
+65. Eysenck MW, Derakshan N, Santos R, Calvo MG (2007): Anxiety and cognitive 665 
+
+performance: attentional control theory. Emotion . 7:336-353. 666 
+
+66. Basten U, Stelzel C, Fiebach CJ (2011): Trait anxiety modulates the neural efficiency 667 
+
+of inhibitory control. J Cogn Neurosci . 23:3132-3145. 668 
+
+67. Joormann J, Gotlib IH (2010): Emotion regulation in depression: relation to cognitive 669 
+
+inhibition. Cogn Emot . 24:281-298. 670 
+
+68. Goeleven E, De Raedt R, Baert S, Koster EH (2006): Deficient inhibition of 671 
+
+emotional information in depression. J Affect Disord . 93:149-157. 672 
+
+69. Yoon KL, LeMoult J, Joormann J (2014): Updating emotional content in working 673 
+
+memory: a depression-specific deficit? J Behav Ther Exp Psychiatry . 45:368-374. 674 
+
+70. Goldin PR, Morrison A, Jazaieri H, Brozovich F, Heimberg R, Gross JJ (2016): Group 675 
+
+CBT versus MBSR for social anxiety disorder: A randomized controlled trial. J Consult Clin 676 
+
+Psychol . 84:427-437. 677 
+
+71. Patel A, Daros AR, Irwin SH, Lau P, Hope IM, Perkovic SJM, et al. (2023): 678 
+
+Associations between rumination, depression, and distress tolerance during CBT treatment 679 
+
+for depression in a tertiary care setting. J Affect Disord . 339:74-81. 680 
+
+72. Warmerdam L, van Straten A, Jongsma J, Twisk J, Cuijpers P (2010): Online 681 
+
+cognitive behavioral therapy and problem-solving therapy for depressive symptoms: 682 
+
+Exploring mechanisms of change. J Behav Ther Exp Psychiatry . 41:64-70. 683 
+
+73. Cui X, Ding Q, Yu S, Zhang S, Li X (2024): The deficit in cognitive reappraisal 684 
+
+capacity in individuals with anxiety or depressive disorders: meta-analyses of behavioral and 685 
+
+neuroimaging studies. Clin Psychol Rev . 114:102480. 686 
+
+74. LeMoult J, Gotlib IH (2019): Depression: A cognitive perspective. Clin Psychol Rev .687 
+
+69:51-66. 688 
+
+75. Wu H, Lu B, Xiang N, Qiu M, Da H, Xiao Q, et al. (2024): Different activation in 689 
+
+dorsolateral prefrontal cortex between anxious depression and non-anxious depression during 690 
+
+an autobiographical memory task: A fNIRS study. J Affect Disord . 362:585-594. 691 
+
+76. MacNamara A, Klumpp H, Kennedy AE, Langenecker SA, Phan KL (2017): 692 
+
+Transdiagnostic neural correlates of affective face processing in anxiety and depression. 693 
+
+Depress Anxiety . 34:621-631. 694 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+23 
+
+77. Beck AT, Haigh EA (2014): Advances in cognitive theory and therapy: the generic 695 
+
+cognitive model. Annu Rev Clin Psychol . 10:1-24. 696 
+
+78. Fox AS, Shackman AJ (2024): An Honest Reckoning With the Amygdala and Mental 697 
+
+Illness. Am J Psychiatry . 181:1059-1075. 698 
+
+79. Etkin A, Prater KE, Schatzberg AF, Menon V, Greicius MD (2009): Disrupted 699 
+
+amygdalar subregion functional connectivity and evidence of a compensatory network in 700 
+
+generalized anxiety disorder. Arch Gen Psychiatry . 66:1361-1372. 701 
+
+80. He Z, Li S, Mo L, Zheng Z, Li Y, Li H, et al. (2023): The VLPFC-Engaged Voluntary 702 
+
+Emotion Regulation: Combined TMS-fMRI Evidence for the Neural Circuit of Cognitive 703 
+
+Reappraisal. J Neurosci . 43:6046-6060. 704 
+
+81. Delahoy R, Davey CG, Jamieson AJ, Finlayson-Short L, Savage HS, Steward T, et al. 705 
+
+(2022): Modulation of the brain's core-self network by self-appraisal processes. Neuroimage .706 
+
+251:118980. 707 
+
+82. Jamieson AJ, Harrison BJ, Delahoy R, Schmaal L, Felmingham KL, Phillips L, et al. 708 
+
+(2023): A brain model of altered self-appraisal in social anxiety disorder. Transl Psychiatry .709 
+
+13:344. 710 
+
+83. Bruns E, Scholz I, Koppe G, Kirsch P, Gerchen MF (2025): Self-referential belief 711 
+
+shares common neural correlates with general belief. Sci Rep . 15:2137. 712 
+
+84. Davey CG, Cearns M, Jamieson A, Harrison B (2023): Suppressed activity of the 713 
+
+rostral anterior cingulate cortex as a biomarker for depression remission. Psychological 714 
+
+Medicine . 53:2448-2455. 715 
+
+85. Jamieson AJ, Harrison BJ, Davey CG (2021): Altered effective connectivity of the 716 
+
+extended face processing system in depression and its association with treatment response: 717 
+
+findings from the YoDA-C randomized controlled trial. Psychol Med . 51:2933-2944. 718 
+
+86. Jamieson AJ, Steward T, Davey CG, Ince S, Agathos JA, Moffat BA, et al. (2025): 719 
+
+Altered basal forebrain regulation of intrinsic brain networks in depressive and anxiety 720 
+
+disorders. Nature Mental Health . 3:1202-1213. 721 
+
+87. Harrison BJ, Pujol J, Contreras-Rodriguez O, Soriano-Mas C, Lopez-Sola M, Deus J, 722 
+
+et al. (2011): Task-induced deactivation from rest extends beyond the default mode brain 723 
+
+network. PLoS One . 6:e22964. 724 
+
+88. Jamieson AJ, Harrison BJ, Razi A, Davey CG (2022): Rostral anterior cingulate 725 
+
+network effective connectivity in depressed adolescents and associations with treatment 726 
+
+response in a randomized controlled trial. Neuropsychopharmacology . 47:1240-1248. 727 
+
+728 
+
+729 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+24 
+
+Table 1 730 
+
+Comparison of Characteristics Between Healthy Controls and Clinical Participants 731 
+
+Healthy Controls (N = 70) 
+
+Clinical Participants (N = 73) 
+
+Characteristics Mean or N 
+
+SD or Percentage 
+
+Mean or N 
+
+SD or Percentage 
+
+Effect size (φ, Δ, or d)
+
+p
+
+Age (years) 22.59 4.3 22.47 5.2 0.03 0.440 
+
+Female 41 58.6 54 74.0 0.16 0.051 
+
+Handedness (R) 62 58.6 66 74.0 -0.03 0.720 
+
+DASS Total 7.72 5.8 27.67 10.7 -1.9 < 0.001 
+
+DASS Depression 2.34 2.1 10.36 5.2 -1.53 < 0.001 
+
+DASS Anxiety 1.83 2.0 7.25 4.1 -1.31 < 0.001 
+
+DASS Stress 3.56 3.1 10.07 4.0 -1.81 < 0.001 
+
+Antidepressant Use - - 15 20.1 - -
+
+Depressive Disorder - - 37 50.7 - -
+
+Major Depressive Disorder 
+
+- - 26 70.3 - -
+
+Persistent Depressive Disorder 
+
+- - 14 37.8 - -
+
+Anxiety Disorder - - 35 47.9 - -
+
+Social Anxiety Disorder - - 16 45.7 - -
+
+Panic Disorder - - 3 8.6 - -
+
+Generalized Anxiety Disorder 
+
+- - 26 74.3 - -
+
+Specific Phobia 3 8.6 - -
+
+Stress Disorders 14 19.2 - -
+
+PTSD 10 71.4 - -
+
+Adjustment Disorder 4 28.6 - -
+
+Eating Disorders 7 9.6 - -
+
+Anorexia Nervosa 2 28.6 - -
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 14, 2026. ;https://doi.org/10.64898/2026.07.12.738091 doi: bioRxiv preprint
+
+COGNITIVE RESTRUCTURING IN DEPRESSIVE AND ANXIETY DISORDERS 
+
+25 
+
+Bulimia Nervosa 2 28.6 - -
+
+Binge Eating Disorder 3 42.9 - -
+
+DASS Depression Anxiety Stress Scale , GAD Generalized Anxiety Disorder , MDD Major 732 
+
+Depressive Disorder , PDD Persistent Depressive Disorder , PTSD Post-traumatic Stress 733 
+
+Disorder , SAD Social Anxiety Disorder. 734 
+
+Note. Clinical participants may have met criteria for multiple diagnoses; as such individual 735 
+
+diagnoses do not always sum to the total. 736 
+
+737 
+
+738 
+
+739 
+
+740 
+
+741 
+
+742 
+
+743 
+
+744 
+
+745 
+
+746 
+
+747 
+
+748 
+
+749 
+
+750 
+
+751 
+
+752 
+
+753 
+
+754 
+
+755 
+
+756 
+
+757 
+
+758 
+
+759 
+
+760 
+
+761 
+
+762 
+
+763

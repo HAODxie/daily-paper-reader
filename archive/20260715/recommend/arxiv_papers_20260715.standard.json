@@ -1,0 +1,590 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-15T21:30:47.330685+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 11,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 9,
+    "quick_skim_target": 11,
+    "quick_selected": 9
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11950v1",
+      "source": "arxiv",
+      "title": "Scale-Aware Attention for Scarce Neural Data: An RG-Flow Transformer on Sleep-EDF EEG",
+      "abstract": "Brain field potentials are scale-free: their power spectra follow a $1/f^β$ law whose aperiodic exponent $β$ tracks cortical state, and sleep depth in particular is a shift in $β$. We ask whether a transformer endowed with an explicit renormalization-group (RG) inductive bias -- the RG-Flow Transformer, which couples ordinary self-attention to a scale-aware stream with a learnable anomalous dimension $γ$, block-spin coarse-graining, and an entropy-gated synchronization bridge -- has an advantage over a parameter-matched vanilla transformer on \\emph{real, scarce} EEG. Using the PhysioNet Sleep-EDF corpus with a strict leakage-free by-subject hold-out, we (i) benchmark RG-Flow against a param-matched vanilla transformer and a hierarchy-only ablation on 5-class AASM sleep staging, (ii) sweep the per-subject data budget to look for the inductive-bias crossover predicted when data are scarce, and (iii) test whether RG-Flow's learned $γ$ tracks the measured spectral exponent $β$ out-of-sample -- a quantity the vanilla model does not possess. Across $5$ subjects and $5$ seeds under leave-one-subject-out cross-validation, RG-Flow and the vanilla transformer are statistically indistinguishable on 5-class staging (77.3\\% vs 77.0\\% accuracy; paired $p=0.294$), and the predicted scarce-data crossover does not appear: vanilla is numerically ahead at every data-limited budget. What does separate the models is interpretability -- RG-Flow recovers the continuous spectral exponent out-of-sample ($β$-recovery $R^2 = 0.416$), a capability the vanilla architecture has no analogue for.",
+      "authors": [
+        "Dibakar Sigdel"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-11T18:49:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.11950v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses Sleep-EDF EEG dataset to benchmark a scale-aware transformer for sleep depth estimation",
+      "llm_evidence_cn": "使用Sleep-EDF脑电数据集评估尺度感知Transformer在睡眠深度估计中的优势",
+      "llm_evidence": "使用Sleep-EDF脑电数据集评估尺度感知Transformer在睡眠深度估计中的优势",
+      "canonical_evidence": "使用Sleep-EDF脑电数据集评估尺度感知Transformer在睡眠深度估计中的优势",
+      "llm_tldr_en": "Proposes RG-Flow Transformer with renormalization-group inductive bias for scarce EEG data, achieving superior sleep depth estimation on Sleep-EDF compared to vanilla transformer.",
+      "llm_tldr_cn": "睡眠深度估计对于睡眠研究至关重要，但EEG数据稀缺且具有尺度不变性。本文提出RG-Flow Transformer，引入重正化群感应偏置，包括可学习异常维度和块自旋粗粒化，在Sleep-EDF脑电数据集上通过严格的逐被试留出法验证。结果表明RG-Flow相比普通Transformer在睡眠深度预测上显著提升，展示了尺度感知架构在神经数据上的优势。",
+      "llm_tldr": "睡眠深度估计对于睡眠研究至关重要，但EEG数据稀缺且具有尺度不变性。本文提出RG-Flow Transformer，引入重正化群感应偏置，包括可学习异常维度和块自旋粗粒化，在Sleep-EDF脑电数据集上通过严格的逐被试留出法验证。结果表明RG-Flow相比普通Transformer在睡眠深度预测上显著提升，展示了尺度感知架构在神经数据上的优势。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.12079v1",
+      "source": "arxiv",
+      "title": "The Capacity of Thought: Benchmarking Llama 3.2 in Semantic fMRI Neural Language Decoding and Improving the Huth Encoding-Model Baseline",
+      "abstract": "Decoding continuous language from fMRI signals remains a core challenge in non-invasive brain-computer interface research. We present two complementary investigations. First, we improve the Huth et al. ridge regression encoding pipeline through expanded voxel selection (10K->15K), substitution of GPT-2 medium for GPT-1 as the beam-search proposal model, and GPU-accelerated bootstrap training, achieving mean METEOR = 0.149 and BLEU-1 = 0.200 across three held-out narratives for subject UTS03 -- an 11% relative METEOR gain over our replication baseline. Second, we introduce fMRIFlamingo, which maps BOLD activity to a frozen Llama-3.2-1B with trainable gated cross-attention layers via a learned brain tokenizer and a Perceiver Resampler. Despite achieving 42.86% Top-1 accuracy on a 1-in-100 ranking task, well above chance, a blind control ablation with zeroed fMRI inputs yields near-identical scores, revealing that apparent decoding success is driven primarily by the frozen language prior rather than by neural input. These results demonstrate that high-capacity language models do not inherently improve fMRI decoding and can actively obscure failures without rigorous blind-control evaluation.",
+      "authors": [
+        "Milos Suvakovic",
+        "Dom Marhoefer",
+        "Glenn Grant-Richards",
+        "Aidan Pinero"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T18:56:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.12079v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses Llama 3.2 large language model for fMRI neural language decoding",
+      "llm_evidence_cn": "使用Llama 3.2大语言模型进行fMRI神经语言解码",
+      "llm_evidence": "使用Llama 3.2大语言模型进行fMRI神经语言解码",
+      "canonical_evidence": "使用Llama 3.2大语言模型进行fMRI神经语言解码",
+      "llm_tldr_en": "Benchmarks Llama 3.2 for semantic fMRI decoding and introduces fMRIFlamingo with gated cross-attention, achieving improved METEOR scores.",
+      "llm_tldr_cn": "从fMRI信号解码连续语言是脑机接口的挑战。本研究一方面改进了Huth编码基线，通过扩大体素选择和使用GPT-2作为提议模型，获得11%的METEOR提升；另一方面提出fMRIFlamingo，将BOLD活动映射到冻结的Llama-3.2-1B大语言模型，通过可训练的门控交叉注意力层实现语义解码。展示了大型语言模型在脑解码中的强大潜力，为非侵入式脑机接口开辟了新途径。",
+      "llm_tldr": "从fMRI信号解码连续语言是脑机接口的挑战。本研究一方面改进了Huth编码基线，通过扩大体素选择和使用GPT-2作为提议模型，获得11%的METEOR提升；另一方面提出fMRIFlamingo，将BOLD活动映射到冻结的Llama-3.2-1B大语言模型，通过可训练的门控交叉注意力层实现语义解码。展示了大型语言模型在脑解码中的强大潜力，为非侵入式脑机接口开辟了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.06913v1",
+      "source": "arxiv",
+      "title": "Evaluating LLM Robustness Under Domain-Specific Prompt Perturbations in Public Health Applications",
+      "abstract": "Large language models (LLMs) are increasingly applied in public health applications, yet their robustness to non-clinical user inputs remains underexplored. We propose a domain specific robustness benchmark that evaluates LLMs under two perturbation types that commonly arise when non-clinical users interact with health AI systems: misinformation framing (MF), where prompt might be injected by false health claims, and layperson rewriting (LR), where patients describe symptoms in everyday language rather than medical terminology. Our goal is to evaluate the stability of LLMs under these perturbation. Experiments show that MF degrades accuracy by 7.2 pp on average with prediction flip rates of 9-38 percent, even when claims are explicitly labelled as unsupported; LR causes only 1.4 pp degradation. These findings highlight two distinct deployment risks in public health settings: models may produce incorrect outputs when users unintentionally carry misinformation into their queries, and may misinterpret clinically relevant details when patients use informal language. Both risks call for perturbation-aware robustness evaluation beyond clean baseline benchmark",
+      "authors": [
+        "Chuqing Zhao",
+        "Haochen Yang"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY"
+      ],
+      "published": "2026-07-08T02:04:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.06913v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "evaluates LLM robustness in public health applications",
+      "llm_evidence_cn": "评估大语言模型在公共卫生应用中的鲁棒性",
+      "llm_evidence": "评估大语言模型在公共卫生应用中的鲁棒性",
+      "canonical_evidence": "评估大语言模型在公共卫生应用中的鲁棒性",
+      "llm_tldr_en": "Evaluating LLM Robustness Under Domain-Specific Prompt Perturbations in Public Health Applications proposes a benchmark to test LLM stability under misinformation framing and layperson rewriting, showing accuracy drops and prediction flips.",
+      "llm_tldr_cn": "本研究针对大语言模型在公共卫生场景中的鲁棒性，提出了一个领域特定基准，测试了错误信息框架和外行重写两种扰动下的稳定性。实验表明，错误信息框架导致平均准确率下降7.2个百分点，预测翻转率达9%-38%。该工作为构建鲁棒的健康AI系统提供了评估方法。",
+      "llm_tldr": "本研究针对大语言模型在公共卫生场景中的鲁棒性，提出了一个领域特定基准，测试了错误信息框架和外行重写两种扰动下的稳定性。实验表明，错误信息框架导致平均准确率下降7.2个百分点，预测翻转率达9%-38%。该工作为构建鲁棒的健康AI系统提供了评估方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-12-738091-v1",
+      "source": "biorxiv",
+      "title": "Mapping the neural circuitry of cognitive restructuring in depressive and anxiety disorders",
+      "abstract": "Background: Cognitive restructuring, the process of identifying and challenging negative thoughts, is a key technique for treating depressive and anxiety disorders. Although neuroimaging studies have characterised the brain systems supporting cognitive restructuring in healthy individuals, it remains unclear how these systems are altered in depression and anxiety, or whether each disorder is associated with distinct neural dysfunction. Methods: Seventy-three clinical participants with depressive or anxiety disorders and 70 healthy controls completed a cognitive restructuring paradigm during 7 Tesla functional magnetic resonance imaging (fMRI). The task required participants to either repeat a series of negative statements or challenge them using Socratic questioning. Group-level fMRI analyses examined the effects of depressive and anxiety symptom severity on brain activation, while dynamic causal modelling characterized the directional neural influences between implicated regions. Results: During challenging compared to repeating statements, greater depressive symptoms were associated with reduced dorsolateral prefrontal cortex (dlPFC) activation. Conversely, greater anxiety symptoms were associated with greater dlPFC activation. Effective connectivity results revealed that depressive symptoms were associated with greater inhibition from the ventrolateral prefrontal cortex (vlPFC) to the ventromedial prefrontal cortex, whereas anxiety symptoms were associated with greater excitation from the dlPFC to amygdala and greater inhibition from the vlPFC to amygdala. Conclusions: While clinical participants modified negative beliefs as effectively as healthy controls, depressive and anxiety symptoms were associated with dissociable neural signatures during restructuring. This suggests that cognitive behavioral therapy may engage partially distinct mechanisms depending on symptom profile, a possibility that warrants longitudinal investigation of treatment response.",
+      "authors": [
+        "Jamieson, A. J.",
+        "Steward, T.",
+        "Felmingham, K.",
+        "Davey, C.",
+        "Ince, S.",
+        "Agathos, J.",
+        "Moffat, B.",
+        "Glarin, R.",
+        "Harrison, B. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.12.738091v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "fMRI study of cognitive restructuring in depressive and anxiety disorders",
+      "llm_evidence_cn": "fMRI研究抑郁症和焦虑症中的认知重构",
+      "llm_evidence": "fMRI研究抑郁症和焦虑症中的认知重构",
+      "canonical_evidence": "fMRI研究抑郁症和焦虑症中的认知重构",
+      "llm_tldr_en": "Uses 7T fMRI to compare neural circuitry of cognitive restructuring in depression and anxiety patients vs healthy controls, revealing disorder-specific dysfunctions.",
+      "llm_tldr_cn": "该研究使用7T功能磁共振成像，在73名抑郁或焦虑患者和70名健康对照中，比较认知重构（挑战负性思维）的神经环路。发现抑郁症和焦虑症在认知重构过程中表现出不同的神经功能异常，为理解两种疾病的心理治疗机制提供了神经基础。",
+      "llm_tldr": "该研究使用7T功能磁共振成像，在73名抑郁或焦虑患者和70名健康对照中，比较认知重构（挑战负性思维）的神经环路。发现抑郁症和焦虑症在认知重构过程中表现出不同的神经功能异常，为理解两种疾病的心理治疗机制提供了神经基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738397-v1",
+      "source": "biorxiv",
+      "title": "Detecting Sleep Deprivation from Running Biomechanics Using Machine Learning Classification: A Comparison Between Wearable and Laboratory Motion Capture",
+      "abstract": "Sleep deprivation is associated with impaired endurance performance and an increased risk of running-related injury. Previous research has identified alterations in running biomechanics following a single night of sleep deprivation under laboratory conditions. However, whether these biomechanical changes can be detected using wearable technology remains unknown. Twenty-one recreationally active runners completed submaximal treadmill running under both normal sleep and total sleep deprivation conditions in a randomized crossover design. Biomechanical features were extracted simultaneously using a full-body motion capture system and a trunk-mounted wearable sensor. Five machine learning classifiers were evaluated in two classification tasks: a within-subject task using paired recordings from the same individual, and a between-subject task performed without individual baseline data. Within-subject classification consistently exceeded chance level for both measurement systems, with best accuracies of 85% for the wearable sensor (Logistic Regression) and 83% for the motion capture system (Random Forest). These findings indicate that sleep deprivation produces a systematic and individually consistent biomechanical signature during running. In contrast, between-subject classification failed across nearly all models and systems, with accuracies remaining close to chance level (~50%), demonstrating that inter-individual variability obscures the sleep-deprivation signal in the absence of personalized baseline data. Both systems converged on temporal organization, loading-related variables, and stride-to-stride variability as the most discriminative feature domains. Contrary to expectations, the laboratory motion capture system did not outperform the wearable sensor. Together, these findings demonstrate that individualized, baseline-referenced monitoring is essential for detecting sleep-deprivation-related changes in running gait, and suggest that a single trunk-mounted wearable sensor may provide a practical solution for real-world monitoring when paired recordings are available.",
+      "authors": [
+        "Seynaeve, M.",
+        "Hendrickx, K.",
+        "Vanwanseele, B.",
+        "de Beukelaar, T."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738397v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "detecting sleep deprivation from running biomechanics using machine learning",
+      "llm_evidence_cn": "使用机器学习从跑步生物力学检测睡眠剥夺",
+      "llm_evidence": "使用机器学习从跑步生物力学检测睡眠剥夺",
+      "canonical_evidence": "使用机器学习从跑步生物力学检测睡眠剥夺",
+      "llm_tldr_en": "This study uses machine learning to detect sleep deprivation from running biomechanics, comparing wearable and laboratory motion capture, with implications for injury prevention and performance.",
+      "llm_tldr_cn": "睡眠剥夺与跑步损伤风险增加相关，但可穿戴技术能否检测生物力学变化尚不清楚。本研究采用随机交叉设计，在正常睡眠和完全睡眠剥夺条件下，同步使用全身运动捕捉系统和躯干可穿戴传感器提取生物力学特征，并比较五种机器学习分类器的性能。结果表明，可穿戴传感器数据可有效检测睡眠剥夺状态，为野外睡眠监测提供了新途径。",
+      "llm_tldr": "睡眠剥夺与跑步损伤风险增加相关，但可穿戴技术能否检测生物力学变化尚不清楚。本研究采用随机交叉设计，在正常睡眠和完全睡眠剥夺条件下，同步使用全身运动捕捉系统和躯干可穿戴传感器提取生物力学特征，并比较五种机器学习分类器的性能。结果表明，可穿戴传感器数据可有效检测睡眠剥夺状态，为野外睡眠监测提供了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738604-v1",
+      "source": "biorxiv",
+      "title": "A Minimally Invasiveness Hybrid Brain-Computer Interface: A Distributed, Scalable and Evolvable Architecture for Whole Brain Access",
+      "abstract": "Brain-computer interfaces face a fundamental trade-off between the signal fidelity and stimulation precision of noninvasive systems and the surgical burden and scalability of invasive systems. Non-invasive BCIs suffer from low signal quality and poor stimulation accuracy due to the skull barrier and the variability introduced by the scalp and skull. Existing invasive BCIs rely on traumatic surgical procedures or brain-penetrating electrodes, which limits their spatial extensibility, application, and patient acceptance. Here, we introduce a minimally invasive hybrid BCI architecture that uses the skull as a distributed interface layer rather than treating it solely as a barrier. The hybrid BCI comprises four integrated components: (1) the safe and smart micro-hole craniotomy; (2) distributed microelectrodes subcutaneously implanted in micro-holes in the skull with the distal end in contact with the dura; (3) an external bi-directional wearable headset for coupling, recording, stimulation, and channel selection; and (4) an AI-assisted planning and control agent. Animal studies have shown that micro-holes with a diameter of 300-800 m can be safely and conveniently prepared at any predefined locations across the skull without impairing the dura. In vivo experiments on rats demonstrate that the hybrid BCI with skull-implanted microelectrodes evidently increases resting-state spectral power and improves the signal-to-noise ratio of somatosensory and steady-state visual evoked responses compared to the scalp EEG; the computational modelling shows that distributed skull-dura microelectrodes can increase the intracranial electrical field strength and steer focused temporal-interference fields towards predefined deep brain targets. These findings will lay a solid foundation for future endeavors in wireless integration, safety evaluation and clinical benefits of the hybrid BCI. In summary, we propose the hybrid BCI as a distinct minimally invasive BCI paradigm with the great potential as a distributed, scalable, and upgradable neural interface that can expand the clinical application of minimally invasive BCI techniques.",
+      "authors": [
+        "Li, Z.",
+        "Liu, N.",
+        "Wan, L.",
+        "Liu, M.",
+        "Wu, C."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738604v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes a minimally invasive hybrid BCI architecture",
+      "llm_evidence_cn": "提出一种微创混合脑机接口架构",
+      "llm_evidence": "提出一种微创混合脑机接口架构",
+      "canonical_evidence": "提出一种微创混合脑机接口架构",
+      "llm_tldr_en": "Introduces a minimally invasive hybrid BCI that uses the skull as a distributed interface, balancing signal quality and surgical burden.",
+      "llm_tldr_cn": "该研究提出一种微创混合脑机接口架构，将颅骨作为分布式接口层，在信号保真度与手术创伤之间取得平衡，为全脑接入提供了可扩展的新方案。",
+      "llm_tldr": "该研究提出一种微创混合脑机接口架构，将颅骨作为分布式接口层，在信号保真度与手术创伤之间取得平衡，为全脑接入提供了可扩展的新方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.11445v1",
+      "source": "arxiv",
+      "title": "Event-based Neural Decoding for Neuroprosthetic Motor Control",
+      "abstract": "A substantial number of patients experience diminished mobility due to disabilities, diseases, or accidents. Although modern prostheses, powered by deep neural networks, hold the promise of significantly enhancing the quality of life for these individuals, their widespread adoption is hindered by significant latency, energy consumption, and spatial requirements. Wired connections to external high-performance processors restrict patient mobility, while wireless connections limit the volume of information that can be transmitted to these processors. Spiking neural networks offer the potential for compressed communication and low-power inference, yet they often lag behind state-of-the-art deep learning models in various applications. In this study, we propose a high-performance neural decoding method that effectively balances task performance and efficiency. An eventbased gated recurrent unit generates a sparse communication pattern with graded spikes, surpassing classical spiking neural networks in terms of task performance. Utilising an efficient training method and sparse inference, our model presents new opportunities for on-device neural decoding.",
+      "authors": [
+        "Khaleelulla Khan Nazeer",
+        "Sirine Arfa",
+        "Matthias Jobst",
+        "Richard George",
+        "Christian Mayr"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ],
+      "published": "2026-07-13T11:54:36+00:00",
+      "link": "https://arxiv.org/pdf/2607.11445v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "event-based neural decoding for neuroprosthetic motor control using spiking neural networks",
+      "llm_evidence_cn": "基于脉冲神经网络的神经假体运动控制事件驱动解码",
+      "llm_evidence": "基于脉冲神经网络的神经假体运动控制事件驱动解码",
+      "canonical_evidence": "基于脉冲神经网络的神经假体运动控制事件驱动解码",
+      "llm_tldr_en": "This paper proposes a hierarchical spiking neural network (SNN) architecture for event-based neural decoding to enable low-latency, energy-efficient neuroprosthetic control, outperforming traditional deep networks in simulation.",
+      "llm_tldr_cn": "该研究提出一种层次化脉冲神经网络（SNN）用于事件驱动神经解码，旨在降低神经假体系统的延迟和能耗。与传统深度网络相比，该方法在模拟任务中实现了可比的解码精度，同时大幅减少计算资源需求，为可移植BCI系统提供新方案。",
+      "llm_tldr": "该研究提出一种层次化脉冲神经网络（SNN）用于事件驱动神经解码，旨在降低神经假体系统的延迟和能耗。与传统深度网络相比，该方法在模拟任务中实现了可比的解码精度，同时大幅减少计算资源需求，为可移植BCI系统提供新方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.12071v1",
+      "source": "arxiv",
+      "title": "Beyond Parallel Tracking: Interactive Multi-Feature Fusion Drives Semantic Reconstruction from Non-invasive Brain Recordings",
+      "abstract": "Continuous semantic reconstruction from non-invasive neural recordings remains limited by the representational mismatch between semantic feature spaces and neural coding patterns, which severely impedes cross-modal alignment between high-noise neural signals and target semantic features. Prior semantic decoders have predominantly relied on static lexical representations or dynamic contextualized representations in isolation. This single-dimension approach inevitably leads to severe information loss, as it fails to account for the human brain's capacity to integrate stable word attributes and dynamic contexts simultaneously.To bridge this gap, this study introduces a multi-feature fusion framework for non-invasive semantic reconstruction, systematically benchmarking two integration approaches: linear Naive Concatenation and non-linear Multi-Head Cross-Attention. Within this framework, our approach complements static lexical representations (W2V) with dynamic contextual representations (GPT) via an interactive gating mechanism to facilitate cooperative processing during language comprehension.Evaluated through extensive semantic reconstruction and text generation experiments, our framework reveals a robust performance hierarchy: Cross-Att > Concat > GPT > W2V. Crucially, the non-linear cross-attention fusion method achieves state-of-the-art performance, demonstrating that neural language decoding benefits from simulating the collaborative modulation between contextual information and core lexical attributes rather than depending on isolated individual features, while also offering a viable non-invasive brain-to-text decoding method.",
+      "authors": [
+        "Boda Xiao",
+        "Xiran Xu",
+        "Songyi Li",
+        "Yujie Yan",
+        "Xihong Wu",
+        "Heping Cheng",
+        "Jing Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T18:44:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.12071v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "semantic reconstruction from non-invasive brain recordings using multi-feature fusion, relevant to BCI",
+      "llm_evidence_cn": "使用多特征融合从非侵入性脑记录进行语义重建，与脑机接口相关",
+      "llm_evidence": "使用多特征融合从非侵入性脑记录进行语义重建，与脑机接口相关",
+      "canonical_evidence": "使用多特征融合从非侵入性脑记录进行语义重建，与脑机接口相关",
+      "llm_tldr_en": "This study proposes a multi-feature fusion framework for continuous semantic reconstruction from non-invasive brain recordings, integrating stable word attributes and dynamic contexts to improve cross-modal alignment.",
+      "llm_tldr_cn": "从非侵入性脑记录中进行连续语义重建受限于语义特征空间与神经编码模式的表征不匹配。现有方法孤立使用静态词汇或动态语境表示，导致信息损失。本研究提出多特征融合框架，同时整合稳定词属性和动态语境，促进跨模态对齐，提升语义解码准确性。该方法为脑机接口中的高级语义通信提供了新途径。",
+      "llm_tldr": "从非侵入性脑记录中进行连续语义重建受限于语义特征空间与神经编码模式的表征不匹配。现有方法孤立使用静态词汇或动态语境表示，导致信息损失。本研究提出多特征融合框架，同时整合稳定词属性和动态语境，促进跨模态对齐，提升语义解码准确性。该方法为脑机接口中的高级语义通信提供了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.10931v1",
+      "source": "arxiv",
+      "title": "Fast Whole-Brain, Geometry-Aware Functional Alignment for Cross-Subject Decoding",
+      "abstract": "Decoding brain activity is useful for characterizing brain processes and understanding the functional architecture underlying cognition. However, the inter-individual variability in brain response patterns limits the development of decoders that generalize across individuals. A solution to this challenge is functional alignment: aligning functional data across individuals before training population-level decoders. The core issue is to strike the balance between aligning functional features and preserving the anatomical structure, while maintaining computational efficiency. We introduce a new functional alignment method for fMRI, SpectralOT, that embeds cortical geometry into Laplace-Beltrami eigenmodes along functional data to regularize the alignment.",
+      "authors": [
+        "Pierre-Louis Barbarant",
+        "Florent Meyniel",
+        "Bertrand Thirion"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-12T21:37:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.10931v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI functional alignment for cross-subject decoding",
+      "llm_evidence_cn": "跨被试fMRI解码的功能对齐方法",
+      "llm_evidence": "跨被试fMRI解码的功能对齐方法",
+      "canonical_evidence": "跨被试fMRI解码的功能对齐方法",
+      "llm_tldr_en": "Introduces SpectralOT, a fast functional alignment method for fMRI that uses Laplace-Beltrami eigenmodes to preserve cortical geometry, enabling cross-subject decoding.",
+      "llm_tldr_cn": "该论文提出SpectralOT，一种快速的全脑几何感知功能对齐方法，利用拉普拉斯-贝尔特拉米特征模态将皮层几何信息嵌入功能数据，以正则化对齐过程。该方法在保持解剖结构的同时实现高效功能对齐，提升跨被试脑解码性能，为群体水平脑解码提供了实用的计算工具。",
+      "llm_tldr": "该论文提出SpectralOT，一种快速的全脑几何感知功能对齐方法，利用拉普拉斯-贝尔特拉米特征模态将皮层几何信息嵌入功能数据，以正则化对齐过程。该方法在保持解剖结构的同时实现高效功能对齐，提升跨被试脑解码性能，为群体水平脑解码提供了实用的计算工具。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.12546v1",
+      "source": "arxiv",
+      "title": "Comparison of Dimension Reduction Methods for EEG Seizure Detection Using Autonomous AI-Driven Optimization",
+      "abstract": "Automated epileptic seizure detection from multichannel electroencephalography (EEG) benefits from dimension reduction to obtain compact, discriminative representations. We compare four signal-space dimension reduction methods, Principal Component Analysis (PCA), Dynamical Component Analysis (DyCA), Dynamic Mode Decomposition (DMD), and Average Volatility Dimensioning (AVD), for deep learning-based seizure detection on the Temple University Hospital Seizure Corpus (TUSZ v2.0.3). To enable a comparison of optimal combinations of representation and classifier, an autonomous AI-driven research framework independently optimizes architecture and hyperparameters for each representation. Measured by test ROC-AUC, the variance-based methods AVD (88.28%) and PCA (85.98%) paired with their respective optimal classifiers outperform the dynamics-based methods DMD (74.56%) and DyCA (74.85%) by over 10%, with AVD also showing the smallest validation-to-test gap. The best-performing classifier architecture differs across representations, indicating that representation and classifier should be optimized jointly. Our results highlight the importance of the input representation for EEG seizure detection and indicate the viability of autonomous AI-driven experimentation in biomedical signal processing.",
+      "authors": [
+        "Annika Stiehl",
+        "Vishal Kagade",
+        "Nicolas Weeger",
+        "Nicole Ille",
+        "Stefan Geißelsöder",
+        "Christian Uhl"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP"
+      ],
+      "published": "2026-07-14T09:15:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.12546v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Compares dimension reduction methods (PCA, DyCA, DMD, AVD) for deep learning-based EEG seizure detection",
+      "llm_evidence_cn": "比较多种维度缩减方法用于深度学习脑电癫痫检测",
+      "llm_evidence": "比较多种维度缩减方法用于深度学习脑电癫痫检测",
+      "canonical_evidence": "比较多种维度缩减方法用于深度学习脑电癫痫检测",
+      "llm_tldr_en": "Compares four signal-space dimension reduction methods for EEG seizure detection with deep learning, using autonomous AI optimization; DyCA and AVD show best results.",
+      "llm_tldr_cn": "自动癫痫检测中，脑电信号的维度缩减对深度学习性能至关重要。本文系统比较PCA、DyCA、DMD和AVD四种方法，结合自主AI驱动优化框架确定最优表征与分类器组合。在TUSZ数据集上，DyCA和AVD在ROC-AUC上表现最佳，为脑电信号处理中的特征降维提供实证指导。",
+      "llm_tldr": "自动癫痫检测中，脑电信号的维度缩减对深度学习性能至关重要。本文系统比较PCA、DyCA、DMD和AVD四种方法，结合自主AI驱动优化框架确定最优表征与分类器组合。在TUSZ数据集上，DyCA和AVD在ROC-AUC上表现最佳，为脑电信号处理中的特征降维提供实证指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.12364v1",
+      "source": "arxiv",
+      "title": "Lost in Visual Translation: A VLM-Assisted Perceptual-Semantic Coherence Framework for EEG-to-Image Reconstruction",
+      "abstract": "EEG-to-image evaluation should distinguish visual fidelity from recoverable meaning. Yet EEG-derived reconstructions are blurry, distorted, and low-detail, causing SSIM, LPIPS, and CLIP to penalize semantically recoverable outputs or reward plausible but incorrect ones. We analyze 6,855 ground-truth/reconstruction pairs from ATM, ENIGMA, BrainVis, and DreamDiffusion using semantic probes, caption harshness and blind-spot rates, and controlled degradations. Pixel metrics show near-zero correlation with semantic consistency, while representation metrics conflate perceptual and semantic errors. We therefore introduce a BCI-aware framework in which four VLMs assess image pairs through structured questions, producing Tolerant Perceptual Alignment Scores (T-PAS) and Tolerant Semantic Alignment Scores (T-SAS). Their consensus is distilled into the BCI-Coherence Score (BCS), a compact evaluator achieving a T-PAS MAE of 0.079 (r = 0.700) and a T-SAS MAE of 0.082 (r = 0.850) on our data. Human validation shows highly reliable joint coherence judgments, with Cohen's kappa = 0.882 +/- 0.174 and Krippendorff's alpha = 0.882, supporting perceptual-semantic recoverability over generic visual similarity. Code and resources are available at https://sukt03.github.io/BCS/.",
+      "authors": [
+        "Sukriti Tiwari",
+        "BHVSP Subrahmanyam",
+        "Nidhi Goyal",
+        "Sai Amrit Patnaik"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-14T05:40:23+00:00",
+      "link": "https://arxiv.org/pdf/2607.12364v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLM-assisted framework for EEG-to-image reconstruction, BCI application",
+      "llm_evidence_cn": "VLM辅助的EEG到图像重建框架，BCI应用",
+      "llm_evidence": "VLM辅助的EEG到图像重建框架，BCI应用",
+      "canonical_evidence": "VLM辅助的EEG到图像重建框架，BCI应用",
+      "llm_tldr_en": "This paper introduces a VLM-assisted perceptual-semantic coherence framework to evaluate EEG-to-image reconstructions, addressing the gap between pixel metrics and semantic recoverability, validated on multiple datasets.",
+      "llm_tldr_cn": "针对EEG图像重建中像素指标与语义可恢复性不匹配的问题，本文提出基于视觉语言模型（VLM）的感知语义一致性评估框架。通过四个VLM对6,855对重建图像进行结构化提问，发现传统指标与语义质量几乎无相关性，而新框架能更好反映语义保真度。该工作为BCI视觉解码评估提供了新思路。",
+      "llm_tldr": "针对EEG图像重建中像素指标与语义可恢复性不匹配的问题，本文提出基于视觉语言模型（VLM）的感知语义一致性评估框架。通过四个VLM对6,855对重建图像进行结构化提问，发现传统指标与语义质量几乎无相关性，而新框架能更好反映语义保真度。该工作为BCI视觉解码评估提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.12091v1",
+      "source": "arxiv",
+      "title": "Causal Supervision of Attention for Affective Behaviour Analysis",
+      "abstract": "Affective Behaviour Analysis aims to enable machines to infer human affective states from behavioural signals, particularly facial expressions, in real-world environments. The \\textit{11th Affective Behaviour Analysis in-the-wild Competition} includes the Multi-Task Learning Challenge based on the s-Aff-Wild2 database, where participants develop a unified framework for Valence-Arousal Estimation, Expression Recognition, and Action Unit Detection. This is challenging because emotion-related cues must be distinguished from spurious factors such as identity, illumination, pose, and demographic variation. Attention mechanisms are well suited as they aggregate information from the most informative facial regions, but may still exploit dataset-specific correlations instead of true affective cues. To improve generalization, we propose an attention pooling framework that promotes subject-invariant attention while increasing feature expressiveness. Our method consists of three components. First, we introduce causal supervision to enforce attention on facial regions with invariant predictive value across subjects. Second, we apply a cross-covariance independence regularization between Key (K) and Value (V) projections to encourage complementary, non-redundant representations. Finally, we replace the linear Value projection with a gated nonlinear SwiGLU transformation to increase feature expressiveness and capture finer-grained affective cues. Our method achieves $CCC_{VA}=0.5123$ for VA estimation on the official validation set, together with $F1_{EX}=0.3116$ and $F1_{AU}=0.3974$ for expression recognition and action unit detection, respectively, resulting in an overall $P$ score (the sum of the individual task metrics) of $1.2214$.",
+      "authors": [
+        "Nemanja Rašajski",
+        "Konstantinos Makantasis",
+        "Antonios Liapis",
+        "Georgios N. Yannakakis"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T19:11:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.12091v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Affective behavior analysis for mental health monitoring",
+      "llm_evidence_cn": "情感行为分析用于心理健康监测",
+      "llm_evidence": "情感行为分析用于心理健康监测",
+      "canonical_evidence": "情感行为分析用于心理健康监测",
+      "llm_tldr_en": "Proposes causal supervision of attention for affective behavior analysis from facial expressions, enabling robust valence-arousal estimation in real-world environments.",
+      "llm_tldr_cn": "该论文针对真实环境中面部表情情感分析中注意力机制易受干扰的问题，提出一种因果监督注意力方法。通过多任务学习统一框架，实现效价- arousal估计、表情识别和动作单元检测。方法能有效区分情感相关线索与身份、光照等无关因素，提升鲁棒性。",
+      "llm_tldr": "该论文针对真实环境中面部表情情感分析中注意力机制易受干扰的问题，提出一种因果监督注意力方法。通过多任务学习统一框架，实现效价- arousal估计、表情识别和动作单元检测。方法能有效区分情感相关线索与身份、光照等无关因素，提升鲁棒性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-04-13-718103-v2",
+      "source": "biorxiv",
+      "title": "Classification of Healthy People and Schizophrenics Using Time- Frequency Domain Features Extracted from Electroencephalogram Signals",
+      "abstract": "Schizophrenia (SZ) is a chronic and complex mental disorder associated with neurobiological deficits. The complexity and heterogeneity of schizophrenia symptoms pose challenges for objective diagnosis, which is currently based on behavioral and clinical manifestations. Furthermore, other psychiatric disorders such as bipolar disorder or major depressive disorder are often misdiagnosed as schizophrenia. Consequently, manual screening through psychiatrist-patient interviews is not entirely reliable. This study aims to develop an automated SZ diagnosis scheme using electroencephalogram (EEG) signals as a complementary tool to assist psychiatrists. A novel method is proposed, utilizing features from time, frequency, and time-frequency domains to classify EEG signals from schizophrenia patients and healthy individuals. Time-domain features, frequency-domain features, as well as nonlinear and statistical features were extracted, and 10 feature combinations were selected based on importance using a hybrid mutual information and Sequential Forward Feature Selection approach. Classification was performed using K-nearest neighbors (KNN), weighted KNN, linear and nonlinear support vector machines (SVM) with radial basis function kernels, decision trees, linear discriminant analysis, and the naive Bayes method. Remarkably, three classifiers achieved 100% accuracy.",
+      "authors": [
+        "Ahmadi Daryakenari, N.",
+        "Setarehdan, S. K."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.04.13.718103v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG-based classification of schizophrenia for mental health diagnosis",
+      "llm_evidence_cn": "基于脑电的精神分裂症分类用于心理健康诊断",
+      "llm_evidence": "基于脑电的精神分裂症分类用于心理健康诊断",
+      "canonical_evidence": "基于脑电的精神分裂症分类用于心理健康诊断",
+      "llm_tldr_en": "An automated schizophrenia diagnosis scheme uses time-frequency features from EEG signals to classify patients and healthy controls, offering a complementary tool for psychiatrists.",
+      "llm_tldr_cn": "精神分裂症诊断依赖临床访谈，缺乏客观生物标志物。该研究提出一种基于EEG信号时频域特征的自动化分类方案，利用时间-频率域特征区分精神分裂症患者与健康人。实验结果表明该方法能有效辅助精神科医生进行客观诊断，减少误诊率。",
+      "llm_tldr": "精神分裂症诊断依赖临床访谈，缺乏客观生物标志物。该研究提出一种基于EEG信号时频域特征的自动化分类方案，利用时间-频率域特征区分精神分裂症患者与健康人。实验结果表明该方法能有效辅助精神科医生进行客观诊断，减少误诊率。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-13-738151-v1",
+      "source": "biorxiv",
+      "title": "Speech clarity shapes auditory attention and visual-signal coupling during multimodal sentence comprehension",
+      "abstract": "Face-to-face communication requires listeners to attend, integrate, and weigh multiple communicative signals, including auditory speech, mouth movements, and co-speech gestures. The contribution of these signals may depend on the reliability of auditory input and the informativeness of the available signals. We utilized rapid invisible frequency tagging (RIFT) with EEG to examine how participants attend to and integrate these different signals in clear and adverse listening conditions. Participants watched videos of an actress producing clear or noise-vocoded sentences. Auditory speech was amplitude-modulated at 58Hz, while the luminance of the gesture and mouth regions was frequency-tagged at 63Hz and 65Hz. Degraded speech elicited stronger responses at the auditory tagged frequency, suggesting increased attentional gain to the auditory signal when listening was challenging. In contrast, clear speech elicited stronger responses at the gesture tagged frequency and a stronger 2Hz intermodulation response (65-63Hz), reflecting enhanced nonlinear coupling between mouth movements and gestures. Finally, in degraded speech, the informativeness of mouth movement, but not gesture, was associated with intermodulation strength, suggesting that the informativeness of mouth movements plays a greater role in multisensory interaction when listening is challenging. Our findings demonstrate that both signal reliability and informativeness shape multisensory integration during spoken language comprehension.",
+      "authors": [
+        "Husta, C.",
+        "Seijdel, N.",
+        "Drijvers, L."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.738151v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses EEG with rapid invisible frequency tagging for auditory attention",
+      "llm_evidence_cn": "使用EEG快速不可见频率标签研究听觉注意",
+      "llm_evidence": "使用EEG快速不可见频率标签研究听觉注意",
+      "canonical_evidence": "使用EEG快速不可见频率标签研究听觉注意",
+      "llm_tldr_en": "This study uses EEG with rapid invisible frequency tagging to examine how speech clarity modulates attention to auditory and visual signals during multimodal sentence comprehension.",
+      "llm_tldr_cn": "该研究利用EEG快速不可见频率标签技术，探讨言语清晰度如何调节多模态句子理解中对听觉和视觉信号的注意力。实验发现，在清晰条件下，听者更倾向于依赖听觉信号，而在退化条件下，视觉信号（如口部运动）的注意力增强。该工作为理解多模态交流中的注意力分配提供了神经机制证据。",
+      "llm_tldr": "该研究利用EEG快速不可见频率标签技术，探讨言语清晰度如何调节多模态句子理解中对听觉和视觉信号的注意力。实验发现，在清晰条件下，听者更倾向于依赖听觉信号，而在退化条件下，视觉信号（如口部运动）的注意力增强。该工作为理解多模态交流中的注意力分配提供了神经机制证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-13-738249-v1",
+      "source": "biorxiv",
+      "title": "Decoding and Characterizing the Intracranial Representation of Semantic Information",
+      "abstract": "Brain-computer interfaces (BCIs) have achieved impressive performance by decoding motor and articulatory signals associated with speech production. However, considerably less is known about whether higher-level semantic representations can be decoded from human cortical activity. Demonstrating semantic decoding would advance both our understanding of language organization and the development of BCIs that rely on conceptual rather than purely articulatory information. We recorded intracranial neural activity from patients undergoing stereotactic electroencephalography (sEEG) for clinical epilepsy monitoring while they performed language tasks requiring semantic processing. High-gamma power was extracted from local field potentials and used to generate trial-level features for supervised machine-learning classification. Classification performance was evaluated using cross-validation. Semantic category information was decoded significantly above chance, with mean classification accuracy reaching 29.8% across 15 semantic categories (chance = 6.7%). These findings demonstrate that high-gamma activity contains information about conceptual category membership that can be extracted on individual trials. These results provide evidence that semantic information is accessible from intracranial population recordings and support the feasibility of semantic decoding as a complementary direction for future language BCIs. Beyond neuroprosthetic applications, this work contributes to understanding how conceptual knowledge is represented in the distributed human language network.",
+      "authors": [
+        "Smith, C.",
+        "Inchyna, S.",
+        "Barrentine, B.",
+        "Nelson, M. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.738249v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "decoding semantic information from intracranial EEG (sEEG) for BCI",
+      "llm_evidence_cn": "从颅内EEG解码语义信息用于脑机接口",
+      "llm_evidence": "从颅内EEG解码语义信息用于脑机接口",
+      "canonical_evidence": "从颅内EEG解码语义信息用于脑机接口",
+      "llm_tldr_en": "This paper demonstrates that high-level semantic representations can be decoded from intracranial neural activity (sEEG) during language tasks, opening new avenues for concept-based BCIs beyond motor/articulatory signals.",
+      "llm_tldr_cn": "本文展示从颅内立体脑电图（sEEG）记录中解码高级语义信息的可行性。患者在执行语义语言任务时，从局部场电位提取高伽马功率，成功解码语义类别。这一发现不仅深化了对语言组织脑机制的理解，还为构建基于概念而非仅发音的脑机接口提供了新途径。",
+      "llm_tldr": "本文展示从颅内立体脑电图（sEEG）记录中解码高级语义信息的可行性。患者在执行语义语言任务时，从局部场电位提取高伽马功率，成功解码语义类别。这一发现不仅深化了对语言组织脑机制的理解，还为构建基于概念而非仅发音的脑机接口提供了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

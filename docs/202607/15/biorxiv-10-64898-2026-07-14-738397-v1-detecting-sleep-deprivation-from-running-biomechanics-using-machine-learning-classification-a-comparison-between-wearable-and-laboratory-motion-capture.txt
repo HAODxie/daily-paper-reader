@@ -1,0 +1,1728 @@
+Title: Detecting Sleep Deprivation from Running Biomechanics Using Machine Learning Classification: A Comparison Between Wearable and Laboratory Motion Capture
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.14.738397v1.full.pdf
+
+Number of Pages: 25
+
+Markdown Content:
+# Detecting Sleep Deprivation from Running Biomechanics Using Machine Learning Classification: A Comparison Between Wearable and Laboratory Motion Capture Maura Seynaeve 1,4 , Kilian Hendrickx 3, Benedicte Vanwanseele 2,4 , Toon de 1
+
+Beukelaar 1,4 
+
+2 
+
+> 1
+
+KU Leuven, Department of Movement Sciences, Neuroscience of Movement and 3
+
+Performance Research Group, 3001 Leuven, Belgium 4 
+
+> 2
+
+KU Leuven, Department of Movement Sciences, Human Movement Biomechanics 5
+
+Research Group, 3001 Leuven, Belgium 6
+
+> 3
+
+KU Leuven, Department of Computer Science, 3001 Leuven, Belgium 7 
+
+> 4
+
+KU Leuven Institute of Sports Science, 3001 Leuven, Belgium 8
+
+9
+
+10 
+
+11 
+
+12 
+
+*Correspondence: 13 
+
+Corresponding author: 14 
+
+Toon de Beukelaar 15 
+
+toon.debeukelaar@kuleuven.be 16 
+
++3216376748 17 
+
+18 
+
+19 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+2
+
+Keywords: Sleep deprivation, running gait, wearable sensors, machine learning 20 
+
+classification, biomechanics, recreational runners, fatigue 21 
+
+1 Abstract 22 
+
+Sleep deprivation is associated with impaired endurance performance and an increased risk 23 
+
+of running-related injury. Previous research has identified alterations in running 24 
+
+biomechanics following a single night of sleep deprivation under laboratory conditions. 25 
+
+However, whether these biomechanical changes can be detected using wearable 26 
+
+technology remains unknown. Twenty-one recreationally active runners completed 27 
+
+submaximal treadmill running under both normal sleep and total sleep deprivation 28 
+
+conditions in a randomized crossover design. Biomechanical features were extracted 29 
+
+simultaneously using a full-body motion capture system and a trunk-mounted wearable 30 
+
+sensor. Five machine learning classifiers were evaluated in two classification tasks: a 31 
+
+within-subject task using paired recordings from the same individual, and a between-subject 32 
+
+task performed without individual baseline data. Within-subject classification consistently 33 
+
+exceeded chance level for both measurement systems, with best accuracies of 85% for the 34 
+
+wearable sensor (Logistic Regression) and 83% for the motion capture system (Random 35 
+
+Forest). These findings indicate that sleep deprivation produces a systematic and 36 
+
+individually consistent biomechanical signature during running. In contrast, between-subject 37 
+
+classification failed across nearly all models and systems, with accuracies remaining close 38 
+
+to chance level (~50%), demonstrating that inter-individual variability obscures the sleep-39 
+
+deprivation signal in the absence of personalized baseline data. Both systems converged 40 
+
+on temporal organization, loading-related variables, and stride-to-stride variability as the 41 
+
+most discriminative feature domains. Contrary to expectations, the laboratory motion 42 
+
+capture system did not outperform the wearable sensor. Together, these findings 43 
+
+demonstrate that individualized, baseline-referenced monitoring is essential for detecting 44 
+
+sleep-deprivation-related changes in running gait, and suggest that a single trunk-mounted 45 
+
+wearable sensor may provide a practical solution for real-world monitoring when paired 46 
+
+recordings are available. 47 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+3
+
+2 Introduction 48 
+
+Recreational running is one of the most popular forms of physical activity worldwide, with 49 
+
+millions of people participating regularly across all ages and fitness levels (Hulteen et al., 50 
+
+2017). While running offers well-established health benefits (Lee et al., 2014), it carries a 51 
+
+substantial injury burden. Previous research suggests that as many as 65% of runners 52 
+
+experience at least one overuse injury each year, with common examples including 53 
+
+patellofemoral pain syndrome, iliotibial band friction syndrome, and medial tibial stress 54 
+
+syndrome(Dias Lopes et al., 2012; Messier et al., 2018). These injuries arise from the 55 
+
+repetitive mechanical loading inherent to running, where cumulative stress applied to 56 
+
+muscles, tendons, and joints may eventually exceed a structure's tolerance 57 
+
+threshold(Bertelsen et al., 2017). Importantly, fatigue is a key modulator of this process: as 58 
+
+fatigue develops, running biomechanics change in ways that can introduce atypical loading 59 
+
+patterns, potentially pushing tissues beyond their limits (Zandbergen et al., 2023). Because 60 
+
+these biomechanical alterations are often subtle, objective monitoring tools are essential for 61 
+
+coaches and clinicians working with this population (Mason et al., 2022). 62 
+
+When assessing exercise-induced fatigue, laboratory-based techniques have frequently 63 
+
+been used; however, wearable sensors have more recently emerged as a practical tool for 64 
+
+detecting such fatigue, defined as the acute, task-related decline in performance during or 65 
+
+following a sustained effort (Marotta et al., 2022). Evidence from these studies shows that, 66 
+
+in running, peak tibial and sacral acceleration increases with fatigue, suggesting greater 67 
+
+impact loading as fatigue develops (Schütte et al., 2015; Reenalda et al., 2016, 2019). 68 
+
+Changes in shock attenuation between body segments have also been reported, with 69 
+
+several studies observing increased head-to-tibia and sacrum-to-tibia attenuation under 70 
+
+fatigued conditions, indicating altered impact transmission strategies(Derrick et al., 2002; 71 
+
+Encarnación-Martínez et al., 2023). Beyond impact-related variables, only a limited number 72 
+
+of studies have reported fatigue-related changes in spatiotemporal gait parameters such as 73 
+
+stride length, stride frequency, and contact time, though these findings are less consistent 74 
+
+(Schütte et al., 2015; Reenalda et al., 2016; Meyer et al., 2021). Collectively, this body of 75 
+
+work demonstrates that wearable accelerometers are sensitive to fatigue-induced 76 
+
+biomechanical shifts during running. 77 
+
+However, fatigue is a multifactorial phenomenon that can arise from a variety of 78 
+
+physiological and psychological stressors. Alongside exercise-induced fatigue, which arises 79 
+
+from the accumulation of physiological and neuromuscular stress during prolonged or 80 
+
+intense exercise, insufficient sleep represents a clinically important and underexplored 81 
+
+source of fatigue for running populations. Insufficient sleep has been associated with 82 
+
+impaired athletic performance and injury-risk in athletes, making sleep health an important 83 
+
+concern for coaches and clinicians working with this population (Charest and Grandner, 84 
+
+2022). A recent meta-analysis of 31 studies showed that sleep deprivation has a moderate 85 
+
+negative effect on endurance performance, with longer-duration exercise (>30 min) being 86 
+
+more adversely affected (Lopes et al., 2023). In addition, a 26-week prospective cohort 87 
+
+study of 339 runners found that poorer sleep quality was associated with a 36% higher risk 88 
+
+of running-related injury (Goldberg et al., 2025). Despite these effects on running-related 89 
+
+injury, studies examining the direct biomechanical consequences of fatigue induced by 90 
+
+sleep deprivation remain scarce. 91 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+4
+
+The biomechanical consequences of fatigue induced by sleep loss cannot be assumed 92 
+
+equivalent to the consequences of exercise-induced fatigue as described above. Unlike the 93 
+
+peripheral muscular fatigue caused by metabolite accumulation or energy substrate 94 
+
+depletion, sleep deprivation is more likely to influence motor performance through central 95 
+
+mechanisms, occurring proximal to the neuromuscular junction. Beyond its well-96 
+
+documented effects on cognitive performance(Killgore, 2010), sleep loss has been shown to 97 
+
+impair motor performance in a task-dependent manner (Fullagar et al., 2015; Knowles et al., 98 
+
+2018; Vitale et al., 2019; Walsh et al., 2021; Craven et al., 2022). In general, effects are 99 
+
+more pronounced for continuous, multi-joint movements than for discrete, single-joint tasks 100 
+
+(Fullagar et al., 2015; Knowles et al., 2018; Vitale et al., 2019; Walsh et al., 2021; Craven et 101 
+
+al., 2022). This distinction is mechanistically meaningful: complex, continuous movements 102 
+
+such as maintaining balance or walking rely on higher-order neural control processes, 103 
+
+including feedforward planning, sensorimotor feedback, and executive attention, all of which 104 
+
+are sensitive to sleep loss (Woollacott and Shumway-Cook, 2002; Pruszynski et al., 2011; 105 
+
+Stuhr et al., 2018; Umemura et al., 2022). Running, as a dynamic, rhythmically coordinated, 106 
+
+multi-joint task, is therefore likely to be vulnerable to these centrally mediated disruptions. 107 
+
+Supporting this, recent work using a marker-based 3D motion capture system and 108 
+
+instrumented treadmill confirmed meaningful biomechanical changes following a single 109 
+
+night of sleep deprivation (Seynaeve et al., 2026). However, such laboratory-grade 110 
+
+equipment is rarely accessible outside of research settings. Hence, this raises the question 111 
+
+whether these alterations could instead be detected using wearable technology, a more 112 
+
+scalable and ecologically valid alternative. 113 
+
+A frequent challenge in detecting these condition-induced biomechanical patterns is that 114 
+
+inter-individual differences in gait patterns routinely exceed the magnitude of condition 115 
+
+effects, causing group-level analyses to wash out the very signal of interest. As has been 116 
+
+demonstrated in the exercise-induced fatigue literature, the average runner does not 117 
+
+resemble any individual in the group, and population-level models frequently mask 118 
+
+meaningful individual responses (Chalitsios et al., 2024). Machine learning has emerged as 119 
+
+a promising framework for addressing this problem, precisely because it captures 120 
+
+coordinated patterns across many biomechanical variables simultaneously rather than 121 
+
+testing each in isolation. Early research established the feasibility of this approach for 122 
+
+exercise-induced fatigue detection. For instance, Buckley et al. demonstrated that a single 123 
+
+inertial measurement unit (IMU) placed at the lumbar spine could classify non-fatigued 124 
+
+versus fatigued states using a single group-level model with an accuracy of 75% (Buckley et 125 
+
+al., 2017). Additional work showed that this could be improved substantially through 126 
+
+individualization. Subject-specific models consistently and significantly outperform group-127 
+
+based equivalents in identifying biomechanical shifts (Buckley et al., 2017; Op De Beéck et 128 
+
+al., 2018; Dimmick et al., 2023). This performance gap exists because the most 129 
+
+discriminative gait variables are highly subject-dependent; for instance, the specific 130 
+
+mechanical features that signal fatigue or environmental adaptation in one runner often hold 131 
+
+little predictive power for another (Marotta et al., 2021). To reliably isolate these subtle 132 
+
+shifts, successful models typically require normalizing feature values against an individual’s 133 
+
+unique baseline rather than using absolute population standards (Op De Beéck et al., 134 
+
+2018). This preprocessing step is essential to distinguish true condition-induced signals 135 
+
+from a runner's inherent movement style. 136 
+
+In conclusion, sleep deprivation represents a clinically relevant stressor for running 137 
+
+populations, with established consequences for both performance and injury risk. Yet, 138 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+5
+
+despite the availability of both wearable technology and machine learning frameworks 139 
+
+capable of detecting fatigue-related gait alterations, no study has examined whether sleep-140 
+
+deprivation-induced biomechanical changes during running are detectable using these 141 
+
+tools. Therefore, the primary aim of this study was to determine whether sleep deprivation 142 
+
+can be detected from running biomechanics using data from a single trunk-mounted inertial 143 
+
+measurement unit (IMU). In addition, we will (i) compare the discriminative performance of a 144 
+
+laboratory-based motion capture system (Vicon) and a wearable inertial sensor (Runeasi) in 145 
+
+capturing sleep-deprivation-induced gait alterations, and (ii) evaluate the relative 146 
+
+effectiveness of within-subject, paired classification and population-level classification 147 
+
+approaches. Both modeling strategies were applied across motion capture systems, 148 
+
+enabling a direct comparison between personalized models that leverage subject-specific 149 
+
+baselines and generalized models that operate across individuals. We hypothesized that 150 
+
+sleep deprivation would be detectable above chance level, with superior performance 151 
+
+observed for within-subject classification compared to population-level models due to 152 
+
+reduced inter-individual variability. Furthermore, although both motion capture systems 153 
+
+were expected to demonstrate discriminative capacity, we anticipated that the laboratory-154 
+
+based motion capture system would outperform wearable inertial sensor owing to its richer 155 
+
+and higher-resolution biomechanical feature space. 156 
+
+157 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+6
+
+158 
+
+3 Materials and Methods 159 
+
+3.1 Participants 160 
+
+A total of 22 healthy, recreationally active runners (18–35 years) were initially recruited. 161 
+
+Eligible participants were required to have adequate baseline sleep quality and duration, 162 
+
+regular running habits ( ≥20 km/week for the past 6 months), and no running-related injuries 163 
+
+in the preceding 2 months. Individuals with suspected sleep disorders, daily alcohol 164 
+
+consumption, caffeine intake >400 mg/day, use of psychoactive substances, active 165 
+
+smoking, or any known metabolic, cardiovascular, respiratory, or orthopedic conditions were 166 
+
+excluded. One participant was subsequently excluded from analysis due to missing data. 167 
+
+Descriptive characteristics are presented in Table 1. This study was approved by the Ethics 168 
+
+Committee of UZ Leuven (S67790) and conducted in accordance with the Declaration of 169 
+
+Helsinki. All participants provided written informed consent prior to participation. 170 
+
+Table 1. Subject characteristics 171 
+
+Male Female 
+
+Sample size 10 11 Age (years) 22.1 ± 2.2 22.4 ± 2.2 Body mass (kg) 72.4 ± 6.7 59.6 ± 8.2 Body height (m) 1.80 ± 0.06 1.67 ± 0.07 Km/week running 36.7 ± 25.2 27.6 ± 6.1 Speed at 1 st lactate threshold (km/h) 11.6 ± 2.1 10.1 ± 1.2 Speed at 2 nd lactate threshold (km/h) 14.7 ± 0.9 12.6 ± 0.8 Self-reported habitual sleep duration (h) 8.0 ± 0.9 8.3 ± 0.7 
+
+172 
+
+3.2 Study Design 173 
+
+The full study design and experimental protocol are described in detail elsewhere 174 
+
+(Seynaeve et al., 2026). Briefly, participants completed two experimental sessions in a 175 
+
+randomized, counterbalanced crossover design: one following a night of normal sleep 176 
+
+(control condition, CON) and one following a night of total sleep deprivation (SDEP), 177 
+
+separated by a one-week washout period (Figure 1). In the CON condition, participants 178 
+
+slept in the laboratory from 11:00 pm to 07:00 am under full polysomnographic monitoring. 179 
+
+In the SDEP condition, participants remained awake throughout the night under continuous 180 
+
+supervision. The running protocol commenced at 07:30 am following CON and at 06:30 am 181 
+
+following SDEP, and consisted of three 8-minute intervals at 90% of LT1, LT1, and 90% of 182 
+
+LT2, followed by a fourth interval at LT2 speed continued until volitional exhaustion. All 183 
+
+running trials were performed on an instrumented treadmill (M-Gait, Motek, Amsterdam, the 184 
+
+Netherlands). Running intensities were individually determined based on lactate thresholds 185 
+
+established during a prior incremental treadmill test. 186 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+7187 
+
+Figure 1. Schematic overview of the study visits. During visit 1, participants completed an 188 
+
+incremental exercise test to determine individual lactate thresholds. Visit 2 served as a 189 
+
+habituation session, familiarizing participants with the sleep laboratory and the running 190 
+
+protocol. Visits 3 and 4 were completed in a counterbalanced, randomized order, consisting 191 
+
+of one sleep deprivation night and one control night. The morning following each 192 
+
+experimental night, participants performed three submaximal running intervals of 8 minutes 193 
+
+at increasing intensities, followed by a single interval to volitional exhaustion at their second 194 
+
+lactate threshold. LT1, first lactate threshold; LT2, second lactate threshold. 195 
+
+3.3 Instrumentation 196 
+
+Two motion capture systems were used simultaneously to record running biomechanics 197 
+
+during each session. Laboratory-based kinematics were recorded using a 13-camera 198 
+
+infrared motion capture system (Vicon, Oxford Metrics, Oxford, UK) sampling at 250 Hz, 199 
+
+with 28 reflective markers. Concurrently, trunk accelerometry was recorded using the 200 
+
+Runeasi system, a commercially available wearable sensor (Movesense, Vantaa, Finland) 201 
+
+with integrated cloud-based processing platform (Runeasi.ai, Tienen, Belgium), sampling at 202 
+
+200 Hz. The sensor was mounted at the lower back between L5 and S2 using a firm elastic 203 
+
+belt approximating the center of mass. Both systems recorded simultaneously throughout all 204 
+
+running intervals, allowing direct comparison of their discriminative capacity under identical 205 
+
+experimental conditions. 206 
+
+3.4 Feature Extraction 207 
+
+For the lab-based motion capture system, biomechanical features were extracted from the 208 
+
+spatiotemporal, kinematic, kinetic and joint power variables described in detail elsewhere 209 
+
+(Seynaeve et al., 2026). Variables were computed over strides collected between minutes 5 210 
+
+and 7 of the first three intervals and minutes 1 to 3 of the final interval. Only features 211 
+
+normalized to body weight were used in the analysis. A total of 83 features were included in 212 
+
+the final dataset. 213 
+
+For the wearable sensor, raw acceleration signals were automatically processed by the 214 
+
+Runeasi platform into 21 running metrics computed in 5-second epochs. Epochs containing 215 
+
+data corresponding to minutes 5 to 7 of the first three intervals and minutes 1 to 3 of the 216 
+
+final interval were summarized by computing the mean, standard deviation, and left-right 217 
+
+asymmetry of each metric, yielding 36 features per interval per participant. Left–right 218 
+
+asymmetry was calculated as the absolute, non-directional percentage difference between 219 
+
+limbs, ensuring that only the magnitude of inter-limb differences was retained. The extracted 220 
+
+metrics included spatiotemporal characteristics (cadence, flight ratio, flight time, ground 221 
+
+contact time), impact-related variables (impact magnitude, impact duration, peak loading 222 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+8
+
+rate, cumulative impact), trunk movement qualities (dynamic stability, smoothness), and 223 
+
+anteroposterior/vertical ground reaction forces (braking, braking impulse, propulsive 224 
+
+impulse, vertical impulse). A full description of each metric and its computation is provided 225 
+
+in Supplementary Materials S1. 226 
+
+3.5 Classification Task 227 
+
+Two complementary classification tasks were evaluated. The first was a within-subject task, 228 
+
+in which paired data from CON and SDEP sessions of a single participant were presented 229 
+
+to the classifier. Then, the classifier was required to determine which session corresponded 230 
+
+to each condition. This formulation explicitly removes inter-subject variability and isolates 231 
+
+the intra-individual gait change due to sleep deprivation. The second was a between-subject 232 
+
+task in which raw session measurements were classified as CON or SDEP without pairing, 233 
+
+requiring the classifier to generalize across the natural variation in running gait between 234 
+
+individuals. The between-subject task is more challenging and more generally applicable in 235 
+
+a real-world setting, where a reference recording under rested conditions may not be 236 
+
+available. Both approaches were applied independently to features derived from the lab 237 
+
+system and from the wearable sensor, yielding four classification pipelines in total. In all 238 
+
+cases, a single group-level model was trained across participants rather than subject-239 
+
+specific models. 240 
+
+3.6 Classification Models 241 
+
+Five supervised classification algorithms were evaluated: Logistic Regression, Decision 242 
+
+Tree, Random Forest, k-Nearest Neighbours (k-NN), and Extreme Gradient Boosting 243 
+
+(XGBoost). Each was subjected to systematic hyperparameter optimization using a nested 244 
+
+cross-validation scheme, with the number of retained features treated as a tunable 245 
+
+hyperparameter and optimized jointly with the model-specific parameters. Analyses were 246 
+
+conducted separately for the two motion capture systems (lab and wearable) and for both 247 
+
+classification tasks (within- and between-subject). All analyses were implemented in Python 248 
+
+using scikit-learn , XGBoost , and statsmodels . A fixed random seed (42) was used 249 
+
+throughout for reproducibility. 250 
+
+3.7 Data Preparation 251 
+
+Within-subject task. For each motion capture system, subject and running speed, 252 
+
+biomechanical features from the CON and SDEP sessions were subtracted to produce two 253 
+
+signed difference vectors: CON − SDEP and SDEP − CON. This way, each subject 254 
+
+contributed two data points per speed condition. This formulation eliminates between-255 
+
+subject baseline differences and constrains the problem to detecting the directional shift in 256 
+
+gait attributable to sleep deprivation. 257 
+
+Between-subject task. The same subjects and speed conditions were used, but the raw 258 
+
+session measurements were retained without pairing. Each observation was labelled as 259 
+
+CON or SDEP, and the classifier was required to generalize across subjects without access 260 
+
+to a paired reference. 261 
+
+For both tasks, features were organized into a feature matrix X, a binary outcome vector y, 262 
+
+and a group vector indicating subject identity. Running speed was encoded as a categorical 263 
+
+variable with four levels (1-4), and used as a covariate in the ANOVA-based feature 264 
+
+selection step. 265 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+9
+
+3.8 Processing Pipeline 266 
+
+For each cross-validation fold, a three-stage pipeline was applied strictly within the training 267 
+
+partition to prevent data leakage. First , all features were standardized to zero mean and unit 268 
+
+variance using a standard scaler fitted on training data only. Second , an feature selector 269 
+
+based on an analysis of variance (ANOVA) identified the features most strongly associated 270 
+
+with condition type. Specifically, for each candidate feature, a two-way ANOVA (Type II) 271 
+
+was fitted with condition and running speed as factors, including their interaction term. 272 
+
+Features were ranked by the p-value of the condition main effect and the top k retained, 273 
+
+where k was treated as a hyperparameter. Third , the selected classifier was trained on the 274 
+
+standardized, reduced feature set. 275 
+
+3.9 Nested Cross-Validation and Hyperparameter Optimization 276 
+
+A nested cross-validation framework was used to provide an unbiased estimate of 277 
+
+generalization performance. The outer loop used 10-fold group cross-validation 278 
+
+(GroupKFold) stratified by subject identity, ensuring no subject appeared in both training 279 
+
+and test partitions within a fold. For each outer training set, an inner GroupKFold grid 280 
+
+search (up to five folds, capped by available subjects) exhaustively evaluated all 281 
+
+hyperparameter combinations using accuracy as the criterion, and the best configuration 282 
+
+was refitted on the full outer training set before evaluation on the held-out fold. Classification 283 
+
+accuracy was recorded per outer fold and summarized as mean ± standard deviation across 284 
+
+ten folds. A chance-level baseline of 50% applies to both tasks given the balanced binary 285 
+
+design. 286 
+
+Hyperparameter search spaces were as follows. Logistic Regression: regularization 287 
+
+strength C ∈ {0.001, 0.01, 0.1, 1, 10, 100}, liblinear solver. Decision Tree: maximum depth ∈288 
+
+{2, 3, 4, unlimited}, minimum samples to split ∈ {2, 4, 6}. Random Forest: number of trees ∈289 
+
+{50, 100, 200}, maximum depth ∈ {2, 3, unlimited}. k-NN: neighbors ∈ {3, 5, 7}, weighting ∈290 
+
+{uniform, distance}. XGBoost: boosting rounds ∈ {5, 10, 50, 100}, maximum depth ∈ {2, 3, 291 
+
+unlimited}, learning rate ∈ {0.01, 0.1, 0.2}. For all models, the number of ANOVA-selected 292 
+
+features k was searched over {5, 10, 20, all}. 293 
+
+3.10 Feature Importance Analysis 294 
+
+To identify which gait features drove classification, each model was refitted on the full 295 
+
+dataset and feature importances were extracted: absolute logistic regression coefficients for 296 
+
+Logistic Regression, and Gini-based impurity reduction for Decision Tree, Random Forest, 297 
+
+and XGBoost. k-NN does not yield intrinsic feature importances and was excluded from this 298 
+
+analysis. Feature importances were computed separately for each sensor system and 299 
+
+classification task. 300 
+
+301 
+
+302 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+10 
+
+4 Results 303 
+
+4.1 Within-subject classification 304 
+
+For the within-subject task, we classified the direction of the within-individual gait difference 305 
+
+(CON − SDEP vs SDEP − CON). We found consistent above-chance performance across 306 
+
+all models and both motion capture systems (Figure 2, Table 2). This confirms that sleep 307 
+
+deprivation produces a systematic and directionally consistent change in running gait within 308 
+
+individuals that is detectable by machine learning classifiers. 309 
+
+For the lab-based motion capture dataset, the ranking was markedly different. Random 310 
+
+Forest led with a mean accuracy of 82.7% ± 23.0%, followed by XGBoost (77.1% ± 19.4%) 311 
+
+and Logistic Regression (70.0% ± 13.9%). Decision Tree (67.5% ± 19.3%) performed at an 312 
+
+intermediate level, while k-NN (54.2% ± 20.2%) fell considerably behind the other models. 313 
+
+This pattern suggests that the richer, higher-dimensional motion capture feature space 314 
+
+contains non-linear structure better exploited by ensemble tree methods, while distance-315 
+
+based approaches struggle in this higher-dimensional setting. 316 
+
+For the wearable sensor dataset, Logistic Regression achieved the highest mean accuracy 317 
+
+(85.4% ± 19.3%), closely followed by k-NN (77.5% ± 24.2%) and Random Forest (76.9% ± 318 
+
+18.1%). Decision Tree (68.3% ± 20.5%) and XGBoost (72.1% ± 21.4%) performed at an 319 
+
+intermediate level. The strong performance of the linear model again suggests that the 320 
+
+within-subject gait difference captured by the wearable sensor is relatively low-dimensional 321 
+
+and linearly separable, though the competitive performance of k-NN indicates a degree of 322 
+
+local structure in the feature space as well. 323 
+
+Fold-level variability was substantial across both datasets. The best-performing model for 324 
+
+the wearable dataset (Logistic Regression) showed a standard deviation of 19.3%, while the 325 
+
+best-performing model for the lab-based dataset (Random Forest) showed a standard 326 
+
+deviation of 23.0%, with some folds yielding perfect classification and others falling near or 327 
+
+below chance. This indicates meaningful between-subject heterogeneity in the magnitude, 328 
+
+though not the direction, of the gait response to sleep deprivation. 329 
+
+4.2 Between-subject classification 330 
+
+For the between-subject task, we predicted session type (CON or SDEP) from raw gait 331 
+
+measurements without paired reference data. This task proved substantially more difficult, 332 
+
+with all models performing close to or only modestly above the 50% chance level across 333 
+
+both sensor systems (Figure 2, Table 2). This sharp decline relative to the within-subject 334 
+
+task demonstrates that inter-subject variability in running gait dominates the sleep-335 
+
+deprivation signal when individuals are treated independently. 336 
+
+For the lab-based dataset, performance was constrained across all models. Logistic 337 
+
+Regression performed marginally best (62.9% ± 16.2%), followed by k-NN (53.5% ± 12.6%), 338 
+
+Random Forest (54.2% ± 21.0%), XGBoost (50.8% ± 14.1%), and Decision Tree (47.5% ± 339 
+
+17.5%). 340 
+
+For the wearable dataset, Logistic Regression again achieved the highest accuracy (65.4% 341 
+
+± 15.3%), representing the only model with a meaningful margin above chance. XGBoost 342 
+
+(58.8% ± 8.9%) showed a modest but more consistent improvement over chance, notable 343 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+11 
+
+for its comparatively low standard deviation. Random Forest (55.6% ± 14.4%) and Decision 344 
+
+Tree (51.5% ± 12.6%) remained close to the chance baseline, while k-NN (49.8% ± 13.9%) 345 
+
+performed at chance on average. Notably, Logistic Regression was the top performer on 346 
+
+both motion capture systems for the between-subject task, in contrast to the within-subject 347 
+
+task, where it ranked first for the wearable but third for the lab-based dataset. Nevertheless, 348 
+
+no model achieved classification accuracy that would be interpretable as reliable detection 349 
+
+of sleep deprivation at the group level without individual reference data. 350 
+
+Table 2 . Classification accuracies for the different classification tasks and motion capture 351 
+
+systems 352 
+
+Within Subject Between Subject 
+
+Model Lab Wearable Lab Wearable Logistic Regression (%) 70.0 ± 13.9 85.4 ± 19.3 62.9 ± 16.2 65.4 ± 15.3 
+
+Decision Tree (%) 67.5 ± 19.3 68.3 ± 20.5 47.5 ± 17.5 51.5 ± 12.6 Random Forest (%) 82.7 ± 23.0 76.9 ± 18.1 54.2 ± 21.0 55.6 ± 14.4 k-Nearest Neighbours (%) 54.2 ± 20.2 77.5 ± 24.2 53.5 ± 12.6 49.8 ± 13.9 XGBoost (%) 77.1 ± 19.4 72.1 ± 21.4 50.8 ± 14.1 58.8 ± 8.9 
+
+353 
+
+354 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+12 
+
+355 356 
+
+Figure 2. Classification accuracy of machine learning models for the within-subject (A) and 357 
+
+between-subject task (B). Box plots showing cross-validated accuracy scores for five 358 
+
+machine learning models evaluated on the lab-based (blue) and wearable (red) datasets. 359 
+
+Each box represents the distribution of accuracy scores across cross-validation folds, with 360 
+
+the horizontal line indicating the median, the box boundaries showing the interquartile 361 
+
+range, and individual points representing outliers. The dashed horizontal line marks chance 362 
+
+level (0.5). Both datasets were evaluated on identical model architectures with 363 
+
+hyperparameter optimization performed via grid search. We found consistent above-chance 364 
+
+performance across all models and both motion capture systems for the within-subject task 365 
+
+but not for the between-subject task. 366 
+
+367 
+
+368 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+13 
+
+369 
+
+4.3 Feature importance 370 
+
+Feature importances were computed on the full dataset for the within-subject task, providing 371 
+
+insight into which gait characteristics are most sensitive to sleep deprivation at the individual 372 
+
+level (Figure 3). 373 
+
+Lab-based dataset. Ground contact time was the dominant feature for tree-based models, 374 
+
+ranking first for Decision Tree (53.1%), Random Forest (20.9%), and XGBoost (41.5%), 375 
+
+though it contributed less distinctively in Logistic Regression, where importance was more 376 
+
+evenly distributed across features. Peak hip flexion moment was the second most important 377 
+
+feature overall, contributing consistently across all four models (6.8%, 19.2%, 9.3%, 10.3%). 378 
+
+Peak knee flexion variability also appeared among the top features across all models 379 
+
+(13.6%, 14.1%, 8.6%, 7.1%), followed by peak ankle plantarflexion moment variability and 380 
+
+peak loading rate as moderately important contributors. Overall, the pattern points to sleep 381 
+
+deprivation altering ground contact mechanics and lower-limb loading characteristics in a 382 
+
+consistent within-individual direction, with kinetic and spatiotemporal variables jointly driving 383 
+
+classification across the full-body motion capture feature space. 384 
+
+Wearable dataset . Cadence was the single most consistently important feature across 385 
+
+models, ranking first for Logistic Regression (9.9%), Decision Tree (35.5%), and Random 386 
+
+Forest (15.3%), and second for XGBoost (18.7%). Smoothness mean was similarly 387 
+
+prominent, ranking first for XGBoost (19.4%) and second for Decision Tree (19.3%), and 388 
+
+contributing meaningfully in Logistic Regression (10.1%). Braking SD emerged as a389 
+
+consistently important contributor across all four models (7.7%, 16.3%, 11.4%, 10.2%), as 390 
+
+did Dynamic Stability SD (12.6%, 4.6%, 10.7%, 6.6%). Beyond these leading features, 391 
+
+cumulative impact mean and propulsive impulse variability appeared as moderately 392 
+
+important for Logistic Regression, Random Forest and XGBoost. The prominence of 393 
+
+variability features alongside mean-level variables suggests that sleep deprivation affects 394 
+
+not only the central tendency of key gait parameters but also the consistency of movement 395 
+
+mechanics within individuals. 396 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+14 
+
+397 
+
+Figure 3. Feature importance heatmap across four classifier models for the within-subject 398 
+
+task. Normalized feature importance (0–1) of (A) lab-based motion capture features (blue), 399 
+
+and (B) wearable-derived features (red). Features are ranked by mean importance; darker 400 
+
+shading = higher importance. Normalization was applied within each model. Across both 401 
+
+systems, variability-based features (SD metrics) were consistently among the most 402 
+
+important discriminators, alongside spatiotemporal features such as ground contact time 403 
+
+and cadence. Importance was highly concentrated in a single feature for the decision tree, 404 
+
+whereas Random Forest and XGBoost showed more distributed profiles across both the 405 
+
+lab-based and wearable systems. LR, Logistic Regression; DT, Decision Tree; RF, Random 406 
+
+Forest; XGB, XGBoost. 407 
+
+408 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+15 
+
+5 Discussion 409 
+
+This study examined whether total sleep deprivation produces detectable changes in 410 
+
+running gait biomechanics. Analyses were performed using two complementary motion 411 
+
+capture systems - a laboratory-based full-body system (Vicon) and a field-deployable trunk-412 
+
+mounted wearable (Runeasi) - and two classification tasks that differed depending on the 413 
+
+availability of an individual reference condition. These analyses resulted in three primary 414 
+
+findings. First , within-subject classification was consistently above chance for both motion 415 
+
+capture systems, confirming that sleep deprivation produces a systematic and individually 416 
+
+consistent biomechanical signature in running gait. Second , between-subject classification 417 
+
+failed across nearly all models and both motion capture systems, demonstrating that inter-418 
+
+individual variability in running gait overwhelms the sleep-deprivation signal when no 419 
+
+reference condition is available. Third , despite their fundamental differences in 420 
+
+measurement scope, both systems converged on temporal, loading-related, and variability-421 
+
+based features as the most discriminative signals of sleep deprivation. These findings 422 
+
+partially support our hypotheses: sleep deprivation was detectable above chance for the 423 
+
+within-subject task, and within-subject classification outperformed between-subject 424 
+
+classification as anticipated. However, contrary to our expectation that the lab-based motion 425 
+
+capture would outperform the wearable by virtue of its richer feature space, both systems 426 
+
+achieved comparable within-subject classification accuracy, and neither system supported 427 
+
+meaningful between-subject detection. 428 
+
+5.1 Within-subject vs between-subject classification 429 
+
+Within-subject classification accuracy exceeded chance level across all models and both 430 
+
+measurement modalities. This provides evidence that total sleep deprivation alters running 431 
+
+gait in a sufficiently systematic and repeatable manner within individuals to support machine 432 
+
+learning classification. These findings extend recent laboratory-based work demonstrating 433 
+
+meaningful biomechanical changes following a single night of sleep deprivation by showing 434 
+
+that such alterations are sufficiently structured to permit condition discrimination at the 435 
+
+individual level (Seynaeve et al., 2026). However, fold-level variability was substantial 436 
+
+across both systems, with individual folds ranging from near-perfect classification to near-437 
+
+chance performance. This likely reflects heterogeneity in the magnitude of the gait response 438 
+
+to sleep deprivation across individuals, although variability in model estimation and fold 439 
+
+composition may also have contributed. Such variability is nonetheless consistent with well-440 
+
+documented inter-individual differences in vulnerability to sleep deprivation (Van Dongen et 441 
+
+al., 2004) 442 
+
+By contrast, between-subject classification failed to produce meaningful discrimination in 443 
+
+either modality, with most models performing within a few percentage points of the 50% 444 
+
+chance baseline. As documented extensively in the exercise-induced fatigue detection 445 
+
+literature, inter-individual differences in gait patterns often exceed the magnitude of 446 
+
+condition-induced effects (Chalitsios et al., 2024) . The present findings suggest that this 447 
+
+challenge extends to the sleep deprivation context. More broadly, these results support the 448 
+
+subject-specific, baseline-normalized approach advocated in the fatigue literature (Op De 449 
+
+Beéck et al., 2018) , indicating that the absence of an individual reference measurement 450 
+
+substantially limits the reliable detection of sleep-deprivation-related gait changes. In 451 
+
+practical terms, a single gait recording obtained without knowledge of an individual’s rested 452 
+
+running pattern appears insufficient to reliably infer sleep deprivation status. 453 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+16 
+
+5.2 Wearable sensors vs 3D motion capture 454 
+
+Contrary to our hypothesis that 3D motion capture would outperform a wearable system, 455 
+
+both systems achieved comparable within-subject classification accuracy, and neither 456 
+
+supported meaningful between-subject detection. However, the optimal model family 457 
+
+differed notably between the two systems. Using wearable sensor features, linear and 458 
+
+distance-based models (Logistic Regression and k-NN) outperformed tree-based ensemble 459 
+
+methods (Random Forest and XGBoost), whereas the reverse pattern was observed for the 460 
+
+lab-based motion capture features. 461 
+
+The interpretation of this dissociation warrants caution, as model performance alone cannot 462 
+
+establish the underlying geometry of a feature space, and multiple explanations may 463 
+
+contribute. One plausible contributor is the difference in feature dimensionality between the 464 
+
+two candidate pools. Large-scale benchmarking across 243 datasets has shown that the 465 
+
+number of features is significantly correlated with the performance advantage of Random 466 
+
+Forest over Logistic Regression, with the advantage shifting from negative to positive as 467 
+
+dimensionality increases, while sample size alone was not a significant predictor of this gap 468 
+
+(Couronné et al., 2018) . The lab-based motion capture system drew from a substantially 469 
+
+larger and more heterogeneous candidate pool of 83 features spanning multiple 470 
+
+biomechanical domains, compared to 36 features for the wearable system. If the effective 471 
+
+dimensionality and structural complexity of the retained feature sets differed accordingly, 472 
+
+this could partly explain why ensemble methods outperformed linear models for the lab-473 
+
+based system but not for the wearable system. 474 
+
+A further, non-mutually-exclusive explanation concerns feature intercorrelation introduced 475 
+
+by the selection procedure. Because ANOVA-based univariate feature selection ranks 476 
+
+features by their individual association with the outcome without accounting for redundancy 477 
+
+among predictors (Michalak and Kwasnicka, 2010; Walowe Mwadulo, 2016) , features selected 478 
+
+from the larger, more heterogeneous lab-based pool may carry greater residual 479 
+
+intercorrelation. Whether this differentially affected the two model families is difficult to 480 
+
+establish without formal analysis of inter-feature correlations in the retained subsets, and 481 
+
+this explanation should be treated as a plausible hypothesis rather than a definitive account 482 
+
+of the observed performance differences. 483 
+
+5.3 Feature importance 484 
+
+Feature importances were computed on the full dataset for the within-subject task to identify 485 
+
+which features contributed most strongly to discrimination between rested and sleep-486 
+
+deprived conditions at the individual level. Despite substantial differences in feature 487 
+
+representation between the two systems, comparison of importance patterns revealed 488 
+
+convergence across three recurring themes. The most pronounced concerned temporal 489 
+
+structure: cadence was the dominant wearable feature across models, while ground contact 490 
+
+time emerged as the dominant laboratory-based feature. These variables represent closely 491 
+
+related components of stride-cycle timing. Therefore, their co-emergence as highly 492 
+
+discriminative features across independent motion capture systems suggests that 493 
+
+alterations in the temporal organization of running were among the most consistently 494 
+
+discriminative signals of sleep deprivation. 495 
+
+A second recurring theme involved loading-related information. Impact-related wearable 496 
+
+features, including cumulative impact and impact magnitude, and laboratory-derived kinetic 497 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+17 
+
+variables, including peak loading rate and peak braking force, all contributed meaningfully to 498 
+
+classification. While trunk accelerometry provides an indirect representation of impact 499 
+
+transmission, laboratory-based kinetics directly characterize ground reaction force 500 
+
+mechanics. Therefore, these variables reflect related but not equivalent aspects of impact 501 
+
+behavior. Nevertheless, their parallel importance suggests that loading-related information 502 
+
+contributed substantially to discrimination across measurement contexts. 503 
+
+A third shared pattern was the consistent contribution of variability-related features 504 
+
+alongside mean-level variables in both systems. This indicates that stride-to-stride variability 505 
+
+in key gait characteristics contributed meaningfully to discrimination between rested and 506 
+
+sleep-deprived running states. Importantly, however, importance rankings alone cannot 507 
+
+establish the direction of these changes; variability-related features may contribute strongly 508 
+
+to classification regardless of whether variability increased, decreased, or shifted in a more 509 
+
+complex multivariate manner. 510 
+
+The two systems diverged in ways that reflect their different measurement scope. Wearable 511 
+
+importance was distributed more diffusely across trunk-derived variables including dynamic 512 
+
+stability, smoothness, and multiple variability metrics, whereas laboratory-based importance 513 
+
+concentrated on specific joint-level kinetic and kinematic variables, reflecting the system's 514 
+
+capacity to resolve mechanical detail inaccessible to a single trunk-mounted sensor. This 515 
+
+suggests the two modalities may provide different but partially overlapping perspectives on 516 
+
+the gait response to sleep deprivation, with the wearable capturing global coordination and 517 
+
+trunk movement organization and the laboratory system isolating joint-specific adaptations. 518 
+
+The patterns described above are consistent with several hypothesized neuromuscular 519 
+
+consequences of sleep deprivation, and find support in the descriptive data. First, impaired 520 
+
+feedforward control may play a central role. Leg stiffness at ground contact depends in part 521 
+
+on anticipatory muscle preactivation, governed by feedforward mechanisms that allow the 522 
+
+nervous system to predict upcoming mechanical demands and adjust muscle activity 523 
+
+accordingly (Müller et al., 2010, 2014; Khajooei et al., 2024) . Sleep deprivation impairs higher-524 
+
+order sensorimotor and predictive control processes (Killgore, 2010; Umemura et al., 2021) ,525 
+
+which may reduce the precision with which muscle activation is timed and scaled before 526 
+
+ground contact. This may leave the leg inadequately stiffened at touchdown, potentially 527 
+
+contributing to the longer ground contact times, reduced cadence, and lower impact-related 528 
+
+variables observed across both systems. Second, the shift toward reduced loading may 529 
+
+reflect a conservative protective strategy in which load reduction is prioritized over stiffness 530 
+
+and propulsive efficiency when precise anticipatory control is compromised, a pattern 531 
+
+previously proposed in the context of extreme endurance running (Vernillo et al., 2014; 532 
+
+Degache et al., 2016) . Third, the prominence of hip and knee kinetics alongside reduced 533 
+
+ankle joint power in the lab-based dataset suggests a possible distal-to-proximal 534 
+
+redistribution of joint work. During running, plantarflexors operate at a disproportionately 535 
+
+high proportion of their maximal force and contribute a larger share of positive work than 536 
+
+other muscle groups (Dorn et al., 2012; Kulmala et al., 2016) , making them particularly 537 
+
+susceptible to fatigue. A compensatory distal-to-proximal shift has been observed during 538 
+
+prolonged running to exhaustion (Sanno et al., 2018; Willer et al., 2021) , and it is plausible that 539 
+
+centrally mediated fatigue under sleep loss may produce a similar pattern, though this 540 
+
+remains speculative in the absence of direct electromyographic evidence. Finally, stride-to-541 
+
+stride inconsistency seemingly increased across the majority of kinematic and wearable-542 
+
+derived variability metrics. This is consistent with evidence that sleep deprivation impairs 543 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+18 
+
+the regularity of continuous coordinated movement, likely through degraded sensorimotor 544 
+
+feedback and executive control processes (Umemura et al., 2021, 2022; Paillard, 2023) .545 
+
+However, it should be acknowledged that feature importance values reflect contribution to 546 
+
+model discrimination rather than direct physiological sensitivity, and the following 547 
+
+interpretations should be read as hypothesis-generating rather than conclusive. These 548 
+
+mechanisms are not mutually exclusive, and because importance measures are 549 
+
+operationalized differently across algorithms and are sensitive to feature covariance and 550 
+
+model architecture, the patterns reported here should be interpreted as suggestive of 551 
+
+recurring discriminative themes rather than definitive mechanistic conclusions. 552 
+
+5.4 Limitations 553 
+
+Several limitations of the present study should be acknowledged. The sample size of 21 554 
+
+participants, while typical for laboratory-based gait studies and adequate for the within-555 
+
+subject design, limits statistical power and may contribute to the fold-level variability 556 
+
+observed in cross-validation (Vabalas et al., 2019) . Replication in larger samples is required 557 
+
+to establish the robustness and generalizability of the findings. 558 
+
+The stability of selected features and model performance across resampling folds or 559 
+
+participant subsets was not explicitly quantified, and the feature importance patterns 560 
+
+reported should therefore be interpreted with caution. Feature importances were computed 561 
+
+by refitting each model on the full dataset rather than aggregating importance estimates 562 
+
+across held-out folds. This provides a descriptive overview of which features contribute 563 
+
+most to in-sample classification, but the resulting estimates are exploratory in nature and 564 
+
+not derived from independent out-of-sample evaluation. Moreover, importance measures 565 
+
+are inherently model-dependent, differing across algorithms through coefficients, impurity-566 
+
+based measures, or gain metrics, and are sensitive to feature covariance, redundancy, and 567 
+
+model structure (Nicodemus et al., 2010; Tolo şi and Lengauer, 2011) . As such, they should not 568 
+
+be interpreted as direct indicators of physiological sensitivity. 569 
+
+The experimental protocol involved total sleep deprivation, which represents an extreme 570 
+
+and relatively uncommon condition in real-world athletic settings. More ecologically 571 
+
+prevalent forms of sleep restriction, such as partial sleep loss over multiple nights, may 572 
+
+produce subtler or qualitatively different gait adaptations. It therefore remains uncertain to 573 
+
+what extent the present findings generalize to more chronic or realistic sleep loss scenarios. 574 
+
+The wearable system (Runeasi) processes raw accelerometry through a proprietary 575 
+
+algorithm, and the exact computational definitions of several derived metrics are not fully 576 
+
+transparent. This limits mechanistic interpretability and reduces cross-platform 577 
+
+reproducibility of specific features. 578 
+
+Finally, all running trials were performed on a treadmill at fixed speeds. Although this 579 
+
+constrains ecological validity, it was a deliberate methodological choice: treadmill running 580 
+
+allowed for precise speed control, which is essential given that speed directly influences 581 
+
+cadence and other spatiotemporal parameters. It therefore remains unclear whether the 582 
+
+observed gait changes would manifest similarly during overground running or at self-583 
+
+selected speeds, where pacing strategies may shift in response to fatigue and speed can no 584 
+
+longer be held constant. 585 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+19 
+
+Taken together, these limitations highlight the need for cautious interpretation of the present 586 
+
+findings and for future work to evaluate their robustness across larger samples, more 587 
+
+ecologically valid sleep loss conditions, and more naturalistic running environments. 588 
+
+6 Conclusions 589 
+
+This study demonstrates that total sleep deprivation induces a detectable and individually 590 
+
+consistent biomechanical signature in running gait, identifiable by both a laboratory motion 591 
+
+capture system and a field-deployable trunk-mounted wearable. Within-subject classification 592 
+
+performed consistently above chance across both systems, whereas between-subject 593 
+
+classification failed, confirming that individual baseline data are essential for reliable gait-594 
+
+based fatigue detection. This conclusion mirrors findings from the exercise-induced fatigue 595 
+
+literature and extends them to a sleep deprivation context. Contrary to our hypothesis, the 596 
+
+lab-based motion capture system did not outperform the wearable device. Instead, both 597 
+
+systems captured complementary rather than redundant aspects of the gait response. 598 
+
+Together, these findings provide a biomechanical and methodological foundation for 599 
+
+wearable-based fatigue monitoring in runners, and highlight longitudinal, individualized 600 
+
+monitoring as a necessary approach for detecting sleep-deprivation effects in real-world 601 
+
+running contexts. 602 
+
+603 
+
+604 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+20 
+
+7 References 605 
+
+Bertelsen, M. L., Hulme, A., Petersen, J., Brund, R. K., Sørensen, H., Finch, C. F., et al. 606 
+
+(2017). A framework for the etiology of running-related injuries. Scand. J. Med. Sci. 607 
+
+Sports 27, 1170–1180. doi: 10.1111/SMS.12883 608 
+
+Buckley, C., O’Reilly, M. A., Whelan, D., Vallely Farrell, A., Clark, L., Longo, V., et al. 609 
+
+(2017). Binary classification of running fatigue using a single inertial measurement unit. 610 
+
+2017 IEEE 14th International Conference on Wearable and Implantable Body Sensor 611 
+
+Networks, BSN 2017 , 197–201. doi: 10.1109/BSN.2017.7936040 612 
+
+Chalitsios, C., Nikodelis, T., Mavrommatis, G., and Kollias, I. (2024). Subject-specific 613 
+
+sensitivity of several biomechanical features to fatigue during an exhaustive treadmill 614 
+
+run. Scientific Reports 2024 14:1 14, 1004-. doi: 10.1038/s41598-024-51296-0 615 
+
+Charest, J., and Grandner, M. A. (2022). Sleep and Athletic Performance: Impacts on 616 
+
+Physical Performance, Mental Performance, Injury Risk and Recovery, and Mental 617 
+
+Health: An Update. Sleep Med. Clin. 17, 263–282. doi: 10.1016/j.jsmc.2022.03.006 618 
+
+Couronné, R., Probst, P., and Boulesteix, A. L. (2018). Random forest versus logistic 619 
+
+regression: a large-scale benchmark experiment. BMC Bioinformatics 2018 19:1 19, 620 
+
+270-. doi: 10.1186/S12859-018-2264-5 621 
+
+Craven, J., McCartney, D., Desbrow, B., Sabapathy, S., Bellinger, P., Roberts, L., et al. 622 
+
+(2022). Effects of Acute Sleep Loss on Physical Performance: A Systematic and Meta-623 
+
+Analytical Review. Sports Medicine 52, 2669–2690. doi: 10.1007/s40279-022-01706-y 624 
+
+Degache, F., Morin, J.-B., Oehen, L., Guex, K., Giardini, G., Schena, F., et al. (2016). 625 
+
+Running Mechanics During the World’s Most Challenging Mountain Ultramarathon. Int. 626 
+
+J. Sports Physiol. Perform. 11, 608–614. doi: 10.1123/ijspp.2015-0238 627 
+
+Derrick, T. R., Dereu, D., and Mclean, S. P. (2002). Impacts and kinematic adjustments 628 
+
+during an exhaustive run. Med. Sci. Sports Exerc. 34, 998–1002. doi: 629 
+
+10.1097/00005768-200206000-00015 630 
+
+Dias Lopes, A., Carlos, L., Junior, H., Yeung, S. S., and Oliveira Pena Costa, L. (2012). 631 
+
+What are the Main Running-Related Musculoskeletal Injuries? Sports Medicine 2012 632 
+
+42:10 42, 891–905. doi: 10.1007/BF03262301 633 
+
+Dimmick, H. L., van Rassel, C. R., MacInnis, M. J., and Ferber, R. (2023). Use of subject-634 
+
+specific models to detect fatigue-related changes in running biomechanics: a random 635 
+
+forest approach. Front. Sports Act. Living 5, 1283316. doi: 636 
+
+10.3389/FSPOR.2023.1283316/TEXT 637 
+
+Dorn, T. W., Schache, A. G., and Pandy, M. G. (2012). Muscular strategy shift in human 638 
+
+running: dependence of running speed on hip and ankle muscle performance. Journal 639 
+
+of Experimental Biology 215, 1944–1956. doi: 10.1242/jeb.064527 640 
+
+Encarnación-Martínez, A., Sanchis-Sanchis, R., Pérez-Soriano, P., and García-Gallart, A. 641 
+
+(2023). Relationship between muscular extensibility, strength and stability and the 642 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+21 
+
+transmission of impacts during fatigued running. Sports Biomech. 22, 1364–1380. doi: 643 
+
+10.1080/14763141.2020.1797863 644 
+
+Fullagar, H. H. K., Skorski, S., Duffield, R., Hammes, D., Coutts, A. J., and Meyer, T. 645 
+
+(2015). Sleep and Athletic Performance: The Effects of Sleep Loss on Exercise 646 
+
+Performance, and Physiological and Cognitive Responses to Exercise. Sports Medicine 647 
+
+45, 161–186. doi: 10.1007/s40279-014-0260-0 648 
+
+Goldberg, M., Le Mat, Y., Metra, M., de Sousa, T., Edouard, P., Millet, G. Y., et al. (2025). 649 
+
+Poor Sleep Quality Is Associated With an Increased Risk of Running ‐Related Injuries: 650 
+
+A Prospective Study of 339 Runners Over Six Months. Scand. J. Med. Sci. Sports 35, 651 
+
+e70164. doi: 10.1111/sms.70164 652 
+
+Hulteen, R. M., Smith, J. J., Morgan, P. J., Barnett, L. M., Hallal, P. C., Colyvas, K., et al. 653 
+
+(2017). Global participation in sport and leisure-time physical activities: A systematic 654 
+
+review and meta-analysis. Prev. Med. (Baltim). 95, 14–25. doi: 655 
+
+10.1016/J.YPMED.2016.11.027 656 
+
+Khajooei, M., Quarmby, A., Mayer, F., and Engel, T. (2024). Biomechanical feedback and 657 
+
+feedforward responses during perturbed running in asymptomatic individuals. Front. 658 
+
+Sports Act. Living 6. doi: 10.3389/fspor.2024.1403770 659 
+
+Killgore, W. D. S. (2010). “Effects of sleep deprivation on cognition,” in Progress in Brain 660 
+
+Research , 105–129. doi: 10.1016/B978-0-444-53702-7.00007-5 661 
+
+Knowles, O. E., Drinkwater, E. J., Urwin, C. S., Lamon, S., and Aisbett, B. (2018). 662 
+
+Inadequate sleep and muscle strength: Implications for resistance training. J. Sci. Med. 663 
+
+Sport 21, 959–968. doi: 10.1016/j.jsams.2018.01.012 664 
+
+Kulmala, J.-P., Korhonen, M. T., Ruggiero, L., Kuitunen, S., Suominen, H., Heinonen, A., et 665 
+
+al. (2016). Walking and Running Require Greater Effort from the Ankle than the Knee 666 
+
+Extensor Muscles. Med. Sci. Sports Exerc. 48, 2181–2189. doi: 667 
+
+10.1249/MSS.0000000000001020 668 
+
+Lee, D., Pate, R. R., Lavie, C. J., Sui, X., Church, T. S., and Blair, S. N. (2014). Leisure-669 
+
+Time Running Reduces All-Cause and Cardiovascular Mortality Risk. J. Am. Coll. 670 
+
+Cardiol. 64, 472–481. doi: 10.1016/j.jacc.2014.04.058 671 
+
+Lopes, T. R., Pereira, H. M., Bittencourt, L. R. A., and Silva, B. M. (2023). How much does 672 
+
+sleep deprivation impair endurance performance? A systematic review and 673 
+
+meta ‐analysis. Eur. J. Sport Sci. 23, 1279–1292. doi: 10.1080/17461391.2022.2155583 674 
+
+Marotta, L., Buurke, J. H., Van Beijnum, B.-J. F., Reenalda, J., Buurke, L. ;, Van Beijnum, 675 
+
+J. H. ;, et al. (2021). Towards Machine Learning-Based Detection of Running-Induced 676 
+
+Fatigue in Real-World Scenarios: Evaluation of IMU Sensor Configurations to Reduce 677 
+
+Intrusiveness. Sensors 2021, Vol. 21, Page 3451 21, 3451. doi: 10.3390/S21103451 678 
+
+Marotta, L., Scheltinga, B. L., van Middelaar, R., Bramer, W. M., van Beijnum, B. J. F., 679 
+
+Reenalda, J., et al. (2022). Accelerometer-Based Identification of Fatigue in the Lower 680 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+22 
+
+Limbs during Cyclical Physical Exercise: A Systematic Review. Sensors 2022, Vol. 22, 681 
+
+22. doi: 10.3390/S22083008 682 
+
+Mason, R., Pearson, L. T., Barry, G., Young, F., Lennon, O., Godfrey, A., et al. (2022). 683 
+
+Wearables for Running Gait Analysis: A Systematic Review. Sports Medicine 2022 684 
+
+53:1 53, 241–268. doi: 10.1007/S40279-022-01760-6 685 
+
+Messier, S. P., Martin, D. F., Mihalko, S. L., Ip, E., DeVita, P., Cannon, D. W., et al. (2018). 686 
+
+A 2-Year Prospective Cohort Study of Overuse Running Injuries: The Runners and 687 
+
+Injury Longitudinal Study (TRAILS). American Journal of Sports Medicine 46, 2211– 688 
+
+2221. doi: 689 
+
+10.1177/0363546518773755;JOURNAL:JOURNAL:AJSB;PAGE:STRING:ARTICLE/C 690 
+
+HAPTER 691 
+
+Meyer, F., Falbriard, M., Mariani, B., Aminian, K., and Millet, G. P. (2021). Continuous 692 
+
+Analysis of Marathon Running Using Inertial Sensors: Hitting Two Walls? Int. J. Sports 693 
+
+Med. 42, 1182–1190. doi: 10.1055/A-1432-2336/ID/R8543-0017/BIB 694 
+
+Michalak, K., and Kwasnicka, H. (2010). Correlation based feature selection method. 695 
+
+International Journal of Bio-Inspired Computation 2, 319–332. doi: 696 
+
+10.1504/IJBIC.2010.036158 697 
+
+Müller, R., Grimmer, S., and Blickhan, R. (2010). Running on uneven ground: Leg 698 
+
+adjustments by muscle pre-activation control. Hum. Mov. Sci. 29, 299–310. doi: 699 
+
+10.1016/j.humov.2010.01.003 700 
+
+Müller, R., Häufle, D. F. B., and Blickhan, R. (2014). Preparing the leg for ground contact in 701 
+
+running: the contribution of feed-forward and visual feedback. Journal of Experimental 702 
+
+Biology . doi: 10.1242/jeb.113688 703 
+
+Nicodemus, K. K., Malley, J. D., Strobl, C., and Ziegler, A. (2010). The behaviour of random 704 
+
+forest permutation-based variable importance measures under predictor correlation. 705 
+
+BMC Bioinformatics 2010 11:1 11, 110-. doi: 10.1186/1471-2105-11-110 706 
+
+Op De Beéck, T., Meert, W., Schütte, K., Vanwanseele, B., and Davis, J. (2018). Fatigue 707 
+
+prediction in outdoor runners via machine learning and sensor fusion. Proceedings of 708 
+
+the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining 709 
+
+18, 606–615. doi: 10.1145/3219819.3219864;CSUBTYPE:STRING:CONFERENCE 710 
+
+Paillard, T. (2023). Detrimental effects of sleep deprivation on the regulatory mechanisms of 711 
+
+postural balance: a comprehensive review. Front. Hum. Neurosci. 14. doi: 712 
+
+10.3389/fnhum.2023.1146550 713 
+
+Pruszynski, J. A., Kurtzer, I., Nashed, J. Y., Omrani, M., Brouwer, B., and Scott, S. H. 714 
+
+(2011). Primary motor cortex underlies multi-joint integration for fast feedback control. 715 
+
+Nature 478, 387–390. doi: 10.1038/nature10436 716 
+
+Reenalda, J., Maartens, E., Buurke, J. H., and Gruber, A. H. (2019). Kinematics and shock 717 
+
+attenuation during a prolonged run on the athletic track as measured with inertial 718 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+23 
+
+magnetic measurement units. Gait Posture 68, 155–160. doi: 719 
+
+10.1016/J.GAITPOST.2018.11.020 720 
+
+Reenalda, J., Maartens, E., Homan, L., and Buurke, J. H. (Jaap) (2016). Continuous three 721 
+
+dimensional analysis of running mechanics during a marathon by means of inertial 722 
+
+magnetic measurement units to objectify changes in running mechanics. J. Biomech. 723 
+
+49, 3362–3367. doi: 10.1016/J.JBIOMECH.2016.08.032 724 
+
+Sanno, M., Willacher, S., Epro, G., and Brüggemann, G.-P. (2018). Positive Work 725 
+
+Contribution Shifts from Distal to Proximal Joints during a Prolonged Run. Med. Sci. 726 
+
+Sports Exerc. 50, 2507–2517. doi: 10.1249/MSS.0000000000001707 727 
+
+Schütte, K. H., Maas, E. A., Exadaktylos, V., Berckmans, D., Venter, R. E., and 728 
+
+Vanwanseele, B. (2015). Wireless Tri-Axial Trunk Accelerometry Detects Deviations in 729 
+
+Dynamic Center of Mass Motion Due to Running-Induced Fatigue. PLoS One 10, 730 
+
+e0141957. doi: 10.1371/JOURNAL.PONE.0141957 731 
+
+Seynaeve, M., Vanwanseele, B., and de Beukelaar, T. (2026). One Night of Acute Sleep 732 
+
+Deprivation Alters Running Biomechanics and Running Economy in Recreational 733 
+
+Runners. Med. Sci. Sports Exerc. doi: 10.1249/MSS.0000000000004081 734 
+
+Stuhr, C., Hughes, C. M. L., and Stöckel, T. (2018). Task-specific and variability-driven 735 
+
+activation of cognitive control processes during motor performance. Sci. Rep. 8, 10811. 736 
+
+doi: 10.1038/s41598-018-29007-3 737 
+
+Tolo şi, L., and Lengauer, T. (2011). Classification with correlated features: unreliability of 738 
+
+feature ranking and solutions. Bioinformatics 27, 1986–1994. doi: 739 
+
+10.1093/BIOINFORMATICS/BTR300 740 
+
+Umemura, G. S., Furtado, F., Santos, F. C. dos, Gonçalves, B. da S. B., and Forner-741 
+
+Cordero, A. (2022). Is Balance Control Affected by Sleep Deprivation? A Systematic 742 
+
+Review of the Impact of Sleep on the Control of Balance. Front. Neurosci. 16. doi: 743 
+
+10.3389/fnins.2022.779086 744 
+
+Umemura, G. S., Pinho, J. P., Duysens, J., Krebs, H. I., and Forner-Cordero, A. (2021). 745 
+
+Sleep deprivation affects gait control. Sci. Rep. 11, 21104. doi: 10.1038/s41598-021-746 
+
+00705-9 747 
+
+Vabalas, A., Gowen, E., Poliakoff, E., and Casson, A. J. (2019). Machine learning algorithm 748 
+
+validation with a limited sample size. PLoS One 14, e0224365. doi: 749 
+
+10.1371/JOURNAL.PONE.0224365 750 
+
+Van Dongen, H. P. A., Baynard, M. D., Maislin, G., and Dinges, D. F. (2004). Systematic 751 
+
+Interindividual Differences in Neurobehavioral Impairment from Sleep Loss: Evidence 752 
+
+of Trait-Like Differential Vulnerability. Sleep 27, 423–433. doi: 753 
+
+10.1093/SLEEP/27.3.423 754 
+
+Vernillo, G., Savoldelli, A., Zignoli, A., Trabucchi, P., Pellegrini, B., Millet, G. P., et al. 755 
+
+(2014). Influence of the world’s most challenging mountain ultra-marathon on energy 756 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+24 
+
+cost and running mechanics. Eur. J. Appl. Physiol. 114, 929–939. doi: 10.1007/s00421-757 
+
+014-2824-y 758 
+
+Vitale, K. C., Owens, R., Hopkins, S. R., and Malhotra, A. (2019). Sleep Hygiene for 759 
+
+Optimizing Recovery in Athletes: Review and Recommendations. Int. J. Sports Med. 760 
+
+40, 535–543. doi: 10.1055/a-0905-3103 761 
+
+Walowe Mwadulo, M. (2016). A Review on Feature Selection Methods For Classification 762 
+
+Tasks. International Journal of Computer Applications Technology and Research 5, 763 
+
+395–402. doi: 10.7753/IJCATR0506.1013 764 
+
+Walsh, N. P., Halson, S. L., Sargent, C., Roach, G. D., Nédélec, M., Gupta, L., et al. (2021). 765 
+
+Sleep and the athlete: Narrative review and 2021 expert consensus recommendations. 766 
+
+Br. J. Sports Med. 55, 356–368. doi: 10.1136/bjsports-2020-102025 767 
+
+Willer, J., Allen, S. J., Burden, R. J., and Folland, J. P. (2021). Neuromechanics of Middle-768 
+
+Distance Running Fatigue: A Key Role of the Plantarflexors? Med. Sci. Sports Exerc. 769 
+
+53, 2119–2130. doi: 10.1249/MSS.0000000000002695 770 
+
+Woollacott, M., and Shumway-Cook, A. (2002). Attention and the control of posture and 771 
+
+gait: a review of an emerging area of research. Gait Posture 16, 1–14. doi: 772 
+
+10.1016/S0966-6362(01)00156-4 773 
+
+Zandbergen, M. A., Marotta, L., Bulthuis, R., Buurke, J. H., Veltink, P. H., and Reenalda, J. 774 
+
+(2023). Effects of level running-induced fatigue on running kinematics: A systematic 775 
+
+review and meta-analysis. Gait Posture 99, 60–75. doi: 776 
+
+10.1016/J.GAITPOST.2022.09.089 777 
+
+778 
+
+779 
+
+780 
+
+781 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 15, 2026. ;https://doi.org/10.64898/2026.07.14.738397 doi: bioRxiv preprint
+
+25 
+
+8 Conflict of Interest 782 
+
+Benedicte Vanwanseele is a co-founder and shareholder of Runeasi, the manufacturer of 783 
+
+the wearable sensor used in this study. Kilian Hendrickx is currently employed by Runeasi 784 
+
+but was not employed by the company during the design of the study, data collection, data 785 
+
+analysis, or interpretation of the results. All analyses were completed prior to the start of his 786 
+
+employment. The remaining authors declare no commercial or financial relationships that 787 
+
+could be construed as a potential conflict of interest. 788 
+
+9 Author Contributions 789 
+
+Maura Seynaeve: Conceptualization; Methodology; Investigation; Data curation; Formal 790 
+
+analysis; Visualization; Project administration; Writing – original draft; Writing – review & 791 
+
+editing. 792 
+
+Kilian Hendrickx: Software; Formal analysis; Methodology. 793 
+
+Benedicte Vanwanseele : Writing – review & editing; Supervision. 794 
+
+Toon De Beukelaar: Writing – review & editing; Supervision; Funding acquisition. 795 
+
+10 Funding 796 
+
+This work was supported by the KU Leuven Special Fund (grant no. 3M220016 to T.d.B.). 797 
+
+11 Acknowledgments 798 
+
+We would like to thank runeasi.ai for providing the materials and platform used to collect 799 
+
+and process the accelerometer data. 800 
+
+12 Data Availability Statement 801 
+
+The datasets generated and/or analyzed in this study are not publicly available due to 802 
+
+ethical considerations and participant privacy restrictions. Requests to access the data 803 
+
+should be directed to the corresponding author and the Social and Societal Ethics 804 
+
+Committee at KU Leuven. 805
