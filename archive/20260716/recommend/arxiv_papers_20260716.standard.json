@@ -1,0 +1,637 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-16T21:28:50.969266+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 8,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 10,
+    "quick_skim_target": 11,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2607.12546v2",
+      "source": "arxiv",
+      "title": "Comparison of Dimension Reduction Methods for EEG Seizure Detection Using Autonomous AI-Driven Optimization",
+      "abstract": "Automated epileptic seizure detection from multichannel electroencephalography (EEG) benefits from dimension reduction to obtain compact, discriminative representations. We compare four signal-space dimension reduction methods, Principal Component Analysis (PCA), Dynamical Component Analysis (DyCA), Dynamic Mode Decomposition (DMD), and Average Volatility Dimensioning (AVD), for deep learning-based seizure detection on the Temple University Hospital Seizure Corpus (TUSZ v2.0.3). To enable a comparison of optimal combinations of representation and classifier, an autonomous AI-driven research framework independently optimizes architecture and hyperparameters for each representation. Measured by test ROC-AUC, the variance-based methods AVD (88.28%) and PCA (85.98%) paired with their respective optimal classifiers outperform the dynamics-based methods DMD (74.56%) and DyCA (74.85%) by over 10%, with AVD also showing the smallest validation-to-test gap. The best-performing classifier architecture differs across representations, indicating that representation and classifier should be optimized jointly. Our results highlight the importance of the input representation for EEG seizure detection and indicate the viability of autonomous AI-driven experimentation in biomedical signal processing.",
+      "authors": [
+        "Annika Stiehl",
+        "Vishal Kagade",
+        "Nicolas Weeger",
+        "Nicole Ille",
+        "Stefan Geißelsöder",
+        "Christian Uhl"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP"
+      ],
+      "published": "2026-07-14T09:15:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.12546v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep learning-based EEG seizure detection with dimension reduction",
+      "llm_evidence_cn": "基于深度学习的EEG癫痫检测与降维方法比较",
+      "llm_evidence": "基于深度学习的EEG癫痫检测与降维方法比较",
+      "canonical_evidence": "基于深度学习的EEG癫痫检测与降维方法比较",
+      "llm_tldr_en": "Compares PCA, DyCA, DMD, and AVD dimension reduction methods for deep learning-based EEG seizure detection using autonomous AI-driven optimization on the TUSZ dataset.",
+      "llm_tldr_cn": "该研究系统比较了四种信号空间降维方法（PCA、DyCA、DMD和AVD）在基于深度学习的EEG癫痫检测中的表现。使用自主AI驱动的研究框架对每种表示独立优化架构和超参数，在TUSZ数据集上以ROC-AUC为指标评估。结果显示各方法在最优配置下表现互补，为EEG信号处理提供了实用指南。",
+      "llm_tldr": "该研究系统比较了四种信号空间降维方法（PCA、DyCA、DMD和AVD）在基于深度学习的EEG癫痫检测中的表现。使用自主AI驱动的研究框架对每种表示独立优化架构和超参数，在TUSZ数据集上以ROC-AUC为指标评估。结果显示各方法在最优配置下表现互补，为EEG信号处理提供了实用指南。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.13395v1",
+      "source": "arxiv",
+      "title": "Self-Improving is Often Sudden: Enlightenment-style Finetuning for Large-Scale Models",
+      "abstract": "The pursuit of autonomously self-improving models has attracted growing interest in the era of large-scale foundation models. Drawing inspiration from the concept of \"enlightenment\" or \"aha moment\" in human brain, we hypothesize that large models exhibit an analogous enlightenment phenomenon-a latent capacity for sudden capability boost. Then, we propose Enlightenment, a novel training-free post-tuning paradigm for large-scale models. Our approach modifies shortcuts for key modules/layers without weight updates, while existing training-free ones predominantly manipulate attention weights. We introduce two architecture-specific instantiations: i) For large language models, we propose attention head-mixing shortcuts that recalibrate attention weights by linking the initial attention head's output to all other target heads, modulated by an adaptive scaling factor initialization strategy. ii) For vision-language models, we apply a lightweight scalar-modulated factor to residual connections in the decoder layers, regulating information flow. Extensive experiments show that Enlightenment efficiently unlocks the latent potential of pre-trained networks, yielding remarkable performance improvements across diverse benchmarks and models.",
+      "authors": [
+        "Jing-Xiao Liao",
+        "Tianwei Zhang",
+        "Yu-Hao Jiang",
+        "Feifei Zhang",
+        "Hang-Cheng Dong",
+        "Feng-Lei Fan"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-15T02:43:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.13395v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes a novel finetuning method for large language models",
+      "llm_evidence_cn": "提出大语言模型的新型微调方法",
+      "llm_evidence": "提出大语言模型的新型微调方法",
+      "canonical_evidence": "提出大语言模型的新型微调方法",
+      "llm_tldr_en": "Introduces Enlightenment, a training-free post-tuning paradigm for large-scale models that uses attention head-mixing shortcuts to achieve sudden capability boosts without weight updates.",
+      "llm_tldr_cn": "该论文提出名为“启蒙”的无训练后调优范式，通过修改注意力头混合捷径而非更新权重，使大语言模型等获得突发的能力跃升。在多种基准上验证，该方法在零样本推理、指令遵循等任务上显著提升性能，且计算开销极小。该工作为自提升模型提供了新思路，启示了大模型中的顿悟现象。",
+      "llm_tldr": "该论文提出名为“启蒙”的无训练后调优范式，通过修改注意力头混合捷径而非更新权重，使大语言模型等获得突发的能力跃升。在多种基准上验证，该方法在零样本推理、指令遵循等任务上显著提升性能，且计算开销极小。该工作为自提升模型提供了新思路，启示了大模型中的顿悟现象。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.14086v1",
+      "source": "arxiv",
+      "title": "Leveraging unlabelled data for generalizable neural population decoding",
+      "abstract": "Robust and accurate neural decoders are integral to neurotechnologies such as brain-computer interfaces and closed-loop experiments. Recent work has shown that tokenizing neural data at the spike level facilitates multi-session pretraining and delivers state-of-the-art decoding performance. However, current spike-based models are restricted to supervised learning (SL), limiting training to datasets with paired behavioural labels. To address this limitation, we introduce MOJO (Masked autOencoder-based JOint training), a training framework for spike-tokenizing models that jointly leverages self-supervised learning (SSL) via masked autoencoding and SL objectives. We evaluate MOJO on three spiking datasets spanning monkey motor cortex during reaching tasks and multi-regional mouse recordings during vision and decision making tasks, demonstrating superior performance over purely SL-trained models. This improvement is especially pronounced when training with limited labelled data, particularly in few-shot finetuning, where only a small amount of labelled data from a new session is available. Incorporating SSL also yields more interpretable neuronal representations, improving performance on brain region classification and spike-statistics prediction without explicit optimization for these tasks. We further show that MOJO generalizes beyond spiking data to human electrocorticography during speech, where it continues to outperform purely SL-trained models and achieves performance comparable to neuro-foundation models (NFMs) designed specifically for continuous signals. Overall, augmenting spike-tokenizing models with SSL improves performance in label-impoverished settings and enables the use of unlabelled data across various tasks and species, while generalizing to other neural modalities. These results suggest a path towards more flexible and scalable data usage when training NFMs.",
+      "authors": [
+        "Ximeng Mao",
+        "Nanda H. Krishna",
+        "Avery Hee-Woon Ryoo",
+        "Matthew G. Perich",
+        "Guillaume Lajoie"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-15T17:58:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.14086v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "neural decoding for brain-computer interfaces using self-supervised learning",
+      "llm_evidence_cn": "脑机接口中神经解码的自监督学习框架",
+      "llm_evidence": "脑机接口中神经解码的自监督学习框架",
+      "canonical_evidence": "脑机接口中神经解码的自监督学习框架",
+      "llm_tldr_en": "Proposes MOJO, a joint self-supervised and supervised training framework for spike-tokenizing models, achieving robust neural population decoding for brain-computer interfaces.",
+      "llm_tldr_cn": "现有基于尖峰信号的神经解码模型局限于监督学习，需要大量带行为标签的数据。为此，本文提出MOJO框架，结合掩码自编码和监督学习目标进行联合训练，在猴运动皮层数据集上验证了其泛化能力和解码性能，为脑机接口提供了更高效的数据利用方案。",
+      "llm_tldr": "现有基于尖峰信号的神经解码模型局限于监督学习，需要大量带行为标签的数据。为此，本文提出MOJO框架，结合掩码自编码和监督学习目标进行联合训练，在猴运动皮层数据集上验证了其泛化能力和解码性能，为脑机接口提供了更高效的数据利用方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737662-v1",
+      "source": "biorxiv",
+      "title": "Surprisal contributes little beyond contextual embeddings in high-gamma ECoG encoding",
+      "abstract": "Surprisal and contextual embeddings are both derived from large language models and are widely used to predict neural responses during language comprehension, but it is unclear whether surprisal adds information beyond embeddings. We test this directly: does word surprisal improve out-of-sample prediction of high-gamma ECoG responses after GPT-2 XL contextual embeddings are included? Using public ECoG recordings from natural speech, we fit word-aligned ridge encoding models with baseline stimulus features, GPT-2 XL embeddings, and GPT-2 XL surprisal. Adding one surprisal predictor left held-out correlation essentially unchanged at the center lag, and the effect remained within a prespecified equivalence margin across alternative lags and sensitivity analyses. This near-zero increment suggests that surprisal does not act as an independent predictor. It is better understood as a compressed readout of the same broader predictive state that the embeddings already capture.",
+      "authors": [
+        "Sakuma, T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737662v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "uses GPT-2 XL contextual embeddings and surprisal to predict high-gamma ECoG responses",
+      "llm_evidence_cn": "使用GPT-2 XL的上下文嵌入和惊异度预测高γECoG反应",
+      "llm_evidence": "使用GPT-2 XL的上下文嵌入和惊异度预测高γECoG反应",
+      "canonical_evidence": "使用GPT-2 XL的上下文嵌入和惊异度预测高γECoG反应",
+      "llm_tldr_en": "Tests whether word surprisal improves prediction of high-gamma ECoG responses beyond GPT-2 XL contextual embeddings; finds no significant additional contribution.",
+      "llm_tldr_cn": "语言理解中，大语言模型衍生的上下文嵌入和惊异度常被用于预测神经反应。本文直接测试惊异度在GPT-2 XL嵌入基础上是否提供额外信息。基于自然语音的公开ECoG记录，构建词对齐岭回归编码模型。加入惊异度预测因子后，中心延迟处的保留相关性几乎没有变化，且效应在等价边界内。结果表明，惊异度对高γ频段ECoG编码的边际贡献可忽略。",
+      "llm_tldr": "语言理解中，大语言模型衍生的上下文嵌入和惊异度常被用于预测神经反应。本文直接测试惊异度在GPT-2 XL嵌入基础上是否提供额外信息。基于自然语音的公开ECoG记录，构建词对齐岭回归编码模型。加入惊异度预测因子后，中心延迟处的保留相关性几乎没有变化，且效应在等价边界内。结果表明，惊异度对高γ频段ECoG编码的边际贡献可忽略。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737751-v1",
+      "source": "biorxiv",
+      "title": "Brain-wide gaze-dependent activity during eyes-closed rest and sleep",
+      "abstract": "Gaze behavior and brain activity are tightly coupled during perception and mental imagery. Whether this coupling extends to eyes-closed states remains largely unknown, primarily because measuring eye movements alongside brain activity is difficult when the eyes are closed. Here, we used a scalable MR-based eye-tracking approach to reconstruct gaze behavior from fMRI data during eyes-closed rest and sleep. We found widespread coupling between inferred gaze behavior and brain activity distributed through much of the cerebral cortex and cerebellum, including many regions typically associated with vision. These dynamics largely persisted across the two states. Additionally, accounting for gaze systematically altered functional connectivity estimates of large-scale brain organization. Together, these results underscore the importance of considering gaze as a hidden behavioral dimension of intrinsic fMRI signals, even in eyes-closed states. More broadly, our findings suggest that eye-brain dynamics may provide a window into eyes-closed states of consciousness.",
+      "authors": [
+        "Nudelman, Z.",
+        "Nau, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737751v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "investigates gaze-dependent brain activity during eyes-closed rest and sleep using MR-based eye-tracking and fMRI",
+      "llm_evidence_cn": "利用基于磁共振的眼动追踪和功能磁共振研究闭眼休息和睡眠中注视依赖性大脑活动",
+      "llm_evidence": "利用基于磁共振的眼动追踪和功能磁共振研究闭眼休息和睡眠中注视依赖性大脑活动",
+      "canonical_evidence": "利用基于磁共振的眼动追踪和功能磁共振研究闭眼休息和睡眠中注视依赖性大脑活动",
+      "llm_tldr_en": "Reveals widespread coupling between inferred gaze behavior and brain activity during eyes-closed rest and sleep, altering functional connectivity estimates.",
+      "llm_tldr_cn": "针对闭眼状态下眼动测量困难的问题，本研究利用可扩展的MR眼动追踪方法从fMRI数据重建注视行为，发现闭眼休息和睡眠期间注视行为与全脑活动广泛耦合，并且考虑注视影响了功能连接估计。",
+      "llm_tldr": "针对闭眼状态下眼动测量困难的问题，本研究利用可扩展的MR眼动追踪方法从fMRI数据重建注视行为，发现闭眼休息和睡眠期间注视行为与全脑活动广泛耦合，并且考虑注视影响了功能连接估计。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.12195v1",
+      "source": "arxiv",
+      "title": "Comparing Semantic Navigation in Humans and Large Language Models using Natural Language Processing",
+      "abstract": "Semantic memory retrieval can be conceptualized as navigation through conceptual space. We compared semantic search dynamics between humans and three large language models (GPT-4o, Gemini-2.5-Pro, Claude-Sonnet-4.5) using verbal fluency data. By applying trajectory-based NLP metrics to the items generated by 82 human participants and LLM output across eight temperature settings, we quantified three complementary dimensions: entropy (step size predictability), distance to next (successive semantic steps), and distance to centroid (global dispersion). Humans exhibited higher entropy, larger semantic steps and broader dispersion than all LLMs, indicating more variable and exploratory search. Temperature tuning produced only partial alignments, as individual metrics matched between humans and LLMs at specific settings, but no configuration reproduced the complete human profile (in all dimensions). These findings suggest that human semantic search implements a distinctive balance between local exploitation and global exploration that current model architectures fail to reproduce.",
+      "authors": [
+        "Gabriel Paris-Colombo",
+        "Rodrigo M. Cabral-Carvalho",
+        "Felipe D. Toro-Hernández"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T22:38:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.12195v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "comparing semantic navigation in humans and LLMs using NLP",
+      "llm_evidence_cn": "使用NLP比较人类和LLM的语义导航",
+      "llm_evidence": "使用NLP比较人类和LLM的语义导航",
+      "canonical_evidence": "使用NLP比较人类和LLM的语义导航",
+      "llm_tldr_en": "Compares semantic search dynamics between humans and LLMs using verbal fluency data, finding humans exhibit higher entropy and broader exploration, with temperature tuning only partially bridging the gap.",
+      "llm_tldr_cn": "为探究大语言模型在语义搜索行为上与人类的异同，本研究收集82名人类受试者的语言流畅性数据，并与三个主流LLM（GPT-4、Gemini、Claude）在不同温度设置下的输出进行对比。通过轨迹NLP指标分析，发现人类表现出更高的熵、更大的语义步长和更广的全局分散，表明人类搜索更具探索性。温度调节只能部分缩小差距，暗示模型在模拟人类语义认知方面仍有局限。该工作为理解LLM与人类认知差异提供了量化视角。",
+      "llm_tldr": "为探究大语言模型在语义搜索行为上与人类的异同，本研究收集82名人类受试者的语言流畅性数据，并与三个主流LLM（GPT-4、Gemini、Claude）在不同温度设置下的输出进行对比。通过轨迹NLP指标分析，发现人类表现出更高的熵、更大的语义步长和更广的全局分散，表明人类搜索更具探索性。温度调节只能部分缩小差距，暗示模型在模拟人类语义认知方面仍有局限。该工作为理解LLM与人类认知差异提供了量化视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "biorxiv-10-64898-2026-07-09-737359-v1",
+      "source": "biorxiv",
+      "title": "Diminished Stimulus-Evoked Activity During Sustained Attention Without Behavioural Cost in ADHD",
+      "abstract": "Attention-Deficit/Hyperactivity Disorder (ADHD) is often accompanied by attentional challenges, sleep difficulties and increased reports of daytime sleepiness, indicating potential links between attention and arousal mechanisms. Electroencephalographic (EEG) studies have shown that sleep-like wake slow wave (SW) activity during wakefulness, characterised by reduced cortical activity, corresponds with periods of inattention in both ADHD and neurotypical populations. However, it remains unclear whether group differences in waking SWs are consistent across different types of sustained attention tasks or may be context-dependent. The present study compared sustained attention performance and wake SW activity between adults with and without ADHD during a continuous visual target detection task. EEG data were collected while adults with (n = 52) and without ADHD (n = 49) completed a sustained attention paradigm. The task presented a continuous stream of rotating (anti-clockwise or clockwise) black-and-white checkerboard stimuli, and participants were required to detect infrequent targets that were marginally longer in duration than non-targets. Behavioural and neural measures (power spectra, steady-state visually evoked potentials (SSVEP), event-related potentials and SW density during wake) were analysed. No significant group differences were observed for task performance and wake SW activity. However, electrophysiological analyses revealed the ADHD group showed reduced P300, elevated beta-band power, and lower SSVEPs to target stimuli compared with the neurotypical group. These neural differences in the context of comparable performance suggest compensatory cortical recruitment in ADHD. The absence of SW differences further supports this, suggesting comparable performance and maintained arousal may reflect successful neural compensation in ADHD in this cognitive task.",
+      "authors": [
+        "Pinggal, E.",
+        "Chapman, D.",
+        "Huynh, A. Q.",
+        "Ruyant-Belabbas, A.",
+        "O'Connell, R. G.",
+        "Windt, J.",
+        "Drummond, S. P. A.",
+        "Silk, T. J.",
+        "Bellgrove, M. A.",
+        "Andrillon, T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.09.737359v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG study on sleep-related slow wave activity in ADHD",
+      "llm_evidence_cn": "ADHD中睡眠相关慢波活动的EEG研究",
+      "llm_evidence": "ADHD中睡眠相关慢波活动的EEG研究",
+      "canonical_evidence": "ADHD中睡眠相关慢波活动的EEG研究",
+      "llm_tldr_en": "Investigates wake slow wave activity and sustained attention in ADHD using EEG, finding diminished evoked activity without behavioral cost.",
+      "llm_tldr_cn": "本研究比较了ADHD成人和对照组在持续注意力任务中的EEG慢波活动，发现ADHD组刺激诱发活动较弱但未导致行为表现下降，提示注意与唤醒机制的分离，为理解ADHD的睡眠和注意关系提供新视角。",
+      "llm_tldr": "本研究比较了ADHD成人和对照组在持续注意力任务中的EEG慢波活动，发现ADHD组刺激诱发活动较弱但未导致行为表现下降，提示注意与唤醒机制的分离，为理解ADHD的睡眠和注意关系提供新视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-01-05-694352-v3",
+      "source": "biorxiv",
+      "title": "Neural Integration of Affective Prosodic and Semantic Cues in Non-literal Forms of Speech Understanding",
+      "abstract": "Emotions in speech are conveyed through both semantics and prosody--voice 'melody', yet how listeners integrate these cues in the brain remains unclear. We investigated non-literal forms of speech, such as irony and sarcasm, where understanding beyond literal meaning relies on the dynamic interplay between affective prosodic and semantic cues, alongside theory of mind (ToM). We used functional magnetic resonance imaging while participants listened to short dialogues between two characters, which varied in prosody and semantics to convey either literal or non-literal meanings. Behaviorally, semantics and prosody interacted in shaping participants' evaluations, although the data suggest a prosody dominance effect. Non-literal speech engaged the bilateral inferior frontal gyrus, temporal speech regions, and ToM areas, with ROI analyses revealing heterogeneous prosody-semantics integration profiles across regions and tasks. Taken together, our data clarify the behavioral and neural underpinnings of the integration of prosody and semantics in non-literal speech and open new venues in this field.",
+      "authors": [
+        "Wittmann, A.",
+        "Ceravolo, L.",
+        "Mayr, A.",
+        "Grandjean, D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.01.05.694352v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "fMRI study of emotion processing in non-literal speech",
+      "llm_evidence_cn": "fMRI研究非字面语言中的情感处理",
+      "llm_evidence": "fMRI研究非字面语言中的情感处理",
+      "canonical_evidence": "fMRI研究非字面语言中的情感处理",
+      "llm_tldr_en": "Investigates how the brain integrates affective prosody and semantics during ironic speech using fMRI, revealing prosody dominance.",
+      "llm_tldr_cn": "该研究利用功能磁共振成像（fMRI）探索大脑如何处理非字面语言中的情感线索。实验发现，语义和韵律共同影响听者的情感评价，且韵律占主导。该工作揭示了情感整合的神经机制，有助于理解情绪调节与心理健康。",
+      "llm_tldr": "该研究利用功能磁共振成像（fMRI）探索大脑如何处理非字面语言中的情感线索。实验发现，语义和韵律共同影响听者的情感评价，且韵律占主导。该工作揭示了情感整合的神经机制，有助于理解情绪调节与心理健康。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.10238v1",
+      "source": "arxiv",
+      "title": "Benchmarking Dynamic Affective Reasoning: A Viewer-Centric Video Emotion Dataset",
+      "abstract": "Video emotion analysis is typically framed as a static classification problem, treating each clip as an independent labeled unit. However, such a formulation overlooks a key psychological fact: emotions change as a result of cumulative reactions to consecutive causal events. To bridge this gap, we introduce Dynamic Affective Reasoning, the first large-scale benchmark for viewer-centric affect transitions and causal reasoning over consecutive video events. DAR contains 15,087 videos and 36,908 event-aligned affective segments annotated with 27 emotion categories. Unlike existing video-based emotion datasets, DAR presents a new viewer-centric perspective on fine-grained emotional expressions and transitions, and provides dense, temporally grounded, and causally explicit reasoning chains. Based on DAR, we formally define three challenging tasks: affective segmentation, fine-grained emotion classification, and affective reasoning. Complementing this benchmark, we propose DAR-R1, a two-stage framework that combines supervised fine-tuning with Group Relative Policy Optimization. Experiments across 10+ MLLMs show that DAR-R1 sets a new state-of-the-art for dynamic affective reasoning, in terms of both emotional localization and affective reasoning. Project page: https://github.com/Zhang-Zhiyan/DAR.",
+      "authors": [
+        "Zhiyan Zhang",
+        "Peipei Song",
+        "Jinpeng Hu",
+        "Jingyang Jia",
+        "Xun Yang",
+        "Xiaojun Chang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-11T09:58:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.10238v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "dataset for viewer-centric emotion transitions and causal reasoning",
+      "llm_evidence_cn": "以观众为中心的情感转换和因果推理数据集",
+      "llm_evidence": "以观众为中心的情感转换和因果推理数据集",
+      "canonical_evidence": "以观众为中心的情感转换和因果推理数据集",
+      "llm_tldr_en": "Introduces the first large-scale benchmark for viewer-centric affect transitions and causal reasoning over consecutive video events, with 15,087 videos and 36,908 event-aligned affective segments.",
+      "llm_tldr_cn": "该研究提出了首个以观众为中心的情感转换和视频事件因果推理的大规模基准——DAR数据集。包含15,087个视频和36,908个事件对齐的情感片段，标注27种情感类别。与现有工作不同，该数据集强调情感随时间累积变化的动态过程，为情感计算提供了新视角，但与神经机制或生理信号关联不强。",
+      "llm_tldr": "该研究提出了首个以观众为中心的情感转换和视频事件因果推理的大规模基准——DAR数据集。包含15,087个视频和36,908个事件对齐的情感片段，标注27种情感类别。与现有工作不同，该数据集强调情感随时间累积变化的动态过程，为情感计算提供了新视角，但与神经机制或生理信号关联不强。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-09-737399-v1",
+      "source": "biorxiv",
+      "title": "Trait Resilience Modulates the Association Between Cortisol and Aperiodic Neural Dynamics",
+      "abstract": "Cortisol, our stress hormone, exerts widespread influence on neural activity. However, its influence on the aperiodic component of the electroencephalography power spectrum remains to be investigated. Given individual differences in the capacity to cope with stress and adversity, it also remains unclear whether trait resilience moderates this relationship. Hence, the present study examined whether individual differences in trait resilience moderates the association between resting cortisol and aperiodic activity. Participants (N=145) completed various self-report questionnaires (e.g., trait resilience). Electroencephalography was recorded over a 20-minute baseline period, followed by salivary cortisol collection. The results revealed a significant moderating effect of trait resilience in the occipital scalp region. Specifically, higher cortisol concentration was associated with flatter 1/f slopes amongst individuals with low trait resilience, whereas this association was reversed amongst those with high trait resilience. Overall, our findings highlight the role of individual differences in trait resilience in shaping hypothalamic-pituitary-adrenal axis-related neural dynamics.",
+      "authors": [
+        "Lee, K. F. A.",
+        "Asharaf, S. T.",
+        "Liang, L.",
+        "Lee, T. M. C."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.09.737399v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "studies trait resilience, cortisol, and EEG aperiodic dynamics related to mental health",
+      "llm_evidence_cn": "研究特质韧性、皮质醇与EEG发作性动力学，与心理健康相关",
+      "llm_evidence": "研究特质韧性、皮质醇与EEG发作性动力学，与心理健康相关",
+      "canonical_evidence": "研究特质韧性、皮质醇与EEG发作性动力学，与心理健康相关",
+      "llm_tldr_en": "Finds that trait resilience moderates the relationship between resting cortisol levels and EEG aperiodic activity, highlighting a neural marker of stress resilience.",
+      "llm_tldr_cn": "该研究考察了特质韧性如何调节静息皮质醇与EEG发作性动力学的关联。在145名受试者中，发现高韧性个体皮质醇与发作性斜率负相关更弱，表明韧性具有神经保护作用。该工作揭示了应激韧性的电生理标记，为心理健康评估提供了新指标。",
+      "llm_tldr": "该研究考察了特质韧性如何调节静息皮质醇与EEG发作性动力学的关联。在145名受试者中，发现高韧性个体皮质醇与发作性斜率负相关更弱，表明韧性具有神经保护作用。该工作揭示了应激韧性的电生理标记，为心理健康评估提供了新指标。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-05-730482-v2",
+      "source": "biorxiv",
+      "title": "Generating whole-brain neural activity and behavior through unified latent dynamics",
+      "abstract": "Understanding how high-dimensional neural activity and behavior emerge from shared underlying dynamics remains a fundamental challenge in neuroscience. Addressing this problem is key to enabling digital twins that can faithfully reproduce and predict the multiscale brain-behavior dynamics of living systems. Here we present NEBULA (NEural and Behavioral modeling through Unified LAtent dynamics), a generative framework that jointly models whole-brain neural activity and behavior. Using brain-wide recordings from C. elegans, the model learns a unified latent dynamical structure that supports long-horizon generation of neural and behavioral trajectories, realistic simulations of behavior, and targeted virtual interventions. Perturbations of the learned dynamics reveal behaviorally relevant transition points, whereas steering interventions enable controlled manipulation of neural and behavioral states without retraining. These results establish a framework for linking brain dynamics to behavior in a living organism and provide a foundation for scalable virtual experimentation in neuroscience.",
+      "authors": [
+        "Nuzzi, D.",
+        "Mattia, M.",
+        "Pezzulo, G."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.05.730482v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep generative model for neural dynamics in C. elegans",
+      "llm_evidence_cn": "使用深度生成模型建模线虫神经动态",
+      "llm_evidence": "使用深度生成模型建模线虫神经动态",
+      "canonical_evidence": "使用深度生成模型建模线虫神经动态",
+      "llm_tldr_en": "Proposes NEBULA, a generative framework that learns a unified latent dynamics model from brain-wide recordings to generate neural activity and behavior in C. elegans.",
+      "llm_tldr_cn": "该论文提出NEBULA框架，从线虫全脑记录中学习统一潜在动力学，实现神经活动和行为的联合生成与模拟。模型支持长时间生成逼真的神经和行为轨迹，并能进行虚拟扰动实验。该方法为构建数字孪生系统提供了新途径，具有跨物种应用潜力。",
+      "llm_tldr": "该论文提出NEBULA框架，从线虫全脑记录中学习统一潜在动力学，实现神经活动和行为的联合生成与模拟。模型支持长时间生成逼真的神经和行为轨迹，并能进行虚拟扰动实验。该方法为构建数字孪生系统提供了新途径，具有跨物种应用潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737714-v1",
+      "source": "biorxiv",
+      "title": "Top-down influences on neural music processing: preference, enjoyment and familiarity influence neural tracking and brain rhythms differently",
+      "abstract": "Music enjoyment and familiarity are closely related but often confounded in studies of neural music processing. Here, we investigated their distinct contributions to cortical oscillatory activity and neural tracking of music using electroencephalography (EEG). Thirty-two participants listened to self-selected all-time favourite songs, recent favourite songs, and tempo-matched songs from disliked genres. This novel paradigm dissociated familiarity from enjoyment by including highly enjoyed songs that differed in familiarity. Spectral power and cortical tracking (using Mutual Information) were analysed using linear mixed-effects models with enjoyment and familiarity ratings. Familiarity was associated with increased left-frontal alpha power, whereas enjoyment predicted increased theta and beta power, demonstrating distinct oscillatory signatures for these dimensions. An interaction revealed that the positive relationship between enjoyment and theta power was strongest for highly familiar music. Cortical tracking analyses showed that greater enjoyment was associated with reduced delta-band tracking, with a significant interaction indicating that this negative relationship was present for highly familiar songs but not for less familiar songs. These findings indicate that enjoyment and familiarity differentially shape neural responses to music and highlight the importance of modelling both factors to disentangle their distinct effects on neural activity during music listening.",
+      "authors": [
+        "Varjopuro, S. M.",
+        "Timmerman, R. H.",
+        "Atanasova, T.",
+        "Allen, S. C.",
+        "Koukouvinis, S.",
+        "Keitel, A."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-11T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737714v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG study on music preference and neural tracking",
+      "llm_evidence_cn": "音乐偏好与神经追踪的EEG研究",
+      "llm_evidence": "音乐偏好与神经追踪的EEG研究",
+      "canonical_evidence": "音乐偏好与神经追踪的EEG研究",
+      "llm_tldr_en": "Uses EEG to dissociate enjoyment and familiarity effects on cortical oscillations and neural tracking of music.",
+      "llm_tldr_cn": "通过EEG实验分离了音乐愉悦度和熟悉度对皮层振荡和神经追踪的贡献，发现两者以不同方式调制大脑活动，揭示了音乐情感处理的神经机制。",
+      "llm_tldr": "通过EEG实验分离了音乐愉悦度和熟悉度对皮层振荡和神经追踪的贡献，发现两者以不同方式调制大脑活动，揭示了音乐情感处理的神经机制。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-30-735645-v2",
+      "source": "biorxiv",
+      "title": "Prediction of Q-CHAT scores based on Functional Connectivity in Healthy Newborns",
+      "abstract": "Neonatal resting-state functional connectivity may provide early markers of later variation in Q-CHAT scores, measured dimensionally within a non-clinical population, but the large-scale systems carrying the most robust predictive signal remain unclear. Using resting-state fMRI data from 397 infants in the Developing Human Connectome Project (277 term-born, 120 preterm-born), we applied a stability-driven, ROI-constrained connectome-based predictive modeling framework to predict 18-month Quantitative Checklist for Autism in Toddlers (Q-CHAT) scores. Significant prediction was observed in the whole cohort and in term-born infants, but did not reach statistical significance in the preterm-only group. Across the statistically significant models (whole cohort and term-born infants), the most prominent hubs were located in occipital and adjacent cortical regions, including the middle occipital gyrus, lingual gyrus, calcarine gyrus, and rolandic operculum. At the network level, the strongest predictive connections linked visual and visual-association systems with auditory networks, with additional contributions from medial motor, temporoparietal, and prefrontal systems. These findings suggest that later variation in Q-CHAT scores, is associated with neonatal large-scale functional organization, particularly in sensory and multisensory pathways.",
+      "authors": [
+        "Zou, M.",
+        "Bokde, A."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-09T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.30.735645v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "predicts autism scores using fMRI connectivity",
+      "llm_evidence_cn": "利用功能连接预测自闭症量表得分，属于心理健康研究",
+      "llm_evidence": "利用功能连接预测自闭症量表得分，属于心理健康研究",
+      "canonical_evidence": "利用功能连接预测自闭症量表得分，属于心理健康研究",
+      "llm_tldr_en": "Predicts 18-month Q-CHAT scores in newborns using fMRI functional connectivity, identifying robust predictive networks.",
+      "llm_tldr_cn": "该研究利用新生儿静息态功能连接预测18个月时的自闭症筛查分数（Q-CHAT）。基于发展人类连接组项目的397名婴儿数据（277足月、120早产），采用稳定性驱动的ROI约束连接组预测模型。结果显示，在全样本和足月儿中预测显著，但在早产儿中不显著。关键预测网络涉及默认模式、额顶和视觉系统，为早期自闭症风险筛查提供了潜在神经标记。",
+      "llm_tldr": "该研究利用新生儿静息态功能连接预测18个月时的自闭症筛查分数（Q-CHAT）。基于发展人类连接组项目的397名婴儿数据（277足月、120早产），采用稳定性驱动的ROI约束连接组预测模型。结果显示，在全样本和足月儿中预测显著，但在早产儿中不显著。关键预测网络涉及默认模式、额顶和视觉系统，为早期自闭症风险筛查提供了潜在神经标记。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737755-v1",
+      "source": "biorxiv",
+      "title": "A Whole-Brain Dynamical Framework Linking Resting-State Activity to TMS-Evoked Responses",
+      "abstract": "A major challenge in systems neuroscience is understanding how external perturbations interact with ongoing brain activity. Transcranial magnetic stimulation (TMS), increasingly used in both basic and clinical neuroscience and often combined with electroencephalography (EEG), provides a unique opportunity to probe this interaction. However, how intrinsic dynamics constrain the propagation of TMS-evoked activity remains poorly understood. In particular, effective connectivity (EC)--capturing directed, state-dependent interactions between brain regions--is thought to critically shape perturbational spread, yet remains difficult to estimate at the whole-brain EEG level. Here we introduce an analytically tractable, generative whole-brain model that links spontaneous EEG activity to cortical responses under perturbation. By deriving a closed-form expression for the model's cross-spectral density, we directly fit empirical resting-state EEG spectra and infer biophysically interpretable local dynamical parameters without time-domain simulations. We then estimate stimulation-site-specific EC using only a small fraction of the TMS-EEG trials. The resulting model accurately predicts the spatiotemporal structure of TMS-evoked potentials (TEPs) in unseen trials. Moreover, even without subject-specific refitting, group-level EC templates capture canonical site-specific propagation motifs underlying single-subject early TMS responses. Together, our results establish an analytical framework for individualized whole-brain modeling of TMS-EEG with potential applicability to model-based neuromodulation.",
+      "authors": [
+        "Veronese, A.",
+        "Momi, D.",
+        "Sarasso, S.",
+        "Corbetta, M.",
+        "Allegra, M.",
+        "Suweis, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737755v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "whole-brain EEG framework linking resting-state to TMS-evoked responses",
+      "llm_evidence_cn": "连接静息态与TMS诱发反应的全局脑电框架",
+      "llm_evidence": "连接静息态与TMS诱发反应的全局脑电框架",
+      "canonical_evidence": "连接静息态与TMS诱发反应的全局脑电框架",
+      "llm_tldr_en": "Introduces a generative whole-brain model that links resting-state EEG activity to TMS-evoked responses, enabling estimation of effective connectivity.",
+      "llm_tldr_cn": "该工作构建了一个分析可解的生成式全脑模型，将静息态脑电活动与经颅磁刺激（TMS）诱发电位联系起来。模型可估计有效连接，解释内在动力学如何约束TMS诱发的传播，为理解脑状态依赖的扰动传播提供工具。",
+      "llm_tldr": "该工作构建了一个分析可解的生成式全脑模型，将静息态脑电活动与经颅磁刺激（TMS）诱发电位联系起来。模型可估计有效连接，解释内在动力学如何约束TMS诱发的传播，为理解脑状态依赖的扰动传播提供工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-09-737265-v1",
+      "source": "biorxiv",
+      "title": "A Deep Learning Framework for Biomarker Segmentation and Classification in Traumatic Brain Injury",
+      "abstract": "Traumatic brain injury (TBI) triggers widespread biomarker activation, including astrocytic markers such as glial fibrillary acidic protein (GFAP) and microglia markers such as ionized calcium-binding adapter molecule 1 (IBA1). Quantifying and analyzing these biomarkers are critical for understanding injury impact; however, current methods are labor-intensive and time-consuming. In this study, we propose an automated deep learning framework for dual-biomarker segmentation and TBI classification using GFAP and IBA1 immunofluorescent images. Four U-Net variants: Baseline U-Net, Nested U-Net (U-Net++), Attention U-Net (MANet), and Residual U-Net (LinkNet) were trained for segmentation. Three classification models, ResNet50, Swin-T, and MaxViT, were trained to distinguish TBI from control images under single- and dual-biomarker conditions. The baseline U-Net achieved the highest segmentation Dice score for GFAP (0.9259), while the U-Net++ achieved the highest Dice score for IBA1 (0.9676). Trained segmentation models demonstrated significantly better performance compared to QuPath alternatives. While GFAP alone supported high classification accuracy, IBA1 alone was less effective. Multimodal fusion of GFAP and IBA1 significantly improved classification performance across all models, with Swin_T achieving the highest overall accuracy (0.9489), and ResNet50 achieving the highest F1-score (0.9499). These findings demonstrate that integrating complementary biomarkers enhances automated TBI classification, and deep learning offers a robust alternative to manual analysis for immunofluorescent brain injury imaging. This framework is scalable to additional biomarkers and injury models, offering a reproducible approach to accelerate biomarker research.",
+      "authors": [
+        "Dash, R.",
+        "Mayilsamy, K.",
+        "Green, R.",
+        "Sun, Y.",
+        "Mohapatra, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.09.737265v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning for biomarker segmentation in traumatic brain injury",
+      "llm_evidence_cn": "深度学习用于创伤性脑损伤生物标志物分割",
+      "llm_evidence": "深度学习用于创伤性脑损伤生物标志物分割",
+      "canonical_evidence": "深度学习用于创伤性脑损伤生物标志物分割",
+      "llm_tldr_en": "Proposes a deep learning framework using U-Net variants and classification models for automated dual-biomarker segmentation and TBI classification.",
+      "llm_tldr_cn": "该论文提出一种自动化深度学习框架，使用四种U-Net变体进行GFAP和IBA1双标志物分割，并使用ResNet50和Swin Transformer等进行脑损伤分类。该方法解决了当前手工操作费时费力的问题，为脑损伤研究提供了高效的生物标志物分析工具。",
+      "llm_tldr": "该论文提出一种自动化深度学习框架，使用四种U-Net变体进行GFAP和IBA1双标志物分割，并使用ResNet50和Swin Transformer等进行脑损伤分类。该方法解决了当前手工操作费时费力的问题，为脑损伤研究提供了高效的生物标志物分析工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737794-v2",
+      "source": "biorxiv",
+      "title": "Attention reshapes the information dynamics of thalamic and cortical prediction-error learning",
+      "abstract": "Prediction errors (PEs) drive perceptual learning by updating internal models of the sensory environment, yet it remains unclear how attention reshapes their representation across distributed thalamocortical circuits. Using intracranial stereoelectroencephalography (sEEG) from 17 patients performing a roving auditory oddball task under attended and unattended conditions, we quantified PE encoding using mutual information and co-information to capture redundant and synergistic PE representations. Attention modulated PE encoding in both the thalamus and the temporal cortex, but with distinct informational dynamics. Thalamic encoding showed a stable reduction of PE information during distraction, consistent with state-dependent thalamocortical gating. In contrast, the temporal cortex expressed two opposing learning trajectories during attended listening that converged once attention was diverted, revealing distinct cortical learning regimes rather than a uniform attentional effect. Attention further reorganized the informational content of cortical PE representations by altering the balance between redundant and synergistic information. A biologically constrained neural network showed that attention-dependent changes in inhibition and long-range connectivity reproduced these dynamics through Hebbian learning. Together, these findings suggest that attention regulates predictive learning not simply by changing the strength of PE responses, but by reshaping how distributed thalamocortical circuits represent and integrate sensory evidence over time.",
+      "authors": [
+        "Aijala, J.",
+        "Jensen, M. A.",
+        "Miller, K. J.",
+        "Hermes, D.",
+        "Blenkmann, A. O.",
+        "Ince, R. A. A.",
+        "Bekinschtein, T. A.",
+        "Vinck, M.",
+        "Garagnani, M.",
+        "Canales-Johnson, A."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737794v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "sEEG study on attention modulation of prediction error encoding",
+      "llm_evidence_cn": "注意对预测误差编码调节的颅内脑电图研究",
+      "llm_evidence": "注意对预测误差编码调节的颅内脑电图研究",
+      "canonical_evidence": "注意对预测误差编码调节的颅内脑电图研究",
+      "llm_tldr_en": "Uses sEEG to show attention reshapes prediction error encoding differently in thalamus and cortex.",
+      "llm_tldr_cn": "通过颅内立体脑电图记录人类在注意条件下丘脑和皮层预测误差编码的信息动态，发现注意以不同方式调制两区域的冗余和协同信息，揭示了注意对感知学习神经回路的影响。",
+      "llm_tldr": "通过颅内立体脑电图记录人类在注意条件下丘脑和皮层预测误差编码的信息动态，发现注意以不同方式调制两区域的冗余和协同信息，揭示了注意对感知学习神经回路的影响。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

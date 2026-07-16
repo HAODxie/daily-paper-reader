@@ -6,65 +6,70 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-15
-- 运行时间：2026-07-15 21:37:32 UTC
+- 最新运行日期：2026-07-16
+- 运行时间：2026-07-16 21:40:11 UTC
 - 运行状态：成功
-- 本次总论文数：15
+- 本次总论文数：16
 - 精读区：6
-- 速读区：9
+- 速读区：10
 
 ### 今日简报（AI）
-今日日报精读2篇满分论文：EEG稀缺数据注意力机制与fMRI语义解码新基准，速读聚焦神经运动解码与精神疾病分类。最值得关注RG-Flow Transformer对睡眠EEG数据的尺度感知注意力，以及Llama 3.2在语义脑语言解码中的容量突破。建议普通读者优先精读这两篇满分研究，结合速读中的事件驱动神经运动解码方法，构建从脑信号到语言和运动输出的完整认知框架。
-- 详情：[/202607/15/README](/202607/15/README)
+今日推荐覆盖脑机接口与AI模型两大前沿，精读6篇、速读10篇，其中EEG癫痫检测降维方法与大模型顿悟式微调（均9.0分）最受关注。  
+值得重点阅读：脑电信号维度削减的自主优化方案，以及大型语言模型突然自我提升的“启蒙式微调”现象。  
+普通读者可优先了解AI模型能力跃升的触发机制，这对理解未来智能工具突变有直接启发。
+- 详情：[/202607/16/README](/202607/16/README)
 
 ### 精读区论文标签
-1. [Scale-Aware Attention for Scarce Neural Data: An RG-Flow Transformer on Sleep-EDF EEG](/202607/15/2607.11950v1-scale-aware-attention-for-scarce-neural-data-an-rg-flow-transformer-on-sleep-edf-eeg)  
-   标签：评分：10.0/10、query:neuro-mental
-   evidence：使用Sleep-EDF脑电数据集评估尺度感知Transformer在睡眠深度估计中的优势
-2. [The Capacity of Thought: Benchmarking Llama 3.2 in Semantic fMRI Neural Language Decoding and Improving the Huth Encoding-Model Baseline](/202607/15/2607.12079v1-the-capacity-of-thought-benchmarking-llama-32-in-semantic-fmri-neural-language-decoding-and-improving-the-huth-encoding-model-baseline)  
-   标签：评分：10.0/10、query:neuro-mental
-   evidence：使用Llama 3.2大语言模型进行fMRI神经语言解码
-3. [Evaluating LLM Robustness Under Domain-Specific Prompt Perturbations in Public Health Applications](/202607/15/2607.06913v1-evaluating-llm-robustness-under-domain-specific-prompt-perturbations-in-public-health-applications)  
+1. [Comparison of Dimension Reduction Methods for EEG Seizure Detection Using Autonomous AI-Driven Optimization](/202607/16/2607.12546v2-comparison-of-dimension-reduction-methods-for-eeg-seizure-detection-using-autonomous-ai-driven-optimization)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：评估大语言模型在公共卫生应用中的鲁棒性
-4. [Mapping the neural circuitry of cognitive restructuring in depressive and anxiety disorders](/202607/15/biorxiv-10-64898-2026-07-12-738091-v1-mapping-the-neural-circuitry-of-cognitive-restructuring-in-depressive-and-anxiety-disorders)  
+   evidence：基于深度学习的EEG癫痫检测与降维方法比较
+2. [Self-Improving is Often Sudden: Enlightenment-style Finetuning for Large-Scale Models](/202607/16/2607.13395v1-self-improving-is-often-sudden-enlightenment-style-finetuning-for-large-scale-models)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：fMRI研究抑郁症和焦虑症中的认知重构
-5. [Detecting Sleep Deprivation from Running Biomechanics Using Machine Learning Classification: A Comparison Between Wearable and Laboratory Motion Capture](/202607/15/biorxiv-10-64898-2026-07-14-738397-v1-detecting-sleep-deprivation-from-running-biomechanics-using-machine-learning-classification-a-comparison-between-wearable-and-laboratory-motion-capture)  
+   evidence：提出大语言模型的新型微调方法
+3. [Leveraging unlabelled data for generalizable neural population decoding](/202607/16/2607.14086v1-leveraging-unlabelled-data-for-generalizable-neural-population-decoding)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用机器学习从跑步生物力学检测睡眠剥夺
-6. [A Minimally Invasiveness Hybrid Brain-Computer Interface: A Distributed, Scalable and Evolvable Architecture for Whole Brain Access](/202607/15/biorxiv-10-64898-2026-07-14-738604-v1-a-minimally-invasiveness-hybrid-brain-computer-interface-a-distributed-scalable-and-evolvable-architecture-for-whole-brain-access)  
+   evidence：脑机接口中神经解码的自监督学习框架
+4. [Surprisal contributes little beyond contextual embeddings in high-gamma ECoG encoding](/202607/16/biorxiv-10-64898-2026-07-10-737662-v1-surprisal-contributes-little-beyond-contextual-embeddings-in-high-gamma-ecog-encoding)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：提出一种微创混合脑机接口架构
+   evidence：使用GPT-2 XL的上下文嵌入和惊异度预测高γECoG反应
+5. [Brain-wide gaze-dependent activity during eyes-closed rest and sleep](/202607/16/biorxiv-10-64898-2026-07-10-737751-v1-brain-wide-gaze-dependent-activity-during-eyes-closed-rest-and-sleep)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：利用基于磁共振的眼动追踪和功能磁共振研究闭眼休息和睡眠中注视依赖性大脑活动
+6. [Comparing Semantic Navigation in Humans and Large Language Models using Natural Language Processing](/202607/16/2607.12195v1-comparing-semantic-navigation-in-humans-and-large-language-models-using-natural-language-processing)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：使用NLP比较人类和LLM的语义导航
 
 ### 速读区论文标签
-1. [Event-based Neural Decoding for Neuroprosthetic Motor Control](/202607/15/2607.11445v1-event-based-neural-decoding-for-neuroprosthetic-motor-control)  
+1. [Diminished Stimulus-Evoked Activity During Sustained Attention Without Behavioural Cost in ADHD](/202607/16/biorxiv-10-64898-2026-07-09-737359-v1-diminished-stimulus-evoked-activity-during-sustained-attention-without-behavioural-cost-in-adhd)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于脉冲神经网络的神经假体运动控制事件驱动解码
-2. [Comparison of Dimension Reduction Methods for EEG Seizure Detection Using Autonomous AI-Driven Optimization](/202607/15/2607.12546v1-comparison-of-dimension-reduction-methods-for-eeg-seizure-detection-using-autonomous-ai-driven-optimization)  
+   evidence：ADHD中睡眠相关慢波活动的EEG研究
+2. [Trait Resilience Modulates the Association Between Cortisol and Aperiodic Neural Dynamics](/202607/16/biorxiv-10-64898-2026-07-09-737399-v1-trait-resilience-modulates-the-association-between-cortisol-and-aperiodic-neural-dynamics)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：比较多种维度缩减方法用于深度学习脑电癫痫检测
-3. [Classification of Healthy People and Schizophrenics Using Time- Frequency Domain Features Extracted from Electroencephalogram Signals](/202607/15/biorxiv-10-64898-2026-04-13-718103-v2-classification-of-healthy-people-and-schizophrenics-using-time--frequency-domain-features-extracted-from-electroencephalogram-signals)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：基于脑电的精神分裂症分类用于心理健康诊断
-4. [Speech clarity shapes auditory attention and visual-signal coupling during multimodal sentence comprehension](/202607/15/biorxiv-10-64898-2026-07-13-738151-v1-speech-clarity-shapes-auditory-attention-and-visual-signal-coupling-during-multimodal-sentence-comprehension)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：使用EEG快速不可见频率标签研究听觉注意
-5. [Decoding and Characterizing the Intracranial Representation of Semantic Information](/202607/15/biorxiv-10-64898-2026-07-13-738249-v1-decoding-and-characterizing-the-intracranial-representation-of-semantic-information)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：从颅内EEG解码语义信息用于脑机接口
-6. [Beyond Parallel Tracking: Interactive Multi-Feature Fusion Drives Semantic Reconstruction from Non-invasive Brain Recordings](/202607/15/2607.12071v1-beyond-parallel-tracking-interactive-multi-feature-fusion-drives-semantic-reconstruction-from-non-invasive-brain-recordings)  
+   evidence：研究特质韧性、皮质醇与EEG发作性动力学，与心理健康相关
+3. [Neural Integration of Affective Prosodic and Semantic Cues in Non-literal Forms of Speech Understanding](/202607/16/biorxiv-10-64898-2026-01-05-694352-v3-neural-integration-of-affective-prosodic-and-semantic-cues-in-non-literal-forms-of-speech-understanding)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用多特征融合从非侵入性脑记录进行语义重建，与脑机接口相关
-7. [Lost in Visual Translation: A VLM-Assisted Perceptual-Semantic Coherence Framework for EEG-to-Image Reconstruction](/202607/15/2607.12364v1-lost-in-visual-translation-a-vlm-assisted-perceptual-semantic-coherence-framework-for-eeg-to-image-reconstruction)  
+   evidence：fMRI研究非字面语言中的情感处理
+4. [Generating whole-brain neural activity and behavior through unified latent dynamics](/202607/16/biorxiv-10-64898-2026-06-05-730482-v2-generating-whole-brain-neural-activity-and-behavior-through-unified-latent-dynamics)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：VLM辅助的EEG到图像重建框架，BCI应用
-8. [Fast Whole-Brain, Geometry-Aware Functional Alignment for Cross-Subject Decoding](/202607/15/2607.10931v1-fast-whole-brain-geometry-aware-functional-alignment-for-cross-subject-decoding)  
+   evidence：使用深度生成模型建模线虫神经动态
+5. [Prediction of Q-CHAT scores based on Functional Connectivity in Healthy Newborns](/202607/16/biorxiv-10-64898-2026-06-30-735645-v2-prediction-of-q-chat-scores-based-on-functional-connectivity-in-healthy-newborns)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：利用功能连接预测自闭症量表得分，属于心理健康研究
+6. [A Deep Learning Framework for Biomarker Segmentation and Classification in Traumatic Brain Injury](/202607/16/biorxiv-10-64898-2026-07-09-737265-v1-a-deep-learning-framework-for-biomarker-segmentation-and-classification-in-traumatic-brain-injury)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：深度学习用于创伤性脑损伤生物标志物分割
+7. [Attention reshapes the information dynamics of thalamic and cortical prediction-error learning](/202607/16/biorxiv-10-64898-2026-07-10-737794-v2-attention-reshapes-the-information-dynamics-of-thalamic-and-cortical-prediction-error-learning)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：注意对预测误差编码调节的颅内脑电图研究
+8. [Benchmarking Dynamic Affective Reasoning: A Viewer-Centric Video Emotion Dataset](/202607/16/2607.10238v1-benchmarking-dynamic-affective-reasoning-a-viewer-centric-video-emotion-dataset)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：跨被试fMRI解码的功能对齐方法
-9. [Causal Supervision of Attention for Affective Behaviour Analysis](/202607/15/2607.12091v1-causal-supervision-of-attention-for-affective-behaviour-analysis)  
+   evidence：以观众为中心的情感转换和因果推理数据集
+9. [Top-down influences on neural music processing: preference, enjoyment and familiarity influence neural tracking and brain rhythms differently](/202607/16/biorxiv-10-64898-2026-07-10-737714-v1-top-down-influences-on-neural-music-processing-preference-enjoyment-and-familiarity-influence-neural-tracking-and-brain-rhythms-differently)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：情感行为分析用于心理健康监测
+   evidence：音乐偏好与神经追踪的EEG研究
+10. [A Whole-Brain Dynamical Framework Linking Resting-State Activity to TMS-Evoked Responses](/202607/16/biorxiv-10-64898-2026-07-10-737755-v1-a-whole-brain-dynamical-framework-linking-resting-state-activity-to-tms-evoked-responses)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：连接静息态与TMS诱发反应的全局脑电框架
 
 
 <div class="dpr-home-promo-card">
