@@ -6,70 +6,59 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-16
-- 运行时间：2026-07-16 21:40:11 UTC
+- 最新运行日期：2026-07-17
+- 运行时间：2026-07-17 20:02:29 UTC
 - 运行状态：成功
-- 本次总论文数：16
+- 本次总论文数：13
 - 精读区：6
-- 速读区：10
+- 速读区：7
 
 ### 今日简报（AI）
-今日推荐覆盖脑机接口与AI模型两大前沿，精读6篇、速读10篇，其中EEG癫痫检测降维方法与大模型顿悟式微调（均9.0分）最受关注。  
-值得重点阅读：脑电信号维度削减的自主优化方案，以及大型语言模型突然自我提升的“启蒙式微调”现象。  
-普通读者可优先了解AI模型能力跃升的触发机制，这对理解未来智能工具突变有直接启发。
-- 详情：[/202607/16/README](/202607/16/README)
+今日精读两篇高分论文：稀缺EEG数据下的尺度无关Transformer（9.0）与实时脑机接口Python框架（9.0），速读三篇涉及跨被试解码、情感因果注意力和自动化研究智能体。最值得精读《The RG-Flow Transformer》处理低数据场景EEG的新方案，以及《Dendrite》为在线BCI研究提供的轻量级开发工具。建议优先深入这两篇，后续可速览《Causal Supervision of Attention》了解情感分析中的因果监督技术。
+- 详情：[/202607/17/README](/202607/17/README)
 
 ### 精读区论文标签
-1. [Comparison of Dimension Reduction Methods for EEG Seizure Detection Using Autonomous AI-Driven Optimization](/202607/16/2607.12546v2-comparison-of-dimension-reduction-methods-for-eeg-seizure-detection-using-autonomous-ai-driven-optimization)  
+1. [The RG-Flow Transformer: Encoding Scale-Free Dynamics in Scarce EEG](/202607/17/2607.11950v2-the-rg-flow-transformer-encoding-scale-free-dynamics-in-scarce-eeg)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于深度学习的EEG癫痫检测与降维方法比较
-2. [Self-Improving is Often Sudden: Enlightenment-style Finetuning for Large-Scale Models](/202607/16/2607.13395v1-self-improving-is-often-sudden-enlightenment-style-finetuning-for-large-scale-models)  
+   evidence：利用带重正化群归纳偏置的Transformer估计EEG睡眠深度
+2. [Dendrite: A Real-Time Python Application for Online Brain-Computer Interface Research and Development](/202607/17/2607.14655v1-dendrite-a-real-time-python-application-for-online-brain-computer-interface-research-and-development)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：提出大语言模型的新型微调方法
-3. [Leveraging unlabelled data for generalizable neural population decoding](/202607/16/2607.14086v1-leveraging-unlabelled-data-for-generalizable-neural-population-decoding)  
+   evidence：用于多模态生理数据采集和解码器训练的在线脑机接口应用
+3. [Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation](/202607/17/2607.15202v1-self-evolving-human-centered-framework-for-explainable-depression-symptom-annotation)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑机接口中神经解码的自监督学习框架
-4. [Surprisal contributes little beyond contextual embeddings in high-gamma ECoG encoding](/202607/16/biorxiv-10-64898-2026-07-10-737662-v1-surprisal-contributes-little-beyond-contextual-embeddings-in-high-gamma-ecog-encoding)  
+   evidence：大语言模型辅助的抑郁症症状标注框架
+4. [Post-encoding slow-wave amplitude during a daytime nap predicts pattern completion from sparse visual cues](/202607/17/biorxiv-10-64898-2026-07-17-738149-v1-post-encoding-slow-wave-amplitude-during-a-daytime-nap-predicts-pattern-completion-from-sparse-visual-cues)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用GPT-2 XL的上下文嵌入和惊异度预测高γECoG反应
-5. [Brain-wide gaze-dependent activity during eyes-closed rest and sleep](/202607/16/biorxiv-10-64898-2026-07-10-737751-v1-brain-wide-gaze-dependent-activity-during-eyes-closed-rest-and-sleep)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：利用基于磁共振的眼动追踪和功能磁共振研究闭眼休息和睡眠中注视依赖性大脑活动
-6. [Comparing Semantic Navigation in Humans and Large Language Models using Natural Language Processing](/202607/16/2607.12195v1-comparing-semantic-navigation-in-humans-and-large-language-models-using-natural-language-processing)  
+   evidence：研究白天小睡后的编码后慢波幅度与模式完成的关系
+5. [NeuroGRIP: Retrieval-Augmented Graph Refinement for Knowledge-Grounded EEG Seizure Diagnosis](/202607/17/2607.14314v1-neurogrip-retrieval-augmented-graph-refinement-for-knowledge-grounded-eeg-seizure-diagnosis)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：使用NLP比较人类和LLM的语义导航
+   evidence：利用大语言模型构建知识引导的脑电癫痫诊断框架
+6. [Electrophysiological features of signals recorded from white matter](/202607/17/biorxiv-10-64898-2026-07-11-737939-v1-electrophysiological-features-of-signals-recorded-from-white-matter)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：分析白质sEEG信号，采用谱分解方法
 
 ### 速读区论文标签
-1. [Diminished Stimulus-Evoked Activity During Sustained Attention Without Behavioural Cost in ADHD](/202607/16/biorxiv-10-64898-2026-07-09-737359-v1-diminished-stimulus-evoked-activity-during-sustained-attention-without-behavioural-cost-in-adhd)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：ADHD中睡眠相关慢波活动的EEG研究
-2. [Trait Resilience Modulates the Association Between Cortisol and Aperiodic Neural Dynamics](/202607/16/biorxiv-10-64898-2026-07-09-737399-v1-trait-resilience-modulates-the-association-between-cortisol-and-aperiodic-neural-dynamics)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：研究特质韧性、皮质醇与EEG发作性动力学，与心理健康相关
-3. [Neural Integration of Affective Prosodic and Semantic Cues in Non-literal Forms of Speech Understanding](/202607/16/biorxiv-10-64898-2026-01-05-694352-v3-neural-integration-of-affective-prosodic-and-semantic-cues-in-non-literal-forms-of-speech-understanding)  
+1. [Fast Whole-Brain, Geometry-Aware Functional Alignment for Cross-Subject Decoding](/202607/17/2607.10931v1-fast-whole-brain-geometry-aware-functional-alignment-for-cross-subject-decoding)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：fMRI研究非字面语言中的情感处理
-4. [Generating whole-brain neural activity and behavior through unified latent dynamics](/202607/16/biorxiv-10-64898-2026-06-05-730482-v2-generating-whole-brain-neural-activity-and-behavior-through-unified-latent-dynamics)  
+   evidence：几何感知功能对齐方法用于跨被试fMRI解码
+2. [Causal Supervision of Attention for Affective Behaviour Analysis](/202607/17/2607.12091v2-causal-supervision-of-attention-for-affective-behaviour-analysis)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用深度生成模型建模线虫神经动态
-5. [Prediction of Q-CHAT scores based on Functional Connectivity in Healthy Newborns](/202607/16/biorxiv-10-64898-2026-06-30-735645-v2-prediction-of-q-chat-scores-based-on-functional-connectivity-in-healthy-newborns)  
+   evidence：情感行为分析用于心理健康
+3. [BrainPilot: Automating Brain Discovery with Agentic Research](/202607/17/2607.15079v1-brainpilot-automating-brain-discovery-with-agentic-research)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：利用功能连接预测自闭症量表得分，属于心理健康研究
-6. [A Deep Learning Framework for Biomarker Segmentation and Classification in Traumatic Brain Injury](/202607/16/biorxiv-10-64898-2026-07-09-737265-v1-a-deep-learning-framework-for-biomarker-segmentation-and-classification-in-traumatic-brain-injury)  
+   evidence：使用大语言模型的AI代理用于脑科学自动化研究
+4. [Episodic memory ERPs reflect preclinical Alzheimers disease progression](/202607/17/biorxiv-10-64898-2026-07-11-737503-v1-episodic-memory-erps-reflect-preclinical-alzheimers-disease-progression)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：深度学习用于创伤性脑损伤生物标志物分割
-7. [Attention reshapes the information dynamics of thalamic and cortical prediction-error learning](/202607/16/biorxiv-10-64898-2026-07-10-737794-v2-attention-reshapes-the-information-dynamics-of-thalamic-and-cortical-prediction-error-learning)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：注意对预测误差编码调节的颅内脑电图研究
-8. [Benchmarking Dynamic Affective Reasoning: A Viewer-Centric Video Emotion Dataset](/202607/16/2607.10238v1-benchmarking-dynamic-affective-reasoning-a-viewer-centric-video-emotion-dataset)  
+   evidence：利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍
+5. [Systematic evaluation and benchmarking of text summarization methods for biomedical literature: From word-frequency methods to language models](/202607/17/biorxiv-10-64898-2026-01-09-697335-v4-systematic-evaluation-and-benchmarking-of-text-summarization-methods-for-biomedical-literature-from-word-frequency-methods-to-language-models)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：以观众为中心的情感转换和因果推理数据集
-9. [Top-down influences on neural music processing: preference, enjoyment and familiarity influence neural tracking and brain rhythms differently](/202607/16/biorxiv-10-64898-2026-07-10-737714-v1-top-down-influences-on-neural-music-processing-preference-enjoyment-and-familiarity-influence-neural-tracking-and-brain-rhythms-differently)  
+   evidence：对包括大语言模型在内的摘要方法在生物医学文献上进行基准测试
+6. [A personalized map of where, when, and how to stimulate the brain to elicit controlled responses](/202607/17/biorxiv-10-64898-2026-07-16-738930-v1-a-personalized-map-of-where-when-and-how-to-stimulate-the-brain-to-elicit-controlled-responses)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：音乐偏好与神经追踪的EEG研究
-10. [A Whole-Brain Dynamical Framework Linking Resting-State Activity to TMS-Evoked Responses](/202607/16/biorxiv-10-64898-2026-07-10-737755-v1-a-whole-brain-dynamical-framework-linking-resting-state-activity-to-tms-evoked-responses)  
+   evidence：针对精神疾病的个性化脑刺激
+7. [When meaning becomes decodable: Linking the N400 evoked response to semantic representations](/202607/17/biorxiv-10-64898-2026-07-16-738961-v1-when-meaning-becomes-decodable-linking-the-n400-evoked-response-to-semantic-representations)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：连接静息态与TMS诱发反应的全局脑电框架
+   evidence：利用MEG将N400成分与语义解码联系起来
 
 
 <div class="dpr-home-promo-card">

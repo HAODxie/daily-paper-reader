@@ -1,0 +1,25 @@
+---
+title: Episodic memory ERPs reflect preclinical Alzheimers disease progression
+title_zh: 情节记忆事件相关电位反映临床前阿尔茨海默病进展
+authors: "Raposo Pereira, F., Chaumon, M., Dubois, B., Bakardjian, H., Andrade, K., Habert, M.-O., Younsi, N., La Corte, V., George, N."
+date: 2026-07-17
+pdf: "https://www.biorxiv.org/content/10.64898/2026.07.11.737503v1.full.pdf"
+tags: ["query:neuro-mental"]
+score: 7.0
+evidence: 利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍
+tldr: 阿尔茨海默病神经病理在症状出现前数十年已存在，需敏感非侵入性早期标志物。本研究对认知正常老年人进行5年纵向EEG和行为测试，采用Old/New词识别任务。结果显示，进展为前驱AD者识别准确率下降，FN400、P600等ERP波幅降低，左侧额下回和后扣带回激活减弱。EEG和行为改变先于临床衰退，可为前临床AD风险分层提供标记。
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1717, \"height\": 1172, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1695, \"height\": 869, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 1720, \"height\": 976, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 1729, \"height\": 920, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 313, \"height\": 384, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-006.webp\", \"caption\": \"\", \"page\": 0, \"index\": 6, \"width\": 376, \"height\": 382, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-007.webp\", \"caption\": \"\", \"page\": 0, \"index\": 7, \"width\": 374, \"height\": 385, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-008.webp\", \"caption\": \"\", \"page\": 0, \"index\": 8, \"width\": 311, \"height\": 382, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-009.webp\", \"caption\": \"\", \"page\": 0, \"index\": 9, \"width\": 313, \"height\": 382, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-010.webp\", \"caption\": \"\", \"page\": 0, \"index\": 10, \"width\": 307, \"height\": 383, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-011.webp\", \"caption\": \"\", \"page\": 0, \"index\": 11, \"width\": 1722, \"height\": 1051, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/fig-012.webp\", \"caption\": \"\", \"page\": 0, \"index\": 12, \"width\": 1706, \"height\": 1016, \"label\": \"Figure\"}]"
+tables_json: "[{\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-11-737503-v1/table-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1515, \"height\": 1828, \"label\": \"Table\"}]"
+motivation: 阿尔茨海默病神经病理早于症状数十年，需敏感非侵入性标志物实现早期诊断。
+method: 对认知正常老年人（进展组、稳定AB+组、对照组）进行5年纵向Old/New词识别任务EEG记录，分析行为及ERP成分变化。
+result: 进展者行为准确性、敏感性下降，反应变慢；FN400、P600及后检索监测波幅减弱；左额下回和后扣带回低激活。
+conclusion: 行为与ERP改变先于临床衰退，EEG标记可支持前临床AD风险分层。
+---
+
+## 摘要
+背景：阿尔茨海默病（AD）的神经病理学在症状出现前几十年就已出现，因此需要灵敏、非侵入性的标志物用于早期诊断。我们研究了有AD风险的认知正常老年人情节记忆的行为学和脑电图标志物。方法：来自INSIGHT-preAD队列的45名参与者（15名进展为前驱期AD，15名稳定的β-淀粉样蛋白阳性[AB+]参与者，15名对照[AB-]）在完成新旧单词识别任务期间进行高密度脑电图记录。行为表现和记忆相关事件相关电位（ERPs；P3、FN400、P600、检索后监测）在5年内进行纵向分析。结果：进展者的准确性、敏感性显著降低，反应速度变慢。他们在左顶枕区的FN400、P600和监测振幅减弱。源分析显示，左侧额下回和右侧后扣带回皮质活动减退，P600期间出现额外破坏。稳定的AB+个体表现出较轻的P600活动减退。讨论：行为和ERP改变先于临床衰退，支持基于脑电图的情节记忆衰退标志物用于临床前AD风险分层。
+
+## Abstract
+Background: Alzheimers disease (AD) neuropathology emerges decades before symptoms, requiring sensitive, non-invasive markers for early diagnosis. We investigated behavioural and EEG markers of episodic memory in cognitively normal older adults at-risk for AD. Methods: Forty-five INSIGHT-preAD cohort participants (15 progressors to prodromal AD, 15 stable Beta-amyloid positive [AB+] participants, 15 controls [AB-]) completed an Old/New word recognition task during high-density EEG. Behavioural performance and memory-related evoked-related potentials (ERPs; P3, FN400, P600, post-retrieval monitoring) were analysed longitudinally over 5 years. Results: Progressors showed significantly reduced accuracy, sensitivity, and slower responses. They showed attenuated FN400, P600, and monitoring amplitudes over left parieto-occipital regions. Source analysis revealed hypoactivation in the left inferior frontal and right posterior cingulate cortex, across components with additional disruption during P600. Stable AB+ individuals showed milder P600 hypoactivations. Discussion: Behavioural and ERP alterations preceded clinical decline, supporting EEG-based markers of episodic memory decline for preclinical AD risk stratification.

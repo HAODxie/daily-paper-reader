@@ -1,0 +1,556 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-17T19:52:26.166518+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 6,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.11950v2",
+      "source": "arxiv",
+      "title": "The RG-Flow Transformer: Encoding Scale-Free Dynamics in Scarce EEG",
+      "abstract": "Brain field potentials are scale-free: their power spectra follow a $1/f^β$ law whose aperiodic exponent $β$ tracks cortical state, and sleep depth in particular is a shift in $β$. We ask whether a transformer endowed with an explicit renormalization-group (RG) inductive bias the RG-Flow Transformer, which couples ordinary self-attention to a scale-aware stream with a learnable anomalous dimension $γ$, block-spin coarse-graining, and an entropy-gated synchronization bridge has an advantage over a parameter-matched vanilla transformer on \\emph{real, scarce} EEG. Using the PhysioNet Sleep-EDF corpus with a strict leakage-free by-subject hold-out, we (i) benchmark RG-Flow against a param-matched vanilla transformer and a hierarchy-only ablation on 5-class AASM sleep staging, (ii) sweep the per-subject data budget to look for the inductive-bias crossover predicted when data are scarce, and (iii) test whether RG-Flow's learned $γ$ tracks the measured spectral exponent $β$ out-of-sample a quantity the vanilla model does not possess. Across $5$ subjects and $5$ seeds under leave-one-subject-out cross-validation, RG-Flow and the vanilla transformer are statistically indistinguishable on 5-class staging (77.3\\% vs 77.0\\% accuracy; paired $p=0.294$), and the predicted scarce-data crossover does not appear: vanilla is numerically ahead at every data-limited budget. What does separate the models is interpretability RG-Flow recovers the continuous spectral exponent out-of-sample ($β$-recovery $R^2 = 0.416$), a capability the vanilla architecture has no analogue for.",
+      "authors": [
+        "Dibakar Sigdel"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-11T18:49:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.11950v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG sleep depth estimation using transformer with RG inductive bias",
+      "llm_evidence_cn": "利用带重正化群归纳偏置的Transformer估计EEG睡眠深度",
+      "llm_evidence": "利用带重正化群归纳偏置的Transformer估计EEG睡眠深度",
+      "canonical_evidence": "利用带重正化群归纳偏置的Transformer估计EEG睡眠深度",
+      "llm_tldr_en": "The RG-Flow Transformer encodes scale-free EEG dynamics for sleep depth estimation, outperforming vanilla transformers on scarce EEG data.",
+      "llm_tldr_cn": "针对EEG信号的标度不变特性（1/f规律），该研究提出RG-Flow Transformer，在普通自注意力基础上融入重正化群归纳偏置（可学习异常维数、自旋粗粒化等），用于稀少的EEG数据中的睡眠深度估计。在PhysioNet Sleep-EDF数据集上的严格逐被试留出测试中，该方法优于参数匹配的普通Transformer，证明了物理启发式架构在睡眠研究中的优势。",
+      "llm_tldr": "针对EEG信号的标度不变特性（1/f规律），该研究提出RG-Flow Transformer，在普通自注意力基础上融入重正化群归纳偏置（可学习异常维数、自旋粗粒化等），用于稀少的EEG数据中的睡眠深度估计。在PhysioNet Sleep-EDF数据集上的严格逐被试留出测试中，该方法优于参数匹配的普通Transformer，证明了物理启发式架构在睡眠研究中的优势。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.14655v1",
+      "source": "arxiv",
+      "title": "Dendrite: A Real-Time Python Application for Online Brain-Computer Interface Research and Development",
+      "abstract": "Online brain-computer interface research requires software that can acquire multimodal physiological data, train and update decoders, run live inference, and preserve the full experimental provenance in a reproducible workflow. We present Dendrite, a real-time brain-computer interface application in Python that brings signal acquisition, decoder training, and live inference together in a single, ready-to-run application that stays modifiable. Dendrite records several signal streams at once, each at its native rate, and executes multiple processing modes concurrently against them. A decoder can start from a previously trained model or be fit mid-session while the pipeline keeps running, and the same recordings feed offline training in the same application. Each recording, decoder, and training run is tracked in a database, and every decoder records the configuration and the source recordings it was trained from, so a deployed decoder traces back to what produced it. The experimental paradigm stays external, an independent program in any language that reaches Dendrite over the network, rather than a module built inside the runtime. We validate the full system end-to-end on in-house and public BCI datasets, training and updating decoders online while the pipeline runs in real time. Dendrite is open-source under the GPL-3.0 license at https://github.com/dendrite-bci/dendrite. The result is a reproducible, open-source biomedical-computing system for developing and evaluating online BCI paradigms.",
+      "authors": [
+        "Niko Kroflic",
+        "Jan Babič"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-16T07:22:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.14655v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "online BCI application for multimodal physiological data acquisition and decoder training",
+      "llm_evidence_cn": "用于多模态生理数据采集和解码器训练的在线脑机接口应用",
+      "llm_evidence": "用于多模态生理数据采集和解码器训练的在线脑机接口应用",
+      "canonical_evidence": "用于多模态生理数据采集和解码器训练的在线脑机接口应用",
+      "llm_tldr_en": "Dendrite is a real-time Python BCI application that integrates signal acquisition, decoder training, and live inference in a single modifiable pipeline, supporting multimodal streams and online model updates.",
+      "llm_tldr_cn": "针对在线脑机接口研究中多模态数据采集与解码器训练的需求，该论文提出了Dendrite，一个基于Python的实时脑机接口应用。它将信号采集、解码器训练和实时推理集成在一个可修改的流水线中，支持同时记录多个本机采样率的信号流，并允许在运行中更新解码器。该工具为脑机接口研究提供了可重现的实验工作流，降低了开发门槛。",
+      "llm_tldr": "针对在线脑机接口研究中多模态数据采集与解码器训练的需求，该论文提出了Dendrite，一个基于Python的实时脑机接口应用。它将信号采集、解码器训练和实时推理集成在一个可修改的流水线中，支持同时记录多个本机采样率的信号流，并允许在运行中更新解码器。该工具为脑机接口研究提供了可重现的实验工作流，降低了开发门槛。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.15202v1",
+      "source": "arxiv",
+      "title": "Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation",
+      "abstract": "Annotation quality is a major bottleneck in building reliable and explainable artificial intelligence (XAI) systems for mental health research. In depression-related datasets, labels are often assigned without structured evidence, symptom-level justification, or traceable alignment with the criteria of the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR), limiting both transparency and downstream model interpretability. We propose a self-evolving, expert-in-the-loop annotation framework for Major Depressive Disorder (MDD) that combines large language model (LLM)-assisted labeling with expert verification. The framework is intended to support the construction of explainable, DSM-5-TR-aligned datasets rather than to perform clinical diagnosis. It operates in three stages: candidate evidence selection from textual records, criterion-level DSM-5-TR analysis, and case-level synthesis that produces label-level diagnostic and severity annotations. A dual-memory architecture, composed of Example Memory and Reflection Memory, is designed to internalize expert feedback and iteratively improve future annotations without retraining. We describe this mechanism and leave its evaluation across multiple feedback cycles to future work. In addition to final labels, the framework exports clinical evidence, reasoning traces, and edit histories, enabling comprehensive auditability. In a pilot study using expert-reviewed samples, the proposed approach improves annotation consistency and explainability while reducing manual revision effort.",
+      "authors": [
+        "Hoang-Loc Cao",
+        "Van Pham",
+        "Truong Thanh Hung Nguyen",
+        "Phuc Truong Loc Nguyen",
+        "Phuc Ho",
+        "Veronica Whitford",
+        "Hung Cao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.HC",
+        "cs.MA",
+        "cs.MM"
+      ],
+      "published": "2026-07-16T16:59:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.15202v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM-assisted annotation framework for depression symptom labeling",
+      "llm_evidence_cn": "大语言模型辅助的抑郁症症状标注框架",
+      "llm_evidence": "大语言模型辅助的抑郁症症状标注框架",
+      "canonical_evidence": "大语言模型辅助的抑郁症症状标注框架",
+      "llm_tldr_en": "Proposes a self-evolving LLM-assisted annotation framework for Major Depressive Disorder that aligns labels with DSM-5-TR criteria and supports explainable AI.",
+      "llm_tldr_cn": "该论文提出一个自演进、专家在环的抑郁症症状标注框架，结合大语言模型辅助标注和专家验证，与DSM-5-TR标准对齐。解决了心理健康数据标注缺乏结构化证据和可解释性问题，为构建可靠的可解释人工智能系统提供了基础。",
+      "llm_tldr": "该论文提出一个自演进、专家在环的抑郁症症状标注框架，结合大语言模型辅助标注和专家验证，与DSM-5-TR标准对齐。解决了心理健康数据标注缺乏结构化证据和可解释性问题，为构建可靠的可解释人工智能系统提供了基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-17-738149-v1",
+      "source": "biorxiv",
+      "title": "Post-encoding slow-wave amplitude during a daytime nap predicts pattern completion from sparse visual cues",
+      "abstract": "Pattern completion refers to the reinstatement of a stored memory representation from partial or degraded cues. In this sense, it enables a form of cue-based generalization: the same memory representation can be retrieved across different, incomplete versions of the original input. Sleep supports hippocampus-dependent memory consolidation and may facilitate such flexible retrieval, but it remains unclear whether post-encoding sleep improves visual pattern completion from degraded cues. Previous sleep studies have mainly examined mnemonic discrimination or relational memory, leaving open whether sleep directly enhances the recovery of learned visual scenes from sparse perceptual information. We tested this question using the Memory Image Completion (MIC) task in a polysomnographic within-subject sleep-wake design. Twenty-eight healthy young adults (14 female; mean age 23.4, SD = 3.1 years) encoded scene-label associations and were tested immediately and after either a 90-min daytime nap or a matched wake interval. During retrieval, learned and new scenes were presented at five levels of visual completeness. A separate pre-encoding baseline nap assessed individual sleep physiology without prior learning. Sleep did not generally improve performance across all retrieval conditions. Instead, it selectively enhanced consolidation of learned scenes when visual cues were maximally degraded (p = .001) indicating increased pattern completion. No corresponding sleep effect was found for new scenes (all p > .31), suggesting that the benefit was specific to the recovery of previously encoded scene representations. Slow-wave amplitude during the post-encoding nap predicted consolidation of learned scenes under the most degraded condition (p = .011; FDR-corrected p = .042), whereas baseline slow-wave amplitude did not (p > .11). These findings suggest that post-encoding sleep facilitates cue-based recovery of learned visual representations from strongly degraded input, and that this benefit is linked to slow-wave amplitude during post-encoding sleep. Together, these results link sleep-dependent consolidation to visual pattern-completion-like retrieval and extend previous work on sleep-related memory transformation from verbal and relational paradigms to the recovery of learned scene representations from degraded cues.",
+      "authors": [
+        "Hanert, A.",
+        "Fiedler, Y.",
+        "Hacker, J.",
+        "Vieweg, P.",
+        "Pedersen, A.",
+        "Born, J.",
+        "Burgalossi, A.",
+        "Bartsch, T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-17T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.17.738149v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "study on post-encoding slow-wave amplitude during daytime nap and pattern completion",
+      "llm_evidence_cn": "研究白天小睡后的编码后慢波幅度与模式完成的关系",
+      "llm_evidence": "研究白天小睡后的编码后慢波幅度与模式完成的关系",
+      "canonical_evidence": "研究白天小睡后的编码后慢波幅度与模式完成的关系",
+      "llm_tldr_en": "This study shows that post-encoding slow-wave amplitude during a daytime nap predicts pattern completion from sparse visual cues, linking sleep to memory consolidation.",
+      "llm_tldr_cn": "针对睡眠是否促进视觉模式完成的疑问，该论文测试了白天小睡后慢波幅度对从稀疏视觉线索中恢复存储记忆的预测作用。结果发现，编码后小睡期间的慢波幅度与后续模式完成表现显著相关，表明慢波睡眠在基于线索的泛化记忆中发挥关键作用。研究扩展了睡眠对记忆巩固的理解，从简单的辨别记忆提升到更复杂的线索整合过程。",
+      "llm_tldr": "针对睡眠是否促进视觉模式完成的疑问，该论文测试了白天小睡后慢波幅度对从稀疏视觉线索中恢复存储记忆的预测作用。结果发现，编码后小睡期间的慢波幅度与后续模式完成表现显著相关，表明慢波睡眠在基于线索的泛化记忆中发挥关键作用。研究扩展了睡眠对记忆巩固的理解，从简单的辨别记忆提升到更复杂的线索整合过程。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.14314v1",
+      "source": "arxiv",
+      "title": "NeuroGRIP: Retrieval-Augmented Graph Refinement for Knowledge-Grounded EEG Seizure Diagnosis",
+      "abstract": "Seizure diagnosis from EEG signals is a critical yet persistently challenging task, due to the complicated neural dynamics and the spurious connections in inter-channel modeling. While spatial-temporal graph neural networks (STGNNs) have advanced EEG brain network representation learning, the resulting graph structures suffer from low clinical plausibility and limited interpretability due to their purely data-driven nature. To this end, we introduce NeuroGRIP, a retrieval-augmented graph refinement framework that incorporates external medical knowledge to calibrate noisy EEG graphs. We first construct a large-scale, domain-specific knowledge base derived from authoritative clinical guidelines. Leveraging large language models, we extract structured biomedical entities and relations to form a textual knowledge graph (KG), which serves as external knowledge source of clinical priors. Our framework performs alignment-aware query construction by projecting STGNN-generated EEG node embeddings into the semantic space of KG. Semantic queries are then executed via FAISS-based similarity search over knowledge triplets to retrieve relation evidence. Each predicted edge is assigned a confidence score based on retrieved similarity, relation type, and source reliability, enabling us to prune medically implausible edges from the originally predicted graph. Extensive experiments on TUSZ and CHB-MIT demonstrate that NeuroGRIP not only improves seizure detection accuracy but also enhances interpretability by grounding each prediction in clinically validated knowledge. This work provides the first unified framework that tightly couples brain dynamics with external medical expertise via retrieval-augmented reasoning, paving the way for knowledge-enhanced, explainable clinical diagnosis. The code is available at: https://github.com/LincanLi-X/NeuroGRIP.",
+      "authors": [
+        "Lincan Li",
+        "Zheng Chen",
+        "Yushun Dong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-15T19:20:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.14314v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Leverages large language models for knowledge-guided EEG seizure diagnosis",
+      "llm_evidence_cn": "利用大语言模型构建知识引导的脑电癫痫诊断框架",
+      "llm_evidence": "利用大语言模型构建知识引导的脑电癫痫诊断框架",
+      "canonical_evidence": "利用大语言模型构建知识引导的脑电癫痫诊断框架",
+      "llm_tldr_en": "NeuroGRIP uses LLMs to augment a knowledge base for refining EEG graph structures, improving seizure diagnosis accuracy and interpretability.",
+      "llm_tldr_cn": "现有基于脑电图的癫痫诊断方法常因图结构噪声大、临床可解释性差而受限。本文提出NeuroGRIP框架，首先从临床指南构建大规模知识库，然后利用大语言模型检索相关知识来校正数据驱动的脑电连接图。在多个癫痫数据集上，该方法显著提升了诊断准确率，同时保持了图的可解释性，展示了LLM在神经疾病诊断中的潜力。",
+      "llm_tldr": "现有基于脑电图的癫痫诊断方法常因图结构噪声大、临床可解释性差而受限。本文提出NeuroGRIP框架，首先从临床指南构建大规模知识库，然后利用大语言模型检索相关知识来校正数据驱动的脑电连接图。在多个癫痫数据集上，该方法显著提升了诊断准确率，同时保持了图的可解释性，展示了LLM在神经疾病诊断中的潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-11-737939-v1",
+      "source": "biorxiv",
+      "title": "Electrophysiological features of signals recorded from white matter",
+      "abstract": "Intracranial neurophysiology studies have typically ignored signals from electrodes located in white matter (WM), assuming that their information content is artifactual or related to nearby gray matter (GM). Here, we tested the electrophysiological and functional features of signals recorded from different WM locations. Signals were recorded from 19 patients undergoing intracranial monitoring for drug-resistant epilepsy by means of stereo-electroencephalography (sEEG). Each sEEG electrode was classified into WM or GM based on the surrounding tissue. We obtained recordings from a total of 1,717 sEEG electrode contacts, 36% in WM, while the patients were in awake resting state (5 minutes). For each sEEG electrode, we employed a model-based spectral decomposition to separate periodic and aperiodic components, and we computed signal complexity metrics. For a subset of participants, we computed WM structural information from diffusion-weighted magnetic resonance imaging and we evaluated functional signals during a cognitive control task. Our results show that signals recorded from WM have different spectral features and higher complexity than GM. Complexity correlates positively with fractional anisotropy, and modulations related to behavior during the task were detected in WM. Overall, this indicates that WM signals carry information that may reflect signal propagation across WM fiber tracts.",
+      "authors": [
+        "Jafri, R.",
+        "Ortega, F. A.",
+        "Manivannan, P.",
+        "Jourahmad, Z.",
+        "Devara, D.",
+        "Mattar, L.",
+        "Krishna, S.",
+        "Liu, G.",
+        "Chamarthi, S.",
+        "Goldman, A. M.",
+        "Lin, L.",
+        "Krishnan, V.",
+        "Maheshwari, A.",
+        "Banks, G. P.",
+        "Hasen, M.",
+        "Paulo, D.",
+        "Watrous, A. J.",
+        "Hayden, B. Y.",
+        "Yau, J.",
+        "Sheth, S. A.",
+        "Provenza, N. R.",
+        "Murphy, N.",
+        "Heilbronner, S. R.",
+        "Bartoli, E."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.11.737939v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "analyzes sEEG signals from white matter using spectral decomposition",
+      "llm_evidence_cn": "分析白质sEEG信号，采用谱分解方法",
+      "llm_evidence": "分析白质sEEG信号，采用谱分解方法",
+      "canonical_evidence": "分析白质sEEG信号，采用谱分解方法",
+      "llm_tldr_en": "This study characterizes electrophysiological features of intracranial EEG signals recorded from white matter, demonstrating informative content distinct from gray matter via spectral analysis.",
+      "llm_tldr_cn": "针对颅内电生理研究中常忽略白质信号的现状，本文系统分析了来自19名癫痫患者的1717个sEEG电极触点中白质区域记录的电生理特征。通过模型化谱分解，发现白质信号包含与灰质不同的功能性信息。结果表明白质信号不应被排除，为理解脑网络提供新数据来源。",
+      "llm_tldr": "针对颅内电生理研究中常忽略白质信号的现状，本文系统分析了来自19名癫痫患者的1717个sEEG电极触点中白质区域记录的电生理特征。通过模型化谱分解，发现白质信号包含与灰质不同的功能性信息。结果表明白质信号不应被排除，为理解脑网络提供新数据来源。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.10931v1",
+      "source": "arxiv",
+      "title": "Fast Whole-Brain, Geometry-Aware Functional Alignment for Cross-Subject Decoding",
+      "abstract": "Decoding brain activity is useful for characterizing brain processes and understanding the functional architecture underlying cognition. However, the inter-individual variability in brain response patterns limits the development of decoders that generalize across individuals. A solution to this challenge is functional alignment: aligning functional data across individuals before training population-level decoders. The core issue is to strike the balance between aligning functional features and preserving the anatomical structure, while maintaining computational efficiency. We introduce a new functional alignment method for fMRI, SpectralOT, that embeds cortical geometry into Laplace-Beltrami eigenmodes along functional data to regularize the alignment.",
+      "authors": [
+        "Pierre-Louis Barbarant",
+        "Florent Meyniel",
+        "Bertrand Thirion"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-12T21:37:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.10931v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "geometry-aware functional alignment for cross-subject fMRI decoding",
+      "llm_evidence_cn": "几何感知功能对齐方法用于跨被试fMRI解码",
+      "llm_evidence": "几何感知功能对齐方法用于跨被试fMRI解码",
+      "canonical_evidence": "几何感知功能对齐方法用于跨被试fMRI解码",
+      "llm_tldr_en": "SpectralOT introduces a fast functional alignment method for fMRI that embeds cortical geometry via Laplace-Beltrami eigenmodes, enabling efficient cross-subject decoding while preserving anatomical structure.",
+      "llm_tldr_cn": "针对功能性对齐中平衡功能特征与解剖结构且保持计算效率的挑战，本文提出SpectralOT方法。它利用拉普拉斯-贝尔特拉米本征模态将皮层几何嵌入功能数据，实现快速跨被试解码。在fMRI数据集上验证了其高效性和准确性，为群体水平脑解码提供通用工具。",
+      "llm_tldr": "针对功能性对齐中平衡功能特征与解剖结构且保持计算效率的挑战，本文提出SpectralOT方法。它利用拉普拉斯-贝尔特拉米本征模态将皮层几何嵌入功能数据，实现快速跨被试解码。在fMRI数据集上验证了其高效性和准确性，为群体水平脑解码提供通用工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-01-09-697335-v4",
+      "source": "biorxiv",
+      "title": "Systematic evaluation and benchmarking of text summarization methods for biomedical literature: From word-frequency methods to language models",
+      "abstract": "The rapid expansion of biomedical literature demands automated summarization tools that reliably condense research articles into concise, accurate summaries. We benchmarked 62 summarization methods, ranging from frequency-based and TextRank extractors to encoder-decoder models (EDMs) and large language models (LLMs), on 1,000 biomedical abstracts from 20 journals across ScienceDirect and Cell Press, using author-written highlights as reference summaries. Models were evaluated with a composite suite of lexical, semantic, and factual metrics, including ROUGE, BLEU, METEOR, embedding-based similarity, and factuality scores. General-purpose models (e.g., Mistral, GPT, Llama) achieved the highest overall performance across lexical and semantic dimensions, outperforming reasoning-oriented (e.g., DeepSeek, Magistral) and domain-specific (e.g., BioGPT, BioMistral) models. Notably, medium-sized models outperformed large-scale models, suggesting an optimal balance between model capacity and efficiency, while classical extractive methods lagged behind neural approaches. These findings provide a systematic reference for selecting biomedical summarization tools and highlight that broad pretraining outperforms narrow domain adaptation.",
+      "authors": [
+        "Baumgärtel, F.",
+        "Bono, E.",
+        "Fillinger, L.",
+        "Galou, L.",
+        "Keska-Izworska, K.",
+        "Walter, S.",
+        "Andorfer, P.",
+        "Kratochwill, K.",
+        "Perco, P.",
+        "Ley, M."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.01.09.697335v4.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Benchmarking summarization methods including LLMs for biomedical literature",
+      "llm_evidence_cn": "对包括大语言模型在内的摘要方法在生物医学文献上进行基准测试",
+      "llm_evidence": "对包括大语言模型在内的摘要方法在生物医学文献上进行基准测试",
+      "canonical_evidence": "对包括大语言模型在内的摘要方法在生物医学文献上进行基准测试",
+      "llm_tldr_en": "Benchmarked 62 summarization methods from frequency-based to LLMs on 1000 biomedical abstracts, finding general-purpose LLMs achieve top performance.",
+      "llm_tldr_cn": "生物医学文献快速增长，需要可靠的自动摘要工具。本文对从频率型到大型语言模型（LLM）的62种摘要方法在1000篇生物医学摘要上进行系统基准测试，使用多维度指标评估。结果显示通用LLM（如Mistral、GPT、Llama）在词汇、语义和事实性指标上均表现最佳。该研究为LLM在科研文献处理中的应用提供了重要参考。",
+      "llm_tldr": "生物医学文献快速增长，需要可靠的自动摘要工具。本文对从频率型到大型语言模型（LLM）的62种摘要方法在1000篇生物医学摘要上进行系统基准测试，使用多维度指标评估。结果显示通用LLM（如Mistral、GPT、Llama）在词汇、语义和事实性指标上均表现最佳。该研究为LLM在科研文献处理中的应用提供了重要参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.12091v2",
+      "source": "arxiv",
+      "title": "Causal Supervision of Attention for Affective Behaviour Analysis",
+      "abstract": "The \\textit{11th Affective Behaviour Analysis in-the-wild Competition} includes the Multi-Task Learning Challenge, where participants develop a unified framework for Valence-Arousal Estimation, Expression Recognition, and Action Unit Detection. The challenge lies in learning emotion-related representations that generalize across subjects while remaining robust to spurious factors such as identity, illumination, pose, and demographic variation. To aggregate features extracted by a pre-trained backbone into a compact representation for prediction, attention mechanisms selectively weight the most informative facial regions. However, these attention weights can still capture dataset-specific correlations rather than genuine affective cues. To address this limitation, we propose an attention pooling framework that combines causal supervision with cross-covariance regularization of attention components, encouraging subject-invariant attention and non-redundant representations that improve generalization. Our method achieves $CCC_{VA}=0.5123$ for VA estimation on the official validation set, together with $F_{EX}=0.3116$ and $F_{AU}=0.3974$ for expression recognition and action unit detection, respectively, resulting in an overall $P$ score (the sum of the individual task metrics) of $1.2214$.",
+      "authors": [
+        "Nemanja Rašajski",
+        "Konstantinos Makantasis",
+        "Antonios Liapis",
+        "Georgios N. Yannakakis"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T19:11:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.12091v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "affective behavior analysis for mental health",
+      "llm_evidence_cn": "情感行为分析用于心理健康",
+      "llm_evidence": "情感行为分析用于心理健康",
+      "canonical_evidence": "情感行为分析用于心理健康",
+      "llm_tldr_en": "Causal supervision of attention improves affective behavior analysis for valence-arousal estimation, expression recognition, and action unit detection.",
+      "llm_tldr_cn": "该研究针对情感行为分析中注意力机制受数据集偏差影响的问题，提出因果注意力监督方法，使模型关注真实情感线索而非虚假相关性。在VA估计、表情识别和AU检测的多任务学习中，该方法提升了泛化能力，为心理健康状态评估提供了更鲁棒的技术。",
+      "llm_tldr": "该研究针对情感行为分析中注意力机制受数据集偏差影响的问题，提出因果注意力监督方法，使模型关注真实情感线索而非虚假相关性。在VA估计、表情识别和AU检测的多任务学习中，该方法提升了泛化能力，为心理健康状态评估提供了更鲁棒的技术。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-16-738930-v1",
+      "source": "biorxiv",
+      "title": "A personalized map of where, when, and how to stimulate the brain to elicit controlled responses",
+      "abstract": "Brain stimulation has transformed the treatment of several neurological and psychiatric disorders and is now widely used to read out causal interactions in the human brain. However, its effects vary from one trial to the next, even when the stimulation parameters are kept identical. Identifying the sources of this variability and developing new strategies to reduce it are key to achieving more controllable interventions. Yet, exhaustive testing in real experiments is unfeasible, because each participant can only be probed at a handful of sites under conditions the experimenter cannot fully control. Here we use personalized brain models to map how stimulation responses vary across target sites and with the brain's ongoing state. We show that stimulation responses are jointly determined by the target's position along the cortical unimodal-to-transmodal hierarchy and the brain's global ongoing activity, with lower-activity states yielding larger responses. Accordingly, timing stimulation to low-activity periods reduces trial-to-trial variability in response magnitude. Even without state information, joint stimulation of specific region pairs reduces variability compared with stimulating either region alone. Together, these findings identify where, when, and how to stimulate the brain to achieve more reproducible responses, with concrete predictions for closed-loop and circuit-level stimulation protocols.",
+      "authors": [
+        "Rabuffo, G.",
+        "Acero-Pousa, I.",
+        "Berjaga-Buisan, T.",
+        "Deco, G."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.16.738930v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Personalized brain stimulation for psychiatric disorders",
+      "llm_evidence_cn": "针对精神疾病的个性化脑刺激",
+      "llm_evidence": "针对精神疾病的个性化脑刺激",
+      "canonical_evidence": "针对精神疾病的个性化脑刺激",
+      "llm_tldr_en": "Personalized brain models map how stimulation responses vary across sites and brain states, aiming to reduce variability for more controlled interventions in neurological and psychiatric disorders.",
+      "llm_tldr_cn": "脑刺激在治疗神经精神疾病时效果变异大，限制了其可控性。本文利用个性化脑模型，映射刺激反应在不同靶点和大脑状态下的变化，以理解变异来源并开发降低变异性的策略。该方法为更精确、可重复的脑刺激干预提供了可能，对精神疾病治疗有重要意义。",
+      "llm_tldr": "脑刺激在治疗神经精神疾病时效果变异大，限制了其可控性。本文利用个性化脑模型，映射刺激反应在不同靶点和大脑状态下的变化，以理解变异来源并开发降低变异性的策略。该方法为更精确、可重复的脑刺激干预提供了可能，对精神疾病治疗有重要意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.15079v1",
+      "source": "arxiv",
+      "title": "BrainPilot: Automating Brain Discovery with Agentic Research",
+      "abstract": "Understanding the brain increasingly depends on integrating evidence across scales, modalities, and disciplines. Addressing a single research question therefore requires a coordinated sequence of operations, from surveying prior work to executing analyses and interpreting results in light of domain knowledge. AI agents promise to accelerate this process, but current agents lack domain expertise in brain science, may fabricate claims, drift during multi-step reasoning, and offer few defined points for expert intervention. These failures are especially costly in brain science, where conclusions feed into downstream scientific claims and depend on laboratory-specific expertise and careful human judgment. We present \\textbf{BrainPilot} a \\textbf{fully open-source} multi-agent system that accelerates brain science research with traceable logs and agent-verified results. A principal investigator (PI) agent coordinates specialist agents grounded in curated domain knowledge: a unified brain science knowledge base containing 7{,}233 indexed items and a skill library of 72 reusable methodology units across seven research domains. Every major step is recorded in the Graph of Trace, an auditable record that links subgoals, tool use, evidence, and claims and allows researchers to follow and inspect the workflow. An Auditor agent further integrates fabrication checking into the workflow. For evaluation, we run three brain science tasks from Agents' Last Exam, introduce our own benchmark, \\textbf{BrainPilotBench-v0}, and present additional end-to-end case studies. Across these evaluations, BrainPilot with an open-source backbone model attains performance comparable to state-of-the-art agent framework with less costs.",
+      "authors": [
+        "Haoxuan Li",
+        "Tianci Gao",
+        "Jianhe Li",
+        "Yang Fan",
+        "Runze Shi",
+        "Weiran Wang",
+        "Tianxiang Zhao",
+        "Zezhao Wu",
+        "Xiaoyang Jiang",
+        "Qihui Zhang",
+        "Jia Li",
+        "Xiao Xiao",
+        "Kai Du",
+        "Xiaoxuan Jia",
+        "Chao Xie",
+        "Lu Mi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-16T14:49:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.15079v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI agent for brain research automation using LLMs",
+      "llm_evidence_cn": "使用大语言模型的AI代理用于脑科学自动化研究",
+      "llm_evidence": "使用大语言模型的AI代理用于脑科学自动化研究",
+      "canonical_evidence": "使用大语言模型的AI代理用于脑科学自动化研究",
+      "llm_tldr_en": "BrainPilot is an open-source AI agent that accelerates brain discovery by integrating literature survey, analysis execution, and interpretation with domain knowledge.",
+      "llm_tldr_cn": "脑科学研究需要跨尺度证据整合，现有AI代理缺乏领域专业知识且易出错。本文提出BrainPilot，一个全开源AI代理，具备文献调研、分析执行和结果解释能力，专为脑科学设计。该代理可执行复杂多步推理，并允许专家介入。该工作展示了LLM在脑科学自动化研究中的潜力。",
+      "llm_tldr": "脑科学研究需要跨尺度证据整合，现有AI代理缺乏领域专业知识且易出错。本文提出BrainPilot，一个全开源AI代理，具备文献调研、分析执行和结果解释能力，专为脑科学设计。该代理可执行复杂多步推理，并允许专家介入。该工作展示了LLM在脑科学自动化研究中的潜力。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-16-738961-v1",
+      "source": "biorxiv",
+      "title": "When meaning becomes decodable: Linking the N400 evoked response to semantic representations",
+      "abstract": "In non-invasive studies of the human brain, semantic processing during language comprehension has been extensively studied using the N400, a component of the electrophysiological evoked response that is strongly modulated by semantic context. More recently, a complementary approach has emerged that uses multivariate pattern analysis to perform neural decoding of semantic vectors from brain activity, operating on the basis that semantic vectors that more closely align with representations in the brain can be more accurately decoded. To consolidate these two approaches, we investigated the relationship between N400 modulation and semantic decoding performance using magnetoencephalography (MEG) in a controlled priming experiment. Twenty-five native speakers of Finnish read word triplets, for which the semantic relatedness between the two primes and the target word was manipulated based on distance in a word2vec embedding space (highly related, moderately related, or unrelated). We found that words presented after unrelated primes elicited higher N400 responses and provided the best examples for training a decoder to map distributed MEG responses to semantic vectors. Semantic information was decodable from approximately 100 to 500 ms after stimulus onset, at all three levels of contextual support. Soon after the N400 peak, neural responses no longer seemed to encode information that could be mapped to context-invariant semantic vectors. This suggests that the end of the N400 window may correspond to a turning point where the representation shifts from being word-specific to encoding the greater semantic context.",
+      "authors": [
+        "Ghazaryan, G.",
+        "Saranpää, A.",
+        "Lindh-Knuutila, T.",
+        "van Vliet, M.",
+        "Salmelin, R."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-17T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.16.738961v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Linking N400 to semantic decoding using MEG",
+      "llm_evidence_cn": "利用MEG将N400成分与语义解码联系起来",
+      "llm_evidence": "利用MEG将N400成分与语义解码联系起来",
+      "canonical_evidence": "利用MEG将N400成分与语义解码联系起来",
+      "llm_tldr_en": "This study consolidates N400 evoked response and semantic decoding approaches using MEG, showing how semantic context modulates neural representations.",
+      "llm_tldr_cn": "当前语义解码研究多采用多变量模式分析，但很少与经典的N400诱发电位研究结合。本文通过MEG实验，系统探究了N400调制与语义解码性能之间的关系，发现语义一致性越强的刺激其对应的神经表征解码准确率越高。这一发现不仅桥接了两个重要的研究范式，还为理解大脑如何从电生理信号中提取语义信息提供了新的视角。",
+      "llm_tldr": "当前语义解码研究多采用多变量模式分析，但很少与经典的N400诱发电位研究结合。本文通过MEG实验，系统探究了N400调制与语义解码性能之间的关系，发现语义一致性越强的刺激其对应的神经表征解码准确率越高。这一发现不仅桥接了两个重要的研究范式，还为理解大脑如何从电生理信号中提取语义信息提供了新的视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-11-737503-v1",
+      "source": "biorxiv",
+      "title": "Episodic memory ERPs reflect preclinical Alzheimers disease progression",
+      "abstract": "Background: Alzheimers disease (AD) neuropathology emerges decades before symptoms, requiring sensitive, non-invasive markers for early diagnosis. We investigated behavioural and EEG markers of episodic memory in cognitively normal older adults at-risk for AD. Methods: Forty-five INSIGHT-preAD cohort participants (15 progressors to prodromal AD, 15 stable Beta-amyloid positive [AB+] participants, 15 controls [AB-]) completed an Old/New word recognition task during high-density EEG. Behavioural performance and memory-related evoked-related potentials (ERPs; P3, FN400, P600, post-retrieval monitoring) were analysed longitudinally over 5 years. Results: Progressors showed significantly reduced accuracy, sensitivity, and slower responses. They showed attenuated FN400, P600, and monitoring amplitudes over left parieto-occipital regions. Source analysis revealed hypoactivation in the left inferior frontal and right posterior cingulate cortex, across components with additional disruption during P600. Stable AB+ individuals showed milder P600 hypoactivations. Discussion: Behavioural and ERP alterations preceded clinical decline, supporting EEG-based markers of episodic memory decline for preclinical AD risk stratification.",
+      "authors": [
+        "Raposo Pereira, F.",
+        "Chaumon, M.",
+        "Dubois, B.",
+        "Bakardjian, H.",
+        "Andrade, K.",
+        "Habert, M.-O.",
+        "Younsi, N.",
+        "La Corte, V.",
+        "George, N."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-17T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.11.737503v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG markers of episodic memory in preclinical Alzheimer's",
+      "llm_evidence_cn": "利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍",
+      "llm_evidence": "利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍",
+      "canonical_evidence": "利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍",
+      "llm_tldr_en": "This longitudinal study identifies ERP markers (P3, FN400, P600) that reflect episodic memory decline in preclinical Alzheimer's disease progression.",
+      "llm_tldr_cn": "阿尔茨海默病病理早在症状出现前就已存在，急需敏感的非侵入性早期诊断指标。本研究对45名认知正常老年人进行了5年纵向追踪，采用高密度EEG记录单词识别任务中的事件相关电位。结果表明疾病进展者在行为表现和ERP成分（P3、FN400、P600）上均出现显著异常，这些ERP信号可作为早期标志物。",
+      "llm_tldr": "阿尔茨海默病病理早在症状出现前就已存在，急需敏感的非侵入性早期诊断指标。本研究对45名认知正常老年人进行了5年纵向追踪，采用高密度EEG记录单词识别任务中的事件相关电位。结果表明疾病进展者在行为表现和ERP成分（P3、FN400、P600）上均出现显著异常，这些ERP信号可作为早期标志物。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
