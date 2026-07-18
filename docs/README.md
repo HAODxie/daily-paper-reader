@@ -6,59 +6,49 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-17
-- 运行时间：2026-07-17 20:02:29 UTC
+- 最新运行日期：2026-07-18
+- 运行时间：2026-07-18 20:07:57 UTC
 - 运行状态：成功
-- 本次总论文数：13
-- 精读区：6
-- 速读区：7
+- 本次总论文数：9
+- 精读区：3
+- 速读区：6
 
 ### 今日简报（AI）
-今日精读两篇高分论文：稀缺EEG数据下的尺度无关Transformer（9.0）与实时脑机接口Python框架（9.0），速读三篇涉及跨被试解码、情感因果注意力和自动化研究智能体。最值得精读《The RG-Flow Transformer》处理低数据场景EEG的新方案，以及《Dendrite》为在线BCI研究提供的轻量级开发工具。建议优先深入这两篇，后续可速览《Causal Supervision of Attention》了解情感分析中的因果监督技术。
-- 详情：[/202607/17/README](/202607/17/README)
+1) 今日精读2篇高分论文，聚焦脑发现自动化智能体与抑郁症经颅磁刺激治疗反应预测。  
+2) 最值得关注的方向：AI智能体辅助脑科学研究，以及边缘可控性作为TMS疗效的生物标志物。  
+3) 建议：深入探索智能体在脑科学中的自动化分析，同时关注TMS个体化治疗预测的临床转化。
+- 详情：[/202607/18/README](/202607/18/README)
 
 ### 精读区论文标签
-1. [The RG-Flow Transformer: Encoding Scale-Free Dynamics in Scarce EEG](/202607/17/2607.11950v2-the-rg-flow-transformer-encoding-scale-free-dynamics-in-scarce-eeg)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：利用带重正化群归纳偏置的Transformer估计EEG睡眠深度
-2. [Dendrite: A Real-Time Python Application for Online Brain-Computer Interface Research and Development](/202607/17/2607.14655v1-dendrite-a-real-time-python-application-for-online-brain-computer-interface-research-and-development)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：用于多模态生理数据采集和解码器训练的在线脑机接口应用
-3. [Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation](/202607/17/2607.15202v1-self-evolving-human-centered-framework-for-explainable-depression-symptom-annotation)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：大语言模型辅助的抑郁症症状标注框架
-4. [Post-encoding slow-wave amplitude during a daytime nap predicts pattern completion from sparse visual cues](/202607/17/biorxiv-10-64898-2026-07-17-738149-v1-post-encoding-slow-wave-amplitude-during-a-daytime-nap-predicts-pattern-completion-from-sparse-visual-cues)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：研究白天小睡后的编码后慢波幅度与模式完成的关系
-5. [NeuroGRIP: Retrieval-Augmented Graph Refinement for Knowledge-Grounded EEG Seizure Diagnosis](/202607/17/2607.14314v1-neurogrip-retrieval-augmented-graph-refinement-for-knowledge-grounded-eeg-seizure-diagnosis)  
+1. [BrainPilot: Automating Brain Discovery with Agentic Research](/202607/18/2607.15079v1-brainpilot-automating-brain-discovery-with-agentic-research)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：利用大语言模型构建知识引导的脑电癫痫诊断框架
-6. [Electrophysiological features of signals recorded from white matter](/202607/17/biorxiv-10-64898-2026-07-11-737939-v1-electrophysiological-features-of-signals-recorded-from-white-matter)  
+   evidence：用于自动化脑科学发现的AI代理，集成多模态数据和语言模型
+2. [Edge controllability is associated with treatment response to repetitive transcranial magnetic stimulation in depression.](/202607/18/biorxiv-10-64898-2026-07-11-737986-v1-edge-controllability-is-associated-with-treatment-response-to-repetitive-transcranial-magnetic-stimulation-in-depression)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：分析白质sEEG信号，采用谱分解方法
+   evidence：脑网络控制理论应用于抑郁症治疗反应
+3. [An Integrated EEG, TMS-EEG and Behavioural Dataset for Investigating the Neural Correlates of Working Memory](/202607/18/biorxiv-10-64898-2026-07-12-738085-v1-an-integrated-eeg-tms-eeg-and-behavioural-dataset-for-investigating-the-neural-correlates-of-working-memory)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：公开工作记忆EEG数据集
 
 ### 速读区论文标签
-1. [Fast Whole-Brain, Geometry-Aware Functional Alignment for Cross-Subject Decoding](/202607/17/2607.10931v1-fast-whole-brain-geometry-aware-functional-alignment-for-cross-subject-decoding)  
+1. [Parameter-efficient Prompt Tuning of Vision Foundation Model With Adaptive Focal Loss for Interpretable MCI Screening](/202607/18/2607.15047v1-parameter-efficient-prompt-tuning-of-vision-foundation-model-with-adaptive-focal-loss-for-interpretable-mci-screening)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：几何感知功能对齐方法用于跨被试fMRI解码
-2. [Causal Supervision of Attention for Affective Behaviour Analysis](/202607/17/2607.12091v2-causal-supervision-of-attention-for-affective-behaviour-analysis)  
+   evidence：使用视觉基础模型的提示调优进行轻度认知障碍筛查，属于心理健康
+2. [The Role of Training Paradigms in Shaping Connectivity and Dynamics: A Comparison of Gradient-Based and Evolutionary Methods in Recurrent Neural Network Models](/202607/18/biorxiv-10-64898-2026-07-09-737022-v1-the-role-of-training-paradigms-in-shaping-connectivity-and-dynamics-a-comparison-of-gradient-based-and-evolutionary-methods-in-recurrent-neural-network-models)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：情感行为分析用于心理健康
-3. [BrainPilot: Automating Brain Discovery with Agentic Research](/202607/17/2607.15079v1-brainpilot-automating-brain-discovery-with-agentic-research)  
+   evidence：比较基于梯度和进化方法在递归神经网络中的训练，与神经科学相关
+3. [Expectation Shapes Neural Preparation for AI-generated and Real Image Processing: Evidence from EEG](/202607/18/biorxiv-10-64898-2026-07-17-738592-v1-expectation-shapes-neural-preparation-for-ai-generated-and-real-image-processing-evidence-from-eeg)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用大语言模型的AI代理用于脑科学自动化研究
-4. [Episodic memory ERPs reflect preclinical Alzheimers disease progression](/202607/17/biorxiv-10-64898-2026-07-11-737503-v1-episodic-memory-erps-reflect-preclinical-alzheimers-disease-progression)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：利用EEG事件相关电位识别临床前阿尔茨海默病的记忆障碍
-5. [Systematic evaluation and benchmarking of text summarization methods for biomedical literature: From word-frequency methods to language models](/202607/17/biorxiv-10-64898-2026-01-09-697335-v4-systematic-evaluation-and-benchmarking-of-text-summarization-methods-for-biomedical-literature-from-word-frequency-methods-to-language-models)  
+   evidence：关于AI生成图像期望效应的EEG研究
+4. [Every Sample Counts: Supervised Fine-Tuning of Language Models with Pointwise Constraints](/202607/18/2607.08968v1-every-sample-counts-supervised-fine-tuning-of-language-models-with-pointwise-constraints)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：对包括大语言模型在内的摘要方法在生物医学文献上进行基准测试
-6. [A personalized map of where, when, and how to stimulate the brain to elicit controlled responses](/202607/17/biorxiv-10-64898-2026-07-16-738930-v1-a-personalized-map-of-where-when-and-how-to-stimulate-the-brain-to-elicit-controlled-responses)  
+   evidence：语言模型的有监督微调，逐样本约束对齐方法
+5. [Boredom and the representation of information content in the neocortex](/202607/18/biorxiv-10-64898-2026-07-09-737454-v1-boredom-and-the-representation-of-information-content-in-the-neocortex)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：针对精神疾病的个性化脑刺激
-7. [When meaning becomes decodable: Linking the N400 evoked response to semantic representations](/202607/17/biorxiv-10-64898-2026-07-16-738961-v1-when-meaning-becomes-decodable-linking-the-n400-evoked-response-to-semantic-representations)  
+   evidence：用计算方法研究无聊这一心理状态
+6. [Measuring excitation/inhibition balance through field potentials](/202607/18/biorxiv-10-64898-2026-07-16-738654-v1-measuring-excitationinhibition-balance-through-field-potentials)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：利用MEG将N400成分与语义解码联系起来
+   evidence：评估脑电指标用于兴奋/抑制平衡，与脑电信号处理相关
 
 
 <div class="dpr-home-promo-card">
