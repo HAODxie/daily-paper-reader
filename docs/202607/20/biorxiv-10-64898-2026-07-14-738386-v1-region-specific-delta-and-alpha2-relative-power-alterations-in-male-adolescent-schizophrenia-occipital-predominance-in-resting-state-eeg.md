@@ -1,0 +1,25 @@
+---
+title: "Region-Specific Delta and Alpha2 Relative Power Alterations in Male Adolescent Schizophrenia: Occipital Predominance in Resting-State EEG"
+title_zh: 男性青少年精神分裂症中区域特异性Delta和Alpha2相对功率改变：静息态EEG的枕叶优势
+authors: "Hazra, S., Chakrabarti, N."
+date: 2026-07-20
+pdf: "https://www.biorxiv.org/content/10.64898/2026.07.14.738386v1.full.pdf"
+tags: ["query:neuro-mental"]
+score: 7.0
+evidence: 青少年精神分裂症静息态EEG分析用于心理健康研究
+tldr: "青少年精神分裂症（SCZ）的静息态脑电图区域特异性改变尚不明确。本研究分析公开数据集（45名男性患者 vs 39名对照），经预处理后计算9个频带相对功率，采用三因素重复测量方差分析及FDR校正。结果发现：SCZ组在额叶、顶叶、枕叶delta功率显著升高，在中央、顶叶、颞叶、枕叶alpha2功率显著降低，枕叶效应最大（delta |d|=0.82，alpha2 |d|=0.73）。结果表明区域相对功率改变，尤其是枕叶，可作为早期SCZ的神经电生理特征。"
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1193, \"height\": 1553, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1641, \"height\": 2165, \"label\": \"Figure\"}]"
+tables_json: "[{\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/table-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1715, \"height\": 75, \"label\": \"Table\"}, {\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/table-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1712, \"height\": 407, \"label\": \"Table\"}, {\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/table-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 1711, \"height\": 879, \"label\": \"Table\"}, {\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/table-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 1902, \"height\": 2373, \"label\": \"Table\"}, {\"url\": \"assets/tables/biorxiv/biorxiv-10-64898-2026-07-14-738386-v1/table-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 1909, \"height\": 454, \"label\": \"Table\"}]"
+motivation: 探讨青少年精神分裂症静息态脑电图相对功率在细粒度频带及脑区的区域特异性，尤其关注枕叶。
+method: 分析16通道EEG数据，经预处理后计算9频带相对功率，使用三因素重复测量方差分析及FDR校正事后比较。
+result: 患者组在多脑区delta功率增高、alpha2功率降低，枕叶变化最显著，效应量中到大。
+conclusion: 区域特异性相对功率改变，尤其枕叶，可能作为早期精神分裂症的神经生理标记。
+---
+
+## 摘要
+静息态脑电图(EEG)研究一致报告精神分裂症中慢波活动增加和α功率降低。然而，在更细频率带上，特别是青少年精神分裂症中EEG相对功率(RP)的区域分布仍不清楚。我们分析了一个公开可用的静息态EEG数据集，包括45名男性青少年精神分裂症患者(SCZ；平均年龄：12.3±1.2岁)和39名年龄和性别匹配的健康对照(CON；平均年龄：12.3±1.3岁)，使用16个头皮电极(10-20系统)记录。在经过带通滤波、伪迹子空间重建、样条插值、平均重参考和独立成分分析后，计算了五个皮质区域(额叶、中央、顶叶、颞叶和枕叶)的九个频段的RP。使用三因素重复测量方差分析(ANOVA)评估组间差异，随后使用估计边际均值(emmeans)进行Bonferroni错误发现率(FDR)校正的事后两两比较。与对照组相比，SCZ组在额叶、顶叶和枕叶区域显示出显著更高的delta RP，以及在中央、顶叶、颞叶和枕叶区域显著更低的alpha2 RP(与alpha1可分离)(所有FDR < 0.001)。枕叶皮质显示出最大的delta RP增加(|Cohen's d|=0.82)和最大的alpha2 RP减少(|d|=0.73)，效应量中到大。地形图显示SCZ组广泛delta增强和枕顶叶alpha2活动减弱。这些发现证明了青少年精神分裂症中静息态EEG相对功率的区域特异性改变，特别是在枕叶皮质，并表明区域RP可能作为早发性精神分裂症的有前途的神经生理学特征。
+
+## Abstract
+Resting-state electroencephalography (EEG) studies consistently report increased slow-wave activity and reduced alpha power in schizophrenia. However, the regional distribution of EEG relative power (RP) across finer frequency bands, particularly in adolescent schizophrenia, remains poorly characterized. We analyzed a publicly available resting-state EEG dataset comprising 45 male adolescents with schizophrenia (SCZ; mean age: 12.3 +/- 1.2 years) and 39 age- and sex-matched healthy controls (CON; mean age: 12.3 +/- 1.3 years), recorded using 16 scalp electrodes (10-20 system). Following band-pass filtering, artefact subspace reconstruction, spline interpolation, average re-referencing and independent component analysis, RP was computed for nine frequency bands across five cortical regions (frontal, central, parietal, temporal, and occipital). Group differences were assessed using three-way repeated-measures analysis of variance (ANOVA), followed by Bonferroni false discovery rate (FDR)-corrected post-hoc pairwise comparisons using estimated marginal means (emmeans). Compared to controls, the SCZ group showed significantly higher delta RP in the frontal, parietal, and occipital regions and significantly lower alpha2 RP, dissociable from alpha1, in the central, parietal, temporal, and occipital regions (all FDR < 0.001). The occipital cortex showed the greatest increase in delta RP (|Cohen's d|=0.82) and the greatest reduction in alpha2 RP (|d|=0.73), with moderate-to-large effect sizes. Topographic maps demonstrated widespread delta enhancement and attenuated occipito-parietal alpha2 activity in the SCZ group. These findings demonstrate region-specific alterations in resting-state EEG relative power in adolescent schizophrenia, particularly within the occipital cortex, and suggest that regional RP may serve as a promising neurophysiological feature for early-onset schizophrenia.

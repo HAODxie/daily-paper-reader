@@ -1,0 +1,212 @@
+Title: Causal Supervision of Attention for Affective Behaviour Analysis
+
+URL Source: https://arxiv.org/pdf/2607.12091v3
+
+Published Time: Fri, 17 Jul 2026 00:58:41 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# Causal Supervision of Attention for Affective Behaviour Analysis 
+
+Nemanja Rašajski 1 , Konstantinos Makantasis 2 , Antonios Liapis 1 , and Georgios N. Yannakakis 1 
+
+> 1
+
+Institute of Digital Games, University of Malta, Malta 
+
+{nemanja.rasajski,ctriv01,antonios.liapis,georgios.yannakakis}@um.edu.mt  
+
+> 2
+
+AI Department, University of Malta, Malta 
+
+konstantinos.makantasis@um.edu.mt 
+
+Abstract. The 11th Affective Behaviour Analysis in-the-wild Compe-tition includes the Multi-Task Learning Challenge, where participants develop a unified framework for Valence-Arousal Estimation, Expression Recognition, and Action Unit Detection. The challenge lies in learning emotion-related representations that generalize across subjects while re-maining robust to spurious factors such as identity, illumination, pose, and demographic variation. To aggregate features extracted by a pre-trained backbone into a compact representation for prediction, attention mechanisms selectively weight the most informative facial regions. How-ever, these attention weights can still capture dataset-specific correlations rather than genuine affective cues. To address this limitation, we pro-pose an attention pooling framework that combines causal supervision with cross-covariance regularization of attention components, encourag-ing subject-invariant attention and non-redundant representations that improve generalization. Our method achieves CCC V A = 0 .5123 for VA estimation on the official validation set, together with FEX = 0 .3116 
+
+and FAU = 0 .3974 for expression recognition and action unit detection, respectively, resulting in an overall P score (the sum of the individual task metrics) of 1.2214 .
+
+# 1 Introduction 
+
+Affective computing [36] aims to develop intelligent systems capable of perceiving and interpreting human emotions from behavioural signals such as facial expres-sions, speech, text, and physiological measurements, enabling applications in education [39], healthcare [1, 10], and robotics [32, 41]. Affective analysis is com-monly formulated using three complementary emotion models: the Ekman cat-egorical model [4, 8], the Russell circumplex model [9, 38], and the Facial Action Coding System [7]. To jointly leverage these complementary perspectives, the Af-fective Behaviour Analysis in-the-Wild Competition introduced the Multi-Task Learning Challenge based on the Aff-Wild2 dataset [11–22, 24–28, 44], in which models jointly perform valence-arousal (VA) estimation, expression recognition (EX), and action unit (AU) detection while learning shared and task-specific representations. arXiv:2607.12091v3 [cs.CV] 16 Jul 2026 2 Rašajski et al. 
+
+Despite recent progress, affective behaviour analysis remains challenging be-cause models often learn spurious correlations with subject and environmental factors instead of emotion-relevant cues, limiting generalization to unseen sub-jects. To improve generalization we propose a causally inspired attention pooling framework for learning robust affective representations. The framework empha-sizes emotion-relevant invariant cues while reducing the influence of confounding factors such as identity, pose, and illumination. It incorporates causal supervision to guide attention toward invariant facial regions. It also applies cross-covariance regularization to reduce redundancy between Key (K) representations, which de-termine attention allocation, and Value (V) representations, which encode the aggregated information. By reducing redundancy between the K and V represen-tations, we enable more effective utilization of their representational capacity, as minimizing shared information allows each representation to encode more complementary and task-relevant features. Finally, a SwiGLU-based nonlinear V projection [40] further enhances representational capacity (see Fig. 1a). To-gether, these components improve the robustness and expressiveness of emotion representations. Extensive experiments and ablation studies on the s-Aff-Wild2 dataset demon-strate consistent improvements over standard attention pooling. Under a five-fold cross-evaluation protocol, the proposed method increases the composite score P
+
+(defined as the sum of metrics for valence-arousal estimation, expression recog-nition, and action unit detection) from 0.87 to 0.95 with the DINOv2 [33] visual encoder and from 1.05 to 1.19 with the FRoundation [5] encoder. 
+
+# 2 Method 
+
+Building on attentive feature aggregation, we introduce three modifications to improve the robustness and representational capacity of affective features: 1) causally motivated supervision to promote attention to facial regions that are both emotion-relevant and invariant to subject identity; 2) cross-covariance in-dependence regularization between the K and V representations to encourage complementary feature encoding; and 3) a SwiGLU-based [40] nonlinear Value projection to further enhance representational capacity (see Fig. 1a). The framework consists of four stages (see Fig. 1b). First, facial images are transformed into patch embeddings using a frozen pre-trained ViT backbone. Second, patch features are aggregated through cross-attention pooling with a learnable query vector following [2], augmented with the proposed causal super-vision and K-V independence regularization. Third, frame-level representations are temporally modeled using a TCN [29]. Finally, task-specific regression and classification heads generate predictions. The following sections describe each component and its associated learning objectives. Causal Supervision of Attention for Affective Behaviour Analysis 3Linear    
+
+> Linear
+> SwiGLU
+> Baseline
+> components
+> Introduced
+> Components
+> (a) Backbone
+> Attention
+> Pooling
+> Counterfactual
+> Generator
+> Temporal Convolution
+> Network
+> VL
+> AR
+> EX
+> AU
+> Input
+> video
+> Factual
+> Path
+> Counterfactual
+> Path Subtraction
+> Factual
+> Prediction
+> Counterfactual
+> Prediction Trainable Non-
+> Trainable
+> (b)
+
+Fig. 1: Detailed overview of the proposed framework. (a) Our approach extends the baseline with three modifications: counterfactual attention supervision, K-V cross-covariance regularization, and a nonlinear SwiGLU V projection. The proposed compo-nents are highlighted in red. (b) Overview of the multi-task affect estimation framework. Feature representations are first extracted using a frozen backbone. Counterfactual samples (dashed grey arrows) are generated and processed alongside factual samples (dashed black arrows) by a temporal encoder, followed by task-specific prediction heads for affect estimation. Finally, the Total Direct Effect is computed for each task. 
+
+2.1 Causal Supervision for Attention 
+
+To improve cross-subject robustness and further emphasize the most important and invariant regions for emotion recognition, we use the Causal Supervision for Attention (CSA) framework [43]. This framework introduces an explicit su-pervision signal based on causal inference. Given patch features X, attention weights A, and model predictions ˆY , CSA models how attention influences the final prediction and measures the contribution of attention by comparing predic-tions before and after modifying the attention weights. Specifically, the factual prediction is represented as ˆYx,a = ˆY (X = x, A = a), while the counterfactual prediction is obtained by manually replacing the attention weights with coun-terfactual attention weights, ˆYx, ˜a = ˆY (X = x, do( A = ˜a)) , where the do( ·)
+
+operator [35] denotes an intervention that forces the attention to take the value 
+
+˜a rather than the value it would naturally produce. This allows us to measure how the prediction changes when only the attention mechanism is altered (see 4 Rašajski et al. 
+
+Fig. 1a). The difference between the learned attention weights and the counter-factual attention weights is measured using the Total Direct Effect (TDE) (see Fig. 1b) [42], 
+
+ˆYTDE = ˆYx,a − ˆYx, ˜a, (1) which captures the direct causal contribution of attention to the model output. CSA maximizes this effect during training by introducing the following auxiliary supervision objective 
+
+LCSA = L( ˆYTDE , y ) (2) 
+
+y is the ground-truth label, and L is a generic loss function, as this method does not depend on any specific loss formulation. 
+
+Counterfactual generation. To generate counterfactual attention vectors, we sample a random vector from a standard Gaussian distribution and normalize it using a softmax operation to obtain a valid attention distribution, where the elements sum to one [43]. Formally, ˜a = Softmax( z), where z ∼ N (0, I). The resulting counterfactual attention weights may range from poor (e.g., focusing on background regions) to informative (e.g., emphasizing discriminative facial regions). By maximizing the causal effect across diverse counterfactual atten-tion weights, the model is encouraged to identify causally relevant facial regions consistently, resulting in more robust representations. 
+
+2.2 Cross-Covariance Regularization 
+
+To encourage complementary Key and Value representations in scaled dot-product attention, we introduce a cross-covariance regularization loss (Fig. 1a) inspired by [3, 45]. Given the Key and Value representations, K and V, we first center them along the token dimension, 
+
+K = K − 1
+
+S
+
+> S
+
+X
+
+> s=1
+
+Ks, V = V − 1
+
+S
+
+> S
+
+X
+
+> s=1
+
+Vs, (3) where S is the number of tokens (or spatial locations). The cross-covariance and corresponding regularization loss are then 
+
+CKV = 1
+
+S K⊤V, Lcov = ∥CKV ∥2 
+
+> F
+
+. (4) Minimizing Lcov reduces redundancy between the Key and Value feature spaces, encouraging complementary representations. 
+
+2.3 V projection 
+
+We replace the standard fully connected (linear) value projection with a SwiGLU layer [40], increasing its expressiveness so it can encode finer-grained affective cues before attention-based aggregation. Formally, SwiGLU( x) = SiLU( xW 1 +Causal Supervision of Attention for Affective Behaviour Analysis 5
+
+b1) ⊙ (xW 2 + b2), where W1 and W2 are learnable weight matrices, b1 and b2
+
+are learnable bias vectors, ⊙ denotes element-wise multiplication, and SiLU( z) = 
+
+z σ (z) is the Sigmoid Linear Unit activation. 
+
+2.4 Training Objectives 
+
+We formulate the multi-task objective using task-specific losses. For VA estima-tion, we optimize a combination of the CCC loss [23] and mean squared error, 
+
+LV A = LCCC (ˆ yvl , y vl )+ LM SE (ˆ yvl , y vl )+ LCCC (ˆ yar , y ar )+ LM SE (ˆ yar , y ar ), where 
+
+yvl and yar are the ground-truth valence and arousal labels, and ˆyvl and ˆyar are the corresponding predictions. For expression recognition, we use cross-entropy loss, LEX = CE (ˆ yex , y ex ), where yex and ˆyex represent the ground-truth and predicted expression labels. For AU detection, we employ binary cross-entropy loss, LAU = BCE (ˆ yau , y au ), where yau and ˆyau denote the ground-truth and pre-dicted AU labels. The joint objective is defined as LT ask = LAU + LEX + LV A .Additionally, we incorporate auxiliary supervision through the CSA loss, de-fined as LCSA = LAU CSA + LEX CSA + LV A CSA , where each term corresponds to the CSA objective in Eq. 2 for the respective task, together with the cross-covariance regularization term from Eq. 4. The final optimization objective is given by 
+
+LOverall = LT ask + λCSA LCSA + λcov Lcov . The coefficients λCSA and λcov scale the contributions of the CSA and cross-covariance regularization terms. 
+
+# 3 Experiments 
+
+To evaluate the effectiveness of our proposed framework, we conduct experiments using two backbones pre-trained on different datasets. The first backbone namely FRoundation [5] is specialised for this challenge and is pre-trained on facial im-ages, while the second DINOv2 [33] is pre-trained on a general-purpose image corpus. We compare the performance of both backbones against the official base-line, which uses a pre-trained ConvNeXt [30] model with frozen convolutional weights and MixAugment [37] data augmentation, on the official validation set. To further evaluate generalisability, we perform additional experiments using 5-fold cross-validation. We also conduct a comprehensive ablation study to assess the contribution of each component in our framework. The remainder of this section describes the dataset, evaluation metrics, and implementation details. 
+
+3.1 Dataset 
+
+For the MTL track, the organizers provide 142,382 training images and 26,876 validation images from the Aff-Wild2 dataset [23]. Continuous Valence and Arousal (VA) annotations are provided in the range [−1, 1] . Expression (EX) annotations consist of eight categories: Neutral, Anger, Disgust, Fear, Happi-ness, Sadness, Surprise, and Other. Action Unit (AU) annotations comprise 12 classes: AU1, AU2, AU4, AU6, AU7, AU10, AU12, AU15, AU23, AU24, AU25, and AU26. Following the removal of samples with invalid annotations (AU labels 6 Rašajski et al. 
+
+of −1, VA labels of −5, or EX labels of −1), the resulting training and validation sets contain 52,154 and 15,440 images, respectively. 
+
+3.2 Metrics 
+
+The performance measure P as specified by the ABAW MTL challenge is cal-culated by summing the following components: the mean CCC for valence and arousal, the average F1 Score across all eight expression categories FEX , and the average F1 Score across all 12 action units FAU . It is mathematically formulated as follows: 
+
+P = CCC AR + CCC V L 
+
+2 + FEX + FAU . (5) 
+
+3.3 Implementation Details 
+
+Our method is implemented in PyTorch [34], all experiments are performed on a single NVIDIA RTX A6000 GPU using cropped and aligned facial images resized to 224 × 224 [23]. For feature extraction, we utilize two models sharing a ViT-S architecture ( 16 × 16 patches, 256 tokens, 384 embedding dimensions): FRoundation [5], trained on WebFace4M [46] with the ArcFace loss [6], and DINOv2 [33], pre-trained on the general LVD-142M dataset. The TCN module consists of 3 layers with a kernel size of 5. The attention head size is 64, while the number of heads matches the backbone output dimension. Training uses the AdamW optimizer [31] with a batch size of 8, an initial learning rate of 8 × 10 −5,linear warmup for the first 10% of steps, and a cosine annealing schedule. Models are trained for 15 epochs with early stopping (patience of 5) monitored on a random validation split comprising 15% of the training data. The coefficients 
+
+λCSA and λcov are set to 0.1 and 0.05 for DINOv2, and to 0.35 and 0.15 for FRoundation, respectively. 
+
+# 4 Results 
+
+Comparison with the official baseline and five-fold cross-validation. 
+
+Table 1 presents a comparison with the official baseline and the results of five-fold cross-validation, where Fold 1 corresponds to the official validation split. The baseline achieves an overall challenge score of P = 0 .45 (row 11), while our method substantially improves upon this result, achieving P = 0 .96 (row 1) with the DINOv2 backbone and P = 1 .22 (row 6) with the FRoundation back-bone. Across all folds, FRoundation consistently outperforms DINOv2, with the largest gains observed in VA estimation. Expression recognition also benefits consistently, achieving higher FEX across all folds, while action unit detection remains comparable with only minor variations. 
+
+Ablation study. Table 2 reports the ablation results as the mean and 95% CI of P over five-fold cross-validation (only the composite score is shown). Adding SwiGLU alone has mixed effects, slightly reducing performance with DI-NOv2 while improving results with FRoundation. However, combining SwiGLU Causal Supervision of Attention for Affective Behaviour Analysis 7
+
+Table 1: The results of the 5-fold cross-validation, where fold 1 corresponds to the official validation set. Final row corresponds to official baseline on the validation set. Backbone Fold CCC V L CCC AR CCC V A F 1EX F 1AU P
+
+DINOv2 1 0.3683 0.2663 0.3173 0.2504 0.3982 0.9658 2 0.3726 0.3466 0.3596 0.2497 0.3849 0.9942 3 0.2029 0.2906 0.2468 0.1919 0.3688 0.8074 4 0.1748 0.4352 0.3050 0.2162 0.3696 0.8907 5 0.2712 0.5597 0.4155 0.2816 0.4294 1.1264 FRoundation 1 0.5299 0.4947 0.5123 0.3116 0.3974 1.2214 2 0.4726 0.3058 0.3892 0.3044 0.3758 1.0694 3 0.5565 0.3952 0.4758 0.2974 0.3989 1.1722 4 0.5165 0.3697 0.4431 0.3129 0.3694 1.1254 5 0.6008 0.6797 0.6403 0.3063 0.4392 1.3858 ConvNeXt 1 - - - - - 0.4500 
+
+Table 2: Ablation study of the proposed framework. Results are reported as mean 
+
+± 95% CI over 5-fold cross-validation, with the highest mean performance in bold. 
+
+SwiGLU , CSA , and Cov denote the SwiGLU value projection, causal supervision of the attention mechanism, and covariance regularization, respectively, checkmarks ( ✓)indicate enabled components, while crosses ( ×) indicate that it is disabled. For brevity, only the overall performance metric P is reported. Backbone SwiGLU CSA Cov P
+
+DINOv2 × × × 0.8730 ±0.0912 
+
+✓ × × 0.8616 ±0.0972 
+
+✓ ✓ × 0.9036 ±0.1037 
+
+✓ × ✓ 0.9317 ±0.2013 
+
+✓ ✓ ✓ 0.9569 ±0.1481 
+
+FRoundation × × × 1.0524 ±0.0861 
+
+✓ × × 1.1265 ±0.1583 
+
+✓ ✓ × 1.1555 ±0.1004 
+
+✓ × ✓ 1.1588 ±0.1903 
+
+✓ ✓ ✓ 1.1948 ±0.1498 
+
+with either causal supervision or covariance regularization consistently improves performance over the baseline. The complete framework achieves the best results for both backbones, with gains of 9.6% and 13.5% for DINOv2 and FRounda-tion, respectively. These findings demonstrate that each component provides complementary benefits, while their combination delivers the most consistent performance improvements. 
+
+# References 
+
+1. Ayata, D., Yaslan, Y., Kamasak, M.E.: Emotion recognition from multimodal phys-iological signals for emotion aware healthcare systems. Journal of Medical and Biological Engineering 40 (2), 149–157 (2020) 8 Rašajski et al. 2. Bardes, A., Garrido, Q., Ponce, J., Chen, X., Rabbat, M., LeCun, Y., Assran, M., Ballas, N.: Revisiting feature prediction for learning visual representations from video. arXiv preprint arXiv:2404.08471 (2024) 3. Bardes, A., Ponce, J., LeCun, Y.: Vicreg: Variance-invariance-covariance regular-ization for self-supervised learning. arXiv preprint arXiv:2105.04906 (2021) 4. Canal, F.Z., Müller, T.R., Matias, J.C., Scotton, G.G., de Sa Junior, A.R., Pozze-bon, E., Sobieranski, A.C.: A survey on facial emotion recognition techniques: A state-of-the-art literature review. Information Sciences 582 , 593–617 (2022) 5. Chettaoui, T., Damer, N., Boutros, F.: Froundation: Are foundation models ready for face recognition? Image and Vision Computing 156 , 105453 (2025) 6. Deng, J., Guo, J., Xue, N., Zafeiriou, S.: Arcface: Additive angular margin loss for deep face recognition. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 4690–4699 (2019) 7. Ekman, P., Friesen, W.V.: Facial action coding system. Environmental Psychology & Nonverbal Behavior (1978) 8. Ekman, P., Friesen, W.V., et al.: The repertoire of nonverbal behavior: Categories, origins, usage and coding, vol. 1. Mouton de Gruyter Berlin (1969) 9. Gunes, H., Pantic, M.: Automatic, dimensional and continuous emotion recogni-tion. International Journal of Synthetic Emotions (IJSE) 1(1), 68–99 (2010) 10. Guo, R., Guo, H., Wang, L., Chen, M., Yang, D., Li, B.: Development and ap-plication of emotion recognition technology—a systematic literature review. BMC psychology 12 (1), 95 (2024) 11. Kollias, D., Schulc, A., Hajiyev, E., Zafeiriou, S.: Analysing affective behavior in the first abaw 2020 competition. In: 2020 15th IEEE International Conference on Automatic Face and Gesture Recognition (FG 2020)(FG). pp. 794–800 (2020) 12. Kollias, D.: Abaw: Valence-arousal estimation, expression recognition, action unit detection & multi-task learning challenges. In: Proceedings of the IEEE/CVF Con-ference on Computer Vision and Pattern Recognition. pp. 2328–2336 (2022) 13. Kollias, D.: Abaw: Learning from synthetic data & multi-task learning challenges. In: European Conference on Computer Vision. pp. 157–172. Springer (2023) 14. Kollias, D., Shao, C., Kaloidas, O., Patras, I.: Behaviour4all: in-the-wild facial behaviour analysis toolkit. arXiv preprint arXiv:2409.17717 (2024) 15. Kollias, D., Sharmanska, V., Zafeiriou, S.: Face behavior a la carte: Expressions, affect and action units in a single network. arXiv preprint arXiv:1910.11111 (2019) 16. Kollias, D., Sharmanska, V., Zafeiriou, S.: Distribution matching for heteroge-neous multi-task learning: a large-scale face study. arXiv preprint arXiv:2105.03790 (2021) 17. Kollias, D., Sharmanska, V., Zafeiriou, S.: Distribution matching for multi-task learning of classification tasks: a large-scale study on faces & beyond. In: Pro-ceedings of the AAAI Conference on Artificial Intelligence. vol. 38, pp. 2813–2821 (2024) 18. Kollias, D., Tzirakis, P., Baird, A., Cowen, A., Zafeiriou, S.: Abaw: Valence-arousal estimation, expression recognition, action unit detection & emotional reaction in-tensity estimation challenges. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 5888–5897 (2023) 19. Kollias, D., Tzirakis, P., Cowen, A., Zafeiriou, S., Kotsia, I., Baird, A., Gagne, C., Shao, C., Hu, G.: The 6th affective behavior analysis in-the-wild (abaw) com-petition. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 4587–4598 (2024) Causal Supervision of Attention for Affective Behaviour Analysis 920. Kollias, D., Tzirakis, P., Cowen, A., Zafeiriou, S., Kotsia, I., Granger, E., Peder-soli, M., Bacon, S., Baird, A., Gagne, C., et al.: Advancements in affective and behavior analysis: The 8th abaw workshop and competition. In: Proceedings of the Computer Vision and Pattern Recognition Conference. pp. 5572–5583 (2025) 21. Kollias, D., Tzirakis, P., Cowen, A., Zafeiriou, S., Kotsia, I., Granger, E., Pedersoli, M., Bacon, S., Madsen, J., Belharbi, S., et al.: From affect to complex behavior: Ad-vancing multimodal human-centered ai at the 10th abaw workshop & competition. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 5302–5311 (2026) 22. Kollias, D., Tzirakis, P., Nicolaou, M.A., Papaioannou, A., Zhao, G., Schuller, B., Kotsia, I., Zafeiriou, S.: Deep affect prediction in-the-wild: Aff-wild database and challenge, deep architectures, and beyond. International Journal of Computer Vision pp. 1–23 (2019) 23. Kollias, D., Zafeiriou, S.: Aff-wild2: Extending the aff-wild database for affect recog-nition. arXiv preprint arXiv:1811.07770 (2018) 24. Kollias, D., Zafeiriou, S.: Expression, affect, action unit recognition: Aff-wild2, multi-task learning and arcface. arXiv preprint arXiv:1910.04855 (2019) 25. Kollias, D., Zafeiriou, S.: Affect analysis in-the-wild: Valence-arousal, expressions, action units and a unified framework. arXiv preprint arXiv:2103.15792 (2021) 26. Kollias, D., Zafeiriou, S.: Analysing affective behavior in the second abaw2 compe-tition. In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 3652–3660 (2021) 27. Kollias, D., Zafeiriou, S., Kotsia, I., Dhall, A., Ghosh, S., Shao, C., Hu, G.: 7th abaw competition: Multi-task learning and compound expression recognition. In: European Conference on Computer Vision. pp. 31–45. Springer (2024) 28. Kollias, D., Zafeiriou, S., Kotsia, I., Slabaugh, G., Senadeera, D.C., Zheng, J., Yadav, K.K.K., Shao, C., Hu, G.: From emotions to violence: Multimodal fine-grained behavior analysis at the 9th abaw. In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 1–12 (2025) 29. Lea, C., Flynn, M.D., Vidal, R., Reiter, A., Hager, G.D.: Temporal convolutional networks for action segmentation and detection. In: proceedings of the IEEE Con-ference on Computer Vision and Pattern Recognition. pp. 156–165 (2017) 30. Liu, Z., Mao, H., Wu, C.Y., Feichtenhofer, C., Darrell, T., Xie, S.: A convnet for the 2020s. In: Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. pp. 11976–11986 (2022) 31. Loshchilov, I., Hutter, F.: Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 (2017) 32. Marinoiu, E., Zanfir, M., Olaru, V., Sminchisescu, C.: 3d human sensing, action and emotion recognition in robot assisted therapy of children with autism. In: Proceedings of the IEEE conference on computer vision and pattern recognition. pp. 2158–2167 (2018) 33. Oquab, M., Darcet, T., Moutakanni, T., Vo, H., Szafraniec, M., Khalidov, V., Fernandez, P., Haziza, D., Massa, F., El-Nouby, A., et al.: Dinov2: Learning robust visual features without supervision. arXiv preprint arXiv:2304.07193 (2023) 34. Paszke, A., et al.: Automatic differentiation in Pytorch. In: Proc. of NeurIPS Work-shop Autodiff (2017) 35. Pearl, J.: Causality. Cambridge university press (2009) 36. Picard, R.W.: Affective computing. MIT press (2000) 37. Psaroudakis, A., Kollias, D.: Mixaugment & mixup: Augmentation methods for facial expression recognition. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 2367–2375 (2022) 10 Rašajski et al. 38. Russell, J.A.: A circumplex model of affect. Journal of personality and social psy-chology 39 (6), 1161 (1980) 39. Sajjad, M., Ullah, F.U.M., Ullah, M., Christodoulou, G., Cheikh, F.A., Hijji, M., Muhammad, K., Rodrigues, J.J.: A comprehensive survey on deep facial expression recognition: challenges, applications, and future guidelines. Alexandria Engineering Journal 68 , 817–840 (2023) 40. Shazeer, N.: Glu variants improve transformer. arXiv preprint arXiv:2002.05202 (2020) 41. Spezialetti, M., Placidi, G., Rossi, S.: Emotion recognition for human-robot inter-action: Recent advances and future perspectives. Frontiers in Robotics and AI 7,532279 (2020) 42. VanderWeele, T.J.: Explanation in causal inference: developments in mediation and interaction. International journal of epidemiology 45 (6), 1904–1908 (2016) 43. Wang, H., Chen, J., Du, L., Fu, Q., Han, S., Song, X.: Causal-based supervision of attention in graph neural network: a better and simpler choice towards powerful attention. In: Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence (2023) 44. Zafeiriou, S., Kollias, D., Nicolaou, M.A., Papaioannou, A., Zhao, G., Kotsia, I.: Aff-wild: Valence and arousal ‘in-the-wild’challenge. In: Computer Vision and Pat-tern Recognition Workshops (CVPRW), 2017 IEEE Conference on. pp. 1980–1987. IEEE (2017) 45. Zbontar, J., Jing, L., Misra, I., LeCun, Y., Deny, S.: Barlow twins: Self-supervised learning via redundancy reduction. In: International conference on machine learn-ing. pp. 12310–12320. PMLR (2021) 46. Zhu, Z., Huang, G., Deng, J., Ye, Y., Huang, J., Chen, X., Zhu, J., Yang, T., Lu, J., Du, D., et al.: Webface260m: A benchmark unveiling the power of million-scale deep face recognition. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 10492–10502 (2021)

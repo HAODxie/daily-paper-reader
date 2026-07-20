@@ -1,0 +1,684 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-20T20:33:25.090387+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 9,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 10,
+    "quick_skim_target": 11,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2607.15395v1",
+      "source": "arxiv",
+      "title": "NeuroCommitSSM: Decision-Centric Shared Autonomy for Safe Assistive Manipulation via EEG-EMG-ET Commit Readiness",
+      "abstract": "We present NeuroCommitSSM, a decision-centric framework that models when to execute, not just what to do, for safe commit-to-execute control in assistive robotic manipulation. NeuroCommitSSM predicts a continuous commit-readiness score c_t in [0,1] from synchronized electroencephalography (EEG), electromyography (EMG), and eye-tracking (ET), and converts it into discrete commit events through dwell and hysteresis filtering. A three-state finite-state supervisor, HOLD-ASSIST-COMMIT (HAC), gates execution by requiring both a sustained commit-readiness signal from the neural model and real-time perception and robot-state feasibility, including target visibility, inverse kinematics solvability, and collision-free planning, before initiating motion. We evaluate the framework on N=32 subjects performing five activities of daily living (ADL) tasks aligned with the International Classification of Functioning, Disability and Health (ICF), using leave-one-subject-out (LOSO) cross-validation and seven sensor-dropout scenarios (S0-S6). NeuroCommitSSM achieves 0.950 action-balanced accuracy with 0.75 false commit events per 1000 REST windows (FP/1k REST), and maintains low false commits and stable state transitions under sensor loss. For example, in the EEG-only condition, it achieves 0.785 balanced accuracy and 0.29 FP/1k REST, whereas the Temporal Convolutional Network baseline produces 99.95 FP/1k REST under the same condition. Hardware-in-the-loop (HIL) validation on a Kinova Gen3 arm shows that feasibility-checked execution reduces false starts and decision instability without sacrificing task success. Supplementary materials, including code, datasets, videos, and additional analyses, are available at https://madibabaiasl.github.io/NeuroCommitSSM/.",
+      "authors": [
+        "Tipu Sultan",
+        "Param Sangani",
+        "Kody Cool",
+        "Pascal Sikorski",
+        "Guangping Liu",
+        "Hadi Akbarpour",
+        "Madi Babaiasl"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-16T18:49:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.15395v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-EMG-ET based BCI for assistive manipulation",
+      "llm_evidence_cn": "基于EEG-EMG-ET的脑机接口辅助操作",
+      "llm_evidence": "基于EEG-EMG-ET的脑机接口辅助操作",
+      "canonical_evidence": "基于EEG-EMG-ET的脑机接口辅助操作",
+      "llm_tldr_en": "NeuroCommitSSM predicts commit-readiness from EEG/EMG/eye-tracking for safe shared autonomy in assistive robotic manipulation.",
+      "llm_tldr_cn": "为解决辅助机器人安全执行问题，提出NeuroCommitSSM框架，同步EEG、EMG和眼动数据预测连续提交准备度，通过停留和迟滞滤波生成离散提交事件，并由三态有限状态机控制执行。实验表明该方法能在保证安全的同时提高操作效率。",
+      "llm_tldr": "为解决辅助机器人安全执行问题，提出NeuroCommitSSM框架，同步EEG、EMG和眼动数据预测连续提交准备度，通过停留和迟滞滤波生成离散提交事件，并由三态有限状态机控制执行。实验表明该方法能在保证安全的同时提高操作效率。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.15477v1",
+      "source": "arxiv",
+      "title": "Deep Learning Approaches for Sleep Apnea Classification from Polysomnographic EEG Signals",
+      "abstract": "Sleep apnea diagnosis via polysomnography remains resource intensive and relies on time consuming manual data analysis and scoring. Recent work has demonstrated that central nervous system effects of sleep apnea events can be detected through electroencephalogram (EEG) signals. However, most work uses a single feature type on various datasets combined with different classification algorithms. In this work, we present a comprehensive comparison of deep learning architectures and feature representations for automated sleep apnea detection from multichannel EEG on a single dataset of pediatric subjects. We evaluate Vision Transformers and Graph Attention Networks across distinct signal representations: raw temporal signals, short-time Fourier transform spectrograms, coherence based graphs, and two topological data analysis (TDA) derived features. Using age and sex matching of our train and test sets, we train on 2410 pediatric subjects and test on 575 pediatric subjects. We achieve a best test AUC of 0.750 using a vision transformer based model trained on TDA features. Stratified analysis across patient demographics (age, sex, AHI severity) and sleep stages (N1, N2, N3, REM) reveals significant performance variation. Our results demonstrate the feasibility of EEG based automated OSA screening while highlighting essential challenges for clinical deployment.",
+      "authors": [
+        "Shashank Manjunath",
+        "Mukesh Cheemakurthi",
+        "Aarti Sathyanarayana"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-16T21:51:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.15477v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep learning for sleep apnea classification from polysomnographic EEG",
+      "llm_evidence_cn": "使用深度学习对多导睡眠图中的EEG信号进行睡眠呼吸暂停分类",
+      "llm_evidence": "使用深度学习对多导睡眠图中的EEG信号进行睡眠呼吸暂停分类",
+      "canonical_evidence": "使用深度学习对多导睡眠图中的EEG信号进行睡眠呼吸暂停分类",
+      "llm_tldr_en": "Comprehensively compares deep learning architectures (Vision Transformers and Graph Attention Networks) for automated sleep apnea detection from multichannel EEG, showing improved performance over single-feature methods on a pediatric dataset.",
+      "llm_tldr_cn": "该研究针对睡眠呼吸暂停诊断中多导睡眠图耗时费力、现有多数工作仅使用单一特征类型的问题，在儿童数据集上系统比较了Vision Transformer和Graph Attention Network两种深度学习架构，实验采用了原始时域信号与短时傅里叶变换等多种信号表征。结果表明，多种架构和表征均能有效实现自动睡眠呼吸暂停检测，且性能优于已有单一特征方法。这一全面比较为基于EEG的睡眠呼吸暂停诊断提供了可靠基线，推动了自动化诊断工具的发展。",
+      "llm_tldr": "该研究针对睡眠呼吸暂停诊断中多导睡眠图耗时费力、现有多数工作仅使用单一特征类型的问题，在儿童数据集上系统比较了Vision Transformer和Graph Attention Network两种深度学习架构，实验采用了原始时域信号与短时傅里叶变换等多种信号表征。结果表明，多种架构和表征均能有效实现自动睡眠呼吸暂停检测，且性能优于已有单一特征方法。这一全面比较为基于EEG的睡眠呼吸暂停诊断提供了可靠基线，推动了自动化诊断工具的发展。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.15566v1",
+      "source": "arxiv",
+      "title": "Physiological Prior-Driven Label Enhancement for Cross-Subject EEG Emotion Recognition",
+      "abstract": "Electroencephalography (EEG)-based emotion recognition captures affective neural signals with high temporal precision, but cross-subject variability and label noise remain critical challenges to its practical healthcare deployment. Existing label-denoising methods lack physiological grounding, while physiology-informed approaches rely on hand-crafted hyperparameters. To bridge these two paradigms, we propose PhyDA, a plug-and-play, tuning-free framework that unifies neurophysiological priors with data-driven label refinement. PhyDA comprises two modules. Since cross-subject variability renders global thresholds suboptimal, the Physiological Noise Quantifier (PhyNQ) exploits a spectral slope} to produce a subject-specific noise score, providing a neurophysiologically interpretable quality assessment {that naturally adapts to each individual. The Data-Adaptive Label Refiner (DALR) directly adopts this noise score as the contamination ratio to drive a label refinement pipeline that requires no additional neural network training, thereby directly mitigating the impact of inter-subject label noise. Extensive experiments on three public datasets (DEAP, SEED, SEED-IV) across seven backbone architectures under strict leave-one-subject-out cross-validation demonstrate that PhyDA consistently and significantly outperforms both general and EEG-tailored label-denoising baselines, achieving average accuracy gains of 2.76%, 2.66%, and 3.32%, respectively. Visualization further confirms its neurophysiological interpretability and practical robustness. The source code is available at: https://github.com/HongyuZhu-s/PhyDA.",
+      "authors": [
+        "Hongyu Zhu",
+        "Lin Chen",
+        "Yuming Fu",
+        "Mounim A. El-Yacoubi",
+        "Mingsheng Shang"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-17T02:17:23+00:00",
+      "link": "https://arxiv.org/pdf/2607.15566v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG emotion recognition with physiological prior",
+      "llm_evidence_cn": "基于生理先验的EEG情绪识别",
+      "llm_evidence": "基于生理先验的EEG情绪识别",
+      "canonical_evidence": "基于生理先验的EEG情绪识别",
+      "llm_tldr_en": "PhyDA: a plug-and-play framework that combines neurophysiological priors with label refinement for cross-subject EEG emotion recognition.",
+      "llm_tldr_cn": "针对跨主体EEG情绪识别中的标签噪声和个体差异问题，本文提出PhyDA框架。该框架包含生理噪声量化器和标签增强模块，利用谱斜率等生理先验对标签进行主体特异性去噪，无需手工调参。在多个公共数据集上验证了其在跨主体情绪识别中的优越性能。",
+      "llm_tldr": "针对跨主体EEG情绪识别中的标签噪声和个体差异问题，本文提出PhyDA框架。该框架包含生理噪声量化器和标签增强模块，利用谱斜率等生理先验对标签进行主体特异性去噪，无需手工调参。在多个公共数据集上验证了其在跨主体情绪识别中的优越性能。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-10-20-682864-v3",
+      "source": "biorxiv",
+      "title": "Large-Scale Assessment of Language, Speech, and Movement in Autism and ADHD with AI",
+      "abstract": "Attention-Deficit/Hyperactivity Disorder (ADHD) and Autism Spectrum Disorder (ASD) frequently co-occur with overlapping traits. We investigated whether automated behavioral analysis during a clinician-child interview can identify distinct, objective features of the two conditions. Analyzing audio-video recordings of 2,529 youths (ages 5-22) in a broad community sample, multivariate models revealed that language difficulties often attributed to ADHD are primarily explained by age, cognitive ability, or co-occurring ASD. Increased motor activity specifically marked hyperactive-impulsive ADHD, but not ASD or inattentive ADHD. ASD was uniquely characterized by divergent narrative production and idiosyncratic responses, alongside a distinct vocal profile of higher pitch and dysphonia, despite structurally intact language. While these digital behavioral measures correlate with most diagnostic categories and age, the joint analysis effectively separates the effects of ASD from ADHD. These findings show that scalable digital assessment from recorded clinical interviews can disentangle overlapping ASD and ADHD diagnoses into domain-specific behavioral signatures.",
+      "authors": [
+        "Silvan, A.",
+        "Parra, L. C.",
+        "Franco, A. R.",
+        "Di Martino, A.",
+        "Milham, M.",
+        "Madsen, J."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.10.20.682864v3.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "autism, ADHD, mental health, AI behavioral analysis",
+      "llm_evidence_cn": "自闭症、ADHD、心理健康、AI行为分析",
+      "llm_evidence": "自闭症、ADHD、心理健康、AI行为分析",
+      "canonical_evidence": "自闭症、ADHD、心理健康、AI行为分析",
+      "llm_tldr_en": "Automated analysis of audio-video recordings from 2529 youths reveals distinct behavioral markers for ASD and ADHD.",
+      "llm_tldr_cn": "自闭症（ASD）与注意缺陷多动障碍（ADHD）常共病且行为重叠。本研究利用AI对2529名儿童临床采访的音视频进行自动化分析，发现语言困难主要由年龄、认知或共病ASD解释，而过度运动活动特异性标志ADHD冲动亚型，ASD则表现为独特的叙事和语音特征。该方法为大规模心理健康筛查提供了客观、可扩展的工具。",
+      "llm_tldr": "自闭症（ASD）与注意缺陷多动障碍（ADHD）常共病且行为重叠。本研究利用AI对2529名儿童临床采访的音视频进行自动化分析，发现语言困难主要由年龄、认知或共病ASD解释，而过度运动活动特异性标志ADHD冲动亚型，ASD则表现为独特的叙事和语音特征。该方法为大规模心理健康筛查提供了客观、可扩展的工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-16-732577-v2",
+      "source": "biorxiv",
+      "title": "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase",
+      "abstract": "Biological databases store curated knowledge that researchers traditionally access through web interfaces or APIs. To move beyond casual browsing requires domain-specific knowledge and expertise to frame the queries necessary to explore this data. This generates barriers to both experienced users trying to integrate wide-ranging sources of information and for new users entering scientific fields undergoing paradigm shifts such as connectomics. A potentially powerful method to lower these barriers is to facilitate natural-language access to these databases by exposing them to large language models (LLMs) via the Model Context Protocol (MCP). Here we implement this for Virtual Fly Brain (VFB), an expert-curated and ontology-backed knowledgebase of Drosophila neuroscience, providing the precision needed to make recently integrated connectome and molecular data accessible. Benchmarked on 30 neuroscience tasks against a bare LLM and a web-search-assisted LLM, the VFB-MCP-equipped LLM produces precise, verifiable and appropriately quantified answers on 25/30 tasks vs 14/30 for web and 2/30 for bare. The MCP advantage is largest for tasks where data quantification is required (89% vs 11% web). This work establishes MCP layered over ontology-backed knowledge graphs as an effective method to improve LLM response quality for neuroscience and connectomics data, promoting accessibility and accelerating the reliable analysis of complex integrated datasets.",
+      "authors": [
+        "McLachlan, A. D.",
+        "Court, R.",
+        "Pilgrim, C.",
+        "Longden, K.",
+        "Brown, N. H. D.",
+        "Osumi-Sutherland, D.",
+        "Jefferis, G. S. X. E.",
+        "Armstrong, D. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.16.732577v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM for natural-language access to neuroscience database",
+      "llm_evidence_cn": "大语言模型用于神经科学数据库自然语言访问",
+      "llm_evidence": "大语言模型用于神经科学数据库自然语言访问",
+      "canonical_evidence": "大语言模型用于神经科学数据库自然语言访问",
+      "llm_tldr_en": "VFB-MCP uses LLMs via Model Context Protocol to enable natural-language queries to the Virtual Fly Brain knowledgebase.",
+      "llm_tldr_cn": "生物数据库的传统访问方式需要专业知识，门槛高。本文通过模型上下文协议（MCP）将大型语言模型（LLM）与Virtual Fly Brain知识库连接，实现自然语言查询，降低了领域内外研究者获取果蝇神经科学数据的障碍，展示了LLM在科学知识检索中的应用潜力。",
+      "llm_tldr": "生物数据库的传统访问方式需要专业知识，门槛高。本文通过模型上下文协议（MCP）将大型语言模型（LLM）与Virtual Fly Brain知识库连接，实现自然语言查询，降低了领域内外研究者获取果蝇神经科学数据的障碍，展示了LLM在科学知识检索中的应用潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.15079v2",
+      "source": "arxiv",
+      "title": "BrainPilot: Automating Brain Discovery with Agentic Research",
+      "abstract": "Understanding the brain increasingly depends on integrating evidence across scales, modalities, and disciplines. Addressing a single research question therefore requires a coordinated sequence of operations, from surveying prior work to executing analyses and interpreting results in light of domain knowledge. AI agents promise to accelerate this process, but current agents lack domain expertise in brain science, may fabricate claims, drift during multi-step reasoning, and offer few defined points for expert intervention. These failures are especially costly in brain science, where conclusions feed into downstream scientific claims and depend on laboratory-specific expertise and careful human judgment. We present \\textbf{BrainPilot} a \\textbf{fully open-source} multi-agent system that accelerates brain science research with traceable logs and agent-verified results. A principal investigator (PI) agent coordinates specialist agents grounded in curated domain knowledge: a unified brain science knowledge base containing 7{,}233 indexed items and a skill library of 72 reusable methodology units across seven research domains. Every major step is recorded in the Graph of Trace, an auditable record that links subgoals, tool use, evidence, and claims and allows researchers to follow and inspect the workflow. An Auditor agent further integrates fabrication checking into the workflow. For evaluation, we run three brain science tasks from Agents' Last Exam, introduce our own benchmark, \\textbf{BrainPilotBench-v0}, and present additional end-to-end case studies. Across these evaluations, BrainPilot with an open-source backbone model attains performance comparable to state-of-the-art agent framework with less costs.",
+      "authors": [
+        "Haoxuan Li",
+        "Tianci Gao",
+        "Jianhe Li",
+        "Yang Fan",
+        "Runze Shi",
+        "Weiran Wang",
+        "Tianxiang Zhao",
+        "Zezhao Wu",
+        "Xiaoyang Jiang",
+        "Qihui Zhang",
+        "Jia Li",
+        "Xiao Xiao",
+        "Kai Du",
+        "Xiaoxuan Jia",
+        "Chao Xie",
+        "Lu Mi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-16T14:49:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.15079v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI agent for brain discovery likely leveraging large language models",
+      "llm_evidence_cn": "可能利用大型语言模型的大脑发现AI代理",
+      "llm_evidence": "可能利用大型语言模型的大脑发现AI代理",
+      "canonical_evidence": "可能利用大型语言模型的大脑发现AI代理",
+      "llm_tldr_en": "BrainPilot is an open-source AI agent that automates multi-step brain research tasks, potentially using large language models to integrate evidence across scales and modalities.",
+      "llm_tldr_cn": "BrainPilot是一个完全开源的AI代理，旨在自动化大脑研究中的多步推理任务。它通过整合文献调查、数据分析和结果解释，克服了现有AI代理在神经科学领域的知识不足和推理漂移问题。该工具可能基于大型语言模型，为加速脑科学发现提供了可干预的智能平台。",
+      "llm_tldr": "BrainPilot是一个完全开源的AI代理，旨在自动化大脑研究中的多步推理任务。它通过整合文献调查、数据分析和结果解释，克服了现有AI代理在神经科学领域的知识不足和推理漂移问题。该工具可能基于大型语言模型，为加速脑科学发现提供了可干预的智能平台。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "biorxiv-10-64898-2026-07-13-737665-v1",
+      "source": "biorxiv",
+      "title": "Exploring Neural Signatures of Self-Initiated Saccadic and Blink Events in the Real World",
+      "abstract": "During natural vision, the human brain constantly has to account for self-produced interruptions of visual input, through blinks and saccades, to maintain a stable perception of the world. It remains unclear whether these event-related neural responses are treated similarly due to a common underlying mechanism. To systematically investigate this functional connection, we recorded synchronized mobile EEG and eye-tracking data from freely moving participants as they (visually) explored a city center. Our results replicate prior findings showing that a substantial portion of the neural response is aligned to event onsets in comparison to offset, underscoring the relevance of investigating the beginning and end of these events. Using advanced deconvolution techniques, we disentangled overlapping, time-locked neural contributions associated with the onsets and offsets of saccades and blinks. The results demonstrate that the deconvoluted neural kernels are highly correlated when comparing saccade onset to blink onset, as well as saccade offset to blink offset, for both evoked and induced activity across electrodes. Together, our findings demonstrate that despite their distinct physical profiles, saccades and blinks share a common neural signature that governs both their onset and offset dynamics during unconstrained real-world behavior.",
+      "authors": [
+        "Grasso-Cladera, A.",
+        "Nolte, D.",
+        "Zaidan, A.",
+        "Akkaya, A. M.",
+        "Kietzmann, T. C.",
+        "König, P."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.737665v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Mobile EEG and eye-tracking study of saccades and blinks in natural vision",
+      "llm_evidence_cn": "移动EEG和眼动追踪研究自然视觉中的扫视和眨眼",
+      "llm_evidence": "移动EEG和眼动追踪研究自然视觉中的扫视和眨眼",
+      "canonical_evidence": "移动EEG和眼动追踪研究自然视觉中的扫视和眨眼",
+      "llm_tldr_en": "Records synchronized mobile EEG and eye-tracking during real-world exploration to investigate neural signatures of self-initiated saccades and blinks, revealing onset-aligned responses.",
+      "llm_tldr_cn": "为了解自我产生的扫视和眨眼是否共享神经机制，在真实城市环境中同步记录移动EEG和眼动追踪。结果表明大部分神经响应与事件开始对齐，且扫视和眨眼表现出不同的后期成分。研究强调事件开始对感知稳定性的重要性。",
+      "llm_tldr": "为了解自我产生的扫视和眨眼是否共享神经机制，在真实城市环境中同步记录移动EEG和眼动追踪。结果表明大部分神经响应与事件开始对齐，且扫视和眨眼表现出不同的后期成分。研究强调事件开始对感知稳定性的重要性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.12091v3",
+      "source": "arxiv",
+      "title": "Causal Supervision of Attention for Affective Behaviour Analysis",
+      "abstract": "The \\textit{11th Affective Behaviour Analysis in-the-wild Competition} includes the Multi-Task Learning Challenge, where participants develop a unified framework for Valence-Arousal Estimation, Expression Recognition, and Action Unit Detection. The challenge lies in learning emotion-related representations that generalize across subjects while remaining robust to spurious factors such as identity, illumination, pose, and demographic variation. To aggregate features extracted by a pre-trained backbone into a compact representation for prediction, attention mechanisms selectively weight the most informative facial regions. However, these attention weights can still capture dataset-specific correlations rather than genuine affective cues. To address this limitation, we propose an attention pooling framework that combines causal supervision with cross-covariance regularization of attention components, encouraging subject-invariant attention and non-redundant representations that improve generalization. Our method achieves $CCC_{VA}=0.5123$ for VA estimation on the official validation set, together with $F_{EX}=0.3116$ and $F_{AU}=0.3974$ for expression recognition and action unit detection, respectively, resulting in an overall $P$ score (the sum of the individual task metrics) of $1.2214$.",
+      "authors": [
+        "Nemanja Rašajski",
+        "Konstantinos Makantasis",
+        "Antonios Liapis",
+        "Georgios N. Yannakakis"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T19:11:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.12091v3",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "causal supervision of attention for affective behaviour analysis including valence-arousal estimation, expression recognition",
+      "llm_evidence_cn": "提出因果监督注意力进行情感行为分析，包括价值-唤醒估计和表情识别",
+      "llm_evidence": "提出因果监督注意力进行情感行为分析，包括价值-唤醒估计和表情识别",
+      "canonical_evidence": "提出因果监督注意力进行情感行为分析，包括价值-唤醒估计和表情识别",
+      "llm_tldr_en": "This paper addresses spurious correlations in attention-based affective behavior analysis by introducing a causal supervision mechanism that encourages attention to focus on genuine affective cues, improving generalization across subjects for valence-arousal estimation, expression recognition, and action unit detection.",
+      "llm_tldr_cn": "情感行为分析中注意力机制常捕获数据集的虚假相关而非真实情感线索。本文提出注意力因果监督方法，通过引入因果约束引导注意力关注真正的情感区域，从而提升多任务学习框架（价值-唤醒估计、表情识别、动作单元检测）的跨个体泛化能力。在Affective Behaviour Analysis in-the-wild竞赛数据集上验证了有效性。",
+      "llm_tldr": "情感行为分析中注意力机制常捕获数据集的虚假相关而非真实情感线索。本文提出注意力因果监督方法，通过引入因果约束引导注意力关注真正的情感区域，从而提升多任务学习框架（价值-唤醒估计、表情识别、动作单元检测）的跨个体泛化能力。在Affective Behaviour Analysis in-the-wild竞赛数据集上验证了有效性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-06-736898-v2",
+      "source": "biorxiv",
+      "title": "Selective convergence and graded divergence of hippocampal and amygdala subregions using functional connectivity",
+      "abstract": "The hippocampus and amygdala are neighboring medial temporal lobe structures linked to memory and affect, yet how their subregions are jointly embedded within distributed isocortical systems remains unclear. Using resting-state fMRI from 722 Human Connectome Project Young Adult participants, we mapped hippocampal and amygdalar subregions within a unified cortex-wide framework, quantifying subregion-to-cortex connectivity via Pearson correlation (broad co-fluctuation) and GLASSO partial correlation (relatively more direct functional association). We introduced two count-based metrics: dominance (relative hippocampal vs. amygdalar representation) and sharedness (balanced co-representation). Direct associations showed both structures sharing coupling with paralimbic areas and, more modestly, default mode regions, while broader co-fluctuations extended into somatomotor and paralimbic networks. Divergence patterns depended on the estimator: hippocampal subregions preferentially coupled with default-mode and visual networks under direct association, while amygdalar nuclei favored ventral attention and limbic networks; broader co-fluctuations additionally implicated somatomotor cortex for amygdala and visual cortex for hippocampus. These principles held at the subfield/nucleus level, varying along the hippocampal long axis and identifying the paralaminar nucleus as the most hippocampus-like amygdalar subregion. Data-driven connectivity gradients confirmed both systems' separation and fine-scale interdigitation. Hippocampal and amygdalar subregions are thus embedded in cortex not as discrete systems, but through structured, spatially organized co-representation.",
+      "authors": [
+        "Erigüc, D. Y.",
+        "Marsiglia, M.",
+        "John, A.",
+        "Bayrak, S.",
+        "Wan, B.",
+        "Jakovcic, A.",
+        "DeKraker, J.",
+        "Royer, J.",
+        "Bernhardt, B.",
+        "Valk, S. L."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-18T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.06.736898v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI connectivity of hippocampal and amygdala subregions linked to emotion regulation",
+      "llm_evidence_cn": "利用功能连接分析海马和杏仁核亚区与情绪调节的关系",
+      "llm_evidence": "利用功能连接分析海马和杏仁核亚区与情绪调节的关系",
+      "canonical_evidence": "利用功能连接分析海马和杏仁核亚区与情绪调节的关系",
+      "llm_tldr_en": "Using resting-state fMRI from 722 participants, this study maps hippocampal and amygdalar subregion connectivity, introducing dominance and sharedness metrics relevant to emotion regulation research.",
+      "llm_tldr_cn": "海马和杏仁核是记忆与情感的邻近脑区，但它们的亚区如何嵌入全脑皮层网络尚不清楚。本研究基于722名年轻人静息态fMRI数据，采用皮尔逊相关和GLASSO偏相关量化亚区-皮层连接，提出优势度和共享度两个指标。结果揭示亚区在皮层连接上的汇聚与分级模式，为理解情绪调节的神经基础提供精细图谱。",
+      "llm_tldr": "海马和杏仁核是记忆与情感的邻近脑区，但它们的亚区如何嵌入全脑皮层网络尚不清楚。本研究基于722名年轻人静息态fMRI数据，采用皮尔逊相关和GLASSO偏相关量化亚区-皮层连接，提出优势度和共享度两个指标。结果揭示亚区在皮层连接上的汇聚与分级模式，为理解情绪调节的神经基础提供精细图谱。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-13-738120-v1",
+      "source": "biorxiv",
+      "title": "From Hodgkin-Huxley to Pretrained Neural Inference AI",
+      "abstract": "High-density probes record from thousands of neurons simultaneously, yet resolving single-neuron identity remains an ill-posed inverse problem. While detailed simulations precisely characterize the biophysical forward process, their utility for interpreting brain signal remains unclear. Here we show that biophysical simulations of population neuronal electrical signals serve as an effective bridge between theory and experiment. By pre-training artificial neural networks exclusively on large-scale synthetic data, we demonstrate robust zero-shot generalization across diverse brain regions, experimental paradigms and species, enabling the accurate inference of single-unit activities and cell-type properties without exposure to real data. Furthermore, uncovering a substantial population of functionally competent but weakly active neurons systematically obscured by conventional heuristics, our framework resolves a long-standing discrepancy regarding ocular dominance in mouse primary visual cortex. These findings establish biophysical simulations as a reference standard, bridging the gap between theoretical understanding and experimental observation through data-driven inference.",
+      "authors": [
+        "Zhang, Y.",
+        "Han, D.",
+        "Lv, Z.",
+        "Ren, F.",
+        "Wang, Y.",
+        "Yang, Y.",
+        "Li, D.",
+        "Gu, Y."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.738120v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "pretrained neural networks for neural inference",
+      "llm_evidence_cn": "预训练神经网络用于神经推断",
+      "llm_evidence": "预训练神经网络用于神经推断",
+      "canonical_evidence": "预训练神经网络用于神经推断",
+      "llm_tldr_en": "Uses biophysical simulations to pretrain neural networks for zero-shot inference of single-neuron activity from population signals, bridging theory and experiment.",
+      "llm_tldr_cn": "针对高密度探针记录中单神经元身份难以分离的问题，本文利用生物物理仿真生成大规模合成数据，预训练人工神经网络，实现了跨脑区、跨物种的零样本单神经元活动推断。该方法无需真实数据即可准确推断单单元活动和细胞类型属性，有效桥接了理论仿真与实验神经编码。",
+      "llm_tldr": "针对高密度探针记录中单神经元身份难以分离的问题，本文利用生物物理仿真生成大规模合成数据，预训练人工神经网络，实现了跨脑区、跨物种的零样本单神经元活动推断。该方法无需真实数据即可准确推断单单元活动和细胞类型属性，有效桥接了理论仿真与实验神经编码。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.15693v1",
+      "source": "arxiv",
+      "title": "Toward a mechanistic understanding of inference in visual cortex and diffusion models",
+      "abstract": "We describe a model of perceptual inference in primary visual cortex (V1) equivalent to a minimal diffusion model whose function can be readily understood from its parameters. The model is based on sparse coding with a non-factorial prior over latent variables in the form of an unconstrained, pairwise interaction matrix, extending standard sparse coding inference to a general recurrent dynamical system. We efficiently train these recurrent dynamics using a denoising score-matching objective and implicit differentiation. After training on natural images, the learned interaction matrix mirrors the structure of horizontal connections in superficial layers of V1 that link neurons of similar orientation tuning. This model exhibits exceptionally good denoising performance, restoring image features such as extended contours amid extreme visual ambiguity, nearly matching the behavior of standard, black-box diffusion architectures in generalization regime. Owing to the model's simplicity, the network's Jacobian can be decomposed directly in terms of the interaction matrix between latent variables, revealing mechanistically how the recurrent dynamics assign high probability over a continuous family of natural structural deformations. Intriguingly, within this circuit, a large fraction of latent variables learn to disconnect from visual input altogether, essentially forming a hierarchical representation that appears to enforce global consistency among image features. Together, the model and results bridge two distinct domains: for neuroscience, it generates concrete, testable hypotheses regarding functional connectivity in recurrent neural circuits during perceptual inference tasks; for machine learning, it elucidates the internal mechanisms learned by diffusion models that allow them to generate infinitely many novel images from a finite training set.",
+      "authors": [
+        "Zeyu Yun",
+        "Alexander Belsten",
+        "Dasheng Bi",
+        "Zahra Kadkhodaie",
+        "Yubei Chen",
+        "Bruno A. Olshausen"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.AI"
+      ],
+      "published": "2026-07-17T07:11:57+00:00",
+      "link": "https://arxiv.org/pdf/2607.15693v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning model of visual cortex inference, diffusion models",
+      "llm_evidence_cn": "视觉皮层推理的深度学习模型、扩散模型",
+      "llm_evidence": "视觉皮层推理的深度学习模型、扩散模型",
+      "canonical_evidence": "视觉皮层推理的深度学习模型、扩散模型",
+      "llm_tldr_en": "A minimal diffusion model equivalent to inference in V1 is trained with denoising score-matching, revealing structure like horizontal connections.",
+      "llm_tldr_cn": "本文构建了与初级视觉皮层（V1）推理等价的简化扩散模型，通过去噪分数匹配和隐式微分训练循环动力学，学习到的相互作用矩阵镜像了V1浅层水平连接的结构。该模型为理解视觉系统及扩散模型的机理提供了新的计算视角。",
+      "llm_tldr": "本文构建了与初级视觉皮层（V1）推理等价的简化扩散模型，通过去噪分数匹配和隐式微分训练循环动力学，学习到的相互作用矩阵镜像了V1浅层水平连接的结构。该模型为理解视觉系统及扩散模型的机理提供了新的计算视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-10-737763-v1",
+      "source": "biorxiv",
+      "title": "A geometric and dynamical theory of latent computations in biological neural networks",
+      "abstract": "Many neural recordings have revealed low-dimensional sets of behaviorally relevant variables encoded within large-scale neural activity patterns. However, dimensionality reduction analyses alone cannot yield causal explanations for how networks stably implement computations that are resilient to the substantial variability of single neuron dynamics. Further, existing methods for dimensionality reduction often rely on simplifying assumptions about network structure that limit their applicability and explanatory power. To provide a theoretical framework describing the dynamics of low-dimensional computation in high-dimensional neural networks, here we introduce the concept of latent processing units (LPUs), which are architecture-agnostic computational elements operating within biological neural circuitry. Six theorems governing coding and computation by LPUs collectively provide explanations for a range of common biological findings: low-dimensional sets of coding variables can generate high-dimensional neural dynamics; many neurons have activity patterns that represent behaviorally relevant variables but exert little influence on downstream circuits; linear readouts of neural population activity commonly permit near-optimal decoding; the drift of neural representations is often substantial even while network computations remain intact. Overall, our treatment of LPUs, as enacted in network dynamics, unifies the geometric and dynamical views of neural computation under a joint framework and provides systems neuroscience with a causal account of how the brain executes reliable computations.",
+      "authors": [
+        "Dinc, F.",
+        "Blanco-Pozo, M.",
+        "Klindt, D.",
+        "Acosta, F.",
+        "Sylber, C.",
+        "Jiang, Y.",
+        "Ebrahimi, S.",
+        "Shai, A.",
+        "Tanaka, H.",
+        "Yuan, P.",
+        "Miolane, N.",
+        "Schnitzer, M. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.10.737763v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Theoretical framework for latent computations in biological neural networks",
+      "llm_evidence_cn": "生物神经网络中潜在计算的理论框架",
+      "llm_evidence": "生物神经网络中潜在计算的理论框架",
+      "canonical_evidence": "生物神经网络中潜在计算的理论框架",
+      "llm_tldr_en": "Introduces latent processing units (LPUs) as a geometric and dynamical theory for low-dimensional computation in high-dimensional neural networks, bridging RNNs and neuroscience.",
+      "llm_tldr_cn": "针对高维神经活动中的低维计算缺乏理论框架的问题，提出潜在处理单元（LPU）概念，从几何和动力学角度建模。该理论适用于多种网络架构，为理解大脑计算和深度学习模型提供统一视角。",
+      "llm_tldr": "针对高维神经活动中的低维计算缺乏理论框架的问题，提出潜在处理单元（LPU）概念，从几何和动力学角度建模。该理论适用于多种网络架构，为理解大脑计算和深度学习模型提供统一视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-17-739148-v2",
+      "source": "biorxiv",
+      "title": "Excitatory delay-coupling explains in-phase and antiphase functional connectivity",
+      "abstract": "Coordinated oscillatory activity between brain regions underpins cognition, yet the phase relationships governing this coordination remain poorly understood. Using scalp EEG from 31 participants performing a motor learning task, we show that inter-site phase clustering occurs predominantly at in-phase or antiphase relationships, with the transition between them governed by conduction delay. Homologous interhemispheric pairs remain in-phase despite long distances, consistent with faster callosal conduction. A minimal model of two delay-coupled excitatory populations reproduces these features without parameter tuning; stability analysis shows that in-phase and antiphase oscillations arise from competing instabilities, with delay determining which dominates. Task performance shifts a frontoparietal network toward in-phase connectivity, a modulation captured by the Phase Relationship Index (PRI) but missed by conventional clustering metrics. Preliminary evidence from independent datasets suggests these patterns generalise. These findings challenge the assumption that zero-lag connectivity reflects volume conduction, offer a mechanistic account linking conduction delay to phase organisation, and introduce PRI as a metric sensitive to functionally relevant connectivity changes invisible to existing measures.",
+      "authors": [
+        "Omurtag, A.",
+        "Dragomir, A.",
+        "Crofts, J.",
+        "Lytton, W. W."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-19T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.17.739148v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "analysis of phase clustering and delay-coupling in scalp EEG data",
+      "llm_evidence_cn": "对头皮EEG数据的相位聚类和延迟耦合分析",
+      "llm_evidence": "对头皮EEG数据的相位聚类和延迟耦合分析",
+      "canonical_evidence": "对头皮EEG数据的相位聚类和延迟耦合分析",
+      "llm_tldr_en": "Shows inter-site phase clustering in scalp EEG is predominantly in-phase or antiphase, governed by conduction delay; proposes a minimal model explaining this via two delay-coupled excitatory populations, providing insights into EEG functional connectivity.",
+      "llm_tldr_cn": "该研究利用31名被试运动学习任务中的头皮EEG数据，发现脑区间相位聚类主要呈现同相或反相关系，且由传导延迟决定。为了解释这一现象，提出了一个最小模型——两个延迟耦合的兴奋性群体，模型无需参数调节即可复现实验结果。稳定性分析表明同相和反相振荡来自竞争性失稳，加深了对EEG功能连接中相位关系起源的理解。",
+      "llm_tldr": "该研究利用31名被试运动学习任务中的头皮EEG数据，发现脑区间相位聚类主要呈现同相或反相关系，且由传导延迟决定。为了解释这一现象，提出了一个最小模型——两个延迟耦合的兴奋性群体，模型无需参数调节即可复现实验结果。稳定性分析表明同相和反相振荡来自竞争性失稳，加深了对EEG功能连接中相位关系起源的理解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-09-737480-v1",
+      "source": "biorxiv",
+      "title": "The Earliest Impressions: A Systematic Review of Early-Life Exposures on Brain Structure and Neurodevelopmental Outcomes",
+      "abstract": "Prenatal and early postnatal life is a period of rapid brain growth, making the developing brain particularly susceptible to external influences. Adapting the biopsychosocial model of mental health and illness, this review provides a systematic overview of how biological, psychological, and social exposures from conception to age three critically converge to shape brain development and neurodevelopmental outcomes. Following a pre-registered protocol and the Preferred Reporting Items for Systematic Reviews and Meta-Analysis (PRISMA) guidelines, 55 studies were included, primarily published in the past 15 years. Earlier studies focused predominantly on biological exposures, while more recent work has increasingly examined psychological exposures and, more rarely, social exposures. While each exposure exhibited its own pattern of brain alterations and neurodevelopmental changes, an overarching pattern emerged across the different components of the biopsychosocial model. Adverse biological exposures were consistently associated with delayed brain maturation as reflected by brain imaging measures. Adverse psychosocial exposures showed a more complex pattern of associations with both delayed and accelerated brain maturation. Crucially, adverse exposures, whether associated with delayed or accelerated brain maturation, were consistently associated with poorer neurodevelopmental outcomes, underscoring the necessity of considering both brain and behavior when estimating the impact of early exposures. We conclude that research into early-life exposures on brain maturation and neurodevelopmental outcomes is on the rise, but there is a great need for further investigation, in particular of psychological and social exposures. The interactions between exposures, the brain, and outcomes are highly complex, requiring assessment of both brain development and behavior together, ideally in within-subject longitudinal designs in future studies.",
+      "authors": [
+        "Dehnen, J. L.",
+        "Brown, H.",
+        "Alexander-Bloch, A.",
+        "Bethlehem, R. A. I."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.09.737480v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "systematic review of early-life exposures on brain structure and mental health outcomes",
+      "llm_evidence_cn": "系统综述早期生活暴露对大脑结构和心理健康的影响",
+      "llm_evidence": "系统综述早期生活暴露对大脑结构和心理健康的影响",
+      "canonical_evidence": "系统综述早期生活暴露对大脑结构和心理健康的影响",
+      "llm_tldr_en": "This systematic review synthesizes 55 studies on how prenatal and early postnatal exposures (biological, psychological, social) shape brain development and neurodevelopmental mental health outcomes.",
+      "llm_tldr_cn": "产前及早期生活是大脑快速发育期，易受外界影响。本系统综述遵循PRISMA指南，纳入55项研究，基于生物-心理-社会模型梳理从受孕到三岁的暴露因素如何汇聚影响大脑发育和神经发育结局。结果显示早期研究侧重生物因素，近期更关注心理社会暴露，为早期干预和心理健康促进提供全面证据。",
+      "llm_tldr": "产前及早期生活是大脑快速发育期，易受外界影响。本系统综述遵循PRISMA指南，纳入55项研究，基于生物-心理-社会模型梳理从受孕到三岁的暴露因素如何汇聚影响大脑发育和神经发育结局。结果显示早期研究侧重生物因素，近期更关注心理社会暴露，为早期干预和心理健康促进提供全面证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-13-738272-v1",
+      "source": "biorxiv",
+      "title": "The Q1K Integrated EEG and Eye-Tracking Experimental Test Battery for Open Autism Science",
+      "abstract": "The Quebec 1000 Families (Q1K) platform has been designed to recruit, phenotype, and collect biospecimens from a large cohort of families with at least one member with autism spectrum disorder or a related neurodevelopmental condition. As part of the Q1K protocol, an experimental test battery was developed and validated using simultaneous high-density electroencephalography (EEG) and eye tracking (ET). We report on the general approach and design principles, multimodal EEG/ET integration, the tasks, and their validation, providing a blueprint for implement such a project. It also describes the cohort and its methods as a reference for future studies using this dataset. By releasing openly this experimental test battery, we aim to support task standardization and multi-project data pooling in autism and related neurodevelopmental disorders.",
+      "authors": [
+        "O'Reilly, C.",
+        "Desjardins, J.",
+        "Blanco-Gomez, G.",
+        "Huberty, S.",
+        "Loewen, A. H. P.",
+        "Ramnani, S.",
+        "Srishyla, D.",
+        "Knoth, I. S.",
+        "Martin, C.-O.",
+        "Batten, J. P.",
+        "van Noordt, S.",
+        "Hebert-Lalonde, N.",
+        "Samson, F.",
+        "Smith, T. J.",
+        "Forgeot d'Arc, B.",
+        "Ernst, C.",
+        "Carter, M. T.",
+        "Tardif, C. L.",
+        "Scorah, J.",
+        "Couture, M.",
+        "Abadie, P.",
+        "Joober, R.",
+        "Jacquemont, S.",
+        "Rouleau, G. A.",
+        "Lippe, S.",
+        "Elsabbagh, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.738272v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Integrated EEG and eye-tracking battery for autism research",
+      "llm_evidence_cn": "集成EEG和眼动追踪的测试套件用于自闭症研究",
+      "llm_evidence": "集成EEG和眼动追踪的测试套件用于自闭症研究",
+      "canonical_evidence": "集成EEG和眼动追踪的测试套件用于自闭症研究",
+      "llm_tldr_en": "Presents an open-source integrated EEG and eye-tracking experimental test battery for autism research, validated on a large cohort.",
+      "llm_tldr_cn": "该研究为魁北克1000家庭（Q1K）自闭症队列开发并验证了一套同时高密度脑电图（EEG）和眼动追踪（ET）的实验测试套件。文章报告了多模态EEG/ET整合的设计原则、任务及验证结果，并公开提供该套件，为自闭症及相关神经发育条件的电生理研究提供标准化工具。",
+      "llm_tldr": "该研究为魁北克1000家庭（Q1K）自闭症队列开发并验证了一套同时高密度脑电图（EEG）和眼动追踪（ET）的实验测试套件。文章报告了多模态EEG/ET整合的设计原则、任务及验证结果，并公开提供该套件，为自闭症及相关神经发育条件的电生理研究提供标准化工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738386-v1",
+      "source": "biorxiv",
+      "title": "Region-Specific Delta and Alpha2 Relative Power Alterations in Male Adolescent Schizophrenia: Occipital Predominance in Resting-State EEG",
+      "abstract": "Resting-state electroencephalography (EEG) studies consistently report increased slow-wave activity and reduced alpha power in schizophrenia. However, the regional distribution of EEG relative power (RP) across finer frequency bands, particularly in adolescent schizophrenia, remains poorly characterized. We analyzed a publicly available resting-state EEG dataset comprising 45 male adolescents with schizophrenia (SCZ; mean age: 12.3 +/- 1.2 years) and 39 age- and sex-matched healthy controls (CON; mean age: 12.3 +/- 1.3 years), recorded using 16 scalp electrodes (10-20 system). Following band-pass filtering, artefact subspace reconstruction, spline interpolation, average re-referencing and independent component analysis, RP was computed for nine frequency bands across five cortical regions (frontal, central, parietal, temporal, and occipital). Group differences were assessed using three-way repeated-measures analysis of variance (ANOVA), followed by Bonferroni false discovery rate (FDR)-corrected post-hoc pairwise comparisons using estimated marginal means (emmeans). Compared to controls, the SCZ group showed significantly higher delta RP in the frontal, parietal, and occipital regions and significantly lower alpha2 RP, dissociable from alpha1, in the central, parietal, temporal, and occipital regions (all FDR < 0.001). The occipital cortex showed the greatest increase in delta RP (|Cohen's d|=0.82) and the greatest reduction in alpha2 RP (|d|=0.73), with moderate-to-large effect sizes. Topographic maps demonstrated widespread delta enhancement and attenuated occipito-parietal alpha2 activity in the SCZ group. These findings demonstrate region-specific alterations in resting-state EEG relative power in adolescent schizophrenia, particularly within the occipital cortex, and suggest that regional RP may serve as a promising neurophysiological feature for early-onset schizophrenia.",
+      "authors": [
+        "Hazra, S.",
+        "Chakrabarti, N."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738386v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Resting-state EEG analysis in adolescent schizophrenia for mental health",
+      "llm_evidence_cn": "青少年精神分裂症静息态EEG分析用于心理健康研究",
+      "llm_evidence": "青少年精神分裂症静息态EEG分析用于心理健康研究",
+      "canonical_evidence": "青少年精神分裂症静息态EEG分析用于心理健康研究",
+      "llm_tldr_en": "Study examines delta and alpha2 relative power in adolescent schizophrenia resting-state EEG, finding occipital predominance of alterations.",
+      "llm_tldr_cn": "该研究分析青少年精神分裂症静息态EEG的delta和alpha2相对功率变化，发现枕叶区域变化为主。为精神分裂症神经生理标记提供了新证据。",
+      "llm_tldr": "该研究分析青少年精神分裂症静息态EEG的delta和alpha2相对功率变化，发现枕叶区域变化为主。为精神分裂症神经生理标记提供了新证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
