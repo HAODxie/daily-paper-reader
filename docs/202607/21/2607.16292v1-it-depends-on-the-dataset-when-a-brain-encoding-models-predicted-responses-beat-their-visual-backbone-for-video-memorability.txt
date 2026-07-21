@@ -1,0 +1,244 @@
+Title: It Depends on the Dataset: When a Brain-Encoding Model's Predicted Responses Beat Their Visual Backbone for Video Memorability
+
+URL Source: https://arxiv.org/pdf/2607.16292v1
+
+Published Time: Tue, 21 Jul 2026 00:03:45 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# It Depends on the Dataset: When a Brain-Encoding Model’s Predicted Responses Beat Their Visual Backbone for Video Memorability 
+
+Carson Rodrigues carson@celabe.com Celabe 
+
+## Abstract 
+
+Brain-encoding foundation models predict fMRI responses to video, audio, and text well enough to win the Algonauts 2025 challenge. We ask whether their predicted responses, obtained with no scanner, are a useful feature lens for a downstream human-behavior task: forecasting the memorability of short videos. We project each clip into TRIBE v2’s predicted cortical space and forecast its short-term memorability with ridge regression, against a matched control, the model’s own V-JEPA2 visual backbone taken before the brain projection. The answer is dataset-dependent, and cleanly so. Within Memento10k (499 clips) the backbone wins (Spearman 0.594 against 0.544 for the brain projection, paired-bootstrap delta -0.050); within VideoMem (820 clips) the brain projection wins (0.415 against 0.368, delta +0.047, 95% CI [+0.009, +0.088]). Both within-dataset gaps have bootstrap intervals excluding zero, in opposite directions. Cross-dataset transfer inherits the split: trained on Memento10k and tested on VideoMem the brain projection beats the backbone (+0.076, CI [+0.019, +0.135]), trained on VideoMem and tested on Memento10k it loses heavily (-0.311). Each representation transfers best onto the dataset it already fits better. We rule out two shortcuts. The pattern is not a numerical or sample-size artifact: it survives matched training-set size and a PCA-then-ridge pipeline. And the VideoMem advantage is not merely regularization or generic compression of the backbone: a heavily regularized or low-dimensional compression of the backbone tops out near 0.325, below the brain projection’s 0.377, and the advantage survives comparing against a transfer-tuned backbone (+0.053, CI [+0.003, +0.102]). So predicted-brain features carry a small but real memorability signal the backbone misses on one dataset and not the other; they are not a domain-general prior, and which representation to use depends on the dataset. Three within-dataset analyses characterize the brain representation: a vision-orthogonal component (partial Spearman 0.19, permutation p = 2.5e-4) that concentrates in ventral occipito-temporal cortex, and a predicted time course that adds nothing beyond the time-average because at three to four fMRI samples per clip predicted BOLD cannot resolve the sub-second late memorability response. Code and predicted-response arrays are released for reproduction; the source videos and scores are not redistributed. 
+
+## 1 Introduction 
+
+Foundation models now predict brain activity from natural stimuli. TRIBE v2 (Meta FAIR, 2026; d’Ascoli et al., 2025) maps video, audio, and text, through frozen V-JEPA2, Wav2Vec-BERT, and a LLaMA-3.2 text encoder, onto whole-brain fMRI at about 20k cortical vertices, and won the Algonauts 2025 challenge (Scotti et al., 2025). Because its weights are public, the model can be run as a function from any stimulus to a predicted cortical response, with no scanner and no participants. That raises a practical question the accuracy leaderboards do not answer: is a model’s predicted brain response a useful representation for tasks about human behavior? 1arXiv:2607.16292v1 [cs.CV] 12 Jul 2026 We test this on video memorability, the probability that a short clip is later recognized. Memorability is an intrinsic, reproducible property of a stimulus with a documented neural basis in the ventral visual stream and medial temporal lobe (Bainbridge et al., 2017; Jaegle et al., 2019; Lahner et al., 2024), which makes it a fair target for a brain-derived feature: if predicted responses carry anything behaviorally useful beyond generic visual features, memorability is where it should show. We use Memento10k (Newman et al., 2020) and VideoMem (Cohendet et al., 2019), two memorability benchmarks with different clip lengths and distributions, and forecast each clip’s score from features with ridge regression. The claim under test is deliberately narrow, because it is the one that decides whether "brain features" mean anything here. TRIBE is a deterministic function of the stimulus, so "TRIBE-brain features predict memorability" could reduce to "video features predict memorability," which the field already does well (Newman et al., 2020). We therefore compare against a matched control: TRIBE’s predicted cortical response versus its own V-JEPA2 visual backbone, taken before the brain projection (Assran et al., 2025). If the projection into predicted brain space beats the backbone it is built from, the brain framing earns its keep; if not, the projection is a re-encoding of features we already had. The closest prior result is that brain-aligned inferotemporal features help image memorability (Jaegle et al., 2019); we go past it with a foundation model, video, predicted rather than aligned responses, and a test of cross-dataset transfer. The answer is that it depends on the dataset, and the dependence is systematic. The two representations trade places between the two benchmarks: within Memento10k the backbone predicts memorability better (Spearman 0.594 against 0.544, delta -0.050), while within VideoMem the brain projection predicts it better (0.415 against 0.368, delta +0.047), and both gaps have bootstrap intervals excluding zero, in opposite directions. Cross-dataset transfer inherits this within-dataset affinity rather than adding to it: training on Memento10k and testing on VideoMem, the brain projection wins (+0.076, CI [+0.019, +0.135]); training on VideoMem and testing on Memento10k, it loses heavily (-0.311). Each representation transfers best onto the dataset it already fits better, so the striking transfer asymmetry is a consequence of the quiet within-dataset one. Two shortcuts that would explain the VideoMem advantage away do not survive checking. It is not a numerical or sample-size effect: matching the two training sets to the same size and replacing raw ridge with a PCA-then-ridge pipeline leave it intact. And it is not merely that the brain projection regularizes the backbone: heavily regularizing or compressing the backbone itself tops out near 0.325, short of the brain projection’s 0.377, and the advantage survives a transfer-tuned backbone (+0.053, CI [+0.003, +0.102]). The brain projection therefore carries a small but real memorability signal that the backbone misses on VideoMem, and misses in turn on Memento10k. It is a dataset-specific representation, not a domain-general prior. Three further analyses characterize what the brain projection contributes. Its memorability signal has a component the backbone misses (partial Spearman 0.19, permutation p = 2.5e-4; fusing lifts 0.59 to 0.61). That component, though broadly distributed, is significantly enriched in ventral occipito-temporal cortex, recovering the scanner-derived memorability network in silico. And a time-resolved re-extraction adds nothing beyond the time-average, for a reason we make precise: predicted BOLD at three to four samples per clip cannot resolve the sub-second late response that carries memorability in electrophysiology (Lahner et al., 2024). 
+
+Contributions. 
+
+1. A predictions-only protocol for using a brain-encoding foundation model as a feature extractor for a human-behavior task, with the decisive control (the model’s own pre-projection backbone) that separates a brain contribution from stimulus re-encoding, and released as code plus predicted-response arrays. 2. A dataset-dependent double dissociation: the backbone predicts memorability better within Me-mento10k and the brain projection better within VideoMem, both with intervals excluding zero, and cross-dataset transfer inherits this affinity (brain wins onto VideoMem, backbone onto Memento10k). We show the VideoMem advantage survives matched training size, a PCA-then-ridge pipeline, and a transfer-tuned or compressed backbone, so it is not an artifact of conditioning, sample size, or generic compression. 23. A mechanistic account of what the projection is made of: a significant vision-orthogonal component, its in-silico localization to the known ventral-temporal memorability network, and a resolution analysis showing predicted-BOLD dynamics carry no memorability signal beyond the time-average, with the hemodynamic reason why. 
+
+Scope. Every claim concerns predicted responses as features. We make no claim about real neural activity beyond the localization comparison, and use standard published atlases for ROI naming. Each cross-dataset direction is a single train-once, test-once split with bootstrap confidence intervals over test clips; we report both directions. 
+
+## 2 Related work 
+
+2.1 Video memorability and its models 
+
+Memorability is a reproducible stimulus property. Memento10k (Newman et al., 2020) provides short-term memorability for ten thousand three-second clips and a recurrent model with decay; VideoMem (Cohendet et al., 2019) provides a second, longer-clip, differently distributed benchmark. Recent systems reach Spearman around 0.67 to 0.74 with vision-language features and parameter-efficient adaptation. Difference: we do not chase this leaderboard. We ask a controlled question, whether a brain-encoding model’s predicted responses beat their own visual backbone within and across datasets, and report matched-control comparisons rather than an absolute score. 
+
+2.2 Neural basis of memorability 
+
+Scanner and electrophysiology work locates memorability in the ventral visual stream and medial temporal lobe: a dedicated fMRI signature in VVS and MTL (Bainbridge et al., 2017), a distributed ventral network (Lahner et al., 2024), and inferotemporal population-response magnitude (Jaegle et al., 2019). The memorability response is late, roughly 250 to 600 ms (Lahner et al., 2024). Difference: we do not collect fMRI. We test whether a foundation model’s predicted responses recover this ventral-temporal localization, and use the timing result to explain why predicted BOLD dynamics carry no extra signal. 
+
+2.3 Brain-aligned features for behavior 
+
+Jaegle et al. (2019), alongside their inferotemporal recordings, show that in object-trained CNNs the layers that best predict image memorability are those whose responses are most analogous to inferotemporal cortex, tying brain-like representation to memorability. Difference: that evidence is for still images and IT-analogous representations; we use a multimodal foundation model’s predicted responses on video , add the decisive control (the pre-projection backbone), and test whether the brain projection transfers across datasets. 
+
+2.4 Brain-encoding foundation models 
+
+TRIBE v2 (Meta FAIR, 2026; d’Ascoli et al., 2025) predicts whole-brain fMRI from video, audio, and text and won Algonauts 2025 (Scotti et al., 2025); V-JEPA2 (Assran et al., 2025) is its visual backbone. These works optimize and report encoding accuracy. Difference: we treat the trained encoder as a feature extractor for a behavior task and ask whether its predicted responses carry, and transfer, anything its own backbone does not, a question the encoding leaderboards do not pose. 
+
+2.5 Novelty statement 
+
+To our knowledge, no prior work asks whether a brain-encoding foundation model’s predicted responses beat their own pre-projection backbone at a human-behavior task, tests that comparison across datasets, or localizes and time-resolves the predicted contribution against the known neural correlates of the behavior. 3video clip     
+
+> (3-7 s)
+> TRIBE v2 (frozen, no scanner)
+> V-JEPA2 visual backbone
+> (1024-d embedding)
+> brain projection ->
+> predicted cortex (20484-d, fsaverage5)
+> StandardScaler
+> + RidgeCV
+> StandardScaler
+> + RidgeCV
+> memorability
+> SRCC
+> backbone
+> (control)
+> brain
+> features
+> Predictions-only protocol: brain features vs their own pre-projection backbone, one shared ridge probe
+> Evaluated two ways: within-dataset 5-fold CV (Memento10k) |cross-dataset transfer (train Memento10k -> test VideoMem)
+
+Figure 1: Predictions-only protocol. Each clip passes through frozen TRIBE v2, which exposes two representations of the same stimulus: the V-JEPA2 visual backbone (1024-d, the matched control) and the predicted cortical response after the brain projection (20484-d fsaverage5, reduced to its per-vertex mean). Each feeds the same StandardScaler + RidgeCV probe. We evaluate within-dataset (5-fold CV on Memento10k) and across datasets (train Memento10k, test VideoMem). 
+
+## 3 Results 
+
+3.1 Setup 
+
+For each clip we extract two feature sets on an A100: TRIBE v2’s predicted average-subject cortical response, a (T, 20484) fsaverage5 array reduced over time to its per-vertex mean; and the V-JEPA2 backbone embedding of the same clip, the model’s own pre-projection visual features (1024-d). We forecast short-term memorability with StandardScaler followed by RidgeCV (leave-one-out alpha selection over a fixed grid), whose L2 penalty handles the wide feature vectors directly. Within a dataset we score with 5-fold out-of-fold Spearman correlation (SRCC) and compare with a paired bootstrap over clips; across datasets we fit on all training clips and predict the held-out dataset once, with a bootstrap over test clips for the confidence interval. Orthogonality tests residualize both predictions on the vision prediction and take a rank correlation with a label-permutation null (4000 permutations). The ROI and temporal analyses reduce the full-brain vector as described in their sections. Figure 1 diagrams the protocol. 
+
+3.2 Within a dataset, which representation wins depends on the dataset 
+
+We forecast memorability within each dataset with 5-fold out-of-fold ridge and compare the brain projection against the backbone with a paired bootstrap over clips. 
+
+within-dataset (5-fold OOF) brain SRCC backbone SRCC delta (brain - backbone) 95% CI on delta Memento10k (n = 499) 0.544 0.594 -0.050 [-0.099, -0.000] VideoMem (n = 820) 0.415 0.368 +0.047 [+0.009, +0.088] 
+
+The two datasets disagree, and both disagreements are reliable. On Memento10k the backbone wins by 0.050 (probability that brain is not better = 0.98); on VideoMem the brain projection wins by 0.047, with a bootstrap interval that excludes zero (probability that brain is not better = 0.006). The Memento10k comparison is stable across 10 random 5-fold seeds (brain 0.542, SD 0.006; backbone 0.604, SD 0.008; 0 of 10 seeds favor brain) and to float precision. There is thus no single answer to whether predicted brain responses beat their own backbone for memorability: the winner is dataset-specific. This quiet within-dataset double dissociation is the fact the transfer results in Section 2 inherit. 4Memento10k      
+
+> (n=499)
+> VideoMem
+> (n=820)
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> 0.7
+> memorability SRCC
+> 0.594
+> 0.544
+> =0.050
+> 0.368
+> 0.415
+> =+0.047
+> Within-dataset: the winner flips
+> V-JEPA2 backbone
+> TRIBE predicted brain
+> Forward
+> Mem Vid
+> Reverse
+> Vid Mem
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> 0.7
+> memorability SRCC
+> 0.301
+> 0.377
+> =+0.076 0.450
+> 0.139
+> =0.311
+> Transfer inherits the affinity
+
+Whether predicted-brain beats its backbone for memorability is dataset-dependent Figure 2: Which representation wins is dataset-dependent, and transfer inherits it. Left: within each dataset, the backbone predicts memorability better on Memento10k (0.594 vs 0.544) and the brain projection better on VideoMem (0.415 vs 0.368), both intervals excluding zero. Right: cross-dataset transfer follows suit, brain winning onto VideoMem (+0.076) and losing onto Memento10k (-0.311). 
+
+3.3 Cross-dataset transfer inherits the within-dataset affinity 
+
+We test transfer by training each forecaster on all clips of one dataset and evaluating it once on the other (Cohendet et al., 2019). The transfer results follow Section 1: each representation transfers best onto the dataset it already fits better.                 
+
+> transfer direction brain SRCC backbone SRCC delta (brain - backbone) 95% CI on delta Memento10k →VideoMem (n_train 499, n_test 820) 0.377 0.301 +0.076 [+0.019, +0.135] VideoMem →Memento10k (n_train 820, n_test 499) 0.139 0.450 -0.311 [-0.412, -0.215]
+
+Onto VideoMem, the dataset the brain projection fits better, it wins by +0.076 with a bootstrap CI over test clips excluding zero (probability that brain is not better = 0.004). Onto Memento10k, the dataset the backbone fits better, it loses by -0.311. The large transfer asymmetry is the small within-dataset one from Section 1, amplified by distribution shift. Figure 2 shows both halves. The pattern is not an artifact of the two directions differing in training-set size or numerical conditioning. Matching both training sets to n = 499 and replacing raw 20484-dimensional ridge with a stable PCA-to-100 then ridge pipeline leave the signs and rough magnitudes intact; the predicted-brain features carry no non-finite values and are on the same per-feature scale across the two datasets. 
+
+robustness check forward delta (M → V) reverse delta (V → M) raw ridge (main) +0.076 -0.311 PCA-100 then ridge +0.089 -0.283 matched training size (n_train = 499) +0.076 -0.290 (SD 0.11) 
+
+Two controls rule out the reading that the VideoMem advantage is only the brain projection regularizing the backbone. The backbone control, as scored, chooses its ridge penalty by within-train cross-validation, which under-regularizes for transfer; a transfer-tuned backbone reaches 0.325, and the brain projection still 5beats it, by less (+0.053, CI [+0.003, +0.102]). And if the advantage were generic compression, compressing the backbone should reproduce it: it does not. Heavily regularizing the backbone, or projecting it to a low-dimensional PCA subspace, tops out near 0.325, below the brain projection’s 0.377.           
+
+> forward transfer onto VideoMem SRCC delta vs brain TRIBE predicted brain 0.377 -backbone, RidgeCV as scored 0.301 +0.076 [+0.019, +0.135] backbone, transfer-tuned ridge 0.325 +0.053 [+0.003, +0.102] backbone, best low-dimensional PCA compression 0.310 +0.067
+
+So on VideoMem the brain projection carries a small memorability signal the backbone lacks and that a compressed backbone cannot recover, while on Memento10k the reverse holds. The transfer numbers are this dataset-specific representation quality, read through a train-test split, not a domain-general property of predicted brain responses. Pooling the two datasets is not an informative alternative. A linear probe separates Memento10k from VideoMem almost perfectly from either feature set (dataset-identity AUC 1.00 for brain, 0.996 for the backbone), so a pooled forecast is confounded by the two benchmarks’ different score ranges; once those per-dataset means are removed the two representations tie (brain 0.47 against backbone 0.48, delta -0.008). Pooling hides the dissociation rather than resolving it, which is why we keep the datasets separate throughout. 
+
+3.4 The brain projection is not redundant with vision 
+
+The brain signal is not merely a copy of the backbone. Residualizing both predictions on the vision prediction, the brain-mean prediction retains a memorability component orthogonal to vision: partial Spearman 0.19 ,permutation p = 2.5e-4 (on Memento10k). Concatenating vision and brain features raises the within-dataset forecast from 0.594 (vision alone) to 0.609 . So even on the dataset where the backbone wins outright, the projection is not a pure re-encoding of it: it keeps a small residual of its own, enough to add a statistically reliable signal in fusion. That residual is the kind of signal that, on VideoMem, is large enough for the projection to win on its own. 
+
+3.5 The orthogonal signal recovers the ventral-temporal memorability network in silico 
+
+We localize the orthogonal component with the Destrieux fsaverage5 atlas (148 cortical ROIs): per ROI, an out-of-fold ridge prediction from that ROI’s vertices, then a vision-controlled partial Spearman with a permutation p-value and Benjamini-Hochberg FDR. 
+
+• The orthogonal signal survives anatomical ROI-mean pooling: pooled partial Spearman 0.19, p = 2.5e-4. It is broadly distributed: all 148 ROIs carry a significant vision-controlled signal (unique SRCC 0.12 to 0.21), consistent with TRIBE’s predictions being globally stimulus-correlated. We state this shared component honestly rather than reporting a single ROI in isolation. 
+
+• On top of that broad component there is a modest ventral bias. ROIs in the ventral occipito-temporal and medial-temporal-cortex set (fusiform, lingual, parahippocampal, collateral, inferior/anterior occipital) score slightly higher than the rest, 0.179 versus 0.171 (Mann-Whitney p = 0.016), and the top-ranked regions are occipital and ventral-temporal. We are deliberately careful here: the effect is small (about 0.008 SRCC on a signal that is significant everywhere), so this is a weak ventral bias consistent with the scanner-derived ventral-stream memorability substrate (Bainbridge et al., 2017; Jaegle et al., 2019; Lahner et al., 2024), not a clean in-silico recovery of it. The localization is suggestive, not a headline claim. We controlled the obvious confound: because TRIBE predictions share a large global stimulus component, per-ROI-alone tests conflate local signal with the shared one, so every number above is vision-residualized before the rank correlation. Figure 3 shows the ventral bias. 6rest 
+
+(n=116) 
+
+ventral/MTL 
+
+(n=32) 
+
+0.12 
+
+0.14 
+
+0.16 
+
+0.18 
+
+0.20 
+
+> vision-controlled unique SRCC per ROI
+
+ventral bias: 0.179 vs 0.171 
+
+Mann-Whitney p=0.016 
+
+0.00 0.05 0.10 0.15 0.20 
+
+unique SRCC 
+
+> L.S parieto occipital
+> L.S oc-temp med and Lingual
+> L.S oc-temp lat
+> R.G temporal middle
+> L.S cingul-Marginalis
+> R.S calcarine
+> R.G oc-temp med-Parahip
+> R.G oc-temp med-Lingual
+> R.G occipital middle
+> R.S collat transv post
+> L.G and S occipital inf
+> L.S occipital ant
+> R.S oc middle and Lunatus
+> L.Pole occipital
+> R.S subparietal
+
+top-15 ROIs (red = ventral/MTL: 8/15) 
+
+Where the vision-orthogonal signal lives: a weak ventral-temporal bias Figure 3: Where the vision-orthogonal signal lives. Left: per-ROI vision-controlled unique SRCC is weakly but significantly higher in the ventral occipito-temporal and medial-temporal set than in the rest of cortex (0.179 vs 0.171, Mann-Whitney p = 0.016). Right: 8 of the 15 top-ranked ROIs are ventral/MTL (red). The signal is significant across all 148 ROIs, so this is a bias on a broadly distributed effect, not a focal recovery. 
+
+3.6 Temporal dynamics add nothing beyond the time-average (a resolution limit) 
+
+We re-extracted the full (T, 20484) predicted response per clip (T = 3 to 4 samples for a 3 s clip) and reduced each clip to five per-vertex statistics: mean, standard deviation, early (first sample), late (last sample), and per-vertex linear trend. 
+
+reduction SRCC unique vs vision (p) unique vs vision+mean (p) std 0.462 +0.115 (0.010) -0.040 (0.37) early 0.521 +0.144 (0.001) -0.070 (0.12) late 0.497 +0.145 (0.001) -0.037 (0.41) slope 0.469 +0.116 (0.010) -0.030 (0.51) 
+
+Every temporal reduction carries the same order of vision-orthogonal signal as the mean (+0.12 to +0.15, all p ≤ 0.01), but none is orthogonal to the mean (unique vs vision+mean is negative and non-significant throughout, p = 0.12 to 0.51). Fusing all temporal reductions with vision reaches 0.546, below vision+mean at 0.609 (temporal gain over the mean = -0.063): the extra reductions add variance, not signal. The temporal axis, at TRIBE’s native resolution, is redundant with its own average. The interpretation is a measurement-resolution mismatch, not a modeling failure. The late memorability response is a 250 to 600 ms electrophysiological signature (Lahner et al., 2024); TRIBE predicts fMRI BOLD, which is hemodynamically low-pass over seconds, and a 3 s clip yields only 3 to 4 samples. That cannot resolve a sub-second effect, so early, late, and slope are noisier restatements of the mean. Storing the full time course was necessary to establish this rather than assume it. 74 Discussion 
+
+4.1 What the result says 
+
+The finding is a dataset-dependent double dissociation. Within Memento10k the V-JEPA2 backbone forecasts memorability better than the TRIBE brain projection it feeds; within VideoMem the brain projection forecasts it better; both gaps have intervals excluding zero, in opposite directions. Cross-dataset transfer does not add a separate effect, it inherits this one: each representation transfers best onto the dataset it already fits, so the brain projection wins onto VideoMem and loses onto Memento10k. The matched control is what makes this legible. Without the backbone comparison the forward transfer would read as "brain features generalize" and the reverse as "brain features fail"; against the backbone both are the same fact, that the better memorability representation differs between the two datasets. The result is neither tempting summary. It is not that predicted brain responses are a domain-general prior: they lose outright on Memento10k, within and across datasets. And it is not that they are a decorative re-encoding of the backbone: on VideoMem they beat it, and neither a transfer-tuned nor a compressed backbone closes the gap, so the projection carries memorability signal the backbone does not. What changes between the datasets is which representation better captures their memorability, and two benchmarks cannot fully say why. VideoMem’s longer clips and different content distribution are the obvious suspects, and mapping that boundary is the natural next study. Two further results say what the projection is made of, independent of which way it transfers. It is not a pure copy of the backbone: on Memento10k it carries a memorability component orthogonal to vision (partial Spearman 0.19, p = 2.5e-4) that lifts a fused model from 0.59 to 0.61. And that residual is not diffuse noise: above a broad shared signal it concentrates in ventral occipito-temporal cortex, the same substrate scanner studies implicate in memorability. A model trained only to predict fMRI, run with no scanner, reconstructs a known piece of the brain’s memorability geometry, and on VideoMem that residual is large enough to win on its own. The temporal result sharpens rather than weakens this. We did not assume the time-average was enough; we extracted the full predicted time course and showed that its dynamics add nothing beyond the mean, and we can say why: the effect the neuroscience points to is sub-second, and predicted BOLD at this clip length is not. This turns a plausible objection ("you threw away the time axis") into a measured, mechanistic answer. 
+
+4.2 Limitations 
+
+• Two datasets. The double dissociation is between Memento10k and VideoMem, and each transfer direction is a single train-once, test-once split with a bootstrap over test clips. Two benchmarks show that the better representation is dataset-dependent but cannot say which dataset properties (clip length, content, annotation protocol) decide which representation wins. Mapping that boundary needs more datasets. 
+
+• Average-subject model. The public checkpoint predicts a group-average response; a per-subject model could carry signal this one cannot. We make no per-subject claim. 
+
+• One task, one backbone. Memorability with V-JEPA2 as the control. The dissociation may differ for tasks less well served by generic visual features, or for other encoders. 
+
+• Linear readout. All forecasts use a ridge probe. A nonlinear readout might exploit either feature set differently; the matched-control logic holds (both feature sets get the same probe), but we do not rule out that a richer head changes the within-dataset gap or the transfer margin. 
+
+• Pilot subset. We use 499 of Memento10k’s clips for training and 820 VideoMem clips for the transfer test. The effects are stable at this size; scaling to the full sets is future work and could sharpen the smaller secondary effects. 
+
+• Predicted, not measured. We audit the model’s representation, not brains. The localization agreement with scanner studies is evidence about the model, read against prior real-fMRI results. 84.3 Why this matters 
+
+The practice of using a brain-encoding foundation model’s predicted responses as features for tasks about people is spreading faster than its validation, and our two directions show why a single cross-dataset number cannot validate it. The Memento10k-to-VideoMem transfer alone would license "brain-derived features generalize"; the reverse alone would license "they do not"; only the pair, read against the model’s own pre-projection backbone, shows the honest statement is conditional, that the better representation depends on the dataset. The concrete lesson is that a cross-dataset gain from a predicted-brain feature should be checked in both directions and against the backbone it is computed from before it is called a neural contribution, because a representation that merely fits one dataset better will produce a one-directional transfer win that looks like generalization. 
+
+4.4 Takeaway 
+
+Whether a brain-encoding model’s predicted responses beat their own visual backbone for video memorability has no dataset-independent answer. The backbone wins on Memento10k and the brain projection wins on VideoMem, both reliably, and cross-dataset transfer inherits the split rather than transcending it. The VideoMem advantage is small but real: it survives matched training size, a PCA pipeline, and a transfer-tuned or compressed backbone. Predicted brain responses are thus a dataset-specific memorability representation, useful where they happen to fit and not elsewhere, rather than a scanner-free source of generally better features. 
+
+## 5 Data and code availability 
+
+The analysis code (feature extraction, forecasting, orthogonality, ROI localization, temporal analysis, and the cross-dataset transfer) is released, along with the predicted-response arrays needed to reproduce every number and figure. We do not redistribute the Memento10k or VideoMem source videos or their memorability scores; those are available from the dataset authors under their own terms (Newman et al., 2020; Cohendet et al., 2019). TRIBE v2 weights are public under CC BY-NC-4.0 (Meta FAIR, 2026); V-JEPA2 is its released visual backbone (Assran et al., 2025). ROI naming uses the Destrieux fsaverage5 atlas. 
+
+## 6 Acknowledgments 
+
+We thank Aude Oliva and colleagues for Memento10k, and Claire-Helene Demarty and colleagues for VideoMem access; the neural correlates of memorability we compare against are their groups’ scanner and electrophysiology work (Bainbridge et al., 2017; Jaegle et al., 2019; Lahner et al., 2024). We thank Meta FAIR for releasing TRIBE v2 and V-JEPA2. This work used no scanner and collected no new human data; it audits a released model’s predicted responses. 
+
+## References 
+
+Mahmoud Assran et al. V-JEPA 2: Self-supervised video models enable understanding, prediction and planning. arXiv preprint arXiv:2506.09985 , 2025. TRIBE’s visual backbone. Wilma A. Bainbridge, Daniel D. Dilks, and Aude Oliva. Memorability: A stimulus-driven perceptual neural signature distinctive from memory. NeuroImage , 149:141–152, 2017. doi: 10.1016/j.neuroimage.2017.01.063. Romain Cohendet, Claire-Hélène Demarty, Ngoc Q. K. Duong, and Martin Engilberge. VideoMem: Con-structing, analyzing, predicting short-term and long-term video memorability. In IEEE/CVF International Conference on Computer Vision (ICCV) , 2019. VideoMem dataset. Stéphane d’Ascoli et al. TRIBE: TRImodal brain encoder for whole-brain fMRI response prediction. arXiv preprint arXiv:2507.22229 , 2025. Algonauts 2025 winner. 9Andrew Jaegle, Vahid Mehrpour, Yalda Mohsenzadeh, Travis Meyer, Aude Oliva, and Nicole C. Rust. Population response magnitude variation in inferotemporal cortex predicts image memorability. eLife , 8: e47596, 2019. doi: 10.7554/eLife.47596. Benjamin Lahner, Yalda Mohsenzadeh, Caitlin Mullin, and Aude Oliva. Visual perception of highly memorable images is mediated by a distributed network of ventral visual regions that enable a late memorability response. PLOS Biology , 22(4):e3002564, 2024. doi: 10.1371/journal.pbio.3002564. Meta FAIR. TRIBE v2: A predictive foundation model of how the human brain processes complex stimuli, 2026. Model weights and card: https://huggingface.co/facebook/tribev2 . Code: https: //github.com/facebookresearch/tribev2 . Released under CC BY-NC-4.0. Anelise Newman, Camilo Fosco, Vincent Casser, Allen Lee, Barry McNamara, and Aude Oliva. Multimodal memorability: Modeling effects of semantics and decay on video memorability. In European Confer-ence on Computer Vision (ECCV) , 2020. doi: 10.1007/978-3-030-58517-4_14. Memento10k dataset; arXiv:2009.02568. Paul S. Scotti et al. Insights from the Algonauts 2025 winners. arXiv preprint arXiv:2508.10784 , 2025. 10

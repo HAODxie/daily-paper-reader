@@ -1,0 +1,201 @@
+Title: Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks
+
+URL Source: https://arxiv.org/pdf/2607.16296v1
+
+Published Time: Tue, 21 Jul 2026 00:03:57 GMT
+
+Number of Pages: 9
+
+Markdown Content:
+# EFFICIENT EEG S EIZURE DETECTION USING INT8 QUANTIZATION , C HANNEL PRUNING , AND SPIKING NEURAL 
+
+# NETWORKS 
+
+Kartikey Ahlawat 
+
+Leiden Institute of Advanced Computer Science Leiden University 
+
+kartikeyprit@gmail.com 
+
+July 21, 2026 
+
+## ABSTRACT 
+
+Continuous EEG monitoring for epilepsy is constrained by the limited power and memory budgets of wearable and implantable devices. Deep neural networks can detect seizures with high accuracy, but their computational cost and model size make them difficult to deploy on such platforms. In this work we use a single 1D CNN seizure detector on the CHB-MIT scalp EEG dataset Guttag [2010] as a common baseline, and then investigate three brain-inspired efficiency strategies: (i) conversion of the CNN into a spiking neural network (SNN) via parameter transfer, (ii) EEG channel pruning combined with 2:4 structured weight sparsity, and (iii) INT8 quantization using FX- and ONNX-based workflows, including quantization-aware training and operator fusion. The quantized CNN variants reduce stored model size from 1.63 MB to 0.44 MB, lower estimated energy per inference by up to 64%, and achieve as much as 2.8× speedup in CPU latency while preserving, and in one case slightly improving, AUC. The pruned CNN halves the number of input channels and non-zero weights with only a modest accuracy drop, and the SNN conversion provides a spiking implementation with sparse temporal activity. Together, these experiments characterize three complementary efficiency directions for seizure detection. The code is available here 1.
+
+Keywords EEG seizure detection · CHB-MIT · Edge AI · Wearable health monitoring · 1D CNN · Spiking neural networks · INT8 quantization · Channel pruning · Structured sparsity · Low-power inference. 
+
+## 1 Introduction 
+
+Physiological signals such as EEG contain rich information for real-time disease detection, including epileptic seizures. For a wearable EEG monitor to be clinically useful, it must operate continuously for days or weeks on a small battery. Current artificial neural networks (ANNs), although highly accurate, are computationally expensive and power-hungry, making them difficult to deploy for always-on, on-device processing. This power barrier remains a major bottleneck for widespread adoption of next-generation wearable health technology. It motivates brain-inspired approaches that explicitly exploit sparsity, event-driven processing, and low-precision computation hallmark properties of biological neural systems. 
+
+1.1 Brain-Inspired Perspective 
+
+The human brain performs complex computation at roughly 20 W, far below typical AI systems. Our work is guided by three principles that connect seizure detection to brain-inspired computing. 
+
+> 1
+
+https://github.com/kartikeyahl/brain-inspired-computing arXiv:2607.16296v1 [eess.SP] 13 Jul 2026 Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+First, spiking neural networks (SNNs) communicate via sparse, asynchronous spikes rather than dense, synchronous activations [Malcolm and Casco-Rodriguez, 2023]. This event-driven computation promises substantial energy savings, especially on neuromorphic hardware. Second, biological networks exhibit both sparse connectivity and synaptic pruning. In a similar spirit, we remove redundant EEG channels and impose structured sparsity on network weights, reducing the number of active inputs and synapses without dramatically degrading performance. Third, synaptic strengths in the brain are noisy and limited in precision [Hubara et al., 2017]. Quantizing network parameters and activations to low-bit representations mimics this constraint and simultaneously reduces memory footprint and arithmetic cost. 
+
+1.2 Goal and Research Question 
+
+The primary research question in this work is: How do spiking neural networks (SNNs), network quantization, and channel/weight pruning compare as efficiency strategies for EEG-based seizure detection when each is applied to the same convolutional baseline? 
+
+Our goal is to systematically explore the trade-off between model efficiency (power, memory, latency) and diagnostic performance (AUC, accuracy). By evaluating each technique under a shared data pipeline and architecture, we aim to clarify which directions offer the most promising gains for low-power deployment. 
+
+1.3 Related Work 
+
+Deep neural networks have achieved strong performance in EEG-based seizure prediction and classification, with convolutional models capturing spatial–temporal patterns effectively Kaziha and Bonny [2020], Abdelhameed and Bayoumi [2021], but their computational cost hinders deployment on resource-constrained wearables. To reduce sensing and model complexity, several works focus on channel reduction: permutation-entropy based selection Ra et al. [2021], adaptive CNNs such as SlimSeiz Lu et al. [2025], and explainability-guided pruning with DeepSHAP (SHAP-AAD) Salmi et al. [2025a] all show that a smaller subset of electrodes can preserve diagnostic accuracy. In parallel, spiking neural networks (SNNs) have been explored for seizure detection as an energy-efficient alternative, including spiking CNNs with discrete spike encoding and cross-patient generalization Tian et al. [2021], Muneeb and Kassiri [2023] and spiking convolutional transformers Chen et al. [2024]. Recent approaches such as SpQuant-SNN and QP-SNN combine low-bit quantization with structured pruning to obtain near-baseline accuracy at substantially lower memory and compute cost Hasssan et al. [2024], Wei et al. [2025]. Low-precision computing more broadly relies on post-training quantization and quantization-aware training to map 32-bit floating-point models to low-bit integer arithmetic Krishnamoorthi [2018], Jacob et al. [2018], often implemented via QDQ-style inference engines that fuse quantize–dequantize operations for throughput gains Wu et al. [2020]. Most of these works focus on a single efficiency axis at a time; in contrast, we compare SNN conversion, channel pruning with structured sparsity, and quantization side by side, all applied to a shared CNN baseline on CHB-MIT. 
+
+## 2 Method / Approach 
+
+The methodology is built upon a single 1D Convolutional Neural Network (CNN) baseline for seizure detection on the CHB-MIT Scalp EEG Dataset. We systematically applied and compared three primary efficiency strategies: (i) conversion to a Spiking Neural Network (SNN) via parameter transfer, (ii) a dual-pruning approach targeting both input channels (18 to 8) and network weights (2:4 structured sparsity), and (iii) hierarchical INT8 quantization, including Static Post-Training Quantization (PTQ), Quantization-Aware Training (QAT), and ONNX runtime optimization, to explore the trade-offs between efficiency and diagnostic performance. All the above use the dataset created in section 2.1 
+
+2.1 Dataset & Pre-processing 
+
+We analyse CHB-MIT Scalp EEG Dataset, which is a collection of EEG recordings of 22 pediatric subjects with intractable seizures. The recordings are grouped into 24 cases and were collected from 22 subjects. 
+
+Channel analysis : There are a total of 23 channels available in the dataset. However, as seen in the heatmap (Figure 2), there is noticeable sparsity across patients, with some channels missing in several EDF files. To ensure consistent input for model training, we use only the channels that are present in at least 90% of the patients, which results in selecting 18 channels. Channel coverage is computed as the ratio between the number of patients containing a given channel and 2Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+the total number of patients. To obtain a more balanced dataset and avoid missing channel issues during training, we base all experiments on these 18 commonly available channels. 
+
+Figure 1: Distribution of EEG Recording with respect to durations. 
+
+Creation of dataset : Based on the curated list of EEG channels and the available EDF files, we construct a standardized dataset by preprocessing raw recordings, detecting data quality issues, aligning seizure annotations, and generating uniform fixed-length sliding windows suitable for model training. There are a total of about 686 EDF files with 921600 samples (recording per second at frequency of 256Hz)per EDF file. 
+
+Figure 2: Heatmap on Patient coverage on channels indicating via its number of EDF files • Handling of gaps in EEG files : The official website of the dataset Guttag [2010] conveyed the presence of gaps in certain ways for ex. long-term EEG recordings in the CHB-MIT dataset occasionally contain discontinuities. To ensure the temporal consistency of the data, we identified gap samples using two criteria: (i) any sample containing NaNs in any channel, and samples whose across-channel range was flatline). (ii) Samples where the instantaneous amplitude range across channels is below a small threshold (i.e 5 × 10 −6). All gap samples were removed before filtering and window extraction. 3Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+• Sliding window : Each recording in the dataset lasts about 1 -4 hours1. Since the majority of the recording is for 1 hr, we considered to utilise the segment length of 8 seconds with a step of 4 seconds to increase the number of training samples Salmi et al. [2025b]. At a sampling rate of 256 Hz, each window contains 2048 samples (256 Hz × 8 s). • Seizure annotation : Seizure annotations are loaded from a corresponding .seizures file . A binary seizure mask of length N is created, in which 1 indicates that the sample lies inside a seizure interval and 0 indicates a non-seizure sample • Normalization and Downsampling : The original 256 Hz recordings were downsampled to 128 Hz to suppress high-frequency driftsSalmi et al. [2025a]. We then applied z-score normalization to standardize the signals and used a band-pass filter to isolate frequency ranges associated with cognitive and affective dynamics Mynoddin et al. [2025]. This resulted in 1024 samples per window (128 Hz x 8 sec). After preprocessing and windowing, the final dataset consists of 11,145 samples with binary labels indicating a case of seizure/non-seizure. Here, each sample is an 18-channel EEG segment of 1,024 time points. We divide the dataset into training, validation, and test partitions following a standard 60–20–20 split. The training set contains 6,241 samples, the validation set includes 2,675 samples, and the test set comprises 2,229 samples. This split ensures that the model is trained on the majority of the data while retaining sufficient samples for unbiased validation and final performance evaluation. 
+
+2.2 Baseline CNN Architecture Input EEG                                      
+
+> (B, 18 ,1024)
+> 1D Conv Block 1
+> Conv1d (18 →64) , Conv1d (64 →64) , MaxPool1d (2)
+> Output: (B, 64 ,512)
+> 1D Conv Block 2
+> Conv1d (64 →128) , Conv1d (128 →128) , MaxPool1d (2)
+> Output: (B, 128 ,256)
+> 1D Conv Block 3
+> Conv1d (128 →256) , Conv1d (256 →256) , MaxPool1d (2)
+> Output: (B, 256 ,128)
+> CNN Feature Extractor
+> AdaptiveAvgPool1d (1) + Squeeze Output: (B, 256)
+> Classification Head
+> Linear (256 →128) + ReLU Linear (128 →64) + ReLU Linear (64 →1)
+> Output: (B, 1)
+> Classification Head
+> Logit
+> (B, 1)
+
+Figure 3: Baseline 1D CNN Architecture for Seizure Detection. The baseline model is a 1D convolutional neural network operating on the temporal axis. It takes an 18-channel EEG window and passes it through three convolutional blocks of the form Conv1d–ReLU–Conv1d–ReLU–MaxPool1d, with 64, 128, and 256 output channels, respectively (Figure 3). An adaptive global average pooling layer then compresses the temporal dimension, and the resulting 256-dimensional vector is fed to a three-layer MLP (256 →128 →64 →1) that outputs a single seizure vs. non-seizure logit. The network is trained with binary cross-entropy loss and the Adam optimizer (learning rate 10 −4, batch size 256) for up to 200 epochs with early stopping. This FP32 CNN serves as the reference model for all subsequent SNN, pruning, and quantization experiments. 
+
+2.3 Spiking Network (SNN) via Parameter Transfer 
+
+We convert the 1D CNN into SNN version by transferring its learned weights and biases and replacing ReLU activations with Integrate-and-Fire (IF) neurons Sengupta et al. [2019], ensuring the spiking activity approximates the original continuous activations. The main challenge in this conversion is mapping CNN’s continuous activation range [0, 4Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+M ax curr ] to SNN’s binary spike (0, 1). For this, we recorded the maximum activation value per layer and then scaled the learned weights (layer-wise weight normalisation) accordingly. This insures the output of every layer remains equal to or lower than the SNN’s fixed threshold ( Vth = 1 in normalised SNN). The following scaling rule was applied for weight and bias: Wnew = Wold × Max prev 
+
+Max curr 
+
+bnew = bold × 1
+
+Max curr 
+
+• W new and W old , denote the new weight after scaling and the old weight before scaling, respectively. • Max prev , denotes maximum activation value of the previous layer. • Max curr , denotes the maximum activation value of the current layer. • b, signifies the bias term. IF neuron constitutes of the following three custom operations: • Integration: Its purpose is to accumulate the incoming current ( x) into the membrane potential of the neuron. 
+
+mem curr ← mem + x
+
+• Firing: It is responsible for activating the neuron if the spiking threshold is met. 
+
+spike = ( mem curr ≥ Vth ).f loat () 
+
+• Reset: It ensures to reset the membrane potential after the spike. If the accumulated current in the membrane excceeds the threshold, then it is kept in the membrane for the next iteration. This makes sure that the neurons accumulating higher currents get fired faster. 
+
+mem = mem curr − spike × threshold 
+
+The SNN was trained for 50 steps with batch size of 32. 
+
+ConV 1 → IF N euron → Binary Spike o/p → ConV 2 → ... 
+
+2.4 Channel and Weight Pruning 
+
+We implemented a Dual-Pruning Strategy targeting both data redundancy (input level) and model complexity (weight level). 
+
+2.4.1 Structured Channel Pruning (Input Level) 
+
+We employed a Gradient-SensitivityXie et al. [2021] Analysis to reduce the dimensionality of the EEG input. Instead of arbitrarily selecting channels, we calculated the sensitivity of the model’s loss function with respect to the input features: 
+
+Sc = X ∂L ∂x c
+
+Channels with higher gradient magnitudes Sc indicate a stronger influence on the decision boundary. We ranked all 18 bipolar channels and retained the Top-8 most discriminative channels, discarding noise and redundant signals. 
+
+2.4.2 Semi-Structured Weight Pruning (Model Level) 
+
+To compress the model parameters, we applied 2:4 Structured Sparsity Mozaffari et al. [2025]. This technique is hardware-aware (optimized for modern Tensor Cores). For every contiguous block of 4 weights in the convolutional and linear layers, we retained the 2 weights with the largest magnitude and forced the other 2 to zero. This achieves a 50% reduction in model parameters while maintaining regular memory access patterns. 5Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+2.4.3 Implementation Details 
+
+The pruning pipeline was executed in three phases: • Sensitivity Ranking: We passed a subset of the validation set through the pre-trained baseline model to compute input gradients. • Dataset Slicing & Retraining: The dataset was sliced to keep only the selected 8 channels. A new CNN model was instantiated with reduced input dimensions and retrained from scratch to adapt to the optimized feature set. • Weight Masking: The 2:4 sparsity mask was computed and applied to the retrained model. We performed a fine-tuning phase to recover any potential accuracy loss caused by weight removal. 
+
+2.5 Quantization techniques 
+
+To bridge the gap between high-performance deep learning and energy-constrained wearable devices, we implemented a hierarchical quantization pipeline. While SNNs offer theoretical efficiency, industry-standard edge hardware (e.g., DSPs, mobile NPUs) is currently optimized for integer arithmetic [Jacob et al., 2018]. While our original goal included quantizing the Spiking Neural Network (SNN), this proved infeasible within the constraints of current libraries. Popular SNN toolkits such as snnTorch [Eshraghian et al., 2023] and Norse [Pehle and Pedersen, 2021] do not currently support native integer quantization. Furthermore, extremely low-bit formats require specialized custom kernels [Khoram and Li, 2018] which are unavailable in common environments. We therefore experimented aggressively on INT8 quantization of the EEG-CNN. We utilized PyTorch FX Graph Mode [Reed et al., 2022] and ONNX Runtime to explore four precision-reduction strategies: 
+
+Dynamic vs. Static Quantization: We initially applied Dynamic Post-Training Quantization (PTQ), converting weights to INT8 while keeping activations in FP32. However, as dynamic quantization primarily targets Linear layers, compression was limited ( 1.07 ×). We transitioned to Static PTQ, which quantizes both weights and activations. We calibrated the model using a representative subset of 512 samples to determine static clipping ranges via min-max observers [Krishnamoorthi, 2018]. 
+
+Operator Fusion: To reduce memory access overhead—identified as the primary energy bottleneck in edge inference [Horowitz, 2014]—we explicitly fused Convolutional and Linear layers with their subsequent ReLU activations (Conv1d+ReLU ). This allows the hardware to perform the activation function immediately in the accumulator without writing intermediate FP32 values back to DRAM. 
+
+Quantization-Aware Training (QAT): Static quantization can degrade performance on bio-signals due to the high dynamic range of ictal (seizure) spikes, which may be clipped by static observers. To mitigate this, we employed QAT [Jacob et al., 2018], simulating quantization noise (fake-quantization modules) during the training phase. This allows the network to learn weights that are robust to the discrete INT8 grid. 
+
+Inference Engine Optimization: Finally, we exported the models to ONNX (Open Neural Network Exchange) [Bai et al., 2019] to leverage graph optimizations (constant folding) and the highly optimized CPU execution provider. To quantify the battery impact without a physical power meter, we employ the "Race-to-Sleep" energy model [Horowitz, 2014]. The total energy per inference ( Einf ) is modeled as the product of the processor’s active power consumption (Pactive ) and the inference latency ( tlat ): 
+
+Einf ≈ Pactive × tlat + Emem (1) Where Pactive is the dynamic power of the microcontroller (assumed ≈ 100 mW for a standard ARM Cortex-M4F DSP). Crucially, Horowitz [2014] demonstrates that memory access energy ( Emem ) is a key part of computation energy. By reducing the model size from 1.63MB to 0.44MB via quantization, we ensure the model fits entirely within on-chip SRAM, eliminating high-energy off-chip DRAM fetches. Thus, minimizing tlat becomes the primary proxy for minimizing total battery drain. 6Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+Table 1: Quantization & Energy Results. Energy is estimated using Eq. 1 assuming a 100mW active power profile. 
+
+Fused Static ONNX reduces energy consumption by 64% compared to the baseline, while Fused QAT achieves the highest accuracy.                                                 
+
+> Model Config Precision Size (MB) Latency (ms) Est. Energy ( μJ) Speedup Test AUC
+> Baseline CNN FP32 1.63 0.39 39.3 1.0x 0.9617 SNN FP32 1.63 112.5 11,225 -288x 0.9258 Dynamic PTQ INT8 (Weights) 1.52 0.54 54.1 0.7x 0.9617 Static FX PTQ INT8 0.44 0.26 26.1 1.5x 0.9609
+> Fused QAT FX INT8 0.44 0.25 25.1 1.6x 0.9628
+> Static ONNX (Standard) INT8 0.44 0.21 21.0 1.9x 0.9617
+> Fused Static ONNX INT8 0.44 0.14 13.9 2.8x 0.9615
+
+## 3 Results 
+
+3.1 Baseline with SNN and Quantization 
+
+• Energy Efficiency: As shown in Table 1, the Static ONNX configuration is the clear winner for battery optimization. By reducing latency to 0.14ms , it lowers the estimated energy cost to just 13.9 μJ per inference, a 63% reduction compared to the FP32 baseline (39.3 μJ). This implies that for a battery-operated wearable device, the ONNX model allows the processor to return to sleep mode nearly 3× faster than the baseline. • Accuracy Analysis: Standard Static PTQ caused a minor AUC drop (0.9617 → 0.9609). However, Fused QAT outperformed the baseline (AUC 0.9628 ). This confirms that simulated quantization noise acts as a regularizer [Nagel et al., 2021], improving robustness to noisy EEG signals. SNN became the least performing model out of all. Achieved AU C : 0 .92 after 50 time steps. Unlike CNN, it requires multiple iterations to accumulate current and create a spike. These multiple iterations increase the inference latency and if steps are reduced then AUC decreases (trade-off). SNN’s true performance advantage is unlocked only on specialized neuromorphic hardware. This hardware executes the spike updates asynchronously and when required instead of sequential n-step loop on a CPU, reducing latency and energy. 
+
+3.2 Baseline with Pruning 
+
+The proposed dual-pruning strategy resulted in substantial reductions in computational overhead: the input bandwidth decreased by 55% (from 18 to 8 channels), and the model storage requirements were reduced by 50% through 2:4 structured weight sparsity. Table 2: Performance and efficiency comparison between the Baseline (18-channel) and the final Pruned (8-channel, 2:4 sparse) model. 
+
+Metric Baseline CNN Pruned Change 
+
+Accuracy 96.17% 95.15% -1.02% Input Channels 18 8 -55% Model Weights 100% (Dense) 50% (Sparse) -50% Despite these aggressive reductions, the impact on classification performance was minimal. The pruned model achieved an accuracy of 95.15%, corresponding to a negligible drop of 1.02% relative to the baseline. 
+
+## 4 Conclusion 
+
+We evaluated three efficiency strategies i.e SNN conversion, pruning, and INT8 quantization—on a 1D CNN for EEG seizure detection. INT8 Quantization specifically optimizes the digital processing stage. By transitioning to the Fused Static ONNX engine, we reduced inference latency by 2.8× (0.39ms → 0.14ms), enabling an aggressive “Race-to-Sleep” strategy. This cut the estimated processor energy per classification by 64% (from 39.3 μJ to 13.9 μJ), drastically extending the device’s battery life. SNN conversion was the least efficient on standard CPUs, showing a 288 × latency increase and the largest AUC drop (0.9258), confirming that SNN benefits require neuromorphic hardware. 7Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+Pruning on baseline reduced both input and model complexity i.e channel pruning decreased dimensionality from 18 to 8 channels, and 2:4 structured sparsity removed 50% of weights, with minor drop in accuracy drop, effective in the cases of lowering computational load. 
+
+## 5 Future Work 
+
+Quantization methods can be improved further by bridging QAT robustness with ONNX efficiency via the QDQ export pipeline [Wu et al., 2020], theoretically merging peak accuracy (0.9628 AUC) with minimal energy (13.9 μJ). Additionally, exploring INT4 quantization to further halve the memory footprint, utilizing mixed-precision strategies to preserve bio-signal fidelity in sensitive layers. Beyond quantization alone, an important direction is to combine the three efficiency axes studied here. One concrete target is an 8-channel CNN that is simultaneously 2:4 sparse and INT8-quantized, providing a single compact model for edge CPUs. In parallel, applying structured pruning and weight sharing directly to the SNN variant, followed by deployment on neuromorphic hardware, would allow a more realistic comparison in terms of synaptic operations and true power consumption. Finally, patient-specific fine-tuning and extension to multi-class seizure-type classification would move these brain-inspired models closer to practical clinical use. 
+
+## References 
+
+John Guttag. CHB-MIT Scalp EEG Database, 2010. URL https://physionet.org/content/chbmit/1.0.0/ .Kai Malcolm and Josue Casco-Rodriguez. A comprehensive review of spiking neural networks: Interpretation, optimization, efficiency, and best practices. arXiv preprint arXiv:2303.10780 , 2023. Itay Hubara, Matthieu Courbariaux, Daniel Soudry, Ran El-Yaniv, and Yoshua Bengio. Quantized neural networks: Training neural networks with low precision weights and activations. The Journal of Machine Learning Research , 18 (1):6869–6898, 2017. Omar Kaziha and Talal Bonny. A convolutional neural network for seizure detection. In 2020 Advances in Science and Engineering Technology International Conferences (ASET) , pages 1–5. IEEE, 2020. Ahmed M Abdelhameed and Magdy Bayoumi. An efficient deep learning system for epileptic seizure prediction. In 
+
+2021 IEEE International Symposium on Circuits and Systems (ISCAS) , pages 1–5. IEEE, 2021. Jee S Ra, Tianning Li, and Yan Li. A novel permutation entropy-based eeg channel selection for improving epileptic seizure prediction. Sensors , 21(23):7972, 2021. Guorui Lu, Jing Peng, Bingyuan Huang, Chang Gao, Todor Stefanov, Yong Hao, and Qinyu Chen. Slimseiz: Efficient channel-adaptive seizure prediction using a mamba-enhanced network. In Proceedings of the 2025 IEEE International Symposium on Circuits and Systems (ISCAS) , pages 1–5. IEEE, May 2025. doi:10.1109/ISCAS56072.2025.11043364. URL http://dx.doi.org/10.1109/ISCAS56072.2025.11043364 .Rayan Salmi, Guorui Lu, and Qinyu Chen. Shap-aad: Deepshap-guided channel reduction for EEG auditory attention detection. arXiv preprint arXiv:2507.03814 , Jul 2025a. Available at https://arxiv.org/abs/2507.03814 .Fengshi Tian, Jie Yang, Shiqi Zhao, and Mohamad Sawan. A new neuromorphic computing approach for epileptic seizure prediction. In 2021 IEEE International Symposium on Circuits and Systems (ISCAS) , pages 1–5. IEEE, 2021. Abdul Muneeb and Hossein Kassiri. Energy-efficient spiking-cnn-based cross-patient seizure detection. In 2023 IEEE International Symposium on Circuits and Systems (ISCAS) , pages 1–5. IEEE, 2023. Qinyu Chen, Congyi Sun, Chang Gao, and Shih-Chii Liu. Epilepsy seizure detection and prediction using an approximate spiking convolutional transformer. In 2024 IEEE International Symposium on Circuits and Systems (ISCAS) , pages 1–5. IEEE, 2024. Ahmed Hasssan, Jian Meng, Anupreetham Anupreetham, and Jae-sun Seo. Spquant-snn: ultra-low precision membrane potential with sparse activations unlock the potential of on-device spiking neural networks applications. Frontiers in Neuroscience , 18:1440000, 2024. Wenjie Wei, Malu Zhang, Zijian Zhou, Ammar Belatreche, Yimeng Shan, Yu Liang, Honglin Cao, Jieyuan Zhang, and Yang Yang. Qp-snn: Quantized and pruned spiking neural networks. arXiv preprint arXiv:2502.05905 , 2025. Raghuraman Krishnamoorthi. Quantizing deep convolutional networks for efficient inference: A whitepaper. arXiv preprint arXiv:1806.08342 , 2018. Benoit Jacob, Skirmantas Kligys, Bo Chen, Menglong Zhu, Matthew Tang, Andrew Howard, Hartwig Adam, and Dmitry Kalenichenko. Quantization and training of neural networks for efficient integer-arithmetic-only inference. In Proceedings of the IEEE conference on computer vision and pattern recognition , pages 2704–2713, 2018. 8Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks A P REPRINT 
+
+Hao Wu, Patrick Judd, Xiaojie Zhang, Mikhail Isaev, and Paulius Micikevicius. Integer quantization for deep learning inference: Principles and empirical evaluation. arXiv preprint arXiv:2004.09602 , 2020. Rayan Salmi, Guorui Lu, and Qinyu Chen. Shap-aad: Deepshap-guided channel reduction for eeg auditory attention detection. arXiv preprint arXiv:2507.03814 , 2025b. Md Mynoddin, Troyee Dev, and Rishita Chakma. Brain2vec: A deep learning framework for eeg-based stress detection using cnn-lstm-attention, 2025. URL https://arxiv.org/abs/2506.11179 .Abhronil Sengupta, Yuting Ye, Robert Wang, Chiao Liu, and Kaushik Roy. Going deeper in spiking neural networks: Vgg and residual architectures, 2019. URL https://arxiv.org/abs/1802.02627 .Zhouyang Xie et al. Pruning with compensation: Efficient channel pruning for deep convolutional neural networks. 
+
+arXiv preprint , 2021. URL https://arxiv.org/abs/2108.13728 .Mohammad Mozaffari, Amir Yazdanbakhsh, and Maryam Mehri Dehnavi. SLIM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression. arXiv preprint , 2025. URL https://arxiv.org/ abs/2410.09615 .Jason K Eshraghian, Max Ward, Emre Neftci, Xinxin Wang, Gregor Lenz, Girish Dwivedi, Mohammed Bennamoun, Deng S Pan, and Herbert H Iu. Training spiking neural networks using lessons from deep learning. In Proceedings of the IEEE , volume 111, pages 1216–1242. IEEE, 2023. Christian Pehle and Jens Egholm Pedersen. Norse: A deep learning library for spiking neural networks. In Proceedings of the 2021 International Conference on Neuromorphic Systems , 2021. S Khoram and J Li. Adaptive quantization of neural networks. In International Conference on Learning Representations (ICLR) , 2018. James Reed, Zachary DeVito, Horace He, Ansley Ussery, and Jason Ansel. Torch.fx: Practical program capture and transformation for deep learning in python. Proceedings of Machine Learning and Systems , 4:638–651, 2022. Mark Horowitz. 1.1 computing’s energy problem (and what we can do about it). In 2014 IEEE International Solid-State Circuits Conference Digest of Technical Papers (ISSCC) , pages 10–14. IEEE, 2014. Junjie Bai, Fang Lu, Ke Zhang, et al. Onnx: Open neural network exchange. GitHub repository , 2019. URL 
+
+https://github.com/onnx/onnx .Markus Nagel, Marios Fournarakis, Rana Ali Amjad, Yelysei Bondarenko, Mart van Baalen, and Tijmen Blankevoort. A white paper on neural network quantization. arXiv preprint arXiv:2106.08295 , 2021. 9

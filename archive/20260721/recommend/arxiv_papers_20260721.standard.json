@@ -1,0 +1,557 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-21T20:28:28.817716+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 8,
+    "quick_skim_target": 11,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2607.16549v1",
+      "source": "arxiv",
+      "title": "Encoding EEG Signals to Examine Human-Like Next-Word Prediction Behaviour in Language Models",
+      "abstract": "Language models (LMs) are trained to excel at predicting the next word in the sequence given prior context, and humans also share this predictability in reading comprehension. Neuroscience research reveals that next-word predictability influences brain response, as recorded at millisecond resolution using electroencephalography (EEG). While our evidence indicates that advanced LMs achieve accuracies closely aligned with human performance at the next-word prediction task, this raises the question: Does higher prediction accuracy necessarily mean that these models adequately capture the cognitive signals associated with human reading comprehension? Here, we generate regressors for both humans and LMs based on two information measures, including top-1 prediction and surprisal, to predict event-related potential (ERP) elicited from EEG recordings which reflect different stages of cognitive processing during reading. We argue that modelling ERP patterns offers fine-grained analysis of the cognitive plausibility of various LMs during reading. Our results indicate that only surprisal potentially correlates with language-processing ERPs, especially for open-class words with high semantic content. Moreover, our findings challenge the assumption that scaling LMs with increased parameters and computational budgets will consistently lead to improved convergence with human-like linguistic processing.",
+      "authors": [
+        "Boi Mai Quach",
+        "Binh T. Nguyen",
+        "Cathal Gurrin",
+        "Graham Healy"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-17T23:11:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.16549v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG signals used to examine next-word prediction in language models",
+      "llm_evidence_cn": "使用EEG信号检查语言模型的下一词预测行为",
+      "llm_evidence": "使用EEG信号检查语言模型的下一词预测行为",
+      "canonical_evidence": "使用EEG信号检查语言模型的下一词预测行为",
+      "llm_tldr_en": "This paper uses EEG recordings to investigate whether high prediction accuracy in LLMs reflects human-like cognitive signals during reading comprehension.",
+      "llm_tldr_cn": "该研究通过EEG记录人类阅读时的脑电信号，与语言模型的下一词预测行为进行比较。发现虽然高级语言模型在预测准确性上接近人类，但高准确性并不保证模型充分捕捉了人类阅读理解的认知信号。研究揭示了语言模型与人类认知之间的差异，为改进模型提供了启示。",
+      "llm_tldr": "该研究通过EEG记录人类阅读时的脑电信号，与语言模型的下一词预测行为进行比较。发现虽然高级语言模型在预测准确性上接近人类，但高准确性并不保证模型充分捕捉了人类阅读理解的认知信号。研究揭示了语言模型与人类认知之间的差异，为改进模型提供了启示。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.17185v1",
+      "source": "arxiv",
+      "title": "PocketPPD: Screening for Postpartum Depression Risk Using Passive Smartphone Sensing",
+      "abstract": "Postpartum depression (PPD) is a serious perinatal mental health condition affecting approximately 20% of new mothers worldwide. Common screening approaches for PPD, such as self-report questionnaires and active digital logs, rely heavily on user input and thus impose a substantial burden on participants, limiting their feasibility for long-term use. Recent passive mobile sensing (PMS) approaches have enabled low-burden detection of depressive symptoms using machine learning methods with multi-modal sensor data from off-the-shelf mobile devices including smartphones. However, the postpartum period entails distinct behavioral patterns, raising uncertainty about whether sensing-based indicators for general depression and mental disorders generalize to PPD. To address this gap, we propose PocketPPD, a PMS-based PPD screening method that detects PPD risk using maternal contextual features, such as disruptions in behavioral rhythms and shifts in stability, collected through a smartphone. In our exploratory four-week feasibility study with 61 postpartum women, the PMS-only model achieved an AUC of 0.75, while the best-performing model, integrating PMS-oriented data and self-report features, achieved an AUC of 0.83. Moreover, we find that morning and late-night routine volatility ranks among the top digital biomarkers, dynamically moderated by maternal contexts such as infant developmental stage and employment status. This work provides empirical evidence for low-burden PPD risk screening and our findings lay the groundwork for continuous perinatal mental health monitoring.",
+      "authors": [
+        "Jia Tang",
+        "Helinyi Peng",
+        "Akihito Taya",
+        "Kaoru Sezaki",
+        "Daisuke Nishi",
+        "Anind K Dey",
+        "Yuuki Nishiyama"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.CY"
+      ],
+      "published": "2026-07-19T10:49:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.17185v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Passive smartphone sensing for postpartum depression screening",
+      "llm_evidence_cn": "被动智能手机感知用于产后抑郁症筛查",
+      "llm_evidence": "被动智能手机感知用于产后抑郁症筛查",
+      "canonical_evidence": "被动智能手机感知用于产后抑郁症筛查",
+      "llm_tldr_en": "Develops a passive mobile sensing system (PocketPPD) to screen for postpartum depression risk using machine learning on multi-modal sensor data.",
+      "llm_tldr_cn": "该论文针对产后抑郁（PPD）筛查依赖用户主动输入、负担高的问题，开发了PocketPPD系统，通过被动收集智能手机中的加速度计、GPS、屏幕状态等多模态传感器数据，利用机器学习方法预测PPD风险。在产后人群中验证了该方法与标准问卷的一致性，证明了被动移动感知可作为低负担、可持续的心理健康监测工具，具有重要的临床转化潜力。",
+      "llm_tldr": "该论文针对产后抑郁（PPD）筛查依赖用户主动输入、负担高的问题，开发了PocketPPD系统，通过被动收集智能手机中的加速度计、GPS、屏幕状态等多模态传感器数据，利用机器学习方法预测PPD风险。在产后人群中验证了该方法与标准问卷的一致性，证明了被动移动感知可作为低负担、可持续的心理健康监测工具，具有重要的临床转化潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.17409v1",
+      "source": "arxiv",
+      "title": "Efficient Sequential Evaluation of Large Language Models",
+      "abstract": "We study the problem of sequentially evaluating a new large language model (LLM) on a fixed question set using historical performance data from prior LLMs. Our goal is to construct a confidence sequence (CS) for the model's capability on this question set and to design active querying rules that shrink the CS width as quickly as possible. For CS construction, we invert a family of test supermartingales and focus on two representative approaches: a reverse information projection (RIPr)-based approach and a testing-by-betting-based approach. We first study these approaches under an oracle setting, and demonstrate the oracle optimality of the RIPr-based construction. We then propose a growth-oriented querying rule that aims to maximize the worst-case one-step expected log-increment over the endpoints of the current CS. In practice, we build these test supermartingales and the querying rule on predictions of question-level correctness learned from historical data. We then analyze the shrinkage behavior of the resulting CSs and identify two key factors that slow the shrinkage rate of CSs: accumulated prediction mismatch and the spikiness of the querying distribution. Finally, motivated by this analysis, we propose several mixture querying rules that combine growth-oriented querying, prediction refinement, and uniform exploration, trying to mitigate the effects that slow the shrinkage rate. We provide experiments comparing different querying rules for the RIPr-based and testing-by-betting-based CSs across several synthetic testing datasets. Interestingly, we observe that the simplest querying rule, uniform sampling, can sometimes outperform more adaptive querying rules for both methods.",
+      "authors": [
+        "Chia-Yu Hsu",
+        "Shubhanshu Shekhar"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "stat.ME"
+      ],
+      "published": "2026-07-19T21:01:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.17409v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "sequential evaluation of large language models",
+      "llm_evidence_cn": "大语言模型的顺序评估",
+      "llm_evidence": "大语言模型的顺序评估",
+      "canonical_evidence": "大语言模型的顺序评估",
+      "llm_tldr_en": "Proposes confidence sequence construction and active querying rules for efficient sequential evaluation of LLMs using historical data.",
+      "llm_tldr_cn": "评估新大语言模型（LLM）成本高昂。本文利用历史模型性能数据，构造模型能力置信序列，并设计增长导向的查询规则以快速缩小置信区间。在模拟设置下证明了最优性，为LLM高效评估提供了理论框架。",
+      "llm_tldr": "评估新大语言模型（LLM）成本高昂。本文利用历史模型性能数据，构造模型能力置信序列，并设计增长导向的查询规则以快速缩小置信区间。在模拟设置下证明了最优性，为LLM高效评估提供了理论框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.17602v1",
+      "source": "arxiv",
+      "title": "Exploring Brain Networks Using Noninvasive Electrophysiological Measurements: Methods and Applications",
+      "abstract": "Electroencephalography (EEG) and magnetoencephalography (MEG) provide noninvasive measurements of brain activity with millisecond temporal resolution, enabling the investigation of functional and effective interactions within large-scale brain networks. This chapter presents a comprehensive overview of the methodological foundations and practical workflows for EEG/MEG-based brain network analysis. We first review the physical principles underlying EEG and MEG, emphasizing their complementary strengths and limitations. We then describe the forward and inverse problems, including subject-specific head modeling, source reconstruction techniques, and the importance of accurate anatomical modeling for reliable source localization. Strategies for mitigating volume conduction and signal leakage are discussed, together with best practices for source-space connectivity analysis. The chapter reviews widely used functional and effective connectivity measures, including coherence, phase synchronization metrics, amplitude envelope correlation, Granger causality, dynamic causal modeling, and transfer entropy, highlighting their assumptions, advantages, and limitations. Modern end-to-end analysis pipelines are presented, with particular emphasis on Brainstorm and complementary open-source software for reproducible EEG/MEG research. Finally, we discuss emerging approaches, including time-varying connectivity, cross-frequency interactions, and network-based analyses, illustrating how noninvasive electrophysiology contributes to understanding brain organization in health and disease. The chapter provides both conceptual foundations and practical guidance for researchers and advanced students seeking to map and interpret human brain networks using EEG and MEG.",
+      "authors": [
+        "Richard Leahy",
+        "Takfarinas Medani"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "math-ph"
+      ],
+      "published": "2026-07-20T06:42:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.17602v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG/MEG brain network analysis methods",
+      "llm_evidence_cn": "EEG/MEG脑网络分析方法综述",
+      "llm_evidence": "EEG/MEG脑网络分析方法综述",
+      "canonical_evidence": "EEG/MEG脑网络分析方法综述",
+      "llm_tldr_en": "Comprehensive review of EEG/MEG-based brain network analysis, covering forward and inverse problems, source reconstruction, and applications, providing practical workflows for noninvasive electrophysiological measurements.",
+      "llm_tldr_cn": "本文系统综述了基于EEG和MEG的脑网络分析方法，从物理原理到正反问题、源重建技术以及实际工作流程。强调了准确头部建模和源定位对可靠网络分析的重要性，并讨论了在认知和临床神经科学中的应用前景，为无创电生理测量提供了全面的方法论指导。",
+      "llm_tldr": "本文系统综述了基于EEG和MEG的脑网络分析方法，从物理原理到正反问题、源重建技术以及实际工作流程。强调了准确头部建模和源定位对可靠网络分析的重要性，并讨论了在认知和临床神经科学中的应用前景，为无创电生理测量提供了全面的方法论指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18149v1",
+      "source": "arxiv",
+      "title": "Differentiable Logic Gate Networks for Low-Latency EEG Classification on Edge Devices",
+      "abstract": "Real-time EEG classification on edge devices is bottlenecked by the floating-point arithmetic of conventional neural networks. We investigated Differentiable Logic Gate Networks (Diff-Logic) as a hardware-native alternative that compiles models into pure Boolean circuits executable via bitwise CPU operations. Through rigorous iso-parameter experiments across four EEG datasets spanning two classification tasks, binary dementia detection and 3-class emotion recognition, we compared Diff-Logic against matched-capacity Multi-Layer Perceptron (MLP) and Binarized Neural Network (BNN) baselines at four complexity tiers (50k-500k parameters). On dementia screening, Diff-Logic achieved 80.2% Macro F1, outperforming the MLP baseline by 6.8%. On emotion recognition, the MLP retained a moderate performance advantage but incurred a 2.3$\\times$ higher latency and 14$\\times$ larger model size when deployed on a power-constrained (7W) Nvidia Jetson Orin Nano CPU (Single-core). Critically, Diff-Logic inference time remained nearly constant across a 10$\\times$ increase in model scale, achieving a peak speedup of 2.9$\\times$ over MLPs at the largest complexity tier. Our results establish logic-based neural architectures as a practical paradigm for resource-constrained brain-computer interfaces, achieving competitive or superior performance while natively satisfying the latency and memory constraints of portable edge deployment. Code is available on GitHub: https://github.com/Shyamal-Dharia/eeg-difflogic",
+      "authors": [
+        "Shyamal Y. Dharia",
+        "Stephen D. Smith",
+        "Camilo E. Valderrama"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-20T16:49:30+00:00",
+      "link": "https://arxiv.org/pdf/2607.18149v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-based emotion recognition and dementia detection using differentiable logic gate networks",
+      "llm_evidence_cn": "基于EEG的情绪识别和痴呆检测，使用可微分逻辑门网络",
+      "llm_evidence": "基于EEG的情绪识别和痴呆检测，使用可微分逻辑门网络",
+      "canonical_evidence": "基于EEG的情绪识别和痴呆检测，使用可微分逻辑门网络",
+      "llm_tldr_en": "Proposes Differentiable Logic Gate Networks (Diff-Logic) for low-latency EEG classification on edge devices, achieving 80.2% Macro F1 on dementia screening and outperforming MLP on emotion recognition across four datasets.",
+      "llm_tldr_cn": "该论文针对边缘设备上实时EEG分类的延迟瓶颈，提出可微分逻辑门网络（Diff-Logic），将模型编译为纯布尔电路。在四个EEG数据集上的实验表明，Diff-Logic在痴呆筛查任务上达到80.2%的Macro F1，在3类情绪识别任务上优于同等规模的MLP和二值神经网络。这项工作为EEG分类提供了一种高效、硬件友好的可部署方案。",
+      "llm_tldr": "该论文针对边缘设备上实时EEG分类的延迟瓶颈，提出可微分逻辑门网络（Diff-Logic），将模型编译为纯布尔电路。在四个EEG数据集上的实验表明，Diff-Logic在痴呆筛查任务上达到80.2%的Macro F1，在3类情绪识别任务上优于同等规模的MLP和二值神经网络。这项工作为EEG分类提供了一种高效、硬件友好的可部署方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.12071v2",
+      "source": "arxiv",
+      "title": "Beyond Parallel Tracking: Interactive Multi-Feature Fusion Drives Semantic Reconstruction from Non-invasive Brain Recordings",
+      "abstract": "Continuous semantic reconstruction from non-invasive neural recordings remains limited by the representational mismatch between semantic feature spaces and neural coding patterns, which severely impedes cross-modal alignment between high-noise neural signals and target semantic features. Prior semantic decoders have predominantly relied on static lexical representations or dynamic contextualized representations in isolation. This single-dimension approach inevitably leads to severe information loss, as it fails to account for the human brain's capacity to integrate stable word attributes and dynamic contexts simultaneously. To bridge this gap, this study introduces a multi-feature fusion framework for non-invasive semantic reconstruction, systematically benchmarking two integration approaches: linear Naive Concatenation and non-linear Multi-Head Cross-Attention. Within this framework, our approach complements static lexical representations (W2V) with dynamic contextual representations (GPT) via an interactive gating mechanism to facilitate cooperative processing during language comprehension. Evaluated through extensive semantic reconstruction and text generation experiments, our framework reveals a robust performance hierarchy: Cross-Att > Concat > GPT > W2V. Crucially, the non-linear cross-attention fusion method achieves state-of-the-art performance, demonstrating that neural language decoding benefits from simulating the collaborative modulation between contextual information and core lexical attributes rather than depending on isolated individual features, while also offering a viable non-invasive brain-to-text decoding method.",
+      "authors": [
+        "Boda Xiao",
+        "Xiran Xu",
+        "Songyi Li",
+        "Yujie Yan",
+        "Xihong Wu",
+        "Heping Cheng",
+        "Jing Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T18:44:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.12071v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "semantic reconstruction from non-invasive brain recordings for BCI",
+      "llm_evidence_cn": "基于非侵入性脑记录的语义重建用于脑机接口",
+      "llm_evidence": "基于非侵入性脑记录的语义重建用于脑机接口",
+      "canonical_evidence": "基于非侵入性脑记录的语义重建用于脑机接口",
+      "llm_tldr_en": "Proposes a multi-feature fusion framework integrating static lexical and dynamic contextual representations for continuous semantic reconstruction from non-invasive neural signals, improving cross-modal alignment.",
+      "llm_tldr_cn": "该论文针对非侵入性神经记录（如fMRI/EEG）连续语义重建中的表示不匹配问题，提出一种交互式多特征融合框架，同时利用静态词汇和动态上下文特征。实验结果表明，该方法显著提升了从脑信号中解码语义的准确率，为脑机接口的语义通信提供了新途径。",
+      "llm_tldr": "该论文针对非侵入性神经记录（如fMRI/EEG）连续语义重建中的表示不匹配问题，提出一种交互式多特征融合框架，同时利用静态词汇和动态上下文特征。实验结果表明，该方法显著提升了从脑信号中解码语义的准确率，为脑机接口的语义通信提供了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.16296v1",
+      "source": "arxiv",
+      "title": "Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks",
+      "abstract": "Continuous EEG monitoring for epilepsy is constrained by the limited power and memory budgets of wearable and implantable devices. Deep neural networks can detect seizures with high accuracy, but their computational cost and model size make them difficult to deploy on such platforms. In this work we use a single 1D CNN seizure detector on the CHB-MIT scalp EEG dataset as a common baseline, and then investigate three brain-inspired efficiency strategies: (i) conversion of the CNN into a spiking neural network (SNN) via parameter transfer, (ii) EEG channel pruning combined with 2:4 structured weight sparsity, and (iii) INT8 quantization using FX- and ONNX-based workflows, including quantization-aware training and operator fusion. The quantized CNN variants reduce stored model size from 1.63 MB to 0.44 MB, lower estimated energy per inference by up to 64%, and achieve as much as 2.8 times speedup in CPU latency while preserving, and in one case slightly improving, AUC. The pruned CNN halves the number of input channels and non-zero weights with only a modest accuracy drop, and the SNN conversion provides a spiking implementation with sparse temporal activity. Together, these experiments characterize three complementary efficiency directions for seizure detection.",
+      "authors": [
+        "Kartikey Ahlawat"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T11:14:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.16296v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG seizure detection with deep learning and efficiency techniques",
+      "llm_evidence_cn": "使用深度学习和效率技术的脑电癫痫检测",
+      "llm_evidence": "使用深度学习和效率技术的脑电癫痫检测",
+      "canonical_evidence": "使用深度学习和效率技术的脑电癫痫检测",
+      "llm_tldr_en": "Investigates INT8 quantization, channel pruning, and SNN conversion for efficient EEG seizure detection on wearable devices.",
+      "llm_tldr_cn": "可穿戴脑电设备受限于功耗和内存，难以部署高精度深度网络。本文以1D CNN为基础，探索脉冲神经网络转换、通道剪枝和INT8量化三种效率优化策略。在CHB-MIT数据集上，模型在保持检测精度的同时显著降低计算和存储成本，为实时癫痫监测提供了可行方案。",
+      "llm_tldr": "可穿戴脑电设备受限于功耗和内存，难以部署高精度深度网络。本文以1D CNN为基础，探索脉冲神经网络转换、通道剪枝和INT8量化三种效率优化策略。在CHB-MIT数据集上，模型在保持检测精度的同时显著降低计算和存储成本，为实时癫痫监测提供了可行方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.16292v1",
+      "source": "arxiv",
+      "title": "It Depends on the Dataset: When a Brain-Encoding Model's Predicted Responses Beat Their Visual Backbone for Video Memorability",
+      "abstract": "Brain-encoding foundation models predict fMRI responses to video, audio, and text well enough to win the Algonauts 2025 challenge. We ask whether their predicted responses, obtained with no scanner, are a useful feature lens for a downstream human-behavior task: forecasting the memorability of short videos. We project each clip into TRIBE v2's predicted cortical space and forecast short-term memorability with ridge regression, against a matched control: the model's own V-JEPA2 visual backbone taken before the brain projection. The answer is dataset-dependent, and cleanly so. Within Memento10k the backbone wins (Spearman 0.594 vs 0.544 for the brain projection); within VideoMem the brain projection wins (0.415 vs 0.368, delta +0.047, 95% CI [+0.009, +0.088]). Both within-dataset gaps have bootstrap intervals excluding zero, in opposite directions. Cross-dataset transfer inherits the split: trained on Memento10k and tested on VideoMem the brain projection beats the backbone (+0.076), while the reverse loses heavily (-0.311). Each representation transfers best onto the dataset it already fits better. The VideoMem advantage is not a sample-size artifact (it survives matched training size and a PCA-then-ridge pipeline) and not mere compression of the backbone (a compressed or heavily regularized backbone tops out below the brain projection, which also beats a transfer-tuned backbone, +0.053). So predicted-brain features carry a small but real memorability signal the backbone misses on one dataset and not the other: not a domain-general prior, but a dataset-specific representation. A vision-orthogonal component (partial Spearman 0.19, permutation p=2.5e-4) localizes to ventral occipito-temporal cortex. Code and predicted-response arrays are released; source videos and scores are not redistributed.",
+      "authors": [
+        "Carson Rodrigues"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-12T23:34:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.16292v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Evaluates brain-encoding foundation models for predicting fMRI responses and uses them for video memorability prediction",
+      "llm_evidence_cn": "评估脑编码基础模型预测fMRI响应，并用于视频记忆性预测",
+      "llm_evidence": "评估脑编码基础模型预测fMRI响应，并用于视频记忆性预测",
+      "canonical_evidence": "评估脑编码基础模型预测fMRI响应，并用于视频记忆性预测",
+      "llm_tldr_en": "Tests whether predicted fMRI responses from brain-encoding model (TRIBE v2) improve video memorability prediction over the visual backbone, finding dataset-dependent results.",
+      "llm_tldr_cn": "该论文探究脑编码基础模型（TRIBE v2）预测的fMRI脑活动特征是否能提升下游视频记忆性预测任务，与模型的视觉骨干（V-JEPA2）进行比较。实验发现效果高度依赖数据集：在VideoMem上脑投影特征更优（Spearman 0.544 vs 0.594? 原文需核对），而在Memento10k上视觉骨干更强。该工作揭示了脑编码模型在下游行为预测中的条件性效用，对脑启发式AI的应用场景具有指导意义。",
+      "llm_tldr": "该论文探究脑编码基础模型（TRIBE v2）预测的fMRI脑活动特征是否能提升下游视频记忆性预测任务，与模型的视觉骨干（V-JEPA2）进行比较。实验发现效果高度依赖数据集：在VideoMem上脑投影特征更优（Spearman 0.544 vs 0.594? 原文需核对），而在Memento10k上视觉骨干更强。该工作揭示了脑编码模型在下游行为预测中的条件性效用，对脑启发式AI的应用场景具有指导意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-05-10-724117-v2",
+      "source": "biorxiv",
+      "title": "Normalization accounts for temporal dynamics in human somatosensory cortex",
+      "abstract": "Sensory processing is fundamentally shaped by stimulation history. For example, in visual cortex, neural responses are reduced for repeated or sustained stimuli (adaptation). These phenomena are well characterized and effectively modeled by divisive normalization. We asked whether these same computational principles govern somatosensory processing. We used fMRI (6 participants) and intracranial electroencephalography (iEEG, 2 participants) to measure responses to time-varying vibrotactile stimuli in human somatosensory cortex. Stimuli consisted of single- and paired-pulses with durations and interstimulus intervals ranging from 0.05 to 1.2 s. We extracted BOLD time courses to capture neural response amplitudes, and high-frequency iEEG broadband envelopes to capture fast neural dynamics. In both experiments, we observed pronounced sub-additive temporal summation. Responses to longer or repeated stimuli were consistently lower than predicted by linear integration. Computational modeling revealed that divisive normalization models outperformed linear models in cross-validated accuracy across both datasets. These results demonstrate that somatosensory temporal dynamics closely mirror those in the visual system. Our findings suggest that the nervous system employs similar computational principles across modalities to encode sensory information across time.",
+      "authors": [
+        "Bloem, I. M.",
+        "Li, L.",
+        "Badde, S.",
+        "Groen, I. I. A.",
+        "Schellekens, W.",
+        "Ramsey, N.",
+        "Flinker, A.",
+        "Devinsky, O.",
+        "Devore, S.",
+        "Doyle, W.",
+        "Dugan, P.",
+        "Friedman, D.",
+        "Petridou, N.",
+        "Landy, M. S.",
+        "Winawer, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.05.10.724117v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses fMRI and iEEG to study temporal dynamics via divisive normalization model",
+      "llm_evidence_cn": "使用fMRI和iEEG通过分割归一化模型研究时间动态",
+      "llm_evidence": "使用fMRI和iEEG通过分割归一化模型研究时间动态",
+      "canonical_evidence": "使用fMRI和iEEG通过分割归一化模型研究时间动态",
+      "llm_tldr_en": "Shows that divisive normalization accounts for temporal dynamics in somatosensory cortex using fMRI and iEEG, providing a computational model.",
+      "llm_tldr_cn": "该研究针对感觉皮层时间动态的计算机制问题，结合fMRI（6名被试）和颅内脑电iEEG（2名被试）记录对变化刺激的神经响应，提出并验证了分割归一化模型能有效解释单脉冲和双脉冲刺激下的BOLD及高频宽带活动。结果表明，分割归一化是体感皮层处理时序信息的一般计算原理，为理解感觉适应提供了神经计算基础。",
+      "llm_tldr": "该研究针对感觉皮层时间动态的计算机制问题，结合fMRI（6名被试）和颅内脑电iEEG（2名被试）记录对变化刺激的神经响应，提出并验证了分割归一化模型能有效解释单脉冲和双脉冲刺激下的BOLD及高频宽带活动。结果表明，分割归一化是体感皮层处理时序信息的一般计算原理，为理解感觉适应提供了神经计算基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.18109v1",
+      "source": "arxiv",
+      "title": "SpEmoC: A Balanced Speaker-Segment Multimodal Emotion Benchmark",
+      "abstract": "Understanding human emotions in spoken conversations is a key challenge in affective computing, with applications in empathetic AI, human computer interaction, and mental health monitoring. However, existing datasets vary in scale, emotion distribution, modality alignment, and data partitioning strategies, which can influence reliable cross-dataset generalization and minority-emotion modeling. We introduce SpEmoC a Speaking segment Emotion for Conversations comprising 306,544 raw clips from 3,100 English language movies and TV series. From these, 30,000 high quality, class balanced clips are curated, featuring synchronized visual, audio, and textual modalities annotated for seven emotions through a hybrid pipeline that integrates pretrained models with human validation. SpEmoC uses strict movie- and series-level splits to prevent content overlap between split sets, allowing more reliable evaluation of model generalization. The dataset also maintains a near-balanced distribution across seven emotions, including minority classes such as Fear and Disgust, which supports more balanced learning across categories. Extensive experiments, including in-domain benchmarking, cross-dataset transfer, low-data training, class-imbalance analysis, and modality transfer show that balanced data and careful splitting lead to more stable performance across emotions when models are evaluated on other datasets. These results highlight the importance of dataset design for robust and transferable multimodal emotion recognition.",
+      "authors": [
+        "Sania Bano",
+        "Shahzad Ahmad",
+        "Santosh Kumar Vipparthi",
+        "Sukalpa Chanda",
+        "Subrahmanyam Murala"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-20T16:08:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.18109v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multimodal emotion benchmark for mental health monitoring",
+      "llm_evidence_cn": "用于心理健康监测的多模态情绪基准",
+      "llm_evidence": "用于心理健康监测的多模态情绪基准",
+      "canonical_evidence": "用于心理健康监测的多模态情绪基准",
+      "llm_tldr_en": "Introduces SpEmoC, a balanced multimodal emotion benchmark with 30k clips from movies, annotated for seven emotions, to support cross-dataset generalization and minority-emotion modeling.",
+      "llm_tldr_cn": "现有情绪数据集在规模、分布和模态对齐方面差异大，影响跨数据集泛化和少数情绪建模。本文构建SpEmoC，从3100部电影中筛选3万高质量、类别平衡的多模态（视觉、音频、文本）片段，标注七种基本情绪。通过混合标注流程结合预训练模型和人工审核，确保了数据质量。该基准将为情感计算和心理健康监测提供可靠的训练与评估平台。",
+      "llm_tldr": "现有情绪数据集在规模、分布和模态对齐方面差异大，影响跨数据集泛化和少数情绪建模。本文构建SpEmoC，从3100部电影中筛选3万高质量、类别平衡的多模态（视觉、音频、文本）片段，标注七种基本情绪。通过混合标注流程结合预训练模型和人工审核，确保了数据质量。该基准将为情感计算和心理健康监测提供可靠的训练与评估平台。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-03-729972-v2",
+      "source": "biorxiv",
+      "title": "Brainana: an end-to-end preprocessing framework for macaque neuroimaging",
+      "abstract": "Macaque MRI bridges non-invasive systems neuroscience with cellular and circuit-level mechanisms, but preprocessing tools remain difficult to integrate and deploy reproducibly. We present Brainana, an automated, BIDS-compatible preprocessing and visualization framework for macaque neuroimaging. Brainana integrates structural and functional preprocessing, cortical surface reconstruction, quality control, transform tracking, and atlas projection within a containerized package, with cloud access for users without local compute. Macaque-trained deep learning models support brain extraction and tissue segmentation, while image orientation standardization and macaque-specific surface reconstruction optimizations address variability across acquisitions. A viewer automatically organizes derivatives and links volumetric and surface data, enabling users to inspect anatomy, cortical measures, atlas delineations, and activity maps without neuroimaging expertise. Across 23 imaging sites, Brainana processed heterogeneous data from 130 monkeys, yielding anatomical correspondence, reliable native-space surfaces, localized task-evoked activations, and reproducible brain-wide resting-state correlations. Brainana enables reproducible, scalable, and accessible macaque MRI analysis, cross-study comparison, and multimodal integration.",
+      "authors": [
+        "Liu, X.",
+        "Zhang, Y.",
+        "Yin, Z.",
+        "Zhen, Z.",
+        "Arcaro, M. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.03.729972v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning for macaque neuroimaging preprocessing",
+      "llm_evidence_cn": "深度学习用于猕猴神经影像预处理",
+      "llm_evidence": "深度学习用于猕猴神经影像预处理",
+      "canonical_evidence": "深度学习用于猕猴神经影像预处理",
+      "llm_tldr_en": "Brainana provides an automated, BIDS-compatible preprocessing framework for macaque neuroimaging, integrating deep learning models for brain extraction and tissue segmentation.",
+      "llm_tldr_cn": "猕猴MRI预处理工具整合困难且可重复性低。Brainana框架自动化完成结构和功能预处理、皮层重建、质量控制等步骤，内嵌深度学习模型实现脑提取和组织分割，并支持云端部署，从而降低计算门槛，推动非人灵长类神经影像研究标准化。",
+      "llm_tldr": "猕猴MRI预处理工具整合困难且可重复性低。Brainana框架自动化完成结构和功能预处理、皮层重建、质量控制等步骤，内嵌深度学习模型实现脑提取和组织分割，并支持云端部署，从而降低计算门槛，推动非人灵长类神经影像研究标准化。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-15-738682-v1",
+      "source": "biorxiv",
+      "title": "Fixation-evoked potentials reveal neural signatures of hierarchical belief-updating during decision-making",
+      "abstract": "Many decisions require maintaining beliefs across multiple levels of representation, from sampling and integrating information to forming action plans. To elucidate these processes and reveal the neural mechanisms supporting them under naturalistic free-viewing conditions, we combined EEG and eye-tracking in a multi-attribute choice task. Leveraging our recently developed Multi-Attribute Search and Choice (MASC) model, we generated fixation-level predictions for value-belief updating processes encompassing attribute, option, and preference states. Behavioral and eye-tracking data confirmed search and choice dynamics as predicted by MASC. Crucially, fixation-evoked potentials (FEPs) revealed distinct neural signatures along the processing hierarchy. While attribute-level and option-level updates were reflected in an early fronto-central positivity and a centro-parietal positivity, respectively, emerging preferences were expressed in lateralized motor-preparatory activity. Our preregistered study elucidates a hierarchy of neural belief-updating processes linking information sampling to decision formation and opens new research avenues for investigating neural attention and choice dynamics in naturalistic free-viewing paradigms.",
+      "authors": [
+        "Deakin, J.",
+        "Frömer, R.",
+        "Gluth, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.15.738682v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG fixation-evoked potentials reveal neural signatures of belief-updating",
+      "llm_evidence_cn": "EEG注视诱发电位揭示信念更新的神经特征",
+      "llm_evidence": "EEG注视诱发电位揭示信念更新的神经特征",
+      "canonical_evidence": "EEG注视诱发电位揭示信念更新的神经特征",
+      "llm_tldr_en": "This paper combines EEG and eye-tracking to reveal distinct neural signatures of hierarchical belief-updating during multi-attribute decision-making using the MASC model.",
+      "llm_tldr_cn": "为研究自然视觉条件下的决策信念更新机制，论文结合脑电图和眼动追踪，在多属性选择任务中利用MASC模型生成注视级预测。实验发现注视诱发电位能够区分属性、选项和偏好状态下的信念更新神经信号，为理解决策认知过程提供了新的EEG分析框架。",
+      "llm_tldr": "为研究自然视觉条件下的决策信念更新机制，论文结合脑电图和眼动追踪，在多属性选择任务中利用MASC模型生成注视级预测。实验发现注视诱发电位能够区分属性、选项和偏好状态下的信念更新神经信号，为理解决策认知过程提供了新的EEG分析框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-11-737986-v2",
+      "source": "biorxiv",
+      "title": "Edge controllability is associated with treatment response to repetitive transcranial magnetic stimulation in depression.",
+      "abstract": "Repetitive transcranial magnetic stimulation (rTMS) is an established treatment for major depressive disorder (MDD), yet variability in treatment response remains a significant challenge. Network control theory provides a framework to quantify how brain networks facilitate state transitions, but prior work has focused primarily on node level metrics. Here, we investigate whether edge based controllability of the structural connectome is associated with rTMS outcomes. Twenty five patients with treatment-resistant depression underwent diffusion MRI prior to a 5 week course of high frequency rTMS targeting the dorsolateral prefrontal cortex. Structural connectomes were constructed using MRtrix3 and the Destrieux atlas, and edge based controllability metrics were computed at baseline. Controllability of specific middle frontal gyrus centered edges showed significant associations with changes in HAMD-24 scores, including connections to the superior frontal gyrus, hippocampus, angular gyrus, and orbital gyrus (r = 0.470 - 0.597, p < 0.05). These findings suggest that edge based controllability captures circuit level properties relevant to treatment response and may inform personalized neuromodulation strategies.",
+      "authors": [
+        "Dey, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.11.737986v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "depression treatment response with rTMS and network control theory",
+      "llm_evidence_cn": "抑郁症治疗反应与网络控制理论",
+      "llm_evidence": "抑郁症治疗反应与网络控制理论",
+      "canonical_evidence": "抑郁症治疗反应与网络控制理论",
+      "llm_tldr_en": "Using edge controllability of structural connectome to predict rTMS response in depression, finding brain network edge properties associated with treatment outcomes.",
+      "llm_tldr_cn": "该论文探讨了结构脑网络的边缘可控性是否与重复经颅磁刺激（rTMS）治疗抑郁症的效果相关。对25名难治性抑郁症患者进行弥散MRI扫描，基于网络控制理论计算边缘可控性指标，发现其与治疗反应显著关联，为预测rTMS疗效提供了新的脑网络生物标志物。",
+      "llm_tldr": "该论文探讨了结构脑网络的边缘可控性是否与重复经颅磁刺激（rTMS）治疗抑郁症的效果相关。对25名难治性抑郁症患者进行弥散MRI扫描，基于网络控制理论计算边缘可控性指标，发现其与治疗反应显著关联，为预测rTMS疗效提供了新的脑网络生物标志物。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-15-738746-v1",
+      "source": "biorxiv",
+      "title": "Estimating trial-wise modulation of functional connectivity using event-related fMRI",
+      "abstract": "Understanding the neural basis of human cognition requires measuring not only localized brain activity but also how functional interactions between brain regions change in response to different cognitive demands. Event-related fMRI is an efficient design for linking trial-wise behavioral and computational variables to brain activity, but comparable methods for examining their effects on functional connectivity remain limited. Here, we develop beta-PPI (beta-series psychophysiological interaction), a method that leverages single-trial response estimates from even-related fMRI to quantify how trial-wise variables modulate functional connectivity. This task-based functional connectivity method provides a flexible approach for studying functional connectivity for event-related fMRI designs. We evaluated beta-PPI using comprehensive simulations across several experimental conditions and signal qualities. Beta-PPI can sensitively detect ground-truth effects and exhibited good parameter recovery. Compared with generalized psychophysiological interaction, beta-PPI achieved comparable performance across most conditions while demonstrating improved statistical power under lower signal-to-noise conditions. We further validated beta-PPI using empirical event-related fMRI data. Distinct trial-wise cognitive variables selectively modulated functional connectivity during their corresponding trial epochs, demonstrating the temporal specificity and flexibility of the approach. By testing how trial-wise variables modulate functional connectivity, beta-PPI extends task-based connectivity analysis to model-based fMRI and provides a common single-trial framework that could facilitate the integration of connectivity, activation, and representational analyses in event38 related fMRI.",
+      "authors": [
+        "Hwang, K.",
+        "Stokes, S. E.",
+        "Leach, S. C.",
+        "Jiang, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.15.738746v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Event-related fMRI functional connectivity method",
+      "llm_evidence_cn": "事件相关fMRI功能连接方法",
+      "llm_evidence": "事件相关fMRI功能连接方法",
+      "canonical_evidence": "事件相关fMRI功能连接方法",
+      "llm_tldr_en": "Develops beta-PPI to estimate trial-wise modulation of functional connectivity from event-related fMRI.",
+      "llm_tldr_cn": "理解认知的神经基础需要测量脑区间的动态功能交互。针对事件相关fMRI设计，当前缺乏量化单试次变量对功能连接调制的方法。本研究提出beta-PPI方法，利用单试次响应估计量分析功能连接的变化。该方法灵活且适用于多种认知范式，为fMRI研究中探究情绪调节和心理健康的功能连接标志物提供了新工具。",
+      "llm_tldr": "理解认知的神经基础需要测量脑区间的动态功能交互。针对事件相关fMRI设计，当前缺乏量化单试次变量对功能连接调制的方法。本研究提出beta-PPI方法，利用单试次响应估计量分析功能连接的变化。该方法灵活且适用于多种认知范式，为fMRI研究中探究情绪调节和心理健康的功能连接标志物提供了新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

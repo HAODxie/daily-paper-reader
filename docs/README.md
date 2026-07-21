@@ -6,68 +6,62 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-20
-- 运行时间：2026-07-20 20:50:52 UTC
+- 最新运行日期：2026-07-21
+- 运行时间：2026-07-21 20:35:00 UTC
 - 运行状态：成功
-- 本次总论文数：16
+- 本次总论文数：14
 - 精读区：6
-- 速读区：10
+- 速读区：8
 
 ### 今日简报（AI）
-今日聚焦脑机接口、睡眠EEG分类与神经动力学建模，精读两篇9分论文分别探索安全辅助操作中的决策共享自主系统及深度学习睡眠呼吸暂停分类。最值得关注的方向是EEG-EMG-眼动多模态融合提升辅助安全性，以及深度学习在睡眠障碍诊断中的高精度应用。普通读者可进一步了解多模态脑机接口在康复和日常辅助中的落地进展。
-- 详情：[/202607/20/README](/202607/20/README)
+今日日报共收录14篇论文，精读6篇，速读8篇，重点聚焦脑机接口与心理健康交叉领域。最值得关注的两项研究：通过脑电图编码探究语言模型的类人预测行为（9.0分），以及利用智能手机被动感知筛查产后抑郁风险（9.0分）。建议普通读者优先了解基于日常设备信号进行心理健康评估的前沿方向。
+- 详情：[/202607/21/README](/202607/21/README)
 
 ### 精读区论文标签
-1. [NeuroCommitSSM: Decision-Centric Shared Autonomy for Safe Assistive Manipulation via EEG-EMG-ET Commit Readiness](/202607/20/2607.15395v1-neurocommitssm-decision-centric-shared-autonomy-for-safe-assistive-manipulation-via-eeg-emg-et-commit-readiness)  
+1. [Encoding EEG Signals to Examine Human-Like Next-Word Prediction Behaviour in Language Models](/202607/21/2607.16549v1-encoding-eeg-signals-to-examine-human-like-next-word-prediction-behaviour-in-language-models)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于EEG-EMG-ET的脑机接口辅助操作
-2. [Deep Learning Approaches for Sleep Apnea Classification from Polysomnographic EEG Signals](/202607/20/2607.15477v1-deep-learning-approaches-for-sleep-apnea-classification-from-polysomnographic-eeg-signals)  
+   evidence：使用EEG信号检查语言模型的下一词预测行为
+2. [PocketPPD: Screening for Postpartum Depression Risk Using Passive Smartphone Sensing](/202607/21/2607.17185v1-pocketppd-screening-for-postpartum-depression-risk-using-passive-smartphone-sensing)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用深度学习对多导睡眠图中的EEG信号进行睡眠呼吸暂停分类
-3. [Physiological Prior-Driven Label Enhancement for Cross-Subject EEG Emotion Recognition](/202607/20/2607.15566v1-physiological-prior-driven-label-enhancement-for-cross-subject-eeg-emotion-recognition)  
+   evidence：被动智能手机感知用于产后抑郁症筛查
+3. [Efficient Sequential Evaluation of Large Language Models](/202607/21/2607.17409v1-efficient-sequential-evaluation-of-large-language-models)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于生理先验的EEG情绪识别
-4. [Large-Scale Assessment of Language, Speech, and Movement in Autism and ADHD with AI](/202607/20/biorxiv-10-1101-2025-10-20-682864-v3-large-scale-assessment-of-language-speech-and-movement-in-autism-and-adhd-with-ai)  
+   evidence：大语言模型的顺序评估
+4. [Exploring Brain Networks Using Noninvasive Electrophysiological Measurements: Methods and Applications](/202607/21/2607.17602v1-exploring-brain-networks-using-noninvasive-electrophysiological-measurements-methods-and-applications)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：自闭症、ADHD、心理健康、AI行为分析
-5. [VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase](/202607/20/biorxiv-10-64898-2026-06-16-732577-v2-vfb-mcp-natural-language-access-to-drosophila-neuroscience-grounded-by-an-expert-curated-ontology-led-knowledgebase)  
+   evidence：EEG/MEG脑网络分析方法综述
+5. [Differentiable Logic Gate Networks for Low-Latency EEG Classification on Edge Devices](/202607/21/2607.18149v1-differentiable-logic-gate-networks-for-low-latency-eeg-classification-on-edge-devices)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：大语言模型用于神经科学数据库自然语言访问
-6. [BrainPilot: Automating Brain Discovery with Agentic Research](/202607/20/2607.15079v2-brainpilot-automating-brain-discovery-with-agentic-research)  
+   evidence：基于EEG的情绪识别和痴呆检测，使用可微分逻辑门网络
+6. [Beyond Parallel Tracking: Interactive Multi-Feature Fusion Drives Semantic Reconstruction from Non-invasive Brain Recordings](/202607/21/2607.12071v2-beyond-parallel-tracking-interactive-multi-feature-fusion-drives-semantic-reconstruction-from-non-invasive-brain-recordings)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：可能利用大型语言模型的大脑发现AI代理
+   evidence：基于非侵入性脑记录的语义重建用于脑机接口
 
 ### 速读区论文标签
-1. [Exploring Neural Signatures of Self-Initiated Saccadic and Blink Events in the Real World](/202607/20/biorxiv-10-64898-2026-07-13-737665-v1-exploring-neural-signatures-of-self-initiated-saccadic-and-blink-events-in-the-real-world)  
+1. [Efficient EEG Seizure Detection Using INT8 Quantization, Channel Pruning, and Spiking Neural Networks](/202607/21/2607.16296v1-efficient-eeg-seizure-detection-using-int8-quantization-channel-pruning-and-spiking-neural-networks)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：移动EEG和眼动追踪研究自然视觉中的扫视和眨眼
-2. [From Hodgkin-Huxley to Pretrained Neural Inference AI](/202607/20/biorxiv-10-64898-2026-07-13-738120-v1-from-hodgkin-huxley-to-pretrained-neural-inference-ai)  
+   evidence：使用深度学习和效率技术的脑电癫痫检测
+2. [SpEmoC: A Balanced Speaker-Segment Multimodal Emotion Benchmark](/202607/21/2607.18109v1-spemoc-a-balanced-speaker-segment-multimodal-emotion-benchmark)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：预训练神经网络用于神经推断
-3. [Excitatory delay-coupling explains in-phase and antiphase functional connectivity](/202607/20/biorxiv-10-64898-2026-07-17-739148-v2-excitatory-delay-coupling-explains-in-phase-and-antiphase-functional-connectivity)  
+   evidence：用于心理健康监测的多模态情绪基准
+3. [Edge controllability is associated with treatment response to repetitive transcranial magnetic stimulation in depression.](/202607/21/biorxiv-10-64898-2026-07-11-737986-v2-edge-controllability-is-associated-with-treatment-response-to-repetitive-transcranial-magnetic-stimulation-in-depression)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：对头皮EEG数据的相位聚类和延迟耦合分析
-4. [Causal Supervision of Attention for Affective Behaviour Analysis](/202607/20/2607.12091v3-causal-supervision-of-attention-for-affective-behaviour-analysis)  
+   evidence：抑郁症治疗反应与网络控制理论
+4. [Estimating trial-wise modulation of functional connectivity using event-related fMRI](/202607/21/biorxiv-10-64898-2026-07-15-738746-v1-estimating-trial-wise-modulation-of-functional-connectivity-using-event-related-fmri)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：事件相关fMRI功能连接方法
+5. [It Depends on the Dataset: When a Brain-Encoding Model's Predicted Responses Beat Their Visual Backbone for Video Memorability](/202607/21/2607.16292v1-it-depends-on-the-dataset-when-a-brain-encoding-models-predicted-responses-beat-their-visual-backbone-for-video-memorability)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：提出因果监督注意力进行情感行为分析，包括价值-唤醒估计和表情识别
-5. [Toward a mechanistic understanding of inference in visual cortex and diffusion models](/202607/20/2607.15693v1-toward-a-mechanistic-understanding-of-inference-in-visual-cortex-and-diffusion-models)  
+   evidence：评估脑编码基础模型预测fMRI响应，并用于视频记忆性预测
+6. [Brainana: an end-to-end preprocessing framework for macaque neuroimaging](/202607/21/biorxiv-10-64898-2026-06-03-729972-v2-brainana-an-end-to-end-preprocessing-framework-for-macaque-neuroimaging)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：视觉皮层推理的深度学习模型、扩散模型
-6. [The Earliest Impressions: A Systematic Review of Early-Life Exposures on Brain Structure and Neurodevelopmental Outcomes](/202607/20/biorxiv-10-64898-2026-07-09-737480-v1-the-earliest-impressions-a-systematic-review-of-early-life-exposures-on-brain-structure-and-neurodevelopmental-outcomes)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：系统综述早期生活暴露对大脑结构和心理健康的影响
-7. [The Q1K Integrated EEG and Eye-Tracking Experimental Test Battery for Open Autism Science](/202607/20/biorxiv-10-64898-2026-07-13-738272-v1-the-q1k-integrated-eeg-and-eye-tracking-experimental-test-battery-for-open-autism-science)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：集成EEG和眼动追踪的测试套件用于自闭症研究
-8. [Region-Specific Delta and Alpha2 Relative Power Alterations in Male Adolescent Schizophrenia: Occipital Predominance in Resting-State EEG](/202607/20/biorxiv-10-64898-2026-07-14-738386-v1-region-specific-delta-and-alpha2-relative-power-alterations-in-male-adolescent-schizophrenia-occipital-predominance-in-resting-state-eeg)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：青少年精神分裂症静息态EEG分析用于心理健康研究
-9. [Selective convergence and graded divergence of hippocampal and amygdala subregions using functional connectivity](/202607/20/biorxiv-10-64898-2026-07-06-736898-v2-selective-convergence-and-graded-divergence-of-hippocampal-and-amygdala-subregions-using-functional-connectivity)  
+   evidence：深度学习用于猕猴神经影像预处理
+7. [Normalization accounts for temporal dynamics in human somatosensory cortex](/202607/21/biorxiv-10-64898-2026-05-10-724117-v2-normalization-accounts-for-temporal-dynamics-in-human-somatosensory-cortex)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：利用功能连接分析海马和杏仁核亚区与情绪调节的关系
-10. [A geometric and dynamical theory of latent computations in biological neural networks](/202607/20/biorxiv-10-64898-2026-07-10-737763-v1-a-geometric-and-dynamical-theory-of-latent-computations-in-biological-neural-networks)  
+   evidence：使用fMRI和iEEG通过分割归一化模型研究时间动态
+8. [Fixation-evoked potentials reveal neural signatures of hierarchical belief-updating during decision-making](/202607/21/biorxiv-10-64898-2026-07-15-738682-v1-fixation-evoked-potentials-reveal-neural-signatures-of-hierarchical-belief-updating-during-decision-making)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：生物神经网络中潜在计算的理论框架
+   evidence：EEG注视诱发电位揭示信念更新的神经特征
 
 
 <div class="dpr-home-promo-card">
