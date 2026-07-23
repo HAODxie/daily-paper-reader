@@ -6,68 +6,61 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-22
-- 运行时间：2026-07-22 21:32:44 UTC
+- 最新运行日期：2026-07-23
+- 运行时间：2026-07-23 21:13:28 UTC
 - 运行状态：成功
-- 本次总论文数：16
+- 本次总论文数：13
 - 精读区：6
-- 速读区：10
+- 速读区：7
 
 ### 今日简报（AI）
-今日AI与脑科学交叉领域研究热度高，共处理16篇论文，重点精读EEG动态情感预测与文本生成可行性分析。最值得关注的是基于峰值引导的脑电情感轨迹建模（9.0分）以及真实场景下EEG到文本翻译的神经心理学基准测试（9.0分），后者直接挑战了当前脑解码的实用性瓶颈。建议普通读者优先精读这两篇高分文献，理解脑电信号在情感预测与语义解码中的最新突破。
-- 详情：[/202607/22/README](/202607/22/README)
+今日13篇论文精读6篇，重点关注大语言模型卷积新架构与脑瘫儿童BCI快速校准两大突破。  
+最值得深入的是《Convolution for Large Language Models》（9.0/10）提出的卷积替代注意力机制，以及《Enabling Rapid Calibration of BCI Systems》（9.0/10）实现脑瘫儿童脑电信号实时校准。  
+普通读者建议：优先阅读这两篇高分论文，前者可能改变LLM底层计算范式，后者展示了BCI在临床康复中的实用前景。
+- 详情：[/202607/23/README](/202607/23/README)
 
 ### 精读区论文标签
-1. [PeakFlow: Peak-Guided Coarse-to-Refined Modeling for EEG-Based Dynamic Affective Trajectory Prediction](/202607/22/2607.18671v1-peakflow-peak-guided-coarse-to-refined-modeling-for-eeg-based-dynamic-affective-trajectory-prediction)  
+1. [Convolution for Large Language Models](/202607/23/2607.18413v1-convolution-for-large-language-models)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于EEG的动态情感轨迹预测深度学习框架
-2. [Is EEG-to-Text Feasible in Real-World Scenarios? An In-Depth Analysis Using a Neuropsychology-Inspired Benchmark](/202607/22/2607.18749v1-is-eeg-to-text-feasible-in-real-world-scenarios-an-in-depth-analysis-using-a-neuropsychology-inspired-benchmark)  
+   evidence：用深度可分离卷积改进大语言模型
+2. [Enabling Rapid Calibration of BCI Systems that Detect Movement-Related Cortical Potentials in Children with Cerebral Palsy](/202607/23/2607.19417v1-enabling-rapid-calibration-of-bci-systems-that-detect-movement-related-cortical-potentials-in-children-with-cerebral-palsy)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑电解码文本用于脑机接口
-3. [Visual Semantic Decoding of Electrocorticography from Video Stimuli using End-to-End Deep Learning](/202607/22/2607.18923v1-visual-semantic-decoding-of-electrocorticography-from-video-stimuli-using-end-to-end-deep-learning)  
+   evidence：使用深度学习的脑机接口系统用于脑瘫儿童运动检测
+3. [How Far Can Wearable-Compatible Signals Go? A Controlled Decomposition of Non-EEG Sleep Staging](/202607/23/2607.19441v1-how-far-can-wearable-compatible-signals-go-a-controlled-decomposition-of-non-eeg-sleep-staging)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于ECoG的视觉语义解码，直接涉及脑机接口技术
-4. [FSDBN: Foreground-Aware EEG--Visual Alignment via Dynamic Brain Networks](/202607/22/2607.18344v1-fsdbn-foreground-aware-eeg--visual-alignment-via-dynamic-brain-networks)  
+   evidence：基于可穿戴非脑电信号的睡眠分期可控分解研究
+4. [Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement](/202607/23/2607.20142v1-real-time-eeg-cap-electrode-detection-for-guided-point-of-care-placement)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：实时检测脑电电极帽电极位置，辅助放置验证
+5. [BrainNext: A General-Purpose Self-Supervised Foundation Model for Brain MRI Analysis](/202607/23/2607.17782v1-brainnext-a-general-purpose-self-supervised-foundation-model-for-brain-mri-analysis)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：动态脑网络用于脑电解码视觉信号
-5. [AMICA-Python: Adaptive Mixture Independent Component Analysis with Anderson Acceleration](/202607/22/2607.18568v1-amica-python-adaptive-mixture-independent-component-analysis-with-anderson-acceleration)  
+   evidence：脑MRI自监督基础模型
+6. [FSDBN: Foreground-Aware EEG-Visual Alignment via Dynamic Brain Networks](/202607/23/2607.18344v2-fsdbn-foreground-aware-eeg-visual-alignment-via-dynamic-brain-networks)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：AMICA的Python实现，用于EEG盲源分离
-6. [End-to-End Markov State Sequence Learning for Auditory Attention Decoding](/202607/22/2607.18614v1-end-to-end-markov-state-sequence-learning-for-auditory-attention-decoding)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：使用条件随机场进行基于脑电的听觉注意力解码，用于神经助听器
+   evidence：基于动态脑网络的脑电解码视觉语义
 
 ### 速读区论文标签
-1. [Spiking Neural Networks for fMRI-Based Visual Semantic Decoding](/202607/22/2607.19170v1-spiking-neural-networks-for-fmri-based-visual-semantic-decoding)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：使用脉冲神经网络进行基于fMRI的视觉解码
-2. [Region-Specific Delta and Alpha2 Relative Power Alterations in Male Adolescent Schizophrenia: Occipital Predominance in Resting-State EEG](/202607/22/biorxiv-10-64898-2026-07-14-738386-v2-region-specific-delta-and-alpha2-relative-power-alterations-in-male-adolescent-schizophrenia-occipital-predominance-in-resting-state-eeg)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：青少年精神分裂症的脑电分析（心理健康）
-3. [Decoding EEG Signals to Explore Next-Word Predictability in the Human Brain](/202607/22/2607.18321v1-decoding-eeg-signals-to-explore-next-word-predictability-in-the-human-brain)  
+1. [AffectFuse: Cross-Task Feature Fusion with Temporal Modeling for Multi-Task Affective Behavior Analysis](/202607/23/2607.16546v1-affectfuse-cross-task-feature-fusion-with-temporal-modeling-for-multi-task-affective-behavior-analysis)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：解码脑电信号研究下一词可预测性
-4. [Addressing Limited Data in Auditory Attention Decoding with Diffusion Generative Models](/202607/22/2607.18345v1-addressing-limited-data-in-auditory-attention-decoding-with-diffusion-generative-models)  
+   evidence：多任务情感行为分析，用于情绪识别，与心理健康相关
+2. [Adaptive Multi-Expert Graph Transformer for Interpretable EEG-Based Diagnostics](/202607/23/2607.19429v1-adaptive-multi-expert-graph-transformer-for-interpretable-eeg-based-diagnostics)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：使用扩散模型生成合成EEG数据用于听觉注意解码
-5. [Multisensory coding of audiovisual movies in the human hippocampus](/202607/22/biorxiv-10-64898-2026-03-01-708855-v4-multisensory-coding-of-audiovisual-movies-in-the-human-hippocampus)  
+   evidence：深度学习用于基于EEG的诊断，使用图Transformer
+3. [A Unified Tokenization Framework for Pain Recognition using Heterogeneous 3D Modalities](/202607/23/2607.19716v1-a-unified-tokenization-framework-for-pain-recognition-using-heterogeneous-3d-modalities)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：fMRI研究人脑海马的多感觉编码
-6. [Large-scale population neuroimaging reveals latent subgroup structure in functional brain organisation](/202607/22/biorxiv-10-64898-2026-07-17-739129-v1-large-scale-population-neuroimaging-reveals-latent-subgroup-structure-in-functional-brain-organisation)  
+   evidence：多模态3D疼痛识别统一令牌化
+4. [Can the heartbeat-evoked potential (HEP) be separated from Cardiac Artefact (CA) using beamforming?](/202607/23/biorxiv-10-64898-2026-07-11-737958-v1-can-the-heartbeat-evoked-potential-hep-be-separated-from-cardiac-artefact-ca-using-beamforming)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：大规模fMRI发现脑功能组织的潜在亚群结构
-7. [Explainable Lightweight Compact Deep Models for Speech Emotion Recognition](/202607/22/2607.16803v1-explainable-lightweight-compact-deep-models-for-speech-emotion-recognition)  
+   evidence：EEG波束成形分离心跳诱发电位
+5. [Canonical Correlation Analysis and Multi-Channel Cardiography Improve Artefact Cleaning in Heartbeat-Locked Analyses](/202607/23/biorxiv-10-64898-2026-07-14-738519-v1-canonical-correlation-analysis-and-multi-channel-cardiography-improve-artefact-cleaning-in-heartbeat-locked-analyses)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：脑电伪迹清理方法
+6. [EII-SCL: Harnessing Emotional Inertia for Multimodal Emotion Recognition in Conversation](/202607/23/2607.17366v1-eii-scl-harnessing-emotional-inertia-for-multimodal-emotion-recognition-in-conversation)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：深度学习用于情感识别，紧凑模型
-8. [Associative Emotional Learning in Convolutional Neural Networks](/202607/22/2607.19327v1-associative-emotional-learning-in-convolutional-neural-networks)  
+   evidence：面向心理健康监测的对话多模态情感识别
+7. [Capturing Inner Experience At Scale: An AI Interviewer Co-Developed with the Founder of a Landmark Phenomenological Method](/202607/23/2607.20310v1-capturing-inner-experience-at-scale-an-ai-interviewer-co-developed-with-the-founder-of-a-landmark-phenomenological-method)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：深度神经网络用于情感学习
-9. [Using large language models for enhancing accessibility for Monte Carlo photon transport simulations and beyond](/202607/22/biorxiv-10-64898-2026-07-20-738933-v1-using-large-language-models-for-enhancing-accessibility-for-monte-carlo-photon-transport-simulations-and-beyond)  
-   标签：评分：6.0/10、query:neuro-mental
-   evidence：利用大语言模型增强研究模拟软件的可访问性
-10. [Linguistic structure and probability are jointly encoded in high gamma power](/202607/22/biorxiv-10-64898-2026-07-21-739808-v1-linguistic-structure-and-probability-are-jointly-encoded-in-high-gamma-power)  
-   标签：评分：6.0/10、query:neuro-mental
-   evidence：利用大语言模型的出现来激励大脑语言表征的研究
+   evidence：使用基于大语言模型的AI访谈者扩展定性心理学研究，与心理健康研究相关
 
 
 <div class="dpr-home-promo-card">

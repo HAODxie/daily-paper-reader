@@ -1,0 +1,529 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-23T21:05:16.738206+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 6,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.18413v1",
+      "source": "arxiv",
+      "title": "Convolution for Large Language Models",
+      "abstract": "Large language models (LLMs) largely rely on Transformers, where self-attention provides global token interaction but does not explicitly encode the locality of natural language. We study whether lightweight depthwise convolutions can supply this local inductive bias without materially increasing model size. Our macro-level ablation compares convolution at 17 locations in a Qwen3 Transformer block and finds the best results when convolution is applied to the projected queries, keys, and values before attention. A subsequent micro-level study favors a residual depthwise convolution with kernel size $k=3$, without additional normalization or activation. Across Qwen3 models and several pre-training data budgets, this design improves the average accuracy on seven downstream benchmarks while adding less than $0.01\\%$ parameters. A representation-level case study further suggests that the convolution makes repeated token IDs more sensitive to their immediate context. These results support depthwise convolution as a lightweight complement to self-attention for modeling short-range token interactions.",
+      "authors": [
+        "Yuchuan Tian",
+        "Yingte Shu",
+        "Wei He",
+        "Shuo Zhang",
+        "Tianchen Zhao",
+        "Chao Xu",
+        "Xinghao Chen",
+        "Yunhe Wang",
+        "Hanting Chen",
+        "Yu Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-20T18:02:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.18413v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "improving LLMs with depthwise convolutions",
+      "llm_evidence_cn": "用深度可分离卷积改进大语言模型",
+      "llm_evidence": "用深度可分离卷积改进大语言模型",
+      "canonical_evidence": "用深度可分离卷积改进大语言模型",
+      "llm_tldr_en": "Introduces lightweight depthwise convolutions into Transformer-based LLMs to provide local inductive bias without increasing model size, improving average accuracy on downstream benchmarks.",
+      "llm_tldr_cn": "针对大语言模型（LLM）依赖Transformer而缺乏局部归纳偏置的问题，本文在Qwen3模型中引入轻量深度可分离卷积。通过宏微观消融实验确定最佳位置（QKV投影后）和核大小（k=3），在不显著增加模型规模的情况下提升了七个下游基准的平均准确率。",
+      "llm_tldr": "针对大语言模型（LLM）依赖Transformer而缺乏局部归纳偏置的问题，本文在Qwen3模型中引入轻量深度可分离卷积。通过宏微观消融实验确定最佳位置（QKV投影后）和核大小（k=3），在不显著增加模型规模的情况下提升了七个下游基准的平均准确率。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.19417v1",
+      "source": "arxiv",
+      "title": "Enabling Rapid Calibration of BCI Systems that Detect Movement-Related Cortical Potentials in Children with Cerebral Palsy",
+      "abstract": "Brain-computer interface neurofeedback (BCI-NFT) has shown promise for neuromotor rehabilitation, but its clinical adoption -- particularly in pediatric populations -- remains limited in part by the lengthy calibration required before each therapy session. This study developed and evaluated a deep-learning framework to reduce calibration requirements for movement-related cortical potential (MRCP)-based movement-intention detection in children with cerebral palsy (CP). Electroencephalography (EEG) was collected during repeated ankle dorsiflexion tasks across 27 sessions in four children with CP. A bidirectional long short-term memory (Bi-LSTM) network was evaluated using seven training strategies, ranging from conventional within-session calibration to cumulative cross-subject learning and transfer learning. Cross-subject cumulative learning achieved 91\\% accuracy without within-session calibration, while the addition of transfer learning increased accuracy to 93\\% with minimal within-session calibration. Both approaches significantly outperformed conventional calibration strategies and achieved the highest F1-scores and receiver operating characteristic (ROC) performance, demonstrating robust generalization across sessions and participants. These findings show that cumulative learning and transfer learning can substantially reduce calibration requirements while maintaining high decoding performance, supporting the development of clinically practical MRCP-based pediatric BCI systems",
+      "authors": [
+        "R. Saadatyar",
+        "D. Damiano",
+        "A. Behboodi"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "eess.SP"
+      ],
+      "published": "2026-07-18T23:13:04+00:00",
+      "link": "https://arxiv.org/pdf/2607.19417v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "BCI system for movement detection in children with CP using deep learning",
+      "llm_evidence_cn": "使用深度学习的脑机接口系统用于脑瘫儿童运动检测",
+      "llm_evidence": "使用深度学习的脑机接口系统用于脑瘫儿童运动检测",
+      "canonical_evidence": "使用深度学习的脑机接口系统用于脑瘫儿童运动检测",
+      "llm_tldr_en": "Developed a deep-learning framework (Bi-LSTM) to reduce calibration for MRCP-based BCI in children with cerebral palsy, evaluated on EEG from 27 sessions.",
+      "llm_tldr_cn": "针对脑瘫儿童脑机接口康复训练校准时间过长的问题，提出基于双向长短期记忆网络的深度学习框架，利用踝背屈任务收集的脑电图数据，通过七种训练策略减少运动相关皮层电位检测所需的校准时间。实验结果显示该框架能显著提升校准效率，为临床儿科BCI快速部署提供了可行方案。",
+      "llm_tldr": "针对脑瘫儿童脑机接口康复训练校准时间过长的问题，提出基于双向长短期记忆网络的深度学习框架，利用踝背屈任务收集的脑电图数据，通过七种训练策略减少运动相关皮层电位检测所需的校准时间。实验结果显示该框架能显著提升校准效率，为临床儿科BCI快速部署提供了可行方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.19441v1",
+      "source": "arxiv",
+      "title": "How Far Can Wearable-Compatible Signals Go? A Controlled Decomposition of Non-EEG Sleep Staging",
+      "abstract": "Consumer wearables increasingly infer sleep stages from signals including heart rate, accelerometry, and photoplethysmography. However, existing studies often report end-to-end performance under a fixed signal setting, making it difficult to determine whether the observed performance comes from genuine physiological decoding, temporal priors, or dataset-specific confounds. To address this limitation, we introduce a four-layer controlled decomposition framework for non-EEG sleep staging, covering signal source, physiological representation, temporal prior, and decision layers. The framework is evaluated across a signal-quality ladder spanning Apple Watch Sleep-Accel ($N=31$), the Sleep Heart Health Study ($N=195$, laboratory ECG, respiratory, and SpO$_2$ signals), and Sleep-EDF-20 as an EEG+EOG reference, using the same compact Mamba2 model throughout. Laboratory cardiorespiratory signals reach $κ=0.492$, while EEG+EOG reaches $κ=0.796$, leaving a residual gap of $Δκ=+0.304$ that reflects missing cortical information rather than temporal modeling alone. Consumer HR/ACC reaches only $κ=0.255$, quantifying the additional penalty of derived wearable signals and real-world sensing constraints. Confidence-based abstention provides a calibrated operating mode: removing the 20% lowest-confidence epochs increases $κ$ from $0.452$ to $0.512$, while a label-shuffled control collapses to $κ=-0.003$. These results support non-EEG sleep staging as coarse, confidence-aware sleep-structure monitoring rather than EEG-equivalent five-class clinical staging.",
+      "authors": [
+        "Yi Wang"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-21T08:41:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.19441v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Controlled decomposition of non-EEG sleep staging from wearables",
+      "llm_evidence_cn": "基于可穿戴非脑电信号的睡眠分期可控分解研究",
+      "llm_evidence": "基于可穿戴非脑电信号的睡眠分期可控分解研究",
+      "canonical_evidence": "基于可穿戴非脑电信号的睡眠分期可控分解研究",
+      "llm_tldr_en": "A four-layer decomposition framework isolates genuine physiological contributions in non-EEG sleep staging from wearables, revealing performance sources and confounds across multiple datasets.",
+      "llm_tldr_cn": "可穿戴设备常利用心率、加速度等信号推断睡眠分期，但性能来源不明。该研究提出四层可控分解框架，覆盖信号源、生理表征、时间先验和决策层，在Apple Watch和睡眠心脏健康研究等多个数据集上评估，揭示了各层贡献及潜在混淆因素，为非脑电睡眠分期提供了可解释的分析工具。",
+      "llm_tldr": "可穿戴设备常利用心率、加速度等信号推断睡眠分期，但性能来源不明。该研究提出四层可控分解框架，覆盖信号源、生理表征、时间先验和决策层，在Apple Watch和睡眠心脏健康研究等多个数据集上评估，揭示了各层贡献及潜在混淆因素，为非脑电睡眠分期提供了可解释的分析工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20142v1",
+      "source": "arxiv",
+      "title": "Real-Time EEG Cap Electrode Detection for Guided Point-of-Care Placement",
+      "abstract": "We present a two-stage vision system that detects EEG cap electrodes in a live webcam stream and validates their anatomical placement in real time. A single-class YOLO detector localises electrodes; a geometric stage assigns each detection to a named 10-20 role from facial landmarks. Evaluating under subject-disjoint leave-one-subject-out (LOSO) cross-validation across five subjects wearing the clinically-validated Small/Medium/Large caps, the detector attains mAP@.5 = 0.94 +/- 0.07 across five held-out folds (0.96 pooled). A dedicated leave-one-cap-out axis, holding out every frame of a cap regardless of subject, leaves Medium and Large mAP@.5 within 0.01 of LOSO (0.97, 0.97) while Small drops to 0.72 +/- 0.28, a gap confounded with subject familiarity rather than cap style. Geometric augmentation (rotation, perspective, mixup) improves in-plane-roll robustness and temporal-electrode recall at no inference cost, and a landmark-driven head crop extends the usable distance range, lifting mAP@.5 from 0.23 to 0.45 at 0.6 x apparent scale. A compact mobile-candidate backbone (YOLOv10n) keeps the detector at real-time throughput (19 FPS) on a commodity CPU at 640 px.",
+      "authors": [
+        "William Lehn-Schiøler",
+        "Mads Sverker Nilsson",
+        "Nicki Skafte Detlefsen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "eess.IV"
+      ],
+      "published": "2026-07-22T13:44:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.20142v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-time detection of EEG electrodes for placement validation",
+      "llm_evidence_cn": "实时检测脑电电极帽电极位置，辅助放置验证",
+      "llm_evidence": "实时检测脑电电极帽电极位置，辅助放置验证",
+      "canonical_evidence": "实时检测脑电电极帽电极位置，辅助放置验证",
+      "llm_tldr_en": "Presents a real-time vision system that detects EEG cap electrodes and validates their anatomical placement using YOLO and geometric assignment, achieving high mAP under subject-disjoint cross-validation.",
+      "llm_tldr_cn": "针对脑电电极帽放置需要实时验证的问题，本文提出两阶段视觉系统：先由YOLO检测电极，再通过几何分配将检测点对应到10-20系统位置。在留一受试者交叉验证下mAP@.5达0.94，为中大号帽型保持高精度，小号帽型略有下降。",
+      "llm_tldr": "针对脑电电极帽放置需要实时验证的问题，本文提出两阶段视觉系统：先由YOLO检测电极，再通过几何分配将检测点对应到10-20系统位置。在留一受试者交叉验证下mAP@.5达0.94，为中大号帽型保持高精度，小号帽型略有下降。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.17782v1",
+      "source": "arxiv",
+      "title": "BrainNext: A General-Purpose Self-Supervised Foundation Model for Brain MRI Analysis",
+      "abstract": "Foundation models pretrained using self-supervised learning have transformed computer vision by learning transferable representations from large-scale unlabeled data. However, existing foundation models for neuroimaging remain limited by task-specific training, slice-based learning strategies, or relatively small pretraining datasets, restricting their generalizability across diverse brain MRI applications. In this work, we present BrainNext, a general-purpose self-supervised foundation model for volumetric brain MRI analysis. BrainNext combines masked autoencoder (MAE) pretraining with a native three-dimensional Bi-Directional xLSTM-UNet architecture to learn rich anatomical representations from 60,551 unlabeled brain MRI examinations spanning multiple MRI modalities. The pretrained model is subsequently adapted to downstream tasks through lightweight task-specific fine-tuning. We evaluate BrainNext on the Foundation Models for Medical Imaging (FOMO) 2025 Method Track, encompassing classification, segmentation, and brain-age estimation, where it achieved second place overall and ranked first in the meningioma segmentation task on the official FOMO 2025 challenge leaderboard, demonstrating strong transferability across heterogeneous neuroimaging tasks. These results highlight the potential of large-scale self-supervised pretraining to learn robust and transferable volumetric representations, establishing BrainNext as a scalable foundation model for diverse brain MRI applications.",
+      "authors": [
+        "Moona Mazher",
+        "Abdul Qayyum",
+        "Steven A. Niederer",
+        "Daniel C. Alexander"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-20T10:15:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.17782v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Self-supervised foundation model for brain MRI",
+      "llm_evidence_cn": "脑MRI自监督基础模型",
+      "llm_evidence": "脑MRI自监督基础模型",
+      "canonical_evidence": "脑MRI自监督基础模型",
+      "llm_tldr_en": "Introduces BrainNext, a self-supervised foundation model using MAE and 3D Bi-Directional xLSTM-UNet, trained on 60,551 brain MRIs for general volumetric analysis.",
+      "llm_tldr_cn": "现有神经影像基础模型受限于任务特定训练和较小数据规模。本文提出BrainNext，结合掩码自编码器与三维双向xLSTM-UNet架构，在60551张无标签脑MRI上自监督预训练，学习丰富的解剖表征，可推广至多种脑MRI分析任务。",
+      "llm_tldr": "现有神经影像基础模型受限于任务特定训练和较小数据规模。本文提出BrainNext，结合掩码自编码器与三维双向xLSTM-UNet架构，在60551张无标签脑MRI上自监督预训练，学习丰富的解剖表征，可推广至多种脑MRI分析任务。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18344v2",
+      "source": "arxiv",
+      "title": "FSDBN: Foreground-Aware EEG-Visual Alignment via Dynamic Brain Networks",
+      "abstract": "EEG-based visual decoding provides a non-invasive pathway for interpreting visual semantics. However, existing methods often overlook the perceptual asymmetry between foreground and background in complex scenes, leading to background interference and semantic misalignment. EEG signals also exhibit rapid temporal dynamics and nonstationary spatial patterns, making it difficult to capture the time-varying brain connectivity associated with focal visual attention. To address these limitations, we propose FSDBN, a unified framework for robust EEG-visual decoding. FSDBN introduces Semantic-Consistent Saliency Alignment to separate semantically relevant foreground regions from background noise under joint saliency and semantic constraints. It further employs Semantic-Prior Dynamic Gating Foreground Fusion to adaptively regulate the contributions of foreground and background features. In parallel, EEG signals are modeled as adaptive spatiotemporal brain networks whose functional connectivity dynamically reorganizes to capture neural responses to salient foregrounds. Experiments on zero-shot brain-to-image retrieval demonstrate that FSDBN achieves 69.0 percent top-1 accuracy and 92.2 percent top-5 accuracy, outperforming previous state-of-the-art methods. Code is available at https://github.com/LiuYiheng1/FSDBN-EEG.",
+      "authors": [
+        "Yiheng Liu",
+        "Chuhang Zheng",
+        "Peiliang Gong",
+        "Jingtao Liu",
+        "Daoqiang Zhang",
+        "Qi Zhu"
+      ],
+      "primary_category": "eess.IV",
+      "categories": [
+        "eess.IV",
+        "cs.AI"
+      ],
+      "published": "2026-07-20T07:40:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.18344v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG-visual decoding with dynamic brain networks",
+      "llm_evidence_cn": "基于动态脑网络的脑电解码视觉语义",
+      "llm_evidence": "基于动态脑网络的脑电解码视觉语义",
+      "canonical_evidence": "基于动态脑网络的脑电解码视觉语义",
+      "llm_tldr_en": "Proposes FSDBN, a foreground-aware EEG-visual alignment framework using dynamic brain networks and salient alignment to improve visual decoding from EEG.",
+      "llm_tldr_cn": "针对脑电视觉解码中背景干扰和语义不对齐的问题，本文提出FSDBN框架。通过语义一致显著对齐分离前景与背景噪声，并利用动态脑网络捕获与视觉注意力相关的时变连接。实验表明该方法在多个数据集上优于现有技术。",
+      "llm_tldr": "针对脑电视觉解码中背景干扰和语义不对齐的问题，本文提出FSDBN框架。通过语义一致显著对齐分离前景与背景噪声，并利用动态脑网络捕获与视觉注意力相关的时变连接。实验表明该方法在多个数据集上优于现有技术。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.16546v1",
+      "source": "arxiv",
+      "title": "AffectFuse: Cross-Task Feature Fusion with Temporal Modeling for Multi-Task Affective Behavior Analysis",
+      "abstract": "Affective behavior recognition in the wild requires joint prediction of continuous valence-arousal, categorical facial expression, and multi-label action units from unconstrained face images. We present our system for the Multi-Task Learning (MTL) track of the 11th Affective Behavior Analysis in-the-wild (ABAW) competition on s-Aff-Wild2, the static selected-frame version of Aff-Wild2. The method focuses on post-encoder adaptation: frozen AffectNet-supervised backbones provide multi-resolution features, while task-specific temporal heads and cross-task fusion modules select the useful signals for each target. For action-unit recognition, we adapt MAE-Face with Low-Rank Adaptation (LoRA) and use DISFA through per-unit expert routing rather than direct sequential transfer. Ablations over backbone, temporal, fusion, and AU-adaptation choices define the final configuration. The final system obtains P = 1.7302 on the official validation split, showing that post-encoder adaptation and task-wise modeling choices provide a strong MTL pipeline without training a new large-scale face foundation model.",
+      "authors": [
+        "Dipit Saha",
+        "Mohammad Raihan Rashid",
+        "Shah Mohammad Abdul Mannan",
+        "Ahnaf Tahmid",
+        "Md. Mehedi Hasan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-17T22:44:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.16546v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multi-task affective behavior analysis for emotion recognition, relevant to mental health",
+      "llm_evidence_cn": "多任务情感行为分析，用于情绪识别，与心理健康相关",
+      "llm_evidence": "多任务情感行为分析，用于情绪识别，与心理健康相关",
+      "canonical_evidence": "多任务情感行为分析，用于情绪识别，与心理健康相关",
+      "llm_tldr_en": "AffectFuse proposes a cross-task feature fusion method for predicting valence-arousal, expression, and action units from face images, with applications in mental health.",
+      "llm_tldr_cn": "该论文针对野外情感行为识别，提出了跨任务特征融合与时间建模方法。利用预训练骨干网络和任务特定头，在ABAW竞赛的多任务学习任务上取得优异表现。该方法可应用于心理健康监测中的情绪感知。",
+      "llm_tldr": "该论文针对野外情感行为识别，提出了跨任务特征融合与时间建模方法。利用预训练骨干网络和任务特定头，在ABAW竞赛的多任务学习任务上取得优异表现。该方法可应用于心理健康监测中的情绪感知。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17366v1",
+      "source": "arxiv",
+      "title": "EII-SCL: Harnessing Emotional Inertia for Multimodal Emotion Recognition in Conversation",
+      "abstract": "Multimodal emotion recognition in conversation (MERC) achieves accurate predictions by integrating multimodal and contextual information in dialogues. While current MERC approaches focus on modeling complex contextual dependencies in conversation, they often overlook the impact of contextual emotional inertia in emotion shift, leading to sub-optimal performance. To address this issue, we propose a novel Emotional Inertia-Informed Supervised Contrastive Learning module (EII-SCL) that informs the contrastive objective by constructing inertia-affected samples within temporal windows, effectively leveraging emotional inertia as a prior while enabling seamless integration with existing MERC models without requiring additional data. Extensive experiments on IEMOCAP and MELD show that our approach consistently outperforms state-of-the-art methods.",
+      "authors": [
+        "Zilong Huang",
+        "Kong Aik Lee",
+        "Chong-Xin Gan",
+        "Zezhong Jin",
+        "Ruichen Zuo",
+        "Man-Wai Mak"
+      ],
+      "primary_category": "cs.MM",
+      "categories": [
+        "cs.MM",
+        "cs.CL",
+        "cs.HC",
+        "eess.SP"
+      ],
+      "published": "2026-07-19T18:09:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.17366v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multimodal emotion recognition in conversation for mental health monitoring",
+      "llm_evidence_cn": "面向心理健康监测的对话多模态情感识别",
+      "llm_evidence": "面向心理健康监测的对话多模态情感识别",
+      "canonical_evidence": "面向心理健康监测的对话多模态情感识别",
+      "llm_tldr_en": "Proposes EII-SCL, a supervised contrastive learning method incorporating emotional inertia for multimodal emotion recognition in conversation, improving performance.",
+      "llm_tldr_cn": "对话情感识别常忽略情感惯性对情感转移的影响。本文提出情感惯性指导的监督对比学习模块EII-SCL，通过构建时间窗口内的惯性影响样本来增强对比学习目标。该方法可无缝集成现有模型，在多个数据集上提升了情感识别准确率，尤其对情感转移场景有效。",
+      "llm_tldr": "对话情感识别常忽略情感惯性对情感转移的影响。本文提出情感惯性指导的监督对比学习模块EII-SCL，通过构建时间窗口内的惯性影响样本来增强对比学习目标。该方法可无缝集成现有模型，在多个数据集上提升了情感识别准确率，尤其对情感转移场景有效。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.19429v1",
+      "source": "arxiv",
+      "title": "Adaptive Multi-Expert Graph Transformer for Interpretable EEG-Based Diagnostics",
+      "abstract": "Electroencephalographic (EEG) abnormalities arise from dynamic changes in neural synchrony across spatial and temporal scales, yet many computational approaches reduce these dynamics to static features. We present a Spatial Multi-Expert Graph Transformer that models each EEG recording as a sequence of dynamic functional connectivity graphs. Time-resolved connectivity is estimated using the weighted Phase Lag Index (wPLI), and hierarchical graph encoding aggregates information from electrode to regional and global levels. A multi-expert transformer architecture enables subtype-aware reasoning, with a gating mechanism adaptively fusing expert outputs for global abnormality prediction. Experiments on the TUAB dataset show competitive abnormal EEG detection performance and demonstrate the potential of dynamic graph modeling with adaptive expert fusion for interpretable, subtype-aware spatial--temporal analysis.",
+      "authors": [
+        "Maryam Rahimimovassagh",
+        "Md Elias Hossain",
+        "Ivan Garibay",
+        "Niloofar Yousefi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-20T19:04:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.19429v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning for EEG-based diagnostics using graph transformer",
+      "llm_evidence_cn": "深度学习用于基于EEG的诊断，使用图Transformer",
+      "llm_evidence": "深度学习用于基于EEG的诊断，使用图Transformer",
+      "canonical_evidence": "深度学习用于基于EEG的诊断，使用图Transformer",
+      "llm_tldr_en": "Presents a Spatial Multi-Expert Graph Transformer that models EEG as dynamic functional connectivity graphs for interpretable abnormality prediction.",
+      "llm_tldr_cn": "针对EEG异常检测中静态特征忽略时空动态的局限，提出空间多专家图Transformer，将EEG记录建模为动态功能连接图序列，通过层次图编码和门控机制融合专家输出。在TUAB数据集上取得有竞争力的异常EEG检测性能，并提供亚型感知推理的可解释性。",
+      "llm_tldr": "针对EEG异常检测中静态特征忽略时空动态的局限，提出空间多专家图Transformer，将EEG记录建模为动态功能连接图序列，通过层次图编码和门控机制融合专家输出。在TUAB数据集上取得有竞争力的异常EEG检测性能，并提供亚型感知推理的可解释性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.20310v1",
+      "source": "arxiv",
+      "title": "Capturing Inner Experience At Scale: An AI Interviewer Co-Developed with the Founder of a Landmark Phenomenological Method",
+      "abstract": "Subjective experience is central to psychological science, yet methods for studying it force a choice between depth and scale. Classical Experience sampling, as in ecological momentary assessments (EMA), captures experience as it occurs, but it confines participants to predetermined response formats that prescribe how experience is measured. Descriptive Experience Sampling (DES) instead investigates specific moments in depth through expert expositional interviews, but its reliance on scarce trained interviewers keeps samples small. Large language model (LLM) systems can scale qualitative interviewing. Some models operationalize established interviewing methods such as motivational interviewing, yet none is grounded in a method for apprehending inner experience. Here we present an AI interviewer that aspires to operationalize DES into an explicit, inspectable reasoning architecture. At each turn it appraises the participant's message across eleven quality dimensions, maintains a conservative account of what has been established, selects a stage-appropriate intervention, and composes a single non-leading query, always holding that temporal grounding precedes experiential content. It was derived from the full corpus of DES transcripts and refined with the method's originator Russell T. Hurlburt. To our knowledge it is the first AI interviewer grounded in an established method for studying inner experience. The interviewer runs inside Introscope, an application that delivers the beeps and conducts the interviews and a study platform that lets researchers run studies via shareable links and review the sampled experience. It is demonstrated in an accompanying video https://introscope.mpib-berlin.mpg.de/video. Pending validation studies, we will make it freely available to researchers and the public, for crowdsourced sampling and individual exploration of inner experience.",
+      "authors": [
+        "Jona Carmon",
+        "Clara Bersch",
+        "Charles Fernyhough",
+        "Russell T. Hurlburt",
+        "Simone Kühn"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC"
+      ],
+      "published": "2026-07-22T15:56:49+00:00",
+      "link": "https://arxiv.org/pdf/2607.20310v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses LLM-based AI interviewer to scale qualitative psychological research, relevant to mental health studies",
+      "llm_evidence_cn": "使用基于大语言模型的AI访谈者扩展定性心理学研究，与心理健康研究相关",
+      "llm_evidence": "使用基于大语言模型的AI访谈者扩展定性心理学研究，与心理健康研究相关",
+      "canonical_evidence": "使用基于大语言模型的AI访谈者扩展定性心理学研究，与心理健康研究相关",
+      "llm_tldr_en": "This paper introduces an AI interviewer co-developed with the founder of Descriptive Experience Sampling to scale capture of inner experience, bridging depth and scale in psychological science, with potential for mental health applications.",
+      "llm_tldr_cn": "本研究与描述性体验抽样（DES）创始人合作，开发基于大语言模型的AI访谈者，能够大规模捕捉主观内在体验。该方法解决了传统心理学研究中深度与广度不可兼得的矛盾，为心理健康领域的经验采样提供了可扩展工具，但尚未直接应用于临床样本。",
+      "llm_tldr": "本研究与描述性体验抽样（DES）创始人合作，开发基于大语言模型的AI访谈者，能够大规模捕捉主观内在体验。该方法解决了传统心理学研究中深度与广度不可兼得的矛盾，为心理健康领域的经验采样提供了可扩展工具，但尚未直接应用于临床样本。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.19716v1",
+      "source": "arxiv",
+      "title": "A Unified Tokenization Framework for Pain Recognition using Heterogeneous 3D Modalities",
+      "abstract": "Pain is a complex and pervasive phenomenon affecting a large percentage of the population, and accurate assessment is essential for effective clinical management and intervention. Computational pain recognition systems enable continuous monitoring, support clinical decision-making, and help mitigate pain-related distress and functional decline. This study introduces a unified tokenization framework for heterogeneous 3D modalities in pain recognition that provides a single processing pipeline across behavioral and brain-activity 3D data, without requiring separate architectures for each modality or handcrafted inductive biases. The framework preserves spatial, temporal, and time--frequency structure while mapping diverse inputs into a shared token space. Extensive experiments show that the proposed approach effectively processes facial videos and fNIRS data in both raw-signal and spectrogram-based representations. On the AI4Pain benchmark dataset, the proposed framework achieves state-of-the-art performance while maintaining high computational efficiency and enabling real-time assessment on both GPU and CPU hardware.",
+      "authors": [
+        "Stefanos Gkikas",
+        "Christian Arzate Cruz",
+        "Valentina Becchetti",
+        "Muhammad Umar Khan",
+        "Alessandro Giuseppi",
+        "Raul Fernandez Rojas"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-22T03:35:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.19716v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "unified tokenization for multimodal 3D pain recognition",
+      "llm_evidence_cn": "多模态3D疼痛识别统一令牌化",
+      "llm_evidence": "多模态3D疼痛识别统一令牌化",
+      "canonical_evidence": "多模态3D疼痛识别统一令牌化",
+      "llm_tldr_en": "Proposes a unified tokenization framework for heterogeneous 3D behavioral and brain-activity data in pain recognition, preserving spatiotemporal structure without modality-specific architectures.",
+      "llm_tldr_cn": "计算疼痛识别系统通常需要为每种模态设计单独架构。本文提出统一令牌化框架，将行为与脑活动3D数据映射为通用令牌序列，保留空间、时间和时频结构，无需手工特征，为多模态疼痛评估提供高效单一处理流程。",
+      "llm_tldr": "计算疼痛识别系统通常需要为每种模态设计单独架构。本文提出统一令牌化框架，将行为与脑活动3D数据映射为通用令牌序列，保留空间、时间和时频结构，无需手工特征，为多模态疼痛评估提供高效单一处理流程。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-11-737958-v1",
+      "source": "biorxiv",
+      "title": "Can the heartbeat-evoked potential (HEP) be separated from Cardiac Artefact (CA) using beamforming?",
+      "abstract": "The heartbeat-evoked potential (HEP), a cortical response to heartbeats and a neural marker of interoception, is increasingly considered clinically relevant, but is heavily contaminated by cardiac artefact (CA) on the scalp, making reliable distinction of HEP from CA challenging. Because the HEP and cardiac potentials are anatomically distinct, they may be separable via beamforming, a source localisation method that isolates brain activity at specific locations while suppressing external noise and interference. Here, the first known ground-truth validation of EEG beamforming for HEP source reconstruction was attempted, aiming to quantify source waveform recovery and spatial localisation accuracy using simulated EEG data.\n\nUsing linearly constrained minimal variance (LCMV) beamforming, the following was investigated. (A) To test whether beamforming can recover a known signal, 128-channel EEG datasets were simulated for 3 models with a known HEP waveform: a single right insula (R-Ins) HEP (1), two temporally distinct HEPs in the R-Ins and right anterior cingulate cortex (R-ACC) (2), and two temporally overlapping HEPs in the same regions (3). Recovery was investigated by correlating the virtual electrode waveforms at the true location with the known true input waveform. (B) To test CA suppression, CA extracted from isoelectric EEG of brain-dead individuals providing CA with limited cortical activity, was integrated into the simulated EEG data. Source (-10 to -50dB) and sensor (0 to -30dB) signal-to-noise ratios (SNR) were systematically varied for each model with and without CA. (C) LCMV beamforming was then applied to retrospective empirical EEG data from hypertensive and anxiety individuals (n=106). Across simulations and empirical data, T-tests compared power in a HEP-dominated window to an earlier CA-dominated window. Null-space projection, using subject-specific QRS waveform and its temporal derivative, was applied to remove residual CA in reconstructed source waveforms.\n\nIn model 1, beamforming achieved near-perfect recovery without CA (r>0.99, 0mm error) at source SNR of -30dB, remaining robust in the presence of CA (r=0.72-0.94, 0-5.7mm error). Recovery degraded at low SNR (<-20 dB; r<0.3, up to 27mm error). Models 2 and 3 showed similar patterns but introduced R-ACC to R-Ins leakage. Applied to empirical data, beamforming revealed significant HEP activity in the R-Ins and R-ACC across all pooled data in source space (p < 0.001). LCMV beamforming also revealed a significant HEP difference in the late R-ACC window (250-500 ms post R-peak) in hypertension versus controls (p = 0.040, d = 0.92) when poor SNR subjects were excluded. This effect strengthened after QRS cleaning (p = 0.035, d = 0.96).\n\nLCMV beamforming can reliably recover the simulated HEP while suppressing CA, provided source SNR is sufficiently high. Applied to empirical data, LCMV beamforming recovered HEP activity from interoceptive regions (R-Ins and R-ACC) and was sufficiently sensitive to detect clinically meaningful group differences. This study offers a source level approach to separate HEP activity from CA, a distinction that sensor-level analysis can struggle to make. Together, LCMV beamforming and scalp-based methods can provide converging evidence for genuine HEP activity.",
+      "authors": [
+        "Virjee, R.-I.",
+        "Kandasamy, R.",
+        "Garfinkel, S. N.",
+        "Yogarajah, M.",
+        "Litvak, V.",
+        "Carmichael, D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-17T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.11.737958v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG beamforming for HEP source separation",
+      "llm_evidence_cn": "EEG波束成形分离心跳诱发电位",
+      "llm_evidence": "EEG波束成形分离心跳诱发电位",
+      "canonical_evidence": "EEG波束成形分离心跳诱发电位",
+      "llm_tldr_en": "Validates EEG beamforming for separating heartbeat-evoked potential from cardiac artefact using simulated data, demonstrating source waveform recovery and spatial localization accuracy.",
+      "llm_tldr_cn": "心跳诱发电位(HEP)是内感觉的神经标志，但头皮记录受心脏伪迹严重污染。本文首次通过模拟EEG数据验证波束成形在HEP源重建中的有效性，量化源波形恢复和空间定位精度，为可靠提取HEP提供方法学基础。",
+      "llm_tldr": "心跳诱发电位(HEP)是内感觉的神经标志，但头皮记录受心脏伪迹严重污染。本文首次通过模拟EEG数据验证波束成形在HEP源重建中的有效性，量化源波形恢复和空间定位精度，为可靠提取HEP提供方法学基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738519-v1",
+      "source": "biorxiv",
+      "title": "Canonical Correlation Analysis and Multi-Channel Cardiography Improve Artefact Cleaning in Heartbeat-Locked Analyses",
+      "abstract": "Cardiac artefacts are problematic for neurophysiological analyses, especially for heartbeat-locked brain responses where neural activity and artefacts co-occur in time. Traditional approaches using single-channel electrocardiography for artefact removal do not fully capture the multidimensional spread of cardiac fields. Moreover, even if several channels are recorded, no established methods exist for integrating them for artefact removal. Here, we propose a multivariate approach based on Canonical Correlation for cardiac artefact removal and report its effectiveness in electroencephalography recorded simultaneously with a custom 15-channel electrocardiography in 14 participants. We quantify cleaning quality via residual R-peak artefact and neural signal preservation via alpha power. Canonical Correlation systematically outperforms the traditional Independent Component Analysis in both reducing R-peak artefacts and preserving alpha power. By analysing all possible channel combinations, we found that neck or supraclavicular electrodes improve cleaning when only a few channels are available. With four or five channels, precordial electrodes in combination with limb or supraclavicular locations provide a performance comparable to the 15-channel setup. While these findings require validation in other datasets, we outline clear decision criteria for cleaning efficiency and show that canonical correlation is a reliable approach for multi-channel cardiac artefact removal.",
+      "authors": [
+        "Vidaurre, C.",
+        "Azanova, M.",
+        "Germanova, K.",
+        "Greschke, E.",
+        "Steinfath, T. P.",
+        "Laufs, U.",
+        "Uhe, T.",
+        "Villringer, A.",
+        "Nikulin, V."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738519v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG artefact cleaning method using canonical correlation",
+      "llm_evidence_cn": "脑电伪迹清理方法",
+      "llm_evidence": "脑电伪迹清理方法",
+      "canonical_evidence": "脑电伪迹清理方法",
+      "llm_tldr_en": "Proposes a multivariate CCA-based approach to remove cardiac artefacts from EEG using multi-channel ECG, improving signal quality for heartbeat-locked analyses.",
+      "llm_tldr_cn": "心脏伪迹会干扰脑电信号分析，传统单通道心电去除方法不充分。本文提出基于典型相关分析的多变量伪迹去除方法，利用15通道心电同步记录，在14名被试中验证了有效性。该方法显著提升了心跳锁定分析中的脑电信号质量，为神经生理学研究提供了更好的预处理工具。",
+      "llm_tldr": "心脏伪迹会干扰脑电信号分析，传统单通道心电去除方法不充分。本文提出基于典型相关分析的多变量伪迹去除方法，利用15通道心电同步记录，在14名被试中验证了有效性。该方法显著提升了心跳锁定分析中的脑电信号质量，为神经生理学研究提供了更好的预处理工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

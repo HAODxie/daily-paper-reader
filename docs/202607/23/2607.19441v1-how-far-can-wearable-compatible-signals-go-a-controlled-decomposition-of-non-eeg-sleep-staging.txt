@@ -1,0 +1,252 @@
+Title: How Far Can Wearable-Compatible Signals Go? A Controlled Decomposition of Non-EEG Sleep Staging
+
+URL Source: https://arxiv.org/pdf/2607.19441v1
+
+Published Time: Thu, 23 Jul 2026 00:03:41 GMT
+
+Number of Pages: 9
+
+Markdown Content:
+# How Far Can Wearable-Compatible Signals Go? A Controlled Decomposition of Non-EEG Sleep Staging 
+
+Yi Wang 
+
+Abstract —Consumer wearables increasingly infer sleep stages from signals including heart rate, accelerometry, and photo-plethysmography. However, existing studies often report end-to-end performance under a fixed signal setting, making it difficult to determine whether the observed performance comes from genuine physiological decoding, temporal priors, or dataset-specific confounds. To address this limitation, we introduce a four-layer controlled decomposition framework for non-EEG sleep staging, covering signal source, physiological representation, temporal prior, and decision layers. The framework is evaluated across a signal-quality ladder spanning Apple Watch Sleep-Accel ( N = 31 ), the Sleep Heart Health Study ( N = 195 ,laboratory ECG, respiratory, and SpO 2 signals), and Sleep-EDF-20 as an EEG+EOG reference, using the same compact Mamba2 model [1], [2] throughout. Laboratory cardiorespiratory signals reach κ = 0 .492 , while EEG+EOG reaches κ = 0 .796 , leaving a residual gap of ∆κ = +0 .304 that reflects missing cortical information rather than temporal modeling alone. Consumer HR/ACC reaches only κ = 0 .255 , quantifying the additional penalty of derived wearable signals and real-world sensing constraints. Confidence-based abstention provides a calibrated operating mode: removing the 20% lowest-confidence epochs increases κ from 0.452 to 0.512 , while a label-shuffled control collapses to κ = −0.003 . These results support non-EEG sleep staging as coarse, confidence-aware sleep-structure monitoring rather than EEG-equivalent five-class clinical staging. 
+
+Index Terms —sleep staging, wearable sensing, controlled de-composition, abstention, cardiorespiratory signals 
+
+I. I NTRODUCTION 
+
+Clinical sleep staging relies on electroencephalography (EEG) [3], [4], electrooculography (EOG) [5], and electromyo-graphy (EMG) [6], [7] recorded during attended polysomnog-raphy (PSG) [8]. Trained technologists annotate 30-second epochs into Wake, N1, N2, N3, and REM according to AASM criteria [9], yielding inter-rater agreement typically in the range κ ≈ 0.80 –0.85 when scored against a con-sensus reference [10]. Automated EEG-based systems now approach similar levels, with reported κ values frequently exceeding 0.75 on benchmark datasets such as Sleep-EDF and SHHS [11], [12], [13]. Consumer wearable devices, including wrist-worn acti-graphs, smartwatches, and finger-worn rings, estimate sleep stages from a fundamentally different signal set [14]. In-stead of directly observing cortical electrophysiology, these 
+
+This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible. 
+
+devices typically rely on photoplethysmography (PPG)-derived heart rate and heart-rate variability, triaxial accelerometry, and, in some configurations, peripheral oxygen saturation or respiration-related surrogates derived from PPG modulation. These signals capture downstream autonomic and respiratory correlates of sleep stage: sympathetic–parasympathetic balance changes across NREM and REM sleep, cardiac inter-beat intervals reflect respiratory sinus arrhythmia, and body move-ment co-varies with wakefulness and stage transitions [15], [16]. The central question is therefore not whether non-EEG correlates of sleep exist, but how much clinically meaningful sleep-stage structure can be recovered when cortical signals are absent. Prior work has demonstrated above-chance non-EEG sleep staging using heart-rate variability, respiratory signals, SpO 2,and actigraphy features, with reported Cohen’s κ values typ-ically ranging from approximately 0.30 to 0.55 , depending on signal availability, cohort characteristics, and evaluation protocol [17], [18], [19]. However, most studies report a single aggregate metric from a fixed end-to-end pipeline. Such reporting makes it difficult to determine whether performance arises from genuine physiological discriminability, improved feature representation, temporal smoothing, model capacity, or evaluation artifacts. For example, a reported κ = 0 .45 could reflect useful autonomic and respiratory information, an overly strong temporal prior, subject-level leakage, or a combination of these factors. A more diagnostic evaluation requires sep-arating the sleep-staging pipeline into independently testable components. This study introduces a controlled decomposition frame-work for non-EEG sleep staging. The framework separates the pipeline into four layers: signal source, physiological representation, temporal prior, and decision. The signal-source layer evaluates what information is available under different sensing conditions. The representation layer evaluates how raw or derived signals are transformed into sleep-relevant physiological features. The temporal-prior layer measures how much sequence decoding contributes beyond per-epoch dis-criminability. The decision layer evaluates whether the model should report a sleep stage or abstain when confidence is low. By holding the model architecture and evaluation protocol fixed while varying these layers, the framework attributes performance gains and residual failures to specific parts of the pipeline rather than reporting a single undifferentiated score. arXiv:2607.19441v1 [cs.HC] 21 Jul 2026 We evaluate the decomposition across a signal-quality lad-der spanning consumer wearable signals, laboratory PSG-derived non-EEG physiology, and EEG+EOG reference stag-ing. The consumer tier uses Apple Watch heart rate and accelerometry. The laboratory non-EEG tier uses ECG, res-piratory, and SpO 2 signals from SHHS. The EEG+EOG tier uses Sleep-EDF-20 as a reference ceiling for direct cortical and ocular measurements. Across tiers, we use an identical compact state-space model with multi-scale temporal evidence aggregation and a fixed evaluation protocol. We further include subject-disjoint validation, label-shuffled negative controls, subject-overlap audits, and bootstrap confidence intervals. Rather than proposing another state-of-the-art sleep-staging model, this work contributes a methodology for diagnosing the performance limits of non-EEG sleep staging. The main contributions are as follows: 1) A four-layer controlled decomposition framework is introduced, separating non-EEG sleep staging into signal source, physiological representation, temporal prior, and decision layers, with the marginal contribution of each layer quantified independently. 2) Physiological representation provides the largest re-coverable gain within the non-EEG pipeline ( ∆κ =+0 .078 ), while temporal decoding contributes modestly (∆κ = +0 .040 ), indicating that the binding constraint for wearable-compatible non-EEG staging is the per-epoch physiological information content of the signals themselves, not the capacity of the temporal model— deeper sequence models cannot compensate for limited signal physiology. 3) Confidence-based abstention separates reliable epochs from uncertain ones: at 50% coverage the model reaches 
+
+κ = 0 .62 , and the per-class confidence pattern faithfully reflects the physiological ambiguity of transitional N1 sleep. 4) The residual gap to EEG+EOG performance ( ∆κ =+0 .304 ) is attributable to signal modality rather than model capacity, and exceeds the combined gain of all non-EEG layers. II. R ELATED WORK 
+
+A. EEG-Based Automatic Sleep Staging 
+
+Most high-performing automatic sleep-staging systems use EEG, EOG, EMG, or combinations of PSG channels. Deep-SleepNet uses raw single-channel EEG with representation learning and sequence modeling [11]. TinySleepNet studies efficient EEG staging [20]. U-Sleep emphasizes cross-dataset robustness and high-frequency staging from PSG-like sig-nals [12]. XSleepNet and SleepTransformer further model sequential and multi-view sleep structure [13], [21]. These systems define the EEG-rich reference ceiling, reflecting di-rect cortical sleep physiology. Cardiac and respiratory signals reflect downstream autonomic and respiratory correlates, op-erating on fundamentally different information sources. Com-paring the two domains without documenting signal access conflates information content with model capacity. 
+
+B. Wearable and Non-EEG Sleep Staging 
+
+Wearable sleep staging typically relies on motion, heart rate, HRV, PPG/BVP, respiration, or SpO 2 [22]. Walch et al. studied Apple Watch acceleration and PPG-derived heart rate against PSG and reported strong sleep/wake performance but lim-ited stage resolution [23]. Broader consumer-device validation work reaches a similar conclusion: sleep detection sensitivity is often high, but wake detection and stage assessment are more variable [24], [25]. Non-EEG staging performance improves when the signal source is closer to laboratory physiology. Heart-rate-based staging with ECG-derived instantaneous heart rate has been demonstrated on large clinical datasets [17], [18]. ECG com-bined with respiratory effort can reach substantially stronger agreement in PSG-derived cohorts [19], [26]. Raw PPG time-series models represent a different signal condition from the sparse, device-derived HR values commonly exported by consumer watches [27]. Critically, these studies rarely report the marginal contribution of each pipeline component, making it impossible to distinguish strong signal decoding from strong temporal priors or data leakage. 
+
+C. Controlled Decomposition Methodology 
+
+The principle of controlled decomposition—separating a physiological inference problem into its constituent layers and evaluating each independently—has been productive in robust wearable sensing. In camera-based and PPG-based heart rate estimation under motion, decomposing the problem into candidate generation, consensus selection, and temporal tracking has yielded interpretable performance boundaries and actionable diagnoses of failure modes. We adapt this principle to non-EEG sleep staging by partitioning the pipeline into four independently evaluated layers: signal source, physiolog-ical representation, temporal prior, and decision. Each layer’s marginal contribution is quantified as the ∆κ obtained when that layer is added to the previous layers, and residual failure is attributed to the layer where improvement saturates. This decomposition is especially important in sleep staging because adjacent epochs are temporally autocorrelated, stage labels are strongly imbalanced, and subject identity can leak through sensor-specific artifacts. A model that exploits dataset-specific transition statistics, subject-identity leakage, or annotation shortcuts can report an attractive aggregate metric without capturing physiological sleep-stage information. A defensible wearable-facing evaluation therefore requires channel abla-tions, subject-disjoint splits, temporal decoding comparisons, and negative controls—each isolating one layer of the decom-position. III. M ETHODS 
+
+A. Framework 
+
+Figure 1 summarizes the proposed controlled decomposition framework for non-EEG sleep staging. Instead of evaluating a non-EEG staging system as a single end-to-end classifier, the framework separates performance into four experimentally controlled layers: signal source, physiological representation, temporal prior, and decision. The signal-source layer measures the information available from different sensing conditions. We compare consumer wearable signals, laboratory-grade non-EEG PSG signals, and EEG+EOG reference signals while keeping the down-stream model and evaluation protocol fixed. The physiological-representation layer evaluates how much stage-relevant in-formation can be extracted from the available non-EEG sig-nals, including cardiac rhythm, HRV, respiratory dynamics, thoracoabdominal coupling, and oxygen desaturation features. The temporal-prior layer quantifies the contribution of sleep-stage transition structure by comparing independent per-epoch argmax decoding with Viterbi sequence decoding. The deci-sion layer evaluates whether the model can identify reliable and unreliable predictions through confidence-based absten-tion. This design allows each performance gain to be attributed to a specific source. Improvements from richer non-EEG features reflect recoverable physiological information; improvements from Viterbi decoding reflect temporal regularization; and the remaining gap to EEG+EOG reference performance reflects information unavailable to wearable-compatible non-EEG sig-nals. 
+
+B. Datasets and Labels 
+
+Three datasets spanning a signal-quality ladder were used. 
+
+Apple Watch Sleep-Accel [23] served as the consumer-device tier. The public release contains Apple Watch heart rate (HR), triaxial accelerometry (ACC), and PSG-derived sleep-stage labels for 31 subjects, totaling 26 ,417 aligned 30-second epochs. Labels follow standard five-class AASM staging (Wake, N1, N2, N3, REM). Evaluation was leave-one-subject-out (LOSO). 
+
+Sleep Heart Health Study (SHHS) [28], [29] served as the laboratory non-EEG tier. SHHS is a multi-center com-munity cohort with attended PSG, including ECG, respiratory inductance plethysmography (thoracic and abdominal), nasal airflow, and finger pulse oximetry. From the SHHS Visit 1 records, 200 subjects with complete ECG R-peak annotations were identified. Of these, 195 also had complete respiratory and SpO 2 recordings, forming the matched cohort used for channel-level ablation (denoted rpoint200). Five-fold subject-disjoint cross-validation was used. 
+
+Sleep-EDF-20 [30], [31] served as the EEG+EOG reference tier. This public dataset contains 20 healthy subjects with frontal EEG (Fpz-Cz) and EOG (horizontal). Evaluation was leave-one-subject-out. This tier is used exclusively as a cross-dataset upper anchor; it is not a same-dataset baseline. 
+
+C. Signal Representations and the Four-Layer Pipeline 
+
+Layer 1—Signal Source. Three input channel configura-tions were evaluated on the SHHS matched cohort: ECG only (d = 133 ), Respiration/SpO 2 only ( d = 75 ), and Combined (d = 208 ). For the Apple Watch tier, HR-only, ACC-only, and HR+ACC configurations were evaluated. 
+
+Layer 2—Physiological Representation. All SHHS fea-tures were physiology-aware by construction. ECG rhythm features included instantaneous heart rate (IHR) and inter-beat interval (IBI) sequences interpolated to a 2 Hz grid (120 values), plus 13 epoch-level HRV statistics (SDNN, RMSSD, pNN50, etc.) [32]. Respiratory and SpO 2 event features in-cluded per-channel respiratory rate (zero-crossing and peak-detection), amplitude statistics, flat/low-amplitude fractions, slope irregularity, and thoracic-abdominal coupling features (correlation, paradoxical-breathing fraction, amplitude ratio). SpO 2 features included eight per-epoch desaturation statistics. All features were robustly normalized per subject (median and MAD) with statistics computed on training folds only. Apple Watch features used epoch-level HR and ACC statistics as exported by the consumer device, representing the information available under real-world constraints without access to raw sensor waveforms. 
+
+Layer 3—Temporal Prior. Per-epoch argmax classifica-tion was supplemented with Viterbi sequence decoding [33]. Transition log-probabilities were estimated from training-fold labels with Laplace smoothing ( α = 1 .0). The Viterbi path was computed as: 
+
+ˆy1: T = arg max 
+
+> y1: T
+> T
+
+X
+
+> t=1
+
+[log P (yt | xt) + λ · log P (yt | yt−1)] 
+
+(1) with λ ∈ {0.1, 0.3, 0.5, 1.0}. The argmax result ( λ = 0)isolates per-epoch physiological discriminability. The best Viterbi result per channel configuration is reported. Transition statistics were estimated exclusively from training folds. 
+
+Layer 4—Decision. Per-epoch softmax probabilities were retained from the trained model. Epochs were ranked by maximum class probability, and Cohen’s κ was computed at coverage levels from 10% to 100%, where coverage de-notes the fraction of highest-confidence epochs retained. This coverage-κ curve characterizes the trade-off between predic-tion coverage and staging agreement: the system can abstain on low-confidence epochs to achieve higher agreement on the retained subset. 
+
+D. Model Architecture 
+
+A compact state-space sequence model (SSM) was used identically across all signal tiers. The architecture consisted of a linear input projection ( din → dmodel = 64 ), two Mamba2 blocks with state dimension dstate = 16 and head dimension 
+
+dhead = 8 , followed by layer normalization and a multi-scale temporal evidence aggregation (Multi-MEA) readout head. The Multi-MEA head applied four parallel 1D depthwise convolutions with kernel sizes k ∈ { 1, 3, 5, 7} and independent gating (sigmoid), each followed by a linear classifier. The four outputs were averaged to produce the final per-epoch logits. The model was trained with AdamW (learning rate 3 ×
+
+10 −3, weight decay 10 −4), inverse-frequency class weights, and cross-entropy loss. Training ran for 10 epochs per fold with gradient clipping (max norm 1.0). All experiments used Fig. 1. Overview of the controlled decomposition framework for non-EEG sleep staging. The framework separates the staging pipeline into four independently evaluated layers: signal source, physiological representation, temporal prior, and decision. Signals are evaluated across a quality ladder from consumer wearable HR/ACC, to laboratory ECG, respiratory, and SpO 2 measurements, and finally to EEG+EOG reference staging. By fixing the model architecture and evaluation protocol across tiers, the framework attributes performance differences to physiological information, temporal decoding, confidence-based abstention, and residual signal-modality limitations. TABLE I FEATURE -SPACE SEPARABILITY OF FIVE SLEEP STAGES IN THE                                     
+
+> 201-DIMENSIONAL COMBINED NON -EEG FEATURE SPACE (N= 196 ,887
+> EPOCHS ,195 SUBJECTS ). “M ARGIN ”IS THE EUCLIDEAN DISTANCE TO THE NEAREST OTHER STAGE ’S CENTROID . “R ATIO ”IS MARGIN DIVIDED BY MEAN WITHIN -STAGE DISPERSION . LDA AUC IS THE ONE -VS -REST AREA UNDER THE ROC CURVE .Stage Margin Within σRatio LDA AUC Wake 10.6 18.9 0.558 0.896 N1 1.2 9.2 0.133 0.684
+> N2 1.2 7.6 0.161 0.734 N3 1.6 7.2 0.228 0.745 REM 1.6 8.2 0.200 0.753
+
+seed 42 . Total parameter count was approximately 1.2 × 10 5,identical across tiers. 
+
+E. Evaluation Protocol and Verification 
+
+The primary metric was Cohen’s κ [34], chosen over accuracy because it corrects for chance agreement from imbal-anced stage distributions. Secondary metrics included macro-averaged F1, per-stage F1, and confusion matrices. Per-subject 
+
+κ values were computed with 95% bootstrap confidence inter-vals via 10 ,000 iterations of subject-level resampling. A label-shuffled negative control was performed: sleep-stage labels were randomly permuted within each subject’s record before the fold split (seed 42 ), and the identical training protocol was executed. Under the null hypothesis, κ
+
+should be indistinguishable from zero. A subject-overlap audit verified zero cross-fold subject contamination across all SHHS experiments. 
+
+F. Experimental Workflow 
+
+Figure 2 illustrates the experimental workflow. For each dataset tier, signals were aligned to 30-second sleep-stage epochs and converted into the corresponding feature represen-tation. Subject-disjoint splits were then constructed to prevent subject-level leakage. Within each training fold, normaliza-tion statistics, class weights, and transition probabilities were estimated using training subjects only. The same compact state-space model was trained across all signal configurations. Test predictions were evaluated using both argmax decoding and Viterbi decoding, followed by Cohen’s κ, macro-F1,per-stage F1, confusion-matrix analysis, and confidence-based abstention. Label-shuffled controls, subject-overlap audits, and bootstrap confidence intervals were used to verify that the ob-served performance reflected physiological information rather than leakage or chance agreement. IV. R ESULTS 
+
+A. Four-Layer Decomposition 
+
+Table II presents the core result: the marginal contribution of each pipeline layer to non-EEG sleep staging performance on the SHHS matched cohort. Three patterns are evident. First, physiological representation provides the largest gain: expanding from cardiac autonomic features alone to combined ECG, respiratory, and SpO 2 features yields ∆κ = +0 .078 
+
+in argmax (ECG argmax κ = 0 .373 → Combined argmax 
+
+κ = 0 .452 ), or ∆κ = +0 .089 in Viterbi. This confirms that cardiac and respiratory physiology carry complementary but non-redundant sleep-stage information. Second, the temporal prior contributes only ∆κ = +0 .040 , a small gain relative Fig. 2. Experimental workflow for the controlled decomposition study. Signals from consumer wearable, laboratory non-EEG, and EEG+EOG reference tiers are aligned to 30-second sleep-stage epochs, transformed into physiological feature representations, and evaluated under subject-disjoint validation. The same compact state-space model is trained across all signal configurations. Predictions are decoded using argmax and Viterbi inference, followed by metric computation, confidence-based abstention analysis, and verification through label-shuffled negative controls, subject-overlap audits, and bootstrap confidence intervals. TABLE II FOUR -LAYER DECOMPOSITION OF NON -EEG SLEEP STAGING ON SHHS ( N = 195 , FIVE -FOLD SUBJECT -DISJOINT ). E ACH ROW ADDS ONE LAYER TO THE PIPELINE . ∆κ IS THE MARGINAL GAIN OVER THE CUMULATIVE RESULT OF ALL PREVIOUS LAYERS .Layer added Cumulative κ ∆κ Interpretation 1. ECG physiology alone (Viterbi) 0.403 — Baseline: cardiac autonomic info 2. + Resp/SpO 2 physiology 0.452 +0.049 Respiratory & oximetry info added 3. + Viterbi temporal prior 0.492 +0.040 Modest temporal smoothing gain 4. EEG/EOG ceiling (Sleep-EDF-20) 0.796 +0.304 Irrecoverable: cortical EEG missing 
+
+to the representation gain. This is diagnostic: it indicates that the bottleneck is not the absence of temporal context but the limited sleep-stage information in autonomic and respiratory surrogates per epoch. Third, the residual gap to EEG+EOG staging ( ∆κ = +0 .304 ) is larger than the entire range spanned by all non-EEG layers combined ( +0 .089 ), demonstrating that the dominant performance ceiling is signal modality, not model capacity or temporal modeling. 
+
+B. Channel Ablation 
+
+Table III reports per-channel performance. ECG rhythm alone and Resp/SpO 2 alone yield comparable five-class κ
+
+(0.403 and 0.419 in Viterbi, respectively), indicating that neither modality dominates non-EEG sleep-stage information. The combined representation outperforms either alone, con-firming complementarity. N1 F1 remains below 0.20 for all channel configurations, indicating that N1’s poor discrim-inability is not channel-specific but inherent to its weak autonomic signature. 
+
+TABLE III SHHS CHANNEL ABLATION (N = 195 , FIVE -FOLD SUBJECT -DISJOINT ). PER -SUBJECT ARGMAX κ WITH 95% BOOTSTRAP CI. V ITERBI AT 
+
+λ = 1 .0.Channel set d Argmax κ Per-subj. κ [95% CI] Viterbi κ N1 F1                      
+
+> ECG + IHR/IBI 133 0.373 0.369 [0 .353 ,0.384] 0.403 0.185 Resp/SpO 2+ events 75 0.388 0.381 [0 .367 ,0.396] 0.419 0.155 Combined 208 0.452 0.445 [0 .430 ,0.460] 0.492 0.20
+
+C. Abstention Analysis: Confidence-Calibrated Staging 
+
+Figure 3 shows the coverage-κ curve: epochs are ranked by model confidence (maximum softmax probability), and 
+
+κ is computed at decreasing coverage levels. The model is well-calibrated: discarding the 20% lowest-confidence epochs raises κ from 0.452 to 0.512 ; at 50% coverage, κ reaches 
+
+0.616 ; at 30% coverage, κ = 0 .714 . The abstention gain is monotonic and substantial, confirming that the model’s per-epoch confidence is informative rather than arbitrary. Per-class confidence analysis reveals that the model’s un-certainty is physiologically structured, not random. Table IV reports mean maximum softmax probability per sleep stage. 0 20 40 60 80 100        
+
+> Coverage (%)
+> 0.45
+> 0.50
+> 0.55
+> 0.60
+> 0.65
+> 0.70
+> 0.75
+> 0.80
+> 0.85
+> Cohen's
+> full =0.45
+> inter-rater 0.80
+> (a)
+> =0.51
+> =0.62
+> Wake N1 N2 N3 REM
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> 0.7
+> 0.8
+> Mean max P(y|x)
+> (b)
+> 0.771
+> 0.630 0.643
+> 0.706
+> 0.747 Lowest
+
+Fig. 3. Coverage-κ curve for the SHHS combined model (argmax). Epochs are sorted by decreasing softmax confidence. Shaded region: 95% bootstrap CI. Dashed horizontal lines: EEG+EOG reference ( κ = 0 .796 ) and technologist inter-rater agreement ( κ ≈ 0.80 ). TABLE IV PER -STAGE MEAN MODEL CONFIDENCE (MAX SOFTMAX PROBABILITY ). Stage Mean confidence N epochs Wake 0.771 50,626 N1 0.630 7,349 N2 0.643 82,853 N3 0.706 25,948 REM 0.747 30,111 
+
+Wake receives the highest mean confidence ( 0.771 ) and N1 the lowest (0.630 ). This ordering—Wake > REM > N3 
+
+> N2 > N1—matches the known strength of autonomic differentiation across sleep stages: Wake is characterized by elevated sympathetic tone and irregular respiration, producing a strong and stable non-EEG signature; N1 is transitional, short-duration, and poorly differentiated from relaxed Wake or light N2 in both EEG and autonomic physiology. The fact that model confidence tracks this physiological hierarchy, rather than simply reflecting class prevalence (N2 is the majority class yet receives only moderate confidence, 0.643 ), indicates that the abstention signal is genuine rather than a prevalence artifact. N1 is the clearest failure mode: 21.9% of N1 epochs receive a maximum class probability below 0.5, compared to 7.0% 
+
+of Wake epochs. When epochs with confidence below 0.7 are excluded, overall κ rises to 0.622 but only 33 .6% of N1 epochs survive the filter. This is precisely the expected behavior under a physiological bottleneck: the model cannot confidently classify N1 because the autonomic and respiratory signatures of N1 are intrinsically weak, and it appropriately assigns low confidence to those epochs. The correct operational conclusion is not that the model should be improved to better classify N1, but that N1 should be excluded from non-EEG staging reports or merged into a Light Sleep category, and that low-confidence epochs of any stage should be flagged for human review or discarded. 
+
+D. Per-Stage Failure Analysis 
+
+Table V reports per-stage F1 for the SHHS combined Viterbi model. Four-class aggregation (Wake, Light, Deep, REM) raised Viterbi κ to 0.517 , confirming that the dominant source 
+
+TABLE V PER -STAGE F1 FOR SHHS COMBINED VITERBI MODEL (λ = 1 .0,
+
+N = 195 ). W N1 N2 N3 REM 
+
+F1 0.78 0.20 0.61 0.52 0.66 W N1 N2 N3 REM                     
+
+> Predicted
+> W
+> N1
+> N2
+> N3
+> REM
+> True
+> 0.69 0.18 0.06 0.03 0.04
+> 0.15 0.51 0.19 0.03 0.12
+> 0.04 0.13 0.46 0.25 0.11
+> 0.03 0.03 0.25 0.64 0.05
+> 0.03 0.09 0.16 0.06 0.67
+
+Fig. 4. Normalized confusion matrix for SHHS combined model (pooled five-fold, argmax). Rows are true stages, columns are predicted stages. Each row sums to 1.0. Off-diagonal entries > 0.15 are annotated. 
+
+of confusion is the N1/N2 boundary. A normalized confusion matrix (Figure 4) shows that N1 is systematically absorbed into N2 ( 19% ) and Wake ( 15% ), quantitatively confirming the transitional nature of N1 under non-EEG physiology. 
+
+E. Consumer-Device Context 
+
+The signal-quality ladder (Figure 5) places the laboratory cardiorespiratory results in context with consumer-device and EEG reference performance. The Apple Watch HR+ACC tier achieves κ = 0 .255 , approximately half the laboratory combined result, consistent with the reduced physiological information in consumer-exported HR (5-second sampling) and the limited sleep-stage information in wrist accelerometry (Table VI). The gap from consumer HR+ACC to laboratory combined non-EEG ( ∆κ = 0 .24 ) and the gap from combined non-EEG to EEG+EOG ( ∆κ = 0 .30 ) are of comparable mag-nitude, indicating that both signal quality and signal modality contribute substantially to the overall PSG-to-wearable perfor-mance gap. 
+
+F. Negative Control 
+
+The label-shuffled control on the SHHS combined exper-iment produced five-class argmax κ = −0.003 , indistin-guishable from chance. Viterbi decoding at λ = 1 .0 yielded 
+
+κ = −0.001 . The model collapsed to predicting N2 (the majority class) with F1 = 0 .60 , while all other stages had 
+
+F1 < 0.02 . Subject-overlap audits confirmed zero cross-fold subject contamination. 0.0 0.2 0.4 0.6 0.8 1.0                                    
+
+> Cohen's
+> Consumer HR+ACC
+> (Apple Watch)
+> Lab ECG
+> (SHHS)
+> Lab Resp/SpO 2
+> (SHHS)
+> Lab Combined
+> (SHHS)
+> EEG + EOG
+> (Sleep-EDF-20)
+> 0.255
+> 0.369
+> 0.381
+> 0.445
+> 0.796 Technologist 0.80 Fig. 5. Signal-availability ladder. Horizontal bars show per-subject Cohen’s κ
+> with 95% bootstrap confidence intervals. Dashed lines mark technologist inter-rater agreement ( κ≈0.80 ) and the empirical non-EEG ceiling ( κ≈0.49 ). TABLE VI APPLE WATCH SLEEP -A CCEL CONSUMER -DEVICE RESULTS (31-SUBJECT
+> LOSO). Input 5-cl. κ[95% CI] 5-cl. MF1 3-cl. κ3-cl. MF1 ACC-only 0.154 [0 .124 ,0.185] 0.338 0.159 0.483 HR-only 0.270 [0 .223 ,0.314] 0.414 0.349 0.566 HR+ACC 0.255 [0 .206 ,0.304] 0.414 0.332 0.565
+
+V. D ISCUSSION AND IMPLICATIONS 
+
+The four-layer decomposition in Table II defines a modality-fair operating region for non-EEG sleep staging and attributes performance to specific pipeline components. The largest marginal gain comes from expanding the phys-iological feature set (∆κ = +0 .078 argmax), consistent with the interpretation that ECG-derived HRV captures vagal-sympathetic balance while respiratory/SpO 2 features pro-vide orthogonal indicators of sleep depth and stability [15], [16]. This layer is the most productive target for future improvement—richer physiological representations (e.g., PPG morphology, pulse transit time, respiratory sinus arrhythmia dynamics) may further narrow the non-EEG gap without requiring deeper models. Viterbi decoding contributes only ∆κ = +0 .040 , a small gain that is consistent across all channel configurations. This is a diagnostic signal, not a disappointment: it indicates that the per-epoch physiological representation is the binding con-straint. Adding stronger temporal priors (higher-order Markov models, learned transition networks) is unlikely to close the EEG gap when the per-epoch signal itself carries limited stage information. The residual ∆κ = +0 .304 from combined Viterbi to EEG+EOG reference is larger than the entire non-EEG range (+0 .089 ). The same compact SSM, trained identically, spans a 0.54 range across tiers ( 0.255 consumer to 0.796 EEG), isolating signal modality as the independent variable. This gap cannot be closed by better models or more non-EEG sensors; it reflects the information loss when cortical sleep dynamics are observed only through downstream autonomic and respiratory surrogates. The coverage-κ curve demonstrates that the model is uncertainty-calibrated. Dropping the 20% lowest-confidence epochs raises κ from 0.452 to 0.512 ; at 50% coverage, 
+
+κ = 0.616 . The per-class confidence ordering faithfully reflects the physiological ambiguity of each stage. This has practical implications: non-EEG sleep staging systems should report per-epoch confidence scores and flag low-confidence epochs for manual review or exclusion, rather than reporting a single hard label with misleading certainty. For consumer applications, abstention can be transparent—a sleep report can state that X% of the night was staged with high confidence and 
+
+Y % was uncertain, rather than fabricating a full-night staging with uniform confidence. The signal ladder confirms that consumer wrist-worn de-vices, operating on derived HR and accelerometry, face a dual penalty: first from reduced signal quality ( ∆κ ≈ 0.24 
+
+from consumer to laboratory non-EEG), and second from the fundamental non-EEG ceiling ( ∆κ ≈ 0.30 from laboratory non-EEG to EEG). Consumer sleep staging should accordingly be interpreted as coarse sleep-structure and longitudinal trend monitoring, not as EEG-equivalent clinical staging [35], [36]. VI. L IMITATIONS 
+
+Three limitations are noted. First, the EEG+EOG reference is cross-dataset (Sleep-EDF-20 vs. SHHS) and uses simpler spectral features than the non-EEG pipeline, making the reported EEG ceiling conservative—the true modality gap is likely larger than the measured ∆κ = +0 .304 . Second, the controlled decomposition is demonstrated on a single architecture (Mamba2); the relative contribution of each layer may shift under different model classes, and multi-architecture replication would strengthen the claim that the decomposition isolates signal properties rather than architecture-specific bi-ases. Third, the abstention analysis uses maximum softmax probability as the confidence measure; more sophisticated uncertainty quantification methods (e.g., ensemble variance, Monte Carlo dropout) may further improve the coverage-κ
+
+trade-off. VII. C ONCLUSION 
+
+This study introduced a four-layer controlled decomposition for non-EEG sleep staging and applied it across a signal-quality ladder spanning consumer wrist-device data, laboratory PSG-grade physiology, and EEG+EOG reference staging. The decomposition isolates the marginal contribution of physio-logical representation ( ∆κ = +0 .078 ), temporal decoding (∆κ = +0 .040 ), and the residual EEG+EOG ceiling gap (∆κ = +0 .304 ). An abstention analysis demonstrates that the model is uncertainty-calibrated: confidence-based filtering can partition epochs into reliable ( κ = 0 .62 at 50% coverage) and uncertain subsets. Per-class confidence faithfully reflects the physiological ambiguity of transitional N1, confirming that N1 failure is a signal-modality limitation rather than a model defi-ciency. Overall, this work provides a controlled methodology for decomposing non-EEG sleep staging into independently evaluated components, showing that wearable sleep staging is primarily limited by physiological information content rather than model capacity, and that confidence-calibrated abstention offers a practical path toward more reliable wearable sleep monitoring. AI U SE STATEMENT 
+
+The authors created initial drafts of all figures and text. Generative AI tools were used to refine figure rendering and polish language. All scientific content, experimental results, and conclusions were produced and verified by the authors, who take full responsibility for the integrity of this work. REFERENCES [1] A. Gu and T. Dao, “Mamba: Linear-time sequence modeling with selective state spaces,” arXiv preprint arXiv:2312.00752 , 2023, accepted at Conference on Language Modeling (COLM) 2024. [2] T. Dao and A. Gu, “Transformers are SSMs: Generalized models and ef-ficient algorithms through structured state space duality,” in International Conference on Machine Learning (ICML) , 2024, arXiv:2405.21060. [3] Y. Zhang and Z. S. Chen, “Harnessing electroencephalography con-nectomes for cognitive and clinical neuroscience,” Nature Biomedical Engineering , vol. 9, no. 8, pp. 1186–1201, 2025. [4] T. Yu, J. Li, Y. Jin, W. Wu, X. Ma, W. Xu, and S. Lu, “Machine learning prediction on spatial and environmental perception and work efficiency using electroencephalography including cross-subject scenarios,” Jour-nal of Building Engineering , vol. 99, p. 111644, 2025. [5] M. Zibandehpoor, F. Alizadehziri, A. A. Larki, S. Teymouri, and M. Delrobaei, “Electrooculography dataset for objective spatial naviga-tion assessment in healthy participants,” Scientific Data , vol. 12, no. 1, p. 553, 2025. [6] J. Boo, D. Seo, M. Kim, and S. Koo, “Comprehensive human locomotion and electromyography dataset: Gait120,” Scientific Data , vol. 12, no. 1, p. 1023, 2025. [7] R. Liu, Y. Peng, T. Oku, C.-C. Liao, E. Wu, S. Furuya, and H. Koike, “From pose to muscle: Multimodal learning for piano hand muscle electromyography,” Advances in Neural Information Processing Systems ,vol. 38, pp. 115 558–115 587, 2026. [8] D. Leger, C. Mutti, A. Rouen, and L. Parrino, “Polysomnography in transition: Reassessing its role in the future of sleep medicine,” Journal of Sleep Research , vol. 34, no. 6, p. e70217, 2025. [9] J. Nieto-Pino, E. Retamal-Riquelme, M. Henriquez-Beltr´ an, M. Otto-Ya˜ nez, R. Torres-Castro, and G. Labarca, “Severity classification of obstructive sleep apnea using aasm and separ criteria: A cross-sectional reclassification analysis,” European Archives of Oto-Rhino-Laryngology ,vol. 283, no. 2, pp. 1279–1287, 2026. [10] R. B. Berry, R. Brooks, C. Gamaldo, S. M. Harding, R. M. Lloyd, S. F. Quan, M. T. Troester, and B. V. Vaughn, The AASM Manual for the Scoring of Sleep and Associated Events: Rules, Terminology and Technical Specifications, Version 2.4 . American Academy of Sleep Medicine, 2017. [11] A. Supratak, H. Dong, C. Wu, and Y. Guo, “Deepsleepnet: A model for automatic sleep stage scoring based on raw single-channel eeg,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 25, no. 11, pp. 1998–2008, 2017. [12] M. Perslev, S. Darkner, L. Kempfner, M. Nikolic, P. J. Jennum, and C. Igel, “U-sleep: resilient high-frequency sleep staging,” npj Digital Medicine , vol. 4, no. 1, p. 72, 2021. [13] H. Phan, O. Y. Chen, P. Koch, Y. Liu, K. Mikkelsen, M. De Vos, P. Maass, and A. Miklody, “XSleepNet: Multi-view sequential model for automatic sleep staging,” IEEE Transactions on Pattern Analysis and Machine Intelligence , vol. 44, no. 9, pp. 5903–5915, 2022. [14] C. Doherty, M. Baldwin, R. Lambe, M. Altini, and B. Caulfield, “Privacy in consumer wearable technologies: a living systematic analysis of data policies across leading manufacturers,” npj Digital Medicine , vol. 8, no. 1, p. 363, 2025. [15] E. Tobaldini, L. Nobili, S. Strada, K. R. Casali, A. Braghiroli, and N. Montano, “Heart rate variability in normal and pathological sleep,” 
+
+Frontiers in Physiology , vol. 4, p. 294, 2013. [16] J. Trinder, J. Kleiman, M. Carrington, S. Smith, S. Breen, N. Tan, and Y. Kim, “Autonomic activity during human sleep as a function of time and sleep stage,” Journal of Sleep Research , vol. 10, no. 4, pp. 253–264, 2001. [17] N. Sridhar, A. Shoeb, P. Stephens, A. Kini, J. Barber, J. Getchius, S. Perkins, and J. Waugh, “Deep learning for automated sleep staging using instantaneous heart rate,” npj Digital Medicine , vol. 3, no. 1, p. 106, 2020. [18] M. Radha, P. Fonseca, A. Moreau, M. Ross, A. Cerny, P. Anderer, X. Long, and R. M. Aarts, “Sleep stage classification from heart-rate variability using long short-term memory neural networks,” Scientific Reports , vol. 9, p. 14149, 2019. [19] H. Sun, W. Ganglberger, E. Panneerselvam, M. J. Leone, S. A. Quadri, B. Goparaju, R. A. Tesh, O. Akeju, R. J. Thomas, and M. B. Westover, “Sleep staging from electrocardiography and respiration with deep learning,” arXiv preprint arXiv:1908.11463 , 2019. [20] A. Supratak and Y. Guo, “Tinysleepnet: An efficient deep learning model for sleep stage scoring based on raw single-channel eeg,” Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) , pp. 641–644, 2020. [21] H. Phan, K. Mikkelsen, O. Y. Chen, P. Koch, A. Mertins, and M. De Vos, “SleepTransformer: automatic sleep staging with interpretability and un-certainty quantification,” IEEE Transactions on Biomedical Engineering ,vol. 69, no. 8, pp. 2456–2467, 2022. [22] S. A. Imtiaz, “A systematic review of sensing technologies for wearable sleep staging,” Sensors , vol. 21, no. 5, p. 1562, 2021. [23] O. Walch, Y. Huang, D. Forger, and C. Goldstein, “Sleep stage prediction with raw acceleration and photoplethysmography heart rate data derived from a consumer wearable device,” Sleep , vol. 42, no. 12, 2019. [24] E. D. Chinoy, J. A. Cuellar, K. E. Huwa, J. T. Jameson, C. H. Watson, S. C. Bessman, D. A. Hirsch, A. D. Cooper, S. P. A. Drummond, and R. R. Markwald, “Performance of seven consumer sleep-tracking devices compared with polysomnography,” Sleep , vol. 44, no. 5, p. zsaa291, 2021. [25] M. Altini and H. Kinnunen, “The promise of sleep: A multi-sensor approach for accurate sleep stage detection using the Oura ring,” 
+
+Sensors , vol. 21, no. 13, p. 4302, 2021. [26] T. Willemen, D. Van Deun, V. Verhaert, M. Vandekerckhove, V. Ex-adaktylos, J. Verbraecken, S. Van Huffel, B. Haex, and J. Vander Sloten, “An evaluation of cardiorespiratory and movement features with respect to sleep-stage classification,” IEEE Journal of Biomedical and Health Informatics , vol. 18, no. 2, pp. 661–669, 2014. [27] K. Kotzen, P. H. Charlton, S. Salabi, L. Amar, A. Landesberg, and J. A. Behar, “SleepPPG-Net: a deep learning algorithm for robust sleep staging from continuous photoplethysmography,” arXiv preprint arXiv:2202.05735 , 2022. [28] S. F. Quan, B. V. Howard, C. Iber, J. P. Kiley, F. J. Nieto, G. T. O’Connor, D. M. Rapoport, S. Redline, J. Robbins, J. M. Samet et al. , “The sleep heart health study: design, rationale, and methods,” Sleep , vol. 20, no. 12, pp. 1077–1085, 1997. [29] G.-Q. Zhang, L. Cui, R. Mueller, S. Tao, M. Kim, M. Rueschman, S. Mariani, D. Mobley, and S. Redline, “The National Sleep Research Resource: towards a sleep data commons,” Journal of the American Medical Informatics Association , vol. 25, no. 10, pp. 1351–1358, 2018. [30] B. Kemp, A. H. Zwinderman, B. Tuk, H. A. Kamphuisen, and J. J. Obery´ e, “Analysis of a sleep-dependent neuronal feedback loop: the slow-wave microcontinuity of the EEG,” IEEE Transactions on Biomed-ical Engineering , vol. 47, no. 9, pp. 1185–1194, 2000. [31] A. L. Goldberger, L. A. Amaral, L. Glass, J. M. Hausdorff, P. C. Ivanov, R. G. Mark, J. E. Mietus, G. B. Moody, C.-K. Peng, and H. E. Stanley, “PhysioBank, PhysioToolkit, and PhysioNet: components of a new research resource for complex physiologic signals,” Circulation ,vol. 101, no. 23, pp. e215–e220, 2000. [32] J. Pan and W. J. Tompkins, “A real-time QRS detection algorithm,” IEEE Transactions on Biomedical Engineering , vol. 32, no. 3, pp. 230–236, 1985. [33] A. J. Viterbi, “Error bounds for convolutional codes and an asymptoti-cally optimum decoding algorithm,” IEEE Transactions on Information Theory , vol. 13, no. 2, pp. 260–269, 1967. [34] J. Cohen, “A coefficient of agreement for nominal scales,” Educational and Psychological Measurement , vol. 20, no. 1, pp. 37–46, 1960. [35] S. Khosla, M. C. Deak, D. Gault, C. A. Goldstein, D. Hwang, Y. Kwon, D. O’Hearn, S. Schutte-Rodin, M. Yurcheshen, I. M. Rosen et al. ,“Consumer sleep technology: An american academy of sleep medicine position statement,” Journal of Clinical Sleep Medicine , vol. 14, no. 5, pp. 877–880, 2018. [36] C. M. Depner, P. C. Cheng, J. K. Devine, S. Khosla, M. de Zambotti, R. Robillard, A. Vakulin, and S. P. Drummond, “Wearable technologies for developing sleep and circadian biomarkers: a summary of workshop discussions,” Sleep , vol. 43, no. 2, p. zsz254, 2020.
