@@ -1,0 +1,24 @@
+---
+title: "Medea: An AI agent for therapeutic reasoning across biological contexts"
+title_zh: Medea：一种跨生物学背景的治疗推理AI代理
+authors: "Sui, P., Li, M., Munson, B. P., Gao, S., Shen, W., Giunchiglia, V., Shen, A., Huang, Y., Kong, Z., Licon, K., Ideker, T., Zitnik, M."
+date: 2026-07-16
+pdf: "https://www.biorxiv.org/content/10.64898/2026.01.16.696667v2.full.pdf"
+tags: ["query:neuro-mental"]
+score: 6.0
+evidence: 跨生物学上下文的治疗推理AI智能体
+tldr: 治疗假说跨疾病转移受生物语境限制，现有AI系统难以保留语境、验证中间步骤或调和证据。Medea通过多步分析结合生物工具、机器学习与文献检索，并在规划、执行、证据合成中强制验证。在五种疾病29种细胞类型靶点提名、7种癌细胞系合成致死预测等5673个分析中，以及在未发表的酵母238046对基因筛选数据上，Medea优于LLM、推理模型和专用ML模型，失败率低且校准弃权。结果表明验证性AI智能体可可靠进行跨生物语境治疗推理。
+source: biorxiv
+selection_source: fresh_fetch
+figures_json: "[{\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-001.webp\", \"caption\": \"\", \"page\": 0, \"index\": 1, \"width\": 1455, \"height\": 1775, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-002.webp\", \"caption\": \"\", \"page\": 0, \"index\": 2, \"width\": 1395, \"height\": 1383, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-003.webp\", \"caption\": \"\", \"page\": 0, \"index\": 3, \"width\": 1690, \"height\": 1452, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-004.webp\", \"caption\": \"\", \"page\": 0, \"index\": 4, \"width\": 1632, \"height\": 1779, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-005.webp\", \"caption\": \"\", \"page\": 0, \"index\": 5, \"width\": 1559, \"height\": 1930, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-006.webp\", \"caption\": \"\", \"page\": 0, \"index\": 6, \"width\": 1669, \"height\": 1367, \"label\": \"Figure\"}, {\"url\": \"assets/figures/biorxiv/biorxiv-10-64898-2026-01-16-696667-v2/fig-007.webp\", \"caption\": \"\", \"page\": 0, \"index\": 7, \"width\": 1686, \"height\": 879, \"label\": \"Figure\"}]"
+motivation: 现有AI智能体在治疗推理中无法保持生物语境、验证计算步骤或调和冲突证据，亟需可验证的跨语境方法。
+method: Medea执行多步分析，整合生物工具、机器学习模型和文献检索，并在规划、执行和证据合成阶段强制验证。
+result: 在5673个开放式分析及238046对酵母基因合成致死预测中，Medea超越LLM、推理模型和专用模型，失败率低。
+conclusion: 验证性AI智能体可实现跨生物语境的可靠治疗推理，提升生物学可解释性与泛化能力。
+---
+
+## 摘要
+治疗假说可以跨疾病转移，但其相关性取决于生物学背景。相同的靶点、扰动或治疗方法在不同细胞类型、疾病状态、遗传背景和患者中可能产生不同效果。因此，治疗推理需要能够保留背景、检验证据是否支持转移，以及识别背景特异性效应限制其转移的方法。尽管AI代理可以执行治疗分析，但现有系统常常无法在长工作流程中保留生物学背景、验证中间计算步骤，或调和数据集和文献中的冲突证据。在此，我们提出Medea，一种跨生物学背景的治疗推理AI代理。Medea使用生物学工具、机器学习模型和文献检索执行多步分析，同时在规划、执行和证据综合过程中强制进行验证。我们评估了Medea在三个领域中的5,673个开放式分析：五种疾病和29种细胞类型的细胞类型特异性治疗靶点提名、7种癌细胞系的合成致死性预测，以及基于多模态患者图谱的免疫治疗反应预测。使用先前未发表的、在两种DNA损伤处理下进行的上位性小阵列谱筛选，我们评估了Medea在预测酵母中238,046个基因对的合成致死性方面的表现。Medea预测了这些实验测量的合成致死相互作用，表明其性能反映了生物学相关性，而非基准数据集的信息泄露。在这些评估中，Medea优于大型语言模型、推理模型、生物医学代理和专门的机器学习模型，同时保持了低失败率和校准的放弃率。这些结果表明，可验证的AI代理能够在跨生物学背景下执行治疗分析。
+
+## Abstract
+Therapeutic hypotheses can transfer across diseases but their relevance depends on biological context. The same target, perturbation, or treatment can produce different effects across cell types, disease states, genetic backgrounds, and patients. Therapeutic reasoning therefore requires methods that preserve context, test when evidence supports transfer, and identify where context-specific effects limit it. Although AI agents can perform therapeutic analyses, existing systems often fail to preserve biological context over long workflows, verify intermediate computational steps, or reconcile conflicting evidence across datasets and literature. Here, we present Medea, an AI agent for therapeutic reasoning across biological contexts. Medea executes multi-step analyses using biological tools, machine learning models, and literature retrieval while enforcing verification during planning, execution, and evidence synthesis. We evaluate Medea across 5,673 open-ended analyses in three domains: cell type specific therapeutic target nomination in five diseases and 29 cell types, synthetic lethality prediction in 7 cancer cell lines, and immunotherapy response prediction from multimodal patient profiles. Using a previously unpublished epistatic miniarray profiling screen performed under two DNA-damaging treatments, we evaluate Medea on predicting synthetic lethality among 238,046 gene-gene pairs in yeast. Medea predicts these experimentally measured synthetic lethal interactions, indicating that its performance reflects biological relevance rather than information leakage from benchmark datasets. Across these evaluations, Medea improves performance over large language models, reasoning models, biomedical agents, and specialized machine learning models while maintaining low failure rates and calibrated abstention. These results show that verifiable AI agents can perform therapeutic analyses across biological contexts.

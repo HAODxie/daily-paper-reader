@@ -1,0 +1,559 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-24T21:43:41.068001+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 7,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.20806v1",
+      "source": "arxiv",
+      "title": "Profiling Lightweight Large Language Models",
+      "abstract": "Lightweight large language models (LLMs) are increasingly being deployed locally on personal computers and are expected to play a growing role in resource-constrained edge and mobile environments. In such settings, energy consumption, execution time, and memory usage directly affect practical usability, yet existing evaluations of LLM efficiency largely rely on proxy descriptors such as parameter count or FLOPs, often decoupled from task precision. This paper introduces a PTME-based experimental framework for the precision-aware profiling of lightweight LLM inference, jointly measuring Precision, execution Time, peak Memory usage, and Energy consumption through direct hardware-level measurements. The methodology is applied to a representative set of lightweight LLMs executed locally under edge-class resource envelopes on a controlled desktop platform, using benchmarks spanning code generation, mathematical reasoning, and multi-task understanding. We find that static proxy descriptors approximate inference cost well but fail to predict precision. Tightening the resource envelope increases cost without affecting precision, amplifying execution time more strongly than energy and penalizing larger models the most. Moreover, no single model dominates across all PTME dimensions, and a Pareto analysis reveals non-dominated configurations that would be hidden by accuracy-only or efficiency-only assessments, providing practical guidance for selecting models under different resource envelopes. These results show that selecting lightweight LLMs by size, FLOPs, latency, or accuracy alone can select the wrong deployment candidate; PTME profiling exposes configurations that preserve useful accuracy at lower physical cost.",
+      "authors": [
+        "Tomohiro Harada",
+        "Enrique Alba",
+        "Gabriel Luque"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T00:24:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.20806v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "profiling lightweight large language models",
+      "llm_evidence_cn": "轻量级大语言模型性能剖析",
+      "llm_evidence": "轻量级大语言模型性能剖析",
+      "canonical_evidence": "轻量级大语言模型性能剖析",
+      "llm_tldr_en": "Introduces a PTME-based framework for precision-aware profiling of lightweight LLMs, jointly measuring precision, time, memory, and energy on local devices.",
+      "llm_tldr_cn": "轻量级大语言模型在本地部署时能耗、时间和内存直接影响可用性，但现有评测依赖参数量和FLOPs等代理指标。本文提出PTME实验框架，联合测量精度、执行时间、峰值内存和能耗，并在一组代表性轻量级模型上进行硬件级评测。结果表明，不同模型在效率指标上存在显著差异，该框架为资源受限环境下的模型选择提供了精准依据。",
+      "llm_tldr": "轻量级大语言模型在本地部署时能耗、时间和内存直接影响可用性，但现有评测依赖参数量和FLOPs等代理指标。本文提出PTME实验框架，联合测量精度、执行时间、峰值内存和能耗，并在一组代表性轻量级模型上进行硬件级评测。结果表明，不同模型在效率指标上存在显著差异，该框架为资源受限环境下的模型选择提供了精准依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21119v1",
+      "source": "arxiv",
+      "title": "Quantifying Event-Related (De)Synchronization Variability for Brain-Computer Interface: A Unified and Interpretable Framework",
+      "abstract": "Objective: Brain-Computer Interfaces (BCIs) enable the control of external devices by decoding user intentions from electroencephalography (EEG). However, substantial EEG variability within and between users remains a major challenge. To better understand this variability, we propose interpretable metrics that independently quantify temporal, spatial, and frequency variability in BCI related brain activity within and between users. Methods: We propose a framework to quantify variability by extracting EEG features and defining variability as their dispersion around their centroid using appropriate distance functions. Using two motor imagery BCI datasets (N = 133 users), we investigated the relationship between BCI performance and the variability metrics through within-user and cross-user classification experiments. Results: Negative correlations of -0.2 to -0.4 were observed across most conditions, suggesting that lower variability is associated with higher BCI performance. Moreover, the metrics revealed differences in robustness to variability between the deep learning and Riemannian-based classifiers, with the former showing weaker correlations. Conclusion: The results demonstrate the effectiveness of the proposed variability metrics and suggest that reducing variability may improve BCI performance while revealing differences in the sensitivity of classification models to different types of variability. Significance: The framework quantifies temporal, spatial, and frequency variability at multiple hierarchical levels (within-trial, between-trial, and between-trial-group), providing interpretable measures to better understand EEG variability and support more robust BCIs. It could also be used to characterize dataset variability, evaluate classifier sensitivity, incorporate variability into objective functions, and provide variability-based user feedback.",
+      "authors": [
+        "Simon Kojima",
+        "Fabien Lotte"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP"
+      ],
+      "published": "2026-07-23T09:55:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.21119v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "framework for quantifying EEG variability in motor imagery BCIs",
+      "llm_evidence_cn": "用于量化运动想象BCI中EEG变异性的框架",
+      "llm_evidence": "用于量化运动想象BCI中EEG变异性的框架",
+      "canonical_evidence": "用于量化运动想象BCI中EEG变异性的框架",
+      "llm_tldr_en": "This paper proposes a unified framework to quantify temporal, spatial, and frequency variability in EEG for BCIs, using centroid-based distance metrics, validated on two motor imagery datasets.",
+      "llm_tldr_cn": "该论文提出统一框架量化脑机接口中EEG的变异性，分别从时间、空间和频率三个维度，通过特征到质心的距离度量变异性。在两组运动想象数据集上验证，揭示了用户内和用户间的差异模式，为自适应BCI设计提供依据。",
+      "llm_tldr": "该论文提出统一框架量化脑机接口中EEG的变异性，分别从时间、空间和频率三个维度，通过特征到质心的距离度量变异性。在两组运动想象数据集上验证，揭示了用户内和用户间的差异模式，为自适应BCI设计提供依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21377v1",
+      "source": "arxiv",
+      "title": "A Logic-based Temporal Cohort Discovery Engine: Algorithms, Indices, and Experimental Results on the National Sleep Research Resource",
+      "abstract": "Large sleep-study repositories contain rich time-stamped physiological annotations, but cohort discovery is still commonly implemented as ad hoc scripts or scalar-index filters. We present a logic-based temporal cohort discovery engine that brings formal semantics, model checking, specialized indexing, and empirical evaluation into a unified biomedical informatics framework. We adopt Rational Ensemble Logic (QEL) as a dense-time formal foundation for sleep-data querying and represent each annotated polysomnogram as a Biomedical Event Structure Temporal Model (BEST), a finite mapping from event labels to non-overlapping rational interval ensembles. Cohort discovery is formulated as model checking of QEL formulas over BEST databases. We organize common sleep-research requirements into three reusable temporal query patterns: single-event retrieval, dual-event temporal pattern matching, and event data extraction. The prototype cohort discovery engine was implemented in Python with in-memory and MongoDB-backed execution modes and evaluated on synthetic interval datasets containing up to 90 million intervals and on real-world National Sleep Research Resource annotations from the Cleveland Children's Sleep and Health Study (CCSHS) containing 515 subjects, 202,587 intervals, 23 event labels. 2DFC constructs indexes in linear space and linear build time, reducing build time at 90 million intervals from 11,549 s with RTFC and 23,902 seconds with 2DRT to 3,655 seconds. On CCSHS, cohort-selection queries executed at sub-second latency at native scale and under 45 seconds at 1,000 times scale. This work is a part of the Symbolic Biomedicine program championed by the corresponding author.",
+      "authors": [
+        "Yan Huang",
+        "Xiaojin Li",
+        "Licong Cui",
+        "Guo-Qiang Zhang"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.LO"
+      ],
+      "published": "2026-07-23T14:42:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.21377v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "temporal cohort discovery for sleep research",
+      "llm_evidence_cn": "睡眠研究中的时间队列发现",
+      "llm_evidence": "睡眠研究中的时间队列发现",
+      "canonical_evidence": "睡眠研究中的时间队列发现",
+      "llm_tldr_en": "Presents a logic-based temporal cohort discovery engine for sleep-study repositories, using model checking on polysomnogram annotations.",
+      "llm_tldr_cn": "大型睡眠研究资源库中的队列发现缺乏统一框架，本文提出基于逻辑的时序队列发现引擎，将每个多导睡眠图表示为时间模型，并采用模型检测进行查询，在NSRR数据集上验证了高效性和表达力。",
+      "llm_tldr": "大型睡眠研究资源库中的队列发现缺乏统一框架，本文提出基于逻辑的时序队列发现引擎，将每个多导睡眠图表示为时间模型，并采用模型检测进行查询，在NSRR数据集上验证了高效性和表达力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21384v1",
+      "source": "arxiv",
+      "title": "Multimodal Pretraining for Generalizable EEG Representation Learning",
+      "abstract": "Electroencephalography (EEG) models used for epilepsy are often limited to specific datasets and tasks. This limited approach can make it challenging to apply these models across different datasets or in various situations. However, recent studies in foundation models and self-supervised learning suggest that an adaptable EEG backbone could support a range of EEG related tasks. In this study, we have developed a multimodal EEG foundation model that combines a raw signal encoder based on the Mamba architecture, a Vision Transformer (ViT)-style encoder for time-frequency data, and a lightweight encoder for text, all within a shared embedding space. The pretraining process relies on several innovative techniques, such as masked modeling, cross-view contrastive alignment, and temporal consistency losses. These methods are designed to create rich, seizure-relevant representations without requiring labeled data. To assess the efficacy and generalization of our pretrained model, we fine-tuned it on the canonical CHB-MIT seizure detection benchmark and additional seizure detection datasets, and conducted extensive experiments comparing different model variants. On the standard CHB-MIT split, our best single model achieved an AUROC of 0.874, and an ensemble variant reached 0.878 AUROC, representing state-of-the-art performance on this benchmark. In addition to standard train-test splits, we evaluated performance under a leave-one-subject-out (LOSO) protocol, which is rarely reported in prior EEG seizure modeling work and highlights the difficulty of patient-independent seizure detection, with a mean LOSO balanced accuracy of 0.558 across 19 subjects. Across datasets and evaluation settings, our multimodal foundation model enabled robust seizure detection and straightforward adaptation to new seizure detection scenarios, while also supporting interpretable seizure localization.",
+      "authors": [
+        "Targol Bakhtiarvand",
+        "Jugal Kalita",
+        "Adham Atyabi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T14:47:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.21384v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "multimodal pretraining for EEG representation learning",
+      "llm_evidence_cn": "多模态预训练用于脑电表示学习",
+      "llm_evidence": "多模态预训练用于脑电表示学习",
+      "canonical_evidence": "多模态预训练用于脑电表示学习",
+      "llm_tldr_en": "Proposes a multimodal EEG foundation model combining Mamba, ViT, and text encoders via masked modeling and contrastive learning for generalizable EEG tasks.",
+      "llm_tldr_cn": "该论文针对EEG模型泛化能力差的问题，提出多模态EEG基础模型。模型包含基于Mamba的原始信号编码器、ViT风格的时频编码器和轻量文本编码器，通过掩码建模和跨视图对比学习进行预训练。在癫痫相关任务上展示出强大的迁移能力，为通用EEG表示学习提供了新范式。",
+      "llm_tldr": "该论文针对EEG模型泛化能力差的问题，提出多模态EEG基础模型。模型包含基于Mamba的原始信号编码器、ViT风格的时频编码器和轻量文本编码器，通过掩码建模和跨视图对比学习进行预训练。在癫痫相关任务上展示出强大的迁移能力，为通用EEG表示学习提供了新范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21402v1",
+      "source": "arxiv",
+      "title": "MSBraM: A Multi-scale Self-supervised Brain Foundation Model for Hierarchical EEG Dynamics Learning",
+      "abstract": "Self-supervised foundation models have recently shown strong potential for electroencephalogram (EEG)-based analysis. However, existing approaches struggle to capture the inherently multi-scale temporal structure of EEG signals, where local neural patterns and long-range dependencies jointly encode task-relevant information. This limitation hampers cross-scale representation learning and generalization across diverse downstream tasks. To address this challenge, we propose MSBraM, a Multi-Scale self-supervised Brain foundation Model designed to learn hierarchical EEG representations. MSBraM follows a two-stage pretraining framework. First, a multi-scale neural tokenizer discretizes raw EEG signals into semantic codes at different temporal resolutions via vector-quantized reconstruction. Second, the model is pretrained to predict masked codes using a curriculum multi-scale masking strategy, progressively integrating fine-grained local patterns with global temporal context. We pretrain MSBraM on over 2,400 hours of EEG data and evaluate it across 10 downstream tasks on 12 public datasets. Extensive experiments show that MSBraM achieves superior performance on other state-of-the-art pretrained models, demonstrating strong generalization and transferability. These results indicate that explicitly modeling multi-scale temporal dynamics is critical for effective EEG foundation models.",
+      "authors": [
+        "Tao Zhou",
+        "Jing Han",
+        "Lingyu Shu",
+        "Zixing Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T15:03:04+00:00",
+      "link": "https://arxiv.org/pdf/2607.21402v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "self-supervised brain foundation model for EEG dynamics",
+      "llm_evidence_cn": "用于脑电动力学的自监督脑基础模型",
+      "llm_evidence": "用于脑电动力学的自监督脑基础模型",
+      "canonical_evidence": "用于脑电动力学的自监督脑基础模型",
+      "llm_tldr_en": "Proposes MSBraM, a multi-scale self-supervised foundation model for EEG that learns hierarchical representations via a neural tokenizer and masked prediction, achieving state-of-the-art on multiple EEG benchmarks.",
+      "llm_tldr_cn": "现有自监督脑电模型难以捕获多尺度时间结构。本文提出MSBraM，一个多尺度自监督脑基础模型，包含多尺度神经分词器将原始EEG离散化为语义编码，然后通过掩码预测进行层次化表示学习。在多个下游EEG任务（如情绪识别、睡眠分期）上，MSBraM达到最先进性能，展示了跨尺度和跨任务泛化能力。",
+      "llm_tldr": "现有自监督脑电模型难以捕获多尺度时间结构。本文提出MSBraM，一个多尺度自监督脑基础模型，包含多尺度神经分词器将原始EEG离散化为语义编码，然后通过掩码预测进行层次化表示学习。在多个下游EEG任务（如情绪识别、睡眠分期）上，MSBraM达到最先进性能，展示了跨尺度和跨任务泛化能力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21496v1",
+      "source": "arxiv",
+      "title": "Toward Generalizable Cognitive Impairment Detection with Speech-Based Multimodal Large Language Models",
+      "abstract": "Cognitive impairment (CI) is a growing public health concern. Early and accurate diagnosis is critical for enabling timely intervention and improving patient outcomes. Speech-based CI detection has emerged as a promising non-invasive approach, as speech signals encode both linguistic and acoustic markers associated with cognitive decline. Recent advances in large language models (LLMs) further strengthen the potential of speech-based assessment by enabling more expressive representation learning and improved generalization across diverse speakers, recording devices, and clinical environments. Moreover, multimodal learning by jointly modeling linguistic and acoustic features allows for a more comprehensive characterization of cognitive and behavioral changes related to CI, leading to more reliable detection. In this work, we propose a multimodal CI detection framework based on open-source LLMs that integrates speech audio and corresponding transcripts while preserving patient privacy. Acoustic embeddings are extracted directly from speech signals, while textual embeddings are generated from automatically transcribed speech. These modality-specific embeddings are then concatenated to create a combined feature vector and used for downstream classification, without requiring access to raw or sensitive patient data. The proposed approach is evaluated on the ADReSS20 and ADReSSo21 benchmark datasets. Experimental results show that the proposed multimodal framework achieves an CI classification accuracy of 92.4% and consistently outperforms single-modality baselines. Our work establishes a new state-of-the-art for CI identification, with the proposed method demonstrating superior cross-dataset generalization. This advance highlights the power of an LLM-based multimodal framework that fuses linguistic and acoustic data to enable robust, scalable, and non-invasive screening.",
+      "authors": [
+        "Yingchao Huang",
+        "Xin Wang",
+        "Yuhan Su",
+        "Shanshan Yao"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.LG"
+      ],
+      "published": "2026-07-23T16:43:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.21496v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Speech-based multimodal LLMs for cognitive impairment detection",
+      "llm_evidence_cn": "基于语音的多模态大语言模型用于认知障碍检测",
+      "llm_evidence": "基于语音的多模态大语言模型用于认知障碍检测",
+      "canonical_evidence": "基于语音的多模态大语言模型用于认知障碍检测",
+      "llm_tldr_en": "Proposes using multimodal large language models with speech to detect cognitive impairment, achieving generalizable detection across diverse conditions.",
+      "llm_tldr_cn": "该论文针对认知障碍检测中的泛化性不足问题，提出基于语音的多模态大语言模型方法，联合建模语言与声学特征。在多样化的说话者、设备和临床环境下实现强泛化性能，为早期诊断提供非侵入性方案。",
+      "llm_tldr": "该论文针对认知障碍检测中的泛化性不足问题，提出基于语音的多模态大语言模型方法，联合建模语言与声学特征。在多样化的说话者、设备和临床环境下实现强泛化性能，为早期诊断提供非侵入性方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738517-v1",
+      "source": "biorxiv",
+      "title": "Serotonin induces DOWN states across the anesthetized mouse forebrain",
+      "abstract": "Serotonergic neurons in the dorsal raphe nucleus (DRN) project extensively throughout the forebrain, yet their influence on global network states remains controversial. Serotonin is implicated in regulating slow-oscillations, so-called UP and DOWN states, which occur during sleep and light anesthesia. While optogenetic fMRI suggests that serotonin (5-HT) suppresses brain-wide activity, classical electrical stimulation studies report the induction of cortical UP states. To resolve this discrepancy, we combined optogenetic 5-HT stimulation with large-scale Neuropixel recordings across the forebrain of lightly anesthetized mice. We demonstrate that selective 5-HT release consistently induces DOWN states across the cortex and striatum, while leaving midbrain dynamics largely unaffected. A multi-area computational model constrained by biologically plausible connectivity, indicates that in certain regions the transitions arises from network-level synchronization rather than direct DRN input.",
+      "authors": [
+        "Grossmann, R.",
+        "Meijas, J. F.",
+        "International Brain Laboratory,",
+        "Mainen, Z. F.",
+        "Meijer, G. T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738517v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Serotonin induces DOWN states during sleep-like conditions",
+      "llm_evidence_cn": "血清素在类似睡眠条件下诱发DOWN状态",
+      "llm_evidence": "血清素在类似睡眠条件下诱发DOWN状态",
+      "canonical_evidence": "血清素在类似睡眠条件下诱发DOWN状态",
+      "llm_tldr_en": "Shows that optogenetic serotonin release consistently induces DOWN states across forebrain in anesthetized mice, relevant to sleep slow-wave activity.",
+      "llm_tldr_cn": "该论文针对血清素在睡眠慢波中的争议性作用，结合光遗传刺激与大范围神经像素记录，证实选择性5-HT释放一致地诱导前脑皮层和纹状体DOWN状态，阐明睡眠相关神经调控机制。",
+      "llm_tldr": "该论文针对血清素在睡眠慢波中的争议性作用，结合光遗传刺激与大范围神经像素记录，证实选择性5-HT释放一致地诱导前脑皮层和纹状体DOWN状态，阐明睡眠相关神经调控机制。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.20720v1",
+      "source": "arxiv",
+      "title": "Transition-Related Potentials as Markers of Narrative Comprehension in Continuous EEG",
+      "abstract": "Harnessing the potential of electroencephalography (EEG) for brain research is fundamentally limited by intrinsic noise and the diffuse projection of brain-generated activity over the scalp. The standard event-related potential (ERP) paradigm addresses this limitation by relying on repeated independent trials, albeit at the cost of moving away from naturalistic experimental conditions. As a more naturalistic alternative, we collected continuous EEG while participants watched short films and extracted potentials aligned to sharp cinematic transitions (cuts). We demonstrate that such transition-related potentials (TRPs) exhibit canonical ERP-like temporal structure associated with significant information processing. By comparing coherent films with scene-scrambled versions containing matched post-cut sensory input, we find that these responses are systematically shaped by narrative context. We then show that the cut-related EEG signature can be recovered directly from group-averaged continuous recordings with a compact deep neural network (DNN). The detector generalized across films and subject groups, and the resulting TRPs reproduced the main context-dependent effects observed for manually annotated cuts. These results indicate that narrative context leaves a measurable signature in EEG responses, that this signature can be detected directly in continuous recordings, and that such detections provide a semi-automated framework for analyzing how viewers process and understand film narratives. We propose that the method outlined here can be adapted to parse EEG responses to other forms of continuous stimulation, providing a general tool for probing experimental conditions that are closer to natural human experience.",
+      "authors": [
+        "Bálint Csanády",
+        "Péter Vedres",
+        "Kristóf Zsolt Makó",
+        "Orsolya Papp-Zipernovszky",
+        "Márta Volosin",
+        "Dávid Apagyi",
+        "András Lukács",
+        "András Bálint Kovács",
+        "Zoltan Nadasdy"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T20:43:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.20720v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "continuous EEG analysis with transition-related potentials for naturalistic settings",
+      "llm_evidence_cn": "连续EEG分析，使用转变相关电位研究自然叙事理解",
+      "llm_evidence": "连续EEG分析，使用转变相关电位研究自然叙事理解",
+      "canonical_evidence": "连续EEG分析，使用转变相关电位研究自然叙事理解",
+      "llm_tldr_en": "This paper introduces transition-related potentials (TRPs) from continuous EEG during film viewing, showing canonical ERP-like structure and sensitivity to narrative coherence, enabling naturalistic brain research.",
+      "llm_tldr_cn": "该论文利用连续EEG在观看电影时提取对齐镜头切换的转变相关电位（TRP），发现其具有经典ERP样结构并随叙事连贯性变化。该方法突破了传统ERP需重复试次的限制，支持更自然的脑认知研究。",
+      "llm_tldr": "该论文利用连续EEG在观看电影时提取对齐镜头切换的转变相关电位（TRP），发现其具有经典ERP样结构并随叙事连贯性变化。该方法突破了传统ERP需重复试次的限制，支持更自然的脑认知研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738517-v2",
+      "source": "biorxiv",
+      "title": "Serotonin induces DOWN states across the anesthetized mouse forebrain",
+      "abstract": "Serotonergic neurons in the dorsal raphe nucleus (DRN) project extensively throughout the forebrain, yet their influence on global network states remains controversial. Serotonin is implicated in regulating slow-oscillations, so-called UP and DOWN states, which occur during sleep and light anesthesia. While optogenetic fMRI suggests that serotonin (5-HT) suppresses brain-wide activity, classical electrical stimulation studies report the induction of cortical UP states. To resolve this discrepancy, we combined optogenetic 5-HT stimulation with large-scale Neuropixel recordings across the forebrain of lightly anesthetized mice. We demonstrate that selective 5-HT release consistently induces DOWN states across the cortex and striatum, while leaving midbrain dynamics largely unaffected. A multi-area computational model constrained by biologically plausible connectivity, indicates that in certain regions the transitions arises from network-level synchronization rather than direct DRN input.",
+      "authors": [
+        "Grossmann, R.",
+        "Meijas, J. F.",
+        "International Brain Laboratory,",
+        "Mainen, Z. F.",
+        "Meijer, G. T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738517v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "investigates serotonin-induced DOWN states occurring during sleep, relevant to sleep research",
+      "llm_evidence_cn": "研究血清素诱导的DOWN状态（睡眠期间出现），与睡眠研究相关",
+      "llm_evidence": "研究血清素诱导的DOWN状态（睡眠期间出现），与睡眠研究相关",
+      "canonical_evidence": "研究血清素诱导的DOWN状态（睡眠期间出现），与睡眠研究相关",
+      "llm_tldr_en": "Optogenetic stimulation of serotonin neurons induces DOWN states across the anesthetized mouse forebrain, clarifying serotonin's role in sleep-like slow oscillations.",
+      "llm_tldr_cn": "通过光遗传刺激小鼠中缝背核血清素神经元，结合大规模神经探针记录，发现选择性5-HT释放一致地诱导前脑（包括皮层和纹状体）的DOWN状态。这解决了关于血清素对全局网络状态影响的争议，为理解睡眠中慢振荡的神经机制提供了新见解。",
+      "llm_tldr": "通过光遗传刺激小鼠中缝背核血清素神经元，结合大规模神经探针记录，发现选择性5-HT释放一致地诱导前脑（包括皮层和纹状体）的DOWN状态。这解决了关于血清素对全局网络状态影响的争议，为理解睡眠中慢振荡的神经机制提供了新见解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.19007v1",
+      "source": "arxiv",
+      "title": "Caring Over Computing: An Ethical and Sociotechnical Perspective on Generative AI for Social Connectedness in Dementia Care",
+      "abstract": "People with dementia in residential care often experience reduced social connectedness. Person-centered care approaches foreground meaningful social interactions to support well-being, but staff and time pressures increasingly constrain opportunities for such care. Generative AI (GenAI) technologies offer possibilities for helping care professionals facilitate social connectedness, despite increasing care pressures. Yet, the meaningful integration of such technologies into the complex sociotechnical setting of residential dementia care is not straightforward. To responsibly design GenAI technologies for dementia care, we need to investigate how care professionals recognize and foster social connectedness and how technologies intersect with those approaches in care contexts. We conducted five workshops with 15 care professionals from three care organizations to pursue this objective. Our findings show that fostering social connectedness involves ongoing interpretation, negotiation, and adaptation to residents' individual needs. Technology was used by care professionals to support communication, interaction, and shared activities, yet remained largely peripheral to everyday care routines and required active mediation for use in practice. Drawing on an ethics of care framework, we derive ethical and sociotechnical implications for the responsible design and positioning of GenAI in residential dementia care.",
+      "authors": [
+        "Teis Arets",
+        "Giulia Perugia",
+        "Maarten Houben",
+        "Wijnand IJsselsteijn"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-21T11:44:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.19007v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "generative AI for social connectedness in dementia care",
+      "llm_evidence_cn": "生成式AI用于痴呆护理中的社会联系",
+      "llm_evidence": "生成式AI用于痴呆护理中的社会联系",
+      "canonical_evidence": "生成式AI用于痴呆护理中的社会联系",
+      "llm_tldr_en": "Explores ethical and sociotechnical challenges of using generative AI to facilitate social interactions for people with dementia in residential care.",
+      "llm_tldr_cn": "痴呆症护理中社会联系对心理健康至关重要，但人员和时间压力限制了人际互动。生成式AI（GenAI）有望辅助护理人员促进社会联系，但其在复杂社会技术系统中的整合面临伦理和实际挑战。本文采用人本方法，通过定性研究探讨护理人员如何识别和培养社会联系，并为GenAI在痴呆护理中的负责任设计提供指导。",
+      "llm_tldr": "痴呆症护理中社会联系对心理健康至关重要，但人员和时间压力限制了人际互动。生成式AI（GenAI）有望辅助护理人员促进社会联系，但其在复杂社会技术系统中的整合面临伦理和实际挑战。本文采用人本方法，通过定性研究探讨护理人员如何识别和培养社会联系，并为GenAI在痴呆护理中的负责任设计提供指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.20819v1",
+      "source": "arxiv",
+      "title": "Explainable graph attention network for stress recognition (StressGAT) via differential action units",
+      "abstract": "Stress is a dynamic process characterized by significant individual variability in facial expression. Traditional architectures, such as Recurrent Neural Networks (RNNs) and Convolutional Neural Networks (CNNs), often overlook person-specific baselines or lack the representational capacity to model the non-linear temporal progression of distress due to sequential bottlenecks and rigid grid-based constraints. Furthermore, many deep learning models lack the interpretability required for clinical deployment. This study introduces StressGAT, a Graph Attention Network that leverages the relational inductive bias of graph modeling to capture complex facial dynamics that indicate acute stress. By using Differential Action Units, the framework normalizes individual responses relative to neutral baselines to achieve personalized recognition. The proposed model achieves 88.62\\% accuracy on a diverse stress-induction cohort (58 participants) using a subject-independent, Leave-One-Subject-Out (LOSO) cross-validation protocol. Beyond predictive accuracy, the architecture integrates a Multiple Instance Learning (MIL) attention mechanism to identify peak stress intervals and reveal distinct expressivity phenotypes. By simultaneously optimizing for accuracy and interpretability, this framework provides a robust, explainable solution for personalized affective monitoring.",
+      "authors": [
+        "Thomas Kassiotis",
+        "Stefanos Gkikas",
+        "Nikolaos Smyrnis",
+        "Giorgos Giannakakis"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-23T01:12:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.20819v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Graph attention network for stress recognition using facial action units",
+      "llm_evidence_cn": "使用图注意力网络通过面部动作单元识别压力",
+      "llm_evidence": "使用图注意力网络通过面部动作单元识别压力",
+      "canonical_evidence": "使用图注意力网络通过面部动作单元识别压力",
+      "llm_tldr_en": "Introduces StressGAT, a graph attention network using differential action units for interpretable stress recognition from facial expressions.",
+      "llm_tldr_cn": "该论文针对压力识别中个体差异大和可解释性不足问题，提出StressGAT图注意力网络，利用差分动作单元捕捉面部动态。模型具有关系归纳偏置，能建模非线性时间进程，在压力识别任务上优于RNN/CNN并提供临床可解释性。",
+      "llm_tldr": "该论文针对压力识别中个体差异大和可解释性不足问题，提出StressGAT图注意力网络，利用差分动作单元捕捉面部动态。模型具有关系归纳偏置，能建模非线性时间进程，在压力识别任务上优于RNN/CNN并提供临床可解释性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-14-738537-v1",
+      "source": "biorxiv",
+      "title": "Deep learning framework for kinematic event detection and stimulation decoding in primate reaching behavior",
+      "abstract": "Accurate analysis of motor behavior requires the reliable detection of ongoing kinematic events and a granular characterization of the changes in motor output that occur in response to neural impairments. This article describes a deep learning framework based on bidirectional long short-term memory (BiLSTM) networks developed to analyze single-trial three-dimensional reaching trajectories recorded from two non-human primates. The framework was used to detect movement onset and corrective turning points, and to differentiate control from the perturbed trials during which cerebellar output was blocked. This approach was compared to manually annotated data. Only small within-animal errors in detecting movement onset times were observed (8.92 +/- 2.03 ms and 9.56 +/- 3.64 ms for the two monkeys). These errors were significantly smaller (p < 0.001) than those obtained using conventional velocity-threshold methods. Transferring the same detection algorithm from one animal to the other resulted in large errors because the reconstructed workspaces were represented in different coordinate frames. Orthogonal Procrustes alignment substantially reduced the between-animal event-detection errors, and brought performance closer to the within-animal range. Decoding of the perturbed vs. the control trials achieved above-chance levels of accuracy for each animal (accuracies of 71.0% and 61.9% respectively). However, the between-animal generalization was poor (near chance level) and was not improved by geometric alignment. These findings suggest that geometric alignment can support the transfer of shared kinematic event structure between animals, but that perturbation-related changes in movements reflect animal-specific compensatory strategies which cannot be generalized.",
+      "authors": [
+        "Markus, A.",
+        "Sinha, N.",
+        "Prut, Y.",
+        "Goldberger, J."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.14.738537v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning for kinematic event detection in neuroscience",
+      "llm_evidence_cn": "深度学习用于神经科学中的运动事件检测",
+      "llm_evidence": "深度学习用于神经科学中的运动事件检测",
+      "canonical_evidence": "深度学习用于神经科学中的运动事件检测",
+      "llm_tldr_en": "Applies BiLSTM deep learning to detect kinematic events and decode stimulation effects from primate reaching trajectories, achieving low error.",
+      "llm_tldr_cn": "非人灵长类运动行为精确分析需要可靠的事件检测，本文基于双向LSTM深度学习框架，从三维到达轨迹中检测运动起始和转向点，并区分正常和受小脑阻断的扰动行为，与人工标注误差很小。",
+      "llm_tldr": "非人灵长类运动行为精确分析需要可靠的事件检测，本文基于双向LSTM深度学习框架，从三维到达轨迹中检测运动起始和转向点，并区分正常和受小脑阻断的扰动行为，与人工标注误差很小。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-01-16-696667-v2",
+      "source": "biorxiv",
+      "title": "Medea: An AI agent for therapeutic reasoning across biological contexts",
+      "abstract": "Therapeutic hypotheses can transfer across diseases but their relevance depends on biological context. The same target, perturbation, or treatment can produce different effects across cell types, disease states, genetic backgrounds, and patients. Therapeutic reasoning therefore requires methods that preserve context, test when evidence supports transfer, and identify where context-specific effects limit it. Although AI agents can perform therapeutic analyses, existing systems often fail to preserve biological context over long workflows, verify intermediate computational steps, or reconcile conflicting evidence across datasets and literature. Here, we present Medea, an AI agent for therapeutic reasoning across biological contexts. Medea executes multi-step analyses using biological tools, machine learning models, and literature retrieval while enforcing verification during planning, execution, and evidence synthesis. We evaluate Medea across 5,673 open-ended analyses in three domains: cell type specific therapeutic target nomination in five diseases and 29 cell types, synthetic lethality prediction in 7 cancer cell lines, and immunotherapy response prediction from multimodal patient profiles. Using a previously unpublished epistatic miniarray profiling screen performed under two DNA-damaging treatments, we evaluate Medea on predicting synthetic lethality among 238,046 gene-gene pairs in yeast. Medea predicts these experimentally measured synthetic lethal interactions, indicating that its performance reflects biological relevance rather than information leakage from benchmark datasets. Across these evaluations, Medea improves performance over large language models, reasoning models, biomedical agents, and specialized machine learning models while maintaining low failure rates and calibrated abstention. These results show that verifiable AI agents can perform therapeutic analyses across biological contexts.",
+      "authors": [
+        "Sui, P.",
+        "Li, M.",
+        "Munson, B. P.",
+        "Gao, S.",
+        "Shen, W.",
+        "Giunchiglia, V.",
+        "Shen, A.",
+        "Huang, Y.",
+        "Kong, Z.",
+        "Licon, K.",
+        "Ideker, T.",
+        "Zitnik, M."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-07-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.01.16.696667v2.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agent for therapeutic reasoning across biological contexts",
+      "llm_evidence_cn": "跨生物学上下文的治疗推理AI智能体",
+      "llm_evidence": "跨生物学上下文的治疗推理AI智能体",
+      "canonical_evidence": "跨生物学上下文的治疗推理AI智能体",
+      "llm_tldr_en": "Introduces Medea, an AI agent for therapeutic reasoning that preserves biological context and verifies intermediate steps across datasets.",
+      "llm_tldr_cn": "该论文针对治疗假设跨疾病转移中上下文保留与验证问题，提出Medea AI智能体，能执行长流程分析并验证中间计算。在处理不同生物学上下文时保持信息完整性，提升治疗推理可靠性。",
+      "llm_tldr": "该论文针对治疗假设跨疾病转移中上下文保留与验证问题，提出Medea AI智能体，能执行长流程分析并验证中间计算。在处理不同生物学上下文时保持信息完整性，提升治疗推理可靠性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.21331v1",
+      "source": "arxiv",
+      "title": "Ensemble Logic for Symbolic Representation of Sleep Medicine Guidelines",
+      "abstract": "The American Academy of Sleep Medicine (AASM) Manual is the clinical standard for polysomnography (PSG) scoring, but its narrative rules can admit multiple reasonable interpretations, contributing to inter-scorer variability and implementation differences across studies and software systems. We present a formal framework for translating sleep-scoring rules into Rational Ensemble Logic (QEL), a dense-time (i.e., a continuous, rational-valued timeline rather than discrete steps) formalism that combines first-order quantification with metric temporal operators. Using an extraction-and-compilation procedure, we identified 18 unique atomic propositions and derived 12 final specifications corresponding to clinically scoreable AASM events. Back-translation of QEL specifications into clinician-facing language retained high semantic fidelity to the original scoring narratives (embedding cosine similarity: 79.3, 95% CI: 79.0--79.7) despite low lexical overlap (ROUGE-L: 18.3, 95 CI: 17.6--18.9). Formalization also clarifies latent ambiguities, including implicit physiological latencies and overlapping exclusions. This framework yields executable, rigorous rule specifications for computational phenotyping, more consistent implementation across datasets, and standardized open-source PSG analysis. This work is a part of the \"Symbolic Biomedicine\" program championed by the corresponding author.",
+      "authors": [
+        "Jiahao Fan",
+        "Xiaojin Li",
+        "Yan Huang",
+        "Xubing Hao",
+        "Licong Cui",
+        "Guo-Qiang Zhang"
+      ],
+      "primary_category": "cs.LO",
+      "categories": [
+        "cs.LO"
+      ],
+      "published": "2026-07-23T13:59:07+00:00",
+      "link": "https://arxiv.org/pdf/2607.21331v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "symbolic representation of sleep medicine guidelines",
+      "llm_evidence_cn": "睡眠医学指南的符号化表示",
+      "llm_evidence": "睡眠医学指南的符号化表示",
+      "canonical_evidence": "睡眠医学指南的符号化表示",
+      "llm_tldr_en": "A formal framework using Rational Ensemble Logic to translate AASM sleep-scoring rules into unambiguous specifications, addressing inter-scorer variability.",
+      "llm_tldr_cn": "该论文针对睡眠医学标准评分规则存在解释歧义导致评分差异的问题，提出采用理性集合逻辑（QEL）这一形式化框架，将美国睡眠医学会手册的叙述性规则转化为准确的逻辑规范。通过提取编译流程，识别出18个原子命题并导出12条可临床评分的正式规范。该方法提高了睡眠评分的一致性和可重复性，为睡眠研究提供了更可靠的工具。",
+      "llm_tldr": "该论文针对睡眠医学标准评分规则存在解释歧义导致评分差异的问题，提出采用理性集合逻辑（QEL）这一形式化框架，将美国睡眠医学会手册的叙述性规则转化为准确的逻辑规范。通过提取编译流程，识别出18个原子命题并导出12条可临床评分的正式规范。该方法提高了睡眠评分的一致性和可重复性，为睡眠研究提供了更可靠的工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

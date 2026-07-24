@@ -1,0 +1,562 @@
+Title: Ensemble Logic for Symbolic Representation of Sleep Medicine Guidelines
+
+URL Source: https://arxiv.org/pdf/2607.21331v1
+
+Published Time: Fri, 24 Jul 2026 00:59:56 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# Ensemble Logic for Symbolic Representation of Sleep Medicine Guidelines 
+
+## Jiahao Fan, PhD 1,3, Xiaojin Li, PhD 1,3, Yan Huang, PhD 1,3, Xubing Hao, PhD 1,3,Licong Cui, PhD 2,3, Guo-Qiang Zhang, PhD 1,2,3*
+
+> 1
+
+## Department of Neurology, The University of Texas Health Science Center at Houston, Houston, Texas, 77030, USA; 2McWilliams School of Biomedical Informatics, The University of Texas Health Science Center at Houston, Houston, Texas, 77030, USA; 3Texas Institute for Restorative Neurotechnologies, The University of Texas Health Science Center at Houston, Houston, Texas, 77030, USA *Corresponding author: Guo-Qiang.Zhang@uth.tmc.edu 
+
+Abstract 
+
+The American Academy of Sleep Medicine (AASM) Manual is the clinical standard for polysomnography (PSG) scor-ing, but its narrative rules can admit multiple reasonable interpretations, contributing to inter-scorer variability and implementation differences across studies and software systems. We present a formal framework for translating sleep-scoring rules into Rational Ensemble Logic (QEL), a dense-time (i.e., a continuous, rational-valued timeline rather than discrete steps) formalism that combines first-order quantification with metric temporal operators. Using an extraction-and-compilation procedure, we identified 18 unique atomic propositions and derived 12 final specifica-tions corresponding to clinically scoreable AASM events. Back-translation of QEL specifications into clinician-facing language retained high semantic fidelity to the original scoring narratives (embedding cosine similarity: 79.3, 95% CI: 79.0–79.7) despite low lexical overlap (ROUGE-L: 18.3, 95% CI: 17.6–18.9). Formalization also clarifies latent ambiguities, including implicit physiological latencies and overlapping exclusions. This framework yields executable, rigorous rule specifications for computational phenotyping, more consistent implementation across datasets, and stan-dardized open-source PSG analysis. 
+
+1. Introduction 
+
+In clinical care and sleep research, polysomnography (PSG) is the gold standard for assessing physiological signals during sleep. To standardize interpretation of these multimodal signals, the American Academy of Sleep Medicine 
+
+(AASM) Scoring Manual 1,2 defines clinical guidelines for sleep staging and event scoring. These guidelines function as a “universal common language” across sleep medicine. However, free-text rules lack explicit mathematical structure and formal constraints. Many sleep events involve linking changes across signals, enforcing minimum durations, and applying exclusions over time; when these constraints remain in prose, different implementations may operationalize the same guideline differently. This creates a semantic gap between phenotype definitions and executable logic, limit-ing rigorous reuse of large-scale real-world data (RWD) for cohort identification, phenotyping, and clinical research, and motivates translating narrative rules into an executable logical formalism.  
+
+> AASM narrative rules
+> QEL specifications
+> Back-translated rules
+> 1. Translation 2. LLM
+> 3. Semantic evaluation
+
+Figure 1: High-level overview of the study paradigm. Nar-rative AASM scoring rules are translated into QEL formal specifications, then back-translated into clinician-facing rule descriptions, and finally evaluated against the original source rules for semantic fidelity. Despite the clinical indispensability of PSG, there is no practical framework for formally representing and rea-soning about PSG-derived events and phenotypes. Exist-ing temporal formalisms often face a trade-off between expressive power and computational feasibility. Lin-ear Temporal Logic (LTL) 3 and Metric Temporal Logic (MTL) 4 are point-based and therefore do not natively capture interval semantics, such as durations, that are central to sleep physiology. In contrast, interval-based formalisms, such as Interval Temporal Logic (ITL) 5,6 
+
+and Halpern–Shoham (HS) logic 7, can represent rich in-terval relationships. However, they incur substantial representational overhead, high computational cost 8, and limited agility for precise cross-timeline, point-based reference. To address this impasse, we use Ensemble Logic (EL), a general framework for representing temporal statements over both discrete and dense time 9,10 . Prior work showed that Temporal EL over a discrete timeline can represent complex arXiv:2607.21331v1 [cs.LO] 23 Jul 2026 clinical trial protocols 11 . PSG, however, is naturally a dense-time record: signal samples and annotation boundaries are better understood as time points and intervals on a continuous timeline than as coarse stepwise increments. We therefore use Rational Ensemble Logic (QEL), the dense-time instantiation of EL. For PSG, QEL is particularly useful because it provides five simple components that closely mirror how sleep scoring rules are described in practice: • Shift (px+t): places a finding at a specific offset from a reference time point. For example, snore occurs 6 seconds later can be formalized as Snore 6.• Box (□tp): states that a condition holds continuously for a duration t. For example, airflow reduction greater than 30% persisting for 10 seconds can be formalized as □10 FlowDrop30 .• Diamond (♢tp): states that an event occurs at least once within a bounded window of length t. For example, a spindle occurring within a 3-second window can be formalized as ♢3Spindle .• Boolean connectives (∧, ∨, ¬): combine findings across channels or exclude competing conditions. For exam-ple, an abrupt EEG event occurring during stage N2 can be formalized as EEGAbrupt ∧ N2 .• Quantification (∃x, ∀x): allows different parts of a rule to refer to the same time anchor or event interval. For example, the existence of a K-complex at time x can be formalized as ∃x KC x.These five components align naturally with sleep-medicine rules, which are typically expressed in terms of fixed offsets, minimum durations, bounded timing windows, concurrent multi-signal criteria, and repeated reference to the same scored epoch. They also match how PSG annotations are stored in practice: as labeled time intervals that together form a Biomedical Event Structure Temporal Model (BEST) 10 . This makes it natural to lift a continuous PSG record into an explicit symbolic model, so that complex scoring rules can be encoded as executable formulas and evaluated systematically by model checking. In this work, we apply QEL to the AASM Scoring Manual and present a principled framework for deriving formal specifications of sleep phenotypes from narrative scoring rules (Fig. 1). Our approach translates key components of the manual from free-text descriptions into logical specifications with machine-checkable semantics for sleep scoring. This process yields a unified mathematical representation of sleep phenotypes, including apneas, hypopneas, arousals, and limb movements. Concretely, we define practical principles for compiling sleep events, temporal constraints, and logical dependencies into QEL constructs. Because QEL specifications are assembled from a compact set of interpretable components, the mapping between free-text protocol statements and logic is bidirectional. We leverage this property in a large language model (LLM)-assisted back-translation evaluation, in which QEL specifications are verbalized into clinician-facing narratives and compared with the source AASM text for semantic fidelity and lexical overlap. We provide QEL formulas for representative events spanning multiple chapters of the AASM Manual and show how formalization resolves latent semantic ambiguities in the guidelines. 
+
+2. Background 2.1 Overview of Sleep Scoring 
+
+PSG contains heterogeneous physiological signals to characterize sleep architecture. A standard PSG recording cap-tures three primary categories of physiological signals: electrophysiology signals (EEG, EOG, EMG, ECG), respira-tory signals (airflow, effort, oximetry), and movement parameters. The AASM standards recommend sampling rates typically ranging from 200 Hz to 500 Hz for EEG/EOG/EMG to ensure the capture of transient waveforms such as spikes and sleep spindles. The scoring of these recordings is governed by the AASM manual, which defines technical specifications, signal patterns and temporal rules for interpretation. The semantic annotation of PSG necessitates the integration of outcomes across two distinct temporal granularities. The first category comprises discrete clinical events (e.g., apneas, periodic limb movements, arousals), which are defined over variable-length intervals measured in seconds. The second category is sleep stages, which is analyzed based on fixed-length 30-second epochs. The scoring spans the Total Recording Time (TRT), delimited by the ’Lights Out’ (start) and ’Lights On’ (end) markers. Despite shared criteria, substantial inter-scorer variability persists. Studies report overall stage agreement of ∼80– 85% 12 . However, agreement is lower for specific stages, with ∼63% for N1 and ∼67% for N3 12 . Agreement is also limited for event scoring. Expert-to-expert agreement ( κ) for arousal detection ranges from 0.63 to 0.67, and (A) (B) 0 p1 p2 p3                                
+
+> Time
+> t1t2t3
+> xx+t2yy+t3
+> p1is true t
+> time later p2is true somewhere between xand x+t2
+> p3is true everywhere between xand y+t3
+> σ|= ( p1)t1σ|= ( ♢t2p2)xσ|= ( □t3p3)y
+> Recording Start (lights out) Recording end (lights on)
+
+· · ·             
+
+> Event 1 Event 2 Event 3
+> x1x1+d1x2x2+d2x3x3+d3
+
+· · ·       
+
+> 30 seconds
+> Epoch 1 Epoch 2 Epoch 3 Epoch 4 Epoch 5 Epoch 6 Time
+
+Figure 2: From PSG to BEST and QEL semantics. (A) Exemplar PSG segment. (B) PSG temporal structure and QEL metric operators ( ♢t, □t) evaluated on a dense timeline, inducing a BEST represented by labeled intervals [xi, x i + di)
+
+alongside standard 30 s epoch staging. agreement for respiratory events ranges from 0.76 to 0.79 13 . A key driver is that many directives remain qualitative (e.g., “majority of the epoch,” “associated with”) rather than formally defined logic. Such wording leaves room for subjective judgment and inconsistent outcomes across scorers. This ambiguity also becomes a computational bottleneck. Sleep analysis tools and cohort discovery pipelines often resolve underspecified directives using hard-coded heuristics that reflect individuals’ interpretations, which reduces reproducibility across institutions and studies. 
+
+2.2 Preliminaries: Ensemble Logic over the Rational Numbers (QEL) 
+
+We use QEL to represent sleep-scoring rules with explicit timing constraints. QEL is a temporal logic defined over a dense timeline, where time points range over Q≥0. This choice is natural for PSG because physiological signals are continuously recorded and annotated with rational-valued onset and offset times. 
+
+Table 1: Correspondence between sleep-study entities and QEL/BEST 
+
+Sleep-study entities Logical constructs Examples 
+
+AASM terms & PSG-derived features Atomic propositions (P)
+
+Flowdrop90 , Desat3 ,
+
+EEGFreqGT16 , Alpha ,
+
+Spindle 
+
+PSG records Semantic model (BEST) 
+
+ε : P → IE 
+
+Time-indexed labeling Interpretation induced by BEST 
+
+αε : Q → 2P, αε(x) = 
+
+{p ∈ P | x ∈ S ε(p)}
+
+Temporal relationships Modal and logical operators 
+
+φt, □tφ, ♢tφ, ∧, ∨, ¬,
+
+∃x, ∀x
+
+Sleep events library QEL formulas Arousal , CentralApnea 
+
+Sleep patterns QEL formulas SleepTrans , SleepFrag 
+
+Execution Model checking (ε, q ) |= φ
+
+> *QEL, Rational Ensemble Logic; BEST, Biomedical Event Structure Temporal Model; IE, interval ensemble. Examples are illustrative rather than exhaustive. Atomic propositions cor-respond to signal-derived observations; higher-level sleep events and sleep patterns are repre-sented as QEL formulas.
+
+A QEL formula is built from Atomic propo-sitions, Boolean connectives, first-order quanti-fiers, and metric temporal operators. Atomic propositions represent clinically irreducible ob-servations or signal-derived events, such as spin-dles and oxygen desaturations, which are treated as the smallest meaningful units for formaliza-tion. Boolean operators ( ∧, ∨, ¬) express con-junction, disjunction, and negation. First-order quantifiers ( ∃x, ∀x) allow formulas to refer to time anchors and durations explicitly over time. QEL uses three key temporal operators: (i) dis-placement φt shifts the evaluation of a formula by a temporal offset t, representing φ is true t-units of time away. (ii) metricized modal operator □tφ
+
+states that φ holds always within duration t. (iii) 
+
+♢tφ states that φ happens sometime within dura-tion t. Together, these constructs allow QEL to express the timing patterns that frequently appear in AASM rules, such as “lasting at least 10 seconds,” “preceded by,” or “occurs within an epoch.” In this paper, QEL is used as the symbolic language for encoding sleep-scoring rules, while the underlying PSG record is represented separately as a BEST. 
+
+2.3 Biomedical Event Structure Temporal Model (BEST) 
+
+We represent a scored PSG record as a Biomedical Event Structure Temporal Model (BEST). Formally, we define an Interval Ensemble (IE) as a finite set of non-overlapping intervals on the timeline (e.g., all intervals where a PSG recording was annotated as apnea). A BEST ( ε) is a mapping from Atomic Propositions to interval ensembles. Formally, each proposition in a proposition set P is associated with a finite set of non-overlapping intervals over Q≥0.Thus, a BEST can be viewed as a mapping ε : P → IE . For each proposition p ∈ P, ε(p) specifies the intervals during which p holds. This representation is well aligned with PSG annotation practice, since sleep events are naturally stored as labeled intervals rather than isolated time points. A BEST therefore serves as the semantic model on which QEL formulas are evaluated. Given a BEST ε and a reference time t, model checking determines whether a QEL formula φ holds at that anchor, written as (ε, t ) |= φ.In summary, QEL provides the formal language for expressing sleep-scoring rules, and BEST provides the interval-based representation of PSG records against which those rules are evaluated. 
+
+2.4 Representative AASM rules used in this study 
+
+This work focuses on translating representative AASM scoring directives into executable QEL specifications. Below we summarize the clinical intent and key temporal constraints for the related domains used throughout the paper based on AASM manual (version 2.4, 2017).                                 
+
+> Scoring Rules
+> Score event 1 if somewhere observation 1 appears followed by at least 3 second of observation 2 and observation 3 not hap-pen throughout the events
+> Atomic/derived Propositions
+> Observation 1: p1
+> Observation 2: p2
+> Observation 3: p3
+> Temporal Relationships
+> Somewhere ♢
+> throughout □
+> 3 second: time terms
+> Logic Operators
+> NOT ¬
+> AND ∧
+> ∃x∃u∃t
+> 
+> (♢tp1)x∧(□up2)x+t∧(□t+u¬p3)x
+> 
+> with u≥3, x, u, t ∈Q≥0
+> Translation
+
+Figure 3: Overview of the AASM-to-QEL translation workflow. 
+
+Arousal (AASM V.A.1). : An arousal is scored during sleep when there is an abrupt EEG frequency shift (alpha, theta, or >
+
+16 Hz, excluding spindles) lasting at least 3 s, preceded by at least 10 s of stable sleep; during REM, a concurrent increase in sub-mental EMG lasting at least 1 s is addition-ally required. 
+
+Apnea and Hypopnea (AASM VIII.C–D). :Apnea is defined by a ≥ 90% airflow reduc-tion for ≥ 10 s with subtype classification by inspiratory effort (present throughout: ob-structive; absent throughout: central; absent initially then present: mixed), and events en-tirely during wake are not scored. Hypopnea is defined by a ≥ 30% airflow reduction for ≥ 10 s plus either desaturation or arousal; in practice, desaturation/arousal may lag the airflow reduction due to physiologic latency, motivating an explicit delay window in formalization. 
+
+Stage N2 (AASM IV.G). : N2 scoring is an epoch-based process initiated by the appearance of sleep spindles or K-complexes. Once initiated, this state is maintained across subsequent epochs characterized by low-amplitude, mixed-frequency (LAMF) EEG activity. The N2 state explicitly terminates upon transitioning to stage W, N3, or REM sleep, or interrupted by an arousal or a major body movement that is not followed by characteristic N2 waveforms. Scoring edge cases involve: (i) N2 markers are followed by an arousal within the same subsequent epoch; and (ii) macroscopic evaluations requiring the N2 state to account for the majority of the current epoch. AASM Manual (version 2.4, Section IV.G, Figure 7, p.23) summarizes canonical AASM staging scenarios that motivate the edge cases addressed by the N2 scoring formulation. 
+
+Limb movements and PLM series (AASM VII.B). : A leg movement (LM) is defined by an anterior tibialis EMG increase above baseline with duration constraints (0.5–10 s) and an explicit termination criterion (return below thresh-old for at least 0.5 s). LMs are excluded if they occur during respiratory events or within a short temporal proximity window. A periodic limb movement (PLM) series is defined as at least four qualifying LMs with inter-movement onset intervals (period lengths) between 5 and 90 s. 3. Method 3.1 Conceptual correspondence from PSG to QEL 
+
+We model time as elapsed seconds from recording start over the nonnegative rationals Q≥0. A scored PSG record is represented as a BEST, ε : P → IE , where P is a finite set of atomic propositions and IE denotes interval ensembles. For each p ∈ P, ε(p) specifies the intervals during which p holds, each represented by its onset and offset times. For example, Spindle is true exactly on intervals where spindle activity is present, while propositions absent from a record map to the empty ensemble. A BEST induces the usual time-indexed interpretation αε(x) = { p ∈ P | x ∈ S ε(p) },which records the propositions true at time x. In this work, however, BEST is the primary representation because PSG annotations are naturally interval-based. As shown in Fig.2 (B), a scored PSG session is finite and bounded by clinically defined LightOut and LightOn 
+
+timestamps, denoted Tstart and Tend , with 0 ≤ Tstart < T end . Accordingly, QEL formulas are evaluated over the bounded session interval [Tstart , T end ], with temporal windows interpreted relative to that extent. Additional domain constraints, such as mutual exclusivity of sleep stages and hierarchical dependencies among respiratory labels, are enforced separately as global invariants. To rigorously encapsulate the AASM directive that clinical sleep staging must be executed in ”30-second, sequential epochs commencing at the start of the study”, we define an ordered set of epoch onset times E = {e0, e 1, . . . , e n}
+
+(where ei = e0 + iL and L = 30 second is the epoch length) for any PSG records. The epoch-level scoring re-quirement imposes a strict monochromaticity constraint on the semantic model for any staging proposition S ∈{Wake , N1 , N2 , N3 , REM , Movements }. Specifically, for any epoch interval I := [ a, b ) with a fixed temporal du-ration L = 30 s , if the epoch onset point a is labeled with a specific sleep stage S, the proposition S must logically evaluate to true at every continuous time point x ∈ I (i.e., Sa → □LSa). Crucially, staging is mutually exclusive: for all x ∈ [ei, e i+1 ), exactly one stage label is active. Table 1 summarizes the correspondence between sleep study entities and their QEL/BEST representations. In particu-lar, signal-derived events are encoded as atomic propositions, AASM-defined events are formalized as QEL formulas, and event recognition is performed by model checking, i.e., determining whether (ε, q ) |= φ at an anchor time q.
+
+3.2 Formalizing AASM rules with QEL 
+
+We translate AASM scoring rules (version 2.4, 2017) 1,2 expressed in natural language into executable QEL specifi-cations using a structured extraction-and-compilation procedure (Fig. 3). Each translated event E is represented by a QEL formula φE that holds exactly at those anchor times where E occurs in a BEST-encoded record. The procedure consists of three steps. 
+
+Step 1: Atomic proposition extraction. For each target rule, we extract a finite set of auditable observations ref-erenced by the rule text and PSG signals, using them as atomic propositions in P. Threshold-based features (e.g., amplitude, frequency) are direct APs. Clinically defined waveform-morphology patterns (e.g., spindles, alpha rhythm) are also treated as APs rather than further decomposed, since finer primitives often lack clear clinical meaning. When the AASM rule references higher-level clinical context (e.g., staging propositions, Sleep , NREM , REM ), we introduce derived propositions as named QEL macros built from APs and previously constructed event formulas.                          
+
+> xx+ux+u+dx+u+d+lx+u+v
+> Sleep
+> EEGAbrupt ∧NREM
+> REM ∧ChinEMGAboveThr
+> Event Start Event End
+
+Figure 4: Semantic topology of the AASM Arousal scoring rule formalized in QEL. 
+
+Step 2: Temporal structure extraction. We parse the rule narrative into an explicit temporal dependency graph at the time anchor where the rule is to be evaluated. In the AASM rules, this structure typically consists of (i) sequential ordering (e.g., “preceded by” or “following” ), which establishes ge-ometric distance between phenotypes along the timeline; (ii) continuous persistence, which is a local evidence window in which a phenotype must persist for a bounded duration (e.g., “lasting at least t seconds”,“throughout” or “continu-ous”); (iii) bounded existential occurrence (e.g., “there is ...” or “associated with”), which capture transient micro-events or physiological responses within a bounded window. We make this structure explicit as a temporal dependency graph and then map each clause into QEL operators using the correspondence in Table 1. Specifically, we use □t for bounded persistence , ♢t for bounded existence, and φu for displacement. Fig. 4 illustrates a temporal structure of arousal rules defined in AASM Manual. 
+
+Step 3: QEL formula construction. We construct the final QEL formula by combining the extracted APs and tempo-ral structures. First, we introduce time-length variables to parameterize temporal distances, subjecting these quantified variables to explicit algebraic side constraints to rigorously enforce the thresholds defined in the clinical rules. Sec-ond, concurrency and condition branching are resolved via Boolean operators. Lastly, we translate ambiguous clinical descriptions into precise mathematical logic. For example, we represent “associated with” by ( ♢t) to indicate that an event occurs within a bounded time window. 
+
+3.3 LLM-Assisted Back-Translation Evaluation 
+
+Table 2: Atomic propositions extracted in this study.                          
+
+> Proposition Clinical meaning / role
+> Alpha Alpha EEG activity is present
+> Theta Theta EEG activity is present
+> EEGFreqGT16 EEG frequency greater than 16 Hz is present
+> Spindle Sleep spindle is present
+> KC K-complex is present
+> ChinEMGAboveThr Chin/submental EMG exceeds threshold
+> MajorBodyMove Major body movement is present
+> FlowDrop90 Airflow / signal excursion reduction meeting the 90% threshold
+> FlowDrop30 Airflow / signal excursion reduction meeting the 30% threshold
+> FlowBelowThr Inspiratory flow flattening / reduced flow is present
+> EffortAboveThr Inspiratory effort is present above threshold
+> Snore Snoring signal is present
+> PhaseDiffAboveThr Thoracoabdominal paradox phase difference is present
+> Desat3 Oxygen desaturation meeting the 3% threshold
+> Desat4 Oxygen desaturation meeting the 4% threshold
+> EMGAboveRestThr Leg EMG is above resting threshold
+> EMGAbove8 Leg EMG is at least 8μV above resting EMG
+> EMGAbove2 Leg EMG exceeds 2μV above resting EMG
+
+To assess whether QEL specifications preserve the se-mantic content of the original narrative AASM rules, we conducted a back-translation experiment using the pinned OpenAI snapshot model gpt-5-mini-2025-08-07 
+
+via the Responses API with its default settings. For each selected rule, the model was provided with the corre-sponding QEL formula, a controlled glossary of atomic propositions, and, when needed, structured macro def-initions for referenced derived predicates. The model was instructed to generate a clinician-facing natural-language description that preserved thresholds, dura-tions, negations, and temporal dependencies; a dummy example was included only to specify the expected out-put format. To minimize prompt leakage, the model was not shown the source AASM text during generation, was not given access to external references, and did not re-ceive prompts containing the keyword “AASM.” Unless otherwise specified, all generation parameters were left at their default values. Semantic fidelity was quantified using OpenAI text-embedding-3-small (1536-dimensional output). Both the generated back-translations and the corresponding source narratives were embedded using default settings, without explicitly setting the output dimensionality and using the default floating-point encoding. Semantic similarity was defined as cosine similarity between the generated and reference embeddings. Lexical overlap was evaluated separately using sequence matching ratio and ROUGE-L. 
+
+4. Results 4.1 Formalization of Sleep Events 
+
+We instantiated the proposed AASM-to-QEL translation framework across four representative scoring domains: arousal, respiratory events, stage N2, and limb movements/PLMS. Following the extraction-and-compilation procedure, we extracted 18 unique atomic propositions (Table 2). Using these atomic propositions, we derived 18 QEL rule specifi-cations, including 12 final scoring specifications corresponding to clinically scoreable AASM events. Table 3 summa-rizes these translation results. These specifications are not literal, term-by-term transcriptions of the AASM Manual. Instead, they formalize the parsed temporal and logical topology of the scoring rules. Specification rule (6) in Table 3 illustrates why direct textual translation can be inadequate. The AASM Manual states that the event is associated with an arousal or desaturation, but a literal interpretation as immediate temporal coincidence may not capture the physiologic delay implied in clinical practice. We therefore introduce a delay term, ε, to model this latency and better align the formal specification with the intended clinical meaning. Table 3: QEL formalization of representative AASM rules for arousal, apnea, hypopnea, stage N2, leg movement (LM), and periodic limb movement series (PLMS). Rule 1-9, 15, and 17-18 are final scoring rules. E denotes the epoch onset time set, L = 30 seconds denotes epoch length. u,v,ℓ and d are time-length terms and x is time variables 
+
+Rules Atomic/derived propositions Formula Arousal (AASM V.A.1) (1) Arousal: during sleep, an abrupt EEG frequency shift (alpha, theta, or > 16 Hz, excluding spindles) lasting at least 3 s, preceded by at least 10 s of stable sleep; if in REM, concurrent chin EMG increase lasting at least 1 s is additionally required. 
+
+Alpha , Theta ,
+
+EEGFreqGT16 ,
+
+Spindle ,
+
+ChinEMGAboveThr 
+
+φArousal := ∃x ∃u ∃v ∃ℓ
+
+
+
+(□u Sleep )x ∧ (□v (( Alpha ∨
+
+Theta ∨EEGFreqGT16 )∧¬ Spindle )) x+u ∧ NREM x+u ∨
+
+(REM x+u ∧ ♢v (□ℓ ChinEMGAboveThr )x+u)
+
+, u ≥
+
+10 , v ≥ 3, ℓ ≥ 1
+
+Apnea (AASM VIII.C) (2) Apnea: airflow drop ≥ 90% from baseline for 
+
+≥ 10 s; events occurring entirely during wake are not scored. 
+
+FlowDrop90 ,
+
+Wake 
+
+φapnea := ∃x∃u
+
+
+
+(□uFlowDrop90 )x ∧ ¬ (□uWake )x
+
+
+
+,u ≥ 10 
+
+(3) Obstructive apnea: meets apnea criteria and inspiratory effort is present throughout the event. 
+
+FlowDrop90 ,
+
+Wake ,
+
+EffortAboveThr 
+
+φobs-apnea := ∃x∃u
+
+
+
+(□uFlowDrop90 )x ∧ ¬ (□uWake )x
+
+∧ (□uEffortAboveThr )x
+
+
+
+, u ≥ 10 
+
+(4) Central apnea: meets apnea criteria and inspiratory effort is absent throughout the event. 
+
+FlowDrop90 ,
+
+Wake ,
+
+EffortAboveThr 
+
+φcen-apnea := ∃x∃u
+
+
+
+(□uFlowDrop90 )x ∧ ¬ (□uWake )x
+
+∧ (□u¬EffortAboveThr )x
+
+
+
+, u ≥ 10 
+
+(5) Mixed apnea: meets apnea criteria; effort is absent initially and then resumes later in the same apnea. 
+
+FlowDrop90 ,
+
+Wake ,
+
+EffortAboveThr 
+
+φmixed-apnea := ∃x∃u∃v∃ℓ
+
+
+
+(□uFlowDrop90 )x ∧¬(□uWake )x ∧ (□v ¬EffortAboveThr )x ∧
+
+(□ℓEffortAboveThr )x+v
+
+
+
+, u ≥ 10 , v + ℓ = u
+
+Hypopnea (AASM VIII.D) (6) Hypopnea (1A, recommended): airflow reduction 
+
+≥ 30% for ≥ 10 s plus either ≥ 3% desaturation or arousal, allowing physiologic latency. 
+
+FlowDrop30 ,
+
+Desat3 
+
+φhyp-1A := ∃x∃u
+
+
+
+(□uFlowDrop30 )x ∧
+
+ (♢u+ϵDesat3 )x ∨ (♢u+ϵφArousal )x
+
+
+
+, u ≥ 10 
+
+(7) Hypopnea (1B, acceptable): airflow reduction 
+
+≥ 30% for ≥ 10 s plus ≥ 4% desaturation. 
+
+FlowDrop30 ,
+
+Desat4 
+
+φhyp-1B := ∃x∃u
+
+
+
+(□uFlowDrop30 )x ∧ (♢u+ϵDesat4 )x
+
+
+
+,u ≥ 10 
+
+(8) Obstructive hypopnea: qualifying hypopnea with snoring, inspiratory flow flattening, or thoracoabdominal paradox. 
+
+Snore ,
+
+FlowBelowThr ,
+
+PhaseDiffAboveThr 
+
+φobs-hyp := φhyp-1A/hyp-1B ∧ ∃ x∃v
+
+
+
+(♢v (Snore 
+
+∨ FlowBelowThr ∨ PhaseDiffAboveThr )) x
+
+
+
+, 0 ≤ v ≤ u
+
+(9) Central hypopnea : qualifying hypopnea with none of the obstructive features present during the scored window. 
+
+Snore ,
+
+FlowBelowThr ,
+
+PhaseDiffAboveThr 
+
+φcen-hyp := φhyp-1A/hyp-1B ∧ ∃ v∃x
+
+
+
+(□v ¬(Snore 
+
+∨ FlowBelowThr ∨ PhaseDiffAboveThr )) x
+
+
+
+, 0 ≤ v ≤ u
+
+Stage N2 (AASM IV.G) (10) Valid K-complex: K-complex used for N2 staging must be unassociated with arousal. 
+
+KC φValidKC := ∃d∃x
+
+
+
+(□dKC )x ∧ (¬KC )x+d
+
+∧ (□d+1 ¬φArousal )x
+
+
+
+, d ≥ 0.5
+
+(11) N2 signal: characteristic N2 waveform used by the downstream rules. 
+
+Spindle , KC φSig := φValidKC ∨ Spindle 
+
+(12) N2 initiation from characteristic waveforms: 
+
+N2 is initiated if a characteristic N2 signal occurs in the first half of the current epoch or the second half of the previous epoch, with no arousal in the current epoch. 
+
+Spindle , KC φN2InitSig := ∃x
+
+ (♢L/ 2φSig )x ∨ (♢L/ 2φSig )x−L/ 2
+
+ ∧
+
+(□L¬φArousal )x
+
+
+
+(13) N2 initiation from N3: after an epoch scored as N3, the current epoch is scored as N2 when N3 no longer persists and no higher-priority interruption occurs. 
+
+N3 , Wake , REM φN2InitFromN3 := ∃x
+
+
+
+(N3 )x−L ∧ (□L¬N3 )x ∧
+
+(□L¬(Wake ∨ REM ∨ φArousal )) x
+
+
+
+(14) Interruption logic: N2 continuation is interrupted by Wake, N3, REM, arousal, or by a major body movement not followed by a characteristic N2 signal. 
+
+Wake , N3 , REM ,
+
+MajorBodyMove ,
+
+Spindle , KC 
+
+φInterrupt := Wake ∨ N3 ∨ REM ∨ φArousal ∨
+
+MajorBodyMove ∧ ¬ ♢L/ 2φSig 
+
+
+
+Continued on next page Rules Atomic/derived propositions Formula (15) Stage N2 scoring: N2 holds at epoch onset if it is newly initiated by marker-based onset or by transition from N3, or if a prior N2-initiation remains uninterrupted and occupies the majority of the current epoch. 
+
+Spindle , KC , N3 ,
+
+Wake , REM ,
+
+MajorBodyMove 
+
+φN2 := ∃x∃u∃ℓ(φN2InitSig ∨ φN2InitFromN3 )x ∨
+
+ φN2InitG3 ∨
+
+φN2InitFromN3 
+
+ 
+
+> x−u
+
+∧ (□u+ℓ¬φInterrupt )x−u
+
+
+
+, x, u ∈
+
+E, x ≥ u, L/ 2 < ℓ ≤ L
+
+Limb Movements (AASM VII.B) (16) Respiratory-event macro for LM exclusion: 
+
+generic respiratory-event predicate used to exclude limb movements overlapping with respiratory events. — φresp := φapnea ∨ φhypopnea ∨ φRERA 
+
+(17) Leg movement (LM): anterior tibialis EMG increase above threshold lasting 0.5–10 s, with return below threshold for at least 0.5 s, excluding respiratory-event overlap/proximity. 
+
+EMGAboveRestThr ,
+
+EMGAbove8 ,
+
+EMGAbove2 
+
+φLM := ∃x∃u
+
+ (□0.5¬EMGAboveRestThr )−0.5 ∧
+
+(□uEMGAbove8 ) ∧ (□0.5¬EMGAbove2 )u ∧ ¬ φresp ∧¬♢0.5(φresp ) ∧ ¬ ♢0.5
+
+ (φresp )−0.5
+
+ 
+
+> x
+
+
+
+, 0.5 ≤ u ≤ 10 
+
+(18) Periodic limb movement series (PLMS): at least four qualifying LMs with inter-movement onset intervals between 5 and 90 s. 
+
+− φPLMSInit := ∃x∃u∃v∃w
+
+
+
+(φLM )x ∧  (φLM )u ∧
+
+□u¬φLM 
+
+ 
+
+> x
+
+∧  (φLM )v ∧ □v ¬φLM 
+
+ 
+
+> x+u
+
+∧  (φLM )w ∧
+
+□w ¬φLM 
+
+
+
+> x+u+v
+
+
+
+, 5 ≤ u ≤ v ≤ w ≤ 90 
+
+*Representative rules are shown for arousal, apnea/hypopnea, stage N2, and limb movement/PLMS scoring. Rules 1-9, 15, and 17-18 are final scoring specifications; Rules 10-14 and 16 are supporting intermediate definitions or macros used in downstream formulations. We used derived propositions as macros: Wake , N2 , N3 ,and REM denote staging propositions; φRERA denotes that a RERA occurs at the reference time; φhypopnea denotes that a hypopnea occurs at the reference time;                       
+
+> NREM := N1 ∨N2 ∨N3 ; and Sleep := NREM ∨REM .Edenotes the set of epoch onset times; L denotes epoch length (30 s); xdenotes the time variable; u,v,ℓ,and ddenote nonnegative time-length variables. Specifically, εin rule (6) is a clinically configurable constant that captures physiological delay. Above translations are based on AASM Manual version 2.4. Abbreviations: LM, leg movement; PLMS, periodic limb movement series; KC, K-complex; SpO 2, peripheral oxygen saturation; REM, rapid eye movement sleep; NREM, non-rapid eye movement sleep; RERA, respiratory effort-related arousal.
+
+For the N2 scoring rule, which represents the most complex case, we manually verified that our formulation is con-sistent with the canonical AASM staging scenarios shown in Figure 7 of Section IV.G of the AASM Manual (p. 23). These examples indicate that the QEL specification successfully captures both same-epoch N2 initiation and the car-ryover of previously established valid N2 markers, while excluding cases in which a K-complex is followed by an arousal. The formulation also reproduces the continuation and interruption logic specified in the AASM Manual. 
+
+4.2 Back-Translation Evaluation 
+
+Across the 12 evaluated final scoring specifications, QEL back-translation achieved consistently high semantic fidelity to the source narrative despite low surface-level textual overlap (Table 4). Overall, semantic similarity reached 79.3 (95% CI: 79.0–79.7), whereas lexical sequence matching and ROUGE-L were much lower, at 14.9 (95% CI: 13.8– 16.1) and 18.3 (95% CI: 17.6–18.9), respectively. This gap indicates that the reconstructed rules often differed from the original wording while still preserving the underlying meaning. It also supports the interpretation that the back-translation was driven primarily by the logical structure of the formulas, rather than by memorization of existing AASM-related knowledge. Notably, even relatively complex scoring rules, such as N2 scoring, remained semantically recoverable from QEL specifications, suggesting that QEL captures the core clinical content of the original rules while abstracting away from their surface textual form. 
+
+5. Discussion 
+
+In this work, we proposed Ensemble Logic over the rational numbers (QEL), as a sleep-domain formalism for rep-resenting the AASM Scoring Manual. QEL allowed us to encode clinically stated timing constraints and event de-pendencies as precise logical formulas. With identified atomic propositions and temporal constraints identified in the manual, we successfully translated key AASM phenotypes into reviewable and executable QEL specifications. The back-translation findings further supported that QEL preserves clinical meaning even when it abstracts away from the surface wording of the manual. Translating the natural-language text of the AASM Scoring Manual into machine-executable logic is challenging. The manual’s logical structure is often hidden by dense prose in which formal rules and explanatory notes are semantically entangled. To address this problem, we developed a principled formalization framework that spans the full computa-tional pipeline, from extracting atomic propositions to constructing complex temporal formulas. As validated in our case studies spanning four distinct physiological domains, this formalization distilled verbose guidelines into compact mathematical specifications while revealing and resolving implicit ambiguities. 
+
+Table 4: Semantic and lexical similarity scores by back-translation evaluation. Metrics are presented as mean (95% CI) across 40 independent runs.                                           
+
+> Rules Semantic Lexical ROUGE-L
+> Stage N2 scoring 86.1 (85.6-86.6) 5.2 (4.8-5.6) 18.3 (17.9-18.7) Arousal 82.6 (82.6-82.7) 19.2 (19.0-19.3) 31.2 (30.8-31.6) Hypopnea 1A 81.1 (80.9-81.2) 11.3 (11.1-11.5) 13.8 (13.5-14.2) Obstructive hypopnea 80.7 (80.4-81.1) 6.9 (6.7-7.1) 14.8 (14.3-15.3) Leg movement (LM) 79.9 (79.4-80.3) 9.6 (8.9-10.4) 23.3 (22.8-23.8) Mixed apnea 79.5 (78.8-80.1) 7.0 (6.8-7.1) 23.8 (22.7-25.0) Obstructive apnea 80.0 (79.9-80.1) 43.8 (42.8-44.8) 22.2 (21.5-22.9) Hypopnea 1B 79.1 (78.9-79.2) 12.3 (12.1-12.4) 10.7 (10.5-11.0) Periodic limb movement (PLMS) 80.1 (79.8-80.4) 9.4 (9.0-9.8) 13.7 (13.2-14.3) Central hypopnea 75.1 (74.8-75.5) 7.8 (7.6-8.1) 12.6 (12.0-13.3) Central apnea 76.0 (75.7-76.2) 39.4 (38.2-40.6) 26.9 (25.8-27.9) Apnea 71.8 (71.8-71.9) 7.4 (7.3-7.4) 7.8 (7.8-7.9)
+> Overall 79.3 (79.0-79.7) 14.9 (13.8-16.1) 18.3 (17.6-18.9)
+> *Values are reported as mean (95% CI) across 40 independent runs. All metrics are presented on a 0-100 scale, with higher values indicating greater similarity. Semantic denotes embedding-based semantic similarity; Lexical denotes sequence matching ratio; ROUGE-L denotes longest-common-subsequence overlap. The Overall row summarizes results across the 12 final scoring specifications.
+
+Crucially, our translation process went be-yond a syntactic mapping of text to logic. It was informed by sleep physiology. A recur-ring issue is the manual’s conflation of con-tinuous micro-states (e.g., brief wake intru-sions) with discrete, epoch-level staging de-cisions (e.g., N2 scoring over 30-s epochs). We addressed this by using a continuous, dense time domain together with boundary operators parameterized by the epoch length 
+
+L. Another example is the use of phrases such as “associated with” or “there is” in Hy-popnea scoring. A naive, literal translation into logic would strictly interpret these terms as a requirement for the simultaneous occur-rence of airflow reduction and physiological consequences (desaturation). However, this ignores physiological latency (e.g., the circulatory delay required for blood oxygen levels to drop.) 14,15 . Such an interpretation would yield massive false negatives computationally. By using QEL’s metricized modalities, we resolved this semantic gap by introduc-ing an explicit, parameterized latency variable ϵ. Expanding the evaluation window ( ♢u+ϵ) successfully validated overlapping apneas and subsequent desaturations as contiguous physiological events, directly mirroring expert clin-ical consensus without requiring arbitrary heuristic relaxations. In addition, the ”majority” axiom exhibits semantic ambiguity by mapping to multiple distinct temporal patterns. Two primary examples include: (i) cumulative duration: requiring the total accumulated time of a fragmented state to exceed 50% of an epoch, and (ii) sequence truncation, where an interrupting event in the first half of an epoch breaks the continuous persistence of a prior state. In this work, this ambiguity was resolved at the semantic layer by directly evaluating the overlapping intervals with quantifying time terms. Future extensions of QEL will formalize a native majority operator to unify these distinct temporal patterns directly within the logic’s syntax. At the system level, our framework assumed a strict separation between the signal-processing layer and the logical reasoning engine. Sleep observations exhibit strong dependencies, including mutual exclusivity among sleep stages and hierarchical implications induced by physiological thresholds. As a result, end-to-end logical consistency requires global constraints over the BEST. We therefore argue for a dedicated Sleep Ontology , conceptually similar to standard-ized biomedical vocabularies such as SNOMED CT 16 . This ontology would provide standardized semantic queries and global constraints to the logic layer, ensuring combinations of atomic propositions remain medically consistent. As an exploratory step toward bridging clinical guidelines with formal methods, this work presents several limitations. First, temporal logics with unrestricted quantifier alternation are generally undecidable. However, the specific QEL fragments utilized in our modeling intentionally rely on bounded time variables and avoid deep quantifier nesting; thus, the practical logic employed here is anticipated to be largely decidable. Second, fully operationalizing this rea-soning engine will require substantial engineering efforts to build the aforementioned standardized Sleep Ontology for atomic propositions. Third, QEL does not eliminate interpreter-dependent variability when narrative AASM rules are first formalized, especially where prose leaves clinical terms, temporal associations, or thresholds underspecified (e.g., associated with, “majority of the epoch”). This limitation is analogous to earlier guideline-representation ef-forts, in which professional background could influence encoding choices 17 . QEL mitigates rather than removes this risk by forcing each choice into explicit temporal predicates, Boolean relations, and parameterized bounds, making disagreement auditable. Thus, reproducibility holds by construction after formalization: the same QEL specification, evaluated on the same BEST, yields the same result, while reproducibility of the initial translation requires consensus review and future multi-interpreter validation. 6. Conclusion 
+
+In this study, we presented a framework that bridges the gap between the natural-language guidelines in the AASM Scoring Manual and machine-executable specifications using Rational Ensemble Logic (QEL). By mapping PSG annotations to Biomedical Event Structure Temporal Models, we translated complex, time-dependent clinical rules into precise mathematical formulas. Our Back-translation experiments further showed that QEL rules can be rendered into clinically interpretable language without substantial loss of meaning. In future work, we will validate these formulations with clinical experts and develop an open-source event library to support standardized, reproducible, and large-scale sleep research. 
+
+Acknowledgment. This work was supported in part by the National Science Foundation (NSF) award IIS2500624, the National Institutes of Health (NIH) grants (R01NS126690; U24AG098157). The content is solely the responsibil-ity of the authors and does not necessarily represent the official views of the NSF or NIH. 
+
+References 
+
+1. Berry RB, Brooks R, Gamaldo C, Harding SM, Lloyd RM, Quan SF, et al.. AASM scoring manual updates for 2017 (version 2.4). American Academy of Sleep Medicine; 2017. 2. Berry RB, Brooks R, Gamaldo CE, et al. The AASM Manual for the Scoring of Sleep and Associated Events: Rules, Termi-nology and Technical Specifications, Version 2.4. Darien, IL: American Academy of Sleep Medicine; 2017. 3. Pnueli A. The temporal logic of programs. In: 18th annual symposium on foundations of computer science (sfcs 1977). ieee; 1977. p. 46-57. 4. Ouaknine J, Worrell J. Safety metric temporal logic is fully decidable. In: International conference on tools and algorithms for the construction and analysis of systems. Springer; 2006. p. 411-25. 5. Della Monica D, Goranko V, Montanari A, Sciavicco G, et al. Interval temporal logics: a journey. Bulletin of EATCS. 2013;3(105). 6. Willman MD. Stanford Encyclopedia of Philosophy. Stanford University Press; 2022. 7. Halpern JY, Shoham Y. A propositional modal logic of time intervals. Journal of the ACM (JACM). 1991;38(4):935-62. 8. Marcinkowski J, Michaliszyn J. The ultimate undecidability result for the Halpern-Shoham logic. In: 2011 IEEE 26th Annual Symposium on Logic in Computer Science. IEEE; 2011. p. 377-86. 9. Zhang GQ. Temporal Ensemble Logic. arXiv preprint arXiv:240814443. 2024. 10. Zhang GQ, Hao X, Huang Y, Li X, Cui L. QEL: Rational Ensemble Logic for Model-Checking-Based Cohort Discovery with Real-World Electrophysiology Data;. Intelligence-Based Medicine. Under review. 2026. 11. Li X, Huang Y, Abeysinghe R, Sun Z, Chen H, Li P, et al. Temporal Ensemble Logic for Integrative Representation of the Entirety of Clinical Trials. In: 32nd International Symposium on Temporal Representation and Reasoning (TIME 2025). vol. 355 of Leibniz International Proceedings in Informatics (LIPIcs). Schloss Dagstuhl – Leibniz-Zentrum f¨ ur Informatik; 2025. p. 13. 12. Rosenberg RS, Van Hout S. The American Academy of Sleep Medicine inter-scorer reliability program: sleep stage scoring. Journal of clinical sleep medicine. 2013;9(1):81-7. 13. Nasiri S, Ganglberger W, Nassi T, Meulenbrugge EJ, Moura Junior V, Ghanta M, et al. CAISR: achieving human-level performance in automated sleep analysis across all clinical sleep metrics. Sleep. 2025;48(8):zsaf134. 14. Azarbarzin A, Sands SA, Stone KL, Taranto-Montemurro L, Messineo L, Terrill PI, et al. The hypoxic burden of sleep apnoea predicts cardiovascular disease-related mortality: the Osteoporotic Fractures in Men Study and the Sleep Heart Health Study. European heart journal. 2019;40(14):1149-57. 15. Younes M. Role of arousals in the pathogenesis of obstructive sleep apnea. American journal of respiratory and critical care medicine. 2004;169(5):623-33. 16. Bos L, Donnelly K. SNOMED-CT: The advanced terminology and coding system for eHealth. Stud Health Technol Inform. 2006;121:279-90. 17. Ohno-Machado L, Gennari JH, Murphy SN, Jain NL, Tu SW, Oliver DE, et al. The GuideLine Interchange Format: A Model for Representing Guidelines. Journal of the American Medical Informatics Association. 1998;5(4):357-72.
