@@ -1,0 +1,90 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-25T21:12:25.251121+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "biorxiv-10-64898-2026-07-12-738068-v1",
+      "source": "biorxiv",
+      "title": "Recent social loss, not chronic isolation, reshapes sleep in Drosophila",
+      "abstract": "Drosophila melanogaster is widely used to study social experience, yet it remains unclear whether sleep phenotypes attributed to isolation reflect chronic deprivation or the consequences of a recent change in social state. Many fly studies alter social context again at the time of testing, making these possibilities difficult to distinguish. Here, we developed sociSleep, an identity-preserving tracking system that quantifies sleep without inducing social-state transitions. Using this approach, we found that chronic social isolation had little effect on sleep, whereas recent social loss robustly increased sleep. These findings show that recent social experience, rather than chronic isolation alone, is a major modulator of sleep in flies.",
+      "authors": [
+        "Wu, B.",
+        "JA, W."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-07-17T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.12.738068v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "sleep research in Drosophila",
+      "llm_evidence_cn": "果蝇睡眠研究",
+      "llm_evidence": "果蝇睡眠研究",
+      "canonical_evidence": "果蝇睡眠研究",
+      "llm_tldr_en": "Develops sociSleep tracking system to show recent social loss increases sleep in Drosophila, while chronic isolation has little effect.",
+      "llm_tldr_cn": "该研究开发了身份保持追踪系统sociSleep，用于量化果蝇睡眠而无社会状态转换。发现慢性社交隔离对睡眠影响微弱，而近期社交损失显著增加睡眠，表明近期社交经历是睡眠的主要调节因素。",
+      "llm_tldr": "该研究开发了身份保持追踪系统sociSleep，用于量化果蝇睡眠而无社会状态转换。发现慢性社交隔离对睡眠影响微弱，而近期社交损失显著增加睡眠，表明近期社交经历是睡眠的主要调节因素。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.20820v1",
+      "source": "arxiv",
+      "title": "Efficient and Interpretable Body-Based Emotion Recognition with Lightweight Temporal Convolutional Networks",
+      "abstract": "Body-based emotion recognition is important for real-time affective systems, but graph-based skeleton models can be computationally expensive. This paper studies whether lightweight temporal convolutional networks (TCNs) can provide an efficient and interpretable alternative for body-based emotion classification. We evaluate a family of TCN models on DIEM-A and compare them with a graph-based time-series graph (G-TSG) baseline using accuracy, macro-F1, parameter count, and inference latency. Although G-TSG achieves the highest mean performance, TCN-Base remains within $1.58$ accuracy points and $1.25$ macro-F1 points while using $79.18\\%$ fewer parameters and reducing classifier latency by approximately $12.5\\times$. We also analyze body-region contributions using region-specific TCN models, zero-based occlusion, and G-TSG gradient saliency. The results show that upper-body motion provides the strongest standalone regional cue, that the usefulness of body regions varies across emotions, and that different interpretability methods capture distinct aspects of model behavior. These findings suggest that lightweight TCNs can support efficient body-based emotion recognition while also providing practical insight into how motion cues contribute to classification.",
+      "authors": [
+        "Christian Arzate Cruz",
+        "Stefanos Gkikas",
+        "Houshyar Asadi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-23T01:12:39+00:00",
+      "link": "https://arxiv.org/pdf/2607.20820v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Lightweight temporal convolutional networks for body-based emotion recognition",
+      "llm_evidence_cn": "轻量时序卷积网络用于身体姿态情绪识别",
+      "llm_evidence": "轻量时序卷积网络用于身体姿态情绪识别",
+      "canonical_evidence": "轻量时序卷积网络用于身体姿态情绪识别",
+      "llm_tldr_en": "Proposes efficient TCNs for body-based emotion recognition, achieving comparable accuracy to graph methods with far fewer parameters.",
+      "llm_tldr_cn": "该论文针对基于身体骨架的情绪识别中图模型计算开销大的问题，探索轻量级时序卷积网络（TCN）的可行性。在DIEM-A数据集上，TCN-Base模型在准确率和宏F1上仅比图基线低1.58和1.25个百分点，却减少了79.18%参数量并提升12.5倍推理速度。结果表明TCN能在保持可解释性的同时高效进行情绪识别。这项工作为实时情感计算和心理健康监测提供了低成本方案。",
+      "llm_tldr": "该论文针对基于身体骨架的情绪识别中图模型计算开销大的问题，探索轻量级时序卷积网络（TCN）的可行性。在DIEM-A数据集上，TCN-Base模型在准确率和宏F1上仅比图基线低1.58和1.25个百分点，却减少了79.18%参数量并提升12.5倍推理速度。结果表明TCN能在保持可解释性的同时高效进行情绪识别。这项工作为实时情感计算和心理健康监测提供了低成本方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
