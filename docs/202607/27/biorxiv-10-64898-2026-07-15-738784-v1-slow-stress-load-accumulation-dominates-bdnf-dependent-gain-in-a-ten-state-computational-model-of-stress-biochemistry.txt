@@ -1,0 +1,346 @@
+Title: Slow Stress-Load Accumulation Dominates BDNF-Dependent Gain in a Ten-State Computational Model of Stress Biochemistry
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.07.15.738784v1.full.pdf
+
+Number of Pages: 15
+
+Markdown Content:
+# Slow Stress-Load Accumulation Dominates BDNF-Dependent Gain in a Ten-State Computational Model of Stress Biochemistry 
+
+Intakhar Ahmad 
+
+University of Illinois Chicago, Chicago, Illinois, US Correspondence: intakhar@uic.edu; ORCID: 0009-0003-4632-9784 
+
+Abstract Background. Acute stress responses are often reversible, whereas sustained stress can produce coordinated disruption across endocrine, metabolic, inammatory, antioxidant, and neuroplastic pathways. The Tiered Stress Biochemistry Model (TSBM) is a hypothesis-generating ten-state ordinary dierential-equation framework linking a stylized cortisol signal to noradrenergic drive, vitamin C, a phenomenological aldosterone/renin-angiotensin drive, magnesium, normalized BDNF-related and Nrf2-related states, inammation, and tryptophan-kynurenine metabolism. 
+
+Methods. Five prespecied scenarios (normal, acute, chronic, depression-like, and low-cortisol PTSD-like) were simulated for 168 hours. Analyses included local stability, output-specic sen-sitivity screening, structural ablation, a 400-draw Latin-hypercube scan over independent ±20% 
+
+parameter ranges, uncertainty distributions for threshold-crossing times, a success-conditioned parameter-trade-o screen, and a wider scan in which hypothesized BDNF-feedback gain magni-tudes varied log-uniformly from 0.1 to 10 times nominal. Parameters were classied as literature-derived, literature-constrained/model-dened, calibrated, or hypothesized. 
+
+Results. Under the specied forcing assumptions, sustained stress produced coordinated changes across several pathways. In the depression-like scenario, removing slow stress-load accumulation increased day-7 BDNF-related activity from 47.2% to 82.6%, reduced inamma-tion from 14.63 to 2.15 arbitrary units, and lowered KYN/TRP from 0.173 to 0.057. Removing BDNF-dependent gain increased BDNF only to 49.1% and delayed KYN/TRP crossing by 2.5 hours. The stricter multi-output conclusion was retained in 91% of uncertainty draws. Median crossing times retained the nominal sequence, but the complete four-event order occurred in only 43% of all draws. 
+
+Conclusions. Within this reduced model, a shared slow stress-load process coordinates the high-exposure state, whereas BDNF-dependent feedback acts mainly as an amplier. The model generates an experimentally testable staging hypothesis: under sustained high-exposure forcing, magnesium changes may precede later BDNF-related and KYN/TRP changes. Longitudinal studies are required to determine whether this sequence occurs biologically, whether it is re-versible, and whether it has clinical relevance. The simulations are not diagnostic or treatment recommendations. 
+
+Keywords: mathematical modeling; HPA axis; vitamin C; magnesium; BDNF; Nrf2; kynure-nine; slow stress-load; depression; PTSD. 
+
+# 1 Introduction 
+
+Stress responses vary across time, context, and disorder. Major depressive disorder and post-traumatic stress disorder can show dierent group-level hypothalamic-pituitary-adrenal (HPA) pat-terns, but these distributions overlap and do not dene individual diagnoses (Yehuda et al., 1996). The allostasis framework emphasizes that pathology may reect the cumulative cost of repeated 1
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+or sustained mediator exposure rather than an acute response alone (McEwen and Stellar, 1993; McEwen, 1998). Mathematical models of the HPA axis have claried negative feedback, circadian entrainment, and ultradian pulsatility (Walker et al., 2010; Sriram et al., 2012; Andersen et al., 2013). TSBM does not replace those mechanistic HPA models. It treats cortisol as an empirical forcing signal and asks how a deliberately reduced downstream network behaves under specied inputs. The selected couplings have varying levels of biological support. The locus coeruleus noradrenergic system is a principal stress-responsive hub whose output is gated by tyrosine hydroxylase, the rate-limiting step in catecholamine synthesis, and whose dysregulation has been associated with neuroin-ammatory and demyelinating processes (Nagatsu et al., 1964; Valentino and Van Bockstaele, 2008; Benarroch, 2009; Feinstein et al., 2016; Polak et al., 2011). Dopamine-beta-hydroxylase requires ascorbate; ascorbate additionally serves as a cofactor in the adrenal cortex and medulla, is consumed during psychological stress responses, and turns over on a timescale that constrains its recovery dy-namics and its contribution to immune function (Diliberto and Allen, 1981; Bornstein et al., 2003; Patak et al., 2004; Brody et al., 2002; Kallner et al., 1979; Levine et al., 1996; Lykkesfeldt and Tveden-Nyborg, 2019; Carr and Maggini, 2017). Stress and aldosterone-related physiology can in-crease magnesium loss, and insucient magnesium status has been linked to depression- and anxiety-related phenotypes (Golf et al., 1998; Seelig, 1994; Crook et al., 2021). Sustained glucocorticoid exposure can suppress BDNF-related expression and signaling through transcriptional, receptor-level, and chromatin mechanisms (Smith et al., 1995; Duman and Monteggia, 2006; Tsankova et al., 2006; Numakawa et al., 2009; Suri and Vaidya, 2013), while glucocorticoid-receptor signaling can repress Nrf2-mediated antioxidant responses that are themselves altered in depression (Alam et al., 2017; Maes et al., 2011). Finally, inammation can increase indoleamine 2,3-dioxygenase ux through the kynurenine pathway, a route repeatedly implicated in depression (Dantzer et al., 2008; Miller and Raison, 2016; Reus et al., 2015). These observations motivate term directions but do not uniquely determine functional forms or numerical coecients. The principal objectives are to distinguish imposed scenario behavior from structural consequences, quantify uncertainty within the selected equations, identify pathway attribution through ablation, and dene measurements capable of rejecting the proposed couplings. 
+
+# 2 Methods 
+
+2.1 Model architecture 
+
+TSBM contains ten state variables: locus-coeruleus noradrenergic drive (NE), vitamin C (VitC), a phenomenological aldosterone/renin-angiotensin-system drive (Ald), magnesium (Mg), normalized BDNF-related and Nrf2-related states, inammation (INF), tryptophan (Trp), kynurenine (Kyn), and a slow cortisol-elevation state ( Cstress ). BDNF and Nrf2 are percentages of reference activ-ity/expression, not serum concentrations. Ald and INF are arbitrary-unit proxies. VitC, Mg, Trp, and Kyn are concentration-scale model pools rather than predictions for a specic compartment. 2
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+The implemented equations are: 
+
+dNE 
+
+dt = kne,on T H act max(drive LC , 0) − kne,of f (NE − 1) , (1) 
+
+dVitC 
+
+dt = kin, VitC (VitC 0 − VitC) − kc, NE max(NE − 1, 0) VitC VitC 0 − kc, VitC max( Ctotal − 8, 0) VitC VitC 0 ,
+
+(2) 
+
+dAld 
+
+dt = ka, Ald max( Ctotal − 18 .5, 0) KMg  
+
+> KMg +Mg
+
+− kcl, Ald (Ald − Ald 0), (3) 
+
+dMg 
+
+dt = kin, Mg (Mg 0 − Mg) − kw, Mg max(Ald − Ald 0, 0) max(Mg − Mg floor , 0) , (4) 
+
+dBDNF 
+
+dt = krec, BDNF (100 − BDNF) − ksil, BDNF max( Ctotal − 15 , 0) BDNF 100 , (5) 
+
+dNrf2 
+
+dt = krec, Nrf2 (100 − Nrf2) − ksil, Nrf2 max( Ctotal − 14 , 0) Nrf2 100 , (6) 
+
+dINF 
+
+dt = kinf max( C0 + Cstress − 11 , 0)(1 + kauto INF) − kcl, INF INF , (7) 
+
+dTrp 
+
+dt = kin, Trp (Trp 0 − Trp) − kIDO INF Trp , (8) 
+
+dKyn 
+
+dt = kIDO INF Trp + kKyn ,base − kcl, Kyn Kyn , (9) 
+
+dC stress 
+
+dt = sacc kacc Ψ(BDNF) max( Ctotal − 12 , 0) 
+
+
+
+1 − Cstress 
+
+> Cmax
+
+
+
+− kdec Cstress . (10) Here sacc ∈ { 0, 1} is the scenario-specic accumulation switch and kacc is the accumulation rate. This notation removes the earlier ambiguity in which acc was used for both concepts. T H act =1 + kthind Cstress and drive LC = [ Cacute + max( Ctotal − C0, 0)] /10 . Full annotations and dimensional denitions are in Supplementary File S1. 
+
+2.2 Cortisol forcing and BDNF-dependent gain 
+
+Total cortisol is Ctotal = Ccircadian + Cstress + Cacute , with 
+
+Ccircadian (t) = C0 + C1 cos 
+
+ 2π(t − tpeak )24 
+
+
+
+.
+
+The acute pulse begins at 8 hours, has amplitude 20 μg/dL, and decays with a 0.5-hour time constant. For the depression-like scenario, Ψdep = 1 + 0 .60 max[0 , (100 − BDNF) /100] ; for the PTSD-like counterfactual, ΨPTSD = 1 − 0.15 max[0 , (100 − BDNF) /100] . The exact C0/C 1 pairs are literature-constrained/model-dened scenario inputs, not estimates tted to individual participants. 
+
+2.3 Scenario denitions 2.4 Parameterization and analytical reference lines 
+
+Parameters were classied as literature-derived, literature-constrained/model-dened, calibrated, or hypothesized. A citation supports a direction, scale, or timescale and does not imply that the exact coecient was directly measured for the modeled compartment. Analytical reference lines were Mg 0.65 mmol/L, VitC 23 μM, BDNF-related state 70%, and same-unit KYN/TRP 0.08. They are 3
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 1: TSBM architecture and feedback interpretation. Tier 1 is labeled rapid cofactor and mineral dynamics rather than cofactor collapse because the acute scenario does not cross the prespecied deciency boundaries. Structural ablation distinguishes the slow accumulation pathway from the BDNF-dependent gain. 
+
+Table 1: Prespecied scenario inputs. All downstream states begin at reference values except for the listed initial slow-load state. 
+
+Scenario C0 C1 Cstress (0) sacc Acute pulse Ψ
+
+Normal 10.0 7.5 0 0 No None Acute 10.0 7.5 0 0 20 μg/dL None Chronic 10.0 7.5 6 1 No None Depression-like 13.0 8.0 3 1 No Positive gain Low-cortisol PTSD-like 7.5 5.5 0 0 No Negative gain, inactive by default 
+
+4
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+model references, not universal clinical cutos. The complete parameter table, including kin, Trp and all activation thresholds, is provided in Supplementary File S2. The display preservation index in Figure 2 was used only for coloring. Each component was clipped to [0 , 1] : 1 − | NE − 1|, VitC /60 , Mg /0.85 , BDNF /100 , Nrf2 /100 , 1 − INF /15 , and 1 − (KYN /TRP −
+
+0.035) /0.14 . Raw simulated values are printed in each cell and all inferential analyses use raw outputs. 
+
+2.5 Numerical methods, sensitivity, uncertainty, and ablation 
+
+Main simulations used scipy.integrate.solve_ivp with RK45 (relative tolerance 10 −6, absolute tolerance 10 −9, maximum step 0.25 h). Repeated scans used a documented xed-step RK4 im-plementation with 0.5-hour steps. Local sensitivity varied fourteen parameters one at a time by 
+
+±20% . Multi-output screening evaluated day-7 VitC, Mg, BDNF, Nrf2, INF, and KYN/TRP. The normalized span was |Y+20% − Y−20% |/(0 .4|Ynominal |).Global uncertainty used 400 Latin-hypercube draws over independent ±20% ranges with seed 20240101. Threshold crossings were linearly interpolated between RK4 steps. Percentiles were calculated among crossing draws and crossing fractions were reported to retain information about right-censoring. A second 400-draw scan used seed 20240102 and additionally varied the magnitudes of both feedback gains log-uniformly from 0.1 to 10 times nominal. Spearman correlations among parameters in successful multi-output draws were interpreted as a success-conditioned trade-o screen, not identiability. Structural ablation set major couplings to zero one at a time. 
+
+# 3 Results 
+
+3.1 Scenario behavior 
+
+At day 7, the normal and low-cortisol PTSD-like scenarios remained relatively preserved, whereas chronic and depression-like scenarios showed coordinated changes (Figures 25). This separation is conditional on the imposed baselines, accumulation switch, and initial slow-load states; it is not an emergent diagnostic classier. The nominal normal scenario ended at 48.3 μM VitC and 0.85 mmol/L Mg. The low-cortisol PTSD-like comparator ended at 54.0 μM and 0.85 mmol/L. The depression-like simulation ended at 23.2 μM VitC, 0.562 mmol/L Mg, 47.2% BDNF-related activity, 37.9% Nrf2-related activity, 14.63 INF units, and KYN/TRP 0.173. Because BDNF and Nrf2 share the same recovery-plus-suppression form, their concordance is partly imposed by structure and is not independent validation. 
+
+3.2 Threshold uncertainty and event order 
+
+The nominal depression-like trajectory crossed Mg at 12.7 h, BDNF 70% at 78.1 h, KYN/TRP 0.08 at 93.0 h, and VitC 23 μM at 107.2 h. Among crossing draws, median times (2.5th97.5th percentiles) were 12.5 (10.159.3) h for Mg, 78.6 (54.1108.6) h for BDNF, 93.5 (74.6124.9) h for KYN/TRP, and 105.8 (80.2155.1) h for VitC. Crossing fractions were 93.2%, 100%, 100%, and 80.8%, respectively. All four boundaries were crossed in 303/400 draws; the complete nominal order occurred in 172/400 draws (43.0%) and 172/303 complete-crossing draws (56.8%). 5
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 2: Day-7 model state across ve prespecied scenarios. Color is the display-only preservation index dened in Methods; numbers are raw outputs. Scenario labels are not diagnoses. 
+
+Figure 3: Empirical circadian cortisol backbone over 72 hours. Curves exclude slow-load and acute-pulse contributions and are scenario inputs rather than tted patient trajectories. 
+
+6
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 4: Rapid cofactor, mineral, aldosterone-proxy, and kynurenine dynamics. Dashed reference lines are analytical model boundaries rather than diagnostic cutos. 
+
+3.3 Finite-horizon boundary, sensitivity, and robustness 
+
+Increasing initial slow load produced a smooth reduction in day-7 BDNF-related activity, cross-ing the model-dened 60% line near 4.5 μg/dL (Figure 7). This is an operational nite-horizon boundary, not a bifurcation or clinical threshold. For BDNF, the largest local spans were produced by KBDNF , Cmax , and ksil, BDNF . The multi-output screen showed distinct control structure: kc, VitC primarily controlled VitC; Mg floor controlled Mg; 
+
+ksil, Nrf2 controlled Nrf2; kinf and kauto controlled INF and KYN/TRP; and Cmax aected all six outputs. Complete raw and normalized results are in Table S2.5. The BDNF-only criterion was retained in 100% of moderate-uncertainty draws and the stricter multi-output criterion in 91%. These fractions were unchanged when the feedback-gain magnitudes varied over a 100-fold range. Among the 364 successful multi-output draws, the largest absolute pairwise Spearman correlation was 0.13, providing no evidence of a strong pairwise trade-o within this screen. 
+
+3.4 Structural ablation 
+
+Removing slow stress-load accumulation increased day-7 BDNF from 47.2% to 82.6%, reduced INF from 14.63 to 2.15, and lowered KYN/TRP from 0.173 to 0.057. Removing BDNF-dependent gain increased BDNF only to 49.1%. Removing inammatory self-amplication reduced INF to 6.80 and KYN/TRP to 0.102 without changing BDNF. Removing Ald-dependent Mg loss preserved Mg at 0.85 mmol/L. These are internal structural properties, not causal estimates from experimental data. 7
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 5: Normalized BDNF- and Nrf2-related states, inammatory proxy, and total model cortisol. BDNF and Nrf2 are dimensionless reference-state percentages. 
+
+Figure 6: Depression-like threshold-crossing uncertainty. Points are medians and bars are 2.5th97.5th percentiles among crossing draws; labels give crossing fractions. Non-crossers are right-censored at 168 h. 
+
+8
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 7: Finite-horizon operational boundary. The 60% line and approximately 4.5 μg/dL crossing are analytical references. 
+
+Figure 8: Targeted ±20% sensitivity of depression-like day-7 BDNF and the nite-horizon operational boundary. The apparent zero inuence of some parameters is output-specic; the six-output screen is reported in Supplementary File S2. 
+
+9
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Figure 9: Robustness under moderate parameter uncertainty and widened feedback-gain uncertainty. The scan evaluates the selected equations and ranges, not structural uncertainty. 
+
+Figure 10: Structural-ablation analysis. Slow-load accumulation is the dominant shared coordinator, whereas the BDNF gain, inammatory autocatalysis, and Ald-dependent Mg loss have more localized eects. 
+
+10 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+# 4 Discussion 
+
+TSBM is a reduced systems model for examining how a stylized endocrine input propagates through selected resource, transcriptional, inammatory, and tryptophan-kynurenine states. The analysis separates imposed scenario behavior, calibrated consistency, uncertainty within the selected equa-tions, and structural attribution by ablation. None constitutes out-of-sample validation. Two conclusions are comparatively strong within the implemented structure. First, slow stress-load accumulation is substantially more inuential than the hypothesized BDNF-dependent gain. Second, the low-cortisol PTSD-like scenario is preserved because exposure and accumulation are set low, not because a PTSD-specic feedback mechanism emerges. By contrast, the complete threshold sequence is not robust enough to support a treatment window: median times retain the order, but only 43% of all draws reproduce the full sequence. The model generates falsiable hypotheses: preventing slow-load accumulation should rescue several downstream states more strongly than removing BDNF gain alone; inammatory self-amplication should alter KYN/TRP more than BDNF; disabling Ald-dependent loss should prevent the modeled Mg decline; and under sustained high-exposure forcing Mg frequently changes before BDNF and KYN/TRP. These hypotheses do not justify supplementation, diagnostic testing, cardiovascular risk prediction, or psychiatric treatment decisions. Acute human stress may transiently increase peripheral BDNF, whereas Equation 5 represents only a sustained cortisol-associated suppressive component (Linz et al., 2019; Herhaus et al., 2024). Peripheral BDNF measurements in PTSD are themselves heterogeneous across studies (Mojtabavi et al., 2020), which reinforces that the normalized BDNF-related state used here should not be equated with any single circulating measurement. A future model should add an acute production term only when longitudinal data can identify it separately from recovery and suppression. Future extensions may also add CRH/ACTH, renal Mg handling, antioxidant-network interactions, or neural-tissue outcomes such as oligodendrocyte-lineage and myelin measures (Antontseva et al., 2020; Kokkosis et al., 2022), which can be quantied with standardized axon-myelin morphometry (Ahmad et al., 2025). Sustained cortisol elevation additionally produces metabolic eects such as insulin resistance (Rizza et al., 1982); a substrate tier coupling glucose and insulin was deliberately excluded here (Supplementary File S2) but is a plausible candidate for a later extension once matched longitudinal data are available. Such additions should be evaluated using held-out data or information criteria rather than improved t to the existing calibration targets. A prospective validation study should measure cortisol and, where feasible, ACTH, renin, and aldosterone together with Mg, VitC, BDNF, Nrf2- or oxidative-response markers, inammatory markers, Trp, and Kyn at baseline and approximately 6, 12, 24, 48, 72, 120, and 168 h after a standardized stress paradigm or during a dened sustained exposure. Parameters should be estimated in a training cohort with a prespecied observation model and identiability analysis, then tested in a held-out cohort. Reproducing calibration targets is not validation. 
+
+Limitations. Cortisol is empirical rather than generated by a mechanistic HPA subsystem. Sev-eral couplings are phenomenological. BDNF and Nrf2 are normalized proxies with similar equation forms. The PTSD-like feedback is inactive by default. Mg floor materially controls Mg. The uncer-tainty design assumes independent parameter ranges and does not represent structural uncertainty, correlated priors, measurement error, medication eects, sex or age eects, or stochastic biological variability. Threshold percentiles are conditional on crossing. The model has not been tted to an independent longitudinal multianalyte dataset. 11 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+# 5 Conclusions 
+
+Within the implemented equations, slow stress-load accumulation is the dominant simulated co-ordinator and BDNF-dependent gain is a modest amplier. The stricter multi-output conclusion persists in 91% of tested draws, whereas the complete threshold sequence is substantially less ro-bust. Independent longitudinal calibration, formal identiability analysis, and held-out validation are required before diagnostic, prognostic, reversibility, or treatment-timing claims are considered. 
+
+# Abbreviations 
+
+BDNF, brain-derived neurotrophic factor; DBH, dopamine-beta-hydroxylase; HPA, hypothalamic-pituitary-adrenal; IDO, indoleamine 2,3-dioxygenase; KYN, kynurenine; LC, locus coeruleus; NE, noradrenergic drive; Nrf2, nuclear factor erythroid 2-related factor 2; ODE, ordinary dierential equation; PTSD, post-traumatic stress disorder; TH, tyrosine hydroxylase; TRP, tryptophan. 
+
+# Author contributions 
+
+I.A. conceived the study, developed and implemented the model, performed the analyses, generated the gures, and wrote the manuscript. 
+
+# Funding 
+
+This work received no specic grant from any funding agency in the public, commercial, or not-for-prot sectors. 
+
+# Conicts of interest 
+
+The author declares no competing interests. 
+
+# Ethics approval 
+
+Not applicable. This computational study used no human participants, animals, or identiable data. 
+
+# Data and code availability 
+
+The core model and analysis scripts are publicly available at https://github.com/Intakhar-Ahmad/tiered-stress-biochemistry-model . The complete reproducibility package supplied with this revised version includes the extended threshold-uncertainty, event-order, widened-Ψ, and success-conditioned parameter-trade-o analyses together with machine-readable outputs. 
+
+# Reproducibility statement 
+
+Main simulations use RK45 with relative tolerance 10 −6, absolute tolerance 10 −9, and maximum step 0.25 h. Repeated scans use xed-step RK4 with 0.5-hour steps. Seeds are 20240101 and 20240102. 12 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Threshold crossings are linearly interpolated between time steps. The supplied run manifest records Python 3.13.5, NumPy 2.3.5, and SciPy 1.17.0 for the veried execution environment. 
+
+# Supplementary materials 
+
+Supplementary File S1: annotated equations, biological interpretation, derived quantities, and com-plete symbol denitions. Supplementary File S2: complete parameter and scenario tables, numerical methods, thresholds, local and multi-output sensitivity, stability, uncertainty, robustness, trade-o, and excluded-variable analyses. Reproducibility package: source scripts, xed-seed extended analyses, run manifests, and CSV/JSON outputs. 
+
+# References 
+
+Ahmad, I., Chowdhury, F. S., Boullerne, A. I., Gow, A., and Feinstein, D. L. (2025). Myeli-Metric: A Python-Based Toolbox for Standardized G-Ratio Analysis of Axon-Myelin Integrity. 
+
+ASN Neuro , 18(1). https://doi.org/10.1080/17590914.2025.2603411 
+
+Alam, M. M., et al. (2017). Glucocorticoid receptor signaling represses the antioxidant response by inhibiting histone acetylation mediated by NRF2. Journal of Biological Chemistry , 292, 75197530. https://doi.org/10.1074/jbc.M116.773960 
+
+Andersen, M., Vinther, F., and Ottesen, J. T. (2013). Mathematical modeling of the HPA axis, including hippocampal mechanisms. Mathematical Biosciences , 246. https://doi.org/10. 1016/j.mbs.2013.08.010 
+
+Antontseva, E., Bondar, N., Reshetnikov, V., and Merkulova, T. (2020). Eects of chronic stress on brain myelination in humans and rodent models. Neuroscience , 441. https://doi.org/10. 1016/j.neuroscience.2020.06.013 
+
+Benarroch, E. E. (2009). The locus ceruleus norepinephrine system. Neurology , 73. https://doi. org/10.1212/WNL.0b013e3181c2937c 
+
+Bornstein, S. R., et al. (2003). Impaired adrenal catecholamine system function in mice decient in SVCT2. FASEB Journal , 17, 19281930. https://doi.org/10.1096/fj.02-1167fje 
+
+Brody, S., Preut, R., Schommer, K., and Schuermeyer, T. H. (2002). High-dose ascorbic acid and responses to psychological stress. Psychopharmacology , 159. https://doi.org/10.1007/ s00213-001-0929-6 
+
+Carr, A. C., and Maggini, S. (2017). Vitamin C and immune function. Nutrients , 9, 1211. https: //doi.org/10.3390/nu9111211 
+
+Crook, J., et al. (2021). Insucient magnesium status and depression- and anxiety-related behav-iors. Nutrients , 13, 3910. https://doi.org/10.3390/nu13113910 
+
+Dantzer, R., et al. (2008). From inammation to sickness and depression. Nature Reviews Neuro-science , 9. https://doi.org/10.1038/nrn2297 
+
+Diliberto, E. J., Jr., and Allen, P. L. (1981). Mechanism of dopamine-beta-hydroxylation. Journal of Biological Chemistry , 256. Duman, R. S., and Monteggia, L. M. (2006). A neurotrophic model for stress-related mood disorders. 13 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Biological Psychiatry , 59. https://doi.org/10.1016/j.biopsych.2006.02.013 
+
+Feinstein, D. L., Kalinin, S., and Braun, D. (2016). Neuroinammation mediated via the locus coeruleus noradrenergic system. Journal of Neurochemistry , 139. https://doi.org/10.1111/ jnc.13447 
+
+Golf, S. W., Bender, S., and Gruettner, J. (1998). Signicance of magnesium in extreme physi-cal stress. Cardiovascular Drugs and Therapy , 12(Suppl 2). https://doi.org/10.1023/A: 1007708918683 
+
+Herhaus, B., Heni, M., Bloch, W., and Petrowski, K. (2024). Dynamic interplay of cortisol and BDNF under psychosocial stress. Psychoneuroendocrinology , 170. https://doi.org/10.1016/ j.psyneuen.2024.107192 
+
+Kallner, A., Hartmann, D., and Hornig, D. (1979). Steady-state turnover and body pool of ascorbic acid in man. American Journal of Clinical Nutrition , 32. https://doi.org/10.1093/ajcn/ 32.3.530 
+
+Kokkosis, A. G., et al. (2022). Chronic stress disrupts oligodendroglial lineage homeostasis. Molec-ular Psychiatry , 27. https://doi.org/10.1038/s41380-022-01512-y 
+
+Levine, M., et al. (1996). Vitamin C pharmacokinetics in healthy volunteers. PNAS , 93. https: //doi.org/10.1073/pnas.93.8.3704 
+
+Linz, R., et al. (2019). Acute psychosocial stress increases serum BDNF levels. Neuropsychophar-macology , 44. https://doi.org/10.1038/s41386-019-0391-y 
+
+Lykkesfeldt, J., and Tveden-Nyborg, P. (2019). The pharmacokinetics of vitamin C. Nutrients , 11. 
+
+https://doi.org/10.3390/nu11102412 
+
+Maes, M., Galecki, P., Chang, Y. S., and Berk, M. (2011). Oxidative and nitrosative stress pathways in major depression. Progress in Neuro-Psychopharmacology and Biological Psychiatry , 35. 
+
+https://doi.org/10.1016/j.pnpbp.2010.05.004 
+
+McEwen, B. S. (1998). Protective and damaging eects of stress mediators. New England Journal of Medicine , 338, 171179. https://doi.org/10.1056/NEJM199801153380307 
+
+McEwen, B. S., and Stellar, E. (1993). Stress and the individual: mechanisms leading to disease. 
+
+Archives of Internal Medicine , 153. https://doi.org/10.1001/archinte.1993.00410180039004 
+
+Miller, A. H., and Raison, C. L. (2016). The role of inammation in depression. Nature Reviews Immunology , 16. https://doi.org/10.1038/nri.2015.5 
+
+Mojtabavi, H., et al. (2020). Peripheral BDNF in PTSD: systematic review and meta-analysis. 
+
+PLOS ONE , 15, e0241928. https://doi.org/10.1371/journal.pone.0241928 
+
+Nagatsu, T., Levitt, M., and Udenfriend, S. (1964). Tyrosine hydroxylase: the initial step in norepinephrine biosynthesis. Journal of Biological Chemistry , 239. https://doi.org/10. 1016/S0021-9258(18)93832-9 
+
+Numakawa, T., et al. (2009). Glucocorticoid receptor interaction with TrkB. PNAS , 106. https: //doi.org/10.1073/pnas.0800888106 
+
+Patak, P., Willenberg, H. S., and Bornstein, S. R. (2004). Vitamin C as a cofactor for adrenal cortex and medulla. Endocrine Research , 30, 871875. Polak, P. E., Kalinin, S., and Feinstein, D. L. (2011). Locus coeruleus damage and noradrenaline reductions in MS and EAE. Brain , 134. https://doi.org/10.1093/brain/awq362 
+
+14 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted July 21, 2026. ;https://doi.org/10.64898/2026.07.15.738784 doi: bioRxiv preprint
+
+Reus, G. Z., et al. (2015). Kynurenine pathway dysfunction in depression. Journal of Psychiatric Research , 68. https://doi.org/10.1016/j.jpsychires.2015.05.007 
+
+Rizza, R. A., Mandarino, L. J., and Gerich, J. E. (1982). Cortisol-induced insulin resistance in man. 
+
+Journal of Clinical Endocrinology and Metabolism , 54. https://doi.org/10.1210/jcem-54-1-131 
+
+Seelig, M. S. (1994). Consequences of magnesium deciency on stress reactions. Journal of the American College of Nutrition , 13. https://doi.org/10.1080/07315724.1994.10718432 
+
+Smith, M. A., Makino, S., Kvetnansky, R., and Post, R. M. (1995). Stress and glucocorticoids aect BDNF and NT-3 mRNA. Journal of Neuroscience , 15. https://doi.org/10.1523/ JNEUROSCI.15-03-01768.1995 
+
+Sriram, K., Rodriguez-Fernandez, M., and Doyle, F. J. (2012). Modeling cortisol dynamics dis-tinguishes stylized normal, depression, and PTSD proles. PLoS Computational Biology , 8. 
+
+https://doi.org/10.1371/journal.pcbi.1002379 
+
+Suri, D., and Vaidya, V. A. (2013). Glucocorticoid regulation of BDNF. Neuroscience , 239. https: //doi.org/10.1016/j.neuroscience.2012.08.065 
+
+Tsankova, N. M., et al. (2006). Sustained hippocampal chromatin regulation in a mouse model of depression. Nature Neuroscience , 9. https://doi.org/10.1038/nn1659 
+
+Valentino, R. J., and Van Bockstaele, E. (2008). Convergent regulation of locus coeruleus activity in stress. European Journal of Pharmacology , 583. https://doi.org/10.1016/j.ejphar.2007. 11.062 
+
+Walker, J. J., Terry, J. R., and Lightman, S. L. (2010). Origin of ultradian pulsatility in the HPA axis. Proceedings of the Royal Society B , 277. https://doi.org/10.1098/rspb.2009.2148 
+
+Yehuda, R., Teicher, M. H., Trestman, R. L., Levengood, R. A., and Siever, L. J. (1996). Cortisol regulation in PTSD and major depression. Biological Psychiatry , 40. https://doi.org/10. 1016/0006-3223(95)00451-3 
+
+15

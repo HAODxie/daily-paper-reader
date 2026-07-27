@@ -6,73 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-26
-- 运行时间：2026-07-26 21:26:34 UTC
+- 最新运行日期：2026-07-27
+- 运行时间：2026-07-27 21:45:14 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-1) 今日精读聚焦帕金森病治疗与多模态大模型幻觉诊断，速读覆盖AI伴侣记忆、情感识别及医疗AI安全评估。
-2) 最值得关注：Genipin可缓解帕金森果蝇模型的睡眠缺陷（10分）；HalluScope能精细诊断多模态大模型的幻觉（9分）。
-3) 建议优先了解HalluScope的幻觉检测方法，这对评估当前多模态AI输出可靠性的普通用户尤为实用。
-- 详情：[/202607/26/README](/202607/26/README)
+今日精读17篇论文，聚焦于稀疏注意力长上下文推理架构（RIS-Kernel）与脑网络分析增强型LLM框架（NeuroGraphs）。  
+推荐优先关注RIS-Kernel在长上下文场景的稀疏注意力优化，以及NeuroGraphs整合神经图与LLM的脑网络分析方法。  
+普通读者可先通读这两篇精读论文，再速读AI虚拟患者沟通、LLM能力分层及EEG波形字典三篇论文以拓展认知。
+- 详情：[/202607/27/README](/202607/27/README)
 
 ### 精读区论文标签
-1. [Genipin Alleviates Sleep Deficiencies Caused by α-Synuclein Toxicity in a Drosophila melanogaster Model of Parkinsons Disease](/202607/26/biorxiv-10-64898-2026-07-16-738995-v1-genipin-alleviates-sleep-deficiencies-caused-by--synuclein-toxicity-in-a-drosophila-melanogaster-model-of-parkinsons-disease)  
-   标签：评分：10.0/10、query:neuro-mental
-   evidence：帕金森果蝇模型中的睡眠缺陷及京尼平改善
-2. [HalluScope: Fine-grained Hallucination Diagnosis for Multimodal Large Language Models](/202607/26/2607.21105v1-halluscope-fine-grained-hallucination-diagnosis-for-multimodal-large-language-models)  
+1. [RIS-Kernel: A Model-Agnostic Architecture for Long-Context LLM Inference via Sparse Attention](/202607/27/2607.21927v1-ris-kernel-a-model-agnostic-architecture-for-long-context-llm-inference-via-sparse-attention)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：多模态大语言模型幻觉诊断
-3. [ASTRA-Net: Anatomy-Specific Transfer and Representation Alignment for Drug-Induced Sleep Endoscopy Segmentation](/202607/26/2607.21370v1-astra-net-anatomy-specific-transfer-and-representation-alignment-for-drug-induced-sleep-endoscopy-segmentation)  
+   evidence：长上下文LLM推理；稀疏注意力架构
+2. [When Language Models Meet NeuroGraphs: Exploring Enhanced Agentic LLM Framework Towards Brain Network Analysis](/202607/27/2607.22082v1-when-language-models-meet-neurographs-exploring-enhanced-agentic-llm-framework-towards-brain-network-analysis)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：药物诱导睡眠内窥镜分割技术
-4. [Toward a Stable and Deployable Adaptive Chirplet Transform: Residual Projection, Hybrid GPU Acceleration, and Multi-Channel Scalability](/202607/26/2607.16629v1-toward-a-stable-and-deployable-adaptive-chirplet-transform-residual-projection-hybrid-gpu-acceleration-and-multi-channel-scalability)  
+   evidence：用于脑网络分析的大语言模型框架
+3. [Universal BCI Personalization: One API for Frozen EEG Trunks and Foundation Models](/202607/27/2607.22397v1-universal-bci-personalization-one-api-for-frozen-eeg-trunks-and-foundation-models)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：脑机接口系统的通用个性化API
+4. [Sources of Inequity and Fairness Risks inWellbeing Sensing](/202607/27/2607.21527v1-sources-of-inequity-and-fairness-risks-inwellbeing-sensing)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：自适应Chirplet变换用于脑电信号
-5. [DS@GT ARC at eRisk 2026: Hybrid Multi-Agent LLM System with Structured Algorithmic Guidance for Conversational Depression Screening](/202607/26/2607.16712v1-dsgt-arc-at-erisk-2026-hybrid-multi-agent-llm-system-with-structured-algorithmic-guidance-for-conversational-depression-screening)  
+   evidence：幸福感感知中的公平性风险，用于心理健康
+5. [AdaptICA: Data-Adaptive Transformation Learning for Independent Component Analysis](/202607/27/2607.21901v1-adaptica-data-adaptive-transformation-learning-for-independent-component-analysis)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：多智能体大语言模型系统用于对话式抑郁筛查
-6. [An Audio Language Model-Based Voice Concept Bottleneck Framework for Interpretable Health Assessment](/202607/26/2607.16967v1-an-audio-language-model-based-voice-concept-bottleneck-framework-for-interpretable-health-assessment)  
+   evidence：针对运动想象脑电的自适应ICA变换学习
+6. [Developing and Validating the Spanish Version of the Large Language Models Dependency Scale (LLM-D12-SP)](/202607/27/2607.22041v1-developing-and-validating-the-spanish-version-of-the-large-language-models-dependency-scale-llm-d12-sp)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：音频语言模型用于可解释健康评估
+   evidence：大语言模型依赖量表验证
 
 ### 速读区论文标签
-1. [ZifaMem: Structured Memory for Persona, Preference, and Emotional Continuity in AI Companions](/202607/26/2607.17564v1-zifamem-structured-memory-for-persona-preference-and-emotional-continuity-in-ai-companions)  
+1. [An AI-Driven Virtual Patient for Breaking Bad News: An Expert Formative Study on Facial Expression Intensity](/202607/27/2607.22118v1-an-ai-driven-virtual-patient-for-breaking-bad-news-an-expert-formative-study-on-facial-expression-intensity)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：为大语言模型驱动的AI伴侣设计结构记忆以增强情感连续性
-2. [EmoEUS: Uncertainty Supervision for Multimodal Emotion Recognition in Conversation](/202607/26/2607.18336v1-emoeus-uncertainty-supervision-for-multimodal-emotion-recognition-in-conversation)  
+   evidence：基于LLM的虚拟病人用于医患沟通培训
+2. [From Isolated Tasks to Structured Capabilities: A Multilayer Taxonomy for Large Language Models](/202607/27/2607.22182v1-from-isolated-tasks-to-structured-capabilities-a-multilayer-taxonomy-for-large-language-models)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于不确定性监督的多模态对话情绪识别
-3. [Evaluating medical AI under missing information: same-provider judges and human raters change apparent safety](/202607/26/2607.18828v1-evaluating-medical-ai-under-missing-information-same-provider-judges-and-human-raters-change-apparent-safety)  
+   evidence：提出大语言模型评估分类法
+3. [Interpretable EEG biomarkers with bag-of-waves: Spatial and temporal waveform dictionaries for low-data regimes](/202607/27/2607.22508v1-interpretable-eeg-biomarkers-with-bag-of-waves-spatial-and-temporal-waveform-dictionaries-for-low-data-regimes)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：在信息缺失情境下评估医疗LLM的安全性
-4. [Locus coeruleus-related insula activation is associated with implicit learning](/202607/26/biorxiv-10-1101-2025-05-10-653174-v5-locus-coeruleus-related-insula-activation-is-associated-with-implicit-learning)  
+   evidence：基于波形字典的可解释脑电生物标志物学习
+4. [Circadian rhythm disruption alters rhythmic properties of clock and memory gene expression in the hippocampi of rats](/202607/27/biorxiv-10-64898-2026-07-15-738771-v1-circadian-rhythm-disruption-alters-rhythmic-properties-of-clock-and-memory-gene-expression-in-the-hippocampi-of-rats)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：结合脑电、功能磁共振和瞳孔测量研究内隐学习
-5. [Pre-anaesthetic anxiety phenotype stratifies cortical excitability, learned navigation, and post-anaesthetic sleep in sevoflurane-exposed mice](/202607/26/biorxiv-10-64898-2026-07-13-738262-v1-pre-anaesthetic-anxiety-phenotype-stratifies-cortical-excitability-learned-navigation-and-post-anaesthetic-sleep-in-sevoflurane-exposed-mice)  
+   evidence：昼夜节律破坏影响海马时钟和记忆基因节律
+5. [Slow stress-load accumulation dominates BDNF-dependent gain in a ten-state computational model of stress biochemistry](/202607/27/biorxiv-10-64898-2026-07-15-738784-v1-slow-stress-load-accumulation-dominates-bdnf-dependent-gain-in-a-ten-state-computational-model-of-stress-biochemistry)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：睡眠研究，麻醉后睡眠，焦虑表型，小鼠EEG
-6. [Chronofy: A Temporal-Logical Decay Architecture for Information Validity in Time-Aware Retrieval-Augmented Generation](/202607/26/2607.20560v1-chronofy-a-temporal-logical-decay-architecture-for-information-validity-in-time-aware-retrieval-augmented-generation)  
+   evidence：压力生物化学的计算模型与心理健康相关
+6. [Computer Vision Based Neurology Brain Activity Rejection Architecture and Implementation](/202607/27/2607.21654v1-computer-vision-based-neurology-brain-activity-rejection-architecture-and-implementation)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：时间感知RAG架构减少大语言模型的时间幻觉
-7. [When does more data help? Spectral Geometry and Scaling Laws in MRI Transformers](/202607/26/biorxiv-10-64898-2026-07-14-738571-v1-when-does-more-data-help-spectral-geometry-and-scaling-laws-in-mri-transformers)  
+   evidence：脑电信号处理，独立成分分析去除伪影
+7. [Autoregressive EHR Foundation Models with Multimodal Inputs](/202607/27/2607.22264v1-autoregressive-ehr-foundation-models-with-multimodal-inputs)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：MRI transformer在阿尔茨海默病分类中的缩放定律
-8. [Associative Emotional Learning in Convolutional Neural Networks](/202607/26/2607.19327v2-associative-emotional-learning-in-convolutional-neural-networks)  
+   evidence：使用类大语言模型的自回归基础模型进行多模态临床预测，体现大模型在科研中的应用
+8. [Scaling Native Multimodal Pre-Training From Scratch](/202607/27/2607.22043v1-scaling-native-multimodal-pre-training-from-scratch)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：深度学习网络模型用于联想情绪学习
-9. [REGARD: Regional Affective Differences in Large Language Models](/202607/26/2607.20722v1-regard-regional-affective-differences-in-large-language-models)  
+   evidence：原生多模态预训练及缩放律，适用于视觉-语言模型
+9. [fMRI2Face: A Full-HD fMRI-Video Dataset and Geometry-Guided Neural Decoding Framework for Dynamic Human Face Reconstruction](/202607/27/2607.22302v1-fmri2face-a-full-hd-fmri-video-dataset-and-geometry-guided-neural-decoding-framework-for-dynamic-human-face-reconstruction)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：LLM中的情感分析研究
-10. [EmoAgent-R1: Towards Multimodal Emotion Understanding with Reinforcement Learning-based Dynamic Agent Specialization](/202607/26/2607.21013v1-emoagent-r1-towards-multimodal-emotion-understanding-with-reinforcement-learning-based-dynamic-agent-specialization)  
+   evidence：基于fMRI的人脸重建，与神经解码和fMRI研究相关
+10. [Task-specific ISS reduction and network balance during Stroop task performance in older adults](/202607/27/biorxiv-10-64898-2026-07-13-738225-v1-task-specific-iss-reduction-and-network-balance-during-stroop-task-performance-in-older-adults)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：利用大语言模型进行多模态情感识别，结合强化学习
-11. [MVEI & EmObserver: Empowering MLLM-Oriented Visual Emotional Intelligence via Emotion Statement Judgement](/202607/26/2607.21061v1-mvei--emobserver-empowering-mllm-oriented-visual-emotional-intelligence-via-emotion-statement-judgement)  
+   evidence：fMRI研究Stroop任务中老年人脑区间相似性变化，关联认知抑制与心理健康
+11. [Excitatory delay-coupling explains in-phase and antiphase functional connectivity](/202607/27/biorxiv-10-64898-2026-07-17-739148-v1-excitatory-delay-coupling-explains-in-phase-and-antiphase-functional-connectivity)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：专注于评估多模态大语言模型的情感智能
+   evidence：运动学习中的相位同步脑电分析
 
 
 <div class="dpr-home-promo-card">

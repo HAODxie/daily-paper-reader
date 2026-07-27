@@ -1,0 +1,682 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-27T21:33:34.602598+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 11,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 12,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2607.21927v1",
+      "source": "arxiv",
+      "title": "RIS-Kernel: A Model-Agnostic Architecture for Long-Context LLM Inference via Sparse Attention",
+      "abstract": "Full self-attention in large language models scales as O(N^2), which limits long-context document analysis to 65,536 tokens and requires costly GPU clusters. The Reduced Interaction Sampling (RIS) inference engine addresses this constraint as a model-agnostic architecture. Without modifying weights, RIS reduces self-attention complexity to O(N log N) using sparse stochastic geometry that fits within commodity memory limits. We validate RIS on Qwen2-1.5B-Instruct across two regimes. In controlled evaluations at 32,768 tokens (where native dense attention serves as the upper bound), RIS-Stochastic at 1% density and 70 ensemble seeds achieves 75.00% accuracy, outperforming the native dense baseline (71.88%), while RIS-Stochastic at 5% density and 10 seeds matches it (71.88%). This demonstrates that sparse attention acts as a regularizer: low density (1%) over multiple seeds filters out sequence-level noise, whereas higher density (5%) reintroduces distractor noise. Under the tightest budget, RIS-Structural reaches 68.75% accuracy at 1% density with just 10 seeds, recovering 75% of the contextual gap relative to the zero-context floor (59.38%). At 65,536 tokens, where dense attention triggers out-of-memory faults, RIS yields retrieval gains of up to 14.06 percentage points over the zero-context floor (51.56%), which is confirmed as marginally significant under McNemar's paired test (p = 0.078 < 0.10). All evaluations run on commodity, unaccelerated CPU servers (16-128 GB of RAM), demonstrating that long-context LLM inference is feasible on standard academic hardware without GPU acceleration.",
+      "authors": [
+        "Anderson R. Santos"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-24T03:00:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.21927v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "long-context LLM inference; sparse attention architecture",
+      "llm_evidence_cn": "长上下文LLM推理；稀疏注意力架构",
+      "llm_evidence": "长上下文LLM推理；稀疏注意力架构",
+      "canonical_evidence": "长上下文LLM推理；稀疏注意力架构",
+      "llm_tldr_en": "RIS-Kernel reduces self-attention complexity to O(N log N) for LLMs, achieving higher accuracy than dense baselines at 1% density on 32k-token tasks.",
+      "llm_tldr_cn": "大语言模型的全自注意力计算量为O(N^2)，限制了长上下文处理。本文提出RIS-Kernel，一种模型无关的稀疏注意力推理引擎，将复杂度降至O(N log N)。在Qwen2-1.5B模型上，1%密度下达到75%准确率，优于密集基线的71.88%。该架构可在普通内存上运行，提升了长上下文推理的效率和可及性。",
+      "llm_tldr": "大语言模型的全自注意力计算量为O(N^2)，限制了长上下文处理。本文提出RIS-Kernel，一种模型无关的稀疏注意力推理引擎，将复杂度降至O(N log N)。在Qwen2-1.5B模型上，1%密度下达到75%准确率，优于密集基线的71.88%。该架构可在普通内存上运行，提升了长上下文推理的效率和可及性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.22082v1",
+      "source": "arxiv",
+      "title": "When Language Models Meet NeuroGraphs: Exploring Enhanced Agentic LLM Framework Towards Brain Network Analysis",
+      "abstract": "Brain network analysis is crucial for understanding cognition and neurological disorders, yet existing deep learning methods mainly treat connectome analysis as a graph-to-logit classification problem, offering limited explanatory reasoning. Large language models (LLMs) provide a promising interface for knowledge-intensive scientific analysis, but directly applying general-purpose LLMs to brain networks remains challenging due to the structure-language gap, limited neuroscience grounding, and overconfident positive predictions. In this paper, we propose \\textbf{BrainAgent}, an agentic LLM framework for knowledge-enhanced brain network analysis. BrainAgent reformulates connectome classification as an iterative process of topology-aware understanding, external retrieval, reasoning, and reflection. Specifically, it first converts raw brain networks into compact multi-level structural descriptions through brain-specific analysis tools, then retrieves relevant neuroscience knowledge and task-specific cases to ground the reasoning process, and finally generates structured predictions with reflective verification. Experiments on four public rs-fMRI datasets show that BrainAgent consistently improves different closed-source and open-source LLM backbones over direct prompting and standard reasoning baselines. Further ablation and interpretability analyses demonstrate the effectiveness of each component and show that BrainAgent produces more comprehensive, multi-level, and verifiable explanations.These results indicate that agentic LLMs provide a practical route toward interpretable and knowledge-grounded brain network analysis.",
+      "authors": [
+        "Jiaxing Li",
+        "Rui Dong",
+        "Muyao Tang",
+        "Youyong Kong"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-07-24T08:31:25+00:00",
+      "link": "https://arxiv.org/pdf/2607.22082v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM framework for brain network analysis",
+      "llm_evidence_cn": "用于脑网络分析的大语言模型框架",
+      "llm_evidence": "用于脑网络分析的大语言模型框架",
+      "canonical_evidence": "用于脑网络分析的大语言模型框架",
+      "llm_tldr_en": "BrainAgent: an agentic LLM framework that reformulates connectome classification as iterative reasoning, bridging the structure-language gap for enhanced brain network analysis.",
+      "llm_tldr_cn": "现有深度学习方法将脑连接组分析视为图分类任务，缺乏解释性推理。本文提出BrainAgent，一个智能体大语言模型框架，将连接组分类转化为迭代推理过程，弥合了结构-语言鸿沟。实验表明该方法在脑网络分析任务上优于传统方法，为利用LLM进行知识增强的神经科学分析开辟了新途径。",
+      "llm_tldr": "现有深度学习方法将脑连接组分析视为图分类任务，缺乏解释性推理。本文提出BrainAgent，一个智能体大语言模型框架，将连接组分类转化为迭代推理过程，弥合了结构-语言鸿沟。实验表明该方法在脑网络分析任务上优于传统方法，为利用LLM进行知识增强的神经科学分析开辟了新途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.22397v1",
+      "source": "arxiv",
+      "title": "Universal BCI Personalization: One API for Frozen EEG Trunks and Foundation Models",
+      "abstract": "Frozen EEG encoders proliferate; per-model fine-tune defaults do not scale. We present Nimbus Personalizer: one contract encode to Bayesian head to BrainState (optional affine mid-tier) that sits on heterogeneous frozen trunks without a new personalization stack per architecture. Thesis (systems): the contribution is the trunk-agnostic API - not LDA-on-embeddings as an ML novelty - so OEMs integrate once and swap trunks. Evidence: the same surface runs on five classical trunks EEGNet, Shallow, Deep, Conformer, ATCNet x four MI datasets (18 cells) and on a foundation encoder (REVE) under the same Personalizer. Where embedding capacity exists, the head is a cheap default mid-point versus warm-start fine-tune or PEFT, costing orders of magnitude less adaptation wall time while recovering much of the fine-tune accuracy gain; calibration-only-when-clean holds in 12/18 cells. Head gains are supporting evidence that the API is useful where capacity exists. Subject-level confidence intervals identify the clearest dataset and span zero elsewhere. All results are exploratory (subject-level bootstrap, no confirmatory tests); the decision logic for when to escalate adaptation is addressed in our companion work on the control layer.",
+      "authors": [
+        "Sergey Musienko"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-24T15:20:56+00:00",
+      "link": "https://arxiv.org/pdf/2607.22397v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "universal personalization API for BCI systems",
+      "llm_evidence_cn": "脑机接口系统的通用个性化API",
+      "llm_evidence": "脑机接口系统的通用个性化API",
+      "canonical_evidence": "脑机接口系统的通用个性化API",
+      "llm_tldr_en": "Presents Nimbus Personalizer, a trunk-agnostic API for personalizing frozen EEG encoders in BCI systems.",
+      "llm_tldr_cn": "当前冻结EEG编码器激增但缺乏统一个性化方案。本文提出Nimbus Personalizer，一个与编码器无关的API，可兼容多种主干网络（如EEGNet、Shallow等）和基础模型（如REVE），无需为每架构重写个性化栈。在4个运动想象数据集上验证，相比微调大大降低计算成本。",
+      "llm_tldr": "当前冻结EEG编码器激增但缺乏统一个性化方案。本文提出Nimbus Personalizer，一个与编码器无关的API，可兼容多种主干网络（如EEGNet、Shallow等）和基础模型（如REVE），无需为每架构重写个性化栈。在4个运动想象数据集上验证，相比微调大大降低计算成本。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21527v1",
+      "source": "arxiv",
+      "title": "Sources of Inequity and Fairness Risks inWellbeing Sensing",
+      "abstract": "Passive sensing for wellbeing uses smartphones and wearables to continuously collect human behavioral data and applies ML/AI models to infer psychological states and behaviors (e.g., depression, cognitive load). These systems are increasingly adopted in high-stakes settings (e.g., hospitals, universities), yet fairness research remains limited---primarily to post-hoc, identity-based comparisons of model performance. However, passive sensing combines heterogeneous sensing infrastructures, indirect behavioral inference, and longitudinal deployment---characteristics that, while not exclusive to the domain, are jointly pronounced here and raise two underexplored questions: (1) what additional sources of inequity arise from these characteristics, and (2) how do such inequities propagate beyond algorithmic audits across the system lifecycle? To address this gap, we conducted semi-structured interviews with 14 researchers and practitioners across five countries, examining how fairness risks emerge and are negotiated across the full passive sensing lifecycle. Our findings empirically characterize five situated sources of inequity (e.g., comfort with monitoring, behavioral regularity) that systematically shape fairness risks beyond identity-based attributes. We further synthesize 15 fairness risks and corresponding mitigation strategies across the lifecycle, from study design to deployment. Finally, we identify structural barriers that constrain fair practice in reality, and argue that enabling fair passive sensing requires both individual researcher efforts and ecosystem-level governance support from funders, publication venues, and deploying institutions.",
+      "authors": [
+        "Han Zhang",
+        "Vedant Das Swain",
+        "Koustuv Saha",
+        "Anind K. Dey",
+        "Jennifer Mankoff"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-23T17:12:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.21527v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "fairness risks in wellbeing sensing for mental health",
+      "llm_evidence_cn": "幸福感感知中的公平性风险，用于心理健康",
+      "llm_evidence": "幸福感感知中的公平性风险，用于心理健康",
+      "canonical_evidence": "幸福感感知中的公平性风险，用于心理健康",
+      "llm_tldr_en": "Identifies sources of inequity in passive sensing systems for wellbeing, highlighting fairness risks in depression and cognitive load inference.",
+      "llm_tldr_cn": "基于被动感知的幸福感系统（如通过智能设备推断抑郁和认知负荷）在高风险场景中应用日益广泛，但公平性研究不足。本文系统分析了这类系统因异构传感基础设施、间接行为推断和纵向部署带来的额外不公平来源，并讨论了其影响。研究为构建更公平的心理健康感知系统提供了重要参考。",
+      "llm_tldr": "基于被动感知的幸福感系统（如通过智能设备推断抑郁和认知负荷）在高风险场景中应用日益广泛，但公平性研究不足。本文系统分析了这类系统因异构传感基础设施、间接行为推断和纵向部署带来的额外不公平来源，并讨论了其影响。研究为构建更公平的心理健康感知系统提供了重要参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.21901v1",
+      "source": "arxiv",
+      "title": "AdaptICA: Data-Adaptive Transformation Learning for Independent Component Analysis",
+      "abstract": "Independent component analysis (ICA) is widely used to recover latent structure from signal and imaging data, but standard ICA assumes that the observed measurement scale preserves a linear mixing structure. This assumption may fail for features produced through nonlinear preprocessing, such as band-specific power in motor-imagery EEG. We propose AdaptICA, an adaptive transformation-based framework that jointly learns grouped componentwise transformations and the demixing structure using a profiled mutual-information criterion. Because the transformation and demixing parameters may compensate for one another, their joint estimation introduces new identifiability and asymptotic challenges. We establish identifiability, consistency, and asymptotic normality of the transformation estimator, together with joint strong consistency of the transformation and demixing estimators. AdaptICA selects the transformation structure data-adaptively and includes the identity transformation as a candidate, thereby reducing to standard ICA when no scale adjustment is needed. Extensive simulations support the theoretical results. Applications demonstrate that AdaptICA can recover more independent and interpretable sources when transformation is beneficial while retaining standard ICA when the original measurement scale is adequate.",
+      "authors": [
+        "Lida Jalili",
+        "Jingyu Liu",
+        "Vince D. Calhoun",
+        "Li-Hsiang Lin"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-07-24T02:11:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.21901v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Adaptive transformation learning for ICA applied to motor-imagery EEG",
+      "llm_evidence_cn": "针对运动想象脑电的自适应ICA变换学习",
+      "llm_evidence": "针对运动想象脑电的自适应ICA变换学习",
+      "canonical_evidence": "针对运动想象脑电的自适应ICA变换学习",
+      "llm_tldr_en": "Proposes AdaptICA, a data-adaptive transformation learning framework for ICA that handles nonlinear preprocessing like EEG band power, with theoretical guarantees.",
+      "llm_tldr_cn": "论文提出AdaptICA，一种数据自适应变换学习框架，用于独立成分分析（ICA），以处理EEG信号中非线性预处理（如频带功率）带来的线性混合假设失效问题。通过联合学习分组分量变换和分解结构，并建立了可辨识性和一致性理论保证。该方法可有效应用于运动想象EEG数据分析。",
+      "llm_tldr": "论文提出AdaptICA，一种数据自适应变换学习框架，用于独立成分分析（ICA），以处理EEG信号中非线性预处理（如频带功率）带来的线性混合假设失效问题。通过联合学习分组分量变换和分解结构，并建立了可辨识性和一致性理论保证。该方法可有效应用于运动想象EEG数据分析。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.22041v1",
+      "source": "arxiv",
+      "title": "Developing and Validating the Spanish Version of the Large Language Models Dependency Scale (LLM-D12-SP)",
+      "abstract": "There is a growing need for reliable and culturally validated instruments to assess psychological dependency on large language models (LLMs), particularly as LLMs are increasingly used for task execution, decision-making, and communication in organizational and work-related settings. This need is especially relevant for Spanish-speaking populations, where LLM adoption is rapidly expanding, yet validated psychometric tools remain scarce. The present study reports the first validation of the Spanish version of the Large Language Model Dependency Scale (LLM-D12-SP), extending prior validations conducted in English- and Arabic-speaking samples. The LLM-D12 is a two-dimensional instrument assessing Instrumental Dependency (reliance on LLMs for performing tasks and supporting decisions) and Relationship Dependency (psychological reliance on LLMs for companionship and social interaction). A total of 386 Spanish-speaking participants (M = 28.0 years, SD = 6.1; 55% male) completed the LLM-D12-SP. Confirmatory factor analysis supported the original two-factor structure. The scale demonstrated good internal consistency (Cronbach's alpha = 0.89 total; 0.86 Instrumental; 0.85 Relationship). Discriminant validity analyses indicated that the two subscales represent related but distinct constructs. External validation showed that both dependency dimensions were positively associated with internet addiction and perceived trustworthiness of LLMs, while showing weak or no association with need for cognition. Together with prior English and Arabic validations, these findings establish cross-linguistic support for the scale's structure and provide a psychometrically sound tool for investigating psychological aspects of LLM use in organizational contexts.",
+      "authors": [
+        "Tran Gia Bao",
+        "Mo El-Haj",
+        "Sameha Al-Shakhsi",
+        "Antonio Garcia-Cabot",
+        "Raian Ali",
+        "Ala Yankouskaya"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.CY"
+      ],
+      "published": "2026-07-24T07:09:56+00:00",
+      "link": "https://arxiv.org/pdf/2607.22041v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Large language models dependency scale validation",
+      "llm_evidence_cn": "大语言模型依赖量表验证",
+      "llm_evidence": "大语言模型依赖量表验证",
+      "canonical_evidence": "大语言模型依赖量表验证",
+      "llm_tldr_en": "Validates the Spanish version of the Large Language Model Dependency Scale, addressing the need for psychometric tools to assess LLM dependency in Spanish-speaking populations.",
+      "llm_tldr_cn": "随着大语言模型在工作场景中的普及，评估用户心理依赖的需求日益增长，但西班牙语人群缺乏有效工具。该论文验证了西班牙语版LLM依赖量表（LLM-D12-SP），该量表衡量工具性依赖和情感性依赖两个维度。研究证实了量表在西班牙语样本中的心理测量学特性，为跨文化研究提供了可靠工具。该工作有助于理解LLM对人类行为和心理的影响。",
+      "llm_tldr": "随着大语言模型在工作场景中的普及，评估用户心理依赖的需求日益增长，但西班牙语人群缺乏有效工具。该论文验证了西班牙语版LLM依赖量表（LLM-D12-SP），该量表衡量工具性依赖和情感性依赖两个维度。研究证实了量表在西班牙语样本中的心理测量学特性，为跨文化研究提供了可靠工具。该工作有助于理解LLM对人类行为和心理的影响。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.22118v1",
+      "source": "arxiv",
+      "title": "An AI-Driven Virtual Patient for Breaking Bad News: An Expert Formative Study on Facial Expression Intensity",
+      "abstract": "Interactive virtual patients driven by large language models (LLMs) offer scalable solutions for medical communication training, such as breaking bad news. However, designing their emotional expressiveness remains a challenge. This paper presents an AI-driven virtual patient framework combining LLM dialogue with real-time facial animation in virtual reality (VR). We conducted an exploratory, formative evaluation with seven medical experts to gather early feedback and elicit design requirements. The evaluation focused on how variations in facial expression intensity affect perceived realism and the virtual patient's emotion intelligibility. While descriptive quantitative ratings remained baseline across conditions, qualitative interviews provided deep insights into how experts perceive virtual emotional cues. The findings suggest that experts evaluate emotional realism holistically through multiple verbal and non-verbal channels; isolated facial adjustments are easily overshadowed by dialogue nuances and vocal prosody. Based on these insights, we present a roadmap for future medical training simulators, highlighting the need for synchronized, multi-modal pipelines incorporating body gestures, conversational pauses, and vocal dynamics.",
+      "authors": [
+        "Steffen Hauck",
+        "Theresa Schell",
+        "Sophie Jörg",
+        "Jens Grubert"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-24T09:12:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.22118v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM-driven virtual patient for medical communication training",
+      "llm_evidence_cn": "基于LLM的虚拟病人用于医患沟通培训",
+      "llm_evidence": "基于LLM的虚拟病人用于医患沟通培训",
+      "canonical_evidence": "基于LLM的虚拟病人用于医患沟通培训",
+      "llm_tldr_en": "Presents an AI-driven virtual patient framework that combines LLM dialogue with real-time facial animation in VR, evaluated with seven medical experts for breaking bad news training.",
+      "llm_tldr_cn": "大语言模型驱动的交互式虚拟病人在医疗沟通培训（如告知坏消息）中具有潜力，但情感表现力的设计仍是挑战。本文提出一个结合LLM对话与VR实时面部动画的虚拟病人框架，并邀请七名医学专家进行形成性评估，考察面部表情强度对真实感和情感可理解性的影响。尽管定量评分基线无明显差异，但专家反馈为情感设计提供了需求。该框架展示了LLM在医学教育研究中的应用价值。",
+      "llm_tldr": "大语言模型驱动的交互式虚拟病人在医疗沟通培训（如告知坏消息）中具有潜力，但情感表现力的设计仍是挑战。本文提出一个结合LLM对话与VR实时面部动画的虚拟病人框架，并邀请七名医学专家进行形成性评估，考察面部表情强度对真实感和情感可理解性的影响。尽管定量评分基线无明显差异，但专家反馈为情感设计提供了需求。该框架展示了LLM在医学教育研究中的应用价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.21654v1",
+      "source": "arxiv",
+      "title": "Computer Vision Based Neurology Brain Activity Rejection Architecture and Implementation",
+      "abstract": "The electroencephalogram (EEG) is a valuable and widely applied tool for investigating brain disorders and behavioral changes. It offers a minimally restrictive and non-invasive method. However, challenges in using EEG for cognitive development studies include temporal resolution, signal source localization, and EEG artifacts. Careful consideration of these factors is essential for informed application of EEG technology. Independent component analysis (ICA) effectively isolates source generator processes from signals recorded by multiple, adjacent EEG scalp electrodes. Although ICA decomposition requires manual inspection, selection, and interpretation of independent components (ICs), this process is time consuming and demands expertise. Automated IC classification can achieve sufficient accuracy, expediting large scale EEG research and enabling near real time applications in conjunction with brain activity rejection tasks, which are crucial for medical specialists. This study introduces an automated computer vision based ICA rejection labeling tool compatible with widely used software interfaces like ICLabel and EEGLab. By automating the manual task, the proposed system reduces processing time by 7200 fold and achieves an accuracy of 89.45%.",
+      "authors": [
+        "Zag ElSayed",
+        "Nathan Suer",
+        "Grace Westerkamp",
+        "Jack Yanchen Liu",
+        "Makoto Miyakoshi",
+        "Craig Erickson",
+        "Ernest Pedapati"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.LG",
+        "physics.data-an",
+        "q-bio.QM"
+      ],
+      "published": "2026-07-22T18:30:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.21654v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "EEG signal processing, artifact rejection using ICA",
+      "llm_evidence_cn": "脑电信号处理，独立成分分析去除伪影",
+      "llm_evidence": "脑电信号处理，独立成分分析去除伪影",
+      "canonical_evidence": "脑电信号处理，独立成分分析去除伪影",
+      "llm_tldr_en": "Proposes a computer vision based architecture for rejecting EEG artifacts, addressing challenges in EEG signal source localization and manual ICA inspection.",
+      "llm_tldr_cn": "脑电图（EEG）是研究脑疾病和行为变化的常用工具，但面临时间分辨率、信号源定位和伪影等挑战。该论文提出一种基于计算机视觉的脑电伪影拒绝架构，利用独立成分分析（ICA）分离源信号。该方法旨在自动化ICA分解后的手动检查和独立成分选择过程，减少对专业知识的依赖。该工作为EEG信号预处理提供了新的自动化方案，有助于提高认知发展研究中EEG数据分析的效率。",
+      "llm_tldr": "脑电图（EEG）是研究脑疾病和行为变化的常用工具，但面临时间分辨率、信号源定位和伪影等挑战。该论文提出一种基于计算机视觉的脑电伪影拒绝架构，利用独立成分分析（ICA）分离源信号。该方法旨在自动化ICA分解后的手动检查和独立成分选择过程，减少对专业知识的依赖。该工作为EEG信号预处理提供了新的自动化方案，有助于提高认知发展研究中EEG数据分析的效率。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.22043v1",
+      "source": "arxiv",
+      "title": "Scaling Native Multimodal Pre-Training From Scratch",
+      "abstract": "Although large language models (LLMs) exhibit remarkable reasoning capabilities, their reliance on text-only pre-training restricts the perception of the multimodal physical world. Native multimodal pre-training avoids this limitation by training models from scratch on multimodal inputs, thereby achieving deep cross-modal integration and mitigating optimization asymmetries inherent to traditional late-fusion architectures. Despite these advantages, the scaling properties of this paradigm remain systematically uncharacterized. To address this gap, we investigate the optimal model size and token count for training a transformer-based vision-language model under a fixed computational budget. We demonstrate that minimal objective loss adheres to a predictable compute law, whereas compute-optimal model sizes and token counts scale as power laws. Notably, language and multimodal objectives manifest distinct scaling behaviors. The language allocation law is largely invariant to the composition of the data, indicating stable language learning regardless of the multimodal data ratio. Conversely, the multimodal allocation law is highly sensitive to this composition. Specifically, text-heavy mixtures become compute-efficient only at larger model scales, shifting the optimal resource allocation toward greater model capacity. Additionally, by modeling the influence of data composition on compute laws and allocation exponents, we derive an efficiency frontier specifying precise configurations of model size, token count, and data mixture. Downstream evaluations further reveal that native multimodal pre-training induces positive cross-modal transfer, thereby enhancing pure-text spatial reasoning and enabling robust multimodal in-context learning. In summary, this empirical research establishes the essential groundwork for predictably scaling multimodal foundation models.",
+      "authors": [
+        "Haoyuan Wu",
+        "Aoqi Wu",
+        "Hai Wang",
+        "Jiajia Wu",
+        "Jinxiang Ou",
+        "Bei Yu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-07-24T07:13:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.22043v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "native multimodal pre-training with scaling laws for vision-language models",
+      "llm_evidence_cn": "原生多模态预训练及缩放律，适用于视觉-语言模型",
+      "llm_evidence": "原生多模态预训练及缩放律，适用于视觉-语言模型",
+      "canonical_evidence": "原生多模态预训练及缩放律，适用于视觉-语言模型",
+      "llm_tldr_en": "Investigates scaling laws for native multimodal pre-training from scratch, finding compute-optimal model size and token count for vision-language transformers.",
+      "llm_tldr_cn": "多模态大模型常采用后期融合，但存在优化不对称。本文从头训练原生多模态Transformer，研究计算预算最优的模型大小和标记数。实验表明最小目标损失遵循可预测计算律，并展示了零样本迁移性能。该缩放规律为训练高效多模态模型提供了指导。",
+      "llm_tldr": "多模态大模型常采用后期融合，但存在优化不对称。本文从头训练原生多模态Transformer，研究计算预算最优的模型大小和标记数。实验表明最小目标损失遵循可预测计算律，并展示了零样本迁移性能。该缩放规律为训练高效多模态模型提供了指导。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.22182v1",
+      "source": "arxiv",
+      "title": "From Isolated Tasks to Structured Capabilities: A Multilayer Taxonomy for Large Language Models",
+      "abstract": "Large language model (LLM) evaluation spans diverse tasks and benchmarks, yet evidence remains organized around tasks rather than the capabilities they probe. This fragmentation limits cross-study comparison, obscures capabilities tasks recruit, and makes coverage gaps difficult to identify.   We introduce a multi-layer taxonomy of 14 capability domains and 91 subskills across Primitive, Constructed, and Integrative layers. Human cognitive science guides capability definition and organization, not LLM architecture. Layer assignments draw on developmental precedence and hypothesized functional support, while human-origin constructs are adapted to observable model behavior.   To demonstrate operational utility, we screened 31,505 papers from ACL, AAAI, ICML, and NeurIPS between 2023 and 2025 and mapped 15,934 LLM-focused papers through multi-model annotation, consensus, and arbitration. Direct research attention concentrated on Language-Semantic Competence (3,551; 22.3%), Reasoning (3,388; 21.3%), Planning and Decision-Making (2,149; 13.5%), and Perception (1,954; 12.3%), whereas six domains appeared in fewer than 2% of papers. Within domains, the most frequent subskill had a median prevalence of 97.9% and appeared in at least 90% of papers in 10 of 14 domains. Language-Semantic Competence and Reasoning formed the highest-volume pair (n = 1,864; 11.7%; lift = 2.47), whereas Theory of Mind and Social Reasoning and Interaction showed the highest lift among pairs with at least 20 co-occurrences (n = 62; lift = 30.84).   By shifting the unit of analysis from isolated tasks to structured capabilities, the taxonomy supports research organization, coverage audits, evaluation interpretation, and testable hypotheses for diagnosis, training, and transfer.",
+      "authors": [
+        "Shixin Fang",
+        "Jiachen Wo",
+        "Wenjuan Qin",
+        "Sihang Jiang",
+        "Yanghua Xiao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-24T10:49:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.22182v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes a taxonomy for LLM evaluation",
+      "llm_evidence_cn": "提出大语言模型评估分类法",
+      "llm_evidence": "提出大语言模型评估分类法",
+      "canonical_evidence": "提出大语言模型评估分类法",
+      "llm_tldr_en": "Proposes a multi-layer taxonomy of LLM capabilities with 14 domains and 91 subskills, derived from cognitive science, to structure evaluation and enable cross-study comparison, validated on 31,505 screening tasks.",
+      "llm_tldr_cn": "针对大语言模型评估碎片化问题，借鉴人类认知科学提出多层分类法，包含14个能力域和91个子技能，分为原生、建构和整合层次。通过31,505项筛选任务验证其实用性，促进了跨研究比较和能力缺口识别。",
+      "llm_tldr": "针对大语言模型评估碎片化问题，借鉴人类认知科学提出多层分类法，包含14个能力域和91个子技能，分为原生、建构和整合层次。通过31,505项筛选任务验证其实用性，促进了跨研究比较和能力缺口识别。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.22264v1",
+      "source": "arxiv",
+      "title": "Autoregressive EHR Foundation Models with Multimodal Inputs",
+      "abstract": "Autoregressive foundation models trained on tokenized electronic health records (EHRs) can support zero-shot clinical prediction, yet most operate on structured event codes alone, and do not incorporate multiple modalities in a principled way. We present a framework for conditioning such models on auxiliary clinical modalities, including ECG waveforms, chest X-ray images, and clinical notes, using modality-specific latent compression and gated cross-attention with temporal alignment. We investigate two key design choices: (1) how to compress long per-modality sequences (e.g., ECG time series) before they enter the multi-modal cross-attention. This feature may be essential to reduce compute overheads and may be beneficial for generalization; (2) how the choice of pretrained encoder for each modality impacts downstream performance. Through controlled ablations on MIMIC-IV, we show that the best latent-compression configurations outperforms both uncompressed cross-attention and mean pooling. Encoder choice has a clear within-modality effect, with stronger pretrained encoders consistently outperforming weaker alternatives. We further show that merely adding auxiliary modalities does not guarantee improvement on ICU mortality prediction over an EHR-only baseline. This implies that careful design of the fusion architecture and an appropriate evaluation in the clinical context are required.",
+      "authors": [
+        "Yuxuan Liu",
+        "Joshua Placidi",
+        "Jinpei Han",
+        "Alfred John Balston",
+        "Marek Rei",
+        "A. Aldo Faisal"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-24T12:59:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.22264v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "autoregressive foundation model with multimodal inputs for clinical prediction, using LLM-like architecture in research",
+      "llm_evidence_cn": "使用类大语言模型的自回归基础模型进行多模态临床预测，体现大模型在科研中的应用",
+      "llm_evidence": "使用类大语言模型的自回归基础模型进行多模态临床预测，体现大模型在科研中的应用",
+      "canonical_evidence": "使用类大语言模型的自回归基础模型进行多模态临床预测，体现大模型在科研中的应用",
+      "llm_tldr_en": "Proposes a framework to condition autoregressive EHR foundation models on auxiliary multimodal inputs (ECG, X-ray, notes) using modality-specific compression and gated cross-attention, enabling zero-shot clinical prediction.",
+      "llm_tldr_cn": "现有自回归EHR基础模型仅处理结构化事件码，缺乏多模态支持。本文提出框架，通过模态特定潜在压缩和门控交叉注意力，将心电图、胸片和临床笔记等辅助模态注入自回归模型，并在时序对齐中研究设计选择，为零样本临床预测提供多模态基础。",
+      "llm_tldr": "现有自回归EHR基础模型仅处理结构化事件码，缺乏多模态支持。本文提出框架，通过模态特定潜在压缩和门控交叉注意力，将心电图、胸片和临床笔记等辅助模态注入自回归模型，并在时序对齐中研究设计选择，为零样本临床预测提供多模态基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.22302v1",
+      "source": "arxiv",
+      "title": "fMRI2Face: A Full-HD fMRI-Video Dataset and Geometry-Guided Neural Decoding Framework for Dynamic Human Face Reconstruction",
+      "abstract": "Reconstructing dynamic human faces from brain activity provides a powerful way to study how the mind perceives identity, expression, and facial motion. However, progress in fMRI-based face decoding has been limited by scarce controlled, high-resolution neural datasets and by methods that struggle to recover both identity-specific appearance and time-varying facial dynamics. We present fMRI-Face, the first fMRI dataset paired with controllable full-HD digital human facial videos rendered at 1920$\\times$1080 resolution. During scanning, participants watched photorealistic, background-free facial videos with controlled identity, expression, and head pose, while fMRI activity was recorded. The resulting dataset contains 62,856 paired fMRI-video samples, providing a structured resource for studying dynamic face perception and reconstruction. Building on this dataset, we propose fMRI2Face, a geometry-guided neural video decoding framework for reconstructing facial videos from fMRI signals. fMRI2Face derives two complementary neural controls from brain activity: Brain-derived Appearance Context, which captures global identity-related visual attributes, and Morphable 3D Facial Control, which provides explicit geometry-aware guidance for pose, expression, and non-rigid facial dynamics. These controls are integrated through Neural-Controlled Video Diffusion with auxiliary latent completion, enabling high-fidelity facial video reconstruction directly from brain activity. Experiments show that fMRI2Face consistently improves reconstruction fidelity, identity preservation, facial geometry, and motion consistency over representative neural decoding baselines. Together, fMRI-Face and fMRI2Face establish a controlled platform for studying dynamic face perception and provide a new benchmark for fMRI-based digital human reconstruction.",
+      "authors": [
+        "Jingyang Huo",
+        "Xiangru Huang",
+        "Chentao Shen",
+        "Yikai Wang",
+        "Yun Wang",
+        "Jianxiong Gao",
+        "Shihao Jin",
+        "Yanwei Fu",
+        "Jianfeng Feng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-24T13:45:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.22302v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI-based face reconstruction, relevant to neural decoding and fMRI studies",
+      "llm_evidence_cn": "基于fMRI的人脸重建，与神经解码和fMRI研究相关",
+      "llm_evidence": "基于fMRI的人脸重建，与神经解码和fMRI研究相关",
+      "canonical_evidence": "基于fMRI的人脸重建，与神经解码和fMRI研究相关",
+      "llm_tldr_en": "Presents fMRI2Face dataset and geometry-guided neural decoding framework for reconstructing dynamic faces from brain activity, advancing fMRI decoding.",
+      "llm_tldr_cn": "从脑活动重建动态人脸有助于理解面部感知，但受限于数据集和动态恢复能力。该论文提供首个与高保真数字人脸视频配对的fMRI数据集（全高清1920x1080），并开发几何引导的神经解码框架。参与者观看不同身份、表情和姿态的视频，作者成功重建出兼具身份和表情动态的人脸。该工作推动了fMRI解码视觉信息的能力，为研究面孔知觉的神经机制提供了重要资源。",
+      "llm_tldr": "从脑活动重建动态人脸有助于理解面部感知，但受限于数据集和动态恢复能力。该论文提供首个与高保真数字人脸视频配对的fMRI数据集（全高清1920x1080），并开发几何引导的神经解码框架。参与者观看不同身份、表情和姿态的视频，作者成功重建出兼具身份和表情动态的人脸。该工作推动了fMRI解码视觉信息的能力，为研究面孔知觉的神经机制提供了重要资源。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.22508v1",
+      "source": "arxiv",
+      "title": "Interpretable EEG biomarkers with bag-of-waves: Spatial and temporal waveform dictionaries for low-data regimes",
+      "abstract": "Electroencephalography (EEG) is widely used to diagnose neurological conditions, but its analysis usually relies on either predefined spectral features or deep neural networks. Predefined features carry a strong bias, since they fix in advance what counts as informative, while deep neural networks and foundation models are hard to interpret and need large amounts of data and compute. We present bag-of-waves, an interpretable framework that learns a small dictionary of recurring EEG waveform templates, called atoms, using shift-invariant k-means without labels. The continuous EEG is then turned into a sequence of atom tokens, whose counts feed a simple downstream classifier or clustering step. We extend this representation in two ways: we add atom-to-atom transitions, which we call n- grams, to capture temporal structure, and we move from single-channel atoms to regional and cross-channel spatial atoms for the multichannel case. We test the method on three complementary datasets, each probing a different aspect: single-channel mouse genotype clustering with only sixteen animals (the low-data and temporal case), resting-state dementia classification (the spatial case), and the TUEV benchmark, a six-way classification of clinical EEG events (a high-data comparison against strong deep and foundation baselines). Across all three datasets, bag-of-waves achieves performance competitive with state-of-the-art deep and foundation models. Yet, it operates with a fraction of the parameter count and provides full interpretability: because every atom corresponds to an inspectable waveform, the method explicitly recovers known clinical morphologies that a neurophysiologist can directly validate. Its main advantage is that it works in the low-data regime where heavier models are a poor fit.",
+      "authors": [
+        "Athanasios Papastathopoulos-Katsaros",
+        "Steven T. Lee",
+        "Lin Yao",
+        "Ajay Thomas",
+        "Junseok Park",
+        "Matthew J. McGinley",
+        "Zhandong Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "eess.SP"
+      ],
+      "published": "2026-07-24T17:27:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.22508v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "interpretable EEG biomarker learning with waveform dictionaries",
+      "llm_evidence_cn": "基于波形字典的可解释脑电生物标志物学习",
+      "llm_evidence": "基于波形字典的可解释脑电生物标志物学习",
+      "canonical_evidence": "基于波形字典的可解释脑电生物标志物学习",
+      "llm_tldr_en": "Introduces bag-of-waves, an interpretable framework that learns dictionary of EEG waveform templates via shift-invariant k-means for low-data regimes.",
+      "llm_tldr_cn": "针对传统脑电分析中预定义特征偏差和深度神经网络可解释性差、数据需求大的问题，提出bag-of-waves框架。通过平移不变k均值无监督学习少量脑电波形模板（原子），将连续脑电转换为原子标记序列，利用计数统计进行下游分类或聚类。该框架在不同脑电数据集上展示了良好的可解释性和小样本学习能力。",
+      "llm_tldr": "针对传统脑电分析中预定义特征偏差和深度神经网络可解释性差、数据需求大的问题，提出bag-of-waves框架。通过平移不变k均值无监督学习少量脑电波形模板（原子），将连续脑电转换为原子标记序列，利用计数统计进行下游分类或聚类。该框架在不同脑电数据集上展示了良好的可解释性和小样本学习能力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-13-738225-v1",
+      "source": "biorxiv",
+      "title": "Task-specific ISS reduction and network balance during Stroop task performance in older adults",
+      "abstract": "Declines in the cognitive inhibition that comes with aging impacts daily life and independence. It is still debated whether overactivation during cognitive inhibition tasks in older adults is due to compensation or neural noise. To address this question, we examined age-related changes in inter-subject similarity (ISS) of functional connectivity from task-based and resting-state fMRI. Using Bayesian hierarchical modeling, we identified 27 Stroop task-related regions of interest and found that ISS in these regions was significantly reduced in older adults during task performance. Furthermore, aging is associated with a loss of consistent functional connectivity patterns in frontal regions, accompanied by the emergence of a convergent compensatory mechanism within visual attention regions. Principal component analysis of individual activation deviations from the group-mean pattern showed that task performance in older adults cannot be explained by overall task-related brain activation, but rather by a specific spatial component involving suppression of the default mode network and increased activity in visual attention regions. These findings indicate that task-related brain overactivation in older adults is not due to uniform noise or uniform compensation, but rather a spatially specific pattern of functional reorganization.",
+      "authors": [
+        "Ouchi, K.",
+        "Yokota, H.",
+        "Matsumoto, N.",
+        "Tsurugizawa, T."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-20T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.13.738225v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fMRI study on age-related changes in inter-subject similarity during Stroop task, relevant to cognitive inhibition and mental health",
+      "llm_evidence_cn": "fMRI研究Stroop任务中老年人脑区间相似性变化，关联认知抑制与心理健康",
+      "llm_evidence": "fMRI研究Stroop任务中老年人脑区间相似性变化，关联认知抑制与心理健康",
+      "canonical_evidence": "fMRI研究Stroop任务中老年人脑区间相似性变化，关联认知抑制与心理健康",
+      "llm_tldr_en": "Examines age-related ISS reduction in task-based fMRI during Stroop, using Bayesian modeling, suggesting compensation vs. noise debate.",
+      "llm_tldr_cn": "论文利用贝叶斯层次模型分析老年人Stroop任务fMRI数据，发现任务相关脑区（27个ROI）的受试者间功能连接相似性（ISS）显著降低，且额叶区域一致性丧失伴随新模式出现。该研究为认知老化中过度激活是补偿还是噪声的争论提供了证据。",
+      "llm_tldr": "论文利用贝叶斯层次模型分析老年人Stroop任务fMRI数据，发现任务相关脑区（27个ROI）的受试者间功能连接相似性（ISS）显著降低，且额叶区域一致性丧失伴随新模式出现。该研究为认知老化中过度激活是补偿还是噪声的争论提供了证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-15-738771-v1",
+      "source": "biorxiv",
+      "title": "Circadian rhythm disruption alters rhythmic properties of clock and memory gene expression in the hippocampi of rats",
+      "abstract": "Our modern environment, with its artificial lighting, irregular work hours, and frequent travel, often disrupts our circadian rhythms, which can lead to health problems, particularly in learning and memory. This is especially concerning given the aging population and the rising prevalence of dementia. Yet, the biological mechanisms linking circadian disruption to cognitive impairment remain poorly understood. At the molecular level, genetic techniques have been used to attenuate or abolish expression of key genes involved in circadian rhythms and these manipulations have detrimental effects on memory function. However, whether environmentally induced circadian disruption, impairs memory via changes in overall gene expression levels in the hippocampus or rather via changes in the coordinated rhythmic patterns of circadian expression across groups of genes is less known. Here, we examined how environmental circadian disruption affects the expression of genes involved in the circadian clock and memory in the hippocampus of rats using a forced desynchrony model. Circadian disruption changed the rhythmic properties of gene expression in most genes assessed but had no measurable effect on average expression levels across the day. These findings suggest that the inability to maintain circadian synchrony rather than overall expression may underlie the cognitive deficits observed in circadian-related disorders.",
+      "authors": [
+        "Deibel, S. H.",
+        "Lehr, A. B.",
+        "Michalopoulou, S.",
+        "Husain, I.",
+        "Fornasiero, E. F.",
+        "Bye, C.",
+        "Hong, N.",
+        "Kovalchuk, O.",
+        "McDonald, R."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.15.738771v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "circadian disruption affects clock and memory gene rhythms in hippocampus",
+      "llm_evidence_cn": "昼夜节律破坏影响海马时钟和记忆基因节律",
+      "llm_evidence": "昼夜节律破坏影响海马时钟和记忆基因节律",
+      "canonical_evidence": "昼夜节律破坏影响海马时钟和记忆基因节律",
+      "llm_tldr_en": "Environmental circadian disruption alters rhythmic expression of clock and memory genes in rat hippocampus, linking disrupted rhythms to cognitive impairment.",
+      "llm_tldr_cn": "现代社会昼夜节律普遍破坏，其对学习记忆的影响机制不明。本研究将大鼠暴露于光照紊乱环境，发现海马中时钟基因和记忆相关基因的节律性表达发生改变，基因表达时相偏移。该工作为理解节律紊乱导致认知功能下降提供了分子机制。",
+      "llm_tldr": "现代社会昼夜节律普遍破坏，其对学习记忆的影响机制不明。本研究将大鼠暴露于光照紊乱环境，发现海马中时钟基因和记忆相关基因的节律性表达发生改变，基因表达时相偏移。该工作为理解节律紊乱导致认知功能下降提供了分子机制。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-17-739148-v1",
+      "source": "biorxiv",
+      "title": "Excitatory delay-coupling explains in-phase and antiphase functional connectivity",
+      "abstract": "Coordinated oscillatory activity between brain regions underpins cognition, yet the phase relationships governing this coordination remain poorly understood. Using scalp EEG from 31 participants performing a motor learning task, we show that inter-site phase clustering occurs predominantly at in-phase or antiphase relationships, with the transition between them governed by conduction delay. Homologous interhemispheric pairs remain in-phase despite long distances, consistent with faster callosal conduction. A minimal model of two delay-coupled excitatory populations reproduces these features without parameter tuning; stability analysis shows that in-phase and antiphase oscillations arise from competing instabilities, with delay determining which dominates. Task performance shifts a frontoparietal network toward in-phase connectivity, a modulation captured by the Phase Relationship Index (PRI) but missed by conventional clustering metrics. Preliminary evidence from independent datasets suggests these patterns generalise. These findings challenge the assumption that zero-lag connectivity reflects volume conduction, offer a mechanistic account linking conduction delay to phase organisation, and introduce PRI as a metric sensitive to functionally relevant connectivity changes invisible to existing measures.",
+      "authors": [
+        "Omurtag, A.",
+        "Dragomir, A.",
+        "Crofts, J.",
+        "Lytton, W. W."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-19T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.17.739148v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "EEG analysis of phase synchronization in motor learning",
+      "llm_evidence_cn": "运动学习中的相位同步脑电分析",
+      "llm_evidence": "运动学习中的相位同步脑电分析",
+      "canonical_evidence": "运动学习中的相位同步脑电分析",
+      "llm_tldr_en": "Uses scalp EEG to show that inter-site phase clustering is dominated by in-phase and antiphase relationships, explained by excitatory delay-coupling.",
+      "llm_tldr_cn": "本文通过记录31名被试运动学习任务中的头皮EEG，发现脑区间相位聚类主要呈现同相或反相关系，转变由传导延迟控制。最小延迟耦合模型无需参数调整即可复现这些特征，揭示了功能连接中相位关系的生物物理基础。",
+      "llm_tldr": "本文通过记录31名被试运动学习任务中的头皮EEG，发现脑区间相位聚类主要呈现同相或反相关系，转变由传导延迟控制。最小延迟耦合模型无需参数调整即可复现这些特征，揭示了功能连接中相位关系的生物物理基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-15-738784-v1",
+      "source": "biorxiv",
+      "title": "Slow stress-load accumulation dominates BDNF-dependent gain in a ten-state computational model of stress biochemistry",
+      "abstract": "Background. Acute stress responses are often reversible, whereas sustained stress can produce coordinated disruption across endocrine, metabolic, inflammatory, antioxidant, and neuroplastic pathways. The Tiered Stress Biochemistry Model (TSBM) is a hypothesis-generating ten-state ordinary differential-equation framework linking a stylized cortisol signal to noradrenergic drive, vitamin C, a phenomenological aldosterone/renin-angiotensin drive, magnesium, normalized BDNF-related and Nrf2-related states, inflammation, and tryptophan-kynurenine metabolism. Methods. Five prespecified scenarios (normal, acute, chronic, depression-like, and low-cortisol PTSD-like) were simulated for 168 hours. Analyses included local stability, output-specific sensitivity screening, structural ablation, a 400-draw Latin-hypercube scan over independent plus/minus 20% parameter ranges, uncertainty distributions for threshold-crossing times, a success-conditioned parameter-trade-off screen, and a wider scan in which hypothesized BDNF-feedback gain magnitudes varied log-uniformly from 0.1 to 10 times nominal. Parameters were classified as literature-derived, literature-constrained/model-defined, calibrated, or hypothesized. Results. Under the specified forcing assumptions, sustained stress produced coordinated changes across several pathways. In the depression-like scenario, removing slow stress-load accumulation increased day-7 BDNF-related activity from 47.2% to 82.6%, reduced inflammation from 14.63 to 2.15 arbitrary units, and lowered KYN/TRP from 0.173 to 0.057. Removing BDNF-dependent gain increased BDNF only to 49.1% and delayed KYN/TRP crossing by 2.5 hours. The stricter multi-output conclusion was retained in 91% of uncertainty draws. Median crossing times retained the nominal sequence, but the complete four-event order occurred in only 43% of all draws. Conclusions. Within this reduced model, a shared slow stress-load process coordinates the high-exposure state, whereas BDNF-dependent feedback acts mainly as an amplifier. The model generates an experimentally testable staging hypothesis: under sustained high-exposure forcing, magnesium changes may precede later BDNF-related and KYN/TRP changes. Longitudinal studies are required to determine whether this sequence occurs biologically, whether it is reversible, and whether it has clinical relevance. The simulations are not diagnostic or treatment recommendations.",
+      "authors": [
+        "Ahmad, I."
+      ],
+      "primary_category": "systems biology",
+      "categories": [
+        "systems biology"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.15.738784v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "computational model of stress biochemistry relevant to mental health",
+      "llm_evidence_cn": "压力生物化学的计算模型与心理健康相关",
+      "llm_evidence": "压力生物化学的计算模型与心理健康相关",
+      "canonical_evidence": "压力生物化学的计算模型与心理健康相关",
+      "llm_tldr_en": "Proposes a ten-state ODE model of stress biochemistry simulating scenarios including depression and PTSD.",
+      "llm_tldr_cn": "本文提出一个十状态常微分方程模型（TSBM），将皮质醇信号与去甲肾上腺素、炎症等多种通路耦合，模拟正常、急性、慢性、抑郁样和创伤后应激障碍样应激。结果显示慢性应激负荷的累积主导了BDNF依赖性增益，为理解压力相关精神障碍的生物化学提供了计算框架。",
+      "llm_tldr": "本文提出一个十状态常微分方程模型（TSBM），将皮质醇信号与去甲肾上腺素、炎症等多种通路耦合，模拟正常、急性、慢性、抑郁样和创伤后应激障碍样应激。结果显示慢性应激负荷的累积主导了BDNF依赖性增益，为理解压力相关精神障碍的生物化学提供了计算框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}
