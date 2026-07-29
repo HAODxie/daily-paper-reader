@@ -1,0 +1,649 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-29T20:31:33.680265+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 9,
+    "quick_skim_target": 11,
+    "quick_selected": 9
+  },
+  "deep_dive": [
+    {
+      "id": "2607.25197v1",
+      "source": "arxiv",
+      "title": "LGFNet: A CTC-Guided Local-Global Fusion Framework for Single-Channel Sleep Staging",
+      "abstract": "Sleep staging remains challenging due to long-range temporal dependencies, ambiguous stage transitions-particularly in N1-and substantial distribution shifts across subjects, sampling rates, and EEG montages. These difficulties are further amplified in single-channel, low-latency scenarios required by wearable and real-world applications. To address these issues, we propose LGFNet, a CTC-guided sequence-to-sequence framework for robust sleep staging. LGFNet introduces a Local-Global Fusion encoder that jointly models fine-grained temporal dynamics and long-range sleep structure, overcoming the limitations of conventional serial hybrid architectures. A CTC-Attention joint training paradigm is adopted to unify temporal alignment with context-dependent modeling, enabling more accurate recognition of stage boundaries and transitions. Furthermore, a three-stage decoding strategy is devised, leveraging CTC-guided decoding and Viterbi-based smoothing to reduce error accumulation and enforce physiological consistency. Extensive cross-dataset evaluations on five public benchmarks demonstrate that LGFNet consistently outperforms state-of-the-art single-channel methods. In particular, on Sleep-EDF-78, LGFNet surpasses DMIN by +1.27% accuracy, +1.74% macro-F1, and +1.93% kappa, with pronounced gains on N1 and transition segments, highlighting its robustness and strong generalization across diverse sampling rates, montages, and recording environments.",
+      "authors": [
+        "Chongjian Wang",
+        "Zhenghang Hou",
+        "Junjie Gao",
+        "Xiaofang Zhong",
+        "Shiyuan Han",
+        "Tong Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-28T02:04:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.25197v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "single-channel sleep staging framework using CTC and local-global fusion",
+      "llm_evidence_cn": "基于CTC的局部全局融合单通道睡眠分期框架",
+      "llm_evidence": "基于CTC的局部全局融合单通道睡眠分期框架",
+      "canonical_evidence": "基于CTC的局部全局融合单通道睡眠分期框架",
+      "llm_tldr_en": "Proposes LGFNet, a CTC-guided sequence-to-sequence framework with local-global fusion encoder for robust sleep staging from single-channel EEG.",
+      "llm_tldr_cn": "现有睡眠分期面临长时依赖、阶段转换模糊和跨受试者分布偏移等问题，尤其在单通道可穿戴场景下更困难。本文提出LGFNet，一种CTC引导的序列到序列框架，通过局部-全局融合编码器联合建模细粒度时间动态和长程睡眠结构，并采用CTC-注意力联合训练。在多个数据集上验证了其鲁棒性和高效性。",
+      "llm_tldr": "现有睡眠分期面临长时依赖、阶段转换模糊和跨受试者分布偏移等问题，尤其在单通道可穿戴场景下更困难。本文提出LGFNet，一种CTC引导的序列到序列框架，通过局部-全局融合编码器联合建模细粒度时间动态和长程睡眠结构，并采用CTC-注意力联合训练。在多个数据集上验证了其鲁棒性和高效性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.24834v1",
+      "source": "arxiv",
+      "title": "Foundation Models for EEG Are Blind to Long-Range Temporal Correlations: A Spectral-Temporal Dissociation Behind Their Cross-Population Fragility",
+      "abstract": "Objective. Electroencephalography (EEG) foundation models (FMs) are trained to reconstruct or contrastively align short patches, then pooled into a fixed embedding. We tested whether these embeddings retained the long-range temporal correlations (LRTC) quantified by the detrended-fluctuation-analysis (DFA) exponent of the alpha-band envelope, and whether it governs cross-population transfer.   Approach. We probed five EEG FMs spanning raw-waveform and spectral-input architectures (REVE, LaBraM, BENDR, CBraMod, BIOT) on two out-of-distribution cohorts, comparing recovery of the DFA exponent against the static 1/f aperiodic slope. Order-preserving and residualization controls tested for pooling or aperiodic shadowing. A montage-harmonized, zero-shot transfer task compared the frozen embedding with the DFA exponent across three cohorts (adding a Western reference).   Main results. None of the five FMs represented the LRTC in the temporal order. Raw-waveform models (REVE, LaBraM, BENDR) recovered neither the DFA exponent nor the 1/f slope (R^2 <= 0.12); for these three the probe is uninformative, so the dissociation is specific to the spectral-input models (CBraMod, BIOT), which recovered 1/f strongly (R^2 = 0.59-0.73) but not DFA across cohorts. A classical DFA feature recovered the exponent (R^2 = 0.32-0.38 against a 0.64 reliability ceiling), and LRTC was orthogonal to the aperiodic slope (r = -0.06). On cross-population transfer, the frozen REVE embedding did not beat chance (W to K, 0.45) and the dimensionless DFA exponent transferred directionally but not at family-wise significance; the other four did not uniformly replicate it. All five were dominated by a recording-site axis (decodable at 0.98-1.00 vs. 0.500 chance), whereas the DFA exponent they discard is site-robust (0.71).",
+      "authors": [
+        "Marzieh Zare"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.AI",
+        "cs.ET",
+        "cs.LG"
+      ],
+      "published": "2026-07-23T18:00:15+00:00",
+      "link": "https://arxiv.org/pdf/2607.24834v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Probes EEG foundation models for long-range temporal correlations",
+      "llm_evidence_cn": "探测EEG基础模型的长时程时间相关性",
+      "llm_evidence": "探测EEG基础模型的长时程时间相关性",
+      "canonical_evidence": "探测EEG基础模型的长时程时间相关性",
+      "llm_tldr_en": "Tests five EEG foundation models and finds they fail to retain long-range temporal correlations (DFA exponent), explaining their cross-population fragility.",
+      "llm_tldr_cn": "该论文针对EEG基础模型跨群体泛化脆弱的问题，评估了五种主流模型（REVE、LaBraM等），发现它们无法保留alpha包络的长时程时间相关性（DFA指数），导致跨群体迁移性能下降，并揭示了谱-时间分离是根本原因，为EEG基础模型的设计提供了重要见解。",
+      "llm_tldr": "该论文针对EEG基础模型跨群体泛化脆弱的问题，评估了五种主流模型（REVE、LaBraM等），发现它们无法保留alpha包络的长时程时间相关性（DFA指数），导致跨群体迁移性能下降，并揭示了谱-时间分离是根本原因，为EEG基础模型的设计提供了重要见解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25175v1",
+      "source": "arxiv",
+      "title": "Agentic AI-enabled discovery across large-scale sleep physiology",
+      "abstract": "Sleep occupies roughly one-third of human life, yet many aspects of its physiology remain poorly understood. Large polysomnography (PSG) datasets offer new opportunities to study sleep and its links to disease, but extracting insight from these recordings requires substantial expert effort and remains difficult for general-purpose AI systems. We developed AI Sleep Co-Scientist, an expert-guided environment in which human scientists direct specialist agents for hypothesis development, signal preprocessing, and statistical analysis, reviewing intermediate outputs. Each reported result is linked to the executable code that produced it. Across four cohorts of approximately 124,000 PSG recordings and more than 50 TB of raw signals, we conducted five case studies spanning how sleep physiology relates to future disease, how it distinguishes clinical phenotypes, and how sleep is organized and regulated. Diminished network-level physiological coupling during sleep was associated with incident Parkinson's disease (HR 1.48) and Alzheimer's disease (HR 1.38). A physiologically structured late-fusion sleep-age model outperformed an unconstrained early-fusion approach, and its age residual was associated with incident disease across multiple organ systems. Arousal dynamics characterized comorbid insomnia and sleep apnoea as an intermediate phenotype skewed towards obstructive sleep apnoea, distinguished by prolonged post-arousal wakefulness. Rapid eye movement (REM) bout duration tracked preceding non-REM sleep more closely than intervening wakefulness. Transient-oscillation analysis identified a fast-sigma deficit and excess centrofrontal theta activity in narcolepsy type 1. Together, these findings connect sleep to disease risk, clinical classification, and its own regulation, and show how agentic AI can support large-scale, multimodal discovery.",
+      "authors": [
+        "Rahul Thapa",
+        "Umaer Hanif",
+        "Robin Guillard",
+        "Andreas Brink-Kjaer",
+        "Adrien Specht",
+        "Matteo Saibene",
+        "Magnus Ruud Kjaer",
+        "Harrison G. Zhang",
+        "Elisabeth Roxane M. Heremans",
+        "Eric C. Landsness",
+        "Emmanuel Mignot",
+        "James Zou"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-07-28T00:59:08+00:00",
+      "link": "https://arxiv.org/pdf/2607.25175v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-driven analysis of large-scale sleep physiology data",
+      "llm_evidence_cn": "AI驱动的大规模睡眠生理学数据分析",
+      "llm_evidence": "AI驱动的大规模睡眠生理学数据分析",
+      "canonical_evidence": "AI驱动的大规模睡眠生理学数据分析",
+      "llm_tldr_en": "AI Sleep Co-Scientist integrates specialist agents to analyze 124,000 PSG recordings, enabling novel sleep physiology discoveries.",
+      "llm_tldr_cn": "睡眠生理学仍存在许多未解之谜。本文开发了AI睡眠联合科学家，一个专家引导的智能体环境，用于假设开发、信号预处理和统计分析。应用于约124,000份多导睡眠图记录，通过五个案例研究展示了从大规模睡眠数据中提取见解的能力，有望加速睡眠医学研究。",
+      "llm_tldr": "睡眠生理学仍存在许多未解之谜。本文开发了AI睡眠联合科学家，一个专家引导的智能体环境，用于假设开发、信号预处理和统计分析。应用于约124,000份多导睡眠图记录，通过五个案例研究展示了从大规模睡眠数据中提取见解的能力，有望加速睡眠医学研究。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "sleep research",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25232v1",
+      "source": "arxiv",
+      "title": "Neurai-VN Benchmark: Standardized Machine Learning Models for Multimodal Digital Phenotyping in Mental Health Classification",
+      "abstract": "Digital phenotyping (DP) using smartphones and wearable devices has shown considerable potential for mental health monitoring. However, progress remains difficult to evaluate due to heterogeneous datasets, inconsistent preprocessing pipelines. In this study, we present a reproducible benchmark built upon the Neurai-VN dataset, a high-resolution, multimodal dataset comprising passive sensing and active assessment from wearable and smartphone devices, collected from 100 Vietnamese adults over two weeks. The benchmark defines four clinically relevant binary classification tasks evaluated using standardized subject-wise cross-validation. Representative linear, tree-based, and neural baseline models are evaluated across predefined feature configurations. Mean subject-level F1 scores across five cross-validation folds reached 0.71 for Healthy Control vs. Depression and Healthy Control vs. Clinical, while Healthy Control vs. Anxiety and Depression vs. Anxiety achieved 0.69 and 0.56, respectively. These benchmark results provide reproducible baselines for future research on multimodal DP for mental health classification tasks.",
+      "authors": [
+        "Quoc-Cuong Pham",
+        "Hoang-Thuy-Duong Vu",
+        "Thi-Thanh-Huong Ha",
+        "Huy-Hieu Pham"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-28T03:20:26+00:00",
+      "link": "https://arxiv.org/pdf/2607.25232v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Multimodal digital phenotyping for mental health classification",
+      "llm_evidence_cn": "多模态数字表型用于心理健康分类",
+      "llm_evidence": "多模态数字表型用于心理健康分类",
+      "canonical_evidence": "多模态数字表型用于心理健康分类",
+      "llm_tldr_en": "Presents a reproducible benchmark for mental health classification using multimodal smartphone and wearable data, evaluating linear, tree-based, and neural baselines on four clinical tasks.",
+      "llm_tldr_cn": "该论文针对心理健康监测中数据异质和预处理不一致的问题，基于Neurai-VN数据集构建了一个可复现的多模态数字表型基准，包含被动传感和主动评估数据。基准定义了四个临床相关的二分类任务，并使用标准化交叉验证评估了线性、树状和神经网络基线模型，为数字心理健康研究提供了标准化比较框架。",
+      "llm_tldr": "该论文针对心理健康监测中数据异质和预处理不一致的问题，基于Neurai-VN数据集构建了一个可复现的多模态数字表型基准，包含被动传感和主动评估数据。基准定义了四个临床相关的二分类任务，并使用标准化交叉验证评估了线性、树状和神经网络基线模型，为数字心理健康研究提供了标准化比较框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25679v1",
+      "source": "arxiv",
+      "title": "DynaBridge: Dynamic Summary-Guided Cross-Task Multimodal Fusion for DASS-Structured Mental Health Assessment",
+      "abstract": "Multimodal behavioral analysis offers a scalable approach to assessing depression, anxiety, and stress, yet generic fusion models often ignore the psychometric structure of questionnaire labels. In DASS-21, risk labels are derived from ordered symptom items through fixed item-to-subscale mappings. We propose \\textbf{DynaBridge}, a dynamic summary-guided cross-task multimodal framework for DASS-structured mental health assessment. DynaBridge encodes acoustic, visual, and textual cues across multiple sessions and augments them with frozen-LLM-generated DASS-aware summaries as participant-level semantic evidence. It predicts ordinal item distributions, reconstructs depression, anxiety, and stress risk evidence from item-level soft scores, and fuses this evidence with direct multimodal risk predictions. A confidence-aware refinement strategy further incorporates high-confidence semantic cues conservatively. On the official AdoDAS validation split, DynaBridge outperforms the official baseline and representative multimodal methods, achieving 0.5012 mean F1 for D/A/S risk prediction and 0.3216 mean QWK for DASS-21 item prediction. These results show the value of bridging multimodal cues, semantic summaries, and DASS-21 psychometric structure.",
+      "authors": [
+        "Shiyu Teng",
+        "Haichen Yu",
+        "Jiaqing Liu",
+        "Hao Sun",
+        "Yu Song",
+        "Shurong Chai",
+        "Ruibo Hou",
+        "Lanfen Lin",
+        "Yen-Wei Chen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.MM"
+      ],
+      "published": "2026-07-28T12:55:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.25679v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "multimodal mental health assessment with frozen LLM",
+      "llm_evidence_cn": "使用冻结LLM的多模态心理健康评估",
+      "llm_evidence": "使用冻结LLM的多模态心理健康评估",
+      "canonical_evidence": "使用冻结LLM的多模态心理健康评估",
+      "llm_tldr_en": "DynaBridge uses frozen-LLM-generated summaries to enhance multimodal fusion for DASS-21 mental health assessment, predicting ordinal item distributions and reconstructing risk evidence.",
+      "llm_tldr_cn": "针对DASS-21量表在心理健康评估中通用融合模型忽略心理测量结构的问题，提出DynaBridge框架，利用冻结大语言模型生成DASS感知摘要作为语义证据，结合声学、视觉和文本线索，预测有序项目分布，从而重建抑郁、焦虑和压力风险证据。实验表明该方法能有效利用多模态信息提升评估准确性。",
+      "llm_tldr": "针对DASS-21量表在心理健康评估中通用融合模型忽略心理测量结构的问题，提出DynaBridge框架，利用冻结大语言模型生成DASS感知摘要作为语义证据，结合声学、视觉和文本线索，预测有序项目分布，从而重建抑郁、焦虑和压力风险证据。实验表明该方法能有效利用多模态信息提升评估准确性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25681v1",
+      "source": "arxiv",
+      "title": "Cognivia: A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare",
+      "abstract": "Cognitive distortion amplifies negative emotions and contributes to mental health disorders. Cognitive Behavioral Therapy (CBT) is an effective way to address cognitive distortions, but its large-scale application is limited by the shortage of professional therapists. Although large language models (LLMs) have recently been explored for mental health applications, existing methods still suffer from limited domain specificity, overly flattering responses, and the absence of well-defined annotations for cognitive distortions. This paper proposes Cognivia, an evidence-based artificial intelligence therapist that integrates automatic cognitive distortion identification and rational response generation. Our framework is built on authoritative CBT texts widely regarded as core paradigms and standard references. It is further augmented with mental health question-answer (Q and A) data, and employs multi-stage prompting and structured generation strategies under the supervision of behavioral science experts. Then we fine-tune a lightweight LLM on this augmented CBT dataset to obtain Cognivia. In addition, we propose the first hierarchical quality evaluation framework for assessing LLM-generated rational responses, developed through collaboration between AI researchers and behavioral science experts. Cognivia is evaluated using lexical metrics, LLM-based Judges with two complementary criteria, and human evaluation by 10 behavioral science experts. It consistently outperforms the baseline methods in cognitive distortion recognition and rational response generation, demonstrating its effectiveness. Our code is available at https://github.com/SNOWTEAM2023/Cognivia.",
+      "authors": [
+        "Qi Chen",
+        "Siria Xiyueyao Luo",
+        "Jian Wang",
+        "Yuan Shi",
+        "Haocong Rao",
+        "Xuejiao Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-28T12:56:06+00:00",
+      "link": "https://arxiv.org/pdf/2607.25681v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM-based CBT copilot for mental health therapy",
+      "llm_evidence_cn": "基于大语言模型的认知行为治疗辅助工具",
+      "llm_evidence": "基于大语言模型的认知行为治疗辅助工具",
+      "canonical_evidence": "基于大语言模型的认知行为治疗辅助工具",
+      "llm_tldr_en": "Cognivia uses LLMs to identify cognitive distortions and generate rational responses for CBT, addressing limitations in domain specificity and overly flattering outputs.",
+      "llm_tldr_cn": "认知行为疗法（CBT）应用受限于治疗师短缺。本文提出Cognivia，基于大语言模型的AI治疗师，集成自动认知扭曲识别和理性回应生成。框架基于权威CBT知识，克服了现有LLM的领域特异性不足和过度奉承问题，为可扩展的心理健康干预提供了有效工具。",
+      "llm_tldr": "认知行为疗法（CBT）应用受限于治疗师短缺。本文提出Cognivia，基于大语言模型的AI治疗师，集成自动认知扭曲识别和理性回应生成。框架基于权威CBT知识，克服了现有LLM的领域特异性不足和过度奉承问题，为可扩展的心理健康干预提供了有效工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.25045v1",
+      "source": "arxiv",
+      "title": "CogEEGAgent: Toward Autonomous Cognitive EEG Analysis with Grounded Execution and Selection-Aware Verification",
+      "abstract": "Electroencephalography (EEG) analysis in cognitive studies requires specialized expertise and involves many defensible choices over contrasts, channels, time windows, and statistical tests. LLM agents can translate varied natural-language questions into analysis choices, offering a flexible interface for automation. Yet fluent reports alone cannot establish that an agent selected the requested analysis or evaluated a confirmatory claim independently of adaptive search. We present CogEEGAgent, a cognitive-EEG analysis agent grounded in MNE-Python. Its EEG-specific scientific harness separates semantic from scientific authority. The LLM interprets intent and proposes registered analyses, while deterministic components validate typed contracts, control confirmation access, and authorize evidence-bound release. On a prespecified routing benchmark, CogEEGAgent maps language to registered analyses more accurately than a matched deterministic router, while matched preflight makes both systems abstain whenever required. In an externally model-authored, outcome-blind campaign, the complete system releases supported analyses with participant-disjoint confirmation and blocks prespecified capability hazards and lifecycle-reuse requests. Policy stress testing shows that held-out confirmation curbs false positives from uncorrected adaptive search. Together, these studies establish bounded autonomy and an auditable automation framework for cognitive-EEG workflows. More broadly, they show how scientific agents can combine flexible language understanding with fail-closed control over inference and release.",
+      "authors": [
+        "Dengzhe Hou",
+        "Lingyu Jiang",
+        "Fangzhou Lin",
+        "Kazunori D Yamada"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "eess.SP",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-27T20:09:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.25045v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM agent for autonomous EEG analysis with deterministic validation",
+      "llm_evidence_cn": "基于大语言模型代理的自主EEG分析，带确定性验证",
+      "llm_evidence": "基于大语言模型代理的自主EEG分析，带确定性验证",
+      "canonical_evidence": "基于大语言模型代理的自主EEG分析，带确定性验证",
+      "llm_tldr_en": "CogEEGAgent uses an LLM to interpret natural-language questions and propose registered EEG analyses, with deterministic components ensuring scientific validity.",
+      "llm_tldr_cn": "针对认知EEG分析需要专业知识且可重复性不足的问题，提出CogEEGAgent，利用大语言模型解释用户意图并提议注册分析，同时通过确定性模块确保分析的科学权威性。该代理在多种分析任务上实现了灵活且可信的自动化。",
+      "llm_tldr": "针对认知EEG分析需要专业知识且可重复性不足的问题，提出CogEEGAgent，利用大语言模型解释用户意图并提议注册分析，同时通过确定性模块确保分析的科学权威性。该代理在多种分析任务上实现了灵活且可信的自动化。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.24519v1",
+      "source": "arxiv",
+      "title": "Stress-Testing EEG Foundation Models for Clinical Decoding: Dataset Identity and Targeted Negative Controls",
+      "abstract": "Pretrained EEG foundation models are increasingly proposed for clinical decoding, but their transfer across populations and robustness to negative controls remain unclear. We benchmark six models (LaBraM, EEGMamba, CBraMod, REVE, BENDR, and BIOT) on five clinical tasks across four datasets using frozen linear probes with leave-one-subject-out, subject-grouped, or explicitly identified recording-level splits. Selected REVE findings are tested against random initialisation, random features, label permutation, scrambled-label fine-tuning, and projection sensitivity. On Korean dementia (CAUEEG, three-way), frozen REVE reaches 0.568 AUROC versus 0.769 for classical features; the ordering persists on a patient-disjoint held-out split (0.565 versus 0.768). Dataset identity is readily decoded from frozen embeddings (AUROC 1.000 at PCA-50; 0.9998 after band restriction and per-epoch z-scoring), whereas the same PCA-50 pipeline decodes Korean diagnosis at 0.528. A randomly initialised encoder also outperforms pretrained REVE on this task (0.659 versus 0.570). On Alzheimer's disease, Gaussian random projection and PCA of the same pretrained embeddings perform similarly, and classical features nominally exceed REVE at the subject level. The clearest controlled positive is cross-subject ictal detection on CHB-MIT (n=23), where REVE achieves 0.793 AUROC, 9.2 percentage points above a randomly initialised encoder. These results show that EEG foundation-model conclusions depend strongly on evaluation unit, dataset shift, comparator strength, and targeted controls.",
+      "authors": [
+        "Marzieh Zare"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.NE"
+      ],
+      "published": "2026-07-27T14:59:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.24519v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmarking EEG foundation models for clinical decoding with negative controls",
+      "llm_evidence_cn": "对EEG基础模型进行临床解码基准测试并实施阴性对照",
+      "llm_evidence": "对EEG基础模型进行临床解码基准测试并实施阴性对照",
+      "canonical_evidence": "对EEG基础模型进行临床解码基准测试并实施阴性对照",
+      "llm_tldr_en": "Benchmarks six EEG foundation models on five clinical tasks, revealing that frozen REVE underperforms classical features on dementia, highlighting identity risks.",
+      "llm_tldr_cn": "为评估EEG基础模型在临床解码中的鲁棒性，本文对六种模型在四个数据集上的五个任务进行基准测试，包括阴性对照。结果显示在韩国痴呆症数据集上，冻结REVE的AUROC为0.568，低于经典特征0.769，提示领域转移和数据集身份风险。",
+      "llm_tldr": "为评估EEG基础模型在临床解码中的鲁棒性，本文对六种模型在四个数据集上的五个任务进行基准测试，包括阴性对照。结果显示在韩国痴呆症数据集上，冻结REVE的AUROC为0.568，低于经典特征0.769，提示领域转移和数据集身份风险。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.24378v1",
+      "source": "arxiv",
+      "title": "Bayesian Feature Extraction using Gaussian and Diffused-gamma Priors for High Dimensional Spatio-Temporal Data",
+      "abstract": "High-dimensional data with sparse structure and spatio-temporal dependence arise in many scientific domains. We develop a Bayesian feature-extraction framework for spatio-temporal settings that employs Gaussian and Diffused-gamma priors to induce structured sparsity. The modeling framework specifies a general likelihood via Bregman divergence, enabling compatibility with a range of loss functions and measurement models. Posterior computation is carried out via Markov chain Monte Carlo (MCMC), and we introduce a two-stage feature-extraction procedure based on posterior samples to stabilize selection across space and time. We illustrate the method with a multi-subject electroencephalography (EEG) case study examining the relationship between chronic alcohol exposure and activity in different brain regions. We first fit binary classification models at each time point, then use false discovery rate-controlled screening and subsequent clustering in a two-stage feature-extraction pipeline to identify active brain regions. The analysis demonstrates that our proposed priors improve recovery of sparse features and enhance interpretability in the presence of spatio-temporal dependence. The framework is broadly applicable to high-dimensional, structured problems where accurate feature selection and inference are required. The code to implement the model is publicly available via GitHub.",
+      "authors": [
+        "Garrett Frady",
+        "Dipak K. Dey",
+        "Shariq Mohammed"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "q-bio.QM",
+        "stat.AP",
+        "stat.CO",
+        "stat.ML"
+      ],
+      "published": "2026-07-27T12:54:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.24378v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Bayesian feature extraction for spatio-temporal EEG data",
+      "llm_evidence_cn": "用于时空EEG数据的贝叶斯特征提取方法",
+      "llm_evidence": "用于时空EEG数据的贝叶斯特征提取方法",
+      "canonical_evidence": "用于时空EEG数据的贝叶斯特征提取方法",
+      "llm_tldr_en": "A Bayesian feature extraction framework using Gaussian and diffused-gamma priors, applied to multi-subject EEG data for structured sparsity and stable selection.",
+      "llm_tldr_cn": "针对高维时空数据（如EEG）的特征提取，本文提出基于高斯和扩散伽马先验的贝叶斯框架，通过MCMC推断实现结构化稀疏，并在多被试EEG案例中展示其稳定选取特征的能力。",
+      "llm_tldr": "针对高维时空数据（如EEG）的特征提取，本文提出基于高斯和扩散伽马先验的贝叶斯框架，通过MCMC推断实现结构化稀疏，并在多被试EEG案例中展示其稳定选取特征的能力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.25626v1",
+      "source": "arxiv",
+      "title": "Joint Text-Audio Alignment for EEG-to-Text Decoding in Chinese Speech Production and Perception",
+      "abstract": "Decoding speech information directly from scalp electroencephalography (EEG) into text provides a potential non-invasive neural communication pathway for individuals with severe speech and motor impairments. Compared with invasive approaches such as electrocorticography, EEG is safer and more widely deployable, yet substantially more challenging to decode.This challenge is exacerbated for Chinese sentence decoding, which must handle a high-dimensional output space with thousands of characters, severe inter-subject variability, and low signal-to-noise ratios for text alignment.Existing methods commit to a single supervisory axis---either text semantics or audio acoustic features---yet neither can simultaneously satisfy the demands of sentence-level discriminability and fine-grained temporal resolution required for large-vocabulary Chinese decoding. We introduce EEGAlign, a novel parameter-efficient framework that jointly aligns EEG with two axes---text alignment with BGE-M3 text embeddings and audio alignment with wav2vec~2.0 speech features via contrastive learning followed by CTC character-sequence decoding. On ChineseEEG-2 data, EEGAlign yields state-of-the-art closed-set sentence classification performance, reaching up to 82.37% Top-1 accuracy on Reading Aloud EEG and 41.43% on Passive Listening EEG out of 101 candidates. Ablation studies show that the two alignment axes are highly complementary: combining them yields consistently better performance than either alone. To the best of our knowledge, this is the first study on decoding large-vocabulary Chinese sentences from non-invasive EEG during overt speech production, and achieving strong classification performance with relatively large closed-set candidate-sentence setting.",
+      "authors": [
+        "Tian Zheng",
+        "Xurong Xie",
+        "Xinxin Zhu",
+        "Xiaolan Peng",
+        "Feng Tian"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-28T12:06:56+00:00",
+      "link": "https://arxiv.org/pdf/2607.25626v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG-to-text decoding for Chinese speech using joint text-audio alignment",
+      "llm_evidence_cn": "使用文本-音频联合对齐实现中文言语EEG到文本解码",
+      "llm_evidence": "使用文本-音频联合对齐实现中文言语EEG到文本解码",
+      "canonical_evidence": "使用文本-音频联合对齐实现中文言语EEG到文本解码",
+      "llm_tldr_en": "Joint text-audio alignment for EEG-to-text decoding in Chinese speech, addressing high-dimensional output and inter-subject variability.",
+      "llm_tldr_cn": "针对中文句子EEG解码面临的高维输出空间和个体差异，提出联合文本-音频对齐方法，同时利用文本语义和音频声学特征，实现从EEG到文本的非侵入式神经通信。该方法在中文言语产生和感知任务上取得了更好性能。",
+      "llm_tldr": "针对中文句子EEG解码面临的高维输出空间和个体差异，提出联合文本-音频对齐方法，同时利用文本语义和音频声学特征，实现从EEG到文本的非侵入式神经通信。该方法在中文言语产生和感知任务上取得了更好性能。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.25057v1",
+      "source": "arxiv",
+      "title": "Psychological Influences of Conversational AI: Research and Design Directions for Reducing Harm and Promoting Well-Being",
+      "abstract": "As conversational AI systems become increasingly integrated into daily life, their potential effects on user well-being require ongoing attention. While consumer-facing generalist models can provide benefits, including improved access to information, learning, productivity, self-reflection, and companionship, they also introduce risks, such as emotional entanglement, unhealthy dependence, and the amplification of psychological vulnerabilities. Drawing on prior research and empirical observations of AI chatbot behavior, we propose a set of aspirational directions for guiding the behavior of general-purpose AI systems in ways that may reduce potential psychological harms and support user well-being. We acknowledge the difficulty of systematically assessing the long-term impacts of AI chatbot use and frame these directions as hypotheses for studying how AI behavior may influence users across general interactions, role-playing scenarios, and contexts that could be characterized as providing psychological support. While some proposed directions are supported by existing research and expert insights, others identify open questions and areas requiring deeper study. We hope that this formulation and these hypotheses encourage further discussion, empirical investigation, and exploration of interactive design approaches aimed at better accommodating users' psychological needs and promoting their well-being.",
+      "authors": [
+        "Jina Suh",
+        "Mihaela Vorvoreanu",
+        "Forough Poursabzi-Sangdeh",
+        "Emily Tseng",
+        "Eugenia Kim",
+        "Luke Nicholls",
+        "James W. Pennebaker",
+        "Eric Horvitz"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.HC"
+      ],
+      "published": "2026-07-27T20:35:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.25057v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "conversational AI psychological well-being mental health",
+      "llm_evidence_cn": "对话式AI对心理健康的影响",
+      "llm_evidence": "对话式AI对心理健康的影响",
+      "canonical_evidence": "对话式AI对心理健康的影响",
+      "llm_tldr_en": "This paper discusses psychological influences of conversational AI and proposes design directions to reduce harm and promote well-being, relevant to mental health studies.",
+      "llm_tldr_cn": "该论文探讨了对话式AI对用户心理健康的潜在影响，指出其可能带来情感依赖和心理脆弱性等风险。作者基于先前研究和AI聊天机器人行为的实证观察，提出了一套指导通用AI系统行为的指导方向，旨在减少心理伤害并支持用户福祉。研究强调了在设计AI系统时需考虑其心理影响，为心理健康领域的研究提供了设计方向。",
+      "llm_tldr": "该论文探讨了对话式AI对用户心理健康的潜在影响，指出其可能带来情感依赖和心理脆弱性等风险。作者基于先前研究和AI聊天机器人行为的实证观察，提出了一套指导通用AI系统行为的指导方向，旨在减少心理伤害并支持用户福祉。研究强调了在设计AI系统时需考虑其心理影响，为心理健康领域的研究提供了设计方向。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.25961v1",
+      "source": "arxiv",
+      "title": "Knowledge-Guided Multimodal Reasoning over Interacting Streams for Video-Level Ambivalence and Hesitancy Recognition",
+      "abstract": "Ambivalence and hesitancy (A/H) are conflicting affective states that precede the delay or abandonment of health behaviour change. Recognition of A/H at the video level is difficult, since the signal arises from disagreement across and within facial, vocal, linguistic, and bodily modalities, and manifests differently across individuals. The proposed PRISM-AH (Predictive Reasoning over Interacting Streams for Multimodal Ambivalence/Hesitancy Recognition), is a framework that treats A/H as a multimodal conflict that unfolds over time. Frozen vision, audio, and text encoders are aligned into short time windows and passed to a lightweight streaming model that scores cross-modal dissonance, predicts each next window to expose a hesitation surprise signal, discovers behaviour prototypes, and is conditioned on participant metadata. Dense window-level annotations supervise the model as an auxiliary objective, and the decision threshold is calibrated for macro F1. A knowledge-guided large language model then reasons over structured evidence using the expert cue taxonomy of the dataset, and its verdict is fused late only when validation performance improves. On the labelled public test partition of 525 videos, PRISM-AH attains a macro F1 of 0.6133, compared to the reported zero-shot baseline of 0.2827. The reasoning gain is validated to transfer from validation to the larger test partition.",
+      "authors": [
+        "Podakanti Satyajith Chary",
+        "Barath Parthiban",
+        "Pranesh Velmurugan",
+        "Adeeba Khan",
+        "Nagarajan Ganapathy"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-28T16:44:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.25961v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multimodal recognition of ambivalence and hesitancy in health behavior, mental health",
+      "llm_evidence_cn": "多模态识别健康行为改变中的矛盾与犹豫，属于心理健康研究",
+      "llm_evidence": "多模态识别健康行为改变中的矛盾与犹豫，属于心理健康研究",
+      "canonical_evidence": "多模态识别健康行为改变中的矛盾与犹豫，属于心理健康研究",
+      "llm_tldr_en": "Proposes PRISM-AH framework for video-level ambivalence/hesitancy recognition using multimodal conflict modeling across facial, vocal, linguistic, and bodily streams.",
+      "llm_tldr_cn": "矛盾与犹豫（A/H）是健康行为改变前的重要情感信号，现有方法难以从多模态视频中有效捕捉。本文提出PRISM-AH框架，将A/H视为多模态冲突，通过冻结的视觉、音频、文本编码器对齐到时间窗口，并用轻量流模型评分跨模态失调，实现视频级识别。实验表明该方法能有效捕捉A/H信号。",
+      "llm_tldr": "矛盾与犹豫（A/H）是健康行为改变前的重要情感信号，现有方法难以从多模态视频中有效捕捉。本文提出PRISM-AH框架，将A/H视为多模态冲突，通过冻结的视觉、音频、文本编码器对齐到时间窗口，并用轻量流模型评分跨模态失调，实现视频级识别。实验表明该方法能有效捕捉A/H信号。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.25903v1",
+      "source": "arxiv",
+      "title": "CARE: A Multimodal Corpus for Studying Speech and Non-Verbal Communication Across Multiple Medical Conditions",
+      "abstract": "Automatic analysis of multimodal speech has shown strong potential for computationally detecting and monitoring a wide range of neurological, psychiatric, and respiratory conditions. However, progress in this field is limited by existing publicly accessible datasets, which are often small in scale, focused on a single condition or disease, and primarily speech focused. Moreover, if key confounding variables such as education, medication use, comorbidities, or mood state are insufficiently documented, the reliability and interpretability of computational analyses are further compromised. To address these limitations, we introduce CARE v1.0, a curated multimodal English dataset of approximately 144 hours of short video interviews collected from 612 individuals across 12 medical conditions plus a control cohort. For each video, a comprehensive set of clinically relevant multimodal descriptors is provided, alongside structured metadata covering factors such as medication, life impacts, and expressed emotions. The corpus's breadth and heterogeneity support a wide range of applications, including automatic disease and symptom detection, multimodal modelling of speech and non-verbal behaviour under emotionally charged contexts, and studies of disease trajectories and coping processes.",
+      "authors": [
+        "David Gimeno-Gómez",
+        "Catarina Botelho",
+        "Carlos-D. Martínez-Hinarejos",
+        "Isabel Trancoso",
+        "Alberto Abad"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS"
+      ],
+      "published": "2026-07-28T16:00:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.25903v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multimodal corpus for studying speech in psychiatric conditions, mental health",
+      "llm_evidence_cn": "用于研究精神疾病言语的多模态语料库，支持心理健康监测",
+      "llm_evidence": "用于研究精神疾病言语的多模态语料库，支持心理健康监测",
+      "canonical_evidence": "用于研究精神疾病言语的多模态语料库，支持心理健康监测",
+      "llm_tldr_en": "Introduces CARE v1.0, a large multimodal corpus (~144 hours) of short videos for studying speech and non-verbal communication across neurological, psychiatric, and respiratory conditions.",
+      "llm_tldr_cn": "现有公开数据集多局限于单一疾病、规模小且仅关注语音，限制了多模态精神健康监测研究。本文发布CARE v1.0语料库，包含约144小时短视频，涵盖多种神经、精神和呼吸系统疾病，并详细记录了教育、用药等混杂变量，为多模态精神健康分析提供了重要资源。",
+      "llm_tldr": "现有公开数据集多局限于单一疾病、规模小且仅关注语音，限制了多模态精神健康监测研究。本文发布CARE v1.0语料库，包含约144小时短视频，涵盖多种神经、精神和呼吸系统疾病，并详细记录了教育、用药等混杂变量，为多模态精神健康分析提供了重要资源。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-20-739516-v1",
+      "source": "biorxiv",
+      "title": "Longitudinal White Matter Trajectories in Clinical High Risk and First-Episode Psychosis: Findings from the Multi-Centre PSYSCAN Study",
+      "abstract": "Psychosis has been linked to changes in diffusion-derived fractional anisotropy (FA) across multiple white matter tracts, yet most evidence is cross-sectional. Longitudinal findings are inconsistent, and the clinical relevance of white matter changes over time remains unclear. To address this gap, we investigated longitudinal white matter changes and their clinical correlates in early psychosis in a large, multi-centre diffusion-tensor imaging study. Across 18 sites, 407 participants (healthy controls: n = 97, 59.8% men, mean age 23.9 years; clinical high risk of psychosis: n = 158, 53.5% men, mean age 23.0 years; first-episode psychosis: n = 152, 71.1% men, mean age 25.1 years) were scanned at up to three time points over 12 months. FA was assessed in the cingulum bundle, the superior longitudinal fasciculus, the inferior fronto-occipital fasciculus, and at the whole brain level. FA trajectories were analysed using linear mixed-effects models to test effects of group, social and occupational functioning, and (attenuated) psychotic symptoms, while controlling for demographic and socioeconomic covariates. No significant group differences in FA were observed, either globally or within tracts (p > .05). Longitudinal FA trajectories were not associated with changes in (attenuated) psychotic symptoms or functioning (p > .05). In contrast, higher baseline antipsychotic medication dose was significantly associated with lower FA (pcorr < .05). Overall, these findings indicate that white matter microstructure is relatively stable during the clinical-high-risk and first-episode phases of psychosis, and that it is not clearly associated with variation in symptom severity or functional outcomes over time.",
+      "authors": [
+        "Bolte, L.",
+        "Gifford, G.",
+        "Serpa, M.",
+        "Cottaar, M.",
+        "Dazzan, P.",
+        "Fusar-Poli, P.",
+        "Tognin, S.",
+        "Kempton, M.",
+        "Winter-von Rossum, I.",
+        "Slot, M. I. E.",
+        "van Hell, H.",
+        "Maat, A.",
+        "de Haan, L.",
+        "Crespo Facorro, B.",
+        "Glenthoej, B.",
+        "Lawrie, S.",
+        "McDonald, C.",
+        "van Amelsvoort, T.",
+        "Arango, C.",
+        "Falkenberg, I.",
+        "Nelson, B.",
+        "Galderisi, S.",
+        "Bressan, R. A.",
+        "Kwon, J. S.",
+        "Cho, K. I. K.",
+        "Weiser, M.",
+        "Mizrahi, R.",
+        "Sachs, G.",
+        "Kirschner, M.",
+        "Taquet, M.",
+        "Oliver, D.",
+        "PSYSCAN Consortium,",
+        "Kahn, R.",
+        "McGuire, P."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-22T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.20.739516v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "longitudinal study of white matter in clinical high risk and first-episode psychosis",
+      "llm_evidence_cn": "临床高风险和首发精神病患者的白质纵向研究",
+      "llm_evidence": "临床高风险和首发精神病患者的白质纵向研究",
+      "canonical_evidence": "临床高风险和首发精神病患者的白质纵向研究",
+      "llm_tldr_en": "Multi-centre study of longitudinal white matter changes in early psychosis, linking FA trajectories to clinical outcomes across 407 participants.",
+      "llm_tldr_cn": "针对精神病早期白质纵向变化不明确的问题，开展18个中心407名参与者（健康对照、临床高风险、首发精神病）的纵向弥散张量成像研究，揭示分数各向异性轨迹及其临床相关性，为早期精神病提供影像学依据。",
+      "llm_tldr": "针对精神病早期白质纵向变化不明确的问题，开展18个中心407名参与者（健康对照、临床高风险、首发精神病）的纵向弥散张量成像研究，揭示分数各向异性轨迹及其临床相关性，为早期精神病提供影像学依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "carryover_cache",
+      "paper_id": "biorxiv-10-64898-2026-07-20-739516-v1",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-17-739090-v1",
+      "source": "biorxiv",
+      "title": "Posterior insula oscillations are not modulated by changes in perceived intensity: Evidence from human intracerebral EEG",
+      "abstract": "The human insular cortex is involved in a multitude of processes essential for survival, but its precise role in pain perception remains debated. While it has been shown that ongoing oscillatory activity in the posterior insula is preferentially modulated by thermonociceptive input, it is unclear whether these modulations are functionally related to changes in pain perception. To assess this link, neural responses to sustained periodic thermonociceptive and non-nociceptive vibrotactile stimulation delivered at a frequency of 0.2 Hz were measured using intracerebral electrode contacts located in the anterior (n=63) and posterior (n=37) insular cortices of 10 patients undergoing presurgical evaluation for focal epilepsy. An arithmetic task was employed concomitant to the stimulation, aiming to reduce participant 's perceived intensity while leaving the physical stimulation parameters unchanged. A frequency-tagging analysis approach was used to assess the modulation of the ongoing neural oscillations. As expected, the perception of the stimulation was significantly reduced during the arithmetic task to a similar extent in both modalities. Yet, no congruent reduction in the frequency-tagged oscillatory responses was found in the posterior insula during distraction, for either of the modalities. On the contrary, during distraction, vibrotactile stimulation elicited larger responses in the anterior insula. These findings suggest that top-down modulation via distraction differentially affects anterior insula responses to innocuous vibrotactile input, while thermonociceptive processing appears to involve additional neural systems during distraction that are not equivalently engaged by vibrotactile stimulation.",
+      "authors": [
+        "Leu, C.",
+        "Boutachkourt, A.",
+        "Ferrao Santos, S.",
+        "Fierain, A.",
+        "Joris, V.",
+        "Finet, P.",
+        "Liberati, G."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.17.739090v1.full.pdf",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "intracerebral EEG posterior insula oscillations pain perception",
+      "llm_evidence_cn": "人类颅内脑电研究后岛叶振荡与痛觉感知的关系",
+      "llm_evidence": "人类颅内脑电研究后岛叶振荡与痛觉感知的关系",
+      "canonical_evidence": "人类颅内脑电研究后岛叶振荡与痛觉感知的关系",
+      "llm_tldr_en": "This study uses intracerebral EEG to investigate whether posterior insula oscillations are modulated by changes in perceived pain intensity, finding no modulation.",
+      "llm_tldr_cn": "本研究利用人类颅内脑电记录，探究后岛叶振荡活动是否随痛觉感知强度的变化而调节。通过向10名患者施加持续的周期性热痛和非痛触觉刺激（0.2Hz），分析前岛叶（63触点）和后岛叶（37触点）的神经响应。结果发现后岛叶振荡并未随感知强度改变，提示其与痛觉感知的强度编码无直接功能关联。该发现对理解岛叶在疼痛处理中的作用有重要意义，同时也展示了脑电信号处理在神经科学中的应用。",
+      "llm_tldr": "本研究利用人类颅内脑电记录，探究后岛叶振荡活动是否随痛觉感知强度的变化而调节。通过向10名患者施加持续的周期性热痛和非痛触觉刺激（0.2Hz），分析前岛叶（63触点）和后岛叶（37触点）的神经响应。结果发现后岛叶振荡并未随感知强度改变，提示其与痛觉感知的强度编码无直接功能关联。该发现对理解岛叶在疼痛处理中的作用有重要意义，同时也展示了脑电信号处理在神经科学中的应用。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

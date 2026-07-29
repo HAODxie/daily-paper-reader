@@ -1,0 +1,690 @@
+Title: CARE: A Multimodal Corpus for Studying Speech and Non-Verbal Communication Across Multiple Medical Conditions
+
+URL Source: https://arxiv.org/pdf/2607.25903v1
+
+Published Time: Wed, 29 Jul 2026 01:12:53 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# CARE: A Multimodal Corpus for Studying Speech and Non-Verbal Communication Across Multiple Medical Conditions 
+
+## David Gimeno-G´ omez 1, †, Catarina Botelho 2,3, †,
+
+## Carlos-D. Mart´ ınez-Hinarejos 1, Isabel Trancoso 3,4 , Alberto Abad 3,4 1PRHLT, Universitat Polit` ecnica de Val` encia, Spain; 2Sword Health, Portugal; 
+
+> 3
+
+## INESC-ID, Portugal; 4Instituto Superior T´ ecnico, Universidade de Lisboa, Portugal 
+
+Abstract 
+
+Automatic analysis of multimodal speech has shown strong potential for computationally detecting and monitoring a wide range of neurological, psychiatric, and respiratory conditions. However, progress in this field is limited by existing publicly accessible datasets, which are often small in scale, focused on a single condition or disease, and primarily speech focused. Moreover, if key confounding variables such as education, medication use, comorbidities, or mood state are insufficiently documented, the reliability and interpretability of computational analyses are further compromised. To address these limitations, we introduce CARE v1.0 , a curated multimodal English dataset of approximately 144 hours of short video interviews collected from 612 individuals across 12 medical conditions plus a control cohort. For each video, a comprehensive set of clinically relevant multimodal descriptors is provided, alongside structured metadata covering factors such as medication, life impacts, and expressed emotions. The corpus’s breadth and heterogeneity support a wide range of applications, including automatic disease and symptom detection, multimodal modelling of speech and non-verbal behaviour under emotionally charged contexts, and studies of disease trajectories and coping processes. 
+
+# 1 Background & Summary 
+
+The automatic analysis of multimodal speech recordings for the detection and monitoring of speech-affecting conditions has emerged as a promising and rapidly expanding research field. 1 Numerous studies have demon-strated the potential of automatic methods not only in speech and language impairments, such as stuttering 2
+
+or sigmatism, 3 but also across a broad spectrum of health conditions, including neurological disorders (e.g., Parkinson’s, 4–6 Alzheimer’s, 7–9 Huntington’s, 10 and Amyotrophic Lateral Sclerosis 11 ); psychiatric conditions (e.g., depression, 12 psychosis, 13 and bipolar disorder 14 ); and respiratory diseases (e.g., obstructive sleep ap-nea, 15, 16 asthma, 17 and COVID-19 18 ). In response to this growing interest, several public resources have been released, including community-driven data challenges such as the Computational Paralinguistics Challenge (ComParE), 19–22 the Alzheimer’s Dementia Recognition through Spontaneous Speech (ADReSS) series, 23–25 the Taukadial, 26 and the PRO-CESS 27 corpora, as well as datasets not adopted in challenges such as NeuroVoz 28 (Parkinson’s disease) or the Androids Corpus 29 (depression). A notable recent effort is the Bridge2AI Voice dataset, 30 which offers large-scale coverage of multiple health conditions across adults and children. Also worth mentioning is the Crowdsourced Language Assessment Corpus (CLAC), 31 which comprises recordings of healthy speakers per-forming standardized tasks designed to elicit speech and language features. In spite of their relevance, these resources are limited to audio recordings only and their corresponding text transcriptions. However, human communication is inherently multimodal, encompassing a range of non-verbal behaviors that accompany spoken language. Long-standing research has shown that body language, such as arm and hand movements, forms an integrated system with speech. 32, 33 More recently, studies have also highlighted the communicative role of head movements, gaze shifts, and upper-body motion, which also contribute to this coordinated multimodal system. 34, 35 These co-speech gestures not only can convey explicit semantic meaning, but they frequently align with the rhythm and emphasis of speech, serving as expressive channels for emotional states. 36 While well established clinically, co-speech and other non-verbal signals are increasingly leveraged in computational modeling to capture emotional state, cognitive load, and neurological or psychiatric 
+
+> †These authors contributed equally to this work.
+
+1arXiv:2607.25903v1 [eess.AS] 28 Jul 2026 conditions. 37 For example, recent studies have highlighted the relevance of detecting hypomimia in Parkinson’s disease, 38 reduced affective expressivity and atypical head-movement patterns in psychosis, 39 altered blinking and downward head-pose inclination in depression, 40, 41 and gaze abnormalities in Alzheimer’s. 42 
+
+Thus, diverse efforts have extended speech-centered datasets towards multimodal analysis. The recent ParkCeleb dataset 43 includes 40 celebrities who publicly disclosed their Parkinson’s disease diagnosis, provid-ing up to 60 hours of video data alongside a matched control group. Nonetheless, the recordings are highly variable and “in-the-wild” in nature, including studio interviews, press conferences, red-carpet events, and public speeches, which limits their suitability for controlled multimodal biomarker studies. A well-established and representative benchmark in this area is the Audio/Visual Emotion Challenge (AVEC) series, 44–46 which has promoted the development of multimodal methods for the automatic detection of mood disorders such as depression and bipolar disorder. However, despite these remarkable prior efforts, progress in computational approaches to multimodal speech-based health assessment remains hindered by limitations in available resources, including small dataset sizes, the focus on single conditions or diseases, and the absence or insufficent documentation of key confound-ing variables such as education, medication use, comorbidities, or mood state. 5
+
+Contributions. In this work, we introduce CARE v1.0 (Conversational Audio-visual Recordings of health 
+
+Experiences), a curated multimodal resource for benchmarking speech and non-verbal behavioural analysis in health-related communication, derived from the Health Experience Insights (HEXI) platform. 47 The resulting corpus contains 622 profiles representing 612 unique individuals, classified as either patients or controls. It spans 12 medical conditions with known or expected relevance to speech and non-verbal communication – asthma, chronic pain, cleft lip and palate, COVID-19, depression, epilepsy, fibromyalgia, lung cancer, motor neuron disease, Parkinson’s disease, psychosis, and stroke – along with control participants who are often caregivers, bereaved relatives, or healthcare and research professionals discussing their experiences supporting affected individuals. In total, the dataset comprises 4,281 short video clips amounting to 143.5 hours of material. For each video clip, a comprehensive collection of pre-computed multimodal descriptors capturing speech production, facial activity, gaze patterns, and body movements is provided, alongside demographic information and additional structured metadata automatically extracted from narrative accounts, such as ethnic background, medication or treatment references, life impacts, potential comorbidities, and expressed emotions. CARE v1.0 therefore provides a rich and versatile resource for advancing research on multimodal digital biomarkers, enabling investigations into automatic disease and symptom detection, as well as other directions such as modelling speech- and behaviour-derived signals under emotionally charged conditions, and computational analyses of disease trajectories and coping processes. We anticipate that the breadth and heterogeneity of this corpus will support a wide range of studies, including many applications beyond those currently envisioned. 
+
+# 2 Methods 
+
+## 2.1 Input Data 
+
+The data used in this study is obtained from the HEXI platform ( https://hexi.ox.ac.uk/ ), a publicly accessible archive that, over the past two decades, has collected a selected set of short video excerpts from interviews with patients and caregivers sharing their experiences of illness, treatment, and care, accompanied by thematic analyses. As stated by the platform, its purpose is to enable contributors to: “share their experiences of health on film to help others understand what it is really like, from people who have been there. ”At the time of the corpus construction, HEXI hosted interviews spanning a broad range of health condi-tions and topics, listed on the platform’s publicly available A–Z index ( https://hexi.ox.ac.uk/a-z ). Each specific condition/topic comprises multiple participant profiles, where each profile includes short video inter-view clips, verbatim transcripts, a written narrative summary, and demographic information. This complete set of HEXI topics served as the initial input dataset from which our corpus was subsequently curated, as described in the following Subsection 2.2. 
+
+Ethics Statement. The HEXI platform 47 is supported and developed through the efforts of the Medical Sociology & Health Experiences (MS&HERG) research group at University of Oxford. The studies are approved by the Multi-centre Research Ethics Committee (MREC) and the Eastern MREC. The archive and associated materials are owned and maintained by the University of Oxford and are made available for research, teaching, and scholarly use. 22.2 Corpus Construction 
+
+The construction of the corpus followed a two-stage workflow, consisting of a data curation phase in which health conditions and participants of interest were selected, followed by a metadata retrieval process in which clinically and analytically useful descriptors were automatically extracted. 
+
+Data Curation. As mentioned above, the corpus was derived from the full set of HEXI topics. Within these topics (e.g., specific conditions or health-related experiences), each participant contributes one or more video clips extracted from interview recordings. The collection of all materials associated with a single participant constitutes a profile . Importantly, not all topics were relevant to our research focus, and not all participant profiles contained usable video or textual data suitable for computational and machine-learning analyses. Therefore, our methodology consisted of two main stages: 
+
+• Condition Selection. We began with the original full list of conditions and topics available on HEXI. Notably, we distinguished between two types of profiles: those corresponding to patients and those corresponding to controls . For patient profiles, we selected conditions based on literature evidence of known or expected relevance to speech and non-verbal communication. For control participants, we focused on health-related topics discussed by caregivers, bereaved relatives, or healthcare and research professionals. These topics were selected to span diverse situations and experiences, not necessarily limited to the same conditions selected for patients. 
+
+• Profile Filtering. Within each selected condition, subject profiles were further screened. Specifically, we retained profiles that contained at least one complete video recording, provided that the subject’s narrative account was also available. Profiles lacking usable video material – due to data corruption, privacy restrictions, or technical artifacts – were excluded, even when audio was present, to preserve the consistency of our multimodal dataset. Additional exclusion criteria included blacked-out videos, AI-generated or synthetic looping footage, and recordings performed by actors. After this selection process, our curated corpus included 445 patient profiles spanning 12 different condi-tions and 177 control profiles. We note that, within several conditions, subgroups were identified reflecting differences in symptoms, treatments, or the specific topics discussed during the interviews. How these sub-groups were defined is described in detail in Section 3. 
+
+Metadata Retrieval. To enrich the dataset, we automatically extracted structured metadata from partic-ipants’ narrative accounts collected through conversations with social science researchers. These metadata fields provide additional contextual information – such as medication references, life impacts, or emotional states – that can support downstream clinical and computational analyses. Structured metadata were extracted by prompting gpt-oss-120b 48 with the corresponding narrative de-scriptions and querying for predefined fields. The queried fields differed depending on whether the participant was categorized as a control or a patient. The selection of gpt-oss-120b was informed by a validation study in which we compared the performance of several open-source Large Language Models (LLMs) on a subset of manually annotated samples (see Section 5 for details). To ensure deterministic and reproducible outputs, all model interactions were executed using the vLLM 49 engine, with the temperature parameter fixed to 0 for all queries. The LLM outputs were then post-processed and converted into structured metadata tables, released as separate CSV files corresponding to the patient and control cohorts. In both cases, fields allowing multiple annotations were represented as lists of strings, while missing values were imputed with “na”. It is important to note that the model was explicitly instructed to return “na” when a field was not applicable or when insufficient information was available to provide a reliable response. 
+
+# 3 Data Record 
+
+This section describes the hierarchical structure of the CARE v1.0 corpus, comprising the metadata, anno-tations, and a comprehensive set of pre-computed multimodal descriptors. 
+
+Overview. As shown in Figure 1, the dataset is organized into two top-level folders and two CSV files. The CSV files include both sample-level information for all 4,281 entries ( samples.csv , ∼9MB) and profile-level descriptors for all 622 selected profiles ( profiles.csv , ∼2MB), such as age, sex, and ethnic background. The two top-level folders contain the extracted multimodal features ( DATA/ , ∼119GB)) and two additional CSVs (METADATA/ , ∼232kB) comprising the structured metadata extracted using LLMs separately for patients 3and controls. The complete CARE v1.0 corpus is distributed through the official Hugging Face Dataset repository, 50 following the organization described in this section. Concerning video-derived descriptors, original video frame rates ranged from 15 to 60 fps (mean 25.6 fps, standard deviation 4.3), with approximately 96% of the recordings acquired at 25 fps. Similary, although image resolutions varied substantially, with the smallest clip at a resolution of 352 ×288 pixels and the largest reaching full HD resolution (1920 ×1080), approximately 68% of the recordings were acquired at 360 ×288 pixels. This moderate variability supports research on robust multimodal biomarker modeling under semi-controlled acquisition conditions. No additional normalization of frame rate or spatial resolution was required, as the employed visual feature extraction toolkits operate directly on the original video frames. In contrast, for audio-derived descriptors, all signals were uniformly resampled to 16 kHz and converted to single-channel (mono), as most audio feature extraction toolkits required. GROUP #1      
+
+> CARE v1.0
+> PROFILE #1
+> samples.csv profiles.csv DATA METADATA
+> ...
+> GROUP #3 GROUP #2 GROUP #N
+> ...
+> ...
+> SUBGROUP #1
+> ...
+> FEATURES #1 .ext
+> FEATURES #2 .ext
+> VIDEO #1
+> ...
+
+Figure 1: Hierarchical representation of the data records and their organization. 
+
+Data Structure. Across the dataset, a consistent nomenclature is used, which applies both to the column headings of the metadata and to the overall folder structure: 
+
+• GROUP : denotes the health condition or topic associated with a participant profile, including the control population. It does not necessarily correspond to the clinical label of the speaker. For example, control participants may be assigned to a condition-specific group (e.g., PARKINSON ) when describing their experience caring for an affected individual. 4• SUBGROUP : specifies a subdivision within a given group. For example, the group DEPRESSION includes subgroups such as ANTIDEPRESSANTS and YOUNG-LOWMOOD , referring to discussions focused on antidepres-sant treatment or on young adults with low mood, respectively. Not all groups contain subgroups .In such cases, to maintain structural consistency, the subgroup name matches the group name. 
+
+• PROFILE : is an integer identifier assigned to each participant profile. Remarkably, a participant may have multiple profiles in different groups or subgroups. To support identification of such cases, we provide metadata (the duplicated field) that links profiles corresponding to the same participant. Profile-level granularity is retained to enable analyses of co-morbidity and cases where the same individual appears in multiple contexts – for example, as a patient in one profile and as a caregiver in another. Based on these concepts, each video sample is uniquely identified by its position in the di-rectory hierarchy, following the structure GROUP/SUBGROUP/PROFILE ID/VIDEO ID/ . Here, VIDEO-ID 
+
+denotes a consecutive integer corresponding to the video number within a participant’s pro-file directory rather than a global dataset-wide index, while both PROFILE-ID and VIDEO-ID 
+
+are represented as zero-padded three-digit integers. For convenience, this hierarchy can also be expressed as the canonical identifier GROUP SUBGROUP PROFILE ID VIDEO ID . For example, 
+
+DEPRESSION ANTIDEPRESSANTS PROFILE 296 VIDEO 000 identifies the first interview video associated with participant 296 within the depression condition and antidepressant intake subgroup. Within each video direc-tory, individual feature files ( FEATURES-ID ) are named according to the modality or descriptor they contain, while the enclosing directory uniquely identifies the recording across all modalities. 
+
+Metadata File Fields 
+
+samples.csv label id, group id, subgroup id, profile id, video id, video duration, video fps, video framecount, video resolution 
+
+profiles.csv label id, group id, subgroup id, profile id, age, sex, age of diagnosis, re-marks, duplicated Table 1: Overview of metadata fields at sample and profile levels. 
+
+Profile & Sample Metadata. As outlined in Table 1, the metadata associated with the corpus are organised into two complementary tables. The samples.csv file contains one entry per video recording, including iden-tifiers and technical recording characteristics (e.g., duration, frame rate, and resolution). The profiles.csv 
+
+file, on the other side, contains one entry per participant profile, providing demographic and clinical informa-tion such as age, sex, diagnosis-related variables, and profile annotations. 
+
+Metadata Type Patients Controls Fields 
+
+Demographics ✓ ✓ Name, Ethnic background, Sex, Job/Occupation Clinical ✓ ✗ Main medical condition, Time since condition on-set, Current symptoms, Initial symptoms, Cur-rent medication, All medications or treatments mentioned, Other strategies for improving, Co-morbidities, Assistive devices (voice software or ventilator) Psychosocial ✓ ✗ Mood mental health or other consequences Caregiving ✗ ✓ Role, Relationship to care recipient, Diagnosis of the care recipient, Years of care, Consequences for personal life Emotional ✓ ✓ Main emotions (Ekman’s eight categories 51 )Table 2: Overview of structured metadata fields for patient and control profiles. 
+
+Structured Metadata. As previously introduced, each participant’s profile included an extensive narrative providing a chronological account of experiences and relevant life events, as documented during the interviews with the social scientist researcher. Depending on the participant group, these narratives reflect either the perspective of the patient experiencing the condition or, in the case of control participants, that of a caregiver 5describing the person they support as well as their own caregiving experience. These narratives served as the primary text source for our automatic LLM-based structured metadata retrieval using gpt-oss-120b .48 
+
+As summarized in Table 2, the retrieved fields differ between patient and control profiles, with 15 fields defined for patients and 10 for controls, of which five are shared. Apart from demographics, only the emotional metadata is common to both profiles, which is notably constrained to eight categories based on Ekman’s widely used framework for basic emotions 51 that is commonly adopted in emotion-recognition research: neutral, happiness, sadness, surprise, fear, disgust, anger, and contempt. Besides, we also predefine the possible roles associated with control profiles, namely: caregivers and supporters , which include those providing direct or emotional support to someone with a disease, for example a family member, a friend or caregiver; bereaved members , which include individuals who have lost someone to the disease; healthcare and research professionals ,who may describe clinical or scientific aspects of the condition; and advocates , who promote awareness, support, or representation of people affected by a disease. For all metadata fields, the value “na” is assigned when the model determines that the information is insufficient or not applicable for a given profile. 
+
+Multimodal Descriptors. Each participant profile included one or more video excerpts derived from in-terviews conducted by social scientist researchers. Individual clips are typically centred on a specific topic relevant to the participant’s experience. In most cases, the participant’s face and upper body remain contin-uously visible throughout the recording, although brief periods in which the participant is outside the camera view may occasionally occur. In a small number of cases, the corpus also includes self-recorded video segments contributed by participants, which may exhibit different camera viewpoints. Regarding the audio modality, the participant is consistently the predominant speaker, although brief interventions from the social science researcher (interviewer) are commonly present. Given these characteristics, the extraction of multimodal descriptors was designed to account for the conversational nature of the recordings. To minimise the influence of occasional interviewer interventions, speaker diarization outputs generated with DiariZen 52 were first used throughout the audio processing pipeline to identify participant speech segments prior to feature extraction. These diarization outputs are also included in the released dataset, enabling users to investigate conversational phenomena, such as turn-taking patterns, where present. Based on this processing pipeline, we computed a comprehensive set of selected speech and non-verbal multimodal descriptors aligned with the participant’s conversational turns to capture complementary behavioural signals across modalities. Broadly, these descriptors can be grouped into four categories: 
+
+• Speech & Voice. Audio representations were extracted at multiple levels of abstraction. We provide the eGeMAPS v2.0 feature set 53 on a turn-by-turn basis, including both frame-level low-level descriptor (LLD) trajectories and turn-level functional summaries, capturing spectral and voice quality charac-teristics commonly used in affective and clinical speech analysis. Additional articulation, prosody, and phonation descriptors extracted with DisVoice 54 encompass a broader range of measures related to speech production, vocal quality, and pausing behaviour. Deep speech embeddings are also provided using the multilingual XLS-R wav2vec 300M 55 and TRILLsson 4.1 56 models, aggregated at partici-pant turn level. Following the same segmentation strategy, emotion-related trajectories were extracted to characterise the temporal evolution of arousal, valence, and dominance throughout each recording, together with their corresponding latent embedding representation. 57 For these deep learning repre-sentations, only aggregated embeddings are released to reduce the risk of recovering sensitive linguistic information or reconstructing the underlying speech signal. 
+
+• Facial Expression & Gaze. Most facial representations were extracted using OpenFace v2.2.0. 58 
+
+The resulting features include 68 facial landmark coordinates capturing facial geometry, together with intensity values of key facial action units used to characterise clinically-aligned expressive behaviour. In addition, 28 eye landmarks and gaze direction vectors were computed to capture visual attention and eye movement patterns. Deep facial embeddings were also extracted using EmoNet 59 to provide deep latent representations of affective facial expressions. Furthermore, EmoNet-derived emotion trajectories were estimated frame-wise, including continuous valence and arousal dimensions as well as the proba-bilities associated with the eight Ekman emotion categories, thus enabling the analysis of the temporal evolution of facial affect throughout each recording. Frames in which no face was detected are explicitly annotated to enable robust handling of missing visual information during downstream analysis. Finally, blink events were estimated using an Eye Aspect Ratio (EAR)-based approach 60 computed from eye landmarks, providing an additional indicator of ocular activity. With the exception of the EmoNet la-tent embeddings, which are aggregated at the participant-turn level, all visual descriptors are provided frame-wise and can subsequently be segmented according to the released speaker diarization boundaries. 
+
+• Head & Body Movement. Head pose and rotation estimates were also extracted using OpenFace 6v2.2.0, providing frame-wise yaw, pitch, and roll angles relative to the camera coordinate system. In addition, upper-body movement was estimated using MediaPipe, 61 providing 33 body keypoints that describe posture and gross movement patterns over time. Together, these representations characterise psychomotor manifestations, namely head orientation and upper-body motion dynamics, during the interviews and enable the derivation of higher-level features such as motion intensity, postural variability, and coordination between head and body movements for downstream analyses. 
+
+• Linguistics. The manually curated transcripts provided by HEXI included rich transcript annotations identifying non-verbal vocal events and indicators of disfluency and interactional behaviour. Leveraging this information, we computed a set of transcript-derived linguistic descriptors, including total word count, speech rate, lexical diversity computed over content words (excluding stopwords), content-word repetition ratio, filler and backchannel frequencies, as well as counts of the annotated non-verbal vocal events (e.g., laughter, crying, and breathing). Importantly, the transcripts were temporally aligned to the corresponding audio using WhisperX, 62 enabling the computation of these descriptors at both the video and participant-turn levels. Together, these features provide lightweight yet informative characterisations of verbal production that complement the acoustic and visual modalities. In addition to these handcrafted descriptors, each participant turn is represented by a dense semantic embedding extracted using the all-mpnet-base-v2 Sentence Transformer model. 63 These embeddings provide a compact neural representation of the turn semantics, analogous to the latent representations extracted from the acoustic and visual modalities. This comprehensive set of multimodal descriptors enables the study of speech, facial, and body language behaviour from the perspective of verbal and non-verbal communication in digital health, supporting a wide range of downstream computational analyses. Full documentation of all features, including detailed definitions, dimensionalities, and summary statistics, is provided in the accompanying repository. 
+
+# 4 Data Overview 
+
+Our dataset encompasses video samples collected across a diverse set of medical and mental-health conditions, selected for their potential to manifest measurable changes in speech and body language. Conditions were organized into four categories: (i) neurological or motor disorders (Parkinson’s disease , motor neuron disease , stroke , epilepsy ), involving impaired motor control that can disrupt articulation, fluency, and coor-dinated facial or gestural expression; (ii) respiratory or structural conditions (asthma , COVID-19 , lung cancer , cleft lip and palate ), primarily affecting voice quality, breathing patterns, and articulatory precision; 
+
+(iii) chronic pain or fatigue-related conditions (chronic pain , fibromyalgia ), associated with reduced energy, slower speech rate, and subtle changes in facial expressiveness or body posture; and (iv) mental-health disorders (depression , psychosis ), involving altered prosody, emotional expressiveness, coherence, and head-tilt or other non-verbal cues. Together with the control group, the dataset comprises 4,281 video samples, with an average of 10.9 ±9.3 
+
+participant turns per video. As reflected in Figure 2, these samples are distributed unevenly across the 13 distinct conditions. Control participants account for the largest share (30%), while some conditions, such as cleft lip and palate, are minimally represented (1%). This uneven distribution may limit certain analyses, particularly for underrepresented conditions, reflecting a common challenge in real-world applications where data is often scarce. Nevertheless, the dataset’s coverage across multiple conditions and the inclusion of participants with potential comorbidities offer opportunities to investigate the study of cross-disease patterns and multimodal cues that may help mitigate the limitations posed by such data-scarce clinical contexts. Across the 622 participant profiles, the mean proportion of female participants across conditions is 54.9% 
+
+> ±13.2
+
+, indicating a slightly higher representation overall, but with some substantial variability across con-ditions. Notably, the control and fibromyalgia groups have a female proportion exceeding 70% on average, whereas psychosis and lung cancer groups include only about 30% females. Regarding age, participants span a wide range, with a mean of 48.1 ±17.3 years, covering much of the adult lifespan. Among the youngest par-ticipant populations are those with cleft lip and palate, epilepsy, and psychosis. Overall, these characteristics highlight the dataset’s heterogeneity, supporting analyses across diverse conditions, age groups, and sexes. 73% 5%        
+
+> 1%
+> 30%
+> 6%
+> 12%
+> 10%
+> 3%
+> 5%
+> 7%
+> 5%
+> 7%
+> 6%
+> 4281 samples
+> 622 profiles
+> 143.5 h
+> Video Samples per Condition
+> 0
+> 10
+> 100
+> No. of Subjects
+> (Males / Females)
+> 8M/16F 14M/23F
+> 4M/5F
+> 50M/127F
+> 22M/21F 26M/45F 25M/34F
+> 4M/14F
+> 26M/13F 19M/19F 19M/14F 19M/9F 23M/23F
+> Subjects per Condition
+> 20
+> 40
+> 60
+> 80
+> 100
+> Age (years)
+> mean ± std  48.4 ± 13.9
+> 49.1 ± 12.5
+> 25.7 ± 10.8
+> 50.7 ± 12.7
+> 38.6 ± 16.9
+> 38.8 ± 17.4
+> 29.6 ± 11.7
+> 44.6 ± 15.5
+> 59.5 ± 9.0
+> 51.6 ± 13.6
+> 57.2 ± 10.0
+> 30.4 ± 12.4
+> 59.3 ± 14.5
+> Age Distribution per Condition
+> Conditions
+> ASTHMA
+> CHRONIC-PAIN
+> CLEFT-LIP-PALATE
+> CONTROL
+> COVID-19
+> DEPRESSION
+> EPILEPSY
+> FIBROMYALGIA
+> LUNGCANCER
+> MOTOR-NEURONE-DISEASE
+> PARKINSON
+> PSYCHOSIS
+> STROKE
+
+Figure 2: Overview of the dataset across medical conditions. Top: distribution of video samples per condition (percentages shown; center indicates total number of samples, unique subjects, and total recording duration). Middle: number of unique subjects per condition (logarithmic scale), with male (M) / female (F) counts indicated. Bottom: age distribution per condition, with total mean ± standard deviation. Another important aspect of this corpus is that the control group comprises individuals with heterogeneous roles in relation to health and disease. As illustrated in Figure 3, most control participants are caregivers and supporters, reflecting sustained en-gagement through close personal relationships. The inclusion of bereaved members, advocates, and healthcare professionals fur-ther extends the capture of experiential perspectives shaped by illness. Therefore, unlike previous corpora, where control partici-pants are often drawn from unrelated domains, our control group contributes data grounded in health-related experiences, provid-ing a more contextually relevant reference population. Figure 4 complements these analyses by showing the distribu-tion of ethnic and nationality backgrounds across all conditions. While LLM-based extraction of these attributes was often more precise, we aggregated participants into broad categories for clar-ity. Overall, the corpus reflects some diversity. However, the majority of participants are White UK or Irish, introducing a skew toward these populations. Notably, most participants are English speakers, though English may not be the first language for some, potentially affecting speech patterns and prosody. Only profile 606, from the stroke group, speaks another language (Pun-jabi), but all corresponding metadata, including transcripts, were translated into English by HEXI. Other groups, such as Parkin-son’s and chronic pain, miss this information partially or entirely. 60% 
+
+29% 
+
+9% 2% 
+
+> Control Participant Role
+> Caregivers And Supporters
+> Bereaved Members
+> Advocates
+> Healthcare And Research Professionals
+
+Figure 3: Distribution of roles among control profiles , highlighting the hetero-geneous nature of the participants com-posing this group. 80 20 40 60 80 100 
+
+Percentage of subjects (%) 
+
+> ASTHMA
+> CHRONIC-PAIN
+> CLEFT-LIP-PALATE
+> CONTROL
+> COVID-19
+> DEPRESSION
+> EPILEPSY
+> FIBROMYALGIA
+> LUNGCANCER
+> MOTOR-NEURONE-DISEASE
+> PARKINSON
+> PSYCHOSIS
+> STROKE
+
+Ethnic background distribution across conditions 
+
+Ethnic background   
+
+> Asian
+> Black / African / Caribbean
+> Jewish
+> Mixed
+> White Other
+> White UK/Irish
+> Unknown / not reported
+
+Figure 4: Ethnic and nationality backgroun metadata distribution across conditions. The dataset reflects some diversity but is skewed toward White UK or Irish participants. Among the multi-value structured metadata, we also retrieved dominant emotions expressed in the nar-ratives accounts of participant stories. To analyze this information, we computed emotion frequencies at the participant level and normalized them as percentages per condition, as shown in Figure 5. A first notable pat-tern is the prominence of neutral or low-emotion annotations across several conditions. This likely reflects the third-person reporting style adopted by researchers and the clinically oriented nature of the narratives, which may attenuate explicit emotional expression. Nonetheless, sadness and fear emerge as the most prevalent emotions across most conditions, plausibly reflecting the emotional burden associated with illness experi-ences or vulnerabilities related to economic and institutional support. Importantly, emotion inference in this analysis is based solely on textual narratives, underscoring the value of the dataset’s multimodal nature and motivating future analyses that relate complementary cues from facial expression and voice. neutral sadness fear happiness anger surprise contempt disgust 
+
+emotion 
+
+> ASTHMA
+> CHRONIC-PAIN
+> CLEFT-LIP-PALATE
+> CONTROL
+> COVID-19
+> DEPRESSION
+> EPILEPSY
+> FIBROMYALGIA
+> LUNGCANCER
+> MOTOR-NEURONE-DISEASE
+> PARKINSON
+> PSYCHOSIS
+> STROKE
+> GLOBAL (all conditions)
+
+14.0 23.3 32.6 9.3 11.6 9.3 0.0 0.0 
+
+100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
+
+36.4 18.2 9.1 27.3 9.1 0.0 0.0 0.0 
+
+3.8 44.6 21.3 9.0 14.6 6.4 0.0 0.3 
+
+63.4 22.0 7.3 7.3 0.0 0.0 0.0 0.0 
+
+5.4 40.9 25.5 11.4 15.4 0.7 0.7 0.0 
+
+31.4 22.1 18.6 19.8 7.0 1.2 0.0 0.0 
+
+2.4 39.0 12.2 12.2 29.3 2.4 2.4 0.0 
+
+96.4 0.0 0.0 3.6 0.0 0.0 0.0 0.0 
+
+8.0 35.6 23.0 18.4 11.5 3.4 0.0 0.0 
+
+4.8 33.9 27.4 19.4 8.1 6.5 0.0 0.0 
+
+1.3 32.9 34.2 13.2 17.1 0.0 0.0 1.3 
+
+23.3 20.5 15.1 24.7 12.3 4.1 0.0 0.0 
+
+14.0 23.3 32.6 9.3 11.6 9.3 0.0 0.0 
+
+100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 
+
+36.4 18.2 9.1 27.3 9.1 0.0 0.0 0.0 
+
+3.8 44.6 21.3 9.0 14.6 6.4 0.0 0.3 
+
+63.4 22.0 7.3 7.3 0.0 0.0 0.0 0.0 
+
+5.4 40.9 25.5 11.4 15.4 0.7 0.7 0.0 
+
+31.4 22.1 18.6 19.8 7.0 1.2 0.0 0.0 
+
+2.4 39.0 12.2 12.2 29.3 2.4 2.4 0.0 
+
+96.4 0.0 0.0 3.6 0.0 0.0 0.0 0.0 
+
+8.0 35.6 23.0 18.4 11.5 3.4 0.0 0.0 
+
+4.8 33.9 27.4 19.4 8.1 6.5 0.0 0.0 
+
+1.3 32.9 34.2 13.2 17.1 0.0 0.0 1.3 
+
+23.3 20.5 15.1 24.7 12.3 4.1 0.0 0.0 
+
+16.2 33.7 20.9 12.8 12.5 3.6 0.2 0.2 
+
+Distribution of dominant emotions across conditions 
+
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> Percentage of emotion mentions (%)
+
+Figure 5: Distribution of dominant emotions across conditions derived from textual narratives. 
+
+Neutral, sadness, and fear expressions are mostly prevalent across conditions. 9Figure 6: Comorbidities distribution. Word cloud illustrating the main comorbidities reported across patient profiles. Term size reflects relative frequency, highlighting the most prevalent conditions, including depression, anxiety, and diabetes. Multi-word conditions were preserved, and some highly detailed terms were normalized into broader umbrella conditions for clarity. From the same narratives, but focusing exclusively on the patient group, a wide range of comorbidities was identified across participants. As reflected in Figure 6, conditions such as anxiety, hypertension, epilepsy, diabetes, depression, and heart-related issues were most frequently observed. This information is crucial as it provides context for interpreting behavioral and emotional patterns, enabling analyses that account for the potential influence of co-occurring medical or mental health disorders both across and within conditions. 
+
+# 5 Technical Validation 
+
+To assess the reliability of the automatically generated annotations, we compared the performance of five well-established LLMs using a manually annotated subset of the dataset. 
+
+Manually annotated data subset. This subset contained 34 profiles: 10 control profiles (one from each of the 10 group-ids that contain control profiles) and 24 patient profiles (two profiles for each non-control 
+
+label-id ). This sampling strategy ensured diversity across conditions and profile types. The subset contained 14 male and 20 female profiles. The automatically annotated dimensions correspond to the metadata fields described in Section 3, with the addition of the subject’s name to encourage the model to identify the main subject before completing the requested annotations. Importantly, because several of these metadata fields – particularly those related to emotions – require interpretation, the manual annotations (done by a single non-clinic annotator) should be regarded as a reference point rather than an absolute ground truth. 
+
+Models. We evaluated five LLMs: Llama-3.1-8B ,64 Llama-3.3-70B ,64 Qwen-2.5-70B ,65, 66 Qwen-3-Next-80B ,67, 68 and gpt-oss-120b .48 Experiments were also conducted with Llama-3.2-3B ,64 but its substantially lower performance led us to omit it from detailed reported results. During preliminary experiments, models from the Llama and Qwen families frequently failed to restrict emotion predictions to the predefined set of Ekman’s eight categories. 51 Attempts to enforce valid outputs using guided decoding with a JSON schema increased hallucinations and reduced overall performance. For conciseness, schema-guided results are not reported. 
+
+Evaluation. To evaluate metadata extraction, we distinguish between single-value fields and multi-value 
+
+fields, the latter represented as lists. Exact-match accuracy (ACC) is reported for all fields; however, this metric is overly strict. For multi-value fields it fails to reward partial correctness, and for non-categorical fields it penalizes benign paraphrases. To mitigate the first limitation, we also compute Jaccard Similarity (JS) used to measure the similarity between two sets, thus capturing partial overlap between predicted and reference sets. To address the second, we compute BERTScore 69 using the model microsoft/deberta-xlarge-mnli that showed the highest correlation with human evaluation. We report the F1 form of BERTScore, which penalizes both omissions of reference information and the inclusion of extraneous content. 
+
+Results. Table 3 summarizes model performance across metadata fields defined separately for control and patient participants. Among the evaluated models, gpt-oss-120b achieved the highest average performance across ACC, JS, and BERTScore, and was the only model that consistently respected the constraint of selecting 10 Llama-3.1-8B Llama-3.3-70B Qwen-2.5-70B Qwen-3-Next-80B gpt-oss-120b                                                                                                                                                                                                                                                                                                               
+
+> ACC JS BertS ACC JS BertS ACC JS BertS ACC JS BertS ACC JS BertS
+> Annotations for Controls
+> Single-Name 0.80 1.00 0.90 1.00 1.00 value Ethnic background 1.00 1.00 1.00 1.00 1.00 Sex 1.00 1.00 0.90 1.00 0.90 Job or professional occupation 0.30 0.81 0.40 0.83 0.30 0.81 0.30 0.82 0.30 0.82 Years of care 0.30 0.70 0.60 0.50 0.70 Multi-Role 0.80 0.90 0.80 0.90 0.90 0.95 0.80 0.90 0.80 0.90 value Relationship to care recipient 0.90 0.90 0.80 0.80 0.80 0.80 0.90 0.90 0.80 0.80 Diagnosis of care recipient 0.50 0.55 0.71 0.40 0.45 0.70 0.60 0.65 0.84 0.50 0.55 0.71 0.60 0.60 0.84 Consequences for personal life 0.30 0.36 0.70 0.10 0.18 0.60 0.30 0.35 0.76 0.30 0.33 0.74 0.30 0.34 0.67 Dominant emotions 0.10 0.32 0.64 0.10 0.29 0.60 0.20 0.40 0.65 0.20 0.42 0.66 0.40* 0.47 0.69
+> Annotations for Patients
+> Single-Name 1.00 1.00 1.00 1.00 1.00 value Ethnic background 1.00 1.00 1.00 0.96 1.00 Sex 1.00 0.92 0.96 0.92 1.00 Main medical condition 0.88 0.94 0.92 0.95 0.92 0.95 0.92 0.95 0.92 0.95 Years since condition onset 0.50 0.67 0.79 0.58 0.88 Voice software or ventilator 1.00 1.00 1.00 1.00 1.00 Multi-Current symptoms 0.21 0.23 0.63 0.25 0.31 0.68 0.13 0.17 0.61 0.25 0.33 0.67 0.29 0.32 0.69 value Initial symptoms 0.25 0.28 0.72 0.29 0.33 0.76 0.25 0.27 0.73 0.29 0.32 0.75 0.38 0.42 0.81 Current medication 0.50 0.52 0.78 0.58 0.60 0.82 0.46 0.48 0.76 0.54 0.56 0.79 0.50 0.52 0.79 All medication/treatments 0.00 0.15 0.59 0.00 0.14 0.56 0.00 0.15 0.61 0.00 0.14 0.59 0.00 0.13 0.59 Other strategies for improving 0.25 0.35 0.74 0.25 0.33 0.68 0.21 0.32 0.68 0.25 0.33 0.70 0.21 0.28 0.68 Comorbidities 0.63 0.66 0.83 0.63 0.69 0.84 0.42 0.47 0.72 0.67 0.69 0.81 0.63 0.69 0.82 Job or professional occupation 0.46 0.46 0.78 0.46 0.48 0.77 0.54 0.54 0.85 0.58 0.58 0.83 0.54 0.54 0.80 Mood, mental health, etc. 0.21 0.24 0.57 0.17 0.19 0.57 0.21 0.22 0.62 0.17 0.21 0.57 0.25 0.27 0.61 Dominant emotions 0.04 0.25 0.64 0.08 0.21 0.63 0.25 0.47 0.71 0.33 0.53 0.76 0.29* 0.46 0.70
+> Average 0.56 0.44 0.72 0.58 0.42 0.71 0.59 0.45 0.73 0.60 0.48 0.74 0.63 0.48 0.75
+
+Table 3: Performance of the evaluated LLMs on the task of automatic metadata retrieval , using a manually annotated subset of the dataset as reference. Metrics include accuracy (ACC), Jaccard similarity (JS), and F1 of the Bert Score (BertS). Average scores across all categories are provided in the bottom row. (*) Indicates whether emotion predictions were restricted to the predefined set of allowed categories. emotions exclusively from the seven allowed categories without schema enforcement. For this reason, the final structured metadata that accompanies this dataset was extracted using gpt-oss-120b .A closer inspection of performance across individual metadata fields reveals that those capturing basic de-mographic or well-defined clinical attributes, including name , ethnic background , sex , main medical condition ,and use of voice software or a ventilator , exhibited accuracies equal or above 90%, reaching 100% for most of these categories. Performance was also high for fields describing the role of the caregiver and the diagnosis of the care recipient, with accuracy around 80% and JS reaching 90% for caregiver role. A different consideration applies to the fields years of care and years since condition onset , which were ideally numeric. However, in the manually annotated subset, these values were often not provided due to insufficient information, making numeric error metrics (e.g., mean absolute error) unreliable. Consequently, we report accuracy as a more appropriate measure of model performance for these fields. When restricting evaluation to rows where both the reference and the gpt-oss-120b output contained numeric values, the mean absolute error was equal or below one year for both fields In contrast, fields involving more descriptive or contextual information, such as professional occupation, symptoms, or psychosocial consequences, show lower accuracy, largely due to paraphrasing and variable level of detail between manual and model annotations. In these cases, BERTScore provides a more informative measure than accuracy, which was between 0.59 and 0.95. One example is the dominant emotion retrieval, with an overall 0.64 BERTScore in both control and patient groups. For illustrative purposes, Table 4 presents selected examples of annotations generated by gpt-oss-120b alongside the corresponding reference annotations and their BERTScores. Overall, gpt-oss-120b achieves a mean BERTScore of 0.75 across all categories. At this level of semantic similarity, the generated annotations closely align with the reference annotations, suggesting adequate performance in capturing the relevant information. 
+
+Full-dataset validation. While most metadata predictions remained broadly consistent across LLMs, emo-tion labels were of particular concern due to the constraint that predictions must adhere to a predefined set of allowed categories. For this reason, our validation efforts focused specifically on this dimension, even though 
+
+gpt-oss-120b consistently respected the Ekman categories in the manually annotated evaluation subset. Ex-amination across the full dataset revealed occasional LLM hallucinations. Specifically, a small number of emotion annotations fell outside the Ekman emotion set, including anxiety (one profile from the psychosis group), frustration (one profile Parkinson’s disease), and shock (one control profile), together accounting for 11 Field Reference Model output BertS             
+
+> Job of professional occupation Nursery nurse Nurse 0.7403 Mood or mental health consequences Bullying, gained self-confidence Was bullyed in school but was able to overcome it 0.5386 Current symptoms Occasional stuttering, forgetfulness, fatigue, hesitancy Occasionally stutters, more forgetful, tired and hesitant 0.7822 Other strategies for improving Breathing exercises, daily walking Breathing exercises, walks 0.8539
+
+Table 4: Examples of semantic matching. Manual annotations and gpt-oss-120b outputs with the corre-sponding F1 BERT Scores (BertS) across different metadata fields. less than 1% of all profiles. In addition, emotion information was missing (“na”) for approximately 5% of the dataset (30 profiles), primarily affecting the chronic pain (3), control (3), COVID-19 (5), epilepsy (5), and lung cancer (11) groups. Despite these minor issues, our experimental results highlight the gpt-oss-120b 
+
+model’s overall reliability in retrieving structured metadata from clinical domains. 
+
+# 6 Usage Notes 
+
+Access to the CARE v1.0 50 is available exclusively for non-commercial research use. Researchers wishing to obtain the data must agree to a data use agreement that specifies the terms of use, including, among other conditions, a prohibition on any attempt to re-identify participants, whether directly or through linkage with external data sources. Users must also ensure that any outputs derived from the dataset appropriately cite this manuscript and acknowledge HEXI and the Medical Sociology & Health Experiences Research Group (MS&HERG) at the University of Oxford. 47 
+
+To support the reproducibility of studies carried out on the CARE v1.0 corpus and to encourage the appropriate reuse of the data across diverse research contexts, the following material is provided: 
+
+• Feature Extraction Scripts. The full set of scripts used to extract all multimodal descriptors from the raw data. These scripts enable users to reproduce the exact feature computation pipeline or to apply it to external datasets, ensuring consistent and fair comparisons across studies. 
+
+• Example Evaluation Workflow. An example use-case workflow illustrating a participant-level 5-fold cross-validation protocol for a representative binary classification setting ( CONTROL versus PARKINSON ). The provided example generates profile-level folds while preventing duplicate participant leakage, ac-counts for key demographic factors such as sex distribution, aggregates turn-level descriptors into profile-level representations, and trains a linear support vector machine (SVM). 70 This baseline is intended solely to demonstrate the recommended evaluation workflow, while encouraging users to adopt task-specific models and evaluation protocols appropriate for their applications. Overall, these usage notes are intended to support transparent, reproducible, and consistent use of the CARE v1.0 corpus across a range of downstream analytical settings. 
+
+# 7 Data Availability 
+
+The CARE v1.0 corpus is available for non-commercial research use through the official Hugging Face Dataset repository. 50 The repository provides the complete dataset, including participant metadata, annotations, and pre-computed multimodal features, together with comprehensive documentation and compressed feature archives. Programmatic access is provided through the accompanying care-dataset Python package, which supports metadata-based filtering, modality selection, profile-level data partitioning, and seamless integration into machine learning workflows. 
+
+# 8 Code Availability 
+
+To support reproducibility and facilitate downstream analyses on the CARE v1.0 corpus, the full set of scripts employed to generate all multimodal descriptors and the example evaluation workflow are made available in the official Hugging Face Dataset repository alongside the dataset to ensure that results can be directly compared across studies using the same computational framework. 12 References  
+
+> 1
+
+Idrisoglu, A., Dallora, A. L., Anderberg, P. & Berglund, J. S. Applied machine learning techniques to diagnose voice-affecting conditions and disorders: systematic literature review. Journal of Medical Internet Research 25 , e46105 (2023).  
+
+> 2
+
+Bayerl, S. P. et al. Classification of stuttering – The ComParE challenge and beyond. Computer Speech & Language 81 , 101519 (2023).  
+
+> 3
+
+Krecichwost, M., Mocko, N. & Badura, P. Automated detection of sigmatism using deep learning applied to multichannel speech signal. Biomedical Signal Processing and Control 68 , 102612 (2021).  
+
+> 4
+
+Favaro, A. et al. Interpretable speech features vs. dnn embeddings: What to use in the automatic assessment of parkinson’s disease in multi-lingual scenarios. Computers in Biology and Medicine 166 , 107559 (2023).  
+
+> 5
+
+Botelho, C., Abad, A., Schultz, T. & Trancoso, I. Speech as a biomarker for disease detection. IEEE Access 
+
+12 , 184487–184508 (2024).  
+
+> 6
+
+Gimeno-G´ omez, D., Botelho, C., Pompili, A., Abad, A. & Mart´ ınez-Hinarejos, C.-D. Unveiling inter-pretability in self-supervised speech representations for parkinson’s diagnosis. IEEE Journal of Selected Topics in Signal Processing 19 , 717–730 (2025).  
+
+> 7
+
+Fraser, K. C., Meltzer, J. A. & Rudzicz, F. Linguistic features identify alzheimer’s disease in narrative speech. Journal of Alzheimer’s disease 49 , 407–422 (2015).  
+
+> 8
+
+Botelho, C. et al. Macro-descriptors for Alzheimer’s disease detection using large language models. In 
+
+Interspeech , 1975–1979 (2024).  
+
+> 9
+
+P´ erez-Toro, P. A. et al. Automated speech markers of alzheimer dementia: Test of cross-linguistic general-izability. Journal of Medical Internet Research 27 , e74200 (2025).  
+
+> 10
+
+Yoon, G. et al. Speech and language delay are early manifestations of juvenile-onset huntington disease. 
+
+Neurology 67 , 1265–1267 (2006).  
+
+> 11
+
+G´ omez-Vilda, P., Londral, A. R. M., Rodellar-Biarge, V., Ferr´ andez-Vicente, J. M. & de Carvalho, M. Monitoring amyotrophic lateral sclerosis by biomechanical modeling of speech production. Neurocomputing 
+
+151 , 130–138 (2015).  
+
+> 12
+
+Cummins, N. et al. A review of depression and suicide risk assessment using speech analysis. Speech communication 71 , 10–49 (2015).  
+
+> 13
+
+De Boer, J. et al. Acoustic speech markers for schizophrenia-spectrum disorders: a diagnostic and symptom-recognition tool. Psychological medicine 53 , 1302–1312 (2023).  
+
+> 14
+
+Karam, Z. N. et al. Ecologically valid long-term mood monitoring of individuals with bipolar disorder using speech. In ICASSP , 4858–4862 (IEEE, 2014).  
+
+> 15
+
+Botelho, C., Trancoso, I., Abad, A. & Paiva, T. Speech as a biomarker for obstructive sleep apnea detection. In ICASSP , 5851–5855 (IEEE, 2019).  
+
+> 16
+
+Perero-Codosero, J. M., Espinoza-Cuadros, F., Ant´ on-Mart´ ın, J., Barbero- ´Alvarez, M. A. & Hern´ andez-G´ omez, L. A. Modeling obstructive sleep apnea voices using deep neural network embeddings and domain-adversarial training. IEEE Journal of Selected Topics in Signal Processing 14 , 240–250 (2019).  
+
+> 17
+
+Alam, M. Z. et al. Predicting pulmonary function from the analysis of voice: a machine learning approach. 
+
+Frontiers in digital health 4, 750226 (2022).  
+
+> 18
+
+Schuller, B. W. et al. COVID-19 and Computer Audition: An Overview on What Speech & Sound Analysis Could Contribute in the SARS-CoV-2 Corona Crisis. Frontiers in Digital Health 3 (2021).  
+
+> 19
+
+Schuller, B., Steidl, S., Batliner, A., Schiel, F. & Krajewski, J. The interspeech 2011 speaker state challenge. In Interspeech , 3201–3204 (2011).  
+
+> 20
+
+Schuller, B. et al. The INTERSPEECH 2015 computational paralinguistics challenge: nativeness, Parkin-son’s & eating condition. In Interspeech , 478–482 (2015). 13 21 Schuller, B. et al. The interspeech 2017 computational paralinguistics challenge: Addressee, cold & snoring. In Interspeech , 3442–3446 (2017).  
+
+> 22
+
+Schuller, B. W. et al. The INTERSPEECH 2019 Computational Paralinguistics Challenge: Styrian Dialects, Continuous Sleepiness, Baby Sounds & Orca Activity. In Interspeech , 2378–2382 (2019).  
+
+> 23
+
+Luz, S., Haider, F., de la Fuente, S., Fromm, D. & MacWhinney, B. Alzheimer’s Dementia Recognition Through Spontaneous Speech: The ADReSS Challenge. In Interspeech , 2172–2176 (2020).  
+
+> 24
+
+Luz, S., Haider, F., de la Fuente, S., Fromm, D. & MacWhinney, B. Detecting Cognitive Decline Using Speech Only: The ADReSSo Challenge. In Interspeech , 3780–3784 (2021).  
+
+> 25
+
+Luz, S. et al. An overview of the adress-m signal processing grand challenge on multilingual alzheimer’s dementia recognition through spontaneous speech. IEEE Open Journal of Signal Processing 5, 738–749 (2024).  
+
+> 26
+
+Luz, S. et al. Connected Speech-Based Cognitive Assessment in Chinese and English. In Interspeech ,947–951 (2024).  
+
+> 27
+
+Tao, F. et al. Early dementia detection using multiple spontaneous speech prompts: The process challenge. In ICASSP , 1–2 (IEEE, 2025).  
+
+> 28
+
+Mendes-Laureano, J. et al. NeuroVoz: a Castillian Spanish corpus of parkinsonian speech. Scientific Data 
+
+11 , 1367 (2024).  
+
+> 29
+
+Tao, F., Esposito, A. & Vinciarelli, A. The androids corpus: A new publicly available benchmark for speech based depression detection. Depression 47 , 11–9 (2023).  
+
+> 30
+
+Bensoussan, Y. et al. Bridge2AI-Voice: An ethically-sourced, diverse voice dataset linked to health infor-mation. PhysioNet (2025). URL https://doi.org/10.13026/k81f-qr68 . Version 3.0.0.  
+
+> 31
+
+Haulcy, R. & Glass, J. CLAC: a speech corpus of healthy English speakers. In Interspeech , 2966–2970 (2021).  
+
+> 32
+
+McNeill, D. Hand and mind: What gestures reveal about thought (University of Chicago press, 1992).  
+
+> 33
+
+Kendon, A. Gesture: Visible action as utterance (Cambridge University Press, 2004).  
+
+> 34
+
+Wagner, P., Malisz, Z. & Kopp, S. Gesture and speech in interaction: An overview. Speech Communication 
+
+57 , 209–232 (2014).  
+
+> 35
+
+Charuau, D. & Harte, N. A multimodal perspective on adaptive communication: Extending the hyper-and hypo-articulation theory. Computer Speech & Language 101 , 101990 (2027).  
+
+> 36
+
+Noroozi, F. et al. Survey on emotional body gesture recognition. IEEE Transactions on Affective Computing 
+
+12 , 505–523 (2021).  
+
+> 37
+
+Turaev, S. et al. Review and Analysis of Patients’ Body Language From an Artificial Intelligence Perspec-tive. IEEE Access 11 , 62140–62173 (2023).  
+
+> 38
+
+Rios-Urrego, C. D. et al. Dynamic cheek surface modeling for enhanced hypomimia detection in Parkinson’s disease. Computers in Biology and Medicine 197 , 110896 (2025).  
+
+> 39
+
+Martin, E. A. et al. Behavioral measures of psychotic disorders: Using automatic facial coding to detect nonverbal expressions in video. Journal of Psychiatric Research 176 , 9–17 (2024).  
+
+> 40
+
+Fiquer, J. T., Boggio, P. S. & Gorenstein, C. Talking bodies: Nonverbal behavior in the assessment of depression severity. Journal of affective disorders 150 , 1114–1119 (2013).  
+
+> 41
+
+Gimeno-G´ omez, D., Bucur, A.-M., Cosma, A., Mart´ ınez-Hinarejos, C.-D. & Rosso, P. Reading between the frames: Multi-modal depression detection in videos from non-verbal cues. In European Conference on Information Retrieval , 191–209 (Springer, 2024).  
+
+> 42
+
+Beltr´ an, J., Garc´ ıa-V´ azquez, M. S., Benois-Pineau, J., Gutierrez-Robledo, L. M. & Dartigues, J.-F. Com-putational Techniques for Eye Movements Analysis Towards Supporting Early Diagnosis of Alzheimer’s Disease: A Review. Computational and mathematical methods in medicine 2018 , 2676409 (2018). 14 43 Favaro, A. et al. Unveiling early signs of parkinson’s disease via a longitudinal analysis of celebrity speech recordings. npj Parkinson’s Disease 10 , 207 (2024).  
+
+> 44
+
+Valstar, M. et al. AVEC 2016: Depression, Mood, and Emotion Recognition Workshop and Challenge. In 
+
+Proceedings of the 6th International Workshop on Audio/Visual Emotion Challenge and Workshop , 3–10 (2016).  
+
+> 45
+
+Ringeval, F. et al. Avec 2019 workshop and challenge: state-of-mind, detecting depression with ai, and cross-cultural affect recognition. In Proceedings of the 9th International on Audio/visual Emotion Challenge and Workshop , 3–12 (2019).  
+
+> 46
+
+Ringeval, F. et al. AVEC 2018 workshop and challenge: Bipolar disorder and cross-cultural affect recogni-tion. In Proceedings of the 8th on Audio/Visual Emotion Challenge and Workshop , 3–13 (2018).  
+
+> 47
+
+Ziebland, S., Grob, R. & Schlesinger, M. Polyphonic perspectives on health and care: Reflections from two decades of the DIPEx project. Journal of health services research & policy 26 , 133–140 (2020).  
+
+> 48
+
+OpenAI. gpt-oss-120b & gpt-oss-20b model card (2025). URL https://arxiv.org/abs/2508.10925 .
+
+2508.10925 . 
+
+> 49
+
+Kwon, W. et al. Efficient Memory Management for Large Language Model Serving with PagedAttention. In Proceedings of the 29th Symposium on Operating Systems Principles , 611–626 (2023).  
+
+> 50
+
+Gimeno-G´ omez, D., Botelho, C., Mart´ ınez-Hinarejos, C.-D., Trancoso, I. & Abad, A. CARE v1.0 Dataset: Hugging Face Dataset (2026). URL https://huggingface.co/datasets/inesc-id/multimodal_care .DOI: https://doi.org/10.57967/hf/9754.  
+
+> 51
+
+Ekman, P. An argument for basic emotions. Cognition & emotion 6, 169–200 (1992).  
+
+> 52
+
+Han, J. et al. Leveraging self-supervised learning for speaker diarization. In Proc. ICASSP (2025). URL 
+
+https://huggingface.co/BUT-FIT/diarizen-wavlm-large-s80-md . 
+
+> 53
+
+Eyben, F. et al. The Geneva Minimalistic Acoustic Parameter Set (GeMAPS) for Voice Research and Affective Computing. IEEE Trans. on Affective Computing 7, 190–202 (2016). URL https://github. com/audeering/opensmile-python . 
+
+> 54
+
+V´ asquez-Correa, J. C. DisVoice. https://github.com/jcvasquezc/DisVoice (2013).  
+
+> 55
+
+Babu, A. et al. XLS-R: Self-supervised Cross-lingual Speech Representation Learning at Scale. In Proc. Interspeech , 2278–2282 (2022). URL https://docs.pytorch.org/audio/main/generated/torchaudio. pipelines.WAV2VEC2_XLSR_300M.html . 
+
+> 56
+
+Shor, J. & Venugopalan, S. TRILLsson: Distilled Universal Paralinguistic Speech Representations. In Proc. Interspeech , 356–360 (2022). URL https://www.kaggle.com/models/google/trillsson/tensorFlow2/ 4. 
+
+> 57
+
+Wagner, J. et al. Dawn of the transformer era in speech emotion recognition: closing the valence gap. 
+
+IEEE Transactions on Pattern Analysis and Machine Intelligence 45 , 10745–10759 (2023). URL https: //huggingface.co/audeuring/wav2vec2-large-robust-12-ft-emotion-msp-dim . 
+
+> 58
+
+Baltruˇ saitis, T., Zadeh, A., Lim, Y. C. & Morency, L.-P. Openface 2.0: Facial Behavior Analysis Toolkit. In IEEE International Conference on Automatic Face and Gesture Recognition (2018). URL https:// github.com/tadasbaltrusaitis/openface . 
+
+> 59
+
+Toisoul, A., Kossaifi, J., Bulat, A., Tzimiropoulos, G. & Pantic, M. Estimation of continuous valence and arousal levels from faces in naturalistic conditions. Nature Machine Intelligence 3, 42–50 (2021). URL 
+
+https://github.com/face-analysis/emonet . 
+
+> 60
+
+Soukupov´ a, T. & ˇCech, J. Real-Time Eye Blink Detection using Facial Landmarks. In Proc. Computer Vision Winter Workshop (CVWW) (2016).  
+
+> 61
+
+Xu, H. et al. GHUM & GHUML: Generative 3D Human Shape and Articulated Pose Models. In 
+
+Proc. IEEE/CVF CVPR , 6183–6192 (2020). URL https://ai.google.dev/edge/mediapipe/solutions/ vision/pose_landmarker .15 62 Bain, M., Huh, J., Han, T. & Zisserman, A. WhisperX: Time-Accurate Speech Transcription of Long-Form Audio. In Proc. Interspeech , 4489–4493 (2023).  
+
+> 63
+
+Song, K., Tan, X., Qin, T., Lu, J. & Liu, T.-Y. MPNet: Masked and Permuted Pre-Training for Language Understanding. Advances in neural information processing systems 33 , 16857–16867 (2020). URL https: //huggingface.co/sentence-transformers/all-mpnet-base-v2 . 
+
+> 64
+
+Touvron, H. et al. Llama: Open and efficient foundation language models. arXiv preprint arXiv:2302.13971 
+
+(2023).  
+
+> 65
+
+Yang, A. et al. Qwen2 technical report. arXiv preprint arXiv:2407.10671 (2024).  
+
+> 66
+
+Team, Q. Qwen2.5: A party of foundation models (2024). URL https://qwenlm.github.io/blog/qwen2. 5/ . 
+
+> 67
+
+Yang, A. et al. Qwen2.5-1m technical report. arXiv preprint arXiv:2501.15383 (2025).  
+
+> 68
+
+Team, Q. Qwen3 technical report (2025). URL https://arxiv.org/abs/2505.09388 . 2505.09388 . 
+
+> 69
+
+Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q. & Artzi, Y. BERTScore: Evaluating Text Generation with BERT. In International Conference on Learning Representations (2020). URL https://openreview. net/forum?id=SkeHuCVFDr . 
+
+> 70
+
+Steinwart, I. & Christmann, A. Support vector machines (Springer Science & Business Media, 2008). 
+
+# Funding 
+
+The work of Botelho, Trancoso, and Abad was supported by Portuguese national funds through Funda¸ c˜ ao para a Ciˆ encia e a Tecnologia, I.P. (FCT) under projects UID/50021/2025 (DOI: https://doi.org/10.54499/UID/50021/2025) and UID/PRR/50021/2025 (DOI: https://doi.org/10.54499/UID/PRR/50021/2025), and by the Portuguese Recovery and Resilience Plan and NextGenerationEU European Union funds under project C644865762-00000008 (Accelerat.AI). The work of Gimeno-G´ omez and Mart´ ınez-Hinarejos was partially supported by the PROMETEO 2024 program (project LightVED, CIPROM/2023/17), forming part also of the R&D&I project ANNOTATE-MULTI2 (PID2024-156022OB-C32), funded by MICIU/AEI and FEDER/EU, and of the Iberian Digital Media Observatory (IBERIFIER Plus), co-funded by the EC under Call DIGITAL2023-DEPLOY-04 (Grant 101158511). 
+
+# Acknowledgments 
+
+We gratefully acknowledge the University of Oxford for their work in creating and sustaining the HEXI platform. We also thank Sue Ziebland and Ruth Sanders (Medical Sociology & Health Experiences Research Group, MS&HERG) for their availability and support. Finally, we would also like to pay tribute to the many volunteers who shared their experiences in this platform. 
+
+# Author Contributions 
+
+D. G-G., C. B., and A. A. designed the methodology. D. G-G. and C. B collected and curated the data. D. G-G. and C. B. wrote the initial draft version. D. G-G. and C. B. provided the software to analyse the data. C-D. M-H., I. T., and A. A. supervised. C-D. M-H., I. T., and A. A. acquired the funding. C-D. M-H., I. T., and A. A. administrated the project. C-D. M-H., I. T., and A. A. reviewed and edited the manuscript. All authors have read and agreed to the current version of the manuscript. 
+
+# Competing Interests 
+
+The authors declare no competing interests. 16

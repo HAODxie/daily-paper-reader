@@ -6,89 +6,65 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-28
-- 运行时间：2026-07-28 21:12:32 UTC
+- 最新运行日期：2026-07-29
+- 运行时间：2026-07-29 20:42:13 UTC
 - 运行状态：成功
-- 本次总论文数：23
-- 精读区：12
-- 速读区：11
+- 本次总论文数：15
+- 精读区：6
+- 速读区：9
 
 ### 今日简报（AI）
-今日共筛选23篇论文，精读12篇，重点关注EEG信号分析与深度学习结合的前沿进展。最值得精读的两篇均获9.0高分，分别提出基于条件VAE与循环一致性解码器的运动想象脑电信号增强方法，以及利用CNN预测rTMS抑郁症治疗疗效。建议读者关注EEG生成式增强在医疗健康领域的应用及跨中心验证的可行性。
-- 详情：[/202607/28/README](/202607/28/README)
+今日15篇EEG相关论文，精读聚焦睡眠分期与跨人群脆弱性，速读涵盖认知分析、EEG到文本解码及多模态推理。最值得关注LGFNet的CTC引导局部-全局融合框架睡眠分期（10分）和长程时域相关性盲区揭示的模型瓶颈（9分）。建议关注EEG基础模型对时域结构的建模缺陷，以及融合跨模态对齐策略的实用价值。
+- 详情：[/202607/29/README](/202607/29/README)
 
 ### 精读区论文标签
-1. [Generative Augmentation for EEG Motor Imagery Classification: A Class-Conditional VAE with Cycle-Consistent Decoder Refinement](/202607/28/2607.22733v1-generative-augmentation-for-eeg-motor-imagery-classification-a-class-conditional-vae-with-cycle-consistent-decoder-refinement)  
+1. [LGFNet: A CTC-Guided Local-Global Fusion Framework for Single-Channel Sleep Staging](/202607/29/2607.25197v1-lgfnet-a-ctc-guided-local-global-fusion-framework-for-single-channel-sleep-staging)  
+   标签：评分：10.0/10、query:neuro-mental
+   evidence：基于CTC的局部全局融合单通道睡眠分期框架
+2. [Foundation Models for EEG Are Blind to Long-Range Temporal Correlations: A Spectral-Temporal Dissociation Behind Their Cross-Population Fragility](/202607/29/2607.24834v1-foundation-models-for-eeg-are-blind-to-long-range-temporal-correlations-a-spectral-temporal-dissociation-behind-their-cross-population-fragility)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：使用条件变分自编码器进行脑电运动想象数据增强，改进了信号处理
-2. [Predicting the Outcome of rTMS Depression Therapy using EEG Signals and CNN](/202607/28/2607.22776v1-predicting-the-outcome-of-rtms-depression-therapy-using-eeg-signals-and-cnn)  
+   evidence：探测EEG基础模型的长时程时间相关性
+3. [Agentic AI-enabled discovery across large-scale sleep physiology](/202607/29/2607.25175v1-agentic-ai-enabled-discovery-across-large-scale-sleep-physiology)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：利用脑电和卷积神经网络预测rTMS抑郁症治疗结果，直接相关于心理健康
-3. [Subject-Level Heterogeneity in EEG Motor Imagery Decoding: A Large-Scale Benchmark and Portfolio-Based Reduction of the Search Space](/202607/28/2607.22778v1-subject-level-heterogeneity-in-eeg-motor-imagery-decoding-a-large-scale-benchmark-and-portfolio-based-reduction-of-the-search-space)  
+   evidence：AI驱动的大规模睡眠生理学数据分析
+4. [Neurai-VN Benchmark: Standardized Machine Learning Models for Multimodal Digital Phenotyping in Mental Health Classification](/202607/29/2607.25232v1-neurai-vn-benchmark-standardized-machine-learning-models-for-multimodal-digital-phenotyping-in-mental-health-classification)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑机接口中EEG运动想象解码流程基准测试
-4. [Multimodal Domain Generalization for Depression Detection: An Attention-Based BiLSTM Network with Domain-Adversarial Training](/202607/28/2607.22794v1-multimodal-domain-generalization-for-depression-detection-an-attention-based-bilstm-network-with-domain-adversarial-training)  
+   evidence：多模态数字表型用于心理健康分类
+5. [DynaBridge: Dynamic Summary-Guided Cross-Task Multimodal Fusion for DASS-Structured Mental Health Assessment](/202607/29/2607.25679v1-dynabridge-dynamic-summary-guided-cross-task-multimodal-fusion-for-dass-structured-mental-health-assessment)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：多模态抑郁检测结合领域泛化
-5. [Bayesian Complete-Pooling in Cross-Subject Classification for Motor Imagery Electroencephalogram](/202607/28/2607.22980v1-bayesian-complete-pooling-in-cross-subject-classification-for-motor-imagery-electroencephalogram)  
+   evidence：使用冻结LLM的多模态心理健康评估
+6. [Cognivia: A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare](/202607/29/2607.25681v1-cognivia-a-cognitive-behavioral-therapy-copilot-for-evidence-based-mental-healthcare)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：脑机接口中运动想象EEG的贝叶斯跨受试者分类
-6. [StageGuard: Physiologically Constrained Sleep Staging](/202607/28/2607.23284v1-stageguard-physiologically-constrained-sleep-staging)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：基于生理约束的自动睡眠分期
-7. [ATCNet-CIAM for Multi-Session Motor Imagery EEG Signal Classification](/202607/28/2607.23522v1-atcnet-ciam-for-multi-session-motor-imagery-eeg-signal-classification)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：ATCNet-CIAM提升了运动想象脑电分类性能，应用于脑机接口
-8. [Guiding Language Models to Be More Empathetic: Culturally Sensitive Mental Health Advice Generation Through Human-LLM Collaboration](/202607/28/2607.23538v1-guiding-language-models-to-be-more-empathetic-culturally-sensitive-mental-health-advice-generation-through-human-llm-collaboration)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：大语言模型用于共情心理健康建议生成
-9. [Self-Supervised Consistency Enhanced Disentangled Learning for Neural Decoding Generalization in Brain-Machine Interface](/202607/28/2607.24023v1-self-supervised-consistency-enhanced-disentangled-learning-for-neural-decoding-generalization-in-brain-machine-interface)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：自监督学习用于脑机接口神经解码泛化
-10. [A Cyclic Adaptation-Generalization Framework with Uncertainty-Guided Self-Paced Learning for Long-Term Brain-Machine Interfaces](/202607/28/2607.24031v1-a-cyclic-adaptation-generalization-framework-with-uncertainty-guided-self-paced-learning-for-long-term-brain-machine-interfaces)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：长期脑机接口的自适应框架
-11. [Towards simultaneous decoding of kinetic and kinematic movement parameters during grasp and lift task by noninvasive brain imaging](/202607/28/2607.24081v1-towards-simultaneous-decoding-of-kinetic-and-kinematic-movement-parameters-during-grasp-and-lift-task-by-noninvasive-brain-imaging)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：从脑电中解码运动参数用于脑机接口
-12. [EEGForceFusion: Joint Tokenised-Continuous Representation Learning for Subject-Independent Grasp Force Decoding](/202607/28/2607.24126v1-eegforcefusion-joint-tokenised-continuous-representation-learning-for-subject-independent-grasp-force-decoding)  
-   标签：评分：9.0/10、query:neuro-mental
-   evidence：EEGForceFusion用于抓握力解码，直接相关于脑机接口和脑电处理
+   evidence：基于大语言模型的认知行为治疗辅助工具
 
 ### 速读区论文标签
-1. [Explainable graph attention network for stress recognition (StressGAT) via differential action units](/202607/28/2607.20819v2-explainable-graph-attention-network-for-stress-recognition-stressgat-via-differential-action-units)  
+1. [CogEEGAgent: Toward Autonomous Cognitive EEG Analysis with Grounded Execution and Selection-Aware Verification](/202607/29/2607.25045v1-cogeegagent-toward-autonomous-cognitive-eeg-analysis-with-grounded-execution-and-selection-aware-verification)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：压力识别，心理健康监测
-2. [Disentangling the Interpretive and Predictive Roles of LIWC: Controlled Substitution in Depression-Related Classification](/202607/28/2607.22952v1-disentangling-the-interpretive-and-predictive-roles-of-liwc-controlled-substitution-in-depression-related-classification)  
+   evidence：基于大语言模型代理的自主EEG分析，带确定性验证
+2. [Joint Text-Audio Alignment for EEG-to-Text Decoding in Chinese Speech Production and Perception](/202607/29/2607.25626v1-joint-text-audio-alignment-for-eeg-to-text-decoding-in-chinese-speech-production-and-perception)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：抑郁分类，心理健康
-3. [Neonatal Hypoxic-ischaemic Encephalopathy Classification from the EEG and HRV Signals Using a Conformer based Masked Autoencoder](/202607/28/2607.23554v1-neonatal-hypoxic-ischaemic-encephalopathy-classification-from-the-eeg-and-hrv-signals-using-a-conformer-based-masked-autoencoder)  
+   evidence：使用文本-音频联合对齐实现中文言语EEG到文本解码
+3. [Knowledge-Guided Multimodal Reasoning over Interacting Streams for Video-Level Ambivalence and Hesitancy Recognition](/202607/29/2607.25961v1-knowledge-guided-multimodal-reasoning-over-interacting-streams-for-video-level-ambivalence-and-hesitancy-recognition)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：采用Conformer和掩码自编码器对EEG和HRV信号进行自监督学习
-4. [Evaluating Closed-Loop EEG Feedback for Simulated Prosthetic Vision in Immersive VR: A Sham-Controlled Feasibility Study](/202607/28/2607.23889v1-evaluating-closed-loop-eeg-feedback-for-simulated-prosthetic-vision-in-immersive-vr-a-sham-controlled-feasibility-study)  
+   evidence：多模态识别健康行为改变中的矛盾与犹豫，属于心理健康研究
+4. [Longitudinal White Matter Trajectories in Clinical High Risk and First-Episode Psychosis: Findings from the Multi-Centre PSYSCAN Study](/202607/29/biorxiv-10-64898-2026-07-20-739516-v1-longitudinal-white-matter-trajectories-in-clinical-high-risk-and-first-episode-psychosis-findings-from-the-multi-centre-psyscan-study)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：虚拟现实中假体视觉的闭环脑电反馈
-5. [Efficient and Interpretable Body-Based Emotion Recognition with Lightweight Temporal Convolutional Networks](/202607/28/2607.20820v2-efficient-and-interpretable-body-based-emotion-recognition-with-lightweight-temporal-convolutional-networks)  
+   evidence：临床高风险和首发精神病患者的白质纵向研究
+5. [Stress-Testing EEG Foundation Models for Clinical Decoding: Dataset Identity and Targeted Negative Controls](/202607/29/2607.24519v1-stress-testing-eeg-foundation-models-for-clinical-decoding-dataset-identity-and-targeted-negative-controls)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：情绪识别，心理健康
-6. [fMRI2Face: A Full-HD fMRI-Video Dataset and Geometry-Guided Neural Decoding Framework for Dynamic Human Face Reconstruction](/202607/28/2607.22302v1-fmri2face-a-full-hd-fmri-video-dataset-and-geometry-guided-neural-decoding-framework-for-dynamic-human-face-reconstruction)  
+   evidence：对EEG基础模型进行临床解码基准测试并实施阴性对照
+6. [Psychological Influences of Conversational AI: Research and Design Directions for Reducing Harm and Promoting Well-Being](/202607/29/2607.25057v1-psychological-influences-of-conversational-ai-research-and-design-directions-for-reducing-harm-and-promoting-well-being)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：fMRI数据集和神经解码用于人脸重建
-7. [An Interactive Vision Language Platform for Cognitive Remediation in Schizophrenia](/202607/28/2607.22721v1-an-interactive-vision-language-platform-for-cognitive-remediation-in-schizophrenia)  
+   evidence：对话式AI对心理健康的影响
+7. [CARE: A Multimodal Corpus for Studying Speech and Non-Verbal Communication Across Multiple Medical Conditions](/202607/29/2607.25903v1-care-a-multimodal-corpus-for-studying-speech-and-non-verbal-communication-across-multiple-medical-conditions)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：用于精神分裂症认知康复的视觉语言平台
-8. [Real-time Reconstruction of Human Visual Perception from fMRI](/202607/28/2607.22753v1-real-time-reconstruction-of-human-visual-perception-from-fmri)  
+   evidence：用于研究精神疾病言语的多模态语料库，支持心理健康监测
+8. [Posterior insula oscillations are not modulated by changes in perceived intensity: Evidence from human intracerebral EEG](/202607/29/biorxiv-10-64898-2026-07-17-739090-v1-posterior-insula-oscillations-are-not-modulated-by-changes-in-perceived-intensity-evidence-from-human-intracerebral-eeg)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：实时fMRI解码用于神经反馈，属于脑机接口技术
-9. [A Unified Tokenization Framework for Pain Recognition using Heterogeneous 3D Modalities](/202607/28/2607.19716v2-a-unified-tokenization-framework-for-pain-recognition-using-heterogeneous-3d-modalities)  
+   evidence：人类颅内脑电研究后岛叶振荡与痛觉感知的关系
+9. [Bayesian Feature Extraction using Gaussian and Diffused-gamma Priors for High Dimensional Spatio-Temporal Data](/202607/29/2607.24378v1-bayesian-feature-extraction-using-gaussian-and-diffused-gamma-priors-for-high-dimensional-spatio-temporal-data)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：多模态3D数据疼痛识别的深度学习框架
-10. [Sources of Inequity and Fairness Risks in Wellbeing Sensing](/202607/28/2607.21527v2-sources-of-inequity-and-fairness-risks-in-wellbeing-sensing)  
-   标签：评分：6.0/10、query:neuro-mental
-   evidence：分析心理健康感知中的公平性问题
-11. [Modeling Memory-Dependent Reliability of LLMs: A Hidden Markov Model](/202607/28/2607.22951v1-modeling-memory-dependent-reliability-of-llms-a-hidden-markov-model)  
-   标签：评分：6.0/10、query:neuro-mental
-   evidence：使用隐马尔可夫模型评估大语言模型可靠性
+   evidence：用于时空EEG数据的贝叶斯特征提取方法
 
 
 <div class="dpr-home-promo-card">
