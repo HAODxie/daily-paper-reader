@@ -1,0 +1,391 @@
+Title: Depression Markers in Speech: An Approach based on Tract Variables Dynamics
+
+URL Source: https://arxiv.org/pdf/2607.25888v1
+
+Published Time: Wed, 29 Jul 2026 01:22:26 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+# Depression Markers in Speech: An Approach based on Tract Variables Dynamics 
+
+Sahar Altalhi, 1 Tanaya Guha, 2 and Alessandro Vinciarelli 2
+
+> 1
+
+University of Glasgow (United Kingdom) and Taif University (Saudi Arabia) 
+
+> 2
+
+University of Glasgow (United Kingdom) 
+
+This study identifies new depression biomarkers based on the dynamical properties of tract variables, which represent geometric features describing the configuration of the speech ar-ticulators. A key advantage of this approach lies in its ability to quantify aspects of the articulatory process that have not been previously explored in the context of depression, namely predictability, complexity, and randomness. These properties are respectively char-acterised using the Largest Lyapunov Exponent, the Correlation Dimension, and the Sample Entropy. Thorough experiments were conducted on the Androids Corpus, a publicly avail-able dataset comprising 64 speakers diagnosed with depression by clinicians and 54 control speakers with no reported history of mental health conditions. The results indicate that the proposed biomarkers effectively discriminate between the depressed and control speakers, as evidenced by the high Cliff’s delta values across both read and spontaneous speech. [https://doi.org(DOI number)] [XYZ] Pages: 1–13 
+
+I. INTRODUCTION 
+
+A long-standing issue in diagnosing mental health conditions is that psychiatrists “continue to build on sub-jective clinical assessment”, and the community has of-ten highlighted the need to develop biomarkers that can provide objective measurement opportunities (Thibaut, 2018). In this context, the term biomarker refers to any measurable indicator of the severity or intensity of a men-tal health condition that offers insight into its underlying mechanism and prognosis (Majki´ c-Singh, 2011). This ar-ticle addresses this knowledge gap by identifying a set of speech biomarkers related to the Major Depressive Dis-order (commonly known as Depression) that, to the best of our knowledge, has not been investigated before. According to the latest data 1 from the World Health Organization, more than 4% of the world’s population experiences depression. Prevalence is particularly high among adults, affecting 5.7% globally (4.6% of men and 6.9% of women), and rises further to 5.9% among adults aged 70 years and older. These figures are concerning, and yet they are likely to be an underestimate of the ac-tual numbers, because depression remains undiagnosed (especially in men) due to social stigma (Covello, 2020) and lack of suitable healthcare support in large parts of the world (Wang et al. , 2007). Various behavioural cues, both verbal and non-verbal, have been studied in the con-text of depression; for example, facial expressions (Girard 
+
+et al. , 2013), head motion patterns (Gahalawat et al. ,2023) and lexical choices (Rude et al. , 2004). What makes speech an attractive modality is its availability and effectiveness in detecting depression. High-quality spoken data can be collected easily and unobtrusively with common devices like smartphones and laptops. In addition, only a few seconds of data are shown to be suf-ficient for detecting this condition with fairly high accu-racy (Aloshban et al. , 2020). Since patients with depres-sion tend to experience interactions negatively, mostly due to social impairments typically associated with the pathology, quick and easy ways to detect depression are critical (Kupferberg and Hasler, 2023). Last, but not least, it is since the earliest times of modern psychia-try that clinicians have observed the effect of depression on speech: ‘the patients speak in a low voice, slowly, hesitatingly, monotonously, sometimes stuttering’ (Krae-pelin, 1921). Therefore, speech-based biomarkers, among all other behavioural biomarkers, are both reliable and readily available. A key assumption underlying the current work is that the speech articulators , i.e., the anatomical elements shaping the sound produced during speech, constitute a dynamical system. This system can be understood as a physical system that changes its state over time, where the time dependence is measurable via its articulatory space. Therefore, the Tract Variables (TVs), i.e., the geometric features that represent the positions of the speech articulators, can be thought of as the system’s 
+
+observables ; where these observables are the measurable traces of the articulatory space. Mental health condi-tions such as depression are known to change the speech production process, which in turn changes the dynam-ics of the TVs (Williamson et al. , 2019). Therefore, a dynamical system-perspective enables analysing the articulatory process in terms of its predictability (mea-sured using the Largest Lyapunov Exponent (LLE)) and 
+
+complexity (measured using the Correlation Dimension (CD)). The dynamical system-based measures are com-plemented with an information-theoretic measure of ran-domness , called the Sample Entropy (SE), that measures the rate at which new information is generated. To the best of our knowledge, these properties of speech pro-   
+
+> J. Acoust. Soc. Am. /29 July 2026 1arXiv:2607.25888v1 [eess.AS] 28 Jul 2026
+
+duction dynamics have not been investigated before in the context of depression detection. These measures are hypothesized to contain depression-relevant information because the ‘neurophysiological change in depression gen-erally affects motor coordination, including articulatory control and dynamics’ (Williamson et al. , 2019). The studies reported in this paper have been con-ducted on the Androids Corpus (Tao et al. , 2023), which is a recently released large depression detection dataset. This is also the only publicly available corpus that is clinically validated, i.e., its subjects with depression have been actually diagnosed by professional psychiatrists. In contrast, the majority of past work used datasets that cannot be considered as clinical samples as they come from volunteers who have had their depression severity established through self-report questionnaires (Cummins 
+
+et al. , 2023). Therefore, the Androids Corpus is more likely to be representative of real ‘depressed speech’. In addition, the corpus includes both read and spontaneous 
+
+speech for over 90% of its speakers. The availability of speech collected under diverse conditions increases the chances of discovering relevant biomarkers. The rest of this paper is organized as follows: Sec-tion II surveys previous work, Section III describes the approach for the extraction of the proposed biomarkers, Section IV presents experiments and results, Section V presents the classification of depressed vs control speak-ers using the biomarkers proposed in this work, and the final Section VI draws some conclusions. 
+
+> II. SURVEY OF PREVIOUS WORK
+
+The most common approach to identifying depres-sion markers is to automatically extract features from speech signals and compare them between depressed speakers and a healthy control group, i.e., speakers not af-fected by any pathology (mental or physiological). When the difference is statistically significant, then the feature is considered a biomarker. Extensive surveys of the works based on such approaches are available, e.g., in Koops 
+
+et al. (2023) for depression and in Low et al. (2020) for psychiatric issues in general. The marker that has been investigated the most is the speaking rate , measured in terms of words or syllables per unit of time. The seminal experiments by Cannizzaro 
+
+et al. (2004) showed, for the first time, that depression leads to slower speaking and to increased number and length of pauses. The main limitation of the work is that only 7 speakers were involved. However, the findings were confirmed later using different and more substantial cor-pora by Tao et al. (2020) and Cummins et al. (2023). A wider spectrum of markers was considered by Menne 
+
+et al. (2024), who analyzed 44 speakers and focused on features known to be effective in automatic depression de-tection. Statistically significant differences between the depressed and healthy speakers were observed for several features, such as those related to pitch and energy. The experiments by France et al. (2000) involved 115 speakers and showed that the formants and the power spectral density were the most discriminative features while distinguishing between healthy controls and speak-ers affected by depression, dysthymia or suicidal ten-dencies. Jitter (variability of the fundamental period in the speech signal) and shimmer (variations in the ampli-tude of the vocal cord vibration) appeared to be effec-tive markers in a work that involved 9 speakers (Vicsi 
+
+et al. , 2012). Another analysis on 10 speakers identified glottal flow spectrum (Ozdas et al. , 2004) as a possible biomarker. Finally, the experiments by Scherer et al. 
+
+(2016) showed that the frequency range of the vowels uttered by depressed speakers tends to be narrower, es-pecially for what concerns vowels /i/ , /a/ and /u/ (253 speakers in total). The markers above correspond to the global aspects of speech, where such characteristics are averaged over an entire, possibly long recording. A more recent approach considered the idea of acoustic landmarks , i.e. “abrupt articulatory events” (Huang et al. , 2019b) that take place at specific points in time. This makes it possible to inves-tigate the effectiveness of biomarkers such as landmark counts and landmark N -grams, shown to identify de-pressed speakers with F1 Scores between 30% and 40% in the case of DAIC-WOZ, one of the most commonly used benchmarks in the literature (Huang et al. , 2019a,c). In a similar vein, the approach by Stasak et al. (2019) consid-ers speech segments corresponding to different configura-tions of the articulators, especially vowels, and then ex-tracts from them features known to represent speech sig-nals effectively, e.g., the eGeMAPS (Eyben et al. , 2015). The features are then fed to a classifier trained to detect depressed speakers and, when the performance is good, it means that the articulator configuration is a biomarker, i.e., that depressed and control speakers show different articulator configurations in correspondence of a partic-ular sound. The results show that the best results are observed when considering speech segments correspond-ing to stress in intonation. The experiments by Senevi-ratne et al. (2020) make a more explicit use of articula-tion by extracting TVs from the speech signals and by analyzing their correlation matrices with different delays. The results showed that the spectrum of the eigenvalues, the ordered set of eigenvalues obtained from the corre-lation matrix of the TVs, is different between depressed and control speakers (the distinction is based on a self-assessment questionnaire). A reliable biomarker is expected to provide informa-tion not only about the presence of a pathology, but also about its progression over time (Majki´ c-Singh, 2011). However, the only work considering the latter over an ex-tended period of time (18 months) and for a large number of speakers (more than 500) was presented by Cummins 
+
+et al. (2023). The experiments considered 28 speech fea-tures and the results showed that the strongest mark-ers are those related to speech rate, articulation rate and speech intensity in the case of a scripted speech task. The same problem is addressed by Williamson 
+
+et al. (2019) who focus on tracking the severity of de-pression over time. The analysis relied on the eigenval-   
+
+> 2J. Acoust. Soc. Am. /29 July 2026 FIG. 1. Illustration of the pellets’ positions (left) and tract variables (right).
+
+ues extracted from correlation matrices of the formants that were shown to be associated to the severity of the pathology. A similar approach was adopted by Alpert 
+
+et al. (2001), where the focus was understanding the in-terplay between psychomotor retardation and different pharmacological therapies over time. Overall, these re-sults confirm that the more severe the depression is, the slower a patient tends to speak. 
+
+> III. EXTRACTION OF THE BIOMARKERS
+
+In this section, we describe the process of extracting depression markers from speech signals in detail. Figure 2 gives an overview of our approach. 
+
+> A. Speech Inversion
+
+The goal of the Speech Inversion step is to map ev-ery speech sample into a sequence of TV values extracted at regular time steps (see Section III B for the definition of the TVs). The inversion method used in this work is closely inspired by the approach proposed by Sivaraman 
+
+et al. (2019) (see Figure 2). The first step is to detect speech activity segments with WhisperX (Bain et al. ,2023). A sequence of feature vectors composed of the first 13 Mel Frequency Cepstral Coefficients (MFCC) is extracted from each speech segment using a 20 ms analy-sis window with a 10 ms overlap. These form the frames 
+
+as described in Sivaraman et al. (2019). Before being further processed, the MFCCs are z-normalized in line with the suggestions by Mitra et al. (2012). The frames above are input to a Neural Network with 5 hidden layers (512 neurons each) with hyperbolic tan-gent as an activation function 2. The output layer has six neurons corresponding to the six TVs. The network is trained over the X-Ray Micro-Beam dataset (XRMB) (Westbury et al. , 1994). This corpus has 46 speakers (21 male and 25 female) whose speech was recorded while being scanned in an X-Ray machine (Westbury et al. ,1994). This made it possible to track the positions of 6 pellets attached to Upper Lip (UL), Lower Lip (LL), 
+
+Tongue Tip (T1), Tongue Blade (T2), Tongue Dorsum 
+
+(T3) and Tongue Root (T4). Thus, the corpus includes a synchronised speech signal and the position of the pellets (in terms of ( x, y ) coordinates over time). The speech has a sampling rate of 22.05 kHz and the pellet positions are sampled at 145 Hz. Figure 1 (a) shows the location of the pellets within the speech production apparatus, and Sec-tion III B explains how the position of the pellets allows the calculation of the TV values. The network used the original train:val:test split used by Siriwardena et al. (2023); Sivaraman et al. 
+
+(2019), where 36 speakers were used for training, 5 for validation and 5 speakers for testing 3. This allows testing whether the inversion results of our network match the state-of-the-art. Table I shows the speech inversion re-sults in terms of correlation between actual and predicted values of the TVs. Overall, the results suggest that the approach of this work reproduces the state-of-the-art in speech inversion.                                                       
+
+> J. Acoust. Soc. Am. /29 July 2026 3TABLE I. Pearson correlation results comparing our speech inversion MLP model with previous studies. All correlations are statistically significant ( p < 0.01), and the best result per TV is in bold . The results reported for this article (bottom row) are the average over 10 repetitions corresponding to different random initializations of the neural network (the standard deviation is always lower than 0.005). LA LP TBCL TBCD TTCL TTCD Average Sivaraman et al. 2019 0.856 0.613 0.866 0.745 0.707 0.907 0.782 Attia et al. 2023 0.868 0.590 0.742 0.780 0.597 0.893 0.745 Attia et al. 2024 w/ MFCCs 0.860 0.710 0.742 0.775 0.742 0.898 0.788 Attia et al. 2024 w/ HuBERT 0.878 0.724 0.743 0.809 0.787 0.925 0.810 This article 0.855 0.714 0.816 0.841 0.773 0.897 0.816
+> B. Definition of the TVs
+
+Figure 1 shows the position of the 6 pellets ( Upper Lip (UL), Lower Lip (LL), Tongue Tip (T1), Tongue Blade (T2), Tongue Dorsum (T3), Tongue Root (T4)) and the TV measurements. Figure 1 (a) also shows the approximations commonly used to represent the tongue and the palate, namely the Tongue Circle and the Palate Circle. The Tongue Circle is estimated as a circle fitted to the pellets T2, T3, and T4 with a fixed radius of 20 mm following the protocol of previous work (Sivaraman 
+
+et al. , 2019), while the Palate Circle is obtained by fitting a circle to the palate points available for each speaker using a least-squares optimization procedure. Let the centre of the Tongue Circle be denoted as ⃗ t = ( xT , y T )and that of the Palate Circle be ⃗p = ( x P , y P ). The TVs, illustrated in Figure 1 (b), are functions of the pellets’ coordinates and are defined as follows: 
+
+• Lip Aperture (LA) is the Euclidean distance be-tween the positions of the LL and UL pellets, denoted with ⃗ u LL = (xLL , y LL ) and ⃗ u U L =(xU L , y U L ), respectively. LA = ∥⃗u LL −⃗u U L ∥2; (1) 
+
+• Lip Protrusion (LP) is the horizontal distance of the LL pellet from the origin along the x axis (see Fig 1): LP = xLL ; (2) 
+
+• Tongue Body Constriction Location (TBCL) is measured as the angle between the x axis and the line passing through ⃗ t and ⃗p:TBCL = arctan 
+
+ yT − yP
+
+xT − xP
+
+
+
+; (3) 
+
+• Tongue Body Constriction Degree (TBCD) is the shortest distance between any point ⃗ u T on the Tongue Circle between ⃗u T 2 and ⃗u T 4 (see Figure 1) and any point ⃗u P on the Palate Circle: TBCD = min ⃗u P ,⃗ u T
+
+∥⃗u P −⃗u T ∥2; (4) 
+
+• Tongue Tip Constriction Location (TTCL) is the horizontal distance of the T1 pellet position, de-noted with ⃗u T 1 = ( xT 1, y T 1) from the y axis: TTCL = xT 1; (5) 
+
+• Tongue Tip Constriction Degree (TTCD) is the minimum distance between ⃗u T 1 and a point ⃗u P of the Palate Circle: TTCD = min ⃗u P
+
+∥⃗u T 1 −⃗u P ∥2. (6) The speech inversion process described above converts the speech signal into a sequence of these six TVs that measure the locations of the articulatory parameters. 
+
+> C. Embedding Extraction from the TVs
+
+The TV values are extracted at regular time steps, where each of the six TVs yields a sequence {ωk}Tk=1 ,where ωk ∈ R is the TV value extracted at time step 
+
+k with T being the total number of steps. The Tak-ens’ Theorem (Takens, 2006) suggests that the sequence 
+
+{ωk} contains information about the state-space of the dynamical system underlying the TVs, i.e., the articu-lation process. Following this theorem, the state-space can be reconstructed through the embeddings (different from the commonly understood concept of embeddings in Machine Learning) (Tan et al. , 2023). The embed-dings are essentially subsequences derived from the orig-inal sequence: ⃗ w k = {ωk, ω k+τ , . . . , ω k+( d−1) τ }, where τ
+
+and d are the delay and dimension of the embeddings. The embedding extraction step (see Figure 2) thus maps every sequence of TV values into a set of embeddings 
+
+W = {⃗w 1, . . . ,⃗ w M }, where M is the total number of embeddings available for a given TV sequence depend-ing on the parameters τ and d. The sequence W is the trajectory of the dynamical system in the state-space, a representation of the way the system evolves over time. In the experiments of this work, the parameter τ was selected by minimizing the mutual information between 
+
+ωk and ωk+τ with the publicly available package Neu-rokit2 (Makowski et al. , 2021) 4. This ensures that the              
+
+> 4J. Acoust. Soc. Am. /29 July 2026 ... w1_w2_wM_
+> Speech Inversion ...
+> ω1
+> ω2Embedding Extraction  LLE Estimation CD Estimation CD SE Estimation SE LLE
+> ωT
+> Speech Activity Segment Extraction
+> MFCC Extraction
+> ... Concatenation FFNN MFCC MFCC MFCC frames frames frames
+> ω1,ω2,...
+> ω1,ω2,...
+> ω1,ω2,...
+
+FIG. 2. The figure shows our experimental approach. Every recording is mapped into a sequence ω1, . . . , ω T of TV values extracted at regular time steps through a Speech Inversion step detailed in the right part of the picture (see Section III A). The sequence is used to obtain the state-space embeddings ⃗w 1, . . . ,⃗ w M that allow one to estimate LLE and CD. The sequence is also used to estimate an information-theoretic metric SE. 
+
+delay is long enough to limit the redundancy between the information conveyed by the different components of an embedding (Fraser and Swinney, 1986). The other pa-rameter d was determined using the approach proposed by Cao (1997) that examines how the average distance between the neighbouring points in the reconstructed state-space changes when the dimension increases from 
+
+d to ( d + 1). The optimal dimension is identified when increasing d does not change significantly the average dis-tance indicating that no additional information is created as we move to a higher dimension. The approach was im-plemented with the Neurokit2 package (Makowski et al. ,2021) 5.
+
+D. Largest Lyapunov Exponent Estimation 
+
+Consider the sequence W = {⃗w 1,⃗ w 2, . . . ,⃗ w M }, where 
+
+M denotes the number of embeddings. This trajectory represents the temporal evolution of the underlying dy-namical system, i.e., the articulatory process. In princi-ple, the same system should follow roughly the same tra-jectory when starting from the same point of the state-space. However, in the presence of chaos, trajectories having the same starting point can look very different, even if the underlying system is the same. Lyapunov Ex-ponents “quantify the exponential divergence of initially close state-space trajectories and estimate the amount of chaos in a system” (Rosenstein et al. , 1993). Therefore, this work involves measuring the Largest Lyapunov Expo-nent (LLE) of W that is known to characterize the rate of exponential divergence (Eckmann and Ruelle, 1985). This work is based on the LLE estimation approach proposed by Rosenstein et al. (1993) using the publicly available package Neurokit2 (Makowski et al. , 2021) 6.For each embedding ⃗ w j , its nearest neighbour N (⃗w j )is identified subject to a temporal separation constraint ∆t ≥ 1 
+
+> F
+
+, where F is the sampling frequency. The ini-tial separation is defined as dj (0) = ∥⃗w j − N (⃗w j )∥2.The evolution of the distance between neighbouring em-beddings after i discrete time steps is then denoted as 
+
+dj (i) = ∥⃗w j+i − N (⃗w j )+i∥2. Under the assumption of exponential divergence, these distances evolve approxi-mately as dj (i) ≈ dj (0) eλ1i∆t, which gives log dj (i) ≈
+
+log dj (0) + λ1i∆t. Thus, for each reference point j,the logarithmic divergence grows linearly with time with slope λ1. The estimate of Largest Lyapunov Exponent (LLE) for finite time steps i (scale) is given by averaging over j with time step i:
+
+λ1(i) = 1
+
+i∆t · 1
+
+M − i 
+
+> M−i
+
+X
+
+> j=1
+
+log dj (i)
+
+dj (0) (7) The final LLE, λ1, is obtained as the slope of the best linear fit of the mean logarithmic divergence curve: 
+
+⟨log d(i)⟩ = 1 
+
+> M−i
+
+PM −ij=1 log dj (i) with respect to time 
+
+i∆t. Hence, the final estimate can be written as: 
+
+λ1 = ddt ⟨log d(i)⟩ (8) 
+
+E. Correlation Dimension Estimation 
+
+The Correlation Dimension (CD) measures the min-imum dimensionality needed to represent a trajectory W
+
+in the state-space. Higher CD means that the trajec-tory is less constrained and the system has higher de-grees of freedom. In the case of the TVs, this means greater variability and flexibility in the articulation pro-cess. This work estimated the CD using the method pro-posed by Grassberger and Procaccia (1983), which relies on computing the correlation sum C(ρ). This is defined as the fraction of the available embedding pairs ( ⃗w i,⃗ w j )that are separated by a distance lower than a threshold 
+
+ρ:
+
+C(ρ) = 2
+
+M (M − 1) 
+
+> M
+
+X
+
+> i=1
+> M
+
+X
+
+> j=i+1
+
+Θ ( ρ − ∥ ⃗w i −⃗w j ∥2) , (9) where M is the total number of embeddings and Θ is the Heaviside function (equals 1 when its argument is positive and 0 otherwise). The quantity C(ρ) is related to the CD, denoted by D, as C(ρ) ∝ ρD , meaning that ln C(ρ) ∝ D ln ρ. C(ρ) is computed for different values of 
+
+ρ, and the value of D is defined as the slope of the linear relationship between ln C(ρ) and ln ρ. This slope can be computed by using any line fitting method.    
+
+> J. Acoust. Soc. Am. /29 July 2026 5F. Sample Entropy Estimation
+
+The Sample Entropy (SE) aims at estimating “the randomness of a series of data without any previous knowledge about the source generating the dataset” (Delgado-Bonal and Marshak, 2019) and it “also indicates more self-similarity in the time series” (Rich-man and Moorman, 2000), i.e., how fast new patterns emerge. Overall, low SE indicates that the TV sequences tend to be repetitive and always show similar patterns. In contrast, when the SE is high, new information is ex-pected to generate at a higher rate, where new patterns emerge. SE has been shown to be a useful marker of facial motion-related atypicality in Autism (Guha et al. ,2018), but has not been investigated in the context of speech to the best of our knowledge. The estimation of the SE (Richman et al. , 2004) takes place over a temporal sequence {ωk}Kk=1 of TV val-ues extracted from a speech recording, where K is the length of the sequence, ωk is the TV value extracted at time k/F and F is the TV sampling frequency. The first step of the process is to extract ( K − m + 1) vec-tors ⃗ω m(k) = ( ωk, ω k+1 , . . . , ω k+m−1) from the sequence, where m is a parameter to be set. The second step is to count the number B of pairs [ ⃗ω m(i),⃗ ω m(j)] such that 
+
+dist (⃗ω m(i),⃗ ω m(j)) ≤ r, where r is a user defined thresh-old, dist (.) is a distance function. In this work, we define 
+
+dist (⃗ω m(i),⃗ ω m(j)) = max k∈[1 ,m ] |ωm(i, k ) − ωm(j, k )|,and ωm(i, k ) is the kth component of vector ⃗ ω m(i); any other distance function is also valid. The third step of the process is to count the number A of pairs [⃗ω m+1 (i),⃗ ω m+1 (j)] such that dist (⃗ω m+1 (i),⃗ ω m+1 (j)) ≤
+
+r. The resulting SE is given by: 
+
+SE (m, r, K ) = − ln 
+
+ AB
+
+
+
+, (10) where the parameter m corresponds to the dimension of the state-space embeddings (estimated with the method described earlier) and r is set to one-fifth of the standard deviation of the sequence of the TV values. 
+
+> IV. EXPERIMENTS AND RESULTS
+
+The goal of this work is to identify depression biomarkers in speech, i.e., measurable aspects of speech that account for the presence of the pathology. The ex-periments thus involve comparison between healthy con-trols and speakers diagnosed with depression in terms of LLE, CD and SE to identify statistically significant dif-ferences between the two groups. The rest of this section presents the dataset used in the experiments and the re-sults that were obtained. 
+
+> A. The Androids Corpus
+
+All experiments were performed over the Androids Corpus (Tao et al. , 2023), a publicly available collection of 228 speech recordings produced by 118 speakers, in-cluding 64 diagnosed with depression by professional psy-chiatrists 7. The latter aspect is of particular importance because it means that the results presented in this work depend on the actual presence (or absence) of depression and not, like it happens in most previous works, on scores resulting from self-assessment questionnaires (Cummins 
+
+et al. , 2023). In addition, depressed and control speak-ers of the Corpus are matched in terms of age, gender and education level distribution (see Table II). This re-duces the potential influence of demographic confounding factors on articulatory dynamics and allows uncovering differences associated with the mental health condition rather than demographic variability. The speakers performed two different tasks, referred to as Reading Task and Interview Task . The Reading Task corresponds to reading a text ( The North Wind and the Sun by Aesop), while the second corresponds to answering questions about everyday life (the same for all speakers and in the same order). The first task aims at collecting read speech, while the other one allows the collection of spontaneous speech. The key difference be-tween the two is that the cognitive load required to plan what to say next is limited, if not absent, when read-ing and significant when speaking spontaneously. This is important because the cognitive load can blur the dif-ference between depressed and control speakers (Alpert 
+
+et al. , 2001), especially when it comes to speaking rate and length or frequency of pauses, some of the biomark-ers that were investigated the most in literature (see Sec-tion II). In case of the Reading Task, the total duration of the recordings is 1 hour, 33 minutes and 49 seconds. The average recording duration for a subject is 50.3 s over-all, for the speakers with depression, this average is 52.9 s and for the controls the average is 47.4 s. In case of Inter-views, the total duration of audio recording is 7 hours, 24 minutes and 22 seconds with an average length of 229.8 s per session. For the speakers with depression, the av-erage is 198.8 s, while it is 268.0 s for the control group. 
+
+> B. Results
+
+Table III shows the average ( ± standard deviation) LLE for depressed and control speakers. The results are reported separately for the two types of speech record-ings (read and spontaneous) corresponding to the Read-ing and Interview tasks. The comparison between the depressed and control speakers is performed for each TV individually, for all TVs together, and for two subsets corresponding to lips (LA and LP) and tongue region (TBCL, TBCD, TTCL and TTCD). Overall, Table III suggests that, in the case of read speech, the differences in LLE values between the two groups are statistically significant in all cases except LA. Besides reporting the p-values from the Mann-Whitney test, the table provides an assessment of the effect size through the absolute value of the Cliff’s δ, given by: 
+
+δ = n(xi > y j ) − n(xi < y j )
+
+NxNy
+
+, (11)                                             
+
+> 6J. Acoust. Soc. Am. /29 July 2026 TABLE II. Demographic information about the Androids Corpus. Mean age ±standard deviation for each group is shown per task. Acronyms Fand Mstand for Female and Male, respectively. Acronyms Land Hstand for Low (8 years of study at most) and High (at least 13 years of study) ed-ucation level, respectively. The sum over the education level columns does not correspond to the total number of partici-pants (118) because 2 of these did not provide details about their studies. Task Age MFLHReading Control 47.1 ±12.8 12 42 19 35 Depression 47.4 ±11.9 20 38 25 32 Total 47.2 ±12.3 32 80 44 67 Interview Control 47.3 ±12.7 11 41 19 33 Depression 47.5 ±11.6 21 43 29 33 Total 47.4 ±12.1 32 84 48 66 Total Control 47.3 ±12.7 11 41 19 33 Depression 47.4 ±11.9 20 38 25 32 Overall 47.3 ±12.2 31 79 44 65
+
+where Nx is the number of values in a set X =
+
+{x1, . . . , x Nx }, Ny is the number of values in a set Y =
+
+{y1, . . . , y Ny }, n(xi > y j ) is the number of pairs ( xi, y j )in which xi > y j , and n(xi < y j ) is the number of pairs (xi, y j ) in which xi < y j . Cliff’s δ can be interpreted as the degree to which quantities in one group tend to be larger than those in the other group. For example, δ = 0 indicates that values from either group is equally likely to be larger than the other, which corresponds to no effect. In contrast, a value such as δ = 0 .5 indicates that 75% of the paired comparisons favour one group over the other. According to the terminology proposed by Meissel and Yao (2024), the δ value is at least Medium in 6 cases out of the total 9. In particular, according to the same terminology, the effect is Large when using all TVs or the subset corresponding to the Tongue. This seems to sug-gest that, while working well individually, the TVs are effective biomarkers especially when considered jointly. One possible explanation is that the TVs account for dif-ferent aspects of the same articulation process and they all jointly contribute to shaping speech. As a confirma-tion, in the case of spontaneous speech, statistically sig-nificant differences are observed only for TV sets (Lips and Tongue) or all TVs together, although with a smaller Cliff’s δ.The LLE can be thought of as a “measure of a sys-tem’s predictability” (R¨ udis¨ uli et al. , 2013): the higher the LLE, the less a system is predictable. Table III shows that, whenever there is a statistically significant effect, the LLE is greater for depressed speakers. One possible reason is that speech production is the most complex motor process in humans and many people af-fected by depression “exhibit motor programming distur-bances” (Caligiuri and Ellwanger, 2000). These probably make the articulation process less predictable and, as a confirmation of such hypothesis, previous work showed that, in depressed speakers, the values of the same fea-ture extracted at different times tend to correlate less than in control speakers (Quatieri and Malyska, 2012; Williamson et al. , 2013), possibly due to lack of articula-tory coordination (Williamson et al. , 2019). Table IV shows the CD values for depressed and con-trol speakers in correspondence of individual TVs as well as groups of TVs corresponding to tongue and lips or all TVs together. The CD is an upper bound of the dimen-sionality needed to represent the points that belong to a set. In the experiments of this work, the points represent the states of a dynamical system and, therefore, the CD is the dimensionality of an attractor (Grassberger and Procaccia, 1983), the set of the states that a dynamical system tends to reach. The lower the dimensionality, the less the degrees of freedom of a system. In other words, when the dimension of an attractor is low, the underlying dynamical system shows a lower degree of variability in its observable behaviour. Table IV shows that, in the case of control speak-ers, the CD is always greater to a statistically significant extent, whether the comparison is made for individual TVs, for TV groups or for all TVs. Furthermore, the ta-ble shows that, unlike the LLE, the CD appears to be an effective marker for both read and spontaneous speech. This suggests that control speakers display, on average, higher variability in their speech patterns. One possible explanation is that the literature shows that, on aver-age, depressed speakers manifest lower variability along multiple aspects of speech, including energy (Cummins 
+
+et al. , 2013a; Quatieri and Malyska, 2012), spectral fea-tures (Cummins et al. , 2013b), prosody (pitch, energy and speaking rate) (Moore et al. , 2003), frequency range in vowel production (Scherer et al. , 2016), etc. Given that articulation is the process that underlies all of these observable aspects of speech, the CD captures lower vari-ability for all of them jointly. This probably explains why statistically significant differences are observed for all TVs. Table V shows the results corresponding to the SE. The difference between depressed and control speakers is statistically significant for all TV groups and for all in-dividual TVs except TTCL, TTCD and TBCL for the Reading Task and except TTCD and TBCL for the In-terview Task. The SE accounts for “the randomness of a series of data” (Delgado-Bonal and Marshak, 2019) and the table shows that its values are consistently greater for the control speakers. This suggests that depressed speakers show a lower degree of randomness, an observa-tion that, at first sight, seems to contradict the results obtained with the LLE (see above). However, the two markers capture different aspects because the LLE mea-sures how predictable the speech patterns are, while the SE measures how repetitive they are, i.e., how much the same patterns tend to reappear in a series (the speech signal in this case). In this respect, the results presented in Table III and Table V are compatible with each other:    
+
+> J. Acoust. Soc. Am. /29 July 2026 7
+
+TABLE III. The table reports, for every TV or group of TVs, average and standard deviation of the LLE observed for Control and Depressed speakers, for both Reading and Interview Task. The p-value column reports the outcome of the Mann-Whitney test (the values in bold are statistically significant after the application of the False Discovery Rate correction proposed by Benjamini and Hochberg (Benjamini and Hochberg, 1995)). Column |δ| shows the absolute value of the Cliff’s δ. Group Lips 
+
+includes LA and LP, while group Tongue includes TBCL, TBCD, TTCL and TTCD. Reading Task Interview Task TV Control Depressed p-value |δ| Control Depressed p-value |δ|
+
+LA 0.021 ±0.005 0.023 ±0.006 0.104 0.18 0.029 ±0.005 0.032 ±0.007 0.023 0.23 LP 0.020 ±0.005 0.025 ±0.007 <0.001 0.38 0.032 ±0.006 0.033 ±0.006 0.234 0.09 TTCL 0.022 ±0.006 0.026 ±0.007 0.001 0.34 0.028 ±0.005 0.030 ±0.006 0.035 0.22 TTCD 0.020 ±0.004 0.024 ±0.006 0.002 0.28 0.028 ±0.005 0.032 ±0.008 0.013 0.26 TBCL 0.022 ±0.006 0.029 ±0.008 <0.001 0.41 0.033 ±0.007 0.035 ±0.008 0.118 0.15 TBCD 0.025 ±0.008 0.030 ±0.009 <0.001 0.37 0.034 ±0.005 0.036 ±0.007 0.045 0.19 Lips 0.021 ±0.004 0.024 ±0.005 0.003 0.31 0.030 ±0.006 0.032 ±0.006 0.049 0.19 Tongue 0.022 ±0.004 0.027 ±0.006 <0.001 0.51 0.031 ±0.005 0.033 ±0.006 0.030 0.23 All 0.022 ±0.003 0.026 ±0.005 <0.001 0.50 0.031 ±0.005 0.033 ±0.006 0.024 0.23 TABLE IV. The table reports, for every TV or group of TVs, average and standard deviation of the CD observed for Control and Depressed speakers, for both Reading and Interview Task. The p-value column reports the outcome of the Mann-Whitney test. The values in bold are statistically significant after the application of the False Discovery Rate correction proposed by Benjamini and Hochberg (Benjamini and Hochberg, 1995). Column |δ| shows the absolute value of the Cliff’s δ. Group Lips 
+
+includes LA and LP, while group Tongue includes TBCL, TBCD, TTCL and TTCD. Reading Task Interview Task TV Control Depressed p-value |δ| Control Depressed p-value |δ|
+
+LA 3.66 ±0.32 3.47 ±0.31 0.001 0.33 3.19 ±0.23 3.10 ±0.28 0.006 0.27 LP 3.62 ±0.29 3.47 ±0.27 0.008 0.26 3.30 ±0.21 3.21 ±0.31 0.020 0.22 TTCL 3.42 ±0.33 3.34 ±0.37 0.022 0.22 3.20 ±0.24 3.06 ±0.36 0.013 0.24 TTCD 3.35 ±0.36 3.16 ±0.36 0.004 0.29 2.90 ±0.21 2.73 ±0.30 <0.001 0.36 TBCL 3.16 ±0.33 2.94 ±0.31 <0.001 0.37 2.63 ±0.18 2.50 ±0.28 0.002 0.32 TBCD 3.45 ±0.36 3.24 ±0.38 0.001 0.34 2.89 ±0.21 2.74 ±0.27 0.001 0.33 Lips 3.64 ±0.22 3.47 ±0.23 <0.001 0.40 3.25 ±0.19 3.14 ±0.25 0.007 0.27 Tongue 3.35 ±0.23 3.17 ±0.25 <0.001 0.40 2.91 ±0.15 2.77 ±0.25 <0.001 0.36 Overall 3.46 ±0.17 3.28 ±0.21 <0.001 0.49 3.04 ±0.14 2.91 ±0.21 0.001 0.35 
+
+LLE shows statistically significant effects mostly for read speech, and the SE shows significant effects for both read and spontaneous speech. Figure 3 summarizes the main trends observed in Tables III-V. The distributions show that depressed speakers generally have higher LLE val-ues, indicating lower predictability, while control speak-ers tend to have higher CD and SE values, indicating greater variability and less repetitive articulatory pat-terns. 
+
+C. Gender Differences 
+
+Table VI shows the absolute values of the Cliff’s δ
+
+whenever there is a statistically significant difference be-tween depressed speakers and the controls (the symbol ×
+
+means that the difference is not statistically significant). This investigates whether or not the observed effect is in-fluenced by the speaker’s (reported) gender. The results suggest that the proposed markers tend to be more effec-tive in the case of female speakers. In fact, the cases of statistically significant differences for female speakers are over four times those of the male speakers (out of a total of 54 cases, 10 for male and 45 for female). However, the probable reason is that the number of female speak-   
+
+> 8J. Acoust. Soc. Am. /29 July 2026
+
+TABLE V. The table reports, for every TV or group of TVs, average and standard deviation of the SE observed for Control and Depressed speakers, for both Reading and Interview Task. The p-value column reports the outcome of the Mann-Whitney test. The values in bold are statistically significant after the application of the False Discovery Rate correction proposed by Benjamini and Hochberg (Benjamini and Hochberg, 1995). Column |δ| shows the absolute value of the Cliff’s δ. Group Lips 
+
+includes LA and LP, while group Tongue includes TBCL, TBCD, TTCL and TTCD. Reading Task Interview Task TV Control Depressed p-value |δ| Control Depressed p-value |δ|
+
+LA 0.26 ±0.06 0.23 ±0.05 0.001 0.33 0.22 ±0.03 0.20 ±0.03 0.001 0.33 LP 0.22 ±0.04 0.19 ±0.04 <0.001 0.39 0.19 ±0.03 0.17 ±0.03 0.002 0.32 TTCL 0.24 ±0.06 0.23 ±0.05 0.202 0.09 0.24 ±0.03 0.23 ±0.04 0.024 0.21 TTCD 0.26 ±0.05 0.25 ±0.06 0.119 0.13 0.24 ±0.03 0.23 ±0.04 0.213 0.09 TBCL 0.18 ±0.04 0.18 ±0.05 0.487 0.00 0.13 ±0.02 0.12 ±0.04 0.087 0.15 TBCD 0.16 ±0.04 0.14 ±0.04 <0.001 0.30 0.13 ±0.02 0.11 ±0.02 0.001 0.33 Lips 0.24 ±0.04 0.21 ±0.05 0.002 0.42 0.20 ±0.03 0.18 ±0.03 <0.001 0.38 Tongue 0.21 ±0.03 0.20 ±0.03 0.024 0.22 0.20 ±0.02 0.19 ±0.03 0.022 0.22 Overall 0.22 ±0.03 0.21 ±0.03 <0.001 0.37 0.20 ±0.02 0.19 ±0.02 0.001 0.33 
+
+FIG. 3. Distribution of speaker-level mean LLE, CD and SE for the Reading and Interview tasks. For each task, boxplots illustrate the distribution across speakers for healthy controls (green) and depressed patients (red). Individual points represent speaker-level mean values averaged across the six tract variables. 
+
+ers is greater (80 vs 32 for the Reading Task and 84 vs 32 for the Interview Task) due to the highest prevalence of depression among women (Kuehner, 2017). As a con-firmation, when performing the same comparisons using only 32 randomly selected female speakers, the number of statistically significant effects becomes comparable to the one observed for the male ones (3 out of 54). Another interesting observation is that, when con-sidering all speakers, the LLE shows 8 statistically sig-nificant differences for read speech and 3 for spontaneous speech (see Table III), while for female speakers both numbers are 8. In other words, the LLE appears to be an effective marker for both read and spontaneous speech in the case of female speakers, but not in the case of male ones. One possible explanation is that the cognitive load required to plan what to say next - the possible expla-nation between the effectiveness differences observed be-tween read and spontaneous speech (Alpert et al. , 2001) - does not have the same impact on both female and male speakers. Note that for the male speakers in the Androids Cor-pus the difference between the controls and the depressed group is less pronounced. It is also observed that the 
+
+|δ| values tend to be higher for male speakers; this trend holds across all 10 statistically significant effects reported in Table VI. In contrast, only 6 out of the 45 |δ| val-ues computed for female speakers exceed the minimum 
+
+|δ| value observed for males, which is 0.41. This sug-gests that, on average, the differences between depressed speakers and control participants are more pronounced    
+
+> J. Acoust. Soc. Am. /29 July 2026 9
+
+in female speakers, at least with respect to the markers proposed in this study. 
+
+> V. CLASSIFYING DEPRESSED VS CONTROL SPEAKERS
+
+This section presents the feasibility of using the pro-posed biomarkers as features in a Machine Learning sys-tem to distinguish between the depressed and control speakers. To evaluate this, the three biomarkers (LLE, CD and SE) are computed for each of the six TVs, yield-ing a feature vector of dimension 18 corresponding to each audio sample. These features are used as input to a Support Vector Machine (SVM). Table VII reports the classification results achieved using a 5-fold cross-validation in terms of accuracy, precision, recall and F1. The results show that the biomarkers can achieve better results for the Reading task when compared to a simi-lar classification baseline: Low Level Descriptors (LLDs) from speech input to an SVM as reported by Tao et al. 
+
+(2023). The results are comparable for the Interview task. This result is encouraging as it demonstrates that the biomarkers are powerful enough to distinguish be-tween the two classes. 
+
+> VI. CONCLUSIONS
+
+This article proposed new depression biomarkers in speech, namely LLE, CD and SE, that are derived from the dynamics of the TVs in speech articulation. LLE is seen as a measure of predictability, CD measures com-plexity and the SE is an information-theoretic measure of randomness. Unlike past studies that used self-reported depression scores, this work used our own Androids Cor-pus (Tao et al. , 2023), involving 64 speakers diagnosed with depression by professional clinicians and 54 control speakers with no history of mental health issues. All three biomarkers show significant differences between the depressed and the control participants. To the best of our knowledge, this is the first work showing that such measurements are effective depression biomarkers. The experiments considered read (reading a piece of text) and spontaneous speech (collected through in-terviews), and thus make it possible to analyze the ef-fectiveness of the biomarkers both in the presence and absence of the cognitive effort required to plan what to say next - an important factor in detecting depressive symptoms (Alpert et al. , 2001). The only marker that appears to be affected by the added cognitive load dur-ing interviews is the LLE, which is effective only for read speech. This suggests that the cognitive effort involved in spontaneous speech might make the TV dynamics less predictable in general, thereby reducing any observable difference between depressed and control speakers. The other two measurements (CD and SE) are equally effec-tive for both read and spontaneous speech and are not affected by the changes in cognitive load. Most likely, the differences observed for CD and SE depend rather on psychomotor retardation, i.e., on the influence of de-pression on motor skills (Caligiuri and Ellwanger, 2000). The main limitation of this work, and more gener-ally of the research on biomarkers, is that these are sup-posed to be objective traces of depression, but their def-inition depends on the judgment of the clinicians. Any measurable aspect of speech is considered an effective biomarker whenever it is consistent with clinical diag-noses that, although rigorous, could still be biased and subjective (Koops et al. , 2023). On the other hand, in the case of the Androids Corpus, the patients were diag-nosed before the collection of the data and they interact face-to-face with clinicians they have been meeting for several years. Therefore, the diagnosis does not result only from speech data, but from all behavioural chan-nels available during co-located meetings (facial expres-sions, words, posture, etc.), including all the information recorded about patients in the healthcare centre. In this respect, the results of Section IV are unlikely to depend on a mere tendency of the clinicians to diagnose people who speak in a certain way as depressed. Also note that the number of female speakers is twice the number of male speakers (see Section IV). This is expected as all epidemiological studies show that women tend to develop depression more frequently than men (Kuehner, 2017). Consequently, when analyz-ing male and female speakers separately, the effects are greater for females. However, when limiting the female speakers to the number of available male speakers (32 persons), the performance of the biomarkers is compa-rable across genders. This suggests that the observed differences do not depend on gender, but on the number of available samples for each gender. The experiments consider every TV individually, but the strongest effects, as measured by the absolute value of the Cliff’s δ, are observed for the TV groups corre-sponding to lips and tongue regions or to the whole set of TVs. The highest value of |δ| for an individual TV is 0.41 (TBCL in the case of LLE for read speech), while it is 0.51 for a group of TVs (tongue in the case of LLE for read speech). Furthermore, |δ| ≥ 0.4 for only 1 indi-vidual TV out of 36 comparisons between depressed and control speakers, while |δ| > 0.4 6 times out of 18 in the case of TV groups. This is not surprising because the pellets do not move independently, but in coordination, at least at the level of distinct organs such as tongue and lips. In other words, the discrimination power of a biomarker improves when considering the value of a TV in the “context” of the other TVs and not in isolation. Overall, the results in this work suggest that, in de-pressed speakers, articulation is less predictable (greater LLE), more constrained (lower CD), and more repetitive (lower SE). Although they do not necessarily correspond to any specific perceptual characteristics of speech (e.g., lower loudness or slower speaking rate), the biomarkers account for the presence of the pathology consistently and reliably. Future work will focus on using them as a representation for more sophisticated automatic depres-sion detection systems, possibly in conjunction with foun-dation models. More broadly, using TVs as observables of a dynamical system opens new ways to explore aspects    
+
+> 10 J. Acoust. Soc. Am. /29 July 2026
+
+TABLE VI. The table shows the difference between depressed and control groups (in terms of |δ| values) when considering female and male speakers separately. The acronym F stands for female, while the M one stands for male. The symbol × means that the difference between depressed and control speakers is not statistically significant according to a Mann-Whitney test with False Discovery Rate correction (Benjamini and Hochberg, 1995). Reading Task Interview Task TV LLE(F) LLE(M) CD(F) CD(M) SE(F) SE(M) LLE(F) LLE(M) CD(F) CD(M) SE(F) SE(M) LA × × 0.23 × 0.26 0.50 0.28 × 0.30 × 0.30 ×
+
+LP 0.44 × 0.32 × 0.30 0.60 × × × × 0.37 ×
+
+TTCL 0.26 × × × × × 0.34 × × × 0.25 ×
+
+TTCD 0.25 × 0.27 × × × 0.36 × 0.43 × 0.27 ×
+
+TBCL 0.38 0.63 0.38 × × × 0.26 × 0.42 × 0.24 ×
+
+TBCD 0.38 × 0.31 × 0.27 × 0.23 × 0.36 × 0.26 ×
+
+Lips 0.37 × 0.39 0.41 0.35 0.57 0.26 × 0.25 × 0.39 ×
+
+Tongue 0.44 0.57 0.35 0.44 × × 0.34 × 0.40 × 0.23 ×
+
+Overall 0.47 0.52 0.43 0.57 0.30 0.45 0.33 × 0.38 × 0.38 ×
+
+TABLE VII. Classification performance of the proposed biomarkers compared with the Low Level Descriptors (LLDs) base-line (Tao et al. , 2023) on the Androids Corpus for the Reading and Interview tasks. Results are reported as mean( ±standard deviation). Best values per metric are highlighted in bold. The sign (*) denotes statistically significant differences compared to the random classifier. 
+
+Accuracy Precision Recall F1-score 
+
+Random Classifier 50.1 51.8 51.8 51.8 
+
+Reading Task 
+
+LLDs + SVM (Tao et al. , 2023) 69.6* ±5.3 73.6* ±19.1 68.8* ±12.0 68.4* ±7.7 (LLE, CD, SE) + SVM 73.2* ±7.44 71.73* ±16.67 70.12* ±13.21 70.44* ±13.31 Interview Task 
+
+LLDs + SVM (Tao et al. , 2023) 73.3* ±10.6 73.5* ±16.1 74.5* ±13.2 73.6* ±13.6 
+
+(LLE, CD, SE) + SVM 68.16* ±3.2 73.15* ±15.32 62.99 ±13.38 65.61* ±7.79 
+
+of speech pathology that, to the best of our knowledge, have not been investigated so far. 
+
+VII. AUTHOR DECLARATIONS 
+
+The authors of this work have no Conflicts of Inter-est. 
+
+VIII. DATA AVAILABILITY STATEMENT 
+
+All the experiments of this work have been performed over the Androids Corpus (Tao et al. , 2023), a publicly available depression detection benchmark (see footnote 7 for the download link). 
+
+ACKNOWLEDGMENTS 
+
+Alessandro Vinciarelli is supported by the UKRI through the UKRI Centre for Doctoral Training in So-cially Intelligent Artificial Agents (EP/S02266X/1).             
+
+> 1https://www.who.int/news-room/fact-sheets/detail/ depression
+> 2The first three layers have the same parameters as those of the publicly available implementation available in (Sivaraman et al. ,2019), where the hidden layers are only 3 and not 5.
+> 3The test speakers are JW18, JW31, JW33, JW39, and JW61, according to the IDs provided in (Westbury et al. , 1994).
+> 4https://neuropsychology.github.io/NeuroKit/functions/ complexity.html#neurokit2.complexity.complexity_delay ,last accessed in September 2025.
+> 5https://neuropsychology.github.io/NeuroKit/functions/ complexity.html#neurokit2.complexity.complexity_ dimension , last accessed in September 2025.
+> 6https://neuropsychology.github.io/NeuroKit/functions/ complexity.html#complexity-lyapunov ,last accessed in September 2025.
+> 7https://github.com/androidscorpus/data ,last accessed in September 2025. Aloshban, N., Esposito, A., and Vinciarelli, A. ( 2020 ). “Detecting depression in less than 10 seconds: Impact of speaking time on depression detection sensitivity,” in Proceedings of the Interna-tional Conference on Multimodal Interaction , p. 79–87.
+> J. Acoust. Soc. Am. /29 July 2026 11
+
+Alpert, M., Pouget, E. R., and Silva, R. R. ( 2001 ). “Reflections of depression in acoustic measures of the patient’s speech,” Journal of Affective Disorders 66 (1), 59–69. Attia, A. A., Siriwardena, Y. M., and Espy-Wilson, C. ( 2024 ). “Improving speech inversion through self-supervised embeddings and enhanced tract variables,” in Proceedings of the European Signal Processing Conference , pp. 306–310. Attia, A. A., Tiede, M., and Espy-Wilson, C. Y. ( 2023 ). “Enhanc-ing speech articulation analysis using a geometric transformation of the x-ray microbeam dataset,” Technical Report. Bain, M., Huh, J., Han, T., and Zisserman, A. ( 2023 ). “Whis-perx: Time-accurate speech transcription of long-form audio,” Technical Report. Benjamini, Y., and Hochberg, Y. ( 1995 ). “Controlling the false dis-covery rate: a practical and powerful approach to multiple test-ing,” Journal of the Royal statistical society: series B (Method-ological) 57 (1), 289–300. Caligiuri, M. P., and Ellwanger, J. ( 2000 ). “Motor and cognitive aspects of motor retardation in depression,” Journal of Affective Disorders 57 (1), 83–93. Cannizzaro, M., Harel, B., Reilly, N., Chappell, P., and Snyder, P. (2004 ). “Voice acoustical measurement of the severity of major depression,” Brain and cognition 56 (1), 30–35. Cao, L. ( 1997 ). “Practical method for determining the minimum embedding dimension of a scalar time series,” Physica D: Non-linear Phenomena 110 (1-2), 43–50. Covello, K. ( 2020 ). “Stigma and help-seeking behaviours of men with depression: A literature review,” Mental Health Practice 
+
+23 (4). Cummins, N., Dineley, J., Conde, P., Matcham, F., Siddi, S., Lamers, F., Carr, E., Lavelle, G., Leightley, D., White, K. M. 
+
+et al. (2023 ). “Multilingual markers of depression in remotely collected speech samples: A preliminary analysis,” Journal of Affective Disorders 341 , 128–136. Cummins, N., Epps, J., and Ambikairajah, E. ( 2013 a). “Spectro-temporal analysis of speech affected by depression and psychomo-tor retardation,” in Proceedings of the IEEE International Con-ference on Acoustics, Speech and Signal Processing , pp. 7542– 7546. Cummins, N., Epps, J., Sethu, V., Breakspear, M., and Goecke, R. (2013 b). “Modeling spectral variability for the classification of depressed speech,” in Proceedings of Interspeech , pp. 857–861. Delgado-Bonal, A., and Marshak, A. ( 2019 ). “Approximate en-tropy and sample entropy: A comprehensive tutorial,” Entropy 
+
+21 (6). Eckmann, J. P., and Ruelle, D. ( 1985 ). “Ergodic theory of chaos and strange attractors,” Reviews of Modern Physics 57 , 617–656. Eyben, F., Scherer, K. R., Schuller, B. W., Sundberg, J., Andr´ e, E., Busso, C., Devillers, L. Y., Epps, J., Laukka, P., Narayanan, S. S. et al. (2015 ). “The geneva minimalistic acoustic parameter set (GeMAPS) for voice research and affective computing,” IEEE Transactions on Affective Computing 7(2), 190–202. France, D., Shiavi, R., Silverman, S., Silverman, M., and Wilkes, M. ( 2000 ). “Acoustical properties of speech as indicators of de-pression and suicidal risk,” IEEE Transactions on Biomedical Engineering 47 (7), 829–837. Fraser, A. M., and Swinney, H. L. ( 1986 ). “Independent coordi-nates for strange attractors from mutual information,” Physical Review A 33 (2), 1134–1140. Gahalawat, M., Fernandez Rojas, R., Guha, T., Subramanian, R., and Goecke, R. ( 2023 ). “Explainable depression detection via head motion patterns,” in Proceedings of the 25th International Conference on Multimodal Interaction , ICMI ’23, p. 261–270. Girard, J. M., Cohn, J. F., Mahoor, M. H., Mavadati, S., and Rosenwald, D. P. ( 2013 ). “Social risk and depression: Evidence from manual and automatic facial expression analysis,” in Pro-ceedings of the IEEE International Conference and Workshops on Automatic Face and Gesture Recognition , pp. 1–8. Grassberger, P., and Procaccia, I. ( 1983 ). “Characterization of strange attractors,” Physical Review Letters 50 , 346–349. Guha, T., Yang, Z., Grossman, R. B., and Narayanan, S. S. ( 2018 ). “A computational study of expressive facial dynamics in children with autism,” IEEE Transactions on Affective Computing 9(1), 14–20. Huang, Z., Epps, J., and Joachim, D. ( 2019 a). “Investigation of speech landmark patterns for depression detection,” IEEE Trans-actions on Affective Computing 13 (2), 666–679. Huang, Z., Epps, J., and Joachim, D. ( 2019 b). “Speech landmark bigrams for depression detection from naturalistic smartphone speech,” in Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing , pp. 5856–5860. Huang, Z., Epps, J., Joachim, D., and Sethu, V. ( 2019 c). “Natural language processing methods for acoustic and landmark event-based features in speech-based depression detection,” IEEE Jour-nal of Selected Topics in Signal Processing 14 (2), 435–448. Koops, S., Brederoo, S. G., de Boer, J. N., Nadema, F. G., Voppel, A. E., and Sommer, I. E. ( 2023 ). “Speech as a biomarker for depression,” CNS & Neurological Disorders-Drug Targets-CNS & Neurological Disorders) 22 (2), 152–160. Kraepelin, E. ( 1921 ). Manic-depressive insanity and paranoia (E. & S. Livingstone). Kuehner, C. ( 2017 ). “Why is depression more common among women than among men?,” The Lancet Psychiatry 4(2), 146– 158. Kupferberg, A., and Hasler, G. ( 2023 ). “The social cost of de-pression: Investigating the impact of impaired social emotion regulation, social cognition, and interpersonal behavior on social functioning,” Journal of Affective Disorders Reports 14 , 100631. Low, D. M., Bentley, K. H., and Ghosh, S. S. ( 2020 ). “Automated assessment of psychiatric disorders using speech: A systematic review,” Laryngoscope Investigative Otolaryngology 5(1), 96– 116. Majki´ c-Singh, N. ( 2011 ). “What is a biomarker? From its dis-covery to clinical application,” Journal of Medical Biochemistry 
+
+30 (3). Makowski, D., Pham, T., Lau, Z., Brammer, J., Lespinasse, F., Pham, H., Sch¨ olzel, C., and Chen, S. ( 2021 ). “NeuroKit2: Apython toolbox for neurophysiological signal processing,” Behav-ior Research Methods 53 (4), 1689–1696. Meissel, K., and Yao, E. S. ( 2024 ). “Using Cliff’s delta as a non-parametric effect size measure: an accessible web app and R tutorial,” Practical Assessment, Research, and Evaluation 29 (1). Menne, F., D¨ orr, F., Schr¨ ader, J., Tr¨ oger, J., Habel, U., K¨ onig, A., and Wagels, L. ( 2024 ). “The voice of depression: speech features as biomarkers for Major Depressive Disorder,” BMC Psychiatry 
+
+24 (1), 794. Mitra, V., Nam, H., Espy-Wilson, C., Saltzman, E., and Goldstein, L. ( 2012 ). “Recognizing articulatory gestures from speech for robust speech recognition,” The Journal of the Acoustical Society of America 131 (3), 2270–2287. Moore, E., Clements, M., Peifer, J., and Weisser, L. ( 2003 ). “Anal-ysis of prosodic variation in speech for clinical depression,” in 
+
+Proceedings of the Annual International Conference of the IEEE Engineering in Medicine and Biology Society , Vol. 3, pp. 2925– 2928. Ozdas, A., Shiavi, R., Silverman, S., Silverman, M., and Wilkes, D. (2004 ). “Investigation of vocal jitter and glottal flow spectrum as possible cues for depression and near-term suicidal risk,” IEEE Transactions on Biomedical Engineering 51 (9), 1530–1540. Quatieri, T. F., and Malyska, N. ( 2012 ). “Vocal-source biomarkers for depression: A link to psychomotor activity.,” in Proceedings of Interspeech , pp. 1059–1062. Richman, J., Lake, D., and Moorman, J. ( 2004 ). “Sample entropy,” in Numerical Computer Methods, Part E , 384 of Methods in Enzymology (Academic Press), pp. 172–184. Richman, J. S., and Moorman, J. R. ( 2000 ). “Physiological time-series analysis using approximate entropy and sample entropy,” American Journal of Physiology - Heart and Circulatory Physi-ology 278 (6), H2039–H2049. Rosenstein, M. T., Collins, J. J., and De Luca, C. J. ( 1993 ). “A practical method for calculating largest lyapunov exponents from small data sets,” Physica D: Nonlinear Phenomena 65 (1-2), 117– 134. Rude, S., Gortner, E.-M., and Pennebaker, J. ( 2004 ). “Language use of depressed and depression-vulnerable college students,” Cognition & Emotion 18 (8), 1121–1133. R¨ udis¨ uli, M., Schildhauer, T., Biollaz, S., and Van Ommen, J. (2013 ). “Measurement, monitoring and control of fluidized bed combustion and gasification,” in Fluidized Bed Technologies for 
+
+12 J. Acoust. Soc. Am. / 29 July 2026 Near-Zero Emission Combustion and Gasification , edited by F. Scala (Woodhead Publishing), pp. 813–864. Scherer, S., Lucas, G. M., Gratch, J., Skip Rizzo, A., and Morency, L.-P. ( 2016 ). “Self-reported symptoms of depression and PTSD are associated with reduced vowel space in screening interviews,” IEEE Transactions on Affective Computing 7(1), 59–73. Seneviratne, N., Williamson, J. R., Lammert, A. C., Quatieri, T. F., and Espy-Wilson, C. Y. ( 2020 ). “Extended study on the use of vocal tract variables to quantify neuromotor coordination in depression.,” in Proceedings of Interspeech , pp. 4551–4555. Siriwardena, Y. M., Attia, A. A., Sivaraman, G., and Espy-Wilson, C. ( 2023 ). “Audio data augmentation for acoustic-to-articulatory speech inversion,” in Proceedings of the European Signal Processing Conference , pp. 301–305. Sivaraman, G., Mitra, V., Nam, H., Tiede, M., and Espy-Wilson, C. ( 2019 ). “Unsupervised speaker adaptation for speaker inde-pendent acoustic to articulatory speech inversion,” The Journal of the Acoustical Society of America 146 (1), 316–329. Stasak, B., Epps, J., and Goecke, R. ( 2019 ). “An investigation of linguistic stress and articulatory vowel characteristics for auto-matic depression classification,” Computer Speech & Language 
+
+53 , 140–155. Takens, F. ( 2006 ). “Detecting strange attractors in turbulence,” in Dynamical Systems and Turbulence , edited by D. Rand and L.-S. Young (Springer), pp. 366–381. Tan, E., Algar, S., Corrˆ ea, D., Small, M., Stemler, T., and Walker, D. ( 2023 ). “Selecting embedding delays: An overview of embed-ding techniques and a new method using persistent homology,” Chaos: An Interdisciplinary Journal of Nonlinear Science 33 (3). Tao, F., Esposito, A., and Vinciarelli, A. ( 2020 ). “Spotting the traces of depression in read speech: An approach based on com-putational paralinguistics and social signal processing,” in Pro-ceedings of Interspeech , pp. 1828–1832. Tao, F., Esposito, A., and Vinciarelli, A. ( 2023 ). “The Androids Corpus: A new publicly available benchmark for speech based depression detection,” in Proceedings of Interspeech , pp. 4149– 4153. Thibaut, F. ( 2018 ). “Controversies in psychiatry,” Dialogues in Clinical Neuroscience 20 (3), 151–152. Vicsi, K., Sztah´ o, D., and Kiss, G. ( 2012 ). “Examination of the sensitivity of acoustic-phonetic parameters of speech to depres-sion,” in Proceedings of the International Conference on Cogni-tive Infocommunications , pp. 511–515. Wang, P. S., Angermeyer, M., Borges, G., Bruffaerts, R., Chiu, W. T., De Girolamo, G., Fayyad, J., Gureje, O., Haro, J. M., Huang, Y. et al. (2007 ). “Delay and failure in treatment seeking after first onset of mental disorders in the World Health Organi-zation’s World Mental Health Survey Initiative,” World Psychi-atry 6(3), 177. Westbury, J. R., Turner, G., and Dembowski, J. ( 1994 ). “X-Ray microbeam speech production database user’s handbook,” Tech-nical Report. Williamson, J. R., Quatieri, T. F., Helfer, B. S., Horwitz, R., Yu, B., and Mehta, D. D. ( 2013 ). “Vocal biomarkers of depression based on motor incoordination,” in Proceedings of the ACM In-ternational Workshop on Audio/Visual Emotion Challenge , p. 41–48. Williamson, J. R., Young, D., Nierenberg, A. A., Niemi, J., Helfer, B. S., and Quatieri, T. F. ( 2019 ). “Tracking depression severity from audio and video based on speech articulatory coordination,” Computer Speech & Language 55 , 40–56. 
+
+J. Acoust. Soc. Am. / 29 July 2026 13

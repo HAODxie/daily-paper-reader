@@ -1,0 +1,489 @@
+Title: E-MagDiP: Electro-Magnetic based Differential Privacy for EEG based Community Sensing
+
+URL Source: https://arxiv.org/pdf/2607.25968v1
+
+Published Time: Wed, 29 Jul 2026 01:22:39 GMT
+
+Number of Pages: 28
+
+Markdown Content:
+# E-MagDiP: E¯ lectro -¯M¯ a¯g¯ netic based D¯ i¯fferential P¯ rivacy for EEG based Community Sensing 
+
+## AYANGA IMESHA KUMARI KALUPAHANA, National University of Singapore, Singapore 
+
+## VISHRUTI RANJAN, National University of Singapore, Singapore 
+
+## LI-SHIUAN PEH, National University of Singapore, Singapore 
+
+EEG-based community sensing programs are emerging globally as a tool to leverage aggregated brain data to gain insights into attentiveness of students and employees 1 2 . But these programs raise privacy concerns because EEG signals contain sensitive personal information. Differential Privacy (DP) can protect individuals while preserving aggregate statistics, yet applying DP to EEG data is challenging as it requires user-level noise generation, which increases power and latency. Besides, most commercial EEG headsets cannot be modified to add such noise. We propose E-MagDiP, a framework that uses an external radio to transmit RF signals onto EEG headsets, perturbing signals at acquisition to induce DP noise. Experiments on three off-the-shelf headsets show E-MagDiP’s ability of providing DP guarantee 38.12 for 100 participants. To the best of our knowledge, E-MagDiP is the first framework to use RF signals for privacy instead of attacks, enabling practical DP for EEG community sensing without any user-level modification. CCS Concepts: • Computer systems organization → Embedded systems ; • Security and privacy → Human and societal aspects of security and privacy ; • Human-centered computing → Ubiquitous and mobile computing. Additional Key Words and Phrases: Community Sensing, EM Signals, EEG, Differential Privacy, Non-Configurable Wearable 
+
+ACM Reference Format: 
+
+Ayanga Imesha Kumari Kalupahana, Vishruti Ranjan, and Li-Shiuan Peh. 2026. E-MagDiP: E¯ lectro -¯M¯ a¯g¯ netic based D¯ i¯fferential P¯ rivacy for EEG based Community Sensing. In Proceedings of Make sure to enter the correct conference title from your rights confirmation email (Conference acronym ’XX). ACM, New York, NY, USA, 28 pages. https://doi.org/XXXXXXX.XXXXXXX 
+
+1 INTRODUCTION 
+
+Electroencephalogram (EEG) systems measure electrical activity of the brain through electrodes on the scalp and are widely used in applications like Brain Computer Interfaces (BCIs) and mental-state sensing [ 84 ]. More recently, the rise of portable consumer-grade devices has been leveraged to measure brain function in community settings [ 46 ]. This has been applied to variety of scenarios, like assessing factory productivity improvement under new machinery [ 1 ], evaluating the efficacy of new teaching methods [ 2 , 3, 66 ], and studying driver drowsiness for improving vehicle safety features and road conditions [ 54 , 59 ]. These applications illustrate the benefits of EEG-based community sensing. 
+
+> 1
+
+Brain-reading technology : https://u.osu.edu/mclc/2018/05/01/brain-reading-technology/ 
+
+> 2
+
+How China Is Using Artificial Intelligence in Classrooms | WSJ : https://www.youtube.com/watch?v=JMLsHI8aV0g Authors’ Contact Information: Ayanga Imesha Kumari Kalupahana, National University of Singapore, Singapore, ayangaim@comp.nus.edu.sg; Vishruti Ranjan, National University of Singapore, Singapore, vishruti@comp.nus.edu.sg; Li-Shiuan Peh, National University of Singapore, Singapore, peh@nus.edu.sg. Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org. 
+
+Conference acronym ’XX, Woodstock, NY 
+
+© 2018 Copyright held by the owner/author(s). Publication rights licensed to ACM. ACM ISBN 978-1-4503-XXXX-X/2018/06 https://doi.org/XXXXXXX.XXXXXXX , Vol. 1, No. 1, Article . Publication date: July 2026. arXiv:2607.25968v1 [cs.CR] 28 Jul 2026 2 • Kalupahana et al. 
+
+EEG data is sensitive because it contains deep insights into processes that contribute to cognitive, emotional and instinctual functions. EEG has previously demonstrated the ability to predict personal traits, and even uncover information like user’s PIN numbers, bank account details, romantic attractions, and skill levels in various tasks [ 71 , 73 ]. If raw EEG data falls into the wrong hands, it could adversely affect those whose data has been leaked. In community sensing settings, raw EEG data is often exposed to a data aggregator and stored for further analytics [ 83 ]. These aggregators hold considerable responsibility for protecting these data; despite this, many institutions have failed to do so. For example, the LAUSD [ 67 ] breach in 2022 allowed a hacking group to leak students’ personal, health, and psychological information online. Similarly, in 2018, a breach in a state-owned Aadhar [ 4 ] system exposed photos, fingerprints, and retinal scans of over a billion Indian citizens. Such instances, along with the lax industry practices in storing cognitive data [ 100 ] create fear and apprehension in individuals from participating in community sensing activities. This has led to some EEG-based community sensing programs being halted [2]. EEG signals are considered biometric signatures as they possess unique features tied to individuals [ 69 , 95 ]. Thus, standard mechanisms like anonymization fail in community sensing [ 56 , 83 ]. Mature techniques like secure-pairing and encryption are able to authorize access to data, but preservation of privacy with untrusted community sensing aggregators cannot be simply resolved through authorization. To address this, Differential Privacy (DP) has been proposed [ 33 , 42 , 88 ] to realise the potential of EEG community sensing programs [ 62 , 105 ]. DP can hide an individual’s presence by perturbing their data with statistical noise. One way is to add this noise to the data after collection. But, there have been attacks conducted whilst the data is being transmitted (like this proximity attack on Neurosky [ 104 ]). Additionally, the rising prevalence of WiFi-based communication of EEG headsets with servers [ 11 , 21 , 30 ] exacerbates the need for implementing statistical noise generation on the headsets to realize DP. However, injecting DP on the headsets is not practical. Most commercial EEG headsets are closed systems, they leave no access to modify their onboard data pipelines. Moreover, even if manufacturers choose to support this, wearable devices face tight power and computation limits [ 64 ], adding per sample perturbation can further constrain their already limited sampling rates. So, is there a way to provide DP without modifying existing EEG hardware? We draw inspiration from an unexpected source: prior work on EM-based attacks against analog sensors [ 68 , 91 , 92 ] and EEG systems [ 36 , 57 ]. These attacks use amplitude-modulated (AM) RF signals to deliberately corrupt sensor readings. Instead, we propose E-MagDiP which leverages electromagnetic (EM) signals for defence instead of attack. E-MagDiP performs AM on a white Gaussian signal and transmits it as an RF signal. When targeted electrodes or leads are exposed to the RF signal, it induces controlled Gaussian noise on the EEG stream, thereby achieving differential privacy without any modification to the EEG headset’s underlying hardware/software. E-MagDiP has been prototyped using the USRP B200 software-defined radio (SDR) interfaced with a PC. To evaluate our concept, we use three off-the-shelf EEG headsets: research grade OpenBCI Cyton, consumer grade Neurosky MindWave Mobile 2 and Sichiray Taurus 2.0 Brainwave, and show that E-MagDiP provides a DP guarantee of ( 𝜖 ) of 38.12 to 100 participants across all three unmodified commercial devices. Statistical noise addition to data can potentially reduce classification accuracy; however, E-MagDiP delivers improved accuracy of 1.2% over a state-of-the-art software-based DP method. We summarize our contributions as follows: 
+
+• We present E-MagDiP , which, to the best of our knowledge is the first method to provide DP for off-the-shelf EEG headsets for community sensing. 
+
+• We introduce a mechanism that provides required DP without any modifications to the EEG headsets. 
+
+• This is achieved by design of an RF-based perturbation technique that induces calibrated white Gaussian noise on EEG signals via AM transmission.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •3
+
+• We validate E-MagDiP on three commercial EEG systems: OpenBCI Cyton, Neurosky MindWave Mobile 2, and Sichiray Taurus 2.0 Brainwave. 
+
+• In user trials with 10 participants, E-MagDiP achieves DP with minimal impact on classification accuracy. The remaining of the paper is structured as follows. In Section 2, we discuss deployment scenario. Section 3 introduces background on DP theory, Gaussianity of amplitude modulated radio frequency signals and its impact on sensors, wires and electrodes, impact and quantification of white Gaussian noise induced on EEG and DP noise requirement in EEG based community sensing. In Section 4, we review the literature review on differential privacy preservation techniques for wearable community sensing applications, differential privacy without random noise generation and privacy and security attacks and protections for EEG and BCI. Section 5 outlines the various steps involved in our E-MagDiP framework. Experimental setup for validation of our solution against existing DP solutions is presented in Section 6. Section 7 presents experimental validation results while Section 8 discusses the off-the shelf EEG headsets’ technical specifications which limit/benefit E-MagDiP’s applicability. Health and regulatory concerns related to E-MagDiP deployment are discussed as limitations under Section 9. Finally, we conclude the paper in Section 10. 
+
+2 DEPLOYMENT SCENARIO 
+
+Figure 1 illustrates our deployment model. Consider a scenario like a classroom, where 𝑁 participants wear off-the-shelf EEG headsets. A trusted data collector deploys E-MagDiP inside the same room as the participants. 
+
+The transmitted EEG data is now differentially private and is stored in a remote analysis server outside the room. However, entities with access to this aggregated dataset may be curious or untrusted. 
+
+Attacker’s objective: The attacker seeks to infer private information about a specific participant 𝑛 , like cognitive state indicators. 
+
+Attacker’s capability: The attacker can observe aggregated EEG traces and has access to the data from remaining 
+
+𝑁 − 1 participants in similar tasks. This side information aids in reconstruction and inference tasks of participant 
+
+𝑛 [29, 107]. 
+
+Is encryption sufficient? No. Encryption protects unauthorized access of data. DP ensures that even if the data is exposed to the authorized but untrusted aggregator, they are unable to identify individuals from the data [ 29 ]. Student Name: ???  
+
+> Attention
+> level: ?? %
+
+Community sensing, data collected from classroom  Data aggregated 
+
+and stored in 
+
+external datastore 
+
+Attacker tries to obtain data 
+
+from datastore and gain 
+
+insights on private 
+
+information. 
+
+E-MagDiP 
+
+Fig. 1. E-MagDiP prevents attackers who can access aggregated data from being able to identify an individual’s private information and related data.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 4•Kalupahana et al.
+
+3 THEORY AND BACKGROUND 3.1 DP in community sensing 
+
+The key mathematical definitions and theorems of differential privacy that apply to EEG-based community sensing are summarized in this section. 
+
+Definition 3.1 (Differential Privacy [ 49 ]). A privacy mechanism M satisfies (𝜖, 𝛿 )-differential privacy ( 𝜖, 𝛿 > 0), if we have 
+
+𝑃𝑟 [𝑀 (𝐷 1) ∈ 𝑆 ] ≤ exp (𝜖 ) · 𝑃𝑟 [𝑀 (𝐷 2) ∈ 𝑆 ] + 𝛿 (1) for all adjacent EEG databases 𝐷 1 and 𝐷 2 which differ on at most one participant’s EEG record, with the participant’s data present/absent from the adjacent database, for all sets S ⊆ Range(M). Typically, the Gaussian mechanism is used to implement DP where random noise is drawn from a zero-mean Gaussian distribution and added to the query output 𝑓 (𝐷 ) with the Gaussian noise scaled to 𝑙 2 sensitivity [50]: 
+
+Definition 3.2 ( 𝑙 2 sensitivity [50]). For any function 𝑓 : 𝐷 → 𝑅 𝑑 , the 𝑙 2 sensitivity of 𝑓 w.r.t. 𝐷 is given as 
+
+Δ2 (𝑓 ) = max   
+
+> 𝐷 1,𝐷 2∈𝐷
+
+∥𝑓 (𝐷 1) − 𝑓 (𝐷 2)∥ 2 (2) for all 𝐷 1, 𝐷 2 differing on at most one record. Δ2 (𝑓 ) measures the Euclidean distance as follows: 
+
+Δ2 (𝑓 ) =√︄∑︁ 
+
+> 𝑖
+
+[𝑓 𝑖 (𝐷 1) − 𝑓 𝑖 (𝐷 2)] 2 (3) For any function 𝑓 : 𝐷 → 𝑅 𝑑 , the Gaussian mechanism with parameter 𝜎 for any dataset 𝐷 is 𝑀 (𝐷 ) = 𝑓 (𝐷 ) + 
+
+𝑁 (0, 𝜎 2)𝑑 :
+
+Theorem 3.3 (Gaussian Mechanism [ 50 ]). Let 𝜖 ∈ ( 0, 1] be arbitrary. For 𝑐 2 > 2 ln (1.25 /𝛿 ), the Gaussian mechanism with parameter 𝜎 ≥ 𝑐 Δ2 (𝑓 )/ 𝜖 is (𝜖, 𝛿 )-differentially private. 
+
+In addition, based on the results in [ 77 ], we have the following corollary on the overall privacy guarantee of multiple invocations of the Gaussian mechanism. 
+
+Corollary 3.4. Let 𝑓 1, . . . , 𝑓 𝑘 be a set of functions. For 𝑐 2 > 2 ln (1.25 /𝛿 ), applying Gaussian mechanism on 
+
+𝑓 1, . . . , 𝑓 𝑘 with parameter 𝜎 ≥ √𝑘 · 𝑐 Δ2 (𝑓 )/ 𝜖 is (𝜖, 𝛿 )-differentially private. 
+
+To understand the DP requirement for EEG based community sensing, we apply Theorem 3.3 to estimate the standard deviation of privacy noise required from each participant. 𝛿 in Theorem 3.3 is represented as 1/(number of participants in the EEG-based community sensing program) and Δ2 (𝑓 ) is the EEG measurement range (difference between the maximum and minimum EEG sensor reading). The standard deviation estimated using Theorem 3.3 is the total standard deviation of accumulated privacy noise from all the participants under a typical EEG based Distributed Differential Privacy (DDP) setup (𝜎 a+b+.... ). The total variance of the required privacy noise is the sum of variances across all participants: 
+
+𝜎 2 
+
+> 𝑎 +𝑏 +... +𝑁
+
+= 𝜎 2 
+
+> 𝑎
+
++ 𝜎 2 
+
+> 𝑏
+
++ .... + 𝜎 2 
+
+> 𝑁
+
+(4) Therefore, the standard deviation of the privacy noise required from each user to provide a (𝜖, 𝛿 )− DDP guarantee would be obtained as 
+
+𝜎 𝑎 = 𝜎 𝑎 +𝑏 +... +𝑁 /√𝑛 (5) Most machine learning-based classifiers used in community sensing require consecutive time-series EEG data to accurately estimate a participant’s behavior at a given time. Given the classifier requires 𝑗 consecutive samples from 𝑘 channels of the EEG sensors as input, we know from Corollary 3.4 that √𝑗 · √𝑘 · 𝑐 Δ2 (𝑓 )/ 𝜖 would be the   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •5
+
+required SD of white Gaussian noise in the EEG data to ensure differential privacy. Therefore, each user’s EEG data should have white Gaussian noise with standard deviation ( 𝜎 𝑎 ): 
+
+𝜎 𝑎 ≥√︁ 𝑗 · √𝑘 · 𝑐 Δ2 (𝑓 )/ √𝑛𝜖 (6) to ensure (𝜖, 𝛿 )-DDP guarantee at the server used in community sensing, after classification. Thus, the required SD of privacy noise increases proportionally to √︁ 𝑗𝑘 . Where 𝑗 is the number of consecutive timeseries EEG samples and 𝑘 is the number of EEG channels used by the classifier. 
+
+3.2 Homomorphic encryption with DP 
+
+Since we are providing DDP, the data is perturbed with less noise compared to local DP [ 86 , 93 ]. In other words, though noise is added at the user level, privacy is guaranteed only at the aggregated level. Hence additional security measures need to be taken for DDP. This is provided via Homomorphic Encryption (HE). HE allows servers to perform computations on the user data in its encrypted format [ 43 , 103 ]. Hence, user-level data must first be homomorphically encrypted to generate an aggregated value in an encrypted format. 
+
+3.3 Gaussianity of Amplitude Modulated (AM) radio frequency signals and its impact on sensors, wires and electrodes 
+
+According to Sung et al. [98], the envelope of Amplitude Modulated (AM) signal ( 𝑒 (𝑡 )) can be represented as: 
+
+𝑒 (𝑡 ) = 𝐴 𝑐 (1 + 𝑚 · 𝐴 𝑚 (𝑡 )) (7) where 𝐴 𝐶 is carrier amplitude, 𝑚 is the modulation index where 0 ≤ 𝑚 ≤1 and 𝐴 𝑚 (t) is the amplitude of the message signal at time 𝑡 . When 𝜌 = 𝐴 2 
+
+> 𝑐
+
+/2 𝜎 2 is sufficiently large, where 𝜎 is the SD of narrowband noise, 𝑒 (𝑡 )
+
+follows a Gaussian distribution, so its SD is √𝑎 · 𝜎 where a= 2 ·𝜌𝑚 2𝜎 2 
+
+> 𝑚
+
++1 and 𝜎 𝑚 is modulating function’s Gaussian process’s SD. Thus, the SD of the Gaussian distribution following the envelope of the AM signal ( 𝑒 (𝑡 )) is: 
+
+𝜎 𝑒 (𝑡 ) =√︁ 𝐴 2 
+
+> 𝑐
+
+· 𝑚 2 · 𝜎 2 
+
+> 𝑚
+
++ 𝜎 2 (8) In short, the SD of AM signals can be increased by raising the amplitude of the carrier signal ( 𝐴 𝑐 ), setting modulation index (𝑚 ) to 1 and increasing the SD of the modulating signal ( 𝜎 2 
+
+> 𝑚
+
+). These properties of AM signals have been exploited in prior attacks on analog sensors [ 68 , 91 , 92 ] and wired electrodes [ 36 , 57 ] by transmitting a targeted signal as a modulated message signal with a coupled carrier frequency( 𝑓 𝑐 ). In this work, to induce white Gaussian noise on EEG headsets, we select a white Gaussian noise signal as the message signal. We then aim to maximise the amplitude of the carrier signal while maintaining a modulation index of 𝑚 = 1. This in turn increases the SD of the Gaussian message signal, thereby inducing stronger white Gaussian noise on EEG data to meet DP noise requirements. Section 5 details how this underlying principle informs our overall system design. 
+
+3.4 Impact and quantification of white Gaussian noise induced on EEG 
+
+EEG signals are inherently non-Gaussian [ 97 ]. Hence, as Figure 2 suggests, the presence of Gaussian noise has little impact on the expected functionality of commonly used EEG filtering algorithms like Independent Component Analysis (ICA) [ 41 ]. This gives us confidence that remotely injected Gaussian noise onto EEG headsets for providing DP will not adversely affect EEG sensing accuracy. To accurately quantify the noise introduced in EEG signals, we need a reliable method to analyze its statistical properties. Allan Deviation (AD) analysis is widely used to identify white Gaussian noise and estimate its SD in sensor noise [ 60 , 63 , 79 , 80 , 106 ]. In AD analysis, the continuous time signal is divided into overlapping clusters, each with 𝑛 overlapped series from the original series over a duration 𝜏 . The signal is then averaged over 𝜏 to generate a new timeseries that represents variations at different averaging intervals. The variance among these groups is computed as function of 𝜏 , and   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 6•Kalupahana et al.
+
+Fig. 2. (a) The original signal is comprised of sources at 1.33Hz sine (red), 2Hz square (blue), and 4Hz sawtooth (yellow) waves. (b) Mixed signals wave (c) Effect of ICA applied to mixed signals wave – added Gaussian noise (scale=0.1) did not affect ICA’s recovery. Experiments were simulated using python script in Google Colab with original signal amplitude of 1. 
+
+AD is defined as the square root of this variance. As shown in Figure 3, different stochastic noise components dominate at different regions of 𝜏 , allowing sub-noise categories such as white Gaussian noise to be independently profiled and studied. Furthermore, the AD curve exhibits a slope of -0.5 in the presence of white Gaussian noise, and its SD is equal to the AD when 𝜏 = 1 [63 , 79 , 106 ]. Given these properties, we adopt AD analysis as a reliable method for quantifying the white Gaussian noise induced on EEG headsets. 
+
+Fig. 3. Different noise components are prominent at different duration of AD curve and standard deviation of white Gaussian noise can be derived when 𝜏 = 1 [79].   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •7
+
+3.5 DP noise requirement in EEG based community sensing 
+
+To determine the minimum noise required to guarantee DP, we follow the theorems in Section 3.1. Figure 4 depicts the required noise for different community sizes under a range of privacy guarantee levels. Since EEG-based community sensing focuses on classroom and factory floor environments, a reasonable target community size is 100 [ 24 ]. For 100 participants, community sensing program needs 34.33 𝜇 V of SD of white Gaussian noise per sample at the user level to facilitate DP with 𝜖 = 32 for 1 second 5-channel EEG system data sampled at 250 Hz rate. 
+
+> Fig. 4. Minimum noise’s standard deviation required per user per sample for different DP guarantees ( 𝜖 ) w.r.t. a given population size.
+
+According to DP theorem 6, SD of required DP noise per sample in 1 second data frame increases proportionally to square root of sampling rate and square root of number of used EEG channels. Hence community sensing program with 100 participants needs 21.71 𝜇 V SD of DP noise when data are arriving from 1-channel EEG system sampled at 512 Hz compared to 14.07 𝜇 V for 1-channel EEG headset with 215 Hz sampling rate. 
+
+4 RELATED WORKS 4.1 DP for wearable community sensing 
+
+In 2017, Apple introduced DP in macOS Sierra and iOS 10 [ 34 ] to ensure that analyses of user behavior and usage patterns could be performed without exposing identifiable user data. Recent Exposure Notification Privacy-preserving Analytics (ENPA) introduced by Apple and Google to enable automated alerts to users with potential exposure to COVID-19 has also used DP [ 35 ]. Existing deployments of DP for wearable-based community sensing are limited to smartphone-based systems. This is largely because wearables such as fitness trackers, smart watches and EEG headsets provide limited configurability, compute, and power resources [64].   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 8•Kalupahana et al.
+
+4.2 DP without random noise generation 
+
+Several recent works propose approaches for providing DP without noise generation. Duan et al. [ 48 ] mathe-matically validated that the inherent uncertainty associated with unknown quantities of noise available in the data can be used to guarantee privacy without adding external noise, when the data is sufficiently large in a centralized server setting. Bhaskar et al. [ 39 ] considered that the aggregated data itself has sufficient statistical noise to provide demanding DP guarantee, under the following few conditions: adversarial attackers’ limited knowledge regarding the data stored in the server and that each user entry in the server is independent. Such assumptions do not hold for EEG-based community sensing programs as Shukla et al. were able to build up a correlation model between hand movements data collected from Sony smartwatches and Emotiv Epoc+ EEG data to conduct EEG attacks [ 94 ]. Both [ 48 ] and [ 39 ] trust the centralized community sensing server where DP is guaranteed. In our work, we consider EEG based community sensing servers to be untrustworthy and ensure DP protection at the sensor hardware on the EEG headset before releasing the EEG data to the server. Kalupahana et al. [ 64 ] proposed Serandip, which leverages inherent sensor noise in wearable sensors - ac-celerometer, barometer and temperature sensor by changing the sensor configurations (sampling rate, filter cut-off frequencies and range) to generate data with a sufficient amount of inherent noise for differential privacy. Based on our exploratory study on Serandip’s applicability to existing EEG systems (Appendix A), the inherent sensor noise of OpenBCI EEG system at the lowest gain configuration is 5.7 𝜇 V with the notch filter on, and 38.4 
+
+𝜇 V with the notch filter off. So the OpenBCI EEG headset can satisfy the DP requirement of 34.33 𝜇 V from both inherent noise and environmental noise at a lower gain. However, environmental noise is highly unpredictable. Hence OpenBCI’s sensor noise is insufficient to provide DP reliably, even with the notch filter turned off, and at lower gain. The maximum achievable SD of white noise from non-configurable consumer-grade EEG headsets: Neurosky and Sichiray is 3.46 𝜇 V, which is way below the required 21.71 𝜇 V for 1-channel EEG system based community sensing program with 100 participants. This limits Serandip’s applicability to EEG-based community sensing programs. 
+
+4.3 Privacy and security for EEG and BCI 
+
+Privacy leakage and security attacks: Learning attacks are conducted to corrupt EEG analytics by perturbing EEG channel inputs [ 52 , 74 , 75 ]. These noise-based perturbation attacks are performed on EEG data at different stages of the EEG data pipeline, mainly data acquisition [ 36 , 57 ] and processing [ 40 , 72 , 74 ]. Beltran et al. claimed that an attacker with knowledge can reduce accuracy of EEG data analytics by upto 22% by conducting noise-based EEG attacks at the acquisition level [ 72 ]. Amplitude modulated RF signals have been recently employed to conduct end-to-end perturbation attacks on EEG data at acquisition level from off-the-shelf EEG headsets [ 36 , 57 ]. Xiao et al. were successful in stealing NeuroSky EEG data via a proximate attack and remote attacks while achieving 70.55% inference accuracy [ 104 ]. Hence, privacy protection for EEG data produced by EEG headsets must be provided at the data acquisition stage and data needs to be encrypted before transmission. 
+
+Privacy and security protection: Though there are multiple works regarding EEG attacks to corrupt and steal EEG data, to the best of our knowledge, no prior works targeted the privacy and security protection of EEG data. End-to-end attacking papers propose application-specific solutions like frequent change in frequencies of SSVEP control signals, response time personalization and common-mode rejection as algorithmic level countermeasures while shielding and active electrodes as design-level measures [ 36 , 57 ]. We also note that Emotiv applies AES encryption on data before sharing with the server to avoid EEG data stealing attacks [ 5]. For EEG-based community sensing, Differential Privacy has been proposed but not yet realized [62, 105].   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •9
+
+5 E-MAGDIP SYSTEM DESIGN 5.1 System overview 
+
+E-MagDiP consists of three main components: a DP noise transmission system using RF, EEG headsets, and an untrusted community sensing server, as illustrated in Figure 5. The DP noise transmission system determines the required SD of Gaussian noise based on the DP guarantee and the number of participants. The software-defined radio (SDR) setup, which includes a power amplifier and a transmitting antenna, is then configured to transmit the required amount of noise. Notably, E-MagDiP does not require any hardware or software modifications to the EEG headsets. EEG data is collected in AES-encrypted form by the untrusted community sensing server. To enable computations on the encrypted data, AES-encrypted signals are first converted to a homomorphic encryption format using an open-source AES-to-homomorphic conversion library [55]. This conversion allows computations to be performed on encrypted data without exposing raw signals. The server then aggregates the homomorphically encrypted data, applies decryption, and computes the average EEG values across participants similar to other EEG-based community sensing aggregation techniques [ 61 , 64 ]. Preprocessing techniques such as notch, band-pass filtering and wavelet based denoising are applied before classification algorithms to determine community-level cognitive activities, such as finding the most common attention level or meditation state. 
+
+5.2 Materials 
+
+Figure 6 shows the various components that form E-MagDiP experimental setup, and we walk through each in detail next. 
+
+5.2.1 EEG headsets: This section describes the EEG headsets (see Figure 7) used to test and validate E-MagDiP. 
+
+• OpenBCI EEG headband [ 9 ]: The OpenBCI EEG headband is a research-grade EEG headband compatible with all OpenBCI biosensing boards: Cyton [ 7 ], Ganglion [ 10 ], and CytonDaisy [ 8 ]. For E-MagDiP experiments, we interfaced the OpenBCI EEG headband with the Cyton OpenBCI biosensing board configured according to Table 1. The OpenBCI GUI Impedance widget for Cyton [ 22 ] was used to ensure proper electrode connectivity to the scalp. Data collection was performed using a Python script developed with the open-source BrainFlow library [82]. 
+
+• Neurosky Mind-Wave Mobile 2 EEG headset [ 20 ]: Neurosky is a consumer-grade EEG system (see Table 1 for configured factory settings) with a single dry electrode positioned on the forehead at the Fp1 location. EEG data was collected using a matlab script developed by interfacing with ThinkGear connector [27]. 
+
+• Sichiray Taurus 2.0 Brainwave headband [ 26 ]: Sichiray is another consumer grade EEG system (see Table 1 for configured factory settings) with single gold plated dry electrode to capture EEG signal at Fp1 location. Since the Sichiray headband also uses ThinkGear connector, the same matlab script developed for Neurosky was used for data collection. 
+
+Table 1. Configuration parameters for OpenBCI EEG headset and factory settings for Neurosky Mind-Wave Mobile 2 EEG headset and Sichiray Taurus 2.0 Brainwave headband used in E-MagDiP experimental setup                  
+
+> EEG Headset Model Configuration Parameter Value
+> OpenBCI +Cyton Sampling Rate 250Hz Gain 1Notch filter activation OFF No. of channels 5Neurosky Mind-Wave Mobile 2 Sampling Rate 512Hz Notch filter activation ON No. of channels considered 1Sichiray Taurus 2.0 Brainwave Sampling Rate 215Hz Notch filter activation ON No. of channels considered 1
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 10 •Kalupahana et al.
+> Fig. 5. System overview
+
+5.2.2 Software-defined radio: A Software-Defined Radio (SDR) is a RF communication system in which wireless communication components are implemented digitally using signal processing algorithms instead of analog circuitry. In this study, SDR was programmed using the open-source radio toolkit, GNU Radio [ 6 ]. We used USRP-B200 [ 87 ] as the SDR for our evaluations. The maximum transmission power achievable with the SDR is 20 dBm; however, this decreases significantly due to signal attenuation during wireless transmission. 
+
+5.2.3 Directional antenna : To transmit RF signals, the LPDA _ MAX log-periodic antenna [ 96 ] was used due to its directional properties. This antenna is designed to provide a gain of 4–7 dBi over a frequency range of 300–1000 MHz. 
+
+5.2.4 Omni-directional antenna: In environments where individuals, such as students in a classroom or workers on a factory floor, are spatially distributed, RF signals must be transmitted in multiple directions rather than a   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •11
+> Fig. 6. The E-MagDiP system setup as shown with a phantom head was used during initial experiments.
+> Fig. 7. The EEG systems: OpenBCI, Neurosky and Sichiray used in E-MagDiP experiments.
+
+single direction. To address this, experiments were expanded to include the omni-directional ANT500 antenna [ 90 ], which supports a frequency range of 75–1000 MHz, in addition to the log-periodic antenna. 
+
+5.2.5 Phantom head and EEG simulator: For our characterization experiments , we used a Phantom (10% Joe Fit Head Gel) from Clear Ballistics [ 37 ] to hold the OpenBCI EEG headset. The EEG electrodes were connected to the WhaleTeq SEEG 100E Single Channel EEG Test Unit which generates EEG test signals [102]. 
+
+5.2.6 Digital signal processing inside SDR:. A simple amplitude modulator was implemented in SDR using GNU Radio App’s software blocks where a Gaussian noise signal with a standard deviation of 35 was used as the modulating signal. 
+
+5.2.7 Power amplifier (PA):. We use the ZHL-2-8-S+ power amplifier from Mini-Circuits [ 76 ] between the SDR and antenna, to amplify the RF transmit power and induce higher Gaussian noise. Our power amplifier provides a gain of 35 dB (approximately at 24 V DC supply voltage for 10-1000 MHz frequency). 
+
+5.3 RF system design and calibration 
+
+5.3.1 Carrier frequency: For optimal radio frequency transmission, the carrier frequency must be determined considering the geometric dependence of the receiving antenna. Due to this, carrier frequency must be chosen empirically or based on prior knowledge of the system. In an EEG attacking scenario, this is done by sweeping   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 12 •Kalupahana et al.
+
+through a reasonable frequency range while monitoring the output of the target system. The expected range for the carrier frequency ( 𝑓 𝑐 ) can be determined mathematically, where it is related to the length (L) of electrode wires used in the system: 𝑓 𝑐 = c/L, where c is the speed of light [ 36 ]. Based on our measurements, the OpenBCI headset’s electrode length is 56cm for the ground electrode and 1.5m for other electrodes which demand 535.7 MHz and 200 MHz carrier frequencies respectively. Since the closest ISM band to the ground electrodes is 433.05-434.79 MHz, we selected 434 MHz as the carrier frequency for the OpenBCI headband. The SD of the induced white Gaussian noise does not exhibit significant variation across different carrier frequencies. In particular, the SD measured at 434 MHz was 52.54 𝜇 V, while at 535.5 MHz it was 50.78 𝜇 V. These measurements were taken under the following conditions: the notch filter was disabled, the EEG headset amplifier gain was set to 1, the SDR gain was set to 1, and both the carrier and modulation amplitudes were set to 100. The SD of the modulating Gaussian noise was 35. As the Neurosky Mind-Wave headset and Sichiray Taurus 2.0 Brainwave headband have shorter exposed reference electrode wires, we swept frequencies and identified 757 MHz as their best matching carrier frequency. 
+
+> Fig. 8. Effect of power amplifier on SD of white Gaussian noise on OpenBCI EEG headset.
+
+5.3.2 Effect of SDR and Power Amplifier on SD of Gaussian Noise: Higher white gaussian noise can be induced on EEG electrodes, if the RF transmit power is higher as it increases carrier amplitude. We ran experiments with and without a power amplifier and Figure 8 graphs our measurements. SD of Gaussian noise increased from 30+ to 50+ as a result of the SDR RF transmission and further increased to 70+ with the power amplifier. This shows the critical impact of the PA in E-MagDiP. Further, the PA enabled the transmission of radio frequency signals over a longer distance in Section 7.1. 
+
+5.4 RF system characterization 
+
+5.4.1 Transmitter and receiver distance with Differential Privacy: To see how well this method works over longer distances, we need to determine the potential maximum distance between the transmitter and receiver in practical deployments. For this, we consider a room that can accommodate up to 100 people. Community sensing settings would have similar footfall, schools have main halls with 17.4m x 9.8m area that can fit 100 occupants [ 17 ] and the space norm for university auditorium and lecture theater is 1.5m 2 per person [ 24 ] therefore we use a room of size 17.4m x 9.8m (Area: 170.52 m 2 ) in our calculations. By applying Pythagoras’ theorem and considering the transmitter being located at the center, the maximum distance we obtain is 9.98m between transmitter and receiver. We place the phantom head with the OpenBCI headset and EEG simulator 10m away from the RF setup.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •13
+
+We observed 53.13 𝜇 V and 32.8 𝜇 V of white Gaussian noise for the directional and omnidirectional antenna respectively. In summary, the system achieved a Differential Privacy guarantee of 𝜖 = 20 .68 for the directional antenna and 𝜖 = 33 .5 for the omnidirectional antenna. 
+
+5.4.2 Angle of incidence with Differential Privacy: To explore the effect of different angles of incidence on the SD of RF based white Gaussian noise induction, we placed the phantom head equipped with OpenBCI EEG electrodes and an EEG simulator (See Section 5.2.5) at varying angles relative to the directional antenna: 0 ◦,30 ◦, 45 ◦, 60 ◦, 90 ◦, 180 ◦ and 270 ◦. The setup was maintained at a fixed distance of 1.2m between the directional antenna and the phantom head. The SDR gain was set to 1, with amplitude parameters 𝐴 𝑚 = 𝐴 𝑐 = 100, noise SD = 35, and no power amplifier connected. Table 2 summarizes our observations. Our results indicate that higher white Gaussian noise is induced when the EEG electrodes are exposed to the main lobe of the antenna, resulting in a stronger privacy guarantee. However, in general, the SD of noise induced on EEG electrodes and the corresponding privacy guarantee remain roughly the same across different angles of incidence, except for slight variations due to antenna radiation pattern differences. 
+
+Table 2. Differential Privacy w.r.t. angle of incidence                          
+
+> Angle of White Gaussian DP Guarantee provided Incidence Noise Induction ( 𝜇 V) (for 100 participants)
+> 0◦50.78 21.64 30 ◦48.56 22.63 45 ◦47.47 23.15 60 ◦53.79 20.43 90 ◦56.27 19.53 180 ◦53.33 20.60 270 ◦45.75 24.02
+
+5.4.3 RF interference on BLE communication: Both the intended RF exposure and OpenBCI Bluetooth communi-cation operate in the RF domain, hence we investigated whether the RF transmission affects the Bluetooth-based EEG data transmission. We measured the packet loss in the OpenBCI GUI while varying the transmission power of the RF signal (well below the FCC threshold of 580 𝜇 W/cm 2) using a directional antenna and the phantom head setup. The gain of the SDR was adjusted to modulate the RF signal strength, while the distance between the trans-mitter and the phantom head remained constant at 1m throughout the experiment. Given the non-overlapping nature of the RF frequency (434 MHz) and Bluetooth (2.4 GHz) bands, we observed negligible packet loss across all tested RF power levels (See Table 3). 
+
+Table 3. Packet loss due to intended RF interference        
+
+> RF transmitting Power ( μW/cm 2)Packet loss based on 100K packets (%)
+> RF not applied 0557 0279.1 035.1 05.6 0.001 0.442 0
+
+6 EXPERIMENTAL SETUP 
+
+To evaluate E-MagDiP, we first select and implement several state-of-the-art baselines and classifier, then conduct user trials ( with approval from our university’s Institutional Review Board ) to evaluate the real-world impact of E-MagDiP.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 14 •Kalupahana et al.
+
+6.1 Baselines 
+
+6.1.1 Software noise generation for Differential Privacy (SoftwareDP):. Most commercial EEG headsets do not allow hardware or software modifications, but research-grade EEG systems like OpenBCI’s Cyton provide modifiable firmware. To compare E-MagDiP with conventional DP techniques, we implemented a state-of-the-art statistical noise generation method based on DP [ 49 ] in OpenBCI’s firmware. This baseline allows us to assess the trade-offs in energy consumption and latency introduced by conventional DP techniques when applied directly to an EEG headset. Unlike these methods, E-MagDiP does not modify EEG hardware or software, ensuring that it does not introduce additional overheads. 
+
+6.1.2 Sensor noise for Differential Privacy (SensorDP):. To explore the potential of leveraging EEG inherent sensor noise for differential privacy, we implemented recent work Serandip by following the paper [ 64 ] in OpenBCI system. 
+
+6.1.3 No noise added for Differential Privacy (NoDP):. To gauge the impact of RF-induced privacy noise on EEG data accuracy, we also established a baseline where no additional noise, either from radio frequency signals or software-based DP was introduced. This allows us to quantify any accuracy trade-offs that result from E-MagDiP’s approach. 
+
+6.2 EEG classifier selection 
+
+For evaluating the accuracy of E-MagDiP against baseline methods, we decided to use a popular EEG classifier that is widely adopted in BCI applications and compatible with OpenBCI EEG data. We selected a multi-class Steady-State Visual Evoked Potential (SSVEP) classifier, as it is used in many BCI applications [ 32 , 51 , 65 ] and leverages the OpenBCI EEG headband’s electrodes, which cover the occipital region— the most sensitive area on the scalp for visual processing and effectively capturing SSVEP response. As we are interested in exploring E-MagDiP’s ability to work with existing infrastructure, we used an existing open-source SSVEP classification model [ 38 ] for our accuracy evaluation. For this model, pre-trained model weights were not publicly available and the model was proposed to use without user-specific training. Hence, we trained the model using the popular SSVEP dataset: BETA dataset [ 70 ], adhering to the methodology described in the corresponding paper [38]. We first evaluated the classifier using the BETA data set’s 5 channels (PO5, PO6, O1, Oz, and O2) data belonging to 70 subjects with the leave-one-out cross-validation technique. To explore the potential of usability without user-specific training, we then tested BETA’s 70 user-based trained SSVEP model on the SSVEP Benchmark (SynAmps2, Neuroscan Inc.) [101] dataset’s 30-subject data. 
+
+6.3 User study setup 
+
+We recruited 10 participants (5 male, 5 female) for our experiments. Each participant wore OpenBCI EEG headband (see Section 5.2.1 ) for approximately 1.5 hours. The user study was conducted in a seminar room on the university premises. Participants were asked to stay seated while gazing at a screen with 4 Steady-State Visual Evoked Potential (SSVEP) stimuli flickering at 4 different frequencies: 11, 11.8, 14.2 and 15.8 Hz (as shown in Figure 9), following a procedure similar to recent SSVEP studies [ 53 ]. Participants and their headsets were exposed to noise-inducing Amplitude Modulated (SD=35,Am=Ac=100, SDR gain =0.734, power amplifier connected) RF signals (within safety regulations) at different distances (1-4m) from the transmitter, using omnidirectional and directional antenna. Additionally, participants’ 5-minute baseline data were collected while performing the same cognitive activities in a seated position without RF exposure (NoDP, SensorDP) and with software-based white Gaussian noise generation (SoftwareDP) in absence of RF exposure, for accuracy evaluation.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •15
+> Fig. 9. User study setup where subject is attending to SSVEP stimuli while wearing OpenBCI EEG headset and exposed to RF signals generated by directional antenna 2 meters away to induce DP noise on EEG data.
+
+7 EVALUATION 7.1 Impact of distance on DP noise 
+
+We first explored how RF-induced privacy noise varies with distance. This was done by varying the distance between the RF transmitting antenna and the OpenBCI EEG headset worn by participants in the user study from 1m to 4m. Figure 11 summarizes the results. The average SD of sensor noise produced by E-MagDiP on the OpenBCI EEG headset consistently showed higher noise induction with RF exposure as compared to the baselines (SoftwareDP, SensorDP and NoDP). However, we did not observe a clear trend in SD variation as a function of distance. Specifically, the SD for the 4m distance was slightly higher than that for the 2m distance, but the difference was negligible. This suggests that the RF transmitter can be rather flexibly located, easing practical deployment of E-MagDiP. We further investigated the effect of distance on OpenBCI RF based noise induction by varying the distance from 1-10m between directional antenna based RF system (Am=Ac=100, SD=35, SDR gain =0.734, Power amplifier connected and fc=434 MHz) and OpenBCI EEG headset placed on a user and phantom head at 1m intervals. As the phantom head setup was connected to the EEG simulator via wires, it induced considerably higher privacy noise (Avg. SD 52.73 𝜇 V ) than that worn by a user (Avg. SD 28.72 𝜇 V ). The phantom head setup was also immune to the minor temporal movements of the human while exposing to RF, leading to min-max difference between induced noise over 1-10 m of 2.6 𝜇 V for phantom head compared to 7.02 𝜇 V for the human subject. As shown in Figure 10, we did not observe any clear trend of SD of white Gaussian noise induction on both phantom head connected OpenBCI EEG electrodes and human head connected EEG electrodes while line of sight RF exposure is maintained. Hence, this suggests our 1-4m user study can be expanded to real world deployments that span larger area. 
+
+7.2 Impact of antenna type on DP noise 
+
+To explore the impact of antenna type on DP white Gaussian noise induction, the user study was conducted with both directional and omnidirectional antennas. A directional antenna focuses RF transmission in a specific direction, delivering higher power along the main lobe, whereas an omnidirectional antenna transmits RF signals uniformly in all directions with lower power. For the directional transmission, we aimed the main lobe at the EEG system’s reference electrode. Other electrodes could still receive RF exposure from side lobes, albeit at a lower transmission power. Consequently, the side lobe exposure is expected to induce lower amplitude white Gaussian noise on the EEG electrodes. In contrast, an omnidirectional antenna distributes RF power supply along all directions, meaning the induced noise across electrodes is expected to be higher than side lobes, but lower   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 16 •Kalupahana et al.
+
+Fig. 10. Average SD of the sensor noise produced on the OpenBCI headset’s electrodes for 1 participant Vs phantom head while varying distance between directional antenna based RF transmitter and user/phantom head. 
+
+Fig. 11. Average SD of the sensor noise produced on the OpenBCI headset’s electrodes for 10 participants. 
+
+than the main lobe of a directional antenna. Since the total induced white Gaussian noise is an accumulation of all RF exposure, it is not immediately clear whether a directional antenna would always induce more noise than an omnidirectional one. Based on our user study with the OpenBCI EEG system (Figure 11), the directional antenna induced significantly more white Gaussian noise at 1m distance as compared to the omnidirectional antenna. However, at distances of 2m, 3m, and 4m, the difference in SD of the induced noise between the two antenna types was minimal. These results suggest that the choice of antenna has only a minor impact on E-MagDiP.Such flexiblity eases the practical deployment of E-MagDiP, as form factor and cost can be taken into account when selecting the antenna.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •17
+
+7.3 Quantitative evaluation of privacy 
+
+Due to practical constraints, we limited our user study to 10 participants. The accumulated white noise in aggregated data is thus less than the targeted population of 100 participants. Based on our user study on OpenBCI EEG system, the average SD of white Gaussian noise induced from RF is 28.8 𝜇 V compared to 21.49 𝜇 V from SensorDP (Figure 11). Hence by applying DP theorem 6, the community sensing setup with 10 users with E-MagDiP provides Differential Privacy guarantee of 120.63 to the classifier output which uses 1s frame data of 5 EEG channels as inputs. The baseline, SensorDP provides DP guarantee of 161.66. According to DP concept, a system provides higher privacy protection if the DP guarantee value is lower [ 50 ]. This implies that E-MagDiP provides stronger privacy protection than SensorDP. Since the same procedure can be expanded to 100 participants, the DP guarantee that we can provide in classroom settings with E-MagDiP can be readily improved to 38.12. 
+
+7.4 Scalability of 10 participant user study for 100 participant community sensing 
+
+To explore the potential of using 10 participant based data from user study to represent 100 participant based real-world EEG based community sensing, we used the experimental setup shown in Figure 12. OpenBCI EEG electrodes were worn on the phantom head while connected to Whaleteq SEEG100 Single channel EEG simulator. WhaleTeq SEEG100 software running on laptop configures the EEG simulator to generate EEG signals. For EEG data recording, OpenBCI GUI communicated with OpenBCI Cyton board via OpenBCI dongle. In parallel, SDR generated AM signal based on configurations received from GNU Radio software running on another laptop. We directly interfaced SDR with a log-periodic directional antenna, without a Power Amplifier, as this setting suffices to meet DP noise requirement with EEG simulator. We then fed 100 EEG records (Oz position) related to 100 participants from the EEG Motor Movement/Imagery Dataset [ 89 ] to the simulator for 5 minutes. RF transmission was conducted with the same settings (Am=Ac=100, SD=35, SDR gain =1 and fc=434 MHz) as configured in section 5.4.2. We collected 5 minutes of data from each participants and measured average SD of white gaussian noise induced. To represent the presence of 10 participants in user study, we randomly selected 3 subsets of 10 
+
+> Fig. 12. OpenBCI EEG headset based scalability experiment to show the scalability of 10 participant user study for 100 participant community sensing.
+
+participants’ average SD of white noise from 100 participants. The observed distribution of SD of induced white Gaussian noise is shown in Figure 13. The average differences of median and mean between two distributions: 100 participants and 10 participants are 1.74 𝜇 V and 1.4 𝜇 V respectively. Such a small difference indicates that our earlier 10-participant user study data and insights can be considered as representative of a real-world EEG community sensing program with 100 participants.   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 18 •Kalupahana et al.
+> Fig. 13. Distribution of average SD of white noise produced by participants in 100 total participation compared to 10 participants.
+
+7.5 Accuracy evaluation 
+
+7.5.1 Dataset based: We achieved 79.17% accuracy on average (leave-one-out cross-validation accuracy) for the SSVEP classifier trained on BETA dataset’s 5 channels (PO5, PO6, O1, Oz, and O2) of 70 subjects for 4 SSVEP frequency classes (11, 11.8, 14.2 and 15.8 Hz) where the probability of random guess is 25%. Average accuracy dropped to 68% when testing 70 subject-based BETA dataset-trained models on the Benchmark dataset’s 30 users. We use this 70 subject-based BETA dataset-trained SSVEP classifier model for E-MagDiP’s user study accuracy evaluation.         
+
+> Table 4. User study based accuracy
+> EEG Headset E-MagDiP NoDP SoftwareDP SensorDP
+> OpenBCI 69.4% 72.5% 68.2% 72.5%
+
+7.5.2 User study based: In our user study, we aggregated the EEG data collected from all 10 users at the server, and applied pre-processing to the aggregated data (wavelet: Sym4, Bayes denoising method, soft threshold [ 78 ]). Table 4 shows E-MagDiP achieving 69.4 % accuracy for 4 class SSVEP classification for E-MagDiP, compared to 68.2% for SoftwareDP, and 72.5% accuracies for the two baselines that do not meet DP requirements (NoDP and SensorDP). This 3.1% drop in accuracy of E-MagDiP to support privacy is acceptable for practical realization of differential privacy in community sensing programs due to its privacy protection benefits. Further we can configure E-MagDiP’s RF system to emit RF with a modulating signal, generating white noise with lower standard deviation than 35, to trade off the privacy guarantee for better accuracy. More participants can also be recruited to lower the amount of privacy noise needed, since privacy noise and square root of the number of participants are inversely proportional (Section 3.1 DDP theory).   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •19
+
+7.6 E-MagDiP’s compatibility with different EEG headsets 
+
+We explored the potential of RF to induce DP noise on off-the-shelf consumer-grade EEG headsets: Neurosky Mind-Wave Mobile 2 EEG headset and Sichiray Taurus 2.0 Brainwave headband and the impact on EEG headset’s functionality on 10 participants. The AM signal of the white Gaussian signal (SD=35,Am=Ac=1000, SDR gain=0.734, power amplifier connected) was transmitted from the RF system with carrier frequency 754MHz (within safety regulations) at a distance of 1.2m from the transmitter. The average SD of induced white Gaussian noise on Neurosky and Sichiray EEG electrodes were 21.8 𝜇 V and 34.1 𝜇 V with directional and 14.86 𝜇 V and 34.08 𝜇 V with omni-directional antenna (see Figure 14). Having passive notch filter with fixed notch depth enabled RF to induce white noise on EEG, but with lower SD. However with the different sampling rate and just a single electrode, the 
+
+> Fig. 14. Average SD of the white noise induced on Neurosky Mind-Wave and Sichiray Taurus 2.0 EEG electrodes based on 10 participants.
+
+SD of required white Gaussian noise is no longer 34.33 𝜇 V. Based on DDP theories detailed in section 3.1, the SD of required white Gaussian noise for 1s EEG data from Neurosky is 21.71 𝜇 V and 14.07 𝜇 V for Sichiray. Hence Sichiray can facilitate DP with guarantee 𝜖 =32 for community sensing programs with 100 participants with both directional and omni directional antennas, while Neurosky is only able to provide the same privacy guarantee with directional antenna. But Neurosky can still provide DP for 100 with lower privacy guarantee 𝜖 = 47 with omni-directional antenna. When exposed to RF signals, 2-minute eye blinks can be detected perfectly across all 10 participants. Since blink detection is used as a cognitive indicator to assess fatigue [ 99 ], mental workload [ 44 , 58 ] and task difficulty [ 45 ], this provides some evidence that E-MagDiP does not adversely impact the functionality of consumer grade EEG devices. 
+
+7.7 Simultaneous multi-user study 
+
+To explore our framework’s ability to provide DP in a classroom-like setting with multiple EEG headsets, we conducted a user study with 4 participants (Subjects 1 and 2 wearing OpenBCI, Subject 3 wearing Neurosky EEG system and Subject 4 wearing Sichiray EEG system), exposed simultaneously to RF emitting from a single RF transmitter as shown in Figure 15. Subject 1 maintained line-of-sight and 3m distance with RF setup compared to 20 ◦ angle and 2.2m with Subject 2, 30 ◦ angle and 1.8m with Subject 3 and 20 ◦ angle and 2.7m with Subject 4. As shown in Figure 15, subject 4 was located closer to many obstacles like walls, TV screen on purpose, to explore the   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 20 •Kalupahana et al.
+
+impact from multi-path propagation. We used GNU radio’s Python snippet to change carrier frequency of RF setup dynamically to support varying carrier frequency (434 MHz and 757 MHz, carrier frequency switching period = 2s ) required for different EEG headsets. The AM signal of the white Gaussian signal (SD=35,Am=Ac=1000, SDR gain=0.734, power amplifier connected) was transmitted from the RF system with both directional and omni-directional antenna connected. The average SD of white Gaussian noise induced on OpenBCI electrodes are 34.87 𝜇 V and 34.37 𝜇 V for Subjects 1 and 2 with directional antenna and it exceeds the DP noise requirement of 34.33 
+
+𝜇 V. Subject 1 and 2’s OpenBCI (with omni-directional antenna) and Subject 3’s Neurosky (with both directional and omni-directional) EEG electrodes have higher noise induction, but the required DP noise requirement is not met (See Figure 16). Since Subject 4 is in an environment with obstacles, its DP noise induction shows destructive property. We also evaluated correlation of Subject 1’s and 2’s OpenBCI EEG data with directional antenna based RF exposure, omni-directional antenna based RF exposure and without RF. Since magnitude of correlation under three conditions are within 0.3-0.4 (as shown in Table 5), we can conclude that E-MagDiP based DP induction is independent despite having the same RF source.              
+
+> Fig. 15. Multi-user experimental setup where 𝛼 =𝛽 =20 ◦and 𝛾 = 30 ◦
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •21
+> Fig. 16. Average SD of the white noise induced on OpenBCI, Neurosky and Sichiray EEG electrodes in simultaneous multi-user experimental setting. Table 5. Correlation analysis of OpenBCI EEG data from 2-simultaneous users
+> E-MagDiP(Directional) E-MagDiP (Omni-directional) NoDP
+> -0.31598 0.38927 0.3654
+
+7.8 Impact on other sensors 
+
+We verified that E-MagDiP maintains cross-sensor isolation by monitoring the OpenBCI headset’s onboard accelerometer. Measurements showed that norm acceleration fluctuated minimally (0.9145g – 1.0660g) regardless of whether RF was exposed or not. This confirms our design hypothesis: by confining noise induction to non-shared EEG reference electrodes, we can successfully protect neural privacy without corrupting auxiliary data streams. 
+
+8 DISCUSSION 
+
+Applicability to EEG headsets without exposed wires: E-MagDiP’s current applicability is limited to EEG headsets with exposed wires as carrier frequency is determined based on exposed wire length. But we could induce above 70 𝜇 V SD of white noise on TP9 EEG electrode data from Muse 02-Gen1 EEG headset while a participant is wearing the headset (see Figure 17). Here the directional antenna was focused on TP9 electrode with 1.2m distance away and transmitting white Gaussian signal (SD=35,Am=Ac =100, SDR gain =0.734, fc=500 MHz [ 36 ], power amplifier connected). Since the Muse 02 EEG headset does not have any exposed wires and uses flex circuitry on plastic substrates to connect the electrodes to the rest of the circuitry, RF is capable of inducing DP noise on flex circuit based EEG systems. We could also observe higher SD of noise with Muse S’s TP9 electrode: 15.5 𝜇 V and Emotiv Insight-5 EEG headsets’s TP8: 10.1 𝜇 V compared to other electrodes: 2-8 𝜇 Vwhen directional antenna focused on reference electrodes (frontal for Muse S and behind the ear for Emotiv). But it’s way below the privacy noise requirement of 30.7 𝜇 V (for Muse S) and 24.27 𝜇 V (for Emotive Insight-5). Hence, an in-depth study is needed before a full solution can be achieved. 
+
+Level of E-MagDiP’s compatibility with notch filters: EEG systems use notch filters to filter out powerline interference on EEG data. Implementations of notch filter vary from simple passive filter to software-level complex adaptive filters. Hence its ability to attenuate and the attenuation level applied on noise spectrum are diverse. Based on our experiments, we also note that while E-MagDiP is effective for both Neurosky and Sichiray EEG systems (see Section 7.6 ) which have a simple passive notch filter, the complex software notch   
+
+> , Vol. 1, No. 1, Article . Publication date: July 2026. 22 •Kalupahana et al.
+> Fig. 17. Average SD of the white noise induced on non-wire exposed Muse 02-Gen 1 EEG electrodes based on one participant under different direction of exposure for 2 minutes each.
+
+filters of OpenBCI can disturb E-MagDiP’s functionality (see Section A ) as attenuation level at notch frequency dynamically changes based on signal characteristics. As future work, we plan to conduct more detailed studies on the impact of alternative notch filters on E-MagDiP. 
+
+Potential power/latency benefits over SoftwareDP: We implemented SoftwareDP and encryption [ 28 ] in the firmware of the OpenBCI Cyton board. Based on our energy consumption profiling (Figure 18) using the Monsoon power monitor [ 15 ], the SoftwareDP perturbation accounts for 21.05% of total computational energy overheads. For fine-grained latency measurements of data acquisition and processing steps, we used a PIC32 breakout board [ 13 ], since OpenBCI has a PIC32 [ 19 ] as its MCU. As shown in the latency profile (Figure 18), SoftwareDP perturbation contributes to 58.1% of total computation latency. E-MagDiP requires neither software nor hardware modifications, therefore it offers potential benefits by eliminating power consumption and latency due to perturbation as compared to SoftwareDP. Reduction in latency associated with perturbation could provide benefits to on-body devices that have multiple computational steps, like preprocessing and inference.   
+
+> Fig. 18. Measured (left) power overheads (right) latency of SoftwareDP for a sample with 8 channels of EEG data respectively.
+> , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing •23
+
+Additionally, when the sampling rate is 250Hz, with a 4ms sampling period, latency due to SoftwareDP can be hidden within the sampling period. But some EEG systems operate at higher sampling frequencies like 500Hz [ 14 , 18 , 20 , 23 , 31 ] and 1000Hz [ 12 , 30 ], with sampling periods of 2 ms and 1 ms. SoftwareDP’s computation latency exceeds these sampling periods, so, it can no longer be hidden. Since E-MagDiP does not perform any computation at the device level, it has the potential to provide upto 1.2X computation energy savings, and 2.4x speedup in computation latency 3 at 500Hz sampling rate on the Cyton board. 
+
+9 LIMITATIONS 
+
+Health concerns: Based on our RF-induced health impacts literature review, studies that highlighted negative impacts were either theoretical in nature, rat-based experiments or transmitted RF at a much higher level above the standard [ 47 , 81 , 85 ]. Besides, the studies indicated that the Maximum Transmission Power Density (MTPD) of any microwave frequency range (300 MHz-30 GHz) RF signal should be below the acceptable FCC threshold 580 𝜇 W/cm 2 [ 16 ]. The computed MTPD of RF signals used in E-MagDiP is 9.7 𝜇 W/cm 2 which is 60 times lower than the FCC threshold. Hence, harmful thermal effects will not occur due to RF exposure from E-MagDiP. 
+
+Regulatory concerns: To avoid disruptions with existing RF systems, we selected E-MagDiP’s carrier fre-quency (for OpenBCI) as 434 MHz as it falls within the closest ISM band (433.05-434.79 MHz) [ 25 ] for 535.7 MHz. But we used 754 MHz as the carrier frequency for E-MagDiP realization in Neurosky and Sichiray EEG systems. Since 754 MHz does not fall within the ISM band, it will be necessary to investigate a frequency within the ISM Band such as 902-928MHz before E-MagDip can be deployed commercially. 
+
+10 CONCLUSION 
+
+This paper presents E-MagDiP, which leverages RF signals to perturb EEG data to provide differential privacy instead of attacking. This is achieved by configuring the standard deviation of the white Gaussian modulating signal according to differential privacy requirements. Extensive experimental results demonstrate E-MagDiP’s ability to work with commercial EEG headsets without requiring any modification, providing 38.12 DP guarantee for community sensing with 100 participants with a slight accuracy drop of 3.1%. 
+
+References                        
+
+> [1] 2018. Brain-reading technology. https://u.osu.edu/mclc/2018/05/01/brain-reading-technology/ [2] 2019. Chinese primary school halts trial of device that monitors pupils’ brainwaves. https://www.theguardian.com/world/2019/nov/ 01/chinese-primary-school-halts-trial-of-device-that-monitors-pupils-brainwaves [3] 2019. How China Is Using Artificial Intelligence in Classrooms. https://www.youtube.com/watch?v=JMLsHI8aV0g [4] 2021. Biggest Data Breaches. https://www.upguard.com/blog/biggest-data-breaches [5] 2024. Emotiv EEG Cloud. https://www.emotiv.com/pages/emotiv-eeg-cloud [6] 2024. GNU Radio. https://www.gnuradio.org/ [7] 2024. OpenBCI Cyton. https://shop.openbci.com/collections/frontpage/products/cyton-biosensing-board-8-channel [8] 2024. OpenBcI Cyton Daisy. https://shop.openbci.com/collections/frontpage/products/cyton-daisy-biosensing-boards-16-channel [9] 2024. OpenBCI EEG Headband Kit. https://shop.openbci.com/products/openbci-eeg-headband-kit [10] 2024. OpenBCI Ganglion. https://shop.openbci.com/collections/frontpage/products/ganglion-board [11] 2025. aireeg ®Wireless EEG System. https://us.nihonkohden.com/products/aireeg-wireless-eeg-system [12] 2025. Bittium NeurOne ™Tesla EEG System. https://www.bittium.com/medical/bittium-neurone/?gad_source=1&gad_campaignid= 10975885913&gclid=CjwKCAjwiY_GBhBEEiwAFaghvkTIrJ8rHT7aDG_coh_cVySdl1taKtECOdyIpUisOhSo6U79WzjjgxoCrr4QAvD_ BwE [13] 2025. chipKIT ™Fubarino ™Mini. https://www.fubarino.org/mini/
+> 3Speedup factor at 500Hz is computed as 2.797 ms
+> 1.172 ms ≈2.40 ×. Here, 2.797 ms is the total latency with perturbation, and 1.172 ms is the total latency without perturbation. , Vol. 1, No. 1, Article . Publication date: July 2026.
+
+24 • Kalupahana et al. 
+
+[14] 2025. Enobio 20. https://imotions.com/products/hardware/enobio-20/?srsltid=AfmBOorGU8WAnXNvYFHzrbzQ1iUe-UXpFr8i-nhJPoslb_AULa_I7IRx [15] 2025. High Voltage Power Monitor. https://www.msoon.com/high-voltage-power-monitor [16] 2025. Human Exposure to Radio Frequency Fields: Guidelines for Cellular Antenna Sites. https://www.fcc.gov/consumers/guides/ human-exposure-radio-frequency-fields-guidelines-cellular-and-pcs-sites [17] 2025. Main Hall Hire, Dollis Primary School. https://www.sharesy.com/s/dollis-primary-school-main-hall [18] 2025. Mindtooth Touch Headset. https://mindtooth-eeg.com/system/ [19] 2025. MIPS32 ® Core-Based Microcontrollers (MCUs). https://www.microchip.com/en-us/products/microcontrollers/32-bit-mcus/ pic32m [20] 2025. NeuroSky MindWave Mobile 2: Brainwave starter kit Toys & games. https://www.amazon.com/NeuroSky-MindWave-Mobile-Brainwave-Starter/dp/B07CXN8NKX [21] 2025. NeuroTrace Wireless EEG System. https://www.brainview.com/s_products_ltm_monitor_device.html [22] 2025. OpenBCI Software. https://docs.openbci.com/Software/OpenBCISoftware/GUIDocs/ [23] 2025. Smarting wireless EEG headset. https://mbraintrain.com/smarting-wireless-eeg/ [24] 2025. Space Planning Guidelines. https://uci.nus.edu.sg/wp-content/uploads/2020/03/Space-Planning-Guidelines.pdf [25] 2025. Spectrum Management Handbook. https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ frameworks-and-policies/spectrum-management-and-coordination/spectrummgmthb.pdf [26] 2025. STM32 TGAM EEG Headband for Arduino Development Kit Digital Display Kit EEG sensor with the TGAT1 SDK. https: //www.aliexpress.com/item/1005006640126448.html [27] 2025. ThinkGear Connector. https://developer.neurosky.com/docs/doku.php?id=thinkgear_connector_tgc [28] 2025. tiny-AES-c Library. https://github.com/kokke/tiny-AES-c [29] 2025. Understanding the 2020 Census Disclosure Avoidance System:. https://www2.census.gov/about/training-workshops/2021/2021-05-07-das-presentation.pdf [30] 2025. WiFi Shield Getting Started Guide. https://docs.openbci.com/Deprecated/WiFiShield/WiFiGS/ [31] 2025. X.on EEG headset. https://xon-eeg.com/ [32] Mohit Agarwal and Raghupathy Sivakumar. 2017. Poster: Characters vs. Words: Observations on Command Design for Brain-Computer Interfaces. In Proceedings of the 15th Annual International Conference on Mobile Systems, Applications, and Services (Niagara Falls, New York, USA) (MobiSys ’17) . Association for Computing Machinery, New York, NY, USA, 177. doi:10.1145/3081333.3089321 [33] Nitin Agrawal, Reuben Binns, Max Van Kleek, Kim Laine, and Nigel Shadbolt. 2021. Exploring Design and Governance Challenges in the Development of Privacy-Preserving Computation. In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (Yokohama, Japan) (CHI ’21) . Association for Computing Machinery, New York, NY, USA, Article 68, 13 pages. doi:10.1145/ 3411764.3445677 [34] Apple. 2015. Differential Privacy. https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf [35] Apple and Google. 2021. Exposure Notification Privacy-preserving Analytics (ENPA) White Paper. https://covid19-static.cdn-apple.com/applications/covid19/current/static/contact-tracing/pdf/ENPA_White_Paper.pdf [36] Alexandre Armengol-Urpi, Reid Kovacs, and Sanjay E. Sarma. 2023. Brain-Hack: Remotely Injecting False Brain-Waves with RF to Take Control of a Brain-Computer Interface. In Proceedings of the 5th Workshop on CPS&IoT Security and Privacy (Copenhagen, Denmark) 
+
+(CPSIoTSec ’23) . Association for Computing Machinery, New York, NY, USA, 53–66. doi:10.1145/3605758.3623497 [37] Clear Ballistics. 2024. Clear Ballistics. https://clearballistics.com/shop/10-gel-joe-fit-head-gel/ [38] Osman Berke Guney and Huseyin Ozkan. 2023. Transfer learning of an ensemble of dnns for SSVEP BCI spellers without user-specific training. Journal of Neural Engineering 20, 1 (Jan 2023), 016013. doi:10.1088/1741-2552/acacca [39] Raghav Bhaskar, Abhishek Bhowmick, Vipul Goyal, Srivatsan Laxman, and Abhradeep Thakurta. 2011. Noiseless Database Privacy. In 
+
+Advances in Cryptology – ASIACRYPT 2011 , Dong Hoon Lee and Xiaoyun Wang (Eds.). Springer Berlin Heidelberg, Berlin, Heidelberg, 215–232. https://www.microsoft.com/en-us/research/wp-content/uploads/2011/12/noiseless-asiacrypt11_lncs.pdf [40] Rui Bian, Lubin Meng, and Dongrui Wu. 2022. SSVEP-based brain-computer interfaces are vulnerable to square wave attacks. Science China Information Sciences 65 (April 2022). doi:10.1007/s11432-022-3440-5 [41] Jochen Braun. 2021. https://bernstein-network.de/wp-content/uploads/2021/03/Lecture-16-Independent-component-analysis-2020.pdf [42] Brooke Bullek, Stephanie Garboski, Darakhshan J. Mir, and Evan M. Peck. 2017. Towards Understanding Differential Privacy: When Do People Trust Randomized Response Technique?. In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems 
+
+(Denver, Colorado, USA) (CHI ’17) . Association for Computing Machinery, New York, NY, USA, 3833–3837. doi:10.1145/3025453.3025698 [43] Gyeongwon Cha, Dongjin Park, Yejin Choi, Eunji Park, and Joon-Woo Lee. 2025. Real-Time Encrypted Emotion Recognition Using Homomorphic Encryption. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 9, 4, Article 163 (Dec. 2025), 32 pages. doi:10.1145/ 3770633 [44] Siyuan Chen and Julien Epps. 2014. Using Task-Induced Pupil Diameter and Blink Rate to Infer Cognitive Load. Human–Computer Interaction 29, 4 (2014), 390–413. doi:10.1080/07370024.2014.892428 , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing • 25 
+
+[45] Youngjun Cho. 2021. Rethinking Eye-blink: Assessing Task Difficulty through Physiological Representation of Spontaneous Blinking. In 
+
+Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (Yokohama, Japan) (CHI ’21) . Association for Computing Machinery, New York, NY, USA, Article 721, 12 pages. doi:10.1145/3411764.3445577 [46] Abigail Dickinson, Summer-Rose Perry, Amanda Gulsrud, and Connie Kasari. 2025. A direct comparison of laboratory and community EEG recordings for neurodevelopmental research. Scientific Reports 15, 22671 (2025). https://doi.org/10.1038/s41598-025-03569-5 [47] Stefan Dongus, Hamed Jalilian, David Schürmann, and Martin Röösli. 2021. Health effects of WIFI radiation: A review based on systematic quality evaluation. Critical Reviews in Environmental Science and Technology 52, 19 (Jul 2021), 3547–3566. doi:10.1080/ 10643389.2021.1951549 [48] Yitao Duan. 2009. Privacy without Noise. In Proceedings of the 18th ACM Conference on Information and Knowledge Management (Hong Kong, China) (CIKM ’09) . Association for Computing Machinery, New York, NY, USA, 1517–1520. doi:10.1145/1645953.1646160 [49] Cynthia Dwork. 2006. Differential Privacy. In Automata, Languages and Programming , Michele Bugliesi, Bart Preneel, Vladimiro Sassone, and Ingo Wegener (Eds.). Springer Berlin Heidelberg, Berlin, Heidelberg, 1–12. doi:10.1007/11787006_1 [50] Cynthia Dwork and Aaron Roth. 2014. The Algorithmic Foundations of Differential Privacy. Foundations and Trends ® in Theoretical Computer Science 9, 3–4 (2014), 211–407. doi:10.1561/0400000042 [51] Andéol Evain, Ferran Argelaguet, Nicolas Roussel, Géry Casiez, and Anatole Lécuyer. 2017. Can I Think of Something Else when Using a BCI? Cognitive Demand of an SSVEP-based BCI. In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems 
+
+(Denver, Colorado, USA) (CHI ’17) . Association for Computing Machinery, New York, NY, USA, 5120–5125. doi:10.1145/3025453.3026037 [52] Boyuan Feng, Yuke Wang, and Yufei Ding. 2021. Saga: Sparse Adversarial Attack on EEG-Based Brain Computer Interface. In ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) . 975–979. doi:10.1109/ICASSP39728.2021.9413507 [53] Teck Lun Goh and Li-Shiuan Peh. 2024. WalkingWizard—A Truly Wearable EEG Headset for Everyday Use. ACM Trans. Comput. Healthcare 5, 2, Article 9 (April 2024), 38 pages. doi:10.1145/3648106 [54] Hanying Guo, Siying Chen, Yongjiang Zhou, Ting Xu, Yuhao Zhang, Hongliang Ding, et al . 2025. A hybrid critical channels and optimal feature subset selection framework for EEG fatigue recognition. Scientific Reports 15, 2139 (January 16 2025). doi:10.1038/s41598-025-86234-1 [55] Shai Halevi and Victor Shoup. 2020. Design and implementation of HElib: a homomorphic encryption library. IACR Cryptol. ePrint Arch. 2020 (2020), 1481. https://eprint.iacr.org/2020/1481 [56] Simon Hanisch, Patricia Arias-Cabarcos, Javier Parra-Arnau, and Thorsten Strufe. 2025. Anonymization Techniques for Behavioral Biometric Data: A Survey. ACM Comput. Surv. 57, 11, Article 272 (June 2025), 54 pages. doi:10.1145/3729418 [57] Md Imran Hossen, Yazhou Tu, and Xiali Hei. 2023. A First Look at the Security of EEG-based Systems and Intelligent Algorithms under Physical Signal Injections. In Proceedings of the 2023 Secure and Trustworthy Deep Learning Systems Workshop (Melbourne, VIC, Australia) (SecTL ’23) . Association for Computing Machinery, New York, NY, USA, Article 8, 8 pages. doi:10.1145/3591197.3591304 [58] Dongyin Hu, Xin Yang, Ahhyun Yuh, Zihao Wang, Lama A. Al-Aswad, Insup Lee, and Mingmin Zhao. 2025. Tracking Blink Dynamics and Mental States on Glasses . Association for Computing Machinery, New York, NY, USA, 291–304. https://doi.org/10.1145/3711875.3729150 [59] Fo Hu, Lekai Zhang, Xusheng Yang, and Wen-An Zhang. 2024. EEG-Based Driver Fatigue Detection Using Spatio-Temporal Fusion Network With Brain Region Partitioning Strategy. IEEE Transactions on Intelligent Transportation Systems 25, 8 (2024), 9618–9630. doi:10.1109/TITS.2023.3348517 [60] Luchi Hua, Yuan Zhuang, Longning Qi, Jun Yang, and Longxing Shi. 2018. Noise Analysis and Modeling in Visible Light Communication Using Allan Variance. IEEE Access PP (12 2018), 1–1. doi:10.1109/ACCESS.2018.2883737 [61] Aida Ibrahim, Nurfaten Hamzah, Athirah Abdul Wahab, Jafri Abdullah, Nurul Malim, Sumari Putra, Idris Zamzuri, Ariffin Mokhtar, Ab Ghani, Sanihah Halim, and Salmi Ab Razak. 2020. Big Brain Data Initiative in Universiti Sains Malaysia: Challenges in Brain Mapping for Malaysia. Malaysian Journal of Medical Sciences 27 (07 2020), 1–8. doi:10.21315/mjms2020.27.4.1 [62] Marcello Ienca, Joseph J. Fins, Ralf J. Jox, Fabrice Jotterand, Silja Voeneky, Roberto Andorno, Tonio Ball, Claude Castelluccia, Ricardo Chavarriaga, Hervé Chneiweiss, and et al. 2022. Towards a governance framework for Brain Data. Neuroethics 15, 2 (Jun 2022). doi:10.1007/s12152-022-09498-8 [63] Juan Jurado, Christine M Schubert. Kabban, and John Raquet. 2019. A regression-based methodology to improve estimation of inertial sensor errors using Allan variance data. NAVIGATION 66, 1 (2019), 251–263. doi:10.1002/navi.278 [64] Ayanga Imesha Kumari Kalupahana, Ananta Narayanan Balaji, Xiaokui Xiao, and Li-Shiuan Peh. 2023. SeRaNDiP: Leveraging Inherent Sensor Random Noise for Differential Privacy Preservation in Wearable Community Sensing Applications. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 7, 2, Article 61 (June 2023), 38 pages. doi:10.1145/3596252 [65] Jinwook Kim, Taesu Kim, and Jeongmi Lee. 2024. VR-SSVEPeripheral: Designing Virtual Reality Friendly SSVEP Stimuli using Peripheral Vision Area for Immersive and Comfortable Experience. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (Honolulu, HI, USA) (CHI EA ’24) . Association for Computing Machinery, New York, NY, USA, Article 364, 7 pages. doi:10.1145/3613905.3651084 [66] Michael T. Knierim, Christian Zimny, Gabriel Ivucic, and Tobias Röddiger. 2025. Advancing Wearable BCI: Headphone EEG for Cognitive Load Detection in Lab and Field. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 9, 1, Article 9 (March 2025), 26 pages. , Vol. 1, No. 1, Article . Publication date: July 2026. 26 • Kalupahana et al. 
+
+doi:10.1145/3712283 [67] Edward Kost. 2024. How Did LAUSD Get Hacked in 2022? https://www.upguard.com/blog/how-did-lausd-get-hacked [68] Denis Foo Kune, John Backes, Shane S. Clark, Daniel Kramer, Matthew Reynolds, Kevin Fu, Yongdae Kim, and Wenyuan Xu. 2013. Ghost Talk: Mitigating EMI Signal Injection Attacks against Analog Sensors. In 2013 IEEE Symposium on Security and Privacy . 145–159. doi:10.1109/SP.2013.20 [69] Feng Lin, Kun Woo Cho, Chen Song, Wenyao Xu, and Zhanpeng Jin. 2018. Brain Password: A Secure and Truly Cancelable Brain Biometrics for Smart Headwear. In Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services 
+
+(Munich, Germany) (MobiSys ’18) . Association for Computing Machinery, New York, NY, USA, 296–309. doi:10.1145/3210240.3210344 [70] Bingchuan Liu, Xiaoshan Huang, Yijun Wang, Xiaogang Chen, and Xiaorong Gao. 2020. BETA: A Large Benchmark Database Toward SSVEP-BCI Application. Frontiers in Neuroscience Volume 14 - 2020 (2020). doi:10.3389/fnins.2020.00627 [71] Patrick Magee, Marcello Ienca, and Nita Farahany. 2024. Beyond neural data: Cognitive biometrics and mental privacy. Neuron 112, 18 (2024), 3017–3028. doi:10.1016/j.neuron.2024.09.004 [72] Enrique Tomás Martínez Beltrán, Mario Quiles Pérez, Sergio López Bernal, Alberto Huertas Celdrán, and Gregorio Martínez Pérez. 2022. Noise-based cyberattacks generating fake P300 waves in brain–computer interfaces. Cluster Computing 25, 1 (Feb. 2022), 33–48. doi:10.1007/s10586-021-03326-z [73] Ivan Martinovic, Doug Davies, Mario Frank, Daniele Perito, Tomas Ros, and Dawn Song. 2012. On the feasibility of side-channel attacks with brain-computer interfaces. In Proceedings of the 21st USENIX Conference on Security Symposium (Bellevue, WA) (Security’12) .USENIX Association, USA, 34. [74] Lubin Meng, Xue Jiang, Jian Huang, Zhigang Zeng, Shan Yu, Tzyy-Ping Jung, Chin-Teng Lin, Ricardo Chavarriaga, and Dongrui Wu. 2023. EEG-Based Brain–Computer Interfaces are Vulnerable to Backdoor Attacks. IEEE Transactions on Neural Systems and Rehabilitation Engineering 31 (2023), 2224–2234. doi:10.1109/TNSRE.2023.3273214 [75] Lubin Meng, Chin-Teng Lin, Tzyy-Ping Jung, and Dongrui Wu. 2019. White-Box Target Attack for EEG-Based BCI Regression Problems. In Neural Information Processing: 26th International Conference, ICONIP 2019, Sydney, NSW, Australia, December 12–15, 2019, Proceedings, Part I (Sydney, NSW, Australia). Springer-Verlag, Berlin, Heidelberg, 476–488. doi:10.1007/978-3-030-36708-4_39 [76] Mini-circuits. 2024. Mini-circuits. https://www.minicircuits.com/WebStore/dashboard.html?model=ZHL-2-8-S%2B&srsltid= AfmBOooIeqQIZH4wKgRrMKBTk_yjZmqv59sCtZ6er_Vr1oKbrQe6pThQ [77] Ilya Mironov. 2017. Rényi Differential Privacy. In 2017 IEEE 30th Computer Security Foundations Symposium (CSF) . 263–275. doi:10. 1109/CSF.2017.11 [78] Khuram Naveed and Naveed ur Rehman. 2020. Wavelet Based Multivariate Signal Denoising Using Mahalanobis Distance and EDF Statistics. IEEE Transactions on Signal Processing 68 (2020), 5997–6010. doi:10.1109/TSP.2020.3029659 [79] K. Nirmal, A. G. Sreejith, Joice Mathew, Mayuresh Sarpotdar, Ambily Suresh, Ajin Prakash, Margarita Safonova, and Jayant Murthy. 2016. Noise modeling and analysis of an IMU-based attitude sensor: improvement of performance by filtering and sensor fusion. In 
+
+Advances in Optical and Mechanical Technologies for Telescopes and Instrumentation II , Ramón Navarro and James H. Burge (Eds.), Vol. 9912. International Society for Optics and Photonics, SPIE, 2138 – 2147. doi:10.1117/12.2234255 [80] Xiaoji Niu, Qijin Chen, Quan Zhang, Hongping Zhang, J. Niu, Kejie Chen, C. Shi, and Jing nan Liu. 2013. Using Allan variance to analyze the error characteristics of GNSS positioning. GPS Solutions 18 (2013), 231–242. doi:10.1007/s10291-013-0324-x [81] Martin L. Pall. 2018. Wi-Fi is an important threat to human health. Environmental Research 164 (2018), 405–416. doi:10.1016/j.envres. 2018.01.035 [82] Andrey Parfenov. 2024. BrainFlow. https://brainflow.org/ [83] Shouvik Paul and Garima Bajwa. 2025. Privacy-Preserving EEG Data Generation: A Federated Split Learning Approach Using Privacy-Adaptive Autoencoders and Secure Aggregation with GFlowNet. In Proceedings of the 22nd International Conference on Security and Cryptography - SECRYPT . INSTICC, SciTePress, 638–643. doi:10.5220/0013529100003979 [84] Nhat Pham, Tuan Dinh, Zohreh Raghebi, Taeho Kim, Nam Bui, Phuc Nguyen, Hoang Truong, Farnoush Banaei-Kashani, Ann Halbower, Thang Dinh, and Tam Vu. 2020. WAKE: a behind-the-ear wearable system for microsleep detection. In Proceedings of the 18th International Conference on Mobile Systems, Applications, and Services (Toronto, Ontario, Canada) (MobiSys ’20) . Association for Computing Machinery, New York, NY, USA, 404–418. doi:10.1145/3386901.3389032 [85] Ivica Prlić, Jerko Šiško, Veda Varnai, Luka Pavelić, Jelena Macan, Silvija Kobešćak, Mladen Hajdinjak, Mihovil Jurdana, Zdravko Cerovac, Branimir Zauner, and et al. 2022. Wi-Fi Technology and human health impact: A brief review of current knowledge. Archives of Industrial Hygiene and Toxicology 73, 2 (Jun 2022), 94–106. doi:10.2478/aiht-2022-73-3402 [86] Vibhor Rastogi and Suman Nath. 2010. Differentially Private Aggregation of Distributed Time-Series with Transformation and Encryption. In Proceedings of the 2010 ACM SIGMOD International Conference on Management of Data (Indianapolis, Indiana, USA) 
+
+(SIGMOD ’10) . Association for Computing Machinery, New York, NY, USA, 735–746. doi:10.1145/1807167.1807247 [87] Ettus Research. 2024. USRP B200 USB Software Defined Radio (SDR). https://www.ettus.com/all-products/ub200-kit/ [88] Jayshree Sarathy, Sophia Song, Audrey Haque, Tania Schlatter, and Salil Vadhan. 2023. Don’t Look at the Data! How Differential Privacy Reconfigures the Practices of Data Science. In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems (Hamburg, , Vol. 1, No. 1, Article . Publication date: July 2026. E-MagDiP: E ¯lectro-¯M¯ a¯g¯netic based D ¯ i¯fferential P ¯rivacy for EEG based Community Sensing • 27 
+
+Germany) (CHI ’23) . Association for Computing Machinery, New York, NY, USA, Article 164, 19 pages. doi:10.1145/3544548.3580791 [89] G. Schalk, D.J. McFarland, T. Hinterberger, N. Birbaumer, and J.R. Wolpaw. 2004. BCI2000: a general-purpose brain-computer interface (BCI) system. IEEE Transactions on Biomedical Engineering 51, 6 (2004), 1034–1043. doi:10.1109/TBME.2004.827072 [90] Great scott gadgets. 2024. ANT500 Antenna. https://greatscottgadgets.com/ant500/ [91] Jayaprakash Selvaraj. 2018. Intentional Electromagnetic Interference Attack on Sensors and Actuators. https://api.semanticscholar. org/CorpusID:115606129 [92] Jayaprakash Selvaraj, Gökçen Yılmaz Dayanıklı, Neelam Prabhu Gaunkar, David Ware, Ryan M. Gerdes, and Mani Mina. 2018. Electromagnetic Induction Attacks Against Embedded Systems. In Proceedings of the 2018 on Asia Conference on Computer and Communications Security (Incheon, Republic of Korea) (ASIACCS ’18) . Association for Computing Machinery, New York, NY, USA, 499–510. doi:10.1145/3196494.3196556 [93] Elaine Shi, T.-H. Hubert Chan, Eleanor Gilbert Rieffel, Richard Chow, and Dawn Song. 2011. Privacy-Preserving Aggregation of Time-Series Data. In Proceedings of the Network and Distributed System Security Symposium, NDSS 2011, San Diego, California, USA, 6th February - 9th February 2011 . The Internet Society. https://www.ndss-symposium.org/ndss2011/privacy-preserving-aggregation-of-time-series-data [94] Diksha Shukla, Partha Pratim KUNDU, Ravichandra Malapati, Sujit Poudel, Zhanpeng Jin, and Vir V. Phoha. 2020. Thinking Unveiled: An Inference and Correlation Model to Attack EEG Biometrics. Digital Threats 1, 2, Article 9 (May 2020), 29 pages. doi:10.1145/3374137 [95] Ömer Muhammet Soysal and Muhammed Esad Oztemel. 2023. Permanence and Uniqueness of EEG Brain Signals as a Biometric Signature, Part-I: Template-based Techniques. In 2023 International Conference on Computational Science and Computational Intelligence (CSCI) . 1418–1423. doi:10.1109/CSCI62032.2023.00232 [96] Rf Space. 2018. LPDAMAX Antenna Datasheet. http://rfspace.com/RFSPACE/Antennas_files/LPDA-MAX.pdf [97] Torbjörn Ström †. 1974. Measurement of Spectral Properties for a Non-Gaussian Process Model of EEG. Journal of Cybernetics 4, 1 (1974), 27–48. doi:10.1080/01969727408546054 [98] S.H. Sung and Yifeng Zhou. 2004. Approximation of phase and envelope distributions of Gaussian random amplitude-modulated signals. In Canadian Conference on Electrical and Computer Engineering 2004 (IEEE Cat. No.04CH37513) , Vol. 3. 1737–1740 Vol.3. doi:10.1109/CCECE.2004.1349750 [99] Benjamin Tag, Andrew W. Vargo, Aman Gupta, George Chernyshov, Kai Kunze, and Tilman Dingler. 2019. Continuous Alertness Assessments: Using EOG Glasses to Unobtrusively Monitor Fatigue Levels In-The-Wild. In Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (Glasgow, Scotland Uk) (CHI ’19) . Association for Computing Machinery, New York, NY, USA, 1–12. doi:10.1145/3290605.3300694 [100] UNESCO 2024. First draft of the Recommendation on the Ethics of Neurotechnology . https://unesdoc.unesco.org/ark:/48223/pf0000391444 [101] Yijun Wang, Xiaogang Chen, Xiaorong Gao, and Shangkai Gao. 2017. A benchmark dataset for SSVEP-based brain–computer interfaces. 
+
+IEEE Transactions on Neural Systems and Rehabilitation Engineering 25, 10 (Oct 2017), 1746–1752. doi:10.1109/tnsre.2016.2627556 [102] WhaleTeq. 2024. WhaleTeq. https://www.whaleteq.com/en/product/2/14-eeg-testing/view16-seeg-100e [103] wikipedia. 2022. Homomorphic encryption. https://en.wikipedia.org/wiki/Homomorphic_encryption [104] Yinhao Xiao, Yizhen Jia, Xiuzhen Cheng, Jiguo Yu, Zhenkai Liang, and Zhi Tian. 2019. I Can See Your Brain: Investigating Home-Use Electroencephalography System Security. IEEE Internet of Things Journal 6, 4 (2019), 6681–6691. doi:10.1109/JIOT.2019.2910115 [105] Rafael Yuste, Sara Goering, Blaise Agüera Arcas, Guoqiang Bi, Jose M. Carmena, Adrian Carter, Joseph J. Fins, Phoebe Friesen, Jack Gallant, Jane E. Huggins, and et al. 2017. Four ethical priorities for neurotechnologies and ai. Nature 551, 7679 (Nov 2017), 159–163. doi:10.1038/551159a [106] Hongyu Zhao, Zhelong Wang, Hong Shang, Weijian Hu, and Gao Qin. 2013. A time-controllable Allan variance method for MEMS IMU. Industrial Robot 40 (2013), 111–120. doi:10.1108/01439911311297702 [107] Ligeng Zhu, Zhijian Liu, and Song Han. 2019. Deep leakage from gradients. In Proceedings of the 33rd International Conference on Neural Information Processing Systems . Curran Associates Inc., Red Hook, NY, USA, Article 1323, 11 pages. https://dl.acm.org/doi/10. 5555/3454287.3455610 
+
+A Exploration of Serandip’s applicability to EEG systems 
+
+To measure the effectiveness of Serandip in commercial EEG headsets, we configured the OpenBCI Cyton EEG system as shown in (Table 6). We then collected 5 minutes of data from the OpenBCI electrodes (connected to an EEG simulator) under each configuration, and applied the AD algorithm to quantify the SD of white Gaussian noise introduced by the electrodes. Results showed that lower gain settings yield higher apparent noise levels, and that disabling notch filtering further increases noise due to unmitigated environmental interference (Figure 19). In practice, EEG applications commonly apply notch filters to suppress 50/60 Hz powerline noise. Due to the 
+
+, Vol. 1, No. 1, Article . Publication date: July 2026. 28 • Kalupahana et al. 
+
+reduction of powerline interference, white Gaussian nature which demands the same amplitude signal throughout all frequencies is disturbed. 
+
+Table 6. Configuration parameters for OpenBCI EEG headset used in Serandip experimental setup 
+
+Configuration Parameter Value 
+
+Sampling Rate 250Hz Gain 1,2,4,6,12,24 Notch filter activation ON and OFF No. of channels 1
+
+Fig. 19. Serandip’s noise standard deviation as measured on OpenBCI EEG electrodes+Cyton Board sampled at 250 Hz under different gain settings and with (right) /without(left) applying 50Hz notch filter 
+
+While deactivating notch filtering, the OpenBCI EEG headset can facilitate this DP requirement from both inherent noise and environmental noise at a lower gain. However, environmental noise is highly unpredictable. Hence OpenBCI’s sensor noise is insufficient to provide DP reliably, despite turning off the notch filter. We then expanded our Serandip experiments to two consumer-grade EEG headsets : Neurosky Mind-Wave Mobile 2 EEG headset and Sichiray Taurus 2.0 Brainwave headband. As these EEG systems do not support any device-level modifications, we had to limit our experiments to the default factory settings listed in Table 7. 
+
+Table 7. Factory settings for Neurosky Mind-Wave Mobile 2 EEG headset and Sichiray Taurus 2.0 Brainwave headband used in Serandip experimental setup           
+
+> EEG Headset Model Configuration Parameter Value
+> Neurosky Mind-Wave Mobile 2 Sampling Rate 512Hz Notch filter activation ON No. of channels considered 1Sichiray Taurus 2.0 Brainwave Sampling Rate 215Hz Notch filter activation ON No. of channels considered 1
+
+To evaluate Serandip, we connected the electrodes of the Neurosky Mind-Wave Mobile 2 and Sichiray Taurus 2.0 EEG headsets to an EEG simulator, collected data and measured the inherent white Gaussian noise using Matlab. Despite different factory settings, the maximum achievable SD of white noise from consumer-grade EEG headsets is 3.46 𝜇 V, which is way below the required 21.71 𝜇 V for 1-channel EEG system based community sensing program with 100 participants. 
+
+, Vol. 1, No. 1, Article . Publication date: July 2026.
