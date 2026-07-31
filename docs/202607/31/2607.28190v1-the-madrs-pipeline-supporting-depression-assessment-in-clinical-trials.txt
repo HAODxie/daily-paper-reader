@@ -1,0 +1,559 @@
+Title: The MADRS Pipeline: Supporting Depression Assessment in Clinical Trials
+
+URL Source: https://arxiv.org/pdf/2607.28190v1
+
+Published Time: Fri, 31 Jul 2026 01:03:20 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# The MADRS Pipeline: Supporting Depression Assessment in Clinical Trials 
+
+> *
+
+Mila Fodor and *Katalin Ócsai and *+ Francesco Periti and Rien Sonck and 
+
+Alex Boudreau  
+
+> *These authors contributed equally. +Corresponding author
+
+Clario, part of Thermo Fisher Scientific 
+
+name.surname@clario.com 
+
+Abstract 
+
+Depression is a major mental disorder for which diagnosis relies primarily on clinical as-sessments. Automated methods to support its detection via the psychiatric MADRS scale are getting more and more attention. While exist-ing solutions primarily focus on detecting the disorder from different text sources (e.g., online text, social media), there is still limited support for clinical trials, where clinical assessments are conducted through structured interviews based on standard guidelines such as SIGMA. In this work, we develop a LLM pipeline specif-ically designed to support clinicians in support-ing the assessment of depression in patients enrolled in clinical trials. Our pipeline converts audio interviews into transcripts, maps them into the ten MADRS symptom items, estimates their severity, and identify problematic clinical ratings associated with them. Evaluation on real clinical interviews shows a strong overall correlation of 0.867 with expert ratings, provid-ing interpretable support for future assessments in clinical trials. 
+
+1 Introduction 
+
+Depression is a major mental health disorder and a significant risk factor for suicidal behavior (Wein-berger et al., 2018). In the past few years, notable scientific progress has been made in understand-ing its molecular and neurobiological underpin-nings (Bu et al., 2025; Chourpiliadis et al., 2024; Fries et al., 2023). Despite these advances, defini-tive biological markers and validated diagnostic tests are still lacking (Lakhan et al., 2010). As a result, clinical trials for depression continues to rely on structured interviews and longitudinal as-sessments where clinicians are required to interpret behavioral symptoms (Stuart et al., 2014). The quality of these assessments is particularly critical for trial outcomes, as it can make the dif-ference between a failed study and one in which the target drug separates from placebo (Kobak et al., 2005). To improve consistency and relia-bility across sites and clinicians, symptom severity is quantified using validated rating scales, such as the Montgomery–Åsberg Depression Rating Scale 
+
+(MADRS ) (Montgomery and Åsberg, 1979), and interviews are conducted under standardized ad-ministration guidelines, such as the Structured In-terview Guide for the MADRS (SIGMA ) (Williams and Kobak, 2008). Nevertheless, the rating remains dependent on clinician expertise and judgment, of-ten introducing variability that can affect trial out-comes (Lipsitz et al., 2004). This challenge makes clinical trial interviews a particularly attractive set-ting for automated depression analysis. Recent years have seen growing interest in au-tomated methods for depression detection, with the aim of providing confidential and rapid triage for patients while supporting clinicians in their as-sessments (Fisher et al., 2026; Zhang et al., 2026; Milintsevich et al., 2023). Central to these efforts is the analysis of language (Viduani et al., 2026), as language is a well - established indicator of depres-sion (Trifu et al., 2024; Segrin, 1990) and clinical interviews naturally unfold through speech. Ac-cordingly, existing research has focused on increas-ingly sophisticated models that infer depression from text (Liu et al., 2025). However, much of this research has been conducted on online or non-clinical text, with comparatively little attention de-voted to standardized clinical interviews used in depression trials (Hengle et al., 2024; Squires et al., 2023; Ji et al., 2022; Fröhlich et al., 2018). Fur-thermore, researchers have primarily concentrated on binary classification model (Zhang et al., 2025; Bader et al., 2024), offering limited interpretability into individual symptoms that characterize depres-sive disorders. 
+
+Our original contributions. In this work, we ad-dress these gaps by developing a large language model (LLM) pipeline for supporting the assess-arXiv:2607.28190v1 [cs.CL] 30 Jul 2026 ment of depression in patients enrolled in clinical trials . Inspired by the structure of MADRS, we introduce the MADRS Pipeline, which orchestrates different LLMs to evaluates depressive symptoms directly from clinician –patient interview record-ings. The pipeline first transcribes interview audio into text and segments the transcript according to the symptom items of MADRS. Then, for each item, it estimates symptom severity to support clin-ical rating. Finally, it compares these estimations against ratings provided by human clinicians and identifies instances where the human ratings may not fully comply with MADRS. We conduct extensive experiments across differ-ent LLMs to evaluate the performance of the com-plete pipeline. We validate it on real-world clini-cal data, comprising approximately 16,000 expert-rated MADRS instances. The results demonstrate strong agreement with expert assessments, achiev-ing Spearman correlation of 0.867 on total MADRS scores. 
+
+2 Background and Related Work 
+
+Given the interdisciplinary nature of this work, we first summarize the clinical foundations underlying depression assessment and then review computa-tional approaches to depression detection in NLP. 
+
+Clinical foundations MADRS is one of the most widely used clinician-administered instruments for assessing depression severity in both clinical prac-tice and drug - development trials (Montgomery and Åsberg, 1979). The scale consists of ten symptom items, 1 each rated on a severity scale from 0 to 6. Although well -validated and sensitive to symp-tomatic change over time, the original MADRS of-fers no guidance on how clinicians should elicit in-formation, leaving interview quality dependent on individual interviewing style and expertise. To re-duce assessment variability across raters and study sites, structured administration protocols such as SIGMA were developed (Williams and Kobak, 2008). SIGMA standardizes interview adminis-tration by providing scripted questions and recom-mended follow-up probes for each symptom item. These guidelines ensure that clinicians systemati-cally collect the information required for reliable symptom assessment and consistent scoring. 
+
+> 1Apparent Sadness, Reported Sadness, Inner Tension, Re-duced Sleep, Reduced Appetite, Concentration Difficulties, Lassitude, Inability to Feel, Pessimistic Thoughts, and Suici-dal Thoughts
+
+Computational approaches Research on depres-sion detection spans multiple modalities, includ-ing audio - based analyses (Sardari et al., 2022), video -derived behavioral markers (Mahayossanunt et al., 2023), and multimodal systems (Shangguan et al., 2022). Despite this advancements, text re-mains the most widely used data source due to data privacy concerns (§ 6), and the central role of language in clinical assessment. State - of -the -art approaches rely on deep learn-ing (Squires et al., 2023). Earlier work primarily uses CNNs and LSTMs to capture sentiment and se-mantic signals of depression (Amanat et al., 2022). More recent studies leverage LLMs for their un-precedented, natural-language capabilities (Rinaldi et al., 2020; Liu et al., 2025; Viduani et al., 2026). Prompt engineering is sometimes used to process interview transcripts as monolithic units (Raganato et al., 2024); however, this approach requires long prompts and suffers from context overload, a problem referred to as “ lost-in-the-middle ” (Liu et al., 2024). Other approaches instead relies on multi-step prompting (Kebe et al., 2026; Liu et al., 2025) to decompose interviews into fine-grained units—e.g., symptom-specific text segments (Rinaldi et al., 2020), thematic blocks (Zhao et al., 2025), and clinician–patient dialogue turns (Lee et al., 2026)— and then analyze each unit independently. 
+
+Our work builds upon these recent efforts. Sim-ilar to Vail et al. (2026), we employ a LLM or-chestration that leverages a mixture-of-models to solve an end-to-end clinical assessment: unlike preliminary experiments relying on manually pre-pared transcripts (Raganato et al., 2024), MADRS 
+
+Pipeline directly processes audio recordings, per-forms speaker-aware transcription, and identifies symptom-specific evidence. In contrast to Vail et al. (2026), MADRS Pipeline is specifically designed to support standard MADRS scoring. Similar to Weber et al. (2025), MADRS Pipeline employs a shared encoder with 9 item-specific heads for MADRS assessment. However, they fo-cus on a subset of MADRS items, using real and synthetic German data. In contrast, MADRS Pipeline is trained only on real English clinical interviews and predicts all 10 MADRS items. Kebe et al. (2026) represents another relevant comparison. However, their end-to-end reliance on larger-scale models (e.g., 70B parameters) intro-duces substantial computational costs in terms of Figure 1: Overview of the MADRS Pipeline. The MADRS Pipeline orchestrates four components (1) interview transcription , (2) transcript segmentation , (3) MADRS assessment , and (4) quality assessment .
+
+both time and resources. In contrast, by leveraging different models, MADRS Pipeline provides a practi-cal trade-off between clinical utility, computational efficiency, and scalability. Finally, to the best of our knowledge, MADRS 
+
+Pipeline is the first computational solution specifi-cally designed for depression clinical trials follow-ing SIGMA administration guidelines. Beyond supporting symptom severity estimation, MADRS 
+
+Pipeline enables quality monitoring by assessing the reliability of clinical ratings and identifying potentially non-compliant assessments. 
+
+3 The MADRS Pipeline 
+
+Let a denote the audio recording of a clinician– patient interview conducted within a depression clinical trial according to the SIGMA guidelines. The problem addressed by the MADRS Pipeline is to support the depression assessment of the patient across the ten symptom items of the MADRS scale, denoted by M = m1, . . . , m 10 .The MADRS Pipeline is designed as a computa-tional clinician grounded in standardized clinical interviewing procedures. It is implemented as a directed acyclic graph comprising an orchestration 
+
+of four sequential components, where each stage operates on the outputs of preceding stages. The or-chestration consists of: (1) interview transcription ,(2) transcript segmentation , (3) MADRS assess-ment , and (4) quality assessment . An overview of the proposed framework is shown in Figure 1. 
+
+Interview transcription This component coverts the audio recording a into a textual transcript t.The resulting transcript contains a chronological sequence of clinician and patient utterances and serves as the input to subsequent processing stages. To generate transcripts, we follow an estab-lished pipeline used in related research (Deonise et al., 2026; Desai et al., 2024; Weber et al., 2025). Specifically, we employ an open-source deep learn-ing toolkit (i.e., pyannote.audio 4.0 ; Bredin et al., 2020) for voice activity detection and speaker diarization, combined with an automatic speech recognition (ASR) system (i.e., Whisper Medium ; Radford et al., 2023; Desai et al., 2024) to transcribe the audio recordings. 
+
+Transcript segmentation Clinical interviews are organized around the MADRS items M. This com-ponent decompose a transcript t into 10 symptom-specific segments S = s1, . . . , s 10 , where each seg-ment si contains the interview utterances relevant to the assessment of the corresponding MADRS item mi. The resulting representation aligns the interview with the structure of the clinical instru-ment, enabling subsequent components to operate on localized symptom-specific evidence rather than the transcript as a whole. To segment transcripts, we employ a LLM (i.e., 
+
+GPT-4.1 ) guided by the corresponding SIGMA ad-ministration guidelines. For each MADRS item, the model receives the complete transcript together with the item-specific SIGMA description and it is instructed to identify the utterances relevant to the target symptom using a zero-shot prompting strategy. This procedure is repeated independently for all ten MADRS items (Appendix A.2). Component Data split Interviews Utterances Annotations # Annotations                                         
+
+> Interview transcription Test 82,642 Transcripts 2,642 Transcript segmentation Test 14 3,970 10 SIGMA sections 3,970 ×10
+> MADRS assessment Train 1100 371,715 10 MADRS scores (0–6)
+> 1100 ×10
+> Dev 251 87,364 251 ×10
+> Test 251 86,789 251 ×10
+> Quality assessment Train 305 119,017 {Compliant, Non-compliant }305 ×2
+> Test 305 117,324 305 ×2
+
+Table 1: Datasets : for each component and data split, we report the number of interviews (duration: ~40 min), the total number of utterances across interviews, the annotation format, and the total number of annotations. 
+
+MADRS assessment This is the core component of MADRS Pipeline, responsible for estimating the severity of each MADRS symptom. For each symp-tom item mi, the component analyzes the corre-sponding segment si and predicts a severity rating 
+
+ri ∈ { 0, . . . , 6}, where 0 indicates the absence of the symptom and 6 corresponds to the highest level of severity defined by the MADRS guidelines. To estimate symptom severity, we employ a Transformer encoder model fine-tuned for multi-task ordinal regression (Baly et al., 2019; Li and Lin, 2007). The model processes each segment 
+
+si independently and predicts the corresponding MADRS ordinal rating. Specifically, a shared en-coder first maps the input text into a latent repre-sentation, which is subsequently processed by item-specific prediction heads corresponding to the ten MADRS symptoms. Each head models the ordinal structure of MADRS ratings through a sequence of threshold decisions, enabling the prediction of scores on the discrete 0–6 scale while explicitly accounting for their ordered nature. 
+
+Quality assessment In clinical trials, reviewer 
+
+teams routinely monitor clinical raters to ensure their adherence to MADRS scoring guidelines. This component is designed to support this process by detecting interviews where the rater assessment is not consistent with expected clinical practice. Given the MADRS scores ˆr1, . . . , ˆr10 assigned by the clinical rater as additional input, this com-ponent compares them with the reference scores 
+
+r1, . . . , r 10 . The reference scores can either be gen-erated directly by the MADRS Pipeline (when a re-view by the reviewer team is not available), or pro-vided/refined by the reviewer team following their assessment. The component then predicts a binary quality label, q ∈ { Compliant, Non-compliant },indicating whether the rater scores are considered reliable or potentially problematic. To estimate interview compliance, we train a Random Forest binary classifier using the absolute differences, |ri − ˆri| for i ∈ { 1, . . . , 10 }, as input features. As additional features, we include the 
+
+total and the mean of the absolute differences. 
+
+4 Experimental setup 
+
+We evaluate MADRS Pipeline on a collection of in-terviews annotated with MADRS scores from both clinical raters and reviewer team at the participat-ing clinical sites. Since interview transcription 
+
+and transcript segmentation constitute essential pre-processing steps for the subsequent clinical as-sessments, we conduct targeted validation analyses to verify the expected quality-level of the speech recognition pipeline. 2
+
+4.1 Dataset 
+
+Our dataset consists of 1,602 interviews adminis-tered according to SIGMA. Each interview con-tains approximately 40 minutes of audio. Trained 
+
+raters in private clinics conducted real-time inter-views and assigned 10 MADRS scores during each assessment. A reviewer team evaluated the audio recordings of these interviews and assigned an ad-ditional set of MADRS scores to assess scoring consistency. They then labeled a subset of the inter-views as compliant or non-compliant based on dis-crepancies between the two sets of MADRS scores. Ground-truth collection and clinical training proce-dures were defined by the study protocol and are thus outside the scope of this work (Appendix E). We randomly selected two subsets of interviews to assess interview transcription and transcript seg-mentation . For interview transcription , we man-ually transcribed 8 interviews (2,642 utterances) 
+
+> 2Larger-scale evaluation of these components would re-quire extensive review of interview audio recordings and the generation of additional ground-truth labels, an effort which is outside the scope of this work.
+
+to serve as the reference standard. For transcript segmentation , we annotated 14 interviews (3,970 utterances) by assigning each utterance to one of the 10 SIGMA interview sections, each correspond-ing to a MADRS item. For madrs assessment , we randomly partitioned interviews into Train, Dev, and Test sets using an 80/10/10 split 3 and considered ground truth pro-vided by the reviewer team. For quality assess-ment , the subset annotated with quality labels was smaller and exhibited class imbalance. We there-fore conducted 10-fold cross-validation using ran-dom 50/50 Train/Test splits while preserving the class distribution. A summary of our dataset is available in Table 1. 
+
+4.2 Task setting Interview transcription We conduct a quality as-sessment by computing the similarity between the automatically generated transcripts and the manu-ally curated references. First, we use the temporal Dice metric to align utterances across the two tran-script versions. Then, we quantify lexical similarity using the average Jaccard index over the aligned ut-terances and semantic similarity using the average cosine similarity between sentence embeddings 4 of the aligned utterances (Appendix A). 
+
+Transcript segmentation We evaluate this com-ponent as a multi-class classification task, where the objective is to assign each utterance to one of the 10 SIGMA sections. Performance is measured using one-vs-all F1-score for each SIGMA section and weighted F1-score as an overall metric. We compare one open-weight LLM, Llama 3.3 70B , with two closed-source LLMs, GPT-4.1 and 
+
+Claude Sonnet 4.5 . These models were selected because their large context windows (128K, 1M, and 200K tokens, respectively) enable processing of long clinical transcripts. To minimize variabil-ity due to the non-deterministic nature of LLMs, decoding is performed with temperature set to 0. Each experiment is repeated three times, and the average result across runs is considered. 
+
+MADRS assessment We evaluate this compo-nent as a ranking task by comparing our prediction against the scores of the reviewer team at both the item and total score level. Performance is mea-sured using complementary metrics: Spearman cor-  
+
+> 3No patient appears in more than one set.
+> 4sentence-transformers/all-MiniLM-L6-v2
+> Figure 2: One-vs-all F1 scores for transcript segmen-tation across three runs. Light points: individual runs; dark points: mean. Red: overall performance.
+
+relation, Mean Absolute Error (MAE), and Accu-racy@1. Spearman correlation assesses ranking quality. MAE measures the absolute error in pre-dicted overall MADRS scores. Accuracy1 reports the proportion of predictions within a ±1 point tolerance of the expert ratings. We compare fine-tuned encoders across three settings: (i) pretraining, (ii) architecture, and 
+
+(iii) training loss. For (i) , we compare general-purpose and clinically adapted encoders jointly fine-tuned across all items using an ordinal re-gression loss. For (ii) , we compare the best-performing model from (i) with independent mod-els fine-tuned separately for each MADRS item. For (iii) , we compare the same best-performing model under ordinal regression and categorical classification loss (Appendix 13). All models are trained for up to 10 epochs with early stop-ping based on validation item-level MAE. Specifi-cally, we evaluate RoBERTa (Zhuang et al., 2021), 
+
+ModernBERT (Warner et al., 2025), MentalBERT (Ji et al., 2022), ClinicalBERT (Huang et al., 2020), and PubMedBERT (Gu et al., 2021). Depression datasets are typically confidential and therefore not publicly available (§ 6). As a re-sult, direct comparison with state-of-the-art results is not feasible. To provide a relevant baseline with state-of-the-art, we additionally evaluate decoder LLMs used for transcript segmentation , following the zero-shot LLAMADRS prompting strategy pro-posed by Kebe et al. (2026). 
+
+Quality assessment We evaluate this component as a binary classification task by comparing our pre-dictions against the quality labels of the reviewer 
+
+team. Given the imbalanced nature of the data and the importance of negative examples in this screen-ing setting (§ 5), we use the Matthews Correlation Coefficient (MCC) as metric and report True Pos-itives (TP), True Negatives (TN), False Positives (FP), and False Negatives (FN). We evaluate MADRS Pipeline both when the ref-erence scores r1, . . . , r 10 are provided by the re-viewer team, and when they are directly generated by the top-performing encoder and decoder from 
+
+MADRS assessment .When reference scores are directly generated 5,we account for the fact that MADRS predictions are not error-free. For each MADRS item, we thus investigate the use of a noise quantile threshold 
+
+estimated from the differences between the gener-ated scores and the scores provided by the reviewer 
+
+team. We then use this threshold when comparing the rater scores with the generated scores, so that only disagreements larger than the expected model error are counted. This reduces the risk of attribut-ing model error to the clinical rater (Appendix C). To better contextualize task difficulty, we include simple baselines, namely Random, All-1s, and All-0s. Additionally, we report performance using a simple threshold classifier tuned on the total gap (sum of the item differences) over the Train set. 
+
+4.3 Evaluation results Interview Transcription Our validation sug-gests strong alignment at the utterance level, reach-ing an average temporal Dice score of 0.852 be-tween generated and manually curated utterances. On the aligned utterances, we observe a high sim-ilarity, with average Jaccard index of 0.749 and a average embedding similarity of 0.814. This anal-ysis suggests substantial overlap in both wording and meaning, supporting the use of generated tran-scripts for the subsequent components. 
+
+Transcript segmentation The overall results across three independent evaluation runs are re-ported in Table 2. Our results show that closed-source models outperform the open-weight model, with GPT-4.1 achieving slightly higher perfor-mance and therefore being selected as the refer-ence model. Figure 2 reports the performance of GPT-4.1 across the individual MADRS items. Overall, the segmentation module achieved con-sistently strong performance, with one-vs-all F1 scores exceeding 0.94 for all MADRS items and an 
+
+> 5
+
+To prevent information leakage, MADRS reference scores were generated using split-specific fine-tuned models that excluded the corresponding quality assessment interviews (see Appendix C). 0.55 0.60 0.65 0.70 0.75 0.80 0.85          
+
+> Spearman correlation APPARENT SADNESS REPORTED SADNESS INNER TENSION REDUCED SLEEP REDUCED APPETITE CONCENTRATION DIFFICULTIES LASSITUDE INABILITY TO FEEL PESSIMISTIC THOUGHTS SUICIDAL THOUGHTS
+> 0.660 0.644 0.632 0.650 0.698 0.762 0.624 0.788 0.752 0.832 0.686 0.717 0.675 0.678 0.611 0.681 0.694 0.709 0.812 0.588
+> RoBERTa GPT-4.1
+
+Figure 3: Spearman correlation of the best-performing encoder ( RoBERTa ) and decoder ( GPT-4.1 ) models for 
+
+MADRS assessment on individual MADRS items. 
+
+overall weighted F1 above 0.98. Performance was highly stable across runs ( std from 0.005 to 0.01), as evidenced by the close clustering of individual run-level scores around their corresponding means, indicating that the segmentation procedure is ro-bust to residual variability in LLM inference. The high performance suggests that symptom-specific segmentation is a well-structured task in standard-ized SIGMA interviews. The predefined interview structure creates substantial lexical and semantic overlap between the symptom descriptions sup-plied in the prompt and the corresponding inter-view content (Appendix A.2). This redundancy may simplify symptom identification, aligning with recent evidence that repeated contextual informa-tion can improve the performance of non-reasoning LLMs (Leviathan et al., 2025). 
+
+weigh. F1 score Run1 Run2 Run3 Avg. 
+
+GPT-4.1 0.984 0.981 0.984 0.983 
+
+Llama 3.3 70B 0.654 0.609 0.582 0.615 
+
+Claude Sonnet 4.5 0.978 0.977 0.978 0.978 
+
+Table 2: Weighted F1 for transcript segmentation .
+
+MADRS Assessment Table 3 summarizes the results of our evaluation considering the total MADRS scores. Overall, RoBERTa achieves the best performance, with an MAE of 2.956, an avg. Accuracy@1 of 0.895, and a Spearman correla-tion of 0.867. Baseline LLMADRS also achieve strong performance, although it consistently under-perform the fine-tuned encoder models. Figure 3 reports the correlation for individual items for fine-tuned RoBERTa and a decoder base-Model Setting MAE Accuracy@1 Spearman RoBERTa (i-iii) - general purpose 2.956 0.895 0.867                                                      
+
+> RoBERTa - Independent fine-tuning (ii) -general purpose 3.493 0.860 0.800 RoBERTa - Categorical multiclass loss (iii) -general purpose 3.039 0.900 0.850 ModernBERT (i) -general purpose 4.200 0.842 0.716 MentalBERT (i) -clinically adapted 3.288 0.879 0.842 PubMedBERT (i) -clinically adapted 4.161 0.836 0.756 ClinicalBERT (i) -clinically adapted 4.322 0.832 0.754
+> Baselines: Kebe et al. (2026) Prompt-engineering MAE Accuracy@1 Spearman
+> GPT-4.1 LLAMADRS 4.044 0.813 0.849
+> Claude Sonnet 4.5 LLAMADRS 4.080 0.814 0.848
+> Llama 3.3 70B LLAMADRS 4.133 0.811 0.851
+
+Table 3: Summary performance for MADRS assessment : MAE and Spearman are computed over total MADRS scores. For Accuracy@1, we report the average result per item, as the metric would be too aggressive at the total level. For (i) , encoders are all jointly fine-tuned across all items using an ordinal regression loss. 
+
+lines, GPT-4.1 . Specifically, we observe that per-formance varies across items, and that GPT-4.1 out-perform RoBERTa on most items. RoBERTa achieves higher correlations than GPT-4.1 only for Appar-ent Sadness and Suicidal Thoughts , with the largest gap observed for the latter. We hypothesize that the sensitive nature of the item may interact with safety guardrails (Dong et al., 2025), potentially leading to more conservative predictions and re-duced performance. Despite weaker per-item cor-relations, we shown in Table 8 and 7, that RoBERTa 
+
+outperforms all baselines in terms of MAE and Ac-curacy@1. This translates into higher performance on the total MADRS score, suggesting the aggre-gation of item predictions can mitigate the overall measurement noise. Figure 4 and Table 3 summarize our evaluation over pretraining (i) , architecture (ii) , and loss (iii) .For pretraining (i) , the performance differences are relatively small; However, in line with recent observations (Vishwanath et al., 2026), general-purpose RoBERTa achieves better point estimates than its clinical counterparts. Among the evaluated models, RoBERTa achieves the strongest correlation (Figure 5) and performance (Appendix D) and is therefore selected for the experiments (ii) and (iii) .Considering (ii) , shared fine-tuning consistently outperforms independent fine-tuning. This sug-gests that a shared model benefits from common patterns across MADRS items. For example, nega-tive responses to key symptom questions (e.g., “No” for symptom presence) are informative across mul-tiple items, as they are consistently associated with lower scores. Similarly, recurring severity anchors such as normal versus reduced provide consistent signals that generalize across different symptoms. Considering (iii) , we observe that the categori-(i) Pretraining 0.4 0.6 0.8 1.0 0.67 0.79 0.87 General 0.71 0.78 0.85 Clinical (ii) Architecture 0.70 0.80 0.86 Independ. 0.59 0.87 0.90 Shared (iii) Loss 0.59 0.87 0.90 Ordinal 0.60 0.85 0.90 Categorical MAE Spearman Accuracy@1 
+
+Figure 4: Performance for MADRS assessment over total MADRS scores in setting (i-iii) .
+
+cal loss yields nearly identical performance, while the ordinal loss achieves slightly higher Spearman correlation on the total score. 
+
+Quality assessment We report in Figure 6 the results of our evaluation while varying the quantile threshold used to discount expected prediction error when generated scores are used as reference scores. Overall, lower levels of discounting lead to higher MCC, with the best performance obtained when no discount is applied. Performance progressively decreases as the model becomes more tolerant to prediction errors. Table 4 reports the result of our evaluation when no discount is applied. The highest performance is achieved when using MADRS scores provided by the reviewer team as reference scores, reaching an MCC of 0.704. When using MADRS scores auto-matically generated by MADRS Pipeline as reference scores, performance remains above the baselines but decreases due to error propagation from the au-tomatic predictions. In particular, we obtain a MCC of 0.123 when using predictions generated by fine-tuned RoBERTa , and a MCC of 0.061 when using predictions generated by GPT-4.1 . This suggests 0010 10 20 20 30 30 40 40 
+
+> Spearman rho = 0.867
+> Actual Predicted
+
+Figure 5: Spearman for MADRS assessment over total MADRS scores using fine-tuned RoBERTa .
+
+Figure 6: Spearman for MADRS assessment over total MADRS scores using fine-tuned RoBERTa .
+
+that, although reviewer scores remain the preferred option, RoBERTa scores can still provide a useful signal for identifying non-compliant ratings. The superior performance of RoBERTa is consistent with its higher Accuracy@1 on MADRS assessment .Compared with the thresholding baseline ap-proach, the Random Forest classifier achieves com-parable performance when reviewer scores are used as references (MCC 0.704 vs. 0.713). However, the comparison differs for RoBERTa and GPT-4.1. With the more accurate RoBERTa predictions, the Random Forest consistently outperforms the base-line, suggesting that the quality label q depends on structured patterns of item-level discrepancies rather than only on their overall magnitude. In contrast, when GPT-4.1 predictions are used, the threshold baseline performs better than the Ran-dom Forest. For GPT-4.1 , the confidence intervals are substantially wider for both methods, reflect-ing the higher uncertainty introduced by the lower accuracy of the underlying MADRS predictions.                                                                                                                         
+
+> Ran. For. MCC TN TP FP FN
+> reviewer 0.704 ±0.1 24.1 ±1.0 263.0 ±3.9 5.9 ±1.0 12.0 ±3.9
+> RoBERTa 0.123 ±0.0 8.2 ±2.8 239.4 ±12.0 21.8 ±2.8 35.6 ±12.0
+> GPT-4.1 0.049 ±0.1 7.6 ±3.1 223.5 ±12.7 22.4 ±3.1 51.5 ±12.7
+> Thresh. MCC TN TP FP FN
+> reviewer 0.713 ±0.1 24.4 ±1.3 263.5 ±3.3 5.6 ±1.3 11.7 ±3.3
+> RoBERTa 0.098 ±0.0 8.6 ±6.0 120.2 ±49.3 21.4 ±6.0 154.8 ±49.3
+> GPT-4.1 0.106 ±0.0 9.2 ±3.1 133.1 ±14.9 20.8 ±3.1 141.9 ±14.9
+> Baselines MCC TN TP FP FN Random 0.03 ––––All-1s 030 00275 All-0s 00275 30 0
+
+Table 4: MCC for quality assessment . Results are re-ported as mean ± standard dev. across 10 folds. 
+
+5 Conclusion 
+
+In this work, we introduced MADRS Pipeline, an end-to-end LLM pipeline that supports the as-sessment of depression in clinical trials. MADRS 
+
+Pipeline is specifically designed for clinical inter-views in which the interviewing clinician assesses depression using the MADRS scale and follows the SIGMA guidelines. 
+
+MADRS Pipeline orchestrates four components: 
+
+interview transcription , which converts clinical in-terview audio into structured speaker-aware tran-scripts; transcript segmentation , which aligns ut-terances with the ten MADRS symptom items us-ing structured SIGMA guidelines; MADRS assess-ment , which estimates depression severity for each MADRS item; and quality assessment , which iden-tifies problematic clinical ratings. We evaluated each component separately using real-world clinical trial data. First, we performed sanity checks to ensure the reliability of the gen-erated structured representations of clinical inter-views. We then evaluated the MADRS assessment and quality assessment components. Our results show strong agreement with expert reviewer rat-ings, reaching a Spearman correlation of 0.867 on total MADRS scores. Furthermore, we show that MADRS Pipeline can identify potentially non-compliant ratings using either generated MADRS predictions or reviewer-provided scores, although reviewer scores remain the preferred option. This is consistent with the intended role of 
+
+MADRS Pipeline as a supportive tool for clinicians rather than a replacement for clinical judgment or decision-making. Overall, MADRS Pipeline repre-sents a step toward more consistent, scalable, and interpretable psychiatric assessment workflows by supporting clinicians in the evaluation of depres-sion severity and rating quality. Limitations 
+
+While the proposed MADRS Pipeline demonstrates promising results for automated MADRS assess-ment, the following limitations should be consid-ered when interpreting the findings. 
+
+Modality mismatch Human clinicians typically assess depression severity using in-person inter-views conducted in real time, or audio and video recordings. In contrast, the MADRS Pipeline oper-ates exclusively on textual transcripts for MADRS 
+
+and quality assessment .On the one hand, this design choice is motivated by practical considerations, including privacy, con-fidentiality, and data-sharing constraints that fre-quently arise in clinical research settings. On the other hand, restricting the analysis to transcripts removes access to paralinguistic and behavioral signals, such as prosody, intonation, pauses, facial expressions, and body language, which may con-tribute to clinical assessments. Consequently, there is an inherent modality mis-match between human and automated evaluations. Although the proposed framework achieves sub-stantial agreement with expert reviewers , its perfor-mance should be interpreted in light of this discrep-ancy. Future work could investigate multimodal approaches that integrate acoustic and visual infor-mation alongside textual evidence. 
+
+Transcription quality The MADRS Pipeline re-lies on automatically generated transcripts, making it inherently sensitive to transcription errors. Al-though modern ASR systems generally achieve high accuracy and our evaluation indicates strong transcription quality, errors may still arise due to poor audio conditions, overlapping speech, speaker diarization failures, or model hallucinations. In clinical interviews, even subtle transcription inac-curacies can alter symptom descriptions and affect downstream assessments. While aggregating predictions across multiple MADRS items may reduce the impact of isolated errors, transcription quality remains a fundamental dependency of the overall pipeline. Improvements in downstream modeling cannot fully compensate for missing or incorrectly transcribed information. Consequently, the reported results should be inter-preted relative to the quality of the initial recordings and subsequent transcripts. 
+
+Imbalanced data in quality assessment The dataset used for quality assessment is highly im-balanced. While this poses challenges for model training and evaluation, the observed class distribu-tion is representative of real-world screening con-ditions. Clinical raters are trained to administer as-sessments in a standardized and consistent manner, which contributes to the relatively low prevalence of negative cases. Constructing a reliable ground truth requires the sampling and independent validation of a large number of interviews in order to identify a rela-tively small number of erroneous instances, mak-ing the annotation process both costly and time-consuming. In our dataset, only 60 out of 610 interviews (approximately 407 hours of audio) are labeled as problematic according to MADRS-based scoring. Despite this imbalance, the setting is of practical importance, as automated quality assessment has the potential to substantially support and scale hu-man expertise in clinical trial environments. As a first work based on real-world data, our work con-tributes toward the development of supportive tools for clinical trials. As a future direction, we envi-sion a human-in-the-loop framework in which the dataset can be progressively expanded through ad-ditional expert annotations, and model performance iteratively improved through feedback-driven re-finement. 
+
+6 Ethical Considerations 
+
+This work involves the analysis of sensitive mental health data collected as part of clinical trials. All in-terview recordings and associated annotations were de-identified prior to analysis in accordance with the data governance procedures of the sponsoring studies. No personally identifiable information was used during model development or evaluation. To further reduce privacy risks, the proposed framework operates primarily on textual transcripts rather than raw audio or video recordings. While this design choice introduces a modality mismatch with human assessments, it limits exposure to po-tentially identifiable acoustic and visual informa-tion, thereby facilitating privacy-preserving analy-sis of clinical interviews. The proposed MADRS Pipeline is intended as a decision-support tool and not as a replacement for trained clinical raters. Automated assessments of depression severity may be affected by transcrip-tion errors, model biases, and ambiguity inherent to psychiatric evaluation. Consequently, system out-puts should be reviewed by qualified professionals and should not be used as the sole basis for clinical or treatment decisions. Due to confidentiality agreements and regulatory restrictions governing clinical trial data, neither the underlying datasets nor the trained models can be publicly released. To support transparency and reproducibility, we release model configurations, prompting templates, and synthetic examples that replicate the structure of the evaluation pipeline without exposing confidential material. 
+
+Acknowledgments 
+
+This work was supported by the NeuRev project, funded by Clario, part of Thermo Fisher Scientific. AI coding tools were used to support software de-velopment; all generated code suggestions were reviewed, adapted, validated, and integrated by the authors, who remain fully responsible for the fi-nal implementation. We thank Matthew Agard, and Rachel Alexander for their constructive dis-cussions, brainstorming, feedback, and support throughout this project. We also thank Milos Ivankovic and Cuong Lai for developing the back-end and user interface of the pipeline, which even-tually led our scientific research toward a usable product; and Volodymyr Pozniak for facilitating access to the necessary infrastructure. Finally, we are grateful to Barbara Echevarria and Mark Opler for their leadership of the Clinical Science team and their efforts in curating and collecting the foun-dational data that supported this work. 
+
+References 
+
+Amna Amanat, Muhammad Rizwan, Abdul Rehman Javed, Maha Abdelhaq, Raed Alsaqour, Sharnil Pandya, and Mueen Uddin. 2022. Deep learning for depression detection from textual data. Electronics ,11(5). Mariam Bader, Moustafa Abdelwanis, Maher Maalouf, and Herbert F. Jelinek. 2024. Detecting Depres-sion Severity Using Weighted Random Forest and Oxidative Stress Biomarkers. Scientific Reports ,14(1):16328. Ramy Baly, Georgi Karadzhov, Abdelrhman Saleh, James Glass, and Preslav Nakov. 2019. Multi-Task Ordinal Regression for Jointly Predicting the Trust-worthiness and the Leading Political Ideology of News Media. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Tech-nologies, Volume 1 (Long and Short Papers) , pages 2109–2116, Minneapolis, Minnesota. Association for Computational Linguistics. Hervé Bredin, Ruiqing Yin, Juan Manuel Coria, Gre-gory Gelly, Pavel Korshunov, Marvin Lavechin, Diego Fustes, Hadrien Titeux, Wassim Bouaziz, and Marie-Philippe Gill. 2020. Pyannote.audio: Neural building blocks for speaker diarization. In ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) ,pages 7124–7128. Tianyi Bu, Jiarun Yang, Jiawei Zhou, Yeran Liu, Kexin Qiao, Yan Wang, Jili Zhang, Erying Zhao, Boakye Kwame Owura, Xiaohui Qiu, Zhengxue Qiao, and Yanjie Yang. 2025. Lncrna of peripheral blood mononuclear cells: Hymai acts as a poten-tial diagnostic and therapeutic biomarker for female major depressive disorder. Frontiers in Psychiatry ,Volume 16 - 2025. Charilaos Chourpiliadis, Yu Zeng, Anikó Lovik, Dang Wei, Unnur Valdimarsdóttir, Huan Song, Niklas Hammar, and Fang Fang. 2024. Metabolic pro-file and long-term risk of depression, anxiety, and stress-related disorders. JAMA Network Open ,7(4):e244525. Jacob Cohen. 1968. Weighted kappa: Nominal scale agreement with provision for scaled disagreement or partial credit. Psychological Bulletin , 70(4):213– 220. Costin-Alexandru Deonise, Taisia-Maria Coconu, Muhammad Khurram Zahur Bajwa, Catalin Negru, Bodgan-Costel Mocanu, Aniello Castiglione, and Florin Pop. 2026. Speaker-Attributed Meeting Tran-scription Refinement with Constrained Open-Weight Language Models. Future Generation Computer Sys-tems , 185:108648. Aarsh Desai, N. V. J. K Kartik, Priyesh Gupta, Vinayak, Ashwin T S, Manjunath K. Vanahalli, and Ramku-mar Rajendran. 2024. Advancing speaker diariza-tion with whisper speech recognition for different learning environments. In 2024 IEEE International Conference on Teaching, Assessment and Learning for Engineering (TALE) , pages 1–8. Yi Dong, Ronghui Mu, Yanghao Zhang, Siqi Sun, Tianle Zhang, Changshun Wu, Gaojie Jin, Yi Qi, Jinwei Hu, Jie Meng, Saddek Bensalem, and Xiaowei Huang. 2025. Safeguarding large language models: a survey. 
+
+Artificial Intelligence Review , 58(12):382. Hadar Fisher, Nigel M. Jaffe, Kristina Pidvirny, Anna O. Tierney, Mia S. Vaidean, Poorvesh Dongre, and Chris-tian A. Webb. 2026. Language-based detection of depression with machine learning: systematic review and meta-analysis. npj Digital Medicine .Gabriel R. Fries, Valeria A. Saldana, Johannes Finnstein, and Theo Rein. 2023. Molecular pathways of major depressive disorder converge on the synapse. Molec-ular Psychiatry , 28(1):284–297. Holger Fröhlich, Rudi Balling, Niko Beerenwinkel, Oliver Kohlbacher, Santosh Kumar, Thomas Lengauer, Marloes H. Maathuis, Yves Moreau, Su-san A. Murphy, Teresa M. Przytycka, Michael Reb-han, Hannes Röst, Andreas Schuppert, Matthias Schwab, Rainer Spang, Daniel Stekhoven, Jimeng Sun, Andreas Weber, Daniel Ziemek, and Blaz Zupan. 2018. From hype to reality: data science enabling personalized medicine. BMC Medicine , 16(1):150. Yu Gu, Robert Tinn, Hao Cheng, Michael Lucas, Naoto Usuyama, Xiaodong Liu, Tristan Naumann, Jianfeng Gao, and Hoifung Poon. 2021. Domain-specific lan-guage model pretraining for biomedical natural lan-guage processing. ACM Trans. Comput. Healthcare ,3(1). Amey Hengle, Atharva Kulkarni, Shantanu Deepak Patankar, Madhumitha Chandrasekaran, Sneha D’silva, Jemima S. Jacob, and Rashmi Gupta. 2024. Still not quite there! evaluating large language mod-els for comorbid mental health diagnosis. In Proceed-ings of the 2024 Conference on Empirical Methods in Natural Language Processing , pages 16698–16721, Miami, Florida, USA. Association for Computational Linguistics. Tiancheng Hu and Nigel Collier. 2024. Quantifying the Persona Effect in LLM Simulations. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) ,pages 10289–10307, Bangkok, Thailand. Association for Computational Linguistics. Kexin Huang, Jaan Altosaar, and Rajesh Ranganath. 2020. ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission. In Proceedings of the ACM Conference on Health, Inference, and Learning (CHIL) Workshops . Workshop 20W13. Shaoxiong Ji, Tianlin Zhang, Luna Ansari, Jie Fu, Prayag Tiwari, and Erik Cambria. 2022. Mental-BERT: Publicly Available Pretrained Language Mod-els for Mental Healthcare. In Proceedings of the Thirteenth Language Resources and Evaluation Con-ference , pages 7184–7190, Marseille, France. Euro-pean Language Resources Association. Gaoussou Youssouf Kebe, Jeffrey M. Girard, Einat Liebenthal, Justin Baker, Fernando De la Torre, and Louis-Philippe Morency. 2026. Llamadrs: Evaluat-ing open-source llms on real clinical interviews–to reason or not to reason? Preprint , arXiv:2501.03624. Kenneth A. Kobak, Alan D. Feiger, and Joshua D. Lip-sitz. 2005. Interview quality and signal detection in clinical trials. American Journal of Psychiatry ,162(3):628. Shaheen E. Lakhan, Karen Vieira, and Elissa Ham-lat. 2010. Biomarkers in psychiatry: drawbacks and potential for misuse. International Archives of Medicine , 3(1):1. Jae-Joong Lee, Jihoon Han, and Choong-Wan Woo. 2026. Interpretable depression assessment using a large language model. PLOS Digital Health , 5(2):1– 18. Yaniv Leviathan, Matan Kalman, and Yossi Matias. 2025. Prompt Repetition Improves Non-Reasoning LLMs. Preprint , arXiv:2512.14982. Ling Li and Hsuan-Tien Lin. 2007. Ordinal regression by extended binary classification. In Advances in Neural Information Processing Systems 19 , pages 865–872. MIT Press. Joshua Lipsitz, Ken Kobak, Alan Feiger, Dawn Sikich, Georges Moroz, and Ama Engelhard. 2004. The Rater Applied Performance Scale: development and reliability. Psychiatry Research , 127(1):147–155. June M. Liu, Mengxia Gao, Sahand Sabour, Zhuang Chen, Minlie Huang, and Tatia M. C. Lee. 2025. Enhanced large language models for effective screen-ing of depression and anxiety. Communications Medicine , 5(1):457. Published: 2025-11-05. Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paran-jape, Michele Bevilacqua, Fabio Petroni, and Percy Liang. 2024. Lost in the Middle: How Language Models Use Long Contexts. Transactions of the Asso-ciation for Computational Linguistics , 12:157–173. Yanisa Mahayossanunt, Natawut Nupairoj, Solaphat Hemrungrojn, and Peerapon Vateekul. 2023. Ex-plainable depression detection based on facial expres-sion using lstm on attentional intermediate feature fusion with label smoothing. Sensors , 23(23). Kirill Milintsevich, Kairit Sirts, and Gaël Dias. 2023. Towards automatic text-based estimation of depres-sion through symptom prediction. Brain Informatics ,10(1):4. Published: 2023-02-13. Stuart A. Montgomery and Marie Åsberg. 1979. A New Depression Scale Designed to be Sensitive to Change. 
+
+British Journal of Psychiatry , 134(4):382–389. Alec Radford, Jong Wook Kim, Tao Xu, Greg Brock-man, Christine McLeavey, and Ilya Sutskever. 2023. Robust Speech Recognition via Large-Scale Weak Supervision. In Proceedings of the 40th Interna-tional Conference on Machine Learning , ICML’23. JMLR.org. Alessandro Raganato, Francesco Bartoli, Cristina Cro-camo, Daniele Cavaleri, Giuseppe Carrà, Gabriella Pasi, and Marco Viviani. 2024. Leveraging Prompt Engineering and Large Language Models for Au-tomating MADRS Score Computation for Depres-sion Severity Assessment. In Ital-IA 2024: 4th Na-tional Conference on Artificial Intelligence, orga-nized by CINI , Naples, Italy. Alex Rinaldi, Jean Fox Tree, and Snigdha Chaturvedi. 2020. Predicting Depression in Screening Interviews from Latent Categorization of Interview Prompts. In 
+
+Proceedings of the 58th Annual Meeting of the Asso-ciation for Computational Linguistics , pages 7–18, Online. Association for Computational Linguistics. Sara Sardari, Bahareh Nakisa, Mohammed Naim Rast-goo, and Peter Eklund. 2022. Audio based depres-sion detection using Convolutional Autoencoder. Ex-pert Systems with Applications , 189:116076. Chris Segrin. 1990. A meta-analytic review of social skill deficits in depression. Communication Mono-graphs , 57(4):292–308. Zixuan Shangguan, Zhenyu Liu, Gang Li, Qiongqiong Chen, Zhijie Ding, and Bin Hu. 2022. Dual-stream Multiple Instance Learning for depression detection with facial expression videos. IEEE Transactions on Neural Systems and Rehabilitation Engineering ,31:554–563. Patrick E. Shrout and Joseph L. Fleiss. 1979. Intra-class correlations: uses in assessing rater reliability. 
+
+Psychological Bulletin , 86(2):420–428. Charles Spearman. 1904. The proof and measurement of association between two things. The American Journal of Psychology , 15(1):72–101. Matthew Squires, Xiaohui Tao, Soman Elangovan, Raj Gururajan, Xujuan Zhou, U. Rajendra Acharya, and Yuefeng Li. 2023. Deep learning and machine learn-ing in Psychiatry: a survey of current progress in Depression detection, diagnosis and treatment. Brain Informatics , 10(1):10. Amanda L. Stuart, Julie A. Pasco, Felice N. Jacka, Sharon L. Brennan, Michael Berk, and Lana J. Williams. 2014. Comparison of self-report and struc-tured clinical interview in the identification of depres-sion. Comprehensive Psychiatry , 55(4):866–869. Raluca Nicoleta Trifu, Bogdan Neme s, , Dana Cristina Herta, Carolina Bodea-Hategan, Dorina Anca Tala s, ,and Horia Coman. 2024. Linguistic markers for ma-jor depressive disorder: a cross-sectional study using an automated procedure. Frontiers in Psychology ,Volume 15 - 2024. Alexandria K. Vail, Marcelo Cicconet, Katie Aaf-jes van Doorn, Ryan Maroney, and Marc Aafjes. 2026. Adapts: Agentic decomposition for automated protocol-agnostic tracking of symptoms. Preprint ,arXiv:2605.03212. Anna Viduani, Claudia Buchweitz, Ana Cristina Os-termann, Ricardo Matsumura Araújo, and Christian Kieling. 2026. From linguistic analyses to large lan-guage models: A scoping review of methods used to investigate language features in depression research. 
+
+Psychiatry Research , 360:117064. Krithik Vishwanath, Anton Alyakin, Mrigayu Ghosh, Ali Hage, Sean N. Neifert, Cordelia Orillac, Nataniel J. Mandelberg, Hammad A. Khan, Jin Vi-vian Lee, Jie J. Yao, William Robert Small, Aakaash Varma, D. Brock Hewitt, Yindalon Aphinyanaphongs, Daniel Alexander Alber, and Eric Karl Oermann. 2026. General-purpose large language models out-perform specialized clinical ai tools on medical benchmarks. Nature Medicine .Benjamin Warner, Antoine Chaffin, Benjamin Clavié, Orion Weller, Oskar Hallström, Said Taghadouini, Alexis Gallagher, Raja Biswas, Faisal Ladhak, Tom Aarsen, Griffin Thomas Adams, Jeremy Howard, and Iacopo Poli. 2025. Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Finetuning and Inference. In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) , pages 2526–2547, Vienna, Austria. Association for Computational Linguistics. Samantha Weber, Nicolas Deperrois, Robert Heun, Laura Frühschütz, Anna Monn, Stephanie Homan, Andrea Häfliger, Erich Seifritz, Tobias Kowatsch, Lena Jäger, Katharina Schultebraucks, Sapir Gershov, Jacopo Mocellin, Birgit Kleim, Sebastian Olbrich, and MULTICAST consortium. 2025. Using a fine-tuned large language model for symptom-based de-pression evaluation. npj Digital Medicine , 8(1):598. A. H. Weinberger, M. Gbedemah, A. M. Martinez, D. Nash, S. Galea, and R. D. Goodwin. 2018. Trends in depression prevalence in the usa from 2005 to 2015: widening disparities in vulnerable groups. Psy-chological Medicine , 48(8):1308–1315. Janet B. W. Williams and Kenneth A. Kobak. 2008. Development and reliability of a structured inter-view guide forthe montgomery-Åsberg depression rating scale (sigma). British Journal of Psychiatry ,192(1):52–58. Shengming Zhang, Chaohai Zhang, and Jiaxin Zhang. 2026. Text-Based Depression Estimation Using Ma-chine Learning With Standard Labels: Systematic Review and Meta-Analysis. Journal of Medical In-ternet Research , 28. Xu Zhang, Chenlong Li, Weisi Chen, Jiaxin Zheng, and Feihong Li. 2025. Optimizing depression de-tection in clinical doctor-patient interviews using a multi-instance learning framework. Scientific Re-ports , 15(1):6637. Xianbing Zhao, Yiqing Lyu, Di Wang, and Buzhou Tang. 2025. Predicting Depression in Screening Inter-views from Interactive Multi-Theme Collaboration. In Findings of the Association for Computational Linguistics: ACL 2025 , pages 23025–23035, Vienna, Austria. Association for Computational Linguistics. Liu Zhuang, Lin Wayne, Shi Ya, and Zhao Jun. 2021. A robustly optimized BERT pre-training approach with post-training. In Proceedings of the 20th Chinese National Conference on Computational Linguistics ,pages 1218–1227, Huhhot, China. Chinese Informa-tion Processing Society of China. 
+
+A Transcription 
+
+A.1 Transcription quality 
+
+We conduct a quality assessment by computing the similarity between the automatically generated tran-scripts and the manually curated references. For all possible pairs of manually transcribed utterances 
+
+ˆui, and automatically generated transcription ut-terances ui, temporal alignment was determined using the Dice coefficient, defined as 
+
+Dice( ui, ˆui) = 2|t(ui) ∩ t(ˆ ui)||t(ui)| + |t(ˆ ui)|
+
+where t(ui) denotes the temporal span of an utter-ance ui. The optimal temporal matching is defined as the pairing that maximizes the Dice coefficient. Lexical similarity was quantified using the av-erage Jaccard index between utterances ui and ˆui;where Jaccard is defined as: 
+
+Jac .(ui, ˆui) = |words (ui) ∩ words (ˆ ui)||words (ui) ∪ words (ˆ ui)| .
+
+Similarly, semantic similarity was quantified as the average cosine similarity between sentence embeddings derived from Sentence Transformers; where Cosine is defined as: 
+
+cos( ui, ˆui) = ui · ˆui
+
+∥ui∥ ˆui∥ .
+
+A.2 Transcript segmentation 
+
+We adopt a zero-shot prompt engineering ap-proach. Specifically, we design a structured tem-plate prompt (Figure 7) consisting of four parts concatenated in a fixed order (Figure 8, 9, 10, 11, and 12). For the first part, we follow prior work showing that explicit role assignment can improve LLM performance (Hu and Collier, 2024). The re-maining parts are designed to enforce a structured representation of inputs, constrain the output for-mat, and provide unambiguous instructions. These parts are then paired with both the full transcript of an interview and the corresponding MADRS guideline section under examination. In practice, given the transcript of an interview, a LLM is prompted independently for each of the 10 SIGMA sections. The LLM predicts the first and last utterance indices corresponding to each section. We then reconstruct the final annotation by assigning all utterances between the predicted start 
+
+and end indices to the respective SIGMA section, resulting in the final segmentation of the transcript. 
+
+PROMPT TEMPLATE 
+
+{Role and task} TRANSCRIPTION FORMAT: 
+
+{Transcript format} GUIDELINES FORMAT: {Guidelines format} RESPONSE FORMAT: {Response format} INSTRUCTIONS: {Instructions} ---------------------INPUT TRANSCRIPT: {transcript} INPUT GUIDELINES: {sigma section} RESPONSE: 
+
+Figure 7: Prompt template used for transcript segmen-tation .
+
+Role and Task:   
+
+> You are a blinded clinical expert independently re-viewing clinical assessment interviews. You will be provided with: -a transcript of an audio-recorded interview in which a ’clinician’ interviews a ’patient’. -a specific guidelines section that should be cov-ered during the interview. Your task is to identify and extract the segments of the transcript that correspond to a specified section of the clinical interview guidelines.
+
+Figure 8: Prompt section used for defining role and task .
+
+Transcript Format: 
+
+> TRANSCRIPT FORMAT:
+> [{"speaker": "clinician" | "patient", "transcription": "<text>", "id": <integer> }, ... ]
+
+Figure 9: Prompt section used for defining transcript format .Guidelines Format: 
+
+GUIDELINES FORMAT: 
+
+{"label": "<title of the section>", "script": [ "<key questions that the clinician should ask the patient>" ], "probes": [ "<follow-up questions that may be used when further exploration or additional clarification of symptoms is necessary>" ]}
+
+Figure 10: Prompt section used for defining guidelines format .
+
+Response Format: 
+
+RESPONSE FORMAT: If one or more transcript segments are found: 
+
+[{"id_start": X, "id_end": Y}, ...] 
+
+If not: None You must respond with a valid JSON object only. Do not include any additional text. 
+
+Figure 11: Prompt section used for defining response format .
+
+Instructions: 
+
+INSTRUCTION: - Review the transcript and identify all segments that directly address the provided guidelines section (including both script and probe ques-tions). - For each continuous segment covering the guidelines section, return the corresponding first and last transcript record IDs as "id_start" and "id_end". - Only include transcript segments that directly address the guidelines section. Do not include content that is merely thematically similar or unrelated. - If multiple, non-overlapping segments address the guidelines section, return each as a separate "id_start", "id_end" pair. - Be aware that: - Speaker attribution may occasionally be incorrect. - Questions and answers may be split across multiple records, and unrelated or fragmented text may appear between them. In such cases, extend the segment range forward as needed to include the corresponding answer to a relevant ques-tion. - If the guidelines section is not covered in the transcript, return no segments. Review the transcript and identify the records that correspond to the provided guidelines section. For each continuous coverage of the guidelines section, return the first and last transcript records IDs (based on their id) that address the guidelines section. 
+
+Figure 12: Prompt section used for defining intructions .
+
+B MADRS assessment 
+
+LLAMADRS To compare with the state of the art, we evaluate decoder LLMs using the zero-shot LLAMADRS prompt proposed by (Kebe et al., 2026). For fair comparisons, we evaluate LLA-MADRS on the same Test set used for encoders. Figure 13 reports the prompt used in our experi-ments, as originally defined in the referenced study. 
+
+LLAMADRS TEMPLATE 
+
+Task: Analyze a diarized transcript of a psychiatric session where the MADRS is being administered. Predict the rating (0-6) that the practitioner would likely give for the specified MADRS item based on the patient 's responses and the conversation. Remember that the rating is for the last week, not based on the patient 's history or general condition. Focus on the questions that are directly related to the MADRS item and the patient 's answers. MADRS Item: {MADRS-ITEM} [Descriptive Cues] Description: Representing reports of depressed mood, regardless of whether it is reflected in appearance or not. Includes low spirits, despondency or the feeling of being beyond help and without hope. Rate according to intensity, duration and the extent to which the mood is reported to be influenced by events. Rating Scale: 0 - Occasional sadness in keeping with the circumstances. 1 - Between 0 and 2. 2 - Sad or low but brightens up without difficulty. 3 - Between 2 and 4. 4 - Pervasive feelings of sadness or gloominess. The mood is still influenced by external circumstances. 5 - Between 4 and 6. 6 - Continuous or unvarying sadness, misery or despondency. Instructions: 1. Read the provided interview transcript. 2. Rate the interviewee’s reported sadness on a scale of 0-6. 3. Provide a brief explanation (2-3 sentences) for your rating. 4. List 2-3 key utterances from the conversation supporting your assessment. 5. Return only a valid json. Output Schema: {rating: 0-6, explanation: 2-3 sentences, key_utterances: [line numbers], most_relevant_question: [...]} 
+
+Figure 13: LLAMADRS prompt template used for 
+
+MADRS assessment .
+
+Encoder fine-tuning All encoders are fine-tuned on SIGMA segments using a Train/Dev/Test split, with no patient appearing in more than one set. For all experiments, the input text includes both clinician and patient turns from the extracted SIGMA segment. Specifically, we use this for-mat: clinician: [utterance] patient: [utterance] .Each SIGMA segment is paired with the MADRS 
+
+reviewer score for the assessed item in the same interview. Item scores are modeled on the standard MADRS ordinal scale y ∈ { 0, . . . , 6}.For setting (i) , we use a shared transformer en-coder with item-specific prediction heads. Given a segment si, the encoder produces a representation which is passed to the prediction head correspond-ing to MADRS item mi. The model outputs six ordinal-threshold logits zk, where k ∈ { 0, . . . , 5}.Each MADRS score is represented using six binary threshold targets: 
+
+ti,k = 1{yi > k } .
+
+The logits are converted into threshold probabilities using the sigmoid activation function: 
+
+pi,k = σ(zi,k ) .
+
+Let B denote the batch size, and let wi,k denote the positive-class weight applied to threshold k
+
+for MADRS item mi, used to account for class imbalance among the ordinal threshold targets. The ordinal objective is binary cross-entropy over the six thresholds: 
+
+Lo = − 1
+
+B
+
+> B
+
+X
+
+> n=1
+
+16
+
+> 5
+
+X
+
+> k=0
+
+h
+
+win,k tn,k log pn,k +(1 − tn,k ) log(1 − pn,k )
+
+i
+
+.
+
+where in denotes the MADRS item associated with sample n. At inference time, the predicted score is obtained by summing the thresholds whose pre-dicted probability is at least 0.5: 
+
+ˆyi =
+
+> 5
+
+X
+
+> k=0
+
+1{pi,k ≥ 0.5}.
+
+For setting (ii) , independent models are fine-tuned with the same ordinal objective separately for each MADRS item. For setting (iii) , we use the architecture of (i) but replace the ordinal objective with a seven-class cross-entropy loss: 
+
+Lce = − 1
+
+B
+
+> B
+
+X
+
+> n=1
+
+αin,y n log exp zn,y n
+
+P6 
+
+> c=0
+
+exp zn,c 
+
+,
+
+where αin,y n is the item-specific class weight. For RoBERTa , MentalBERT , PubMedBERT , and 
+
+ClinicalBERT , we use a maximum input length of 512 tokens. Longer item segments are processed with sliding windows using a stride of 128 tokens. If an item segment yields Mn windows, the row representation is the mean of the first-token win-dow embeddings: 
+
+hn = 1
+
+MnMnX
+
+> m=1
+
+Hθ(xn,m )0.
+
+The resulting segment-level vector is then passed to the prediction head for the corresponding MADRS item. ModernBERT is fine-tuned with a 4096-token context window, so each segment can be processed Hyperparameter Value                     
+
+> Optimizer AdamW Learning rate 1×10 −5
+> Weight decay 0.01 Warmup ratio 0.10 Maximum epochs 10 Early stopping patience 2 validation epochs Gradient clipping 1.0 Dropout 0.1 Precision FP32 Random seed 13 Checkpoint selection Lowest validation item MAE Training batch size 2 (1 for ModernBERT )Gradient accumulation steps 2 (4 for ModernBERT )Evaluation batch size 4 (2 for ModernBERT )Effective training batch size 4
+
+Table 5: Fine-tuning hyperparameters. 
+
+without sliding-window aggregation. For each win-dow or full segment, we use the hidden state of the first special token as the sequence represen-tation: [CLS] for BERT-style tokenizers and <s> 
+
+for RoBERTa-style tokenizers. We apply dropout with rate 0.1 to this representation before the item-specific prediction head. 
+
+C Quality assessment 
+
+Encoder-generated reference scores Directly using the encoder models trained for MADRS scoring would introduce information leakage: the MADRS ground-truth annotations of an interview used during RoBERTa training would subsequently influence the generation of reference scores for the same interview during quality assessment .To prevent this issue, we repeat the fine-tuning ex-cluding the interviews from the quality assessment 
+
+subset. The resulting model is then used to generate MADRS predictions for those specific interviews. This procedure ensures that every generated MADRS score used for quality assessment is pro-duced by a model that has not observed the cor-responding interview during training. Thus, the generated reference scores represent out-of-sample predictions rather than reconstructions influenced by exposure to the target interviews. 
+
+C.1 Error tolerance estimation 
+
+When the reference scores {r1, . . . , r 10 } are gener-ated by MADRS Pipeline, we account for the possi-bility that they may themselves contain item-level prediction errors. Consequently, we do not inter-pret every disagreement between a rater and the generated scores as evidence of poor rater quality. Instead, we estimate an item-specific error toler-ance using the Train set. Let {r1,g , . . . , r 10 ,g }, {r1,r , . . . , r 10 ,r }, and 
+
+{ˆr1, . . . , ˆr10 } denote the MADRS item scores gen-erated by MADRS Pipeline, assigned by the reviewer 
+
+team, and assigned by the clinical rater , respec-tively. For each MADRS item i and instance j in the Train set, we compute the empirical generated-score error as the absolute difference between the generated score r(j) 
+
+> i,g
+
+and the corresponding re-viewer score r(j) 
+
+> i,r
+
+:
+
+e(j) 
+
+> i
+
+= r(j) 
+
+> i,g
+
+− r(j) 
+
+> i,r
+
+.
+
+The item-specific error tolerance for MADRS item i is defined as the noise threshold τi, computed as the 80th percentile of the empirical generated-score errors for item i across all Train-set instances: 
+
+τi = Q0.8
+
+n
+
+e(j)
+
+> i
+
+oNtrain 
+
+> j=1
+
+
+
+,
+
+where Ntrain denotes the number of instances in the Train set. This threshold represents the expected prediction variability of the generated reference score for MADRS item i.For our Random Forest classifiers, we define the excess-gap feature for item i as the absolute score difference between MADRS Pipeline and the clinical 
+
+rater that exceeds the expected noise level: 
+
+di = max ( |ri,g − ˆri| − τi, 0) ,
+
+where ri,g is the MADRS score generated by MADRS 
+
+Pipeline, ˆri is the score assigned by the clinical 
+
+rater , and τi is the item-specific noise threshold es-timated from the Train set. Thus, score differences within the expected error range of the generated reference score are removed, while only the excess component beyond this tolerance is retained. This procedure prevents the classifier from at-tributing expected uncertainty in the generated ref-erence scores to the clinical rater . The classifier is then trained using the item-level excess-gap fea-tures di10  
+
+> i=1
+
+together with summary statistics, in-cluding the total excess gap and the mean excess gap across MADRS items: 
+
+Dsum =
+
+> 10
+
+X
+
+> i=1
+
+di,Dmean = 110 
+
+> 10
+
+X
+
+> i=1
+
+di.C.2 Random forest parameters 
+
+We use the default parameters provided by 
+
+scikit-learn for the Random Forest classifier, varying only the number of estimators, which is set to 500. 
+
+D Evaluation results 
+
+For comparison, we report in Table 6, Table 7, and Table 8 the performance of MADRS assessment 
+
+for each MADRS item and the final MADRS to-tal score, using Spearman correlation, MAE, and accuracy metrics, respectively. 
+
+E Human clinical assessment 
+
+All assessments were obtained through real-time, interviews conducted by trained clinicians in pri-vate clinics outside the scope of this work. Fol-lowing standard practices in clinical trials, inter-views were subsequently reviewed and, where nec-essary, adjudicated by a senior clinician based on audio recordings of the original interviews (Lipsitz et al., 2004). Inter-rater agreement between inter-viewing and audio-reviewing clinicians is reported in Table 9, computed using Spearman’s correla-tion (Spearman, 1904), Quadratic Weighted Kappa (QWK) (Cohen, 1968), and Intraclass Correlation Coefficient (ICC) (Shrout and Fleiss, 1979). Al-though the ratings are not strictly independent (the audio-reviewing clinician had access to the orig-inal interview recordings), high values across all measures indicate strong concordance between the original and adjudicated scores. A subset of these recordings was re-analyzed for quality assessment, where the difference between the initial rater and 
+
+reviewer scores was used to define a binary quality label. Baselines: LLAMADRS (Kebe et al., 2026) Encoders MADRS Items GPT-4.1 Claude Sonnet 4.5 Llama 3.3 70B RoBERTa ModernBERT MentalBERT ClinicalBERT PubMedBERT 
+
+APPARENT SADNESS 0.644 0.641 0.648 0.660 0.534 0.650 0.575 0.522 REPORTED SADNESS 0.650 0.657 0.649 0.632 0.485 0.622 0.393 0.378 INNER TENSION 0.762 0.767 0.760 0.698 0.668 0.713 0.651 0.664 REDUCED SLEEP 0.788 0.795 0.789 0.624 0.453 0.608 0.485 0.501 REDUCED APPETITE 0.832 0.828 0.827 0.752 0.599 0.700 0.671 0.684 CONCENTRATION DIFFICULTIES 0.717 0.715 0.721 0.686 0.691 0.692 0.680 0.687 LASSITUDE 0.679 0.673 0.674 0.675 0.528 0.622 0.518 0.541 INABILITY TO FEEL 0.681 0.680 0.681 0.611 0.478 0.590 0.499 0.494 PESSIMISTIC THOUGHTS 0.709 0.713 0.712 0.694 0.655 0.716 0.666 0.688 SUICIDAL THOUGHTS 0.588 0.586 0.567 0.812 0.820 0.813 0.814 0.841 
+
+TOTAL_SCORE 0.849 0.848 0.851 0.867 0.716 0.842 0.754 0.756 
+
+Table 6: Spearman correlation : performance comparison for MADRS assessment .
+
+Baselines: LLAMADRS (Kebe et al., 2026) Encoders MADRS Items GPT-4.1 Claude Sonnet 4.5 Llama 3.3 70B RoBERTa ModernBERT MentalBERT ClinicalBERT PubMedBERT 
+
+APPARENT SADNESS 0.878 0.888 0.889 0.562 0.700 0.645 0.660 0.665 REPORTED SADNESS 0.676 0.670 0.683 0.483 0.621 0.557 0.773 0.803 INNER TENSION 0.805 0.795 0.807 0.527 0.695 0.512 0.714 0.685 REDUCED SLEEP 0.829 0.811 0.833 0.778 1.197 0.862 1.113 1.089 REDUCED APPETITE 0.748 0.759 0.756 0.709 0.901 0.793 0.862 0.857 CONCENTRATION DIFFICULTIES 0.600 0.594 0.602 0.564 0.559 0.554 0.574 0.578 LASSITUDE 0.722 0.733 0.733 0.623 0.824 0.667 0.853 0.848 INABILITY TO FEEL 0.885 0.889 0.894 0.725 0.819 0.755 0.868 0.868 PESSIMISTIC THOUGHTS 0.860 0.852 0.859 0.659 0.717 0.639 0.766 0.678 SUICIDAL THOUGHTS 0.907 0.915 0.964 0.322 0.341 0.322 0.322 0.312 
+
+TOTAL_SCORE 4.044 4.080 4.133 2.956 4.200 3.288 4.322 4.161 
+
+Table 7: Mean Absolute Error : performance comparison for MADRS assessment . Item rows report item-level MAE; the final row reports MAE over summed total MADRS scores. 
+
+Baselines: LLAMADRS (Kebe et al., 2026) Encoders MADRS Items GPT-4.1 Claude Sonnet 4.5 Llama 3.3 70B RoBERTa ModernBERT MentalBERT ClinicalBERT PubMedBERT 
+
+APPARENT SADNESS 0.794 0.790 0.789 0.906 0.872 0.887 0.892 0.892 REPORTED SADNESS 0.855 0.859 0.855 0.946 0.906 0.916 0.857 0.857 INNER TENSION 0.828 0.829 0.826 0.941 0.872 0.946 0.862 0.872 REDUCED SLEEP 0.807 0.811 0.810 0.803 0.729 0.793 0.724 0.729 REDUCED APPETITE 0.842 0.837 0.837 0.867 0.754 0.823 0.764 0.754 CONCENTRATION DIFFICULTIES 0.857 0.863 0.859 0.892 0.868 0.873 0.853 0.858 LASSITUDE 0.852 0.847 0.847 0.902 0.824 0.897 0.814 0.799 INABILITY TO FEEL 0.785 0.784 0.782 0.882 0.828 0.828 0.804 0.814 PESSIMISTIC THOUGHTS 0.745 0.750 0.748 0.873 0.834 0.883 0.810 0.839 SUICIDAL THOUGHTS 0.766 0.764 0.753 0.941 0.932 0.941 0.937 0.941 
+
+TOTAL_SCORE 0.813 0.814 0.811 0.895 0.879 0.842 0.836 0.832 
+
+Table 8: Accuracy@1 : performance comparison for MADRS assessment . Item rows report item-level within-one accuracy; the final row reports Acc@1 over summed total MADRS scores. 
+
+MADRS Items DATASET 
+
+QWK ICC Spearm. APPARENT SADNESS 0.940 0.937 0.898 REPORTED SADNESS 0.944 0.944 0.912 INNER TENSION 0.946 0.946 0.919 REDUCED SLEEP 0.950 0.944 0.929 REDUCED APPETITE 0.958 0.958 0.947 CONC. DIFFICULTIES 0.955 0.955 0.933 LASSITUDE 0.943 0.943 0.914 INABILITY TO FEEL 0.918 0.914 0.866 PESSIMISTIC THOUGHTS 0.937 0.937 0.933 SUICIDAL THOUGHTS 0.895 0.895 0.904 
+
+TOTAL_SCORE 0.980 0.980 0.963 
+
+Table 9: Inter-rater agreement between the interviewing clinician and the audio-reviewing clinician across all studies.
