@@ -1,0 +1,255 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-01T21:25:04.284752+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2607.28476v1",
+      "source": "arxiv",
+      "title": "Improving Mental Health Screening and Early Risk Detection in Spanish",
+      "abstract": "Early detection of mental health disorders is often limited by the lack of specialized resources in Spanish and the difficulty of analyzing long histories of social media posts. This paper addresses these challenges through three main contributions. First, we introduce three Spanish foundational models specifically adapted to the mental health domain through domain-specific pre-training. Second, we propose Incremental Context Expansion (ICE), an automatic relabeling methodology designed for early detection. ICE identifies the point at which cumulative messages provide enough evidence of a disorder, generating more informative training samples. Third, we provide a set of fine-tuned models using the samples generated with the ICE methodology for early risk detection tasks. Our results on three Spanish benchmarks show that combining these specialized models with ICE improves the state-of-the-art, reducing detection latency while maintaining high performance. All models are publicly available.",
+      "authors": [
+        "Andreu Casamayor-Segarra",
+        "Vicent Ahuir",
+        "Antonio Molina-Marco",
+        "Lluís-F. Hurtado"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-30T16:28:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.28476v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "mental health screening and early risk detection in Spanish, direct mental health NLP",
+      "llm_evidence_cn": "西班牙语心理健康筛查与早期风险检测，直接面向心理健康",
+      "llm_evidence": "西班牙语心理健康筛查与早期风险检测，直接面向心理健康",
+      "canonical_evidence": "西班牙语心理健康筛查与早期风险检测，直接面向心理健康",
+      "llm_tldr_en": "Introduces three domain-specific Spanish mental health foundation models and Incremental Context Expansion auto-relabeling for early detection from social media histories.",
+      "llm_tldr_cn": "西班牙语心理健康障碍早期检测受限于专用资源匮乏以及长历史社交媒体帖子的分析难度。本文贡献包括：面向心理健康领域预训练的三个西班牙语基础模型、自动重标注方法增量上下文扩展（ICE），以及基于ICE样本微调的早期检测模型。ICE可定位累积信息足以提示障碍的时间点，生成更具信息量的训练样本。该工作填补了非英语心理健康NLP资源的空白。",
+      "llm_tldr": "西班牙语心理健康障碍早期检测受限于专用资源匮乏以及长历史社交媒体帖子的分析难度。本文贡献包括：面向心理健康领域预训练的三个西班牙语基础模型、自动重标注方法增量上下文扩展（ICE），以及基于ICE样本微调的早期检测模型。ICE可定位累积信息足以提示障碍的时间点，生成更具信息量的训练样本。该工作填补了非英语心理健康NLP资源的空白。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.26556v1",
+      "source": "arxiv",
+      "title": "Advanced EEG Source Models from the Perspective of FEM and Inverse Solutions",
+      "abstract": "In this study, we compare forward solutions computed with finite element methods in Zeffiro Interface and DUNEuro, using the different source models they provided. We compared two of the source models from DUNEuro, called Whitney basis and Local subtraction, and the divergence-conforming model of Zeffiro Interface. For source estimation, we applied sparsity-promoting standardized hierarchical adaptive L1 regression (SHAL1R), standardized Kalman filtering (SKF), classical sLORETA, and dipole scanning. Analyses include Earth Mover's Distance, depth bias scatter plots, and qualitative assessments of amplitude distribution and focality. Preliminary experiments with source interpolation for each method revealed that Local subtraction closely matches expectations for the local behavior of the lead field at various depths. The main results reveal that the success of an inverse method depends strongly on the compatibility between its assumptions about the focality of the source and the chosen source model, with point-source models performing best when paired with methods designed for such sources, i.e., sparsity-promoting methods and methods that scan for a single source. Moreover, source models that admit patch sources with a wide distribution are more sensitive to additional noise.",
+      "authors": [
+        "Santtu Söderholm",
+        "Joonas Lahtinen",
+        "Sampsa Pursiainen"
+      ],
+      "primary_category": "math.NA",
+      "categories": [
+        "math.NA"
+      ],
+      "published": "2026-07-29T07:28:03+00:00",
+      "link": "https://arxiv.org/pdf/2607.26556v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Advanced EEG source models and inverse solutions",
+      "llm_evidence_cn": "高级脑电源模型与逆问题求解",
+      "llm_evidence": "高级脑电源模型与逆问题求解",
+      "canonical_evidence": "高级脑电源模型与逆问题求解",
+      "llm_tldr_en": "Compares FEM-based forward source models (Whitney basis, Local subtraction, divergence-conforming) with multiple inverse solvers for EEG source estimation, revealing accuracy differences and recommending Local subtraction where applicable.",
+      "llm_tldr_cn": "脑电源定位的准确性依赖于正演模型和逆算法。本文在Zeffiro Interface和DUNEuro中比较了三种源模型（Whitney基、Local subtraction、Zeffiro的散度相容模型），并结合SHAL1R、SKF、sLORETA和偶极子扫描等逆算法进行源估计。初步结果表明Local subtraction在源插值任务中与其他方法高度接近，但不同组合在距离度量、深度偏差和聚焦性上存在差异。该研究为脑电源成像提供了系统的数值比较参考，对神经科学和脑机接口研究具有方法论价值。",
+      "llm_tldr": "脑电源定位的准确性依赖于正演模型和逆算法。本文在Zeffiro Interface和DUNEuro中比较了三种源模型（Whitney基、Local subtraction、Zeffiro的散度相容模型），并结合SHAL1R、SKF、sLORETA和偶极子扫描等逆算法进行源估计。初步结果表明Local subtraction在源插值任务中与其他方法高度接近，但不同组合在距离度量、深度偏差和聚焦性上存在差异。该研究为脑电源成像提供了系统的数值比较参考，对神经科学和脑机接口研究具有方法论价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.22770v1",
+      "source": "arxiv",
+      "title": "Dementia Etiology Diagnosis via Collaborative Meta Knowledge Enhancement",
+      "abstract": "Although artificial intelligence (AI) has shown promising performance in several medical tasks, accurate dementia etiology diagnosis with AI remains challenging due to complex overlapping symptoms among diseases. Scaling up the dataset size by combining the cross-center samples may bring a gain in the pursuit of performance, while the inherent data heterogeneity across centers or populations induces the conflict. Conventional multi-task learning paradigms offer a promising framework; however, they fail to consider critical meta information (e.g., site-specific acquisition and modality availability) to combat the heterogeneity. To address this challenge, we propose a Collaborative Meta Knowledge Enhancement (COME) framework for dementia etiology diagnosis, which injects multi-center acquisition semantics, source identifiers, and modality indicators as heterogeneity-aware embeddings into a unified Transformer architecture for scale-up training, enabling explicit modeling of heterogeneity. Besides, a trust-region constrained optimization scheme is designed to regularize the model from spurious correlations during training through a reference model. Across seven independent cohorts, our method achieves state-of-the-art in-domain performance with a mean macro-averaged AUC of 85.62% and a 4.29-point gain over the strongest baseline, while maintaining superior out-of-domain generalization under both cross-center and cross-sequence evaluations. Extensive validation also confirms the alignment between model predictions and established biomarkers (amyloid, tau) and clinical severity, highlighting the potential of COME to enable robust and interpretable dementia diagnostics in real-world settings.",
+      "authors": [
+        "Siyuan Du",
+        "Mengxi Chen",
+        "Xinyang Jiang",
+        "Zilong Wang",
+        "Jiangchao Yao",
+        "Dongsheng Li",
+        "Ya Zhang",
+        "Lili Qiu",
+        "Yanfeng Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-07-24T04:26:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.22770v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based diagnosis of dementia etiology, a mental and neurological health disorder",
+      "llm_evidence_cn": "基于AI的痴呆病因诊断，属于神经心理与精神健康领域",
+      "llm_evidence": "基于AI的痴呆病因诊断，属于神经心理与精神健康领域",
+      "canonical_evidence": "基于AI的痴呆病因诊断，属于神经心理与精神健康领域",
+      "llm_tldr_en": "COME uses collaborative meta-knowledge such as site acquisition and modality availability to handle cross-center heterogeneity and improve AI-based dementia etiology diagnosis.",
+      "llm_tldr_cn": "痴呆病因诊断因症状重叠和跨中心数据异质性而保持挑战。文章提出协同元知识增强（COME）框架，将站点采集差异和模态可用性等元信息纳入多任务学习，以缓解中心间冲突。在跨中心数据上的研究显示COME可改善痴呆亚型分类的准确性和鲁棒性。该工作为神经心理疾病的医学AI诊断提供了异构数据下的协作学习范式。",
+      "llm_tldr": "痴呆病因诊断因症状重叠和跨中心数据异质性而保持挑战。文章提出协同元知识增强（COME）框架，将站点采集差异和模态可用性等元信息纳入多任务学习，以缓解中心间冲突。在跨中心数据上的研究显示COME可改善痴呆亚型分类的准确性和鲁棒性。该工作为神经心理疾病的医学AI诊断提供了异构数据下的协作学习范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.27635v1",
+      "source": "arxiv",
+      "title": "HealthCAT: An Interpretable Encoder-only Transformer Framework for Health Indicator Prediction and Temporal Interpretation of Wearable Sensor Data",
+      "abstract": "Wearable sensors continuously capture fine-grained multivariate time-series data, providing opportunities to model behavioural patterns associated with health outcomes. However, existing deep learning methods prioritise predictive accuracy over interpretability, limiting their application in health research. In this study, we present HealthCAT, a flexible framework that integrates an Encoder-only Transformer with an Attentive Class Activation Token (AttentiveCAT) to generate class-specific, time-step-level interpretations. These interpretations can be mapped back onto behavioural cycles that are relevant to the domain (e.g., time-of-day), supporting individual-level analysis of wearable sensor data. We evaluated HealthCAT using two real-world wearable sensor datasets (306 participants in total). HealthCAT outperformed deep learning baselines by up to 17\\% in F1-score and 12\\% in accuracy on both datasets ($p<0.05$). In masking experiments, the time steps identified by HealthCAT carried significantly more predictive value than random selection across all masking conditions ($p<0.05$), indicating that the identified time steps are predictively informative. By coupling predictive performance with validated time-step-level interpretability, HealthCAT moves wearable sensor analysis beyond aggregated metrics towards temporal patterns that support health monitoring, behavioural pattern analysis, and intervention design in health research. The significance of this work is that it enables accurate prediction of health indicators from wearable sensor data while providing insights into when and how physical activity patterns occur, rather than relying solely on aggregated summary measures.",
+      "authors": [
+        "Xiaotong Yu",
+        "Joshua Y. Kim",
+        "HaeJin Lee",
+        "Kalina Yacef"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T03:45:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.27635v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "wearable sensor time-series health prediction, transferable to sleep and mental health monitoring",
+      "llm_evidence_cn": "可穿戴传感器健康预测，可迁移至睡眠与心理健康监测",
+      "llm_evidence": "可穿戴传感器健康预测，可迁移至睡眠与心理健康监测",
+      "canonical_evidence": "可穿戴传感器健康预测，可迁移至睡眠与心理健康监测",
+      "llm_tldr_en": "HealthCAT integrates an encoder-only Transformer with an Attentive Class Activation Token to provide time-step-level interpretations of wearable sensor health predictions.",
+      "llm_tldr_cn": "可穿戴设备产生的高维多变量时间序列可用于健康结果建模，但现有深度学习侧重预测准确率，缺乏可解释性。本文提出HealthCAT框架，将仅编码器Transformer与注意力类别激活标记结合，生成类别特定、时间步级别的解释，并映射回行为周期。该方法支持个体层面的健康分析，对睡眠和心理健康监测等场景具有迁移潜力。",
+      "llm_tldr": "可穿戴设备产生的高维多变量时间序列可用于健康结果建模，但现有深度学习侧重预测准确率，缺乏可解释性。本文提出HealthCAT框架，将仅编码器Transformer与注意力类别激活标记结合，生成类别特定、时间步级别的解释，并映射回行为周期。该方法支持个体层面的健康分析，对睡眠和心理健康监测等场景具有迁移潜力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.24356v2",
+      "source": "arxiv",
+      "title": "Optimal stimulation sites are not the most affected: personalised models of resting-state fMRI in Alzheimer's disease",
+      "abstract": "Resting-state functional connectivity (FC) is altered in Alzheimer's disease (AD), widely regarded as a distributed network process; whether its signature reduces to a few focal sites has not been tested causally, a question central to targeted neuromodulation. We fit subject-specific, cross-subject-identifiable models whose free-running dynamics reproduce those of each individual patient. The fitted model parameters classify AD from controls at modest accuracy, below that of structural atrophy; we build on the functional model nonetheless, because dynamics, not tissue loss, are what stimulation can act on. Changing a virtual patient's model connectivity toward the control template reverts its AD classification, establishing in silico that the disease signature is correctable, yet the required correction is intrinsically distributed: a coordinated, multi-site change of the model connectivity that no single-node edit reproduces. Where, then, should a physically realisable focal drive act? A single-site drive at the node whose connectivity is most altered fails to revert the classification even at supra-physiological amplitudes, whereas selecting each patient's site by its effect on the disease discriminant achieves complete, individualised reclassification from one site, and a real-time closed-loop controller reaches comparable efficacy at lower dose using only causally available information. Optimal targets are cortical and heterogeneous: the site to stimulate is not where connectivity is most altered but where the network is most therapeutically responsive.",
+      "authors": [
+        "Cristiano Capone",
+        "Enza Cece",
+        "Andrea Ciardiello",
+        "Guido Gigante",
+        "Evaristo Cisbani",
+        "Maurizio Mattia"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC"
+      ],
+      "published": "2026-07-27T12:32:54+00:00",
+      "link": "https://arxiv.org/pdf/2607.24356v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "personalised fMRI modelling and causal testing for Alzheimer's disease",
+      "llm_evidence_cn": "阿尔茨海默病的个性化fMRI建模与因果检验",
+      "llm_evidence": "阿尔茨海默病的个性化fMRI建模与因果检验",
+      "canonical_evidence": "阿尔茨海默病的个性化fMRI建模与因果检验",
+      "llm_tldr_en": "Personalised resting-state fMRI models of AD patients reveal that optimal neuromodulation sites are not those with the strongest disease effects, informing targeted stimulation.",
+      "llm_tldr_cn": "针对静息态功能连接异常与阿尔茨海默病之间的因果关系不明，且直接关系到靶向神经调控位点选择的问题，本文构建了个性化且跨个体可识别的静息态fMRI模型，使自由运行动态能够复现每个患者特有的脑活动模式。模型可用于区分患者与对照组，并进一步提示最优刺激位点并非疾病影响最强的区域，为基于动态模型的个性化神经调控提供了新的理论依据。",
+      "llm_tldr": "针对静息态功能连接异常与阿尔茨海默病之间的因果关系不明，且直接关系到靶向神经调控位点选择的问题，本文构建了个性化且跨个体可识别的静息态fMRI模型，使自由运行动态能够复现每个患者特有的脑活动模式。模型可用于区分患者与对照组，并进一步提示最优刺激位点并非疾病影响最强的区域，为基于动态模型的个性化神经调控提供了新的理论依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.26885v1",
+      "source": "arxiv",
+      "title": "SCALPEL: Semantic Cross-modal Alignment via LLM-Powered Encoder Learning for Medical Vision-Language Representation",
+      "abstract": "Vision-language pre-training (VLP) serves as a cornerstone for medical multimodal representation learning. However, existing medical VLP frameworks are often constrained by the limited context windows and shallow representational capacities of lightweight text encoders when processing lengthy, terminology-dense clinical reports. While integrating medical large language models (LLMs) offers unprecedented clinical reasoning capabilities, it introduces three major bottlenecks: (i) the anisotropic representational collapse of generative LLMs under standard contrastive objectives, (ii) the prohibitive memory overhead of joint end-to-end training with large batch sizes, and (iii) the medical hallucinations induced by vanilla contrastive losses that ignore fine-grained anatomical laterality and negation modifiers. To address these challenges, we propose \\textbf{SCALPEL}, a \\textbf{S}emantic \\textbf{C}ross-modal \\textbf{A}lignment framework via \\textbf{L}LM-\\textbf{P}owered \\textbf{E}ncoder \\textbf{L}earning. First, Clinical Report Contrastive fine-tuning converts a generative LLM into an isotropic encoder via domain-specific clinical text adaptation. Second, an asymmetric alignment strategy leverages offline feature caching to enable efficient training. Critically, we formulate an Anatomy-Negation Aware Objective that explicitly penalizes mismatched image-text pairs involving laterality confusion or false negations. Extensive experiments across MIMIC-CXR, CheXpert, and IU X-Ray benchmarks demonstrate that SCALPEL achieves state-of-the-art performance in cross-modal retrieval, zero-shot disease classification and medical visual question answering.",
+      "authors": [
+        "Yunzhan Fu",
+        "Enyu Bao",
+        "Xiangyu Shen",
+        "Yihao Wu",
+        "Chunbo Jiang",
+        "Fangli Guan",
+        "Liqi Yan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-29T13:12:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.26885v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM-powered semantic cross-modal alignment for medical vision-language representation",
+      "llm_evidence_cn": "基于LLM的医学视觉语言语义对齐方法",
+      "llm_evidence": "基于LLM的医学视觉语言语义对齐方法",
+      "canonical_evidence": "基于LLM的医学视觉语言语义对齐方法",
+      "llm_tldr_en": "SCALPEL addresses medical VLP bottlenecks by introducing LLM-powered encoder learning with contrastive alignment, tackling anisotropy, memory overhead, and hallucinations in clinical reasoning.",
+      "llm_tldr_cn": "医学视觉语言预训练受限于轻量文本编码器的上下文与表示能力，整合医学大语言模型又带来各向异性、显存开销与幻觉问题。SCALPEL提出基于LLM的语义跨模态对齐与编码器学习方法，在保留临床推理能力的同时缓解上述瓶颈。本文主要处理医学图像与报告对应关系，并展示了对大规模临床多模态学习的适用性。这些技术有望迁移到睡眠与心理健康数据等多模态医疗场景。",
+      "llm_tldr": "医学视觉语言预训练受限于轻量文本编码器的上下文与表示能力，整合医学大语言模型又带来各向异性、显存开销与幻觉问题。SCALPEL提出基于LLM的语义跨模态对齐与编码器学习方法，在保留临床推理能力的同时缓解上述瓶颈。本文主要处理医学图像与报告对应关系，并展示了对大规模临床多模态学习的适用性。这些技术有望迁移到睡眠与心理健康数据等多模态医疗场景。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

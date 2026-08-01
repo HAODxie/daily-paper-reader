@@ -1,0 +1,597 @@
+Title: Improving Mental Health Screening and Early Risk Detection in Spanish
+
+URL Source: https://arxiv.org/pdf/2607.28476v1
+
+Published Time: Fri, 31 Jul 2026 01:19:27 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+# IMPROVING MENTAL HEALTH SCREENING AND EARLY RISK 
+
+# DETECTION IN SPANISH 
+
+A P REPRINT 
+
+Andreu Casamayor-Segarra 
+
+VRAIN: Valencian Research Institute for Artificial Intelligence Universitat Polit` ecnica de Val` encia Val` encia, Spain 
+
+ancase3@upv.es 
+
+Vicent Ahuir 
+
+VRAIN: Valencian Research Institute for Artificial Intelligence Universitat Polit` ecnica de Val` encia Val` encia, Spain 
+
+vahuir@upv.es 
+
+Antonio Molina-Marco 
+
+VRAIN: Valencian Research Institute for Artificial Intelligence Universitat Polit` ecnica de Val` encia Val` encia, Spain 
+
+amolina@upv.es 
+
+Llu´ ıs-F. Hurtado 
+
+VRAIN: Valencian Research Institute for Artificial Intelligence Universitat Polit` ecnica de Val` encia ValgrAI: Valencian Graduate School and Research Network of Artificial Intelligence Val` encia, Spain 
+
+lhurtado@upv.es 
+
+July 31, 2026 
+
+## ABSTRACT 
+
+Early detection of mental health disorders is often limited by the lack of specialized resources in Spanish and the difficulty of analyzing long histories of social media posts. This paper addresses these challenges through three main contributions. First, we introduce three Spanish foundational models specifically adapted to the mental health domain through domain-specific pre-training. Sec-ond, we propose Incremental Context Expansion (ICE), an automatic relabeling methodology de-signed for early detection. ICE identifies the point at which cumulative messages provide enough evidence of a disorder, generating more informative training samples. Third, we provide a set of fine-tuned models using the samples generated with the ICE methodology for early risk detection tasks. Our results on three Spanish benchmarks show that combining these specialized models with ICE improves the state-of-the-art, reducing detection latency while maintaining high performance. All models are publicly available. 
+
+Keywords Dataset relabeling · Early detection · Incremental context expansion (ICE) · Mental health · Natural language processing · Social media analysis · Spanish language models · Transformers arXiv:2607.28476v1 [cs.CL] 30 Jul 2026 Improving Mental Health Screening and Early Risk Detection in Spanish 
+
+## 1 Introduction 
+
+Mental health disorders, including depression, anxiety, and schizophrenia, have become global issues affecting mil-lions of lives. According to the World Health Organization (WHO), mental disorders comprise a group of clinically significant disturbances in cognition, emotional regulation, or behavior of an individual [Organization, 2022]. Mental illness affects nearly one in eight people worldwide, but a large proportion of those affected are not diagnosed and consequently untreated. The prevalence of anxiety and depression increased by 26% from 2019 to 2020. By 2021, an estimated 13.9% of the global population was living with a mental health condition [Organization, 2023]. Fur-thermore, according to the European Commission’s 2023 report on mental health, 46% of Europeans experienced an emotional or psychosocial problem, such as feeling depressed or anxious, during 2023 [European Commission, 2023]. In Spain, according to the 2023 National Health System Report, approximately 34% of the Spanish population suffers from a mental health disorder, surpassing 40% in individuals over the age of 50, and more than 50% in those aged 85 and above. Anxiety disorders are the most prevalent, affecting 10% of the general population (14% of women and 7% of men) [Ministerio de Sanidad de Espa˜ na, 2023]. The consequences of suffering from a mental illness can be severe, ranging from social isolation and a diminished quality of life to, in extreme cases, self-harm or suicide. Unfortunately, the stigma surrounding mental health often acts as a significant barrier, discouraging individuals from seeking help at an early stage. This highlights the pressing need for innovative techniques and technologies to facilitate early detection and intervention. Early identification of mental health issues is crucial for improving patient outcomes and alleviating broader social impacts. Conventional diagnosis methods, which rely on self-reporting and clinical assessment, may occasionally be delayed, reducing their potential implications for early intervention efforts. In contrast, analyzing publicly available social media data from platforms such as X and Reddit may facilitate the identification of early indicators of mental health distress. Social media are spaces where people openly share their emotions, thoughts, and personal problems, creating a rich source of real-time data [Coppersmith et al., 2015]. This data can be used to identify early indicators of mental illnesses and to foresee crises [De Choudhury et al., 2013]. Researchers have already begun using social media posts to analyze trends in mental health [Ji et al., 2018]. Over the last decade, transformer-based models [Vaswani et al., 2017] have become the dominant approach in natural language processing (NLP) over traditional machine learning methods. Before their introduction, most mental health detection systems relied on classical models such as support vector machines (SVMs) or logistic regression, often combined with TF–IDF features, n-grams, or handcrafted lexicons. Recent studies [Thakkar et al., 2024] and shared tasks in the field, such as CLEF eRisk [Parapar et al., 2023] and IberLEF MentalRisk [M´ armol-Romero et al., 2023], have demonstrated consistent improvements when transitioning from traditional pipelines to deep contextual models. In particular, models such as BERT [Devlin et al., 2019] and RoBERTa [Liu et al., 2019] demonstrated substantial gains in symptom detection and user-level classification due to their ability to learn contextual, semantic, and affective information from large-scale corpora. These advances have positioned transformer-based language models (LMs) as key components in current mental health NLP research. One of the challenges associated with using social media data is the large volume of posts that a single user can generate. This highlights a limitation of these models, which have a restricted input length and, therefore, are unable to process extended context effectively. To address this issue, advanced LMs like Longformer have been proposed [Beltagy et al., 2020]. These models adapt and extend the standard transformer architecture to handle longer text sequences efficiently, thus offering a more suitable solution in scenarios involving large user-level contexts [Beltagy et al., 2020]. Research on mental health detection in Spanish remains limited due to the scarcity of domain-specific resources and language models in this field. Most existing approaches focus on English, and multilingual models such as mBERT [Devlin et al., 2019] and XLM-R [Conneau et al., 2020] often show lower performance than their monolin-gual counterparts. This gap is mainly related to cross-lingual transfer issues [Wu and Dredze, 2020], since multilingual models struggle to transfer knowledge to languages that are poorly represented during pre-training [Lauscher et al., 2020]. These limitations underscore the need to develop language-specific models tailored to Spanish and the charac-teristics of mental health discourse. The objectives of this work are aligned with the two main challenges described above: (1) the lack of Spanish language models adapted to the mental health domain, and (2) the need for effective strategies to handle early detection tasks involving long and evolving user message histories. Our goal is therefore twofold: to develop Spanish foundational models specialized in mental health, and to propose a dataset relabeling methodology that improves early risk detection across different disorders. The contributions of this work are the following: 2Improving Mental Health Screening and Early Risk Detection in Spanish • Three Spanish foundational models tailored for mental health tasks: These models were evaluated across various mental health-related tasks, and their construction and training process are detailed in subsequent sections. • A dataset relabeling methodology for mental illness early detection tasks: We present the Incremen-tal Context Expansion (ICE), an automatic relabeling methodology designed for early detection tasks. This methodology aims to increase the labeling information for enhancing the detection model’s abilities in two key areas: (1) identifying when initial symptoms first appear within a sequence of messages, and (2) deter-mining whether additional context is needed to confirm the detected symptoms confidently. • A set of fine-tuned models adapted to mental illness early detection tasks: These models were trained with datasets modified using the ICE methodology and were evaluated across well-known Spanish mental illness early detection tasks. We have made all the developed models publicly available through Hugging Face’s model repository 1.The rest of the article is structured as follows. In Section 2, we present a selection of relevant studies related to our work and identify opportunities for improvement. Section 3 details all the datasets used in this work and the classification tasks that we approached. In Section 4, we detail the development of Spanish foundational models tailored for mental health applications. Section 5 details of our proposed relabeling methodology aimed at early detection tasks within the context of mental health. In Section 6, we highlight the main aspects extracted from the results, as well as the strengths and limitations of our approach. We end with the conclusions (Section 8) and future work (Section 7). 
+
+## 2 Related Work 
+
+Research on NLP for mental health has grown significantly over the past years, supported by several surveys and reviews that summarize the main advances in this field [Thakkar et al., 2024]. Within this broad literature, we focus on three representative works, selected because they address key aspects relevant to our approach: domain-adapted language models for mental health, resources for Spanish or multilingual settings, and early detection methods based on user timelines. Together, they provide the context needed to position our models and the strategy proposed in this paper. The work by S. Ji, T. Zhang, L. Ansari, J. Fu, P. Tiwari, and E. Cambria [Ji et al., 2021b] has been a key source of inspiration for the design of our models. In this study, the authors introduce MentalBERT and Mental-RoBERTa, two language models based on BERT and RoBERTa, respectively, which were pre-trained on a dataset of more than 13.6 million sentences collected from Subreddits focused on mental health, such as r/depression, r/Anxiety, and r/SuicideWatch. Using a continuous pre-training strategy, they were able to adapt general models to a domain as specific as mental disorders, achieving notable improvements over biomedical models such as BioBERT and Clini-calBERT. Adopting a similar approach, we have incorporated the methodological principles of MentalBERT into our work, both in the development of our foundational models and in preparing the translated dataset for their pre-training. The study by J. Martinez-Romo, L. Araujo, and B. Reneses [Martinez-Romo et al., 2025] presents a domain-adapted BERT-based language model developed for the early detection of self-injury and suicidal tendencies in Spanish clinical reports. The model follows a two-phase training strategy: an initial pre-training on general medical records, followed by fine-tuning on psychiatric-specific clinical data. Evaluated on real-world clinical notes from Hospital Cl´ ınico San Carlos (Madrid), Guardian-BERT demonstrated strong performance, achieving an F1-score of 0.95 for non-suicidal self-injury (NSSI) and 0.89 for suicidal behavior. In addition to its predictive capabilities, the model incorporates risk factor analysis, such as substance abuse, family conflict, and social vulnerability, thereby enhancing its interpretability and clinical utility. The work by M. Couto, A. Perez, J. Parapar, and D. E. Losada [Couto et al., 2025], introduce a novel framework for the early detection of psychological disorders on social media by modeling how language evolves. The authors propose two distinct methodologies for learning temporal word representations: TWEC (Temporal Word Embeddings with a Compass), a Word2Vec-based model that maintains semantic alignment across discrete time slices through a compass vector, and DCWE (Dynamic Contextualized Word Embeddings), a BERT-based approach that dynamically adjusts contextualized word embeddings as user language shifts. Their experiments reveal that both methods are effective for early classification tasks, with DCWE consistently outperforming TWEC, particularly in terms of precision and timeliness. Furthermore, the study incorporates a lexical-semantic analysis comparing symptomatic users and control groups, highlighting how specific keywords suffer semantic drift over time in users displaying mental health symptoms. This 
+
+> 1https://huggingface.co/collections/ELiRF/mental-health
+
+3Improving Mental Health Screening and Early Risk Detection in Spanish behavior supports the underlying hypothesis that linguistic changes can serve as early indicators of psychological decline. Due to its innovative approach and its focus on temporal language modeling, we have drawn on this work to inform our own strategy for tackling early detection of mental health disorders. Despite these advancements, several limitations persist in the current landscape of mental health detection using NLP. As seen in two of the previously discussed articles, MentalBERT and TWEC, the proposed approaches are developed exclusively for English, leaving other languages, such as Spanish, largely overlooked. This widens the gap between high-resource and low-resource languages, reinforcing the need for further research and model development tailored to linguistic communities with limited resources compared to English. Although Guardian-BERT stands as a valuable contribution in the Spanish context, it focuses solely on clinical en-vironments, being trained and evaluated using formal clinical reports. This means it relies on pre-existing medical documentation for inference, limiting its applicability to broader, real-world scenarios. In contrast, our work presents models specifically designed to detect mental health conditions in Spanish-language social media. By targeting this domain, we address both the linguistic gap and the need for early detection methods that operate outside clinical settings. In recent years, eRisk (Early Risk Prediction on the Internet) competitions have established themselves as a key benchmark in the field of NLP applied to the early detection of mental health risks. Organized within the framework of the CLEF (Conference and Labs of the Evaluation Forum) conference, these competitions focus on predicting conditions such as depression, anxiety disorders, and suicide risk based on the analysis of texts published on social media, mainly Reddit. A distinctive feature of eRisk is its evaluation structure based on early prediction: systems must issue a decision as user content is progressively revealed to them, simulating a realistic scenario of continuous monitoring [Losada et al., 2017,Losada et al., 2018,Losada et al., 2019,Losada et al., 2020,Parapar et al., 2021,Parapar et al., 2022]. At the same time, the MentalRisk competition, organized within the framework of IberLEF (Iberian Languages Eval-uation Forum), presents similar challenges in the field of mental health, but with a focus on analyzing texts written in Spanish. MentalRisk sets tasks such as the early detection of various mental disorders, including depression, anxiety, self-harm, and eating disorders, based on posts taken from Telegram. Unlike eRisk, which has traditionally focused on tasks in English, MentalRisk encourages the development of models specifically adapted to the Spanish-speaking linguistic and cultural context [M´ armol-Romero et al., 2023]. In addition to serving as a reference in the state of the art, the eRisk and MentalRisk competitions have been funda-mental to the development of our work. Based on the analysis of tasks, methodologies, and results reported in these editions, we have identified successful approaches and recurring challenges in the automatic detection of mental dis-orders. This has enabled us to develop solutions tailored to the frameworks proposed by both competitions. Likewise, the official datasets and metrics provided by eRisk and MentalRisk have been used to validate our proposals, ensuring a rigorous evaluation that is comparable with other systems presented in these initiatives. 
+
+## 3 Datasets and Tasks 
+
+This work focuses on three tasks proposed in the 2023 and 2024 editions of the MentalRisk shared task [M´ armol Romero et al., 2024], organized within the IberLEF conference [ ´ Alvaro Rodrigo et al., 2024]. These tasks provide user-level datasets in Spanish, covering relevant problems in the mental health domain and placing special em-phasis on early detection. They constitute an appropriate benchmark for evaluating models for mental health screening and early risk detection tasks in Spanish. 
+
+3.1 description of the tasks 
+
+The MentalRisk shared tasks include subtasks targeting specific mental health conditions and following the early detection framework described above. Although they share a standard structure (user-level data, chronological posts, and binary or multiclass labels) each task presents its own characteristics and challenges. Below, we describe the three tasks considered in this study. 
+
+3.1.1 MentalRisk24 - Disorder Detection 
+
+“MentalRiskEs 2024 - Disorder Detection” (MR24-DD) task focused on the detection of two clinically relevant mental disorders: depression and anxiety [M´ armol-Romero et al., 2024]. The dataset included posts from Telegram written by multiple users, each labeled according to their condition: Depression , Anxiety , or None , in cases where they did not present any of the mentioned diseases. Therefore, this task was approached as a multi-class classification problem. 4Improving Mental Health Screening and Early Risk Detection in Spanish Table 1 summarizes the descriptive statistics of the MR24-DD dataset. User activity exhibits a moderate level of variability, with users producing an average of 36 posts, most of which fall within the range of 18 to 42. Token counts are similarly dispersed, with a mean of 496 tokens per user. Messages remain concise across the dataset, averaging 13.7 tokens per post, indicating relatively consistent short-form communication patterns. Table 1: Descriptive statistics for posts, tokens, and tokens per post across users in the MR24-DD. 
+
+Statistic Posts/user Tokens/user Tokens/post 
+
+Mean 36.26 524.81 14.48 Standard deviation 26.20 429.70 21.77 Minimum 10 74 125th percentile (P25) 18 229 6Median (P50) 29 396 975th percentile (P75) 42 680 18 Maximum 100 3803 783 The MR24-DD original dataset was organized in three partitions: the Trial partition, which included 20 users; the Training partition, with 465 users; and the Test partition, consisting of 400 users. For our study, we merged the Trial and Train partitions into a single partition. Subsequently, we created two partitions in a stratified manner: 80% of them for training (388 users) and 20% for validation (97 users). Table 2 presents the resulting partitions and their distribution by class. Table 2: Distribution of samples in the dataset for the MR24-DD task. 
+
+Class Training Validation Test 
+
+None 178 45 200 Depression 134 35 100 Anxiety 76 17 100 
+
+Total 388 97 400 3.1.2 MentalRisk23 - Eating Disorders 
+
+The “MentalRisk23 - Eating Disorders” (MR23-ED) task focused on the early detection of eating disorders, specifi-cally anorexia and bulimia [M´ armol-Romero et al., 2023]. The data was collected from public Telegram groups. The labeling was done at the user level, where each individual was classified based on their condition regarding anorexia and bulimia. The task was framed as a binary classification problem for each eating disorder. Table 3 summarizes the main statistics of the MR23-ED dataset. As shown in Table 3, users produced an average of 31 posts and 472 tokens, with considerable variability in both measures. Messages remained generally concise, averaging 14.6 tokens per post, although a few users exhibited substantially higher verbosity. Table 3: Descriptive statistics for posts, tokens, and tokens per post across users in the MR23-ED dataset 
+
+Statistic Posts/user Tokens/user Tokens/post 
+
+Mean 31.34 472.46 14.65 Standard deviation 15.33 612.45 12.93 Minimum 11 76 6.00 25th percentile (P25) 17 207 9.64 Median (P50) 28 358 12.17 75th percentile (P75) 50 568.5 15.51 Maximum 50 7396 147.92 The MR23-ED original dataset consisted of three partitions: Trial (with 10 users), Train (with 175 users), and Test (with 150 users). We combined Trial and Train and split them in a stratified manner: 80% for training (148 users) and 20% for validation (37 users). Table 4 presents the class distribution for the resulting partitions. 5Improving Mental Health Screening and Early Risk Detection in Spanish Table 4: Distribution of samples in our dataset for the MR23-ED task. 
+
+Class Training Validation Test 
+
+None 85 22 86 ED 63 15 64 
+
+Total 148 37 150 3.1.3 MentalRisk23 - Depression 
+
+The “MentalRisk23 - Depression” (MR23-D) task focused on the early detection of symptoms of depression in users considering their activity on the Telegram social network [M´ armol-Romero et al., 2023]. Each sample of the dataset contained the messages posted for a user and whether that activity showed signs of depression or not. Table 5 presents the descriptive statistics of the MR23-D dataset. On average, users produced 36 posts and 503 tokens, although both measures display substantial dispersion across the population. Message length follows a similar pattern: while the median remains relatively concise at 12 tokens per post, values can reach up to 95 tokens, revealing a wide range of communication styles within the dataset. Table 5: Descriptive statistics for posts, tokens, and tokens per post across users in the MR23-D dataset. 
+
+Statistic Posts/user Tokens/user Tokens/post 
+
+Mean 36.02 503.45 15.06 Standard deviation 25.99 428.94 10.88 Minimum 11 75 4.80 25th percentile (P25) 19 228 9.16 Median (P50) 28 370 11.99 75th percentile (P75) 41 640 16.99 Maximum 100 3803 95.08 The original dataset was divided into three partitions: Trial (with 10 users), Training (with 175 users), and Test (with 149 users). We combined Trial and Train and split them in a stratified manner: 80% for training (148 users) and 20% for validation (37 users). Table 6 presents the class distribution for the resulting partitions. Table 6: Distribution of samples in our dataset for the MR23-D task. 
+
+Class Training Validation Test 
+
+None 70 15 86 Depression 78 22 64 
+
+Total 148 37 150 
+
+Considering the statistics reported for the three tasks, it becomes evident that many users accumulate a substantial number of tokens throughout their message histories. Although individual posts tend to be short, the complete user context frequently surpasses the 512-token limit imposed by standard transformer architectures. In early-detection settings, where the chronological order of messages must be preserved, and information loss can negatively affect model performance, such limitations would lead to repeated truncation of the input. For this reason, we also incorpo-rate Longformer-based models, as their extended context capacity enables the system to process longer user message histories and more accurately capture the temporal evolution of linguistic signals. 
+
+3.2 Early Risk Detection Task Protocol 
+
+The three tasks described above follow the evaluation protocol established by the MentalRisk shared tasks. Unlike conventional classification settings, where the full user history is available at once, early detection is framed as a sequential decision-making problem. Following the official methodology published by the organizers 2, the evaluation is structured into multiple rounds. In each round, the system receives one additional post from every user, presented 
+
+> 2https://github.com/sinai-uja/MentalRiskES-IberLEF/tree/main
+
+6Improving Mental Health Screening and Early Risk Detection in Spanish in chronological order, and must decide, based only on the information observed so far, whether the user shows signs of a mental disorder. At each step, the model may either predict the domain-specific risk label (e.g., at-risk, clinical condition) or choose the label ’none’ if it lacks sufficient evidence to issue a positive decision. Importantly, once a user is predicted as positive at any round, that prediction becomes final and cannot be modified in later rounds. Conversely, users who are never classified as positive across the entire sequence are considered non-risk cases for evaluation purposes. This protocol simulates a real-time monitoring scenario, where systems must balance accuracy with timeliness, issuing early and reliable predictions while avoiding premature or incorrect risk detection. 
+
+3.3 Metrics 
+
+Replicating the evaluation protocol used in the MentalRisk competitions, we adopt the following metrics to assess system performance: • F1-score: The Macro F1-score is used as the main classification metric. It computes the F1-score indepen-dently for each class and then averages the results, giving the same weight to all classes regardless of their frequency. This makes it suitable for datasets with class imbalance, as is often the case in the MentalRisk tasks. • ERDE: The Early Risk Detection Error (ERDE) metric [Sadeque et al., 2018] is specifically designed for early-detection scenarios. It penalizes both incorrect predictions and correct predictions that arrive too late. The earlier and more accurate a model’s decision, the lower its ERDE value. In this work, we report two variants: ERDE5 and ERDE30 , which apply penalization after 5 and 30 time units or rounds, respectively. • LTP: Latency True Positive (LTP) measures the average position (i.e., the round) at which the model issues its first correct positive prediction. Lower values indicate that the system can detect at-risk users earlier in their message sequence. This metric complements ERDE by providing a more direct interpretation of timeliness, independent of the error function’s penalization scheme. 
+
+3.4 Reference Systems 
+
+Establishing appropriate reference systems is essential to ensure a fair and interpretable evaluation of the proposed models. For each task, we consider a set of representative systems in terms of performance or architecture: • MR24-DD: We selected a system based on the Longformer architecture pre-trained in English [Casamayor et al., 2024]. This model processes all user messages translated into English and applies a fixed minimum context of 100 words before issuing predictions. We also included the system proposed by the UNED-GELP team [Fern´ andez-Hern´ andez et al., 2024], which follows a two-step pipeline built upon the BETO model [Ca˜ nete et al., 2020]. Finally, we included the official RoBERTa-based baseline model released by the organizers, which incorporates a mechanism specifically designed to better capture early-detection dynamics. • MR23-ED: We chose the best performing system of the task – the CIMAT-NLP-GTO system [Echeverr´ ıa-Bar´ u et al., 2023] –, which adopts a classical approach based on TF-IDF representations combined with a Naive Bayes classifier. As a transformer-based reference system, we included the RoBERTa-large base-line model provided by the competition organizers. We also considered the UNSL system [Thompson and Errecalde, 2023], which achieved the best performance among transformer-based systems according to the 
+
+ERDE30 and F1-score metrics. • MR23-D: We selected the system developed by the UMUTeam [Pan et al., 2023], which integrates transformer-based fine-tuning with ensemble learning techniques. We also included two additional trans-former systems: the VICOM-nlp model [Tur´ on et al., 2023], based on a fine-tuned BERT encoder, and the SINAI-SELA system [Gonz´ alez-Silot et al., 2023], which relies on a fine-tuned BETO architecture. 
+
+## 4 Spanish Foundational Models for Mental Health 
+
+Developing effective systems for early detection of mental health conditions requires language models that are not only capable of processing Spanish text but also adapted to the specific linguistic characteristics of mental health discourse. General-purpose Spanish models, although strong in broad NLP tasks, do not fully capture these domain-specific patterns. For this reason, we developed a set of foundational models tailored to the mental health domain through 7Improving Mental Health Screening and Early Risk Detection in Spanish domain-adaptive pre-training (DAP) [Gururangan et al., 2020]. The general workflow followed in this process is illustrated in Fig. 1. Figure 1: Workflow for adapting Spanish LMs to the mental health domain. SWMH + RMHN 
+
+> Dataset
+> Foundation
+> Mental Health
+> Models
+> Spanish
+> Foundation Models
+> Domain-
+> Adaptative Pretraining
+> Translate to
+> Spanish
+
+The Fig. 1 outlines the process for adapting Spanish LMs to the mental health domain. Starting from a dataset of mental health–related posts translated into Spanish, we applied DAP to extend the capabilities of existing Spanish language models. The resulting models were later evaluated on several downstream mental health tasks to determine their suitability for both standard classification and early detection scenarios. 
+
+4.1 Domain-Adaptive Pretraining (DAP) 
+
+To build our mental health foundational models, we employed DAP using a set of existing language models and a compilation of mental health-related data for domain adaptation. DAP aimed to align general language models with the linguistic and conceptual nuances of the mental-health discourse. 
+
+4.1.1 Base Language Models 
+
+To create solid metal-health-related foundational models, we selected the MarIA Spanish models [Guti´ errez-Fandi˜ no et al., 2022] due to their extensive, diverse training data, multiple architectures (RoBERTa and Longformer), and strong benchmark results on a range of NLP tasks. The selected base language models were: • PlanTL-GOB-ES/roberta-large-bne [Guti´ errez-Fandi˜ no et al., 2022]: This model is a transformer-based masked language model specifically designed for the Spanish language. Developed on the architecture of the RoBERTa large model, it has been pre-trained on Spanish corpora extracted from the National Library of Spain. This model has 355M parameters. • PlanTL-GOB-ES/Longformer-base-4096-bne-es 3: Is an alternate adaptation of the Spanish-language-specific roberta-base-bne model, employing Longformer architecture. This model is capable of process-ing much larger input contexts. Initializations were performed using the Roberta-base-bne checkpoint; pre-training employed a masked language modeling objective on long-form documents from the National Library of Spain. The model has 149M parameters. 
+
+4.1.2 Dataset 
+
+To adapt these base LMs to the mental health domain, we chose two existing datasets: Reddit SuicideWatch and Men-tal Health Collection (SWMH), and Reddit Mental Health Narratives (RMHN). The SWMH dataset [Ji et al., 2021a] was explicitly designed to train language models for various mental health conditions. It contains writings from emo-tional support forums and transcripts of therapeutic interventions. The dataset consists of text snippets extracted from different Subreddits, including communities such as ’r/depression’ or ’r/anxiety’. The RMHN dataset [Rani et al., 2024] was designed to capture linguistic patterns associated with mental health conditions during the COVID-19 pan-demic. It contains user-generated posts from multiple emotional support communities such as ’r/lonely’, ’r/bipolar’, 
+
+> 3https://huggingface.co/PlanTL-GOB-ES/longformer-base-4096-bne-es
+
+8Improving Mental Health Screening and Early Risk Detection in Spanish and ’r/mentalhealth’, annotated with thematic and emotional labels. The dataset provides a diverse and realistic repre-sentation of online mental health discourse, making it suitable for domain-adaptive pre-training of language models. All texts were automatically translated into Spanish using EasyNMT [Bulgarelli et al., 2021] with the OPUS-MT models [Tiedemann et al., 2023, Tiedemann and Thottingal, 2020], which provide robust neural machine translation for multiple language pairs. After translation, we merged both datasets to obtain a unified dataset for domain-adaptive pre-training. Table 7 summarizes the distribution of posts across the seven mental health communities included in the combined SWMH + RMHN dataset. Most posts come from ”r/depression” and ”r/SuicideWatch”, which together represent nearly 60% of the dataset. Communities such as ”r/mentalhealth”, ”r/Anxiety”, and ”r/lonely” provide additional coverage of diverse user experiences, while ”r/offmychest” and ”r/bipolar” appear less frequently. In total, the dataset comprises around 1.9M posts, offering broad and representative coverage of mental health discourse for domain-adaptive pre-training Table 7: Distribution of posts across subreddits in the combined SWMH + RMHN dataset. 
+
+Subreddit Samples Percentage 
+
+depression 643,307 33.81% SuicideWatch 493,230 25.94% Anxiety 289,593 15.22% mentalhealth 303,109 15.93% lonely 157,114 8.26% offmychest 8,284 0.44% bipolar 7,645 0.40% 
+
+Total 1,902,282 100% 
+
+Table 8 summarizes the statistics of the combined dataset. The average post length is 154 tokens, with a median of 97, and the distribution exhibits a long tail, reaching up to 9,680 tokens. The 75th and 90th percentiles (198 and 352 tokens) indicate that many posts exceed the typical 128–512 token limits of standard transformer models, motivating the use of long-context architectures such as Longformer. Table 8: Token statistics per post of the combined SWMH + RMHN dataset. 
+
+Statistic Tokens 
+
+Mean 154.48 Standard deviation 207.63 Median 97 75th percentile 198 90th percentile 352 Maximum 9,680 
+
+4.1.3 Resulting Foundational Language Models 
+
+A key contribution of this work is the development of three Spanish domain-specific foundational models for mental health. These models were obtained through DAP using the translated datasets mentioned above. The models were continued pre-trained using 4 Nvidia A40 GPUs for 20 epochs with a batch size of 8 per GPU, and evaluations were performed every 10,000 steps. The entire pre-training process took approximately four days to complete. The resulting foundational models for mental health are the following: 1. RoBERTa-es-mental-large: RoBERTa-like model for mental health with a maximum of 512 input tokens. The model was the result of applying DAP to the RoBERTa-large-bne general language model. 2. Longformer-es-mental-base: Longformer-like model for mental health with a maximum of 4096 input to-kens. This model was obtained by applying DAP to the Longformer-base-4096-bne general language model. 3. Longformer-es-mental-large: Longformer-like model for mental health with a maximum of 4096 input tokens. This model was obtained by adapting the RoBERTa-es-mental-large to the Longformer architecture. 9Improving Mental Health Screening and Early Risk Detection in Spanish Table 9 summarizes the architecture type, the number of maximum input tokens accepted by the model, and the size of the model. Table 9: Foundational Models for Mental Health in Spanish 
+
+Models Arquitecture Tokens Parameters 
+
+RoBERTa-es-mental-large RoBERTa 512 355M Longformer-es-mental-base Longformer 4096 149M Longformer-es-mental-large Longformer 4096 435M 
+
+4.2 Evaluation on Standard User-Level Classification 
+
+The evaluation aims to assess how effectively the proposed models capture mental health-related signals compared to their reference systems counterparts. We conducted user-level classification experiments, a straightforward approach that considers the complete user context when making predictions, using well-established tasks and metrics to ensure comparability. 
+
+4.2.1 Models for Downstream Tasks 
+
+To obtain the classification models for the downstream tasks, we added a feed-forward layer as a classification layer that receives the embedding from the last attention layer of the [CLS] token to classify. The task-specific models were obtained by fine-tuning them without frozen layers. As input, these models received the full available user context for each instance, resulting in predictions made at the user level. All models were fine-tuned under this same configuration, while the best-performing epoch was selected individually for each case based on validation performance. Table 10 presents the hyperparameters selected for the fine-tuning process. Table 10: Hyperparameters for the fine-tuning process. 
+
+Parameter Value 
+
+Optimizer AdamW Learning rate 5e-5 LR scheduler type Linear Weight decay 0.01 Number of epochs 10 Training batch size 16 
+
+4.2.2 Metrics 
+
+For the classification tasks, we evaluated the performance of the models using the following metrics: Precision, Recall, and F1-score. 
+
+4.2.3 Results 
+
+In this subsection, we present the results obtained by the models introduced in Section 4.1 across the three evaluated tasks. Table 11 summarizes the comparative performance of all domain-specific and general-domain models across the three evaluation tasks. Across the three tasks, the mental-health-oriented foundational models consistently outperform their general-domain counterparts. This confirms the effectiveness of domain-adaptive pre-training for capturing the linguistic and semantic properties characteristic of mental-health discourse in Spanish. Among the proposed models, Longformer-es-m-large obtains the best overall results, reaching Macro-F1 scores of 0.907, 0.920, and 0.767 for MR24-DD, MR23-ED, and MR23-D, respectively. A clear trend can be observed: models capable of processing longer context tend to achieve higher performance. This suggests that access to a broader portion of the user’s message history helps capture the evolution of linguistic signals 10 Improving Mental Health Screening and Early Risk Detection in Spanish Table 11: Performance results of the fine-tuned models across the Test partition of the tasks.                                                       
+
+> MentalRisk24 - Disorder Detection (MR24-DD) Model Precision Recall F1
+> RoBERTa-large-bne 0.821 0.781 0.813 Longformer-base-bne 0.828 0.865 0.843 RoBERTa-es-m-large 0.854 0.849 0.852 Longformer-es-m-base 0.897 0.900 0.897 Longformer-es-m-large 0.901 0.909 0.907 MentalRisk23 - Eating Disorders (MR23-ED) Model Precision Recall F1
+> RoBERTa-large-bne 0.814 0.823 0.818 Longformer-base-bne 0.843 0.857 0.838 RoBERTa-es-m-large 0.871 0.876 0.873 Longformer-es-m-base 0.881 0.884 0.883 Longformer-es-m-large 0.918 0.925 0.920 MentalRisk23 - Depression (MR23-D) Model Precision Recall F1
+> RoBERTa-large-bne 0.757 0.701 0.689 Longformer-base-bne 0.747 0.672 0.635 RoBERTa-es-m-large 0.768 0.730 0.746 Longformer-es-m-base 0.768 0.743 0.753 Longformer-es-m-large 0.786 0.756 0.767
+
+more effectively, which is especially beneficial in user-level classification scenarios. RoBERTa-based models, despite being constrained by a shorter context window, still achieve competitive results. Overall, the results demonstrate that the domain-adapted Spanish models clearly outperform their general-purpose models in all three user-level classification tasks. This confirms that incorporating mental-health-related data during pre-training leads to more effective representations for this domain. Models based on the Longformer architecture particularly benefit from their ability to process longer contexts, obtaining the best results across the three benchmarks. To the best of our knowledge, these models represent the first publicly available Spanish language models specifically designed for the mental health context. However, these experiments evaluate the models under a conventional full-context classification setup, where the complete user history is available from the beginning. Early-detection tasks follow a very different evaluation protocol, requiring the model to make decisions incrementally as new messages arrive. In the following subsection, we analyze how the foundational models behave under this early-detection setting and whether their strong user-level performance translates to this more challenging scenario. 
+
+4.3 Evaluation on Early Detection Tasks 
+
+After assessing the models under a conventional full-context classification setup, we also evaluated their performance in early detection scenarios, where predictions must be issued incrementally as new user messages become available. This evaluation follows the official early-detection protocol described in Section 3.2, which imposes stricter constraints and reflects more realistic monitoring conditions. 
+
+4.3.1 Validation Results on Early-Detection Tasks 
+
+We first evaluated the foundational models under the early-detection protocol, where predictions must be issued from the very first message. This setting reflects the natural, unconstrained behavior of the models. The results revealed apparent weaknesses: although the systems often trigger extremely early predictions, their accuracy is noticeably lower, and their decisions are volatile across tasks. This indicates that straightforward fine-tuning does not provide the models with any mechanism to regulate when a prediction should be made in an incremental setting. To better understand this limitation, we carried out an additional study in which the models were required to wait for a predefined amount of text before issuing a decision. Specifically, we evaluated a series of minimum context thresholds (50, 100, 150, and 200 words), allowing us to analyze how performance evolves as progressively more initial evidence 11 Improving Mental Health Screening and Early Risk Detection in Spanish becomes available. This analysis enables the characterization of the early-detection behavior of the models and the determination of which starting points lead to more reliable decisions. Tables 12, 13, and 14 report the complete validation results for all models, tasks, and minimum-context thresholds. Table 12: Performance on Validation partition of fine-tuned foundational models on MR24-DD across different minimum-context configurations (in words).                                                                     
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large NT 0.173 0.086 10.744 50 0.213 0.063 40.805 100 0.346 0.059 70.828 150 0.422 0.064 10 0.844 200 0.459 0.069 13 0.852 Longformer-es-m-base NT 0.177 0.090 10.708 50 0.193 0.048 40.856 100 0.324 0.041 80.887 150 0.414 0.049 11 0.893 200 0.454 0.053 14 0.903 Longformer-es-m-large NT 0.171 0.073 10.776 50 0.208 0.046 40.872 100 0.334 0.040 80.873 150 0.421 0.045 11 0.888 200 0.450 0.049 14 0.904
+
+Table 13: Performance on Validation partition of fine-tuned foundational models on MR23-ED across different minimum-context configurations (in words).                                                                     
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large NT 0.167 0.120 10.731 50 0.258 0.098 60.801 100 0.425 0.076 10 0.814 150 0.467 0.081 13 0.814 200 0.471 0.084 14 0.832 Longformer-es-m-base NT 0.178 0.129 10.721 50 0.228 0.094 50.798 100 0.413 0.065 80.860 150 0.456 0.070 11 0.870 200 0.467 0.075 13 0.870 Longformer-es-m-large NT 0.157 0.127 10.731 50 0.172 0.071 50.813 100 0.365 0.041 80.932 150 0.421 0.049 11 0.954
+> 200 0.441 0.053 13 0.954
+
+Across all three tasks, the No-Threshold (NT) configuration (when no minimum context is set) revealed apparent limitations of the foundational models. Because predictions must be made from the very first message, the systems typically triggered their first correct decision in the initial round ( LTP = 1). Although this led to favorable ERDE5 values, overall performance remained modest: F1-scores were noticeably lower, and the transition from NT to 50 12 Improving Mental Health Screening and Early Risk Detection in Spanish Table 14: Performance on Validation partition of fine-tuned foundational models on MR23-D across different minimum-context configurations (in words).                                                                     
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large NT 0.207 0.184 10.669 50 0.272 0.169 50.714 100 0.454 0.151 90.731 150 0.500 0.159 12 0.737 200 0.515 0.165 15 0.739 Longformer-es-m-base NT 0.225 0.192 10.636 50 0.301 0.179 50.678 100 0.454 0.166 90.699 150 0.474 0.173 12 0.712 200 0.489 0.178 15 0.713 Longformer-es-m-large NT 0.225 0.188 10.602 50 0.334 0.181 60.637 100 0.461 0.176 90.671 150 0.489 0.176 12 0.740
+> 200 0.497 0.177 15 0.740
+
+words produced abrupt changes in all metrics. These results show that the models are susceptible to the amount of initial information, and that their behavior under minimal context is unstable and difficult to control. When additional initial context is required, performance improved consistently. All models showed higher F1-scores and more stable ERDE30 values as the minimum-context threshold increased. For example, in MR24-DD, RoBERTa-es-m-large increased from F1 = 0.744 at NT to 0.828 at 100 words, and Longformer-es-m-base improved from 0.708 to 0.887. Similar trends appeared in MR23-ED and MR23-D. These improvements indicated that the models benefit substantially from having more information available at the start of the detection process. The 100-word threshold emerges as the most balanced configuration across tasks, primarily reflected in its ERDE30 behavior. In all three tasks, this setting consistently achieved the lowest ERDE30 values, indicating that it provided sufficient context to support reliable decisions without incurring excessive delay. F1-scores also reached their highest or near-highest values at this point, but with considerably smaller increments than those observed when moving from NT to 50 words. Beyond 100 words, additional context (150 or 200 words) produced only marginal improvements in F1 and generally led to slightly worse ERDE30 values, as predictions were postponed unnecessarily. These validation results identify two configurations that best characterize the behavior of the foundational models. The NT setting reflects their natural, unconstrained operation and exposes the difficulties they face when working with minimal information. In contrast, we find the best balance between early detection and accuracy, reflected by the ERDE30 metric, at the threshold of 100 words. For this reason, we select both configurations throughout the remainder of the experimentation. 
+
+4.3.2 Test Results on Early-Detection Tasks 
+
+To assess the performance and generalization capabilities of the models under realistic early-detection conditions, we compared their results with the selected reference systems for each task. Tables 15, 16, and 17 present the test results for all fine-tuned foundational models under these two configurations, together with the reference systems of each shared task. In MR24-DD, presented in Table 15, the 100-word configuration produced the highest results, with Longformer-es-m-base reaching an F1-score of 0.880 and outperforming all reference systems. ERDE30 values were also among the lowest, indicating that the models can provide accurate decisions with only moderate delay. The NT setting, however, remained clearly inferior across all metrics. 13 Improving Mental Health Screening and Early Risk Detection in Spanish Table 15: MentalRisk24 - Disorder Detection (MR24-DD) Test results.                                         
+
+> Models ERDE5 ERDE30 LTP F1-score ELiRF-UPV 0,405 0,045 80,874 UNED 0,138 0,065 20,785 RoBERTa-base 0,162 0,042 30,834 Roberta-es-m-large-NT 0,193 0,088 10,740 Longformer-es-m-base-NT 0,163 0,093 10,705 Longformer-es-m-large-NT 0,169 0,078 10,772 Roberta-es-m-large-100 0,342 0,061 70,822 Longformer-es-m-base-100 0,331 0,044 80,880
+> Longformer-es-m-large-100 0,340 0,041 80,867
+
+Table 16: MentalRisk23 - Eating Disorders (MR23-ED) Test results.                                         
+
+> Models ERDE5 ERDE30 LTP F1-score CIMAT-NLP-GTO 0,334 0,018 60,966
+> RoBERTa-large 0,163 0,099 20,813 UNSL 0,433 0,045 80,913 Roberta-es-m-large-NT 0,163 0,124 10,726 Longformer-es-m-base-NT 0,179 0,137 10,686 Longformer-es-m-large-NT 0,177 0,149 10,726 Roberta-es-m-large-100 0,386 0,081 80,826 Longformer-es-m-base-100 0,386 0,074 90,833 Longformer-es-m-large-100 0,347 0,049 80,920
+
+For the ED task, presented in the Table 16, the best-performing system overall remained the CIMAT-NLP-GTO system, based on a classical TF-IDF + Naive Bayes model. Among transformers, the UNSL system established a strong reference system. At 100 words, Longformer-es-m-large achieved a F1-score of 0.920, surpassing all transformer reference systems, and an ERDE30 of 0.049, which is competitive though slightly above the UNSL score. This shows that, with sufficient initial context, the models were capable of reaching state-of-the-art performance among transformer architectures. Table 17: MentalRisk23 - Depression (MR23-D) Test results.                                         
+
+> Models ERDE5 ERDE30 LTP F1-score UMUTeam 0,548 0,358 30 0,737
+> VICOM-nlp 0,275 0,173 20,631 SINAI-SELA 0,395 0,140 40,720 Roberta-es-m-large-NT 0,266 0,236 10,666 Longformer-es-m-base-NT 0,260 0,209 10,633 Longformer-es-m-large-NT 0,250 0,198 10,600 Roberta-es-m-large-100 0,552 0,223 90,726 Longformer-es-m-base-100 0,467 0,169 10 0,693 Longformer-es-m-large-100 0,481 0,186 10 0,666
+
+The MR23-D, as shown in Table 17, demonstrated that the models exhibited more modest improvements. Still, the 100-word configuration yielded consistent gains, with RoBERTa-es-m-large reaching 0.726 F1 and reducing ERDE30 compared to the NT condition. The performance gap narrowed substantially once additional context was provided. 14 Improving Mental Health Screening and Early Risk Detection in Spanish Across all tasks, the comparison with the reference systems revealed a consistent pattern. Under the NT configuration, the models tended to issue their first correct prediction in the initial round ( LTP = 1), which resulted in favorable ERDE5 values but noticeably lower F1 and ERDE30 performance. Their behavior under minimal context was unstable and strongly dependent on slight variations in the available evidence. In contrast, the 100-word configuration yielded substantial gains in F1 and more stable ERDE30 values, confirming the trend already observed in the validation phase: when provided with a moderate amount of initial context, the models achieved more reliable decisions and became competitive with the best systems submitted to the shared tasks. Overall, the test results reveal a consistent pattern: the models perform poorly when required to make predictions from the very first message, but become highly competitive and, in several cases, surpass the reference systems when provided with a moderate amount of initial context. However, this improvement largely depends on selecting the appropriate minimum-context threshold, which is also a fixed value that does not adapt to each specific user’s message history. These limitations underscore the need for a specialized training methodology specifically designed for early detection scenarios. 
+
+## 5 Scenario-Specific Training Approach for Early Detection 
+
+Datasets used for identifying symptoms of mental illness from social-media posts typically comprise chronologically ordered user texts associated with a single label for the user. Assigning the label at the user level reduces the informa-tion available for early-detection scenarios, as we are unable to determine which posts exhibit signs of symptoms for certain mental illnesses and which do not. This limitation restricts the utility of the data for training models designed for early detection. To adapt user-level datasets for early-detection scenarios, we propose the Incremental Context Expansion (ICE) methodology. ICE is based on generating and relabeling multiple training instances extracted from each user’s history. This enables the model to learn when the accumulated context is sufficient to issue a reliable prediction without waiting for the full history. 
+
+5.1 The Incremental Context Expansion Methodology 
+
+The ICE methodology addresses a key challenge in relabeling data for early detection tasks: automatically identifying the minimal user context required to predict the user-level label. To generate relabeled data, ICE creates a set of new samples for each original dataset sample. These new samples consist of incrementally expanding partial contexts, each with a corresponding label. For users exhibiting no symptoms, regardless of context expansion, the absence of symptoms remains constant, and all generated samples retain their original label. The situation is more complex for users who are symptomatic. Shorter contexts may lack sufficient information to reliably assess symptom presence, while longer contexts increase the likelihood of identifying such symptoms. Crucially, the length of context needed to detect a symptomatic user’s illness will vary from individual to individual. For symptomatic users, we need a stable and transparent mechanism to detect the transition from non-symptomatic to symptomatic contexts. We assume that context messages preceding the transition point do not contain symptom indicators, while those following it do. This assumption facilitates the creation of a relabeled dataset designed to train models for early detection, enabling them to either predict illness earlier or wait for more contextual information. Figure 2 provides a visual overview of the ICE workflow, illustrating the two steps involved in this automatic relabeling process. In the first step, a transition detector is trained using the user-level labeled dataset. In the second step, the transition detector is used to relabel the user-level labeled dataset, obtaining a context-level labeled dataset. For the first step, to identify the boundary between non-symptomatic and symptomatic states, we decided to use a SVM-based model due to its robustness in handling unlimited input length with a clear interpretability through decision boundaries, the detection of linguistic patterns, and its competitive results [Casamayor et al., 2024]. This alignment enables the system to generalize well across varied user behaviors, maintaining both stability and transparency in its decision process. The SVM was trained as a user-level classifier with the original dataset. Later, the classifier was used to identify the transition point by classifying the incrementally expanding partial contexts from a user’s history until the prediction is changed from non-symptomatic to symptomatic. Fig. 3 illustrates the relabeling process for symptomatic users, as follows in step two. However, the general process follows these steps for any user-level labeled sample with K messages: 1. For symptomatic users, we use the transition detector to determine the transition point. If the transition point is not found by the detector, we assign the mean value of the transition points of all samples with a detected transition point in the dataset. 2. For non-symptomatic users, we set the transition point to K + 1 .15 Improving Mental Health Screening and Early Risk Detection in Spanish Figure 2: Overview of the ICE workflow. The process generates incremental message contexts and assigns labels based on the transition point inferred with the transition detector. User-level 
+
+Labeled 
+
+Dataset Building 
+
+> Transition
+> Detector
+> Transition
+> Detector
+> Dataset
+> Relabeling
+
+Context-level 
+
+Labeled 
+
+Dataset 
+
+3. The K context-level samples are generated as follows. Let n represent the transition point, mi represents the ith message from the user, then: (a) We generate (n − 1) non-symptomatic samples by gradually incrementing the context from the first message until the last message before the transition point: 
+
+m1 (sample 1) 
+
+m1 ⊕ m2 (sample 2) 
+
+...
+
+m1 ⊕ ... ⊕ mn−1 (sample n-1) 
+
+(b) and, if n < = K, then we generate (K − n + 1) symptomatic samples; from the transition point until the last message: 
+
+m1 ⊕ ... ⊕ mn−1 ⊕ mn (sample n) 
+
+...
+
+m1 ⊕ ... ⊕ mn ⊕ ... ⊕ mK−1 ⊕ mK (sample K) 
+
+5.2 Training configuration 
+
+As we mentioned above, the ICE methodology produces a new dataset, context-level labeled dataset, adapted to the early detection scenario by relabeling the user-level dataset. This new dataset was integrated into a fine-tuning pipeline to obtain new mental health detection models tailored to early detection tasks. The complete workflow is shown in Figure 4. 16 Improving Mental Health Screening and Early Risk Detection in Spanish Figure 3: Generation of samples for symptomatic users in the ICE relabeling methodology. The red dashed line marks the transition point used to generate incremental samples. MNM1Non-
+
+symptomatic MN-1 MKSymptomatic 1: Today I feel tired 1: Today I feel tired. 
+
+> ....
+> N-1: I did not sleep well 1: Today I feel tired.
+> .. .
+> N-1: I did not sleep well.
+> N: I’m good for nothing 1: Today I feel tired.
+> ....
+> N-1: I did not sleep well.
+> N: I’m good for nothing.
+> ...
+> K: I feel sad every day Transition Point user N-1 K - N + 1
+
+TEXTO 
+
+> TEXTO
+
+Figure 4: Fine-tuning workflow process that includes the ICE relabeling methodology. ICE  
+
+> Fine-tuning FT
+> Models
+> Foundation
+> Models
+
+User-level 
+
+Labeled 
+
+Dataset 
+
+Context-level 
+
+Labeled 
+
+Dataset 
+
+The context-level labeled datasets increased the number of samples with respect to their corresponding user-level dataset, including both new positive and negative samples. Table 18 shows the comparison between the amount of training samples in the user-level and the context-level datasets for each task. For training each model, we used only those samples from the context-level dataset that fitted the input layer of the model. Table 19 shows the amount of samples used for each task depending on each specific model architecture. Due to Longformer’s ability to handle larger contexts, nearly all samples from the context-level labeled dataset were used. To evaluate the impact of the context-level datasets on early detection tasks, we trained the same foundational models introduced in Section 4.1.3 using the same hyperparameter shown in Table 10. This way, a new set of classifiers specifically adapted to the incremental contexts provided by ICE was obtained (ICE models). We intentionally retained this setup and the use of the same foundational models to ensure a consistent comparison between methodologies, avoiding improvements that could arise from hyperparameter tuning rather than from the relabeled dataset. 17 Improving Mental Health Screening and Early Risk Detection in Spanish Table 18: Amount of training samples of the user-level (original) and relabeled context-level datasets using ICE methodology.                      
+
+> MentalRisk24 - Disorder Detection (MR24-DD) Dataset None Depression Anxiety user-level (original) 178 134 76 context-level (ICE) 7415 4108 2348
+> MentalRisk23 - Eating Disorders (MR23-ED) Dataset None ED user-level (original) 85 63 context-level (ICE) 2966 2049
+> MentalRisk23 - Depression (MR23-D) Dataset None Depression user-level (original) 70 78 context-level (ICE) 2920 2815
+
+Table 19: Amount of training samples of the context-level labeled datasets used for each model architecture.                      
+
+> MentalRisk24 - Disorder Detection (MR24-DD) Architecture None Depression Anxiety RoBERTa 5607 3000 1601 Longformer 7415 4108 2348
+> MentalRisk23 - Eating Disorders (MR23-ED) Architecture None ED RoBERTa 2611 1629 Longformer 2950 2008
+> MentalRisk23 - Depression (MR23-D) Architecture None Depression RoBERTa 1975 2060 Longformer 2920 2815
+
+5.3 Evaluation on Early Detection Tasks 
+
+The ICE models were evaluated following the same early-detection framework described in Section 3.2. The protocol, metrics, reference systems, and minimum-context threshold configurations (Section 4.3.1) remain unchanged. 
+
+5.3.1 Validation Results on Early-Detection Tasks 
+
+The results of the ICE models on the validation sets, for the three MentalRisk tasks, are shown in Tables 20, 21, and 22. Each table includes all metrics defined in the evaluation protocol, enabling a direct comparison across models and configurations. Comparing these results with those shown in Tables 12, 13, and 14, across the three tasks, the validation results of the ICE models revealed a consistent and more cautious behavior under early-detection conditions. In the NT configura-18 Improving Mental Health Screening and Early Risk Detection in Spanish Table 20: Performance on Validation partition of ICE models on MR24-DD across different minimum-context config-urations (in words).                                 
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large-ICE NT 0.125 0.052 40.888 100 0.342 0.042 80.892 Longformer-es-m-base-ICE NT 0.132 0.056 40.872 100 0.341 0.037 90.898 Longformer-es-m-large-ICE NT 0.121 0.049 40.876 100 0.331 0.033 90.915
+
+Table 21: Performance on Validation partition of ICE models on MR23-ED across different minimum-context config-urations (in words).                                 
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large-ICE NT 0.121 0.053 40.900 100 0.338 0.046 80.911 Longformer-es-m-base-ICE NT 0.120 0.047 40.901 100 0.339 0.039 90.921 Longformer-es-m-large-ICE NT 0.120 0.048 50.902 100 0.321 0.036 90.945
+
+tion, all models delayed their first correct prediction to later rounds (with LTP between 3 and 5), indicating that ICE effectively discourages premature decisions even when no explicit minimum context is imposed. This delayed trigger-ing allowed the models to accumulate more informative evidence before committing, which was reflected in consistent gains across all metrics. These gains even surpassed the original results obtained with the 100-word configuration in most cases. Generally speaking, models using the 100-word configuration achieved the best results in terms of ERDE30 and F1-score, while the best results in terms of strict early-detection (ERDE5 and LTP) were achieved by models using the NT configuration. 
+
+5.3.2 Test Results on Early-Detection Tasks 
+
+To evaluate the performance and generalization capabilities of the ICE models under realistic early-detection condi-tions, we compared their results with those of the selected reference systems for each task. Tables 23, 24, and 25 report the performance of the three reference systems and the ICE models with NT and 100-word configurations across the three tasks. Table 23 reports well-balanced performance across all metrics for the ICE models on the MR24-DD test set. Notably, under the NT configuration, the three architectures demonstrated competitive ERDE5 values and F1-scores, even im-proving, in most cases, the reference systems. This confirms that the behavioral patterns observed during validation Table 22: Performance on Validation partition of ICE models on MR23-D across different minimum-context configu-rations (in words).                                 
+
+> Model Config ERDE5 ERDE30 LTP F1-score RoBERTa-es-m-large-ICE NT 0.198 0.159 30.715 100 0.388 0.143 80.758
+> Longformer-es-m-base-ICE NT 0.220 0.175 30.684 100 0.421 0.161 90.732 Longformer-es-m-large-ICE NT 0.201 0.165 40.699 100 0.448 0.145 90.758
+
+19 Improving Mental Health Screening and Early Risk Detection in Spanish Table 23: MentalRisk24 - ICE models Test results on Disorder Detection (MR24-DD) task                                         
+
+> Models ERDE5 ERDE30 LTP F1-score ELiRF-UPV 0,405 0,045 80,874 UNED 0,138 0,065 20,785 RoBERTa-base 0,162 0,042 30,834 RoBERTa-es-m-large-ICE-NT 0,135 0,051 40,885 Longformer-es-m-base-ICE-NT 0,135 0,055 40,868 Longformer-es-m-large-ICE-NT 0,133 0,047 40,885 RoBERTa-es-m-large-ICE-100 0,345 0,056 80,885 Longformer-es-m-base-ICE-100 0,331 0,043 80,892 Longformer-es-m-large-ICE-100 0,340 0,040 90,905
+
+generalize to new data, and the ICE models learn to delay symptomatic predictions until sufficient evidence is avail-able. The 100-word configurations further improve ERDE30 and F1-score values, but decrease the early detection capabilities of the models (ERDE5 and LTP metrics) compared to NT configurations. Table 24: MentalRisk23 - Eating Disorder (MR23-ED) ICE results.                                         
+
+> Models ERDE5 ERDE30 LTP F1-score CIMAT-NLP-GTO 0,334 0,018 60,966
+> RoBERTa-large 0,163 0,099 50,813 UNSL 0,433 0,045 80,913 RoBERTa-es-m-large-ICE-NT 0,134 0,060 40,893 Longformer-es-m-base-ICE-NT 0,133 0,064 40,880 Longformer-es-m-large-ICE-NT 0,133 0,059 40,886 RoBERTa-es-m-large-ICE-100 0,355 0,056 80,893 Longformer-es-m-base-ICE-100 0,361 0,052 90,886 Longformer-es-m-large-ICE-100 0,343 0,043 90,923
+
+Table 24 shows the results for task MR23-ED. The test results confirm the generalization of the results obtained in validation, showing better ERDE30 and F1 results for the 100-word configurations and better ERDE5 and LTP results for the NT configurations. The ICE models outperformed reference models except CIMAT-NLP-GTO, a classic machine-learning approach that uses a decision threshold to assign the positive class. This threshold, tuned specifically for the task, causes the model to wait until it has sufficient context (greater certainty) before making a prediction. As a result, the model achieves superior performance on detection metrics such as ERDE30 and F1-score, but it does not excel in strict early-detection metrics (ERDE5 and LTP) where the ICE models with the NT configuration perform best. The MR23-D task proves to be the most challenging of the three tasks, as shown in Table 25. All systems exhib-ited lower overall performance, likely due to the subtle, indirect, and context-dependent nature of depression-related language that seems to be harder to capture with automatic methods. Despite this complexity, ICE models remained competitive in terms of performance, and the best ICE models outperformed the reference models. Furthermore, both minimum-context configurations (NT and 100-word) altered the performance behavior in the same way as in the previously analyzed task. Across the three MentalRisk tasks, the ICE models show consistent performance under early-detection conditions. In the NT configuration, the models achieve competitive F1-scores while obtaining lower ERDE5 values and lower LTP than the reference systems, indicating better and earlier decisions. When evaluated under the 100-word configuration, all models improve their ERDE30 and F1-score values, reaching their best overall performance across tasks. Notably, NT configuration shows better performance for strict early detection metrics (ERDE5 and LTP), retaining competitive performance in detection metrics (ERDE30 and F1-score), without the need to set a specific-task minimum amount of context. 20 Improving Mental Health Screening and Early Risk Detection in Spanish Table 25: MentalRisk23 - Depresion (MR23-D) ICE results.                                         
+
+> Models ERDE5 ERDE30 LTP F1-score UMUTeam 0,548 0,358 30 0,737 VICOM-nlp 0,275 0,173 20,631 SINAI-SELA 0,395 0,140 40,720 RoBERTa-es-m-large-ICE-NT 0,225 0,188 30,696 Longformer-es-m-base-ICE-NT 0,246 0,189 30,663 Longformer-es-m-large-ICE-NT 0,242 0,192 30,646 RoBERTa-es-m-large-ICE-100 0,426 0,139 80,753
+> Longformer-es-m-base-ICE-100 0,436 0,161 90,726 Longformer-es-m-large-ICE-100 0,458 0,163 90,696
+
+## 6 Discussions 
+
+The results presented in the previous sections enable us to examine the behavior of the proposed models from a broader perspective and reflect on the impact of the ICE methodology on early detection performance. In this section, we analyze the overall tendencies observed throughout the study and discuss their implications. 
+
+6.1 Overview of the Findings 
+
+Across all experiments, several consistent patterns emerge. The models fine-tuned with the original datasets achieve strong results under full-context classification. Still, their behavior becomes unstable when evaluated under early-detection constraints: they tend to issue predictions too early, before sufficient evidence has accumulated. This lim-itation underscores the need for methodologies that not only focus on what to predict, but also on when to make predictions. The ICE methodology directly addresses this issue by exposing the models to sequences of incremental expanding contexts during training. As a result, the fine-tuned models with ICE-generated data exhibit a more regulated decision process: they are better able to delay their symptomatic prediction when the available evidence is insufficient and to commit earlier when clear signals appear. Regarding the two context configurations, the NT configuration delivers superior early-detection metrics and main-tains good overall detection performance by relying on very limited, immediate signals. In contrast, the 100-word configuration boosts overall detection performance by allowing a more delayed decision. In light of the results ob-tained in validation and testing, we observe that the ICE methodology improves the overall performance of the models, regardless of the minimum-context configuration chosen. 
+
+6.2 The impact of ICE under different minimum-context configurations 
+
+Based on the prior results, it has been established that imposing a minimal context forces the models to wait for more evidence, which in turn improves their performance. It was also established that the ICE methodology enabled the cre-ation of incremental datasets, which boosted model accuracy. In this section, we will examine how the combination of the two factors, using or not using the ICE methodology and employing a minimal context, affects model performance for both classification and early-detection metrics. To better understand the practical effect of ICE on decision dynamics, we analyze the evolution of ERDE5, ERDE30, and F1-score metrics as a function of the minimum required context (0-200 words). Figures 5 to 7 compare ICE and non-ICE models for each architecture on the test set across the three tasks, providing a direct view of how performance changes as more evidence becomes available. 
+
+6.2.1 Strict early-detection performance (ERDE5) 
+
+The ERDE metric serves as a time efficiency evaluator, penalizing detection delays by integrating the number of posts required to trigger an alert as a critical factor in the error calculation. Within this framework, Figure 5 shows that the performance of all the models in terms of ERDE5 degrades rapidly as the minimum required context increases. Notably, ICE models almost systematically outperform their non-ICE counterparts in most configurations and tasks. 21 Improving Mental Health Screening and Early Risk Detection in Spanish Figure 5: ERDE5 evolution across the different methodologies and tasks in the test partition. NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> ERDE5
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(a) MR24-DD NT 50 100 150 200  
+
+> Minimum context (words)
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> ERDE5
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(b) MR23-ED NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> ERDE5
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(c) MR23-D 
+
+The rapid deterioration of the ERDE5 metric, especially evident when the minimum context reaches the 100-word threshold, is a direct consequence of the interaction between the penalty function of the metric and the low information density of the datasets. In the three tasks evaluated, the average post length is significantly short, ranging between 14 and 15 tokens per post (Tables 1, 3, and 5). To meet a requirement of 100 words of context, the system is forced to process at least 8 or 9 consecutive posts. Since the ERDE5 metric sets its tolerance threshold at 5 posts, any decision based on context exceeding 50 words is penalized by the metric. Consequently, the marked increase in ERDE5 beyond 100 words of context reflects the exhaustion of the ”latency budget” allowed by the metric. Once the accumulation of context exceeds the 5-post limit, for true positives, the ERDE5 rapidly increments the delay penalization. This behavior highlights that, in scenarios with sparse data and complex tasks, the margin for achieving a low ERDE5 score is extremely narrow. According to this analysis, it is reasonable to conclude that the NT configuration consistently yields the lowest ERDE5 values. However, the performance of ICE models is noteworthy. As observed in Section 4.3.1, non-ICE models tend to rush into classifying positives with LTP = 1. While this early classification increases false positives, the ERDE5 metric does not penalize them as severely as it does late true positives. Nevertheless, ICE models achieve the best results in NT configurations, thanks to their ability to make reliable early predictions by minimizing unnecessary waiting time without incurring the rush of the non-ICE models. By making most of their predictions within the critical window of the first 5 turns (LTP 3 or 4), ICE models get a better trade-off between prudent classification and the requirement for immediacy. It is also important to note that, while the results for MR24-DD and MR23-ED show a similar trend, performance on MR23-D is considerably lower. This discrepancy is consistent with the greater intrinsic difficulty of this task, as observed in previous results. 22 Improving Mental Health Screening and Early Risk Detection in Spanish Figure 6: ERDE30 evolution across the different methodologies and tasks in the test partition. NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.050
+> 0.075
+> 0.100
+> 0.125
+> 0.150
+> 0.175
+> 0.200
+> 0.225
+> 0.250
+> ERDE30
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(a) MR24-DD NT 50 100 150 200  
+
+> Minimum context (words)
+> 0.050
+> 0.075
+> 0.100
+> 0.125
+> 0.150
+> 0.175
+> 0.200
+> 0.225
+> 0.250
+> ERDE30
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(b) MR23-ED NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.050
+> 0.075
+> 0.100
+> 0.125
+> 0.150
+> 0.175
+> 0.200
+> 0.225
+> 0.250
+> ERDE30
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(c) MR23-D 
+
+6.2.2 Soft early-detection performance (ERDE30) 
+
+Similar to ERDE5, the ERDE30 metric serves as a temporal efficiency evaluator that penalizes detection delay. How-ever, it is important to note that ERDE30 is not the most representative indicator for evaluating early detection in these specific tasks, given that users have a significantly reduced average number of posts; the average is around 36 posts in MR24-DD and MR23-D, while in MR23-ED, the average drops to 31 posts (Tables 1, 3, and 5). Since the average number of posts is so close to the penalty threshold (30), the metric loses some of its ability to discriminate between actual precocity and near misses, as almost any decision based on the full history nears the temporal budget limit. In this framework, the ERDE30 metric is more closely related to the performance of the models as classifiers than to their performance as early detection evaluators. As illustrated in Figure 6, it is evident that non-ICE models show a more inconsistent behavior, starting with notably deficient ERDE30 values in the NT configuration. These models improve significantly when a 50-word context is introduced, and tend to stabilize at 100 words. Beyond this point, their performance typically degrades slightly towards 200 words, with the sole exception of the MR23-ED task, where such degradation does not occur. The ICE models demonstrate a much more robust learning dynamic, represented by significantly lower and flatter curves. In MR24-DD, the models optimize their performance at the 50 and 100-word thresholds before worsening due to latency. For the MR23-ED task, the most excellent stability is observed, highlighting that the three ICE architectures converge to identical performance upon reaching 200 words. Furthermore, the MR23-D task presents the poorest results of the study, with much higher error values compared to the other tasks, confirming its greater intrinsic difficulty. In this task, even the ICE models suffer a rapid and marked deterioration after exceeding the 100-word threshold. 23 Improving Mental Health Screening and Early Risk Detection in Spanish Figure 7: F1-score evolution across the different methodologies and tasks in the test partition. NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.60
+> 0.65
+> 0.70
+> 0.75
+> 0.80
+> 0.85
+> 0.90
+> 0.95
+> F1-score
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(a) MR24-DD NT 50 100 150 200  
+
+> Minimum context (words)
+> 0.60
+> 0.65
+> 0.70
+> 0.75
+> 0.80
+> 0.85
+> 0.90
+> 0.95
+> F1-score
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(b) MR23-ED NT 50 100 150 200 
+
+> Minimum context (words)
+> 0.60
+> 0.65
+> 0.70
+> 0.75
+> 0.80
+> 0.85
+> 0.90
+> 0.95
+> F1-score
+> RoBERTa-es-m-large
+> RoBERTa-es-m-large-ICE
+> Longformer-es-m-base
+> Longformer-es-m-base-ICE
+> Longformer-es-m-large
+> Longformer-es-m-large-ICE
+
+(c) MR23-D 
+
+6.2.3 Overall detection performance (F1-score) 
+
+As with previous metrics, the evolution of the F1-score in response to the increase in the minimum required context, Figure 7, provides clear evidence of the stabilization effect introduced by the ICE methodology. Since the F1-score metric evaluates the pure classification capability of the models, it is expected that, as the context increases, the models will have more information and, therefore, achieve better results. However, in this analysis, the absolute value of the F1-score at 200 words is not as crucial as its trajectory and stability throughout the process. In the non-ICE models, the F1-score exhibits marked fluctuations in the initial stages, with abrupt performance jumps as soon as additional context becomes available. This behavior indicates that these models lack stability, as they base their predictions on insufficient information fragments. This means that any small change in the initial data drastically alters the outcome, leading to unreliable diagnoses. In contrast, ICE models exhibit significantly more linear and smoother F1-score trajectories across all tasks. Their performance in the NT configuration is already highly competitive, and subsequent improvements are progressive, indicating a much more robust confidence. Only for the MR23-D task, the increase in minimum-context continues to boost the performance of the models. These results reflect a structural shift in decision strategy. By avoiding symptomatic samples during training until sufficient evidence has accumulated, ICE models learn to avoid errors from premature decisions. This results in more robust models. It is worth noting that, in most cases, ICE models perform considerably better even at the 200-word configuration. This demonstrates that training using ICE not only optimizes early detection but also enhances the final discrimination capability of the models, enabling them to achieve a higher performance ceiling than conventionally trained models. 24 Improving Mental Health Screening and Early Risk Detection in Spanish 
+
+6.3 The Impact of ICE Under the Different Architectures 
+
+As stated above, the most significant impact of ICE is its ability to drastically improve model performance in low-context scenarios. Across all three metrics, the models utilizing ICE consistently outperform their non-ICE counter-parts when no minimum context is set (NT configuration), regardless of their architecture. In Figure 7, for instance, the F1-score for RoBERTa and Longformer models fine-tuned with ICE starts substantially higher than those without it. Furthermore, ICE acts as a stabilizer that minimizes the performance gap between different model sizes and archi-tectures. In the ERDE plots (Figures 5 and 6), RoBERTa-large and Longformer-base often converge or follow very similar trajectories when ICE is applied, whereas their non-ICE counterparts show much higher variance and error rates. This indicates that ICE helps smaller or less complex architectures achieve results comparable to larger models, specifically by reducing the penalty for early detection. By flattening the error curves and lifting the F1-score plateaus, ICE proves to be a critical enhancement for making these models more reliable and faster to respond in real-world risk assessment tasks. 
+
+6.4 Limitations 
+
+While the presented work has demonstrated competitive performance in early detection tasks, several limitations of this work should be acknowledged: • Data bias and domain coverage. The available Spanish mental health corpora remain limited in size and diversity, mostly derived from social media sources such as Reddit and Telegram. This introduces potential demographic and linguistic biases that may affect the generalization of findings to clinical or other real-world contexts. • Machine translation artifacts. Although the use of automatically translated data (via EasyNMT) increased data availability to develop the foundational models, it may have introduced subtle semantic drift or loss of affective nuance. These effects could be particularly relevant in tasks such as depression detection, where small linguistic variations can alter the interpretation of emotional intent. • Dependence on transition detector in ICE methodology. The ICE methodology relies on a transition detector, implemented in this work using an SVM classifier, to identify when the accumulated messages of a positive user begin to show evidence of pathology. If this criterion fails to capture early signals or assigns relevance inconsistently, the resulting noise propagates to the incremental training samples. This limitation may be particularly critical in tasks where initial symptoms are linguistically diffuse or implicit. • Interpretability and explainability. This work focuses on quantitative evaluation and does not analyze the interpretability or transparency of the proposed models. Since early-detection systems can have implications for clinical decision-making or mental-health monitoring, understanding the rationale behind model predic-tions remains an essential aspect for future deployment. 
+
+## 7 Future Work 
+
+Several promising research avenues remain open for exploration after this work. These directions directly address the main limitations identified in this study and aim to further enhance the interpretability and robustness of early detection systems. • Data Augmentation: We plan to complement the automatic relabeling method of ICE by including data augmentation techniques. We aim to create synthetic context or randomly modify the original context, thereby diversifying the training data and addressing the limitations of small datasets. This process will incorporate uncertainty estimation and ultimately improve model robustness in early detection tasks. • Explainable early detection with long contexts: Understanding the reasoning behind model predictions is essential for deployment in sensitive domains. Integrating explainability tools, such as SHAP [Lundberg and Lee, 2017] or LIME [Ribeiro et al., 2016], into long-sequence models could reveal which parts of a user’s history most influence each decision, thereby facilitating clinician trust and interpretability. • Improving the ICE methodology: The current ICE methodology depends on the decision points of a transi-tion detector to define symptom onset. Future work could explore end-to-end training where the detector and the base model are optimized together. Reinforcement learning could be used to reward accurate and early detections while penalizing false positives or excessive delays, fostering a dynamic balance between speed of detection and precision [Zhou et al., 2019]. 25 Improving Mental Health Screening and Early Risk Detection in Spanish 
+
+## 8 Conclusions 
+
+This work introduced three Spanish-language foundational models tailored to the mental health domain. Through domain-adaptive pre-training on an extended dataset of Spanish mental health texts, the models learned representations that capture the linguistic and affective patterns characteristic of this domain. We have proposed the ICE automatic relabeling methodology to adapt user-level labeled datasets to early detection tasks by generating new context-level labeled datasets. ICE is based on generating and relabeling multiple training instances extracted from each user’s history. To evaluate the impact of ICE on the performance of models fine-tuned with the generated context-level labeled dataset, we have conducted experiments on three benchmark early-detection tasks. The results validate that ICE methodology allows models to dynamically approach the optimal operating point, dras-tically reducing error with few context maintaining a constant competitive advantage over non-ICE models, which depend critically on fixed context thresholds to avoid mediocre results. In practice, ICE methodology allows for improved classification quality by waiting only the time strictly necessary to consolidate significant evidence, with-out introducing excessive latency. This behavior distinguishes a standard classifier from an effective early detection system, validating ICE as an methodology that enhances both initial reliability and overall system accuracy. By combining the presented foundational models with the ICE methodology, we improved the state-of-the-art in most Spanish early-detection tasks addressed. 
+
+## References 
+
+[Beltagy et al., 2020] Beltagy, I., Peters, M. E., and Cohan, A. (2020). Longformer: The long-document transformer. 
+
+arXiv preprint arXiv:2004.05150 .[Bulgarelli et al., 2021] Bulgarelli, L., Tavares, A., Pires, F., Camargo, I., et al. (2021). EasyNMT: A Python Library for Easy Access to Multilingual Pretrained Models for Translation and Other NLP Tasks. https://github.com/ UKPLab/EasyNMT . Accessed: 2025-02-27. [Casamayor et al., 2024] Casamayor, A., Ahuir, V., Molina, A., and Hurtado, L.-F. (2024). ELiRF-VRAIN at Men-talRiskES 2024: Using LongFormer for Early Detection of Mental Disorders Risk. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024) co-located with 40th International Conference of the Spanish Soci-ety for Natural Language Processing (SEPLN 2024) , volume 3756 of CEUR Workshop Proceedings , pages 24–33. CEUR-WS.org. [Ca˜ nete et al., 2020] Ca˜ nete, J., Chaperon, G., Fuentes, R., Ho, J.-H., Kang, H., and P´ erez, J. (2020). Spanish Pre-Trained BERT Model and Evaluation Data. In PML4DC at ICLR 2020 .[Conneau et al., 2020] Conneau, A., Khandelwal, K., Goyal, N., Chaudhary, V., Wenzek, G., Guzm´ an, F., Grave, E., Ott, M., Zettlemoyer, L., and Stoyanov, V. (2020). Unsupervised Cross-lingual Representation Learning at Scale. In Jurafsky, D., Chai, J., Schluter, N., and Tetreault, J., editors, Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics , pages 8440–8451, Online. Association for Computational Linguistics. [Coppersmith et al., 2015] Coppersmith, G., Dredze, M., and Harman, C. (2015). Quantifying Mental Health Signals in Twitter. In Proceedings of the Workshop on Computational Linguistics and Clinical Psychology: From Linguistic Signal to Clinical Reality , pages 51–60. [Couto et al., 2025] Couto, M., Perez, A., Parapar, J., and Losada, D. E. (2025). Temporal Word Embeddings for Early Detection of Psychological Disorders on Social Media. Journal of Healthcare Informatics Research .[De Choudhury et al., 2013] De Choudhury, M., Gamon, M., Counts, S., and Horvitz, E. (2013). Predicting Depres-sion via Social Media. In Proceedings of the Seventh International AAAI Conference on Weblogs and Social Media (ICWSM) , pages 128–137. [Devlin et al., 2019] Devlin, J., Chang, M.-W., Lee, K., and Toutanova, K. (2019). Bert: Pre-training of deep bidi-rectional transformers for language understanding. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT) , pages 4171–4186, Minneapolis, MN, USA. Association for Computational Linguistics. [Echeverr´ ıa-Bar´ u et al., 2023] Echeverr´ ıa-Bar´ u, F., S´ anchez-Vega, F., and L´ opez-Monroy, A. P. (2023). CIMAT-NLP-GTO at MentalRiskES 2023: Early Detection of Mental Disorders in Spanish Messages using Style Based Models and BERT Models. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) co-located with the 39th Conference of the Spanish Society for Natural Language Processing (SEPLN 2023) , volume 3496 of CEUR Workshop Proceedings , pages 179–188. CEUR-WS.org. 26 Improving Mental Health Screening and Early Risk Detection in Spanish [European Commission, 2023] European Commission (2023). Mental health: 46% of europeans experienced an emo-tional or psychosocial problem in 2023. https://health.ec.europa.eu/non-communicable-diseases/ mental-health_en . Accessed: October 2025. [Fern´ andez-Hern´ andez et al., 2024] Fern´ andez-Hern´ andez, J., Fabregat, H., Duque, A., Araujo, L., and Mart´ ınez-Romo, J. (2024). UNED-GELP at MentalRiskES 2024: Transformer-Based Encoders and Similarity Techniques for Early Risk Prediction of Mental Disorders. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024) co-located with the 40th International Conference of the Spanish Society for Natural Language Processing (SEPLN 2024) , volume 3756 of CEUR Workshop Proceedings , pages 13–23. CEUR-WS.org. [Gonz´ alez-Silot et al., 2023] Gonz´ alez-Silot, S., Mart´ ınez-C´ amara, E., and L´ opez, L. A. U. (2023). SINAI at Men-talRisk: Using Emotions for Detecting Depression. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) co-located with the 39th Conference of the Spanish Society for Natural Language Processing (SE-PLN 2023) , volume 3496 of CEUR Workshop Proceedings , pages 109–118. CEUR-WS.org. [Gururangan et al., 2020] Gururangan, S., Marasovic, A., Swayamdipta, S., Lo, K., Beltagy, I., Downey, D., and Smith, N. A. (2020). Don’t Stop Pretraining: Adapt Language Models to Domains and Tasks. CoRR ,abs/2004.10964. [Guti´ errez-Fandi˜ no et al., 2022] Guti´ errez-Fandi˜ no, A., Armengol-Estap´ e, J., P` amies, M., Llop-Palao, J., Silveira-Ocampo, J., Carrino, C. P., Armentano-Oller, C., Rodriguez-Penagos, C., Gonzalez-Agirre, A., and Villegas, M. (2022). Maria: Spanish language models. Procesamiento del Lenguaje Natural , pages 39—-60. [Ji et al., 2021a] Ji, S., Li, X., Huang, Z., and Cambria, E. (2021a). Suicidal ideation and mental disorder detection with attentive relation networks. Neural Computing and Applications .[Ji et al., 2018] Ji, S., Yu, C. P., Fung, S.-f., Pan, S., and Long, G. (2018). Supervised learning for suicidal ideation detection in online user content. Complexity , 2018(1):6157249. [Ji et al., 2021b] Ji, S., Zhang, T., Ansari, L., Fu, J., Tiwari, P., and Cambria, E. (2021b). MentalBERT: Publicly Available Pretrained Language Models for Mental Healthcare. CoRR , abs/2110.15621. [Lauscher et al., 2020] Lauscher, A., Glavaˇ s, G., Ponzetto, S. P., and Vuli´ c, I. (2020). From Zero to Hero: On the Lim-itations of Zero-Shot Language Transfer with Multilingual Transformers. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) , pages 4483–4499. [Liu et al., 2019] Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., and Stoyanov, V. (2019). Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692 .[Losada et al., 2017] Losada, D., Crestani, F., and Parapar, J. (2017). erisk 2017: Clef lab on early risk prediction on the internet: Experimental foundations. In Experimental IR Meets Multilinguality, Multimodality, and Interaction ,pages 346–360. Springer International Publishing. [Losada et al., 2018] Losada, D. E., Crestani, F., and Parapar, J. (2018). Overview of erisk 2018: Early risk prediction on the internet (extended lab overview). In CEUR Workshop Proceedings , volume 2125. CEUR-WS. [Losada et al., 2019] Losada, D. E., Crestani, F., and Parapar, J. (2019). Overview of erisk 2019 early risk prediction on the internet. In Experimental IR Meets Multilinguality, Multimodality, and Interaction , Berlin, Heidelberg. Springer-Verlag. [Losada et al., 2020] Losada, D. E., Crestani, F., and Parapar, J. (2020). Overview of erisk 2020: Early risk prediction on the internet. In Arampatzis, A., Kanoulas, E., Tsikrika, T., Vrochidis, S., Joho, H., Lioma, C., Eickhoff, C., N´ ev´ eol, A., Cappellato, L., and Ferro, N., editors, Experimental IR Meets Multilinguality, Multimodality, and Interaction , pages 272–287, Cham. Springer International Publishing. [Lundberg and Lee, 2017] Lundberg, S. M. and Lee, S.-I. (2017). A unified approach to interpreting model predic-tions. Advances in Neural Information Processing Systems , 30. [M´ armol Romero et al., 2024] M´ armol Romero, A. M., Moreno-Mu˜ noz, A., Plaza-Del-Arco, F. M., Molina-Gonz´ alez, M. D., and Montejo-R´ aez, A. (2024). MentalRiskES: A New Corpus for Early Detection of Mental Disorders in Spanish. In Calzolari, N., Kan, M.-Y., Hoste, V., Lenci, A., Sakti, S., and Xue, N., editors, Proceed-ings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024) , pages 11204–11214, Torino, Italia. ELRA and ICCL. [M´ armol-Romero et al., 2024] M´ armol-Romero, A. M., Moreno-Mu˜ noz, A., Plaza-del Arco, F. M., Molina-Gonz´ alez, M. D., Mart´ ın-Valdivia, M. T., Ure˜ na-L´ opez, L. A., and Montejo-R´ aez, A. (2024). Overview of MentalRiskES at IberLEF 2024: Early Detection of Mental Disorders Risk in Spanish. Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024) .27 Improving Mental Health Screening and Early Risk Detection in Spanish [Martinez-Romo et al., 2025] Martinez-Romo, J., Araujo, L., and Reneses, B. (2025). Guardian-BERT: Early detec-tion of self-injury and suicidal signs with language technologies in electronic health reports. Computers in Biology and Medicine , 186:109701. [Ministerio de Sanidad de Espa˜ na, 2023] Ministerio de Sanidad de Espa˜ na (2023). Informe del sistema na-cional de salud 2023. https://www.sanidad.gob.es/estadEstudios/estadisticas/sisInfSanSNS/ tablasEstadisticas/InfAnualSNS2023/INFORME_ANUAL_2023.pdf . Accessed: 2025-06-16. [M´ armol-Romero et al., 2023] M´ armol-Romero, A. M., Moreno-Mu˜ noz, A., Plaza-del Arco, F. M., Molina-Gonz´ alez, M. D., Mart´ ın-Valdivia, M. T., Ure˜ na-L´ opez, L. A., and Montejo-R´ aez, A. (2023). Overview of MentalRiskES at IberLEF 2023: Early Detection of Mental Disorders Risk in Spanish. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) . CEUR-WS. [Organization, 2022] Organization, W. H. (2022). Mental Health. Accessed: 2025-2-12. [Organization, 2023] Organization, W. H. (2023). Mental health atlas 2023 (preliminary data). Accessed June 2025. [Pan et al., 2023] Pan, R., Garc´ ıa-D´ ıaz, J. A., and Valencia-Garc´ ıa, R. (2023). UMUTeam at Mental-RiskES2023@IberLEF: Transformer and Ensemble Learning Models for Early Detection of Eating Disorders and Depression. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) co-located with the 39th Conference of the Spanish Society for Natural Language Processing (SEPLN 2023) , volume 3496 of CEUR Work-shop Proceedings , pages 89–98. CEUR-WS.org. [Parapar et al., 2021] Parapar, J., Mart´ ın-Rodilla, P., Losada, D. E., and Crestani, F. (2021). Overview of erisk 2021: Early risk prediction on the internet. In Experimental IR Meets Multilinguality, Multimodality, and Interaction: 12th International Conference of the CLEF Association, CLEF 2021, Virtual Event, September 21–24, 2021, Pro-ceedings , page 324–344, Berlin, Heidelberg. Springer-Verlag. [Parapar et al., 2022] Parapar, J., Mart´ ın-Rodilla, P., Losada, D. E., and Crestani, F. (2022). Overview of erisk 2022: Early risk prediction on the internet. In Barr´ on-Cede˜ no, A., Da San Martino, G., Degli Esposti, M., Sebastiani, F., Macdonald, C., Pasi, G., Hanbury, A., Potthast, M., Faggioli, G., and Ferro, N., editors, Experimental IR Meets Multilinguality, Multimodality, and Interaction , pages 233–256, Cham. Springer International Publishing. [Parapar et al., 2023] Parapar, J., Mart´ ın-Rodilla, P., Losada, D. E., and Crestani, F. (2023). Overview of erisk 2023: Early risk prediction on the internet. In Arampatzis, A., Kanoulas, E., Tsikrika, T., Vrochidis, S., Giachanou, A., Li, D., Aliannejadi, M., Vlachos, M., Faggioli, G., and Ferro, N., editors, Experimental IR Meets Multilinguality, Multimodality, and Interaction , pages 294–315, Cham. Springer Nature Switzerland. [Rani et al., 2024] Rani, S., Ahmed, K., and Subramani, S. (2024). From posts to knowledge: Annotating a pandemic-era reddit dataset to navigate mental health narratives. Applied Sciences , 14(4). [Ribeiro et al., 2016] Ribeiro, M. T., Singh, S., and Guestrin, C. (2016). ”why should i trust you?”: Explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining , pages 1135–1144. ACM. [Sadeque et al., 2018] Sadeque, F., Xu, D., and Bethard, S. (2018). Measuring the Latency of Depression Detection in Social Media. In Proceedings of the Eleventh ACM International Conference on Web Search and Data Mining ,WSDM ’18, page 495–503, New York, NY, USA. Association for Computing Machinery. [Thakkar et al., 2024] Thakkar, A., Gupta, A., and De Sousa, A. (2024). Artificial intelligence in positive mental health: a narrative review. Frontiers in Digital Health , 6. [Thompson and Errecalde, 2023] Thompson, H. and Errecalde, M. (2023). Early Detection of Depression and Eating Disorders in Spanish: UNSL at MentalRiskES 2023. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) co-located with the 39th Conference of the Spanish Society for Natural Language Processing (SEPLN 2023) , volume 3496 of CEUR Workshop Proceedings , pages 99–108. CEUR-WS.org. [Tiedemann et al., 2023] Tiedemann, J., Aulamo, M., Bakshandaeva, D., Boggia, M., Gr¨ onroos, S.-A., Nieminen, T., Raganato A., Scherrer, Y., Vazquez, R., and Virpioja, S. (2023). Democratizing neural machine translation with OPUS-MT. Language Resources and Evaluation , (58):713–755. [Tiedemann and Thottingal, 2020] Tiedemann, J. and Thottingal, S. (2020). OPUS-MT — Building open translation services for the World. In Proceedings of the 22nd Annual Conferenec of the European Association for Machine Translation (EAMT) , Lisbon, Portugal. [Tur´ on et al., 2023] Tur´ on, P., Cabestany, D., P´ erez, N., and Cuadros, M. (2023). Text Classification for Early Detec-tion of Eating Disorders and Depression in Spanish. In Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2023) co-located with the 39th Conference of the Spanish Society for Natural Language Processing (SE-PLN 2023) , volume 3496 of CEUR Workshop Proceedings , pages 67–78. CEUR-WS.org. 28 Improving Mental Health Screening and Early Risk Detection in Spanish [Vaswani et al., 2017] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L. u., and Polosukhin, I. (2017). Attention is all you need. In Guyon, I., Luxburg, U. V., Bengio, S., Wallach, H., Fergus, R., Vishwanathan, S., and Garnett, R., editors, Advances in Neural Information Processing Systems , volume 30. Curran Associates, Inc. [Wu and Dredze, 2020] Wu, S. and Dredze, M. (2020). Are All Languages Created Equal in Multilingual BERT? In Proceedings of the 5th Workshop on Representation Learning for NLP , pages 120–130, Online. Association for Computational Linguistics. [Zhou et al., 2019] Zhou, Z., Shi, W., Yang, S., Zhang, Y., and Zhou, M. (2019). Reinforcement learning for text classification with policy gradient. Neurocomputing , 335:215–223. [ ´ Alvaro Rodrigo et al., 2024] ´Alvaro Rodrigo, del Arco, F. M. P., Fortuna, P., Oliveira, H. G., Gonzalez-Agirre, A., G´ omez-Adorno, H., and Garcia, M., editors (2024). Proceedings of the Iberian Languages Evaluation Forum (IberLEF 2024) co-located with the 40th Conference of the Spanish Society for Natural Language Processing (SEPLN 2024) , volume 3756 of CEUR Workshop Proceedings . CEUR-WS.org. 
+
+## Acknowledgment 
+
+This work was partially supported by the Spanish Agencia Estatal de Investigaci´ on (AEI) under grant PID2024-155948OB-C55, within the Proyectos de Generaci´ on de Conocimiento program, and co-funded by the European Regional Development Fund (ERDF) under the Pluriregional Operational Programme Spain FEDER 2021–2027. This work was also partially supported by MCIN/AEI/10.13039/501100011033 and by the European Regional Devel-opment Fund, “A way of making Europe,” under grant PID2021-126061OB-C41. Andreu Casamayor-Segarra was supported by the Spanish Ministerio de Universidades under grant FPU24/01938. This work was also partially supported by the Spanish Ministerio de Universidades under grant FPU21/05288 for university teacher training and by the Generalitat Valenciana under project CIPROM/2021/023. 29
