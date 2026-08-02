@@ -1,0 +1,451 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-02T21:18:14.096916+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2607.23927v1",
+      "source": "arxiv",
+      "title": "Reality Monitoring in Large Language Models: Self-Knowledge That Transforms with Conversation Memory",
+      "abstract": "A conversational AI that cannot tell its own output from what a user said will treat its own mistakes as user-provided facts. In humans, this capacity is called reality monitoring, and its failures are linked to hallucinations, delusions, and confabulation, yet whether LLMs possess it remains untested. Here we show, across two experiments and six LLMs, that source attribution depends on how conversational memory is structured: ceiling accuracy for self-generated content under minimal memory demands reverses to a fragile external-item advantage once episodic delay removes that shortcut. Feedback exposes two failures: in some models, internal and external judgments swap; in others, accuracy improves while confidence decouples from correctness, dissociations invisible to existing benchmarks. Across models, this pattern implicates active, not aggregate, parameter count. This suggests that as AI systems take on autonomous, multi-turn roles, evaluating what they know is not enough: tracking where that knowledge came from may matter equally.",
+      "authors": [
+        "Saurabh Ranjan",
+        "Konstantina Sokratous",
+        "Brian Odegaard"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CY",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-27T01:47:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.23927v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Empirical study of LLM source attribution and reality monitoring",
+      "llm_evidence_cn": "对LLM现实监控与来源归因的实证研究",
+      "llm_evidence": "对LLM现实监控与来源归因的实证研究",
+      "canonical_evidence": "对LLM现实监控与来源归因的实证研究",
+      "llm_tldr_en": "This paper tests whether LLMs can distinguish their own outputs from user inputs, showing source attribution depends on conversation memory structure and revealing failure patterns similar to human reality-monitoring deficits.",
+      "llm_tldr_cn": "该研究探讨大语言模型能否区分自身生成内容与用户输入内容，即现实监控能力。通过两项大规模实验测试六种LLM，发现来源归因的准确性依赖于对话记忆的结构：在低记忆要求下模型对自生成内容判断近乎完美，而引入情境延迟后反而对外部内容更有优势，出现反转。反馈还会导致不同模型出现内部与外部判断互换或准确率提升但信心失配等失败。该工作首次将精神病学中的现实监控概念引入LLM研究，对理解幻觉与妄想机制具有重要意义。",
+      "llm_tldr": "该研究探讨大语言模型能否区分自身生成内容与用户输入内容，即现实监控能力。通过两项大规模实验测试六种LLM，发现来源归因的准确性依赖于对话记忆的结构：在低记忆要求下模型对自生成内容判断近乎完美，而引入情境延迟后反而对外部内容更有优势，出现反转。反馈还会导致不同模型出现内部与外部判断互换或准确率提升但信心失配等失败。该工作首次将精神病学中的现实监控概念引入LLM研究，对理解幻觉与妄想机制具有重要意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.24999v1",
+      "source": "arxiv",
+      "title": "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models",
+      "abstract": "LLM cognitive scores are increasingly summarized as per-ability profiles whose dimensions should converge across tasks, respond selectively to matched interventions, and generalize beyond the models used to define them. We introduce CogArena, a procedurally generated 13-paradigm benchmark built around a multimethod framework for determining when cognitive-task scores warrant dimensional labels across five theory-motivated groupings. Across 55 open-weight models, nearly all paradigm correlations are positive and a common axis explains about half the variance. The within-grouping advantage is small, scoring-sensitive, and uncertain across model families. In a separately frozen, fully crossed study across 12 models from six families, targeted scaffolds show a small matched-grouping advantage, but no scaffold-specific contrast survives multiplicity correction and selectivity does not improve held-out-family prediction. The frozen confirmation criterion fails. A post-hoc alternate-wording replication produces a smaller positive estimate and again fails. Together, these results support a boundary conclusion. Theory-aligned prompting produces a small in-battery diagonal tendency, but the present evidence does not establish stable five-dimensional profiles. CogArena provides a workflow joining behavioral signatures, covariance, matched interventions, and out-of-family prediction before cognitive labels are attached to model scores.",
+      "authors": [
+        "Dengzhe Hou",
+        "Lingyu Jiang",
+        "Fangzhou Lin",
+        "Kazunori D Yamada"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-27T18:56:13+00:00",
+      "link": "https://arxiv.org/pdf/2607.24999v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM cognitive evaluation benchmark; core LLM research",
+      "llm_evidence_cn": "大语言模型认知能力评估基准；核心大模型研究",
+      "llm_evidence": "大语言模型认知能力评估基准；核心大模型研究",
+      "canonical_evidence": "大语言模型认知能力评估基准；核心大模型研究",
+      "llm_tldr_en": "Introduces CogArena, a 13-paradigm benchmark for evaluating whether LLM cognitive-task scores warrant dimensional labels, tested on 55 models; finds weak within-grouping advantage and unstable dimensions.",
+      "llm_tldr_cn": "大语言模型常被赋予分维度认知能力画像，但这些维度是否可靠缺乏系统验证。本文提出CogArena，一个包含13个范式的多方法基准，用于判断认知任务分数能否支持维度标签。在55个开源模型上测试发现，几乎所有范式正相关、共同轴解释约一半方差，但分组优势很小且不稳定。这表明当前的维度化认知评分需谨慎解读。",
+      "llm_tldr": "大语言模型常被赋予分维度认知能力画像，但这些维度是否可靠缺乏系统验证。本文提出CogArena，一个包含13个范式的多方法基准，用于判断认知任务分数能否支持维度标签。在55个开源模型上测试发现，几乎所有范式正相关、共同轴解释约一半方差，但分组优势很小且不稳定。这表明当前的维度化认知评分需谨慎解读。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25667v1",
+      "source": "arxiv",
+      "title": "MyMentorLLM: A psychotherapy GenAI environment with multimodal voice/text patients, trainees and experts for deliberate practice",
+      "abstract": "Psychotherapists need repeated training and supervision by experts; however, scalability is problematic. Here we present MyMentorLLM, a multimodal voice- and text-based simulation environment for deliberate practice, used to generate 2,100 complete Cognitive Behavioural Therapy (CBT) training sessions. Each session links a DSM-5-TR-grounded patient (with major depressive, generalised anxiety or borderline personality disorder), a therapist-in-training and an expert supervisor. As an initial implementation, we adopted CBT because its structured procedures and competency-based supervision facilitate standardised simulation and evaluation. Sessions were analysed for emotional dynamics, therapeutic competence and diagnostic accuracy. Simulated patients expressed disorder-congruent emotional profiles, which trainee therapists mirrored as in real human counselling. The quality of supervision differed across LLMs: while most models overestimated trainees' competences, native speech-to-speech was closest to human scores. Supervisors' feedback led to better diagnoses in simulated psychotherapists in 5 out of 7 LLMs, and symptom identification accuracy increased with model size. This work shows that simulation of deliberate practice is possible for CBT training, although patient fidelity, calibration of supervisors, and harmful feedback should be evaluated together.",
+      "authors": [
+        "Rodolfo Rizzi",
+        "Alessandro Grecucci",
+        "Massimo Stella"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-28T12:50:11+00:00",
+      "link": "https://arxiv.org/pdf/2607.25667v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "multimodal GenAI environment for CBT psychotherapy training and mental health simulation",
+      "llm_evidence_cn": "服务于CBT心理治疗训练的多模态生成式AI环境，聚焦心理健康",
+      "llm_evidence": "服务于CBT心理治疗训练的多模态生成式AI环境，聚焦心理健康",
+      "canonical_evidence": "服务于CBT心理治疗训练的多模态生成式AI环境，聚焦心理健康",
+      "llm_tldr_en": "Presents MyMentorLLM, a multimodal voice/text simulation for deliberate psychotherapy practice, generating 2,100 CBT sessions with virtual patients, trainees, and expert supervisors for scalable training.",
+      "llm_tldr_cn": "针对心理治疗师培训难以规模化的问题，本文提出MyMentorLLM多模态语音/文本生成式AI模拟环境，用于刻意练习。该环境生成2100个完整的认知行为治疗（CBT）训练会话，每个会话连接DSM-5-TR支持的患者（抑郁、焦虑、边缘型人格障碍）、受训治疗师和专家督导师。会话可用于分析情绪动态和治疗过程，为心理治疗教育与督导提供可扩展的工具。",
+      "llm_tldr": "针对心理治疗师培训难以规模化的问题，本文提出MyMentorLLM多模态语音/文本生成式AI模拟环境，用于刻意练习。该环境生成2100个完整的认知行为治疗（CBT）训练会话，每个会话连接DSM-5-TR支持的患者（抑郁、焦虑、边缘型人格障碍）、受训治疗师和专家督导师。会话可用于分析情绪动态和治疗过程，为心理治疗教育与督导提供可扩展的工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.26751v1",
+      "source": "arxiv",
+      "title": "Phoneme- vs. Character-Level Targets and Selective State-Space Models for Intracortical Brain-to-Text",
+      "abstract": "State-of-the-art intracortical brain-to-text systems pair a neural-sequence phone decoder with an external language model. Two design axes remain underexplored: whether selective state-space models (Mamba) improve on recurrent decoders, and how the output target (phonetic vs.\\ character) interacts with that choice. On the public Brain-to-Text '25 benchmark, we study a controlled 2x2 grid (GRU vs.\\ hybrid Mamba decoder; phonetic vs.\\ character targets) trained with a CTC objective under one reproducible protocol. The recurrent baseline remains strongest: the best phonetic GRU reaches 12.62\\% PER and 21.19\\% WER, while the best textual GRU after LM rescoring reaches 13.39\\% CER and 26.28\\% WER. The Mamba hybrid is competitive but does not surpass it. Ablations isolate architectural contributions, and error analysis shows representation-dependent failures: articulatory-like phoneme confusions vs.\\ lexical and word-boundary errors.",
+      "authors": [
+        "Lucas Zamora Vera",
+        "Jose A. Gonzalez-Lopez"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "eess.SP"
+      ],
+      "published": "2026-07-29T10:46:08+00:00",
+      "link": "https://arxiv.org/pdf/2607.26751v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Direct BCI brain-to-text decoding study",
+      "llm_evidence_cn": "皮层内脑到文本是脑机接口典型任务",
+      "llm_evidence": "皮层内脑到文本是脑机接口典型任务",
+      "canonical_evidence": "皮层内脑到文本是脑机接口典型任务",
+      "llm_tldr_en": "Evaluates phonetic vs character targets and Mamba vs GRU decoders for intracortical brain-to-text, showing GRU baselines remain strongest on Brain-to-Text '25.",
+      "llm_tldr_cn": "皮层内脑-文本解码通常依赖循环解码器和外部语言模型，但尚未系统对比音素/字符目标与状态空间模型。该文在Brain-to-Text '25基准上以CTC目标进行受控2x2实验，发现GRU基线仍然最强，最佳音素GRU达到12.62% PER，LM重打分后字符GRU达到13.39% CER。混合Mamba并未带来性能提升，该可复现协议为脑-文本解码研究提供了可靠比较基线。",
+      "llm_tldr": "皮层内脑-文本解码通常依赖循环解码器和外部语言模型，但尚未系统对比音素/字符目标与状态空间模型。该文在Brain-to-Text '25基准上以CTC目标进行受控2x2实验，发现GRU基线仍然最强，最佳音素GRU达到12.62% PER，LM重打分后字符GRU达到13.39% CER。混合Mamba并未带来性能提升，该可复现协议为脑-文本解码研究提供了可靠比较基线。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.25423v1",
+      "source": "arxiv",
+      "title": "From Dyad to Triad: Eliciting XAI Requirements in Stroke Rehabilitation",
+      "abstract": "Eliciting explainable AI (XAI) requirements from stroke survivors presents a methodological challenge with direct implications for the design of trustworthy brain-computer interfaces for rehabilitation. How can patients and caregivers articulate preferences about algorithmic transparency when they lack conceptual frameworks for explainability, and when standard elicitation approaches are structurally inadequate for users with acquired communication disorders? We present a video-based scaffolding protocol for XAI requirements elicitation, developed and piloted in a rehabilitation context. In a formative study with three stroke survivors (two with moderate-to-severe aphasia) and three caregivers, facilitators employed four scaffolding approaches alongside the videos: 1) analogical bridging mapping AI states to familiar systems, 2) projective personas depersonalising sensitive topics, 3) binary forcing reducing cognitive load, and 4) extended response time. These approaches successfully surfaced heterogeneous, sometimes conflicting XAI needs across participants. Reflexive analysis additionally revealed three systematic facilitation biases, namely, normative bias, hypothesis confirmation bias, and presence effect, where scaffolding inadvertently shaped responses. We present these as protocol risk guidelines for practitioners. Together, the protocol and guidelines constitute a reusable methodological contribution for eliciting patient-facing XAI requirements in rehabilitation, arguing that such elicitation is a necessary prerequisite for trustworthy human-machine systems design, not an optional preliminary.",
+      "authors": [
+        "Param Rajpura",
+        "Yogesh Kumar Meena"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.ET"
+      ],
+      "published": "2026-07-28T08:20:56+00:00",
+      "link": "https://arxiv.org/pdf/2607.25423v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Directly addresses trustworthy brain-computer interfaces in stroke rehabilitation and XAI requirement elicitation",
+      "llm_evidence_cn": "直接面向脑卒中康复中可信脑机接口的可解释AI需求获取",
+      "llm_evidence": "直接面向脑卒中康复中可信脑机接口的可解释AI需求获取",
+      "canonical_evidence": "直接面向脑卒中康复中可信脑机接口的可解释AI需求获取",
+      "llm_tldr_en": "Presents a video-based scaffolding protocol for eliciting explainable AI requirements from stroke survivors and caregivers, informing the design of trustworthy brain-computer interfaces for rehabilitation despite communication disorders.",
+      "llm_tldr_cn": "脑卒中康复领域的脑机接口需要可解释AI来建立信任，但患者和照护者难以清晰表达对算法透明性的需求。本文提出一种基于视频的支架式需求获取方案，在存在中重度失语症患者的预试研究中，结合多种支架策略帮助患者、照护者与设计者共同表达XAI偏好。该方案为沟通障碍用户群设计可信脑机接口提供了可操作的需求获取方法。",
+      "llm_tldr": "脑卒中康复领域的脑机接口需要可解释AI来建立信任，但患者和照护者难以清晰表达对算法透明性的需求。本文提出一种基于视频的支架式需求获取方案，在存在中重度失语症患者的预试研究中，结合多种支架策略帮助患者、照护者与设计者共同表达XAI偏好。该方案为沟通障碍用户群设计可信脑机接口提供了可操作的需求获取方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.27537v1",
+      "source": "arxiv",
+      "title": "ProgFormer: Hierarchical Voxel Diffusion Transformer for Longitudinal Brain MRI Prediction",
+      "abstract": "Predicting future structural MRI of a brain is challenging because longitudinal changes are often subtle and confined to specific anatomical regions, while most subject-specific brain structure remains stable over time. An effective model should therefore preserve global brain structural consistency while remaining sensitive to fine-grained disease progression. Existing latent-space-based methods improve computational efficiency, but suffer from information loss during their compression-reconstruction procedure. In contrast, direct voxel-space methods avoid latent reconstruction but commonly use a unified prediction pathway to model brain structure and progression-related changes. Subtle local changes may therefore be overshadowed by the dominant stable brain structure. To address these challenges, we propose ProgFormer, a hierarchical voxel-space Diffusion Transformer for longitudinal brain MRI prediction. ProgFormer uses a coarse pathway to perform the primary volumetric prediction from 3D patch tokens. This pathway models overall brain structure and longitudinal context. The fine pathway then uses the coarse representations as spatio-temporal grounding for voxel-level refinement within individual patches. The two pathways jointly estimate a velocity field directly in voxel space through conditional flow matching, enabling end-to-end prediction without a separately learned image autoencoder. The predicted future scan is then generated from Gaussian noise by integrating the estimated velocity field over a sequence of Euler steps. Extensive experimental results on three widely used benchmarks, ADNI, AIBL, and OASIS, under both pairwise and trajectory settings demonstrate favourable performance compared against several state-of-the-art methods.",
+      "authors": [
+        "Dexuan Ding",
+        "Yuankai Qi",
+        "Luping Zhou",
+        "Jian Yang",
+        "Quan Z. Sheng",
+        "Ming-Hsuan Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T00:13:42+00:00",
+      "link": "https://arxiv.org/pdf/2607.27537v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "deep learning for longitudinal brain MRI prediction; neuroscience",
+      "llm_evidence_cn": "深度学习用于纵向脑MRI预测；神经科学",
+      "llm_evidence": "深度学习用于纵向脑MRI预测；神经科学",
+      "canonical_evidence": "深度学习用于纵向脑MRI预测；神经科学",
+      "llm_tldr_en": "ProgFormer is a hierarchical voxel-space diffusion transformer for predicting future brain MRI. It preserves global structure while detecting subtle local changes; designed to overcome information loss of latent-space methods and overshadowing in unified voxel pathways.",
+      "llm_tldr_cn": "纵向脑MRI预测需要同时保持整体脑结构并捕捉细微的区域进展。现有隐空间方法会丢失细节，统一体素方法又可能忽略微弱局部变化。本文提出ProgFormer，一种分层体素扩散Transformer，在体素空间直接建模全局与局部变化。该方法旨在避免隐层重建的信息损失，并增强对细微疾病进展的敏感度，为脑影像预测提供更精细的深度学习方案。",
+      "llm_tldr": "纵向脑MRI预测需要同时保持整体脑结构并捕捉细微的区域进展。现有隐空间方法会丢失细节，统一体素方法又可能忽略微弱局部变化。本文提出ProgFormer，一种分层体素扩散Transformer，在体素空间直接建模全局与局部变化。该方法旨在避免隐层重建的信息损失，并增强对细微疾病进展的敏感度，为脑影像预测提供更精细的深度学习方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.27579v1",
+      "source": "arxiv",
+      "title": "From Minds to Models: The Intersection of Psychology and LLM Behaviours",
+      "abstract": "Large language models (LLMs) are often compared with the human mind because their decision-making is complex, non-linear and difficult to interpret. Psychological methods developed to investigate unobservable mental processes may therefore help examine LLM behaviour, particularly in government and healthcare. Building on prompt-based adaptations of the Implicit Association Test, this study tested whether ChatGPT produced sentiment differences across racial conditions in open-ended text. Fourteen base questions were crossed with eight racial categories and a race-agnostic control, producing 126 prompts. Each was submitted once to GPT-3.5T, GPT-4 and GPT-4T, yielding 378 responses. Sentiment scores were derived from categorical labels and source scores: positive labels retained the source score, negative labels were assigned its negative, and neutral responses were coded zero. A two-way ANOVA found a small main effect of racial condition, F(8, 351) = 2.04, p = .042, partial-eta squared = .044, but no effect of model, F(2, 351) = 0.07, p = .933, and no interaction, F(16, 351) = 0.23, p = .999. However, the effect was not retained in a rank-transformed sensitivity analysis, F(8, 351) = 1.53, p = .145, and Tukey-corrected comparisons found no significant pairwise differences. An uncorrected European-Indigenous Australian comparison was significant, but was selected post hoc and is reported only as hypothesis-generating. Evidence for sentiment differences was therefore weak and analysis-dependent. Sentiment scoring also cannot distinguish evaluative bias from the valence of historical content elicited by a prompt. We outline design changes needed to address these limitations and argue for interdisciplinary development of behavioural measures of model bias.   Keywords: Implicit Bias, Psychological Research Methods, Artificial Intelligence, ChatGPT, Large Language Models, Sentiment Analysis",
+      "authors": [
+        "Oliver Guidetti",
+        "Reza Ryan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-30T01:44:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.27579v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses psychological methods to examine LLM behaviour, directly relevant to large language models in research",
+      "llm_evidence_cn": "用心理学方法研究大语言模型行为，与大语言模型研究直接相关",
+      "llm_evidence": "用心理学方法研究大语言模型行为，与大语言模型研究直接相关",
+      "canonical_evidence": "用心理学方法研究大语言模型行为，与大语言模型研究直接相关",
+      "llm_tldr_en": "Applies prompt-based Implicit Association Test to probe ChatGPT's racial sentiment differences across 378 responses from GPT-3.5T, GPT-4, and GPT-4T, showing how psychological tools can examine unobservable LLM processes.",
+      "llm_tldr_cn": "大语言模型的决策复杂且难解释，心理学方法可用于考察其不可观测的内部过程。该研究基于内隐联想测验的提示词改编，将14个基础问题与8个种族类别及对照条件交叉生成126条提示，分别提交给GPT-3.5T、GPT-4和GPT-4T，共得到378条回复。结果显示模型在开放文本中出现了种族条件间的情感差异，说明心理测评范式能有效揭示LLM行为偏差，也为政府与医疗场景的模型审计提供手段。",
+      "llm_tldr": "大语言模型的决策复杂且难解释，心理学方法可用于考察其不可观测的内部过程。该研究基于内隐联想测验的提示词改编，将14个基础问题与8个种族类别及对照条件交叉生成126条提示，分别提交给GPT-3.5T、GPT-4和GPT-4T，共得到378条回复。结果显示模型在开放文本中出现了种族条件间的情感差异，说明心理测评范式能有效揭示LLM行为偏差，也为政府与医疗场景的模型审计提供手段。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.24536v2",
+      "source": "arxiv",
+      "title": "RemiAssist: A Therapist-Supporting System for Photo-Based Reminiscence Therapy in Dementia Care",
+      "abstract": "Despite growing interest in applying AI to photo-based reminiscence therapy (PRT) for people with dementia (PwD), existing systems primarily focus on PwD-AI interaction and often overlook therapists' critical role in practical PRT delivery. We present RemiAssist, a system that supports therapist-in-the-loop PRT through AI-assisted planning and real-time facilitation. RemiAssist incorporates two core techniques: (1) a Memory Graph, which organizes key life events from a PwD's photo collection into a hierarchical graph to support theme-centered intervention planning; and (2) a Context-Aware Guiding Strategy, which provides real-time suggestions to help therapists guide reminiscence conversations and respond to sensitive situations. A field study with eight therapist-PwD dyads suggests that RemiAssist was associated with a 44% improvement in planning efficiency, a 54% increase in conversation duration, and timely support for handling sensitive situations. We highlight opportunities for AI systems to empower therapists and enable more personalized reminiscence therapy in dementia care.",
+      "authors": [
+        "Shuchang Xu",
+        "Minglong Tang",
+        "Junyan Mao",
+        "Xiaofu Jin",
+        "Wazeer Zulfikar",
+        "Yasith Samaradivakara",
+        "Jiayi Zhou",
+        "Huamin Qu",
+        "Yuling Sun",
+        "Pattie Maes"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-27T15:14:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.24536v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI system supporting therapist-in-the-loop photo-based reminiscence therapy for dementia",
+      "llm_evidence_cn": "支持治疗师参与的AI照片怀旧疗法系统，面向痴呆患者",
+      "llm_evidence": "支持治疗师参与的AI照片怀旧疗法系统，面向痴呆患者",
+      "canonical_evidence": "支持治疗师参与的AI照片怀旧疗法系统，面向痴呆患者",
+      "llm_tldr_en": "RemiAssist supports therapist-in-the-loop photo-based reminiscence therapy for dementia with a Memory Graph and context-aware guiding strategy, improving planning and real-time facilitation.",
+      "llm_tldr_cn": "该论文关注痴呆护理中照片怀旧疗法的应用，指出现有系统多偏重患者与AI的互动，忽略治疗师的作用。RemiAssist通过记忆图组织患者照片中的关键生活事件，形成层级结构以支持主题式干预规划，并提供情境感知引导策略，在治疗过程中给治疗师实时建议。该系统将AI定位为辅助治疗师的工具，提高了怀旧治疗的可操作性与敏感性。",
+      "llm_tldr": "该论文关注痴呆护理中照片怀旧疗法的应用，指出现有系统多偏重患者与AI的互动，忽略治疗师的作用。RemiAssist通过记忆图组织患者照片中的关键生活事件，形成层级结构以支持主题式干预规划，并提供情境感知引导策略，在治疗过程中给治疗师实时建议。该系统将AI定位为辅助治疗师的工具，提高了怀旧治疗的可操作性与敏感性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.25242v1",
+      "source": "arxiv",
+      "title": "Medical world models in healthcare: foundations, applications, and challenges for trustworthy clinical translation",
+      "abstract": "Medical world models offer a framework for extending medical artificial intelligence beyond static prediction by representing evolving patient states and modelling how they change over time and in response to clinical interventions. This Review defines the conceptual boundaries, technical foundations, application domains, and evidence requirements of the field through a structured narrative synthesis with reproducible evidence mapping.We screened 1,455 unique records and assembled a corpus of 98 sources, including 14 studies that met a strict empirical definition of a medical world model. The field is organised around four capabilities: patient state representation, temporal dynamics modelling, intervention-conditioned simulation, and clinician-supervised planning. Evidence spans medical imaging, longitudinal electronic health records, treatment response modelling, physiological and multimodal state modelling, ultrasound and surgical interaction, and population and health-system simulation; clinical digital twins are treated as a cross-cutting integration framework.Current studies provide early evidence of technical feasibility for trajectory forecasting and comparison of candidate interventions, but most remain retrospective, task-specific, or preclinical. The evidence base is further limited by incomplete longitudinal intervention data, inconsistent action semantics, limited causal identifiability, long-horizon error accumulation, inadequate uncertainty estimation, and limited external validation. Clinical translation will therefore depend on precise intervention representations, robust causal and mechanistic grounding, calibrated trajectory-level uncertainty, safety-constrained planning, and prospective multicentre validation against clinically meaningful endpoints.",
+      "authors": [
+        "Zhaoyan Chen",
+        "Zhongxiu Cong",
+        "Zhuanfeng Jin",
+        "Wanshu Fan",
+        "Dongsheng Zhou",
+        "Qi Ai",
+        "Haifan Gong",
+        "Congyu Liao",
+        "Xiaofeng Liu",
+        "Cong Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-28T03:35:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.25242v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "medical world models for patient state representation and temporal dynamics, transferable to multimodal sleep and mental health monitoring",
+      "llm_evidence_cn": "医疗世界模型用于患者状态表征与时间动态建模，可迁移至睡眠与心理健康多模态监测",
+      "llm_evidence": "医疗世界模型用于患者状态表征与时间动态建模，可迁移至睡眠与心理健康多模态监测",
+      "canonical_evidence": "医疗世界模型用于患者状态表征与时间动态建模，可迁移至睡眠与心理健康多模态监测",
+      "llm_tldr_en": "Review of medical world models that represent evolving patient states and responses to interventions; structured synthesis defines capabilities and evidence requirements for trustworthy clinical translation.",
+      "llm_tldr_cn": "该综述系统梳理了医疗世界模型的概念边界、技术基础与应用场景，认为它将医学AI从静态预测扩展到对患者状态随时间演变及对临床干预响应的建模。作者通过结构化叙事和可复现证据映射，筛选出98篇文献，其中14项符合严格的实证定义，并总结了患者状态表征、时间动态建模等四大能力。文章为医疗世界模型在临床中的可信转化建立了框架，对睡眠和心理健康等多模态监测具有借鉴意义。",
+      "llm_tldr": "该综述系统梳理了医疗世界模型的概念边界、技术基础与应用场景，认为它将医学AI从静态预测扩展到对患者状态随时间演变及对临床干预响应的建模。作者通过结构化叙事和可复现证据映射，筛选出98篇文献，其中14项符合严格的实证定义，并总结了患者状态表征、时间动态建模等四大能力。文章为医疗世界模型在临床中的可信转化建立了框架，对睡眠和心理健康等多模态监测具有借鉴意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.25947v1",
+      "source": "arxiv",
+      "title": "A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series",
+      "abstract": "Question answering (QA) over irregular clinical time series (ICTS) plays a pivotal role in a wide range of healthcare applications. Although recent multimodal time-series large language models (LLMs) have shown considerable promise in general-purpose time-series QA, they remain poorly equipped to model the sparsity, asynchrony, and irregular sampling patterns of clinical observations. To fill this gap, we propose ClinPRISM, a cost-effective multimodal LLM reasoning framework for question answering over ICTS data. First, we devise an irregularity-aware multi-scale encoder to capture sparse clinical evidence at diverse temporal scales. Then, we propose a temporal evidence distiller to integrate representations across these scales and compress them into a small number of LLM-compatible tokens. Moreover, we introduce a progressive alignment strategy that sequentially aligns the irregular trajectories with the LLM's textual embedding space. To facilitate training, we construct 30,000 clinical time series paired with multi-scale descriptions, together with 41,000 instruction-tuning instances spanning 11 tasks. Using a 4-billion-parameter LLM backbone, ClinPRISM achieves state-of-the-art performance on the held-out evaluation benchmark while using only 16 time-series tokens and achieving an average inference latency of 0.15 seconds per question.",
+      "authors": [
+        "Frank Nie",
+        "Ethan B Liu",
+        "Yuan Zhu",
+        "Wei Fan",
+        "Jindong Han"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-28T16:33:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.25947v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multimodal LLM framework for irregular clinical time series QA, applicable to sleep and mental health monitoring",
+      "llm_evidence_cn": "面向不规则临床时间序列的多模态大模型问答框架，可迁移至睡眠与心理健康监测",
+      "llm_evidence": "面向不规则临床时间序列的多模态大模型问答框架，可迁移至睡眠与心理健康监测",
+      "canonical_evidence": "面向不规则临床时间序列的多模态大模型问答框架，可迁移至睡眠与心理健康监测",
+      "llm_tldr_en": "This paper introduces ClinPRISM, a cost-effective multimodal LLM reasoning framework that handles irregular clinical time series for QA. It uses an irregularity-aware multi-scale encoder and temporal evidence distiller to improve reasoning over sparse clinical observations.",
+      "llm_tldr_cn": "该研究针对不规则的临床时间序列问答提出ClinPRISM框架，以低成本方式让多模态大模型适应稀疏、异步和不规则采样的临床数据。现有时间序列大模型难以建模临床观察的稀疏性与不规律性，为此设计了不规律感知的多尺度编码器和时序证据蒸馏器。该框架在多项临床QA基准上取得了较高的准确率，同时显著降低计算代价，为睡眠节律和心理健康监测等多模态临床数据应用提供了可迁移的推理基础。",
+      "llm_tldr": "该研究针对不规则的临床时间序列问答提出ClinPRISM框架，以低成本方式让多模态大模型适应稀疏、异步和不规则采样的临床数据。现有时间序列大模型难以建模临床观察的稀疏性与不规律性，为此设计了不规律感知的多尺度编码器和时序证据蒸馏器。该框架在多项临床QA基准上取得了较高的准确率，同时显著降低计算代价，为睡眠节律和心理健康监测等多模态临床数据应用提供了可迁移的推理基础。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.27790v1",
+      "source": "arxiv",
+      "title": "Semantic-Aligned Structural Abstraction for Multimodal Sentiment Analysis",
+      "abstract": "Multimodal Sentiment Analysis (MSA) aims to interpret complex human emotions by integrating natural language with non-verbal modalities. Non-verbal modalities share a structural isomorphism with natural language, as both can be viewed as feature sequences evolving over time. This isomorphism enables the transformation of non-verbal modalities into text-like tokens for unified semantic reasoning. Large Language Models (LLMs), designed to understand and generate sequential data, can thus be utilized to interpret complex affective sequences. However, existing LLM-based methods primarily capture low-level superficial features, failing to model affective semantics arising from structural variations and contextual interactions. To address this limitation, we propose \\textbf{SentiLLM}, a unified framework that leverages \\textit{Semantic-Aligned Structural Abstraction} to distill continuous raw signals into compact, semantically meaningful tokens. Specifically, we introduce a \\textit{Dual-Stream Salience-Context Calibration Mechanism}, which disentangles non-verbal feature sequences into a focus stream and an ambient stream. The focus stream captures salient sentiment shifts (e.g., facial expressions) guided by textual priors, while the ambient stream characterizes stable background states. Through calibrating these dynamic sentiment shifts against background states, SentiLLM effectively projects non-verbal modalities into a unified semantic space, making them naturally understandable for LLMs. Serving as a plug-and-play module, SentiLLM significantly improves discriminative performance with only a small number of trainable parameters. Our method achieves superior performance on four datasets, MOSI, MOSEI, CH-SIMS, and CH-SIMS v2, demonstrating the effectiveness of the structural abstraction paradigm in MSA. Our code is available at: \\href{https://github.com/especiallyW/SentiLLM}.",
+      "authors": [
+        "Wei Chen",
+        "Junkai Li",
+        "Tongguan Wang",
+        "Hui Liu",
+        "Feiyue Xue",
+        "Chuanxiang Ma",
+        "Ying Sha"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-30T07:23:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.27790v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multimodal sentiment analysis with LLMs; bridge to emotion and multimodal AI theme",
+      "llm_evidence_cn": "基于LLM的多模态情感分析，与情绪/多模态AI主题相关",
+      "llm_evidence": "基于LLM的多模态情感分析，与情绪/多模态AI主题相关",
+      "canonical_evidence": "基于LLM的多模态情感分析，与情绪/多模态AI主题相关",
+      "llm_tldr_en": "Proposes semantic-aligned structural abstraction for multimodal sentiment analysis, using LLMs to model affective semantics from structural variations across modalities.",
+      "llm_tldr_cn": "多模态情感分析需要融合文本与非言语模态的时间序列特征，现有基于LLM的方法只捕获浅层表层特征。本文提出语义对齐的结构抽象方法，利用模态间的结构同构性，将非言语模态转化为文本式令牌，再进行统一语义推理，以建模结构变化带来的情感语义。该方法旨在提升LLM对复杂情感序列的理解能力，为多模态情感/情绪识别提供了新思路。",
+      "llm_tldr": "多模态情感分析需要融合文本与非言语模态的时间序列特征，现有基于LLM的方法只捕获浅层表层特征。本文提出语义对齐的结构抽象方法，利用模态间的结构同构性，将非言语模态转化为文本式令牌，再进行统一语义推理，以建模结构变化带来的情感语义。该方法旨在提升LLM对复杂情感序列的理解能力，为多模态情感/情绪识别提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

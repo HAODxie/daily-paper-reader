@@ -6,38 +6,55 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-01
-- 运行时间：2026-08-01 21:29:22 UTC
+- 最新运行日期：2026-08-02
+- 运行时间：2026-08-02 21:27:09 UTC
 - 运行状态：成功
-- 本次总论文数：6
-- 精读区：2
-- 速读区：4
+- 本次总论文数：11
+- 精读区：6
+- 速读区：5
 
 ### 今日简报（AI）
-今日聚焦6篇论文，重点精读西班牙语心理健康筛查与EEG源建模；最值得关注的是高分心理健康风险检测（9.0），以及阿尔茨海默病个体化刺激位点研究。建议普通读者优先了解AI如何提升早期心理与神经疾病诊断效率。
-- 详情：[/202608/01/README](/202608/01/README)
+今日11篇论文聚焦大模型认知与自我知识，精读6篇，速读5篇。  
+最值得关注：LLM现实监控能力随对话记忆动态变化，以及CogArena多方法揭示认知结构。  
+建议从心理学视角理解模型行为，关注医疗世界模型在临床中的可信应用挑战。
+- 详情：[/202608/02/README](/202608/02/README)
 
 ### 精读区论文标签
-1. [Improving Mental Health Screening and Early Risk Detection in Spanish](/202608/01/2607.28476v1-improving-mental-health-screening-and-early-risk-detection-in-spanish)  
+1. [Reality Monitoring in Large Language Models: Self-Knowledge That Transforms with Conversation Memory](/202608/02/2607.23927v1-reality-monitoring-in-large-language-models-self-knowledge-that-transforms-with-conversation-memory)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：西班牙语心理健康筛查与早期风险检测，直接面向心理健康
-2. [Advanced EEG Source Models from the Perspective of FEM and Inverse Solutions](/202608/01/2607.26556v1-advanced-eeg-source-models-from-the-perspective-of-fem-and-inverse-solutions)  
+   evidence：对LLM现实监控与来源归因的实证研究
+2. [CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models](/202608/02/2607.24999v1-cogarena-a-multimethod-evaluation-of-cognitive-ability-structure-in-large-language-models)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：大语言模型认知能力评估基准；核心大模型研究
+3. [MyMentorLLM: A psychotherapy GenAI environment with multimodal voice/text patients, trainees and experts for deliberate practice](/202608/02/2607.25667v1-mymentorllm-a-psychotherapy-genai-environment-with-multimodal-voicetext-patients-trainees-and-experts-for-deliberate-practice)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：服务于CBT心理治疗训练的多模态生成式AI环境，聚焦心理健康
+4. [Phoneme- vs. Character-Level Targets and Selective State-Space Models for Intracortical Brain-to-Text](/202608/02/2607.26751v1-phoneme--vs-character-level-targets-and-selective-state-space-models-for-intracortical-brain-to-text)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：皮层内脑到文本是脑机接口典型任务
+5. [From Dyad to Triad: Eliciting XAI Requirements in Stroke Rehabilitation](/202608/02/2607.25423v1-from-dyad-to-triad-eliciting-xai-requirements-in-stroke-rehabilitation)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：高级脑电源模型与逆问题求解
+   evidence：直接面向脑卒中康复中可信脑机接口的可解释AI需求获取
+6. [ProgFormer: Hierarchical Voxel Diffusion Transformer for Longitudinal Brain MRI Prediction](/202608/02/2607.27537v1-progformer-hierarchical-voxel-diffusion-transformer-for-longitudinal-brain-mri-prediction)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：深度学习用于纵向脑MRI预测；神经科学
 
 ### 速读区论文标签
-1. [Dementia Etiology Diagnosis via Collaborative Meta Knowledge Enhancement](/202608/01/2607.22770v1-dementia-etiology-diagnosis-via-collaborative-meta-knowledge-enhancement)  
+1. [From Minds to Models: The Intersection of Psychology and LLM Behaviours](/202608/02/2607.27579v1-from-minds-to-models-the-intersection-of-psychology-and-llm-behaviours)  
+   标签：评分：8.0/10、query:neuro-mental
+   evidence：用心理学方法研究大语言模型行为，与大语言模型研究直接相关
+2. [RemiAssist: A Therapist-Supporting System for Photo-Based Reminiscence Therapy in Dementia Care](/202608/02/2607.24536v2-remiassist-a-therapist-supporting-system-for-photo-based-reminiscence-therapy-in-dementia-care)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：基于AI的痴呆病因诊断，属于神经心理与精神健康领域
-2. [Optimal stimulation sites are not the most affected: personalised models of resting-state fMRI in Alzheimer's disease](/202608/01/2607.24356v2-optimal-stimulation-sites-are-not-the-most-affected-personalised-models-of-resting-state-fmri-in-alzheimers-disease)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：阿尔茨海默病的个性化fMRI建模与因果检验
-3. [SCALPEL: Semantic Cross-modal Alignment via LLM-Powered Encoder Learning for Medical Vision-Language Representation](/202608/01/2607.26885v1-scalpel-semantic-cross-modal-alignment-via-llm-powered-encoder-learning-for-medical-vision-language-representation)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：基于LLM的医学视觉语言语义对齐方法
-4. [HealthCAT: An Interpretable Encoder-only Transformer Framework for Health Indicator Prediction and Temporal Interpretation of Wearable Sensor Data](/202608/01/2607.27635v1-healthcat-an-interpretable-encoder-only-transformer-framework-for-health-indicator-prediction-and-temporal-interpretation-of-wearable-sensor-data)  
+   evidence：支持治疗师参与的AI照片怀旧疗法系统，面向痴呆患者
+3. [Medical world models in healthcare: foundations, applications, and challenges for trustworthy clinical translation](/202608/02/2607.25242v1-medical-world-models-in-healthcare-foundations-applications-and-challenges-for-trustworthy-clinical-translation)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：可穿戴传感器健康预测，可迁移至睡眠与心理健康监测
+   evidence：医疗世界模型用于患者状态表征与时间动态建模，可迁移至睡眠与心理健康多模态监测
+4. [A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series](/202608/02/2607.25947v1-a-cost-effective-multimodal-llm-reasoning-framework-for-question-answering-over-irregular-clinical-time-series)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：面向不规则临床时间序列的多模态大模型问答框架，可迁移至睡眠与心理健康监测
+5. [Semantic-Aligned Structural Abstraction for Multimodal Sentiment Analysis](/202608/02/2607.27790v1-semantic-aligned-structural-abstraction-for-multimodal-sentiment-analysis)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：基于LLM的多模态情感分析，与情绪/多模态AI主题相关
 
 
 <div class="dpr-home-promo-card">
