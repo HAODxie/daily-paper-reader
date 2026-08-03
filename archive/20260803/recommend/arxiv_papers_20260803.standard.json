@@ -1,0 +1,703 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-03T21:39:26.456833+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 8,
+    "quick_skim_target": 11,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2607.27274v2",
+      "source": "arxiv",
+      "title": "Rethinking EEG-Based Disease Diagnosis: Decoupling Instance Representation Learning from Subject-Level Supervision",
+      "abstract": "EEG-based disease diagnosis requires one prediction per subject, yet common pipelines segment recordings into short instances, inherit the subject label for every instance, and train instance-level classifiers. This assumes that all instances provide equally reliable diagnostic evidence. Multiple instance learning (MIL) avoids inherited labels by treating each subject as a bag. However, EEG datasets contain far fewer subjects than instances, which can limit the quality of the representations learned by end-to-end MIL. We propose BridgeMIL, a two-stage framework that decouples instance representation learning from subject-level supervision. Stage 1 pretrains the encoder without inherited instance labels by aligning temporally nearby windows and independently sampled within-subject sub-bags. Variance and covariance regularization prevent collapse and reduce redundancy without negative pairs. Stage 2 transfers the encoder to an attention-based MIL aggregator, applies supervision only to subject predictions, and limits representation drift through feature retention. Across three EEG disease datasets and five representative backbones, BridgeMIL attains the highest mean accuracy in 14 of 15 dataset-backbone settings and an overall mean accuracy of 76.57%, 4.28 percentage points higher than the strongest baseline. Further analyses reveal substantial variation in inherited-label reliability across instances, greater performance sensitivity to subject scarcity than to instance scarcity, and a more structured representation space with distinct subject-wise clusters and improved separation between diagnostic classes. Together, these findings underscore the importance of aligning supervision with the subject-level prediction objective while learning from abundant EEG instances without assigning disease labels to individual instances.",
+      "authors": [
+        "Zhiyuan Ma",
+        "Zeyuan Li",
+        "Zhiyi Lu",
+        "Jiacheng Hao",
+        "Youlang Du",
+        "Zhen Jiang",
+        "Xinche Zhang",
+        "Yuhao Sun",
+        "Xinke Shen",
+        "Sen Song"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-29T12:34:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.27274v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deep representation learning for EEG-based disease diagnosis via two-stage multiple instance learning",
+      "llm_evidence_cn": "面向脑电疾病诊断的两阶段深度表示学习与多实例学习方法",
+      "llm_evidence": "面向脑电疾病诊断的两阶段深度表示学习与多实例学习方法",
+      "canonical_evidence": "面向脑电疾病诊断的两阶段深度表示学习与多实例学习方法",
+      "llm_tldr_en": "Proposes BridgeMIL, a two-stage framework that decouples EEG instance representation learning from subject-level supervision, avoiding inherited labels and improving disease diagnosis with fewer subjects than instances.",
+      "llm_tldr_cn": "针对脑电疾病诊断中将受试者标签直接继承到每个切段实例、且受试者数量远少于实例数量而导致表示质量受限的问题，提出BridgeMIL两阶段框架。阶段一在不使用继承标签的情况下预训练实例编码器，阶段二再以受试者级监督进行多实例学习。该方法缓解了标签继承和数据规模不平衡问题，在脑电疾病诊断上提升了表示学习与诊断性能。",
+      "llm_tldr": "针对脑电疾病诊断中将受试者标签直接继承到每个切段实例、且受试者数量远少于实例数量而导致表示质量受限的问题，提出BridgeMIL两阶段框架。阶段一在不使用继承标签的情况下预训练实例编码器，阶段二再以受试者级监督进行多实例学习。该方法缓解了标签继承和数据规模不平衡问题，在脑电疾病诊断上提升了表示学习与诊断性能。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28681v1",
+      "source": "arxiv",
+      "title": "MPP-GNN: Subject-Adaptive Community Detection for fMRI-Based Alzheimer's Disease Classification",
+      "abstract": "Functional magnetic resonance imaging (fMRI) is a widely used technique for studying the brain. Recent methods that utilize graph neural networks (GNNs) for analysis of brain functional connectivity have shown great potential for the classification of brain disorders, such as Alzheimer's disease (AD). However, these methods often assume a preset number of functional modules across all subjects, which overlooks inter-subject variability. In addition, the discovered modules are rarely used to directly guide the learned connectivity patterns. Here, to address these issues, we propose a Meta Probabilistic Pooling GNN (MPP-GNN). We frame the model's task as a coupled, bilevel optimization that performs adaptive graph partitioning hierarchically to discover subject-specific modules and then uses the discovered brain modules as an explicit prior to guide edge refinement and representation learning. We validate MPP-GNN on two public datasets for AD classification, achieving the highest AUC in comparison to established baselines for both datasets. Furthermore, our analysis demonstrates that MPP-GNN shows significant alignment with the canonical functional-network organization defined by the Yeo brain atlas and reveals a network-level dedifferentiation pattern for AD.",
+      "authors": [
+        "Yang Zhang",
+        "Xiao Zhou",
+        "Jonathan Warrell",
+        "Avram Holmes",
+        "Xuan Zhang",
+        "Mark Gerstein"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-29T21:43:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.28681v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deep learning on fMRI for brain disorder classification with graph neural networks",
+      "llm_evidence_cn": "使用图神经网络对fMRI脑连接进行深度学习和疾病分类",
+      "llm_evidence": "使用图神经网络对fMRI脑连接进行深度学习和疾病分类",
+      "canonical_evidence": "使用图神经网络对fMRI脑连接进行深度学习和疾病分类",
+      "llm_tldr_en": "Proposes MPP-GNN, a meta probabilistic pooling GNN performing subject-adaptive community detection and bilevel optimization for fMRI-based Alzheimer's disease classification, improving classification performance.",
+      "llm_tldr_cn": "针对现有fMRI脑功能连接图方法假设所有受试者功能模块数量固定而忽略个体差异的问题，提出元概率池化图网络MPP-GNN。它将任务构建为耦合双层优化，自适应进行图划分，并用发现的模块直接指导连接模式学习。在fMRI阿尔茨海默病分类任务上验证了该方法能提升分类性能，为脑疾病诊断提供个性化建模方案。",
+      "llm_tldr": "针对现有fMRI脑功能连接图方法假设所有受试者功能模块数量固定而忽略个体差异的问题，提出元概率池化图网络MPP-GNN。它将任务构建为耦合双层优化，自适应进行图划分，并用发现的模块直接指导连接模式学习。在fMRI阿尔茨海默病分类任务上验证了该方法能提升分类性能，为脑疾病诊断提供个性化建模方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28841v1",
+      "source": "arxiv",
+      "title": "CyberNeuro: A Privacy-Preserving Agentic Workbench for Cohort-Scale Neuroimage and Clinical Data Analysis",
+      "abstract": "Despite tremendous success in neuroimaging methodology, making large-scale, high-dimensional datasets ready for AI/ML applications remains a critical operational bottleneck. Conventional workflows require extensive manual effort across metadata curation, pipeline execution, post-processing quality control, and data management, a burden that disproportionately excludes laboratories with limited manpower and computational infrastructure. To address this real-world barrier, there is an urgent need for scalable, cost-effective computational platforms that democratize advanced neuroimaging analytics and accelerate discoveries in mental health and clinical translation. Capitalizing on multi-agent LLM breakthroughs, we introduce CyberNeuro, an agentic workbench with a tailored local LLM-model ('WandaMind') for automated neuroimaging and health-data analysis. Driven by four dedicated agents (Planner, Validator, Dispatcher, and Reporter) communicating via a secure MCP bridge and a pinned execution layer, CyberNeuro enables researchers to execute complex workflows using natural language while maintaining clinical-grade data privacy. On the public NeuroBench suite, CyberNeuro increases held-out domain accuracy from 40% to 69% over the baseline model. Beyond automated metrics, the platform integrates a human-in-the-loop verification panel to ensure rigorous biomedical quality control. Across the same end-to-end 10-batch cohort workflow suite, the local WandaMind configuration completed all tasks with an estimated aggregate token count of about 10.6% using WandaMind and 61.7% using cloud providers of token usage, compared to Neuroclaw, respectively. The platform and its production-ready modules are available at https://wanda-cyberbench.com.",
+      "authors": [
+        "Ran Ren",
+        "Junhong Tong",
+        "Yunxi Kong",
+        "Yiyao Chen",
+        "Yucheng Li",
+        "Kunhao Zhou",
+        "Shaoqi Wang",
+        "Yuxiang Tao",
+        "Shuheng Cao",
+        "Zhihao Fan",
+        "Marissa DiPiero",
+        "Tingting Dan",
+        "Guorong Wu"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.SE"
+      ],
+      "published": "2026-07-30T21:10:04+00:00",
+      "link": "https://arxiv.org/pdf/2607.28841v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Multi-agent LLM privacy-preserving workbench for cohort-scale neuroimage and clinical data analysis",
+      "llm_evidence_cn": "利用多智能体大模型搭建隐私保护工作台，用于队列规模神经影像与临床数据分析",
+      "llm_evidence": "利用多智能体大模型搭建隐私保护工作台，用于队列规模神经影像与临床数据分析",
+      "canonical_evidence": "利用多智能体大模型搭建隐私保护工作台，用于队列规模神经影像与临床数据分析",
+      "llm_tldr_en": "CyberNeuro introduces a privacy-preserving multi-agent LLM workbench that automates cohort-scale neuroimaging and clinical data preparation for AI/ML, reducing manual burden and accelerating mental-health discovery.",
+      "llm_tldr_cn": "针对大规模神经影像数据难以快速用于AI/ML的瓶颈，论文提出CyberNeuro，一个基于多智能体大模型的隐私保护工作台，将元数据整理、流程执行、质量控制与数据管理自动化。该系统可降低实验室人力和算力门槛，推动神经影像分析与心理健康临床转化。该工作展示了LLM智能体在神经科学数据基础设施中的实际价值。",
+      "llm_tldr": "针对大规模神经影像数据难以快速用于AI/ML的瓶颈，论文提出CyberNeuro，一个基于多智能体大模型的隐私保护工作台，将元数据整理、流程执行、质量控制与数据管理自动化。该系统可降低实验室人力和算力门槛，推动神经影像分析与心理健康临床转化。该工作展示了LLM智能体在神经科学数据基础设施中的实际价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.29007v1",
+      "source": "arxiv",
+      "title": "EasyBCI Agent: Towards Universal Neural Data Preprocessing for Brain-Computer Interfaces",
+      "abstract": "Brain-computer interfaces translate neural activity into device commands, yet their performance hinges on preprocessing that remains manual, expert-dependent and poorly reproducible. Large language model agents can automate scientific coding, but existing systems lack the modality coverage, raw-data isolation, experience accumulation and domain oversight that neural preprocessing requires. We introduce EasyBCI, a two-phase LLM agent that plans and executes preprocessing pipelines for six signal types. A Plan Agent profiles each recording into a text-only Data Fingerprint that never exposes raw data to the model and selects a literature-grounded operator sequence. An Execution Agent generates, runs and self-corrects code until quality criteria are met, while a quality-gated experience system retains validated strategies as reusable skills. A domain expert intervenes at two decision gates, retaining human judgement where undetected error can invalidate downstream analyses. Evaluation on EEG with a fixed linear classifier shows that all five EasyBCI backbones preserve more task-relevant separability than the manual pipeline. Under same-backbone comparison, EasyBCI outperforms general-purpose coding agents on both label schemes for four of five configurations. EasyBCI extends to five additional modalities spanning nearly three orders of magnitude in sampling rate, producing complete reproducible pipelines with recorded decision provenance. These results indicate that domain-specific orchestration can bring auditable preprocessing within reach of laboratories lacking dedicated expertise, illustrating design principles applicable to AI agents in other scientific domains.",
+      "authors": [
+        "Yu Zhu",
+        "Runkai Zhao",
+        "Zhimin Zhou",
+        "Jinyu Cai",
+        "Zhouheng Yao",
+        "Chutian Zhang",
+        "Peiyuan Li",
+        "Xiaoxing Zhang",
+        "Qihao Zheng",
+        "Jiamin Wu",
+        "Mianxin Liu",
+        "Chi Zhang",
+        "Bin Min",
+        "Lei Bai",
+        "Chengyu Li",
+        "Jingpeng Wu",
+        "Chunfeng Song"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-07-31T04:07:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.29007v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM agent for BCI preprocessing",
+      "llm_evidence_cn": "基于大语言模型的脑机接口预处理智能体",
+      "llm_evidence": "基于大语言模型的脑机接口预处理智能体",
+      "canonical_evidence": "基于大语言模型的脑机接口预处理智能体",
+      "llm_tldr_en": "EasyBCI is a two-phase LLM agent that automates neural data preprocessing for six signal types in brain-computer interfaces. Its Plan Agent profiles recordings into a text-only Data Fingerprint without exposing raw data, selects literature-grounded operator sequences, and an Execution Agent generates, runs, and self-corrects code, addressing manual, expert-dependent, and poorly reproducible preprocessing.",
+      "llm_tldr_cn": "针对脑机接口数据预处理依赖人工、专家经验强且可重复性差的问题，本文提出EasyBCI，一个两阶段大语言模型智能体。计划智能体将每次记录转换为不暴露原始数据的文本数据指纹，并选择有文献依据的操作序列；执行智能体生成、运行并自我修正代码，直至达到质量要求。系统支持六种信号类型，通过经验累积和领域监督提升了预处理的自动化与可复现性。",
+      "llm_tldr": "针对脑机接口数据预处理依赖人工、专家经验强且可重复性差的问题，本文提出EasyBCI，一个两阶段大语言模型智能体。计划智能体将每次记录转换为不暴露原始数据的文本数据指纹，并选择有文献依据的操作序列；执行智能体生成、运行并自我修正代码，直至达到质量要求。系统支持六种信号类型，通过经验累积和领域监督提升了预处理的自动化与可复现性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.28687v1",
+      "source": "arxiv",
+      "title": "Technological Advances in Detecting and Managing Cognitive Impairment in Older Adults: Trends, Challenges, and Future Directions",
+      "abstract": "As populations age, cognitive decline from mild cognitive impairment (MCI) to dementia is a defining health challenge of the coming decades, yet routine assessment often misses its earliest signs. This article critically synthesizes recent technological advances for detecting and managing cognitive impairment in older adults, spanning neurophysiological signals (chiefly electroencephalography, EEG), structural and molecular neuroimaging (MRI and amyloid/tau PET), blood-based biomarkers, and digital markers, integrated through artificial intelligence (AI), machine learning (ML), and deep learning (DL). Beyond summarizing, it contributes a cross-disciplinary taxonomy, a methodological-rigor lens foregrounding subject- and site-independent validation, an integrative early-detection framework linking tiered screening to intervention, and comparison tables of detection methods, interventions, and risk and protective factors. EEG markers (alpha/theta changes, P300 latency) and deep models (CNNs, LSTM/BiLSTM, transformers, self-supervised EEG foundation models) report strong accuracy, yet many rest on small, single-site datasets unlikely to survive rigorous external validation. Elsewhere, gains are tangible: plasma p-tau217 has reached clinical utility, with the first blood test cleared to aid Alzheimer's diagnosis in 2025; anti-amyloid therapies (lecanemab, donanemab) are approved despite modest, contested benefits; and multidomain lifestyle prevention has matured. Wearable, remote, speech, and virtual-reality tools enable continuous, ecologically valid monitoring, and multimodal fusion improves sensitivity and specificity. Barriers remain: standardization, explainability, data privacy, and equitable, externally validated deployment. The field's near-term promise lies in trustworthy, multimodal, longitudinally validated systems linking early detection to actionable, personalized care.",
+      "authors": [
+        "Mohammad Asif",
+        "Azizuddin Khan",
+        "Mohd Azam",
+        "Anurag Rajkumar Bombarde"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.ET"
+      ],
+      "published": "2026-07-30T06:38:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.28687v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "review of deep learning and EEG for cognitive impairment detection",
+      "llm_evidence_cn": "综述深度学习和脑电在认知障碍检测中的应用",
+      "llm_evidence": "综述深度学习和脑电在认知障碍检测中的应用",
+      "canonical_evidence": "综述深度学习和脑电在认知障碍检测中的应用",
+      "llm_tldr_en": "This review synthesizes recent technologies for cognitive impairment detection, including EEG, neuroimaging, biomarkers, and AI/ML/DL methods, and proposes a cross-disciplinary taxonomy and future directions.",
+      "llm_tldr_cn": "针对老年人认知障碍早期检测困难的问题，本文系统综述了基于脑电、神经影像、血液标志物和数字标志物的检测技术进展，并强调了人工智能、机器学习和深度学习在其中的整合作用。文章提出了跨学科分类法和方法严谨性视角，梳理了当前挑战与未来方向。该综述对推动认知障碍的智能检测与管理具有重要参考价值。",
+      "llm_tldr": "针对老年人认知障碍早期检测困难的问题，本文系统综述了基于脑电、神经影像、血液标志物和数字标志物的检测技术进展，并强调了人工智能、机器学习和深度学习在其中的整合作用。文章提出了跨学科分类法和方法严谨性视角，梳理了当前挑战与未来方向。该综述对推动认知障碍的智能检测与管理具有重要参考价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.29493v1",
+      "source": "arxiv",
+      "title": "Exploratory Integration of EEG Spectral Features and Gaze Variability for Mild Cognitive Impairment Discrimination",
+      "abstract": "Early detection of mild cognitive impairment (MCI) is an important challenge in aging societies. Electroencephalography (EEG) and eye-tracking have independently been explored as potential biomarkers; however, their integrative effects remain insufficiently examined. This exploratory study investigated whether combining EEG spectral features with gaze variability may provide complementary information for MCI discrimination. EEG signals were recorded using the 10--20 system, and spectral power features were extracted. We compared three models: (a) high-dimensional EEG features, (b) L1-regularized feature selection (LASSO), and (c) integration of the selected EEG features with gaze variability. Performance was evaluated using leave-one-out cross-validation and area under the ROC curve (AUC). Model (a) yielded limited discrimination (AUC = 0.52). Feature selection increased AUC (0.64), and additional integration of gaze variability further increased AUC (0.78). These preliminary findings suggest potential complementarity between neural and behavioral variability measures.",
+      "authors": [
+        "Takeru Mukunoki",
+        "Mamoru Hiroe",
+        "Minoru Nakayama",
+        "Yujia Zheng",
+        "Yuma Sonoda",
+        "Hisatomo Kowa",
+        "Takashi Nagamatsu"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-07-31T15:02:23+00:00",
+      "link": "https://arxiv.org/pdf/2607.29493v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "EEG and gaze fusion for MCI detection",
+      "llm_evidence_cn": "脑电与眼动融合用于轻度认知障碍检测",
+      "llm_evidence": "脑电与眼动融合用于轻度认知障碍检测",
+      "canonical_evidence": "脑电与眼动融合用于轻度认知障碍检测",
+      "llm_tldr_en": "This exploratory study combines EEG spectral power features with gaze variability to discriminate mild cognitive impairment (MCI). Comparing high-dimensional EEG features, LASSO-selected EEG features, and their integration with gaze variability, the results suggest complementary information improves MCI classification.",
+      "llm_tldr_cn": "针对轻度认知障碍（MCI）早期检测难题，本文探索性融合脑电频谱特征与注视变异性作为互补生物标志物。实验使用10-20系统记录EEG并提取频谱功率，同时采集注视变异性，比较三种模型：高维EEG特征、LASSO选择后的EEG特征以及两者与注视变异性的融合。结果显示多模态融合在MCI鉴别上表现出更优性能，提示跨模态信息整合有助于提升无创筛查的准确性。",
+      "llm_tldr": "针对轻度认知障碍（MCI）早期检测难题，本文探索性融合脑电频谱特征与注视变异性作为互补生物标志物。实验使用10-20系统记录EEG并提取频谱功率，同时采集注视变异性，比较三种模型：高维EEG特征、LASSO选择后的EEG特征以及两者与注视变异性的融合。结果显示多模态融合在MCI鉴别上表现出更优性能，提示跨模态信息整合有助于提升无创筛查的准确性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.29531v1",
+      "source": "arxiv",
+      "title": "Multi-Source Multi-View Graph Domain Adaptation with Hyperbolic Residual Encoding for Cross-Site MDD Identification from rs-fMRI",
+      "abstract": "Cross-site identification of major depressive disorder (MDD) from resting-state functional magnetic resonance imaging (rs-fMRI) is hindered by inter-site distribution shifts and heterogeneous functional connectivity (FC) views. These views capture complementary neural relationships but exhibit distinct site biases and graph topologies, complicating alignment without sacrificing disease-relevant information or cross-view consistency. Existing studies largely treat multi-view connectome learning and cross-site adaptation separately. To the best of our knowledge, few studies have jointly modeled multiple FC views under multi-source unsupervised domain adaptation for cross-site rs-fMRI-based MDD classification. We construct Pearson correlation, sparse representation, and Granger causality graphs, each encoded by a view-specific graph attention network. Dual-stream adaptive fusion explicitly integrates pairwise cross-view interactions, followed by lightweight hyperbolic residual encoding for curvature-aware representation refinement. Class-wise Cauchy--Schwarz alignment reduces inter-source and source-target discrepancies, complemented by adversarial learning, information maximization, and confidence-aware pseudo-labeling. Across seven unlabeled target domains, our framework achieves 73.60% mean accuracy and 71.90% AUC, demonstrating effective generalization under heterogeneous acquisition conditions. These results highlight the effectiveness of unified heterogeneous-view modeling, curvature-aware refinement, and multi-source domain adaptation for cross-site MDD identification.The source code is at https://github.com/OPUS-Lightphenexx/MM-HyperGDA",
+      "authors": [
+        "Zhanpeng Zheng",
+        "Xiran Chen",
+        "Haiteng Jiang",
+        "Renjie Tian",
+        "Qinyu Cai",
+        "Jiexi Liu",
+        "Xiaofeng Chen",
+        "Weikai Li",
+        "Yansu Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-31T15:30:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.29531v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multimodal graph domain adaptation for cross-site MDD identification from rs-fMRI",
+      "llm_evidence_cn": "基于rs-fMRI的重度抑郁症识别与域适应",
+      "llm_evidence": "基于rs-fMRI的重度抑郁症识别与域适应",
+      "canonical_evidence": "基于rs-fMRI的重度抑郁症识别与域适应",
+      "llm_tldr_en": "Proposes multi-source multi-view graph domain adaptation with hyperbolic residual encoding for cross-site rs-fMRI MDD identification, jointly modeling functional connectivity views and site adaptation to improve classification.",
+      "llm_tldr_cn": "跨站点rs-fMRI识别重度抑郁症受制于站点分布差异与多视图功能连接不一致，既往研究割裂多视图连接组学习与站点适应。本文提出多源多视图图域适应方法，使用双曲残差编码联合建模多个FC视图并完成无监督域适应，在保持疾病相关信息和视图一致性的同时实现跨站点MDD识别。实验验证了该方法能够缓解站点偏差并提升分类精度，为多站点脑影像精神疾病诊断提供新方案。",
+      "llm_tldr": "跨站点rs-fMRI识别重度抑郁症受制于站点分布差异与多视图功能连接不一致，既往研究割裂多视图连接组学习与站点适应。本文提出多源多视图图域适应方法，使用双曲残差编码联合建模多个FC视图并完成无监督域适应，在保持疾病相关信息和视图一致性的同时实现跨站点MDD识别。实验验证了该方法能够缓解站点偏差并提升分类精度，为多站点脑影像精神疾病诊断提供新方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG and fMRI studies on emotion regulation and mental health",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.24396v1",
+      "source": "arxiv",
+      "title": "The SpiNNaker2 chip: a many-core platform for flexible and scalable brain-inspired computing",
+      "abstract": "In deep learning, efficiency gets more and more important to compensate for the ongoing growth in model sizes and applications. Neuromorphic hardware has long been advocated as an upcoming alternative to deep networks, taking inspiration from the brain for achieving unprecedented energy efficiency. However, demonstrations of these gains only recently began to grow in complexity and real-world applicability. With SpiNNaker2, we present a chip that bridges the gap between deep networks and neuromorphic computing and allows for flexible exploration of computing approaches that combine both worlds. It features 152 processing elements equipped with an ARM M4F processor and dedicated accelerators, an extended SpiNNaker routing fabric for scalable event-based communication and a range of external interfaces for system integration, including Gbit Ethernet and an LPDDR4 memory interface. We demonstrate performance and efficiency of the SpiNNaker2 chip for neuromorphic and deep network workloads, as well as novel event-based computing approaches. For deep network workloads, the chip achieves up to 4.5 TOPS in high performance mode and up to 2.7 TOPS/W efficiency in high efficiency mode for INT8 workloads. The chip supports spiking neural networks with >150000 neurons and >1.8 billion synaptic events/s when simulated with a 1 ms time step. Its low baseline power of less than 250 mW allows for efficiency even under varying workload conditions, allowing to explore sparse and event-based modes of computation. All this demonstrates the chip's capabilities as a universal hardware platform for scalable brain-inspired computing and its combinations with mainstream deep network approaches.",
+      "authors": [
+        "Stefan Scholze",
+        "Johannes Partzsch",
+        "Sebastian Höppner",
+        "Florian Kelber",
+        "Andreas Dixius",
+        "Marco Stolba",
+        "Sirine Arfa",
+        "Marc Berthel",
+        "Georg Ellguth",
+        "Jim Garside",
+        "Hector A. Gonzalez",
+        "Stephan Hartmann",
+        "Thomas Kiel-Hocker",
+        "Dongwei Hu",
+        "Matthias Jobst",
+        "Khaleelulla Khan Nazeer",
+        "Tim Langer",
+        "Chen Liu",
+        "Gengting Liu",
+        "Matthias Lohrmann",
+        "Mantas Mikaitis",
+        "Felix Neumärker",
+        "Amirhossein Rostami",
+        "Stefan Schiefer",
+        "Tilo Schubert",
+        "Delong Shang",
+        "Bernhard Vogginger",
+        "Yexin Yan",
+        "Steve Furber",
+        "Christian Mayr"
+      ],
+      "primary_category": "cs.ET",
+      "categories": [
+        "cs.ET",
+        "cs.AI",
+        "cs.AR",
+        "cs.DC"
+      ],
+      "published": "2026-07-27T13:13:02+00:00",
+      "link": "https://arxiv.org/pdf/2607.24396v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "many-core neuromorphic chip bridging deep networks and brain-inspired computing",
+      "llm_evidence_cn": "众核神经形态芯片，桥接深度网络与类脑计算",
+      "llm_evidence": "众核神经形态芯片，桥接深度网络与类脑计算",
+      "canonical_evidence": "众核神经形态芯片，桥接深度网络与类脑计算",
+      "llm_tldr_en": "This paper presents SpiNNaker2, a many-core neuromorphic chip that bridges deep networks and brain-inspired computing for flexible exploration of hybrid approaches in deep learning.",
+      "llm_tldr_cn": "针对深度学习模型规模增长带来的效率问题，论文提出SpiNNaker2芯片，集成152个带ARM处理器和专用加速器的处理单元，支持深度网络与神经形态计算的灵活融合，为高效类脑计算和深度学习研究提供了可扩展的硬件平台。",
+      "llm_tldr": "针对深度学习模型规模增长带来的效率问题，论文提出SpiNNaker2芯片，集成152个带ARM处理器和专用加速器的处理单元，支持深度网络与神经形态计算的灵活融合，为高效类脑计算和深度学习研究提供了可扩展的硬件平台。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.23740v1",
+      "source": "arxiv",
+      "title": "Zing: Social Mind for LLMs",
+      "abstract": "As large language models move from isolated task solving toward long-term service in human environments, they require social intelligence: the ability to infer mental states, track social relations, reason over norms, and adapt behavior under context. This report presents Zhijing, an integrated framework for measuring, internalizing, and grounding social intelligence. For measurement, we introduce SoMBench, a psychology-grounded benchmark spanning 3 primary dimensions, 17 secondary dimensions, and 71 task paradigms. It controls question format, narrative perspective, and context length across 284 shared scenarios and 3,481 expert-verified instances. Evaluation of 20 representative LLMs reveals substantial headroom: the best model achieves only 72.08% overall accuracy, and none of the 17 secondary dimensions reaches the 90% near-ceiling band. For internalization, we develop Zing, a diagnosis-driven training recipe combining supervised fine-tuning, on-policy distillation, and rubric-based reinforcement learning. Across five social-cognition benchmarks, Zing consistently outperforms its base models, with Zing-27B-Stage2 achieving the best average score and Zing-32B-Stage2 remaining competitive with DeepSeek-V4-Pro. For deployment-time grounding, we build Actio, a harness-controlled inference architecture that routes four typed supports into reasoning: PRISM for procedural guidance, Starling for runtime mental-state representation, SAGE for reusable experience, and gated RAG for external social and normative knowledge. Across five base models and three benchmarks, the full harness improves 14 of 15 model-benchmark pairs and is best or tied for best in 8, demonstrating the effectiveness of typed runtime support. Together, these results show that socially intelligent LLMs require coordinated advances in evaluation, parametric internalization, and deployment-time grounding.",
+      "authors": [
+        "Zing Team",
+        "Ao Xiang",
+        "Bi Jingping",
+        "Chen Jiahui",
+        "Chen Lehan",
+        "Chen Yilin",
+        "Cheng Xueqi",
+        "Fan Yixing",
+        "Gan Kairong",
+        "Gao Haowen",
+        "Gao Jinhua",
+        "Gao Shuxuan",
+        "Gong Chang",
+        "Guo Jiafeng",
+        "Guo Ruijie",
+        "Han Zhouyu",
+        "He Guangfu",
+        "He Yichun",
+        "Jiang Shuo",
+        "Jing Shaoling",
+        "Jing Ya",
+        "Lei Chenhao",
+        "Lei Yan",
+        "Li Anqi",
+        "Li Chengao",
+        "Li Haoyu",
+        "Li Shitian",
+        "Liang Xinjian",
+        "Liu Zhaoge",
+        "Lyu Xingyu",
+        "Nie Zhuwei",
+        "Pang Liang",
+        "Quan Zeping",
+        "Shan Shiguang",
+        "Shen Huawei",
+        "Tang Xinran",
+        "Tian Feng",
+        "Wang Qian",
+        "Wang Ruiping",
+        "Wang Xiaohong",
+        "Xia Zaiyu",
+        "Xiao Yi",
+        "Xu Jiayuan",
+        "Xu Kehan",
+        "Xu Qianqian",
+        "Xu Tianyu",
+        "Xu Yongjun",
+        "Yang Haoming",
+        "Yang Jun",
+        "Yao Di",
+        "Yu Xiaoming",
+        "Zhang Futong",
+        "Zhang Jie",
+        "Zhang Shixuan",
+        "Zhang Yuxuan",
+        "Zhao Xinyu",
+        "Zhao Zhuoran",
+        "Zhong Yunfei",
+        "Zhu Shengyu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-26T16:25:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.23740v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "SoMBench benchmark for evaluating social intelligence in LLMs",
+      "llm_evidence_cn": "提出SoMBench基准测试大语言模型的社会智能",
+      "llm_evidence": "提出SoMBench基准测试大语言模型的社会智能",
+      "canonical_evidence": "提出SoMBench基准测试大语言模型的社会智能",
+      "llm_tldr_en": "This report presents Zing, an integrated framework to measure, internalize, and ground social intelligence in LLMs. It introduces SoMBench, a psychology-grounded benchmark with 71 task paradigms and 3,481 instances, showing substantial headroom for current LLMs.",
+      "llm_tldr_cn": "随着大语言模型进入长期服务场景，需要评估和提升其社会智能。本文提出Zing框架，并构建基于心理学理论的SoMBench基准，涵盖3个主维度、17个子维度和71个任务范式，共3,481个专家验证实例。对20个代表性LLM的评估显示，最佳模型准确率仅72.08%，仍有很大提升空间。该工作为社会智能测量与训练提供了系统工具。",
+      "llm_tldr": "随着大语言模型进入长期服务场景，需要评估和提升其社会智能。本文提出Zing框架，并构建基于心理学理论的SoMBench基准，涵盖3个主维度、17个子维度和71个任务范式，共3,481个专家验证实例。对20个代表性LLM的评估显示，最佳模型准确率仅72.08%，仍有很大提升空间。该工作为社会智能测量与训练提供了系统工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.28565v1",
+      "source": "arxiv",
+      "title": "MIND: Multimodal Intent-Driven Network via Diffusion Transformers for Medical Image Fusion",
+      "abstract": "Medical image fusion aims to integrate complementary information from diverse imaging modalities to support clinical diagnosis. Existing methods typically apply uniform fusion rules globally, lacking a deep understanding of diagnostic intents and pathological structures. To address these limitations, we propose MIND, a Multimodal Intent-Driven Network via Diffusion Transformers (DiTs) for medical image fusion. Specifically, we utilize BioMedGPT to generate intent-driven fusion texts from source images, guiding the fusion process with pathology-aware diagnostic intents. To combat the loss of 2D spatial continuity caused by 1D sequence flattening in DiTs, we design a Multi-scale Latent Adapter. This module explicitly extracts source image features before serialization, injecting them into the network via strict dimensional alignment to effectively supplement image features. To resolve the semantic shift caused by decoupling image outputs from diagnostic intents, we design a medical semantic consistency loss. This loss ensures deep semantic locking between fused images and fusion texts while maintaining the stability of the underlying physical manifold reconstruction. Comprehensive experiments on the Harvard, BraTS, and GFP datasets reveal that MIND delivers superior fusion quality, significantly improves downstream brain tumor segmentation accuracy, and enables flexible interactive fusion, holding significant promise for intent-driven intelligent clinical decision support systems.",
+      "authors": [
+        "Yunzhan Fu",
+        "Xiangyu Shen",
+        "Yifei Sun",
+        "Yuhan Chen",
+        "Jian Wu",
+        "Hongxia Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-30T17:30:21+00:00",
+      "link": "https://arxiv.org/pdf/2607.28565v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uses BioMedGPT large language model to guide medical image fusion, aligning with LLM in research",
+      "llm_evidence_cn": "利用BioMedGPT大语言模型生成意图驱动文本以引导医学图像融合，属于大模型在科研中的应用",
+      "llm_evidence": "利用BioMedGPT大语言模型生成意图驱动文本以引导医学图像融合，属于大模型在科研中的应用",
+      "canonical_evidence": "利用BioMedGPT大语言模型生成意图驱动文本以引导医学图像融合，属于大模型在科研中的应用",
+      "llm_tldr_en": "MIND proposes a multimodal intent-driven network using diffusion transformers and BioMedGPT to generate pathology-aware fusion guidance, improving medical image fusion through explicit spatial adapters.",
+      "llm_tldr_cn": "医学图像融合任务通常缺乏对诊断意图和病理结构的深层次建模，导致融合结果与临床需求脱节。作者提出MIND，一种基于扩散变换器的多模态意图驱动融合网络，借助BioMedGPT从源图像生成病理感知的融合文本提示，并设计多尺度潜在适配器以保持二维空间连续性。在多个医学图像融合任务上的实验表明，该方法相比现有技术取得了更优的融合质量与诊断相关性，为多模态大模型在医学影像中的应用提供了有效范例。",
+      "llm_tldr": "医学图像融合任务通常缺乏对诊断意图和病理结构的深层次建模，导致融合结果与临床需求脱节。作者提出MIND，一种基于扩散变换器的多模态意图驱动融合网络，借助BioMedGPT从源图像生成病理感知的融合文本提示，并设计多尺度潜在适配器以保持二维空间连续性。在多个医学图像融合任务上的实验表明，该方法相比现有技术取得了更优的融合质量与诊断相关性，为多模态大模型在医学影像中的应用提供了有效范例。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.25947v1",
+      "source": "arxiv",
+      "title": "A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series",
+      "abstract": "Question answering (QA) over irregular clinical time series (ICTS) plays a pivotal role in a wide range of healthcare applications. Although recent multimodal time-series large language models (LLMs) have shown considerable promise in general-purpose time-series QA, they remain poorly equipped to model the sparsity, asynchrony, and irregular sampling patterns of clinical observations. To fill this gap, we propose ClinPRISM, a cost-effective multimodal LLM reasoning framework for question answering over ICTS data. First, we devise an irregularity-aware multi-scale encoder to capture sparse clinical evidence at diverse temporal scales. Then, we propose a temporal evidence distiller to integrate representations across these scales and compress them into a small number of LLM-compatible tokens. Moreover, we introduce a progressive alignment strategy that sequentially aligns the irregular trajectories with the LLM's textual embedding space. To facilitate training, we construct 30,000 clinical time series paired with multi-scale descriptions, together with 41,000 instruction-tuning instances spanning 11 tasks. Using a 4-billion-parameter LLM backbone, ClinPRISM achieves state-of-the-art performance on the held-out evaluation benchmark while using only 16 time-series tokens and achieving an average inference latency of 0.15 seconds per question.",
+      "authors": [
+        "Frank Nie",
+        "Ethan B Liu",
+        "Yuan Zhu",
+        "Wei Fan",
+        "Jindong Han"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-28T16:33:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.25947v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multimodal LLM framework for QA over clinical time series",
+      "llm_evidence_cn": "用于临床时间序列问答的多模态LLM框架",
+      "llm_evidence": "用于临床时间序列问答的多模态LLM框架",
+      "canonical_evidence": "用于临床时间序列问答的多模态LLM框架",
+      "llm_tldr_en": "This paper proposes ClinPRISM, a cost-effective multimodal LLM framework for question answering over irregular clinical time series. It uses an irregularity-aware multi-scale encoder and a temporal evidence distiller to handle sparsity and asynchrony in clinical data.",
+      "llm_tldr_cn": "临床时序数据往往稀疏、异步且采样不规则，现有时间序列大语言模型难以有效建模。本文提出ClinPRISM框架，在不规则临床时间序列上进行问答。框架首先用不规则感知的多尺度编码器捕获不同时间尺度的稀疏证据，再由时间证据蒸馏器整合表征。实验表明ClinPRISM在临床QA任务上表现优越，且成本较低。该方法可迁移到睡眠、脑电等临床监测场景，助力健康数据分析。",
+      "llm_tldr": "临床时序数据往往稀疏、异步且采样不规则，现有时间序列大语言模型难以有效建模。本文提出ClinPRISM框架，在不规则临床时间序列上进行问答。框架首先用不规则感知的多尺度编码器捕获不同时间尺度的稀疏证据，再由时间证据蒸馏器整合表征。实验表明ClinPRISM在临床QA任务上表现优越，且成本较低。该方法可迁移到睡眠、脑电等临床监测场景，助力健康数据分析。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.29085v1",
+      "source": "arxiv",
+      "title": "IyawoBench v2.0: Extended Diagnostic Evaluation of Large Language Model Clinical Triage in Nigerian Primary Care",
+      "abstract": "Large language models are being deployed as clinical triage tools in low and middle income countries where trained physicians are scarce. Existing safety metrics, however, produce misleading confidence: models scoring 100% on binary \"did not send an emergency home\" safety measures may nevertheless exhibit systematic failure modes that render them undeployable at scale. We present IyawoBench v2.0, an extended diagnostic evaluation of large language model clinical triage on 200 synthetic vignettes derived from 1,200 real patient encounters at 19 Nigerian primary health centres. We introduce a formal mathematical framework comprising fourteen definitions and two theorems that decompose triage safety into three distinct failure modes: Conservative Escalation Bias, Systematic Downgrade Bias, and Middle-Tier Instability. We propose the Escalation Bias Index and Expected Deployment Cost as novel metrics that expose failure modes hidden by conventional accuracy and sensitivity scores. Evaluated on three frontier models (Claude Sonnet 4.6, Llama 3.3 70B, Llama 3.1 8B) plus five naive baselines, we show that: (1) all three models exhibit at least one formal failure mode; (2) traditional sensitivity metrics conceal a 77 percentage point under-triage gap in Llama 3.1 8B; (3) the optimal model varies across three deployment scenarios (Emergency-Focused, System-Sustainability, Balanced), demonstrating that single-ranking benchmarks are inadequate for LMIC clinical AI selection. IyawoBench v2.0 provides both a rigorous benchmark and a diagnostic framework transferable to any triage-style clinical AI evaluation. All code, data, and analysis pipelines are publicly available.",
+      "authors": [
+        "Anthonio Oladimeji Gabriel",
+        "Dimeji Olawuyi"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY"
+      ],
+      "published": "2026-07-31T07:11:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.29085v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Diagnostic evaluation of large language models in clinical triage",
+      "llm_evidence_cn": "大语言模型在临床分诊中的诊断性安全评估",
+      "llm_evidence": "大语言模型在临床分诊中的诊断性安全评估",
+      "canonical_evidence": "大语言模型在临床分诊中的诊断性安全评估",
+      "llm_tldr_en": "Presents IyawoBench v2.0, an extended benchmark and formal framework for evaluating LLM clinical triage safety on Nigerian primary care vignettes, exposing systematic failure modes beyond binary safety metrics.",
+      "llm_tldr_cn": "针对现有大语言模型临床分诊安全指标产生误导性置信度的问题，提出IyawoBench v2.0扩展诊断评估基准，基于尼日利亚19家基层医疗机构1200例真实就诊生成200个合成场景，并引入包含十四个定义和两个定理的形式化框架，将分诊安全分解为多个维度。该工作揭示了传统二元安全指标无法发现的系统性失效模式，为大模型临床部署提供了更严格的安全诊断方法。",
+      "llm_tldr": "针对现有大语言模型临床分诊安全指标产生误导性置信度的问题，提出IyawoBench v2.0扩展诊断评估基准，基于尼日利亚19家基层医疗机构1200例真实就诊生成200个合成场景，并引入包含十四个定义和两个定理的形式化框架，将分诊安全分解为多个维度。该工作揭示了传统二元安全指标无法发现的系统性失效模式，为大模型临床部署提供了更严格的安全诊断方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.29310v1",
+      "source": "arxiv",
+      "title": "CALM-AH: An ABAW11-Calibrated Multimodal Ensemble with Reliability-Gated Multi-Expert Consensus for Video-Level Ambivalence and Hesitancy Recognition",
+      "abstract": "Ambivalence and hesitancy (A/H) are subtle behavioural states that may be expressed through language, voice, facial activity, and other non-verbal cues. The ABAW11 A/H Video Recognition Challenge asks systems to assign a binary A/H label to each naturalistic interview video. Performance is measured using Macro-F1 so that recognition of both A/H and No-A/H samples receives equal importance. We present CALM-AH, a multimodal ensemble that combines textual, acoustic, visual, and derived behavioural-statistical features. We construct 15 non-empty combinations of these feature branches. For each combination, we select the best of three classifier families using validation binary cross-entropy and optimise its decision threshold for validation Macro-F1. The resulting binary decisions are combined using fixed hard-voting weights transferred from BROTHER. We further introduce Reliability-Gated Multi-Expert Consensus(RG-MEC), an anchor-preserving decision-level ensemble that combines an initial prediction with three complementary correction experts: CALM-AH, AffectGPT, and a GPT-based semantic verifier. The initial system provides the default prediction. Its label is overridden only when all three correction experts unanimously support the same alternative class; otherwise, the anchor prediction is retained. This unanimity-gated design limits the influence of isolated expert errors while permitting bidirectional correction when task-specific, multimodal-affective, and semantic-pragmatic evidence are fully consistent. On the participant-disjoint ABAW11 dataset, CALM-AH achieves a Macro-F1 of 0.7525, and the complete RG-MEC system achieves 0.7771.",
+      "authors": [
+        "Wenzhuo Sun",
+        "Mingjian Liang",
+        "Richard Attfield",
+        "Zongyuan Ge",
+        "Xuelian Cheng",
+        "Pamela Carreno-Medrano"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-31T11:37:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.29310v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multimodal ensemble for video-level ambivalence/hesitancy recognition, relevant to emotion and mental-health assessment",
+      "llm_evidence_cn": "面向视频级矛盾与犹豫状态识别的多模态集成方法，与情绪/心理健康评估相关",
+      "llm_evidence": "面向视频级矛盾与犹豫状态识别的多模态集成方法，与情绪/心理健康评估相关",
+      "canonical_evidence": "面向视频级矛盾与犹豫状态识别的多模态集成方法，与情绪/心理健康评估相关",
+      "llm_tldr_en": "CALM-AH builds a multimodal ensemble from text, audio, face, and behavioral features to recognize ambivalence/hesitancy in interview videos, using reliability-gated multi-expert consensus and achieving strong Macro-F1.",
+      "llm_tldr_cn": "针对自然访谈视频中矛盾与犹豫（A/H）等细微行为状态的识别任务，论文提出CALM-AH多模态集成框架，融合文本、语音、面部和行为统计特征，并通过验证集选择最优特征组合与分类器家族。在ABAW11挑战中采用宏F1评估，利用可靠性门控的多专家共识提升预测稳定性。该方法为基于多模态行为线索的情绪与心理健康评估提供了可迁移的技术方案。",
+      "llm_tldr": "针对自然访谈视频中矛盾与犹豫（A/H）等细微行为状态的识别任务，论文提出CALM-AH多模态集成框架，融合文本、语音、面部和行为统计特征，并通过验证集选择最优特征组合与分类器家族。在ABAW11挑战中采用宏F1评估，利用可靠性门控的多专家共识提升预测稳定性。该方法为基于多模态行为线索的情绪与心理健康评估提供了可迁移的技术方案。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.29347v1",
+      "source": "arxiv",
+      "title": "SeekBrain: An Autonomous Multi-Agent System for Accelerating Neuroscience Discovery",
+      "abstract": "Modern neuroscience relies on integrating multi-scale, multimodal datasets to uncover the neural principles underlying intelligence. However, analytical challenges posed by highly heterogeneous data and fragmented workflows increasingly constrain discoveries. Here we introduce SeekBrain, an autonomous multi-agent framework designed to accelerate neuroscience discovery through domain-grounded hierarchical planning and cross-modal data analysis. SeekBrain dynamically constructs a repertoire of analysis recipes extracted from code-paper pairs. By coupling this codified expertise with agentic planning and execution engines, the framework scalably generates hypotheses and analytical pipelines on demand. Systematic evaluation on the expert-annotated BrainArena benchmark demonstrates that SeekBrain substantially outperforms state-of-the-art agent baselines across various analysis tasks. Crucially, when deployed in real-world research, SeekBrain integrated behavioral, neural, and anatomical data to reveal structured, distributed neural representations of larval zebrafish behavior and a shared axis of regional decoding strength across the brain in a mouse decision-making task. These results establish SeekBrain as a scalable and practical tool for accelerating data-driven discoveries in neuroscience.",
+      "authors": [
+        "Jiamin Wu",
+        "Peishan Xiang",
+        "Jingyang Chen",
+        "Yuqing Zhu",
+        "Yuxi Li",
+        "Ling Luo",
+        "Qihao Zheng",
+        "Jialiang Zu",
+        "Yongchao Wu",
+        "Mindong Liu",
+        "Haitao Wu",
+        "Chaofan Hu",
+        "Yijie Sun",
+        "Yuqi Hang",
+        "Yu Zhu",
+        "Shuo Li",
+        "Yue Fan",
+        "Shiyang Feng",
+        "Wanghan Xu",
+        "Tianlei Zhang",
+        "Jie Zhang",
+        "Wenlong Zhang",
+        "Bo Zhang",
+        "Kai Wang",
+        "Lei Bai",
+        "Mianxin Liu",
+        "Wanli Ouyang",
+        "Jiulin Du",
+        "Chunfeng Song"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-07-31T12:30:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.29347v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "autonomous multi-agent system for accelerating neuroscience discovery through hierarchical planning and cross-modal analysis",
+      "llm_evidence_cn": "通过分层规划和跨模态分析加速神经科学发现的自主多智能体系统",
+      "llm_evidence": "通过分层规划和跨模态分析加速神经科学发现的自主多智能体系统",
+      "canonical_evidence": "通过分层规划和跨模态分析加速神经科学发现的自主多智能体系统",
+      "llm_tldr_en": "SeekBrain is an autonomous multi-agent framework that extracts analysis recipes from code-paper pairs and uses hierarchical planning to accelerate neuroscience discovery across multimodal datasets.",
+      "llm_tldr_cn": "针对神经科学多尺度多模态数据集成分析困难、工作流碎片化的问题，论文提出SeekBrain自主多智能体框架，从代码-论文对中提取分析食谱，结合分层规划和执行引擎按需生成假设与分析流程，在专家标注数据上验证了其加速神经科学发现的能力，为大规模脑数据分析提供了自动化工具。",
+      "llm_tldr": "针对神经科学多尺度多模态数据集成分析困难、工作流碎片化的问题，论文提出SeekBrain自主多智能体框架，从代码-论文对中提取分析食谱，结合分层规划和执行引擎按需生成假设与分析流程，在专家标注数据上验证了其加速神经科学发现的能力，为大规模脑数据分析提供了自动化工具。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

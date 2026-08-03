@@ -6,55 +6,62 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-02
-- 运行时间：2026-08-02 21:27:09 UTC
+- 最新运行日期：2026-08-03
+- 运行时间：2026-08-03 21:50:17 UTC
 - 运行状态：成功
-- 本次总论文数：11
+- 本次总论文数：14
 - 精读区：6
-- 速读区：5
+- 速读区：8
 
 ### 今日简报（AI）
-今日11篇论文聚焦大模型认知与自我知识，精读6篇，速读5篇。  
-最值得关注：LLM现实监控能力随对话记忆动态变化，以及CogArena多方法揭示认知结构。  
-建议从心理学视角理解模型行为，关注医疗世界模型在临床中的可信应用挑战。
-- 详情：[/202608/02/README](/202608/02/README)
+今日阅脑疾病AI诊断14篇，精读6篇，重点在EEG与fMRI建模。最值得看：解耦实例表示学习提升EEG泛化，MPP-GNN自适应社区检测用于阿尔茨海默分类。后续可关注跨中心泛化与类脑芯片加速方向。
+- 详情：[/202608/03/README](/202608/03/README)
 
 ### 精读区论文标签
-1. [Reality Monitoring in Large Language Models: Self-Knowledge That Transforms with Conversation Memory](/202608/02/2607.23927v1-reality-monitoring-in-large-language-models-self-knowledge-that-transforms-with-conversation-memory)  
+1. [Rethinking EEG-Based Disease Diagnosis: Decoupling Instance Representation Learning from Subject-Level Supervision](/202608/03/2607.27274v2-rethinking-eeg-based-disease-diagnosis-decoupling-instance-representation-learning-from-subject-level-supervision)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：对LLM现实监控与来源归因的实证研究
-2. [CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models](/202608/02/2607.24999v1-cogarena-a-multimethod-evaluation-of-cognitive-ability-structure-in-large-language-models)  
+   evidence：面向脑电疾病诊断的两阶段深度表示学习与多实例学习方法
+2. [MPP-GNN: Subject-Adaptive Community Detection for fMRI-Based Alzheimer's Disease Classification](/202608/03/2607.28681v1-mpp-gnn-subject-adaptive-community-detection-for-fmri-based-alzheimers-disease-classification)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：大语言模型认知能力评估基准；核心大模型研究
-3. [MyMentorLLM: A psychotherapy GenAI environment with multimodal voice/text patients, trainees and experts for deliberate practice](/202608/02/2607.25667v1-mymentorllm-a-psychotherapy-genai-environment-with-multimodal-voicetext-patients-trainees-and-experts-for-deliberate-practice)  
+   evidence：使用图神经网络对fMRI脑连接进行深度学习和疾病分类
+3. [CyberNeuro: A Privacy-Preserving Agentic Workbench for Cohort-Scale Neuroimage and Clinical Data Analysis](/202608/03/2607.28841v1-cyberneuro-a-privacy-preserving-agentic-workbench-for-cohort-scale-neuroimage-and-clinical-data-analysis)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：服务于CBT心理治疗训练的多模态生成式AI环境，聚焦心理健康
-4. [Phoneme- vs. Character-Level Targets and Selective State-Space Models for Intracortical Brain-to-Text](/202608/02/2607.26751v1-phoneme--vs-character-level-targets-and-selective-state-space-models-for-intracortical-brain-to-text)  
+   evidence：利用多智能体大模型搭建隐私保护工作台，用于队列规模神经影像与临床数据分析
+4. [EasyBCI Agent: Towards Universal Neural Data Preprocessing for Brain-Computer Interfaces](/202608/03/2607.29007v1-easybci-agent-towards-universal-neural-data-preprocessing-for-brain-computer-interfaces)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：皮层内脑到文本是脑机接口典型任务
-5. [From Dyad to Triad: Eliciting XAI Requirements in Stroke Rehabilitation](/202608/02/2607.25423v1-from-dyad-to-triad-eliciting-xai-requirements-in-stroke-rehabilitation)  
+   evidence：基于大语言模型的脑机接口预处理智能体
+5. [Technological Advances in Detecting and Managing Cognitive Impairment in Older Adults: Trends, Challenges, and Future Directions](/202608/03/2607.28687v1-technological-advances-in-detecting-and-managing-cognitive-impairment-in-older-adults-trends-challenges-and-future-directions)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：直接面向脑卒中康复中可信脑机接口的可解释AI需求获取
-6. [ProgFormer: Hierarchical Voxel Diffusion Transformer for Longitudinal Brain MRI Prediction](/202608/02/2607.27537v1-progformer-hierarchical-voxel-diffusion-transformer-for-longitudinal-brain-mri-prediction)  
+   evidence：综述深度学习和脑电在认知障碍检测中的应用
+6. [Exploratory Integration of EEG Spectral Features and Gaze Variability for Mild Cognitive Impairment Discrimination](/202608/03/2607.29493v1-exploratory-integration-of-eeg-spectral-features-and-gaze-variability-for-mild-cognitive-impairment-discrimination)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：深度学习用于纵向脑MRI预测；神经科学
+   evidence：脑电与眼动融合用于轻度认知障碍检测
 
 ### 速读区论文标签
-1. [From Minds to Models: The Intersection of Psychology and LLM Behaviours](/202608/02/2607.27579v1-from-minds-to-models-the-intersection-of-psychology-and-llm-behaviours)  
+1. [Multi-Source Multi-View Graph Domain Adaptation with Hyperbolic Residual Encoding for Cross-Site MDD Identification from rs-fMRI](/202608/03/2607.29531v1-multi-source-multi-view-graph-domain-adaptation-with-hyperbolic-residual-encoding-for-cross-site-mdd-identification-from-rs-fmri)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：用心理学方法研究大语言模型行为，与大语言模型研究直接相关
-2. [RemiAssist: A Therapist-Supporting System for Photo-Based Reminiscence Therapy in Dementia Care](/202608/02/2607.24536v2-remiassist-a-therapist-supporting-system-for-photo-based-reminiscence-therapy-in-dementia-care)  
+   evidence：基于rs-fMRI的重度抑郁症识别与域适应
+2. [The SpiNNaker2 chip: a many-core platform for flexible and scalable brain-inspired computing](/202608/03/2607.24396v1-the-spinnaker2-chip-a-many-core-platform-for-flexible-and-scalable-brain-inspired-computing)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：支持治疗师参与的AI照片怀旧疗法系统，面向痴呆患者
-3. [Medical world models in healthcare: foundations, applications, and challenges for trustworthy clinical translation](/202608/02/2607.25242v1-medical-world-models-in-healthcare-foundations-applications-and-challenges-for-trustworthy-clinical-translation)  
+   evidence：众核神经形态芯片，桥接深度网络与类脑计算
+3. [MIND: Multimodal Intent-Driven Network via Diffusion Transformers for Medical Image Fusion](/202608/03/2607.28565v1-mind-multimodal-intent-driven-network-via-diffusion-transformers-for-medical-image-fusion)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：利用BioMedGPT大语言模型生成意图驱动文本以引导医学图像融合，属于大模型在科研中的应用
+4. [IyawoBench v2.0: Extended Diagnostic Evaluation of Large Language Model Clinical Triage in Nigerian Primary Care](/202608/03/2607.29085v1-iyawobench-v20-extended-diagnostic-evaluation-of-large-language-model-clinical-triage-in-nigerian-primary-care)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：大语言模型在临床分诊中的诊断性安全评估
+5. [SeekBrain: An Autonomous Multi-Agent System for Accelerating Neuroscience Discovery](/202608/03/2607.29347v1-seekbrain-an-autonomous-multi-agent-system-for-accelerating-neuroscience-discovery)  
+   标签：评分：7.0/10、query:neuro-mental
+   evidence：通过分层规划和跨模态分析加速神经科学发现的自主多智能体系统
+6. [Zing: Social Mind for LLMs](/202608/03/2607.23740v1-zing-social-mind-for-llms)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：医疗世界模型用于患者状态表征与时间动态建模，可迁移至睡眠与心理健康多模态监测
-4. [A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series](/202608/02/2607.25947v1-a-cost-effective-multimodal-llm-reasoning-framework-for-question-answering-over-irregular-clinical-time-series)  
+   evidence：提出SoMBench基准测试大语言模型的社会智能
+7. [A Cost-Effective Multimodal LLM Reasoning Framework for Question Answering over Irregular Clinical Time Series](/202608/03/2607.25947v1-a-cost-effective-multimodal-llm-reasoning-framework-for-question-answering-over-irregular-clinical-time-series)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：面向不规则临床时间序列的多模态大模型问答框架，可迁移至睡眠与心理健康监测
-5. [Semantic-Aligned Structural Abstraction for Multimodal Sentiment Analysis](/202608/02/2607.27790v1-semantic-aligned-structural-abstraction-for-multimodal-sentiment-analysis)  
+   evidence：用于临床时间序列问答的多模态LLM框架
+8. [CALM-AH: An ABAW11-Calibrated Multimodal Ensemble with Reliability-Gated Multi-Expert Consensus for Video-Level Ambivalence and Hesitancy Recognition](/202608/03/2607.29310v1-calm-ah-an-abaw11-calibrated-multimodal-ensemble-with-reliability-gated-multi-expert-consensus-for-video-level-ambivalence-and-hesitancy-recognition)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：基于LLM的多模态情感分析，与情绪/多模态AI主题相关
+   evidence：面向视频级矛盾与犹豫状态识别的多模态集成方法，与情绪/心理健康评估相关
 
 
 <div class="dpr-home-promo-card">
