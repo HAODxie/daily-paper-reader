@@ -1,0 +1,471 @@
+Title: Rethinking PPG-based Sleep Staging: Datasets, Metrics, and Benchmarks
+
+URL Source: https://arxiv.org/pdf/2608.00943v1
+
+Published Time: Tue, 04 Aug 2026 01:01:46 GMT
+
+Number of Pages: 20
+
+Markdown Content:
+# Rethinking PPG-based Sleep Staging: Datasets, Metrics, and Benchmarks 
+
+Shuntian Zheng 1 Jiawei Wang 2 Cong Fu 3 Huan Yu 3,∗ Chen Chen 4,∗ Yu Guan 1,∗ Sai Gu 21 Department of Computer Science, The University of Warwick  
+
+> 2
+
+School of Engineering, The University of Warwick  
+
+> 3
+
+Department of Neurology, Huashan Hospital, Fudan University  
+
+> 4
+
+Human Phenome Institute, Fudan University 
+
+shuntian.zheng@warwick.ac.uk Davy.Wang@warwick.ac.uk fucong@fudan.edu.cn dr.yuhuan@163.com chenchen_fd@fudan.edu.cn yu.guan@warwick.ac.uk Sai.Gu@warwick.ac.uk  
+
+> ∗
+
+Co-corresponding authors 
+
+# Abstract 
+
+Automated sleep staging assigns discrete stage labels to successive time epochs throughout an overnight recording; conventionally each window spans at least 30 seconds, reflecting the minimum temporal resolution of the clinical scoring standard. Wearable photoplethysmography (PPG) has attracted sustained interest as an ambulatory alternative to laboratory-based polysomnography, which relies on electroencephalography (EEG) and other recording modalities that are impractical outside clinical environments. Yet PPG-based staging trails EEG-based methods by a substantial margin, and we argue this gap largely reflects a mismatch between signal and task. Within a stable stage, PPG’s inter-stage feature differences are more subtle than those in EEG; yet at stage boundaries, PPG’s principal cardiovascular features, heart rate variability and pulse morphology, shift sharply within seconds. The conventional practice of assigning one label to each 30-second epoch therefore suppresses feature that is concentrated near boundaries. We address this gap in two steps. First, we develop a label expansion pipeline based on Hidden Semi-Markov Models that converts coarse epoch labels into sec-level annotations. To assess whether these expanded labels are reliable enough for downstream supervision, we validate them on a separate expert-reviewed dataset and through an auxiliary sleep-wake task whose labels are independent of the expansion pipeline. Second, we use the resulting sec-level supervision on MESA to improve conventional four-class epoch-level staging across four architecturally diverse baselines by 3.7–5.7 pp in accuracy against the original epoch labels, with supplementary zero-shot evaluation on CFS showing that the transfer benefit persists under cohort and annotation-protocol shift. These results indicate that boundary-aware supervision provides a practical route toward more fully exploiting PPG’s distinctive information for sleep staging and supports further evaluation in ambulatory monitoring settings where EEG-based assessment is impractical. 
+
+# 1 Introduction 
+
+Automated sleep staging is a cornerstone of sleep medicine, enabling diagnosis of disorders such as sleep apnea, assessment of circadian rhythm disruption, and evaluation of therapeutic interven-tions [ 1 , 2 ]. Standard scoring manuals define five discrete stages, Wake, N1, N2, N3, and rapid eye movement (REM), each assigned to successive 30-second epochs as the minimum temporal unit of clinical annotation [ 3 ]. The clinical gold standard, polysomnography (PSG), supports sleep staging        
+
+> Preprint. arXiv:2608.00943v1 [cs.HC] 2 Aug 2026 ~8–13s gradual shift
+> ~1–3s sharp response
+> EEG
+> PPG
+> 30s Epoch N+1 30s Epoch N
+> Deep Light Epoch-level Label
+> HRV burst
+> (sympathovagal shift)
+> 0.0
+> 1.0
+> -1.0
+> 0.0
+> 2.0
+> -2.0
+
+Figure 1: Illustrative EEG and PPG signals from continuous sleep segments. EEG exhibits clearer stage-specific features within stable segments but shifts gradually across boundaries over several seconds, whereas PPG pulses remain more similar across stages yet respond abruptly. Population-level evidence for the same asymmetry is reported in Section 3.1, Figure 3, and Table 1. through simultaneous recording of electroencephalography (EEG), electrocardiography (ECG), and electromyography (EMG), but its dependence on laboratory infrastructure and trained technicians makes large-scale or longitudinal deployment impractical [ 4, 3 , 5 , 6]. Wearable photoplethysmogra-phy (PPG) has attracted substantial research interest as a low-cost alternative: a single optical sensor embedded in a commercial wearable device continuously measures volumetric blood pulsation, re-quiring no electrodes and enabling ambulatory use over extended periods [ 7, 8 ]. In many ambulatory, home-monitoring, and resource-limited settings where EEG electrode attachment is impractical, wearable optical sensing can provide a practical source of overnight cardiovascular dynamics. Despite this practical relevance, reported performance for PPG-based sleep staging still lags behind EEG-based staging, and this gap has persisted across years of architectural innovation [ 9 ]. We argue that the ceiling remains largely unreached not because PPG is devoid of useful physiological information, but because the prevailing task formulation is structurally misaligned with the signal’s 
+
+distinctive boundary-sensitivity advantage .EEG measures cortical synchrony directly and registers sleep stages as spectrally stable patterns that persist across tens of seconds, a property that aligns naturally with the 30-second epoch classification framework used in standard scoring manuals [ 3 ]. PPG, by contrast, is an indirect cardiovascular signal whose sleep-related content arises from autonomic modulation of heart rate and peripheral vascular tone [ 10 ]. Consistent findings in the physiological literature [ 11 , 12 ] are that PPG exhibits pronounced sensitivity to sleep stage transitions: heart rate variability (HRV), the beat-to-beat fluctuation in cardiac inter-beat intervals reflecting sympathovagal balance [ 13 ], and pulse waveform morphology shift sharply at the sec-level timescale around stage boundaries, with autonomic responses emerging within one to two heartbeats and producing a transient perturbation that contrasts sharply against PPG’s otherwise stable baseline. EEG spectral power also shifts at transitions, but does so gradually over several seconds within an already spectrally rich and variable baseline. Figure 1 provides an example of this contrast: the EEG trace changes comparatively smoothly across the true transition onset, while the PPG trace exhibits a narrower boundary-centered perturbation that is not well aligned with the coarser 30-second epoch framing. Consequently, PPG’s boundary response stands out more prominently relative to its own stable-epoch baseline than the corresponding EEG response does, making it more readily detectable under HRV-based and morphological feature representations. Within stable sleep epochs, however, inter-stage differences in PPG’s sustained characteristics are more subtle than the corresponding EEG differences, making the epoch-level static discrimination task intrinsically harder for this modality [ 10 ]. Taken together, these observations reveal a characteristic asymmetry : the physiological advantage of PPG is concentrated at the temporal boundaries between sleep states rather than within the interiors of stable epochs. Despite this characteristic asymmetry, nearly all PPG sleep staging approaches inherit the epoch-level classification paradigm originally developed for EEG and apply it unmodified to PPG [ 14 , 15 , 16 , 17 ], leaving the signal’s boundary-sensitivity advantage outside the training and evaluation loop. Reaching PPG’s information-theoretic ceiling for sleep analysis requires a task formulation explicitly aligned with the signal’s physiology, yet two structural gaps prevent the community from doing so. (1) a task-level mismatch: by adopting an epoch classification paradigm originally designed around EEG’s 2within-epoch spectral stability, existing methods implicitly treat PPG as a degraded EEG surrogate. The transition-sensitive dynamics that PPG encodes most strongly receive no explicit supervision, and evaluation metrics that average over each epoch are blind to boundary localization accuracy. (2) an infrastructure absence: because no method has targeted transitions, no publicly available dataset provides sec-level sleep stage annotations for PPG, and no established evaluation protocol exists for transition detection. This absence creates a self-reinforcing cycle in which the characteristic asymmetry remains invisible to both training and evaluation. This work addresses both traps by proposing Sleep Stage Transition Detection (SSTD) as a comple-mentary task formulation that targets the sec-level onset time and type of each sleep stage transition, the temporal resolution at which PPG’s autonomic dynamics are most informative. To make SSTD tractable, we develop a label expansion framework that converts coarse 30-second epoch labels from existing datasets into sec-level pseudo-labels under a four-class vocabulary of Wake, Light, Deep, and REM, combining Hidden Semi-Markov Models for duration-constrained state inference with local changepoint refinement under physiological transition constraints. We additionally introduce bound-ary error and transition F1 as evaluation metrics that quantify temporal localization precision and event-level detection completeness with respect to the expanded labels, while separately validating their clinical correspondence through independent physician review. The separate expert-reviewed dataset is used for this label-fidelity validation; the downstream public-dataset experiments use MESA as the main training and evaluation cohort and CFS as a supplementary zero-shot transfer cohort. The contributions of this work are as follows. (1) We identify and empirically verify a characteristic asymmetry in PPG across large-scale PSG-annotated cohorts: under HRV and morphology features, boundary-to-stable contrast ratio substan-tially exceeds that of EEG, while within-epoch inter-stage separability is markedly lower. We show that the prevailing epoch-level training paradigm fails to exploit this property, giving rise to two interconnected traps that systematically suppress PPG’s potential for sleep staging: a task-level mismatch that treats PPG as a degraded EEG surrogate, and an infrastructure absence that leaves the community without sec-level annotations or task-specific evaluation metrics. (2) We address both traps by proposing Sleep Stage Transition Detection (SSTD), a task formulation operating at sec-level temporal resolution, together with a physiologically constrained label expansion pipeline for constructing SSTD annotations from existing PSG-annotated cohorts and evaluation metrics for temporal localization. (3) To validate the pipeline, we collect a separate expert-reviewed PPG dataset with sec-level sleep stage boundaries. Agreement with physician consensus reaches κ = 0 .81 in the adopted four-class setting, supporting the clinical plausibility of the expanded labels. Using these annotations, sec-level supervision improves conventional four-class epoch-level staging on MESA by 3.7–5.7 pp in accuracy across representative baselines, and the gains persist under zero-shot transfer to CFS, providing a practical basis for improving PPG-based sleep staging in home, longitudinal, and population-scale monitoring settings where EEG-based assessment is impractical or unavailable. 
+
+# 2 Related Work 
+
+2.1 PPG-Based Sleep Staging 
+
+Prior PPG sleep staging methods span hand-crafted HRV classifiers [ 18 , 19 ], end-to-end CNN/RNN or spectrogram models [ 20 , 21 , 22 , 23 ], and more recent context-aware or multi-modal architectures [ 24 ,25 , 9 , 26 , 27 , 28 , 29 ]. Recent work has also explored adjacent directions such as transfer or pre-training, interpretability or uncertainty-aware analysis, multimodal fusion, and wearable-oriented adaptation to improve epoch-level PPG staging [ 24 , 25 , 9 , 26 , 27 , 28 , 29 , 4]. These lines make clear that the field is actively improving PPG sleep staging along multiple fronts, including representation quality, model inspection, sensor complementarity, and practical deployment analysis. Our claim is therefore not that prior work ignores PPG-specific modeling, but that these advances are still evaluated predominantly within the inherited 30-second staging setup. Under that formulation, datasets remain epoch-labeled, supervision does not target transition onset directly, and evaluation does not measure boundary localization accuracy. The present work differs at the task, annotation, and metric levels rather than solely at the model, training, or sensor-fusion level. 3Light Light Light Light Light Deep Deep Deep Deep Deep  
+
+> Raw PPG Signal
+> Existing Label in Sleep Staging
+> Fine-grained Sleep Stag e Transition Detection
+> epoch
+
+Figure 2: Illustration of the annotation gap addressed by this work. Top: a raw PPG recording containing a Light →Deep transition; the highlighted region marks the signal perturbation at the boundary. Middle (Existing Label): conventional sleep staging assigns a single coarse label per 30-second epoch, placing the transition arbitrarily at the epoch boundary with no sec-level precision. 
+
+Bottom (SSTD): our proposed sec-level labels, produced by the label expansion pipeline, explicitly locate the transition onset within the epoch and assign per-second stage assignments throughout. 
+
+2.2 Changepoint Detection and Temporal Segmentation 
+
+Classical temporal segmentation methods, including Pruned Exact Linear Time (PELT), Bayesian changepoint detection, and Hidden semi-Markov models (HSMMs) with explicit duration model-ing [ 30 , 31 , 32 ], provide natural tools for boundary localization in structured time series. They have been used in general segmentation and physiological activity recognition [ 33 ], but not systematically for sleep stage boundary localization from PPG under coarse 30-second supervision, where the goal is not only to mark a change but also to infer typed stage transitions with plausible dwell times. Our label expansion pipeline adapts HSMM inference and local changepoint refinement to this setting while enforcing physiological transition constraints. 
+
+2.3 Task Definition and Evaluation Protocols for Physiological Time Series 
+
+In several physiological time-series domains, the shift from window-level classification to temporal localization has produced more informative tasks and benchmarks [ 34 , 35 , 36 , 37 ]. For example, event-level formulations in arrhythmia analysis and sleep-event assessment make timing errors directly measurable rather than averaging them over fixed windows [ 36 , 37 ]. Sleep analysis, however, remains centered on epoch-level classification [ 38 ], and its standard metrics are insensitive to boundary timing. SSTD is intended to address this gap for PPG sleep analysis by defining a transition-detection task together with metrics that measure temporal precision and event-level completeness. 
+
+# 3 Sleep Stage Transition Detection: Evidence, Task, and Dataset 
+
+3.1 Evidence for PPG’s Transition-Sensitive Characteristics Physiological basis. Section 1 identified a characteristic asymmetry in PPG’s sleep-related in-formation content. Two cardiovascular mechanisms underlie this property: the inter-beat interval sequence reflects beat-to-beat sympathovagal shifts on second-to-second timescales [ 13 ], and pulse waveform morphology captures concurrent changes in peripheral vascular resistance with similarly rapid onset [39]. By contrast, EEG spectral patterns accumulate over tens of seconds [40]. Table 1: Cross-modal transition sensitivity on 1000 transition events from 100 held-out MESA subjects.             
+
+> Modality Var. ratio ↑TDL (s) ↓BDI ↑
+> PPG (HRV + morph.) 1.84 2.3 1.62
+> EEG 1.31 5.1 1.18
+
+Cross-modal comparison at transition boundaries. To quantify this asymmetry, we conducted a controlled comparison using concurrent overnight PPG and EEG recordings from MESA [ 41 ]. For each annotated transition, we compared feature variability in a ±5 s boundary window against a matched 10-second stable-epoch reference window. The resulting normalized variance ratio is above 4EEG PPG         
+
+> wake light deep wake light deep stable transition stable transition
+
+Figure 3: Population-level feature distributions on separate MESA subjects for EEG (left) and PPG (right). Each modality is summarized by inter-stage separability across stable epochs ( η2) and boundary sensitivity between stable epochs and ±5 s transition zones (Cohen’s d). EEG yields high stage separability but weaker boundary response, whereas PPG shows lower stage separability but stronger boundary sensitivity. 1 when boundary windows are more variable than stable windows. Figure 3 shows the corresponding transition-versus-stable separation on held-out MESA subjects. Quantitative analysis across 1,000 transition events from 100 held-out MESA subjects yields ¯rPPG = 1 .84 , ¯rEEG = 1 .31 , indicating that, under the feature representations examined here, PPG features exhibit a higher boundary-to-stable contrast ratio than EEG features . As a modality-normalized statistic, the variance ratio should be interpreted as relative boundary prominence rather than absolute signal richness. Under this measure, abrupt PPG perturbations stand out more clearly against its quieter stable-epoch baseline, whereas EEG combines richer stable-epoch structure with more gradual transitions [ 12 , 13 , 40 ]. Table 1 reports two complementary metrics: Transition Detection Latency (TDL) measures how quickly features respond after a reference transition, and the Boundary Discriminability Index (BDI) summarizes separation between boundary and matched stable windows; formal definitions are given in Appendix B. 
+
+Implications. Two complementary findings summarize the characteristic asymmetry relevant to task design. (F1) Boundary sensitivity: under the HRV and morphology features examined here, PPG features exhibit a higher boundary-to-stable contrast ratio than EEG, with ¯rPPG = 1 .84 compared to 1.31 for EEG signals. (F2) Epoch weakness: within stable epochs, PPG’s inter-stage separability is lower than EEG’s , with η2 = 0 .07 compared to 0.44 for EEG as shown in Figure 3. Together, F1 and F2 indicate that PPG’s informational advantage, under the feature representations examined here, is concentrated at transition boundaries, which coincide with the temporal locations that 30-second epoch classification averages over. A task formulation that explicitly targets transition events is therefore a plausible way to align the benchmark with this intrinsic sensitivity. 
+
+3.2 Task Formalization Definition. Let X = {xt}Tt=1 denote a continuous PPG recording at sec-level sampling resolution. Sleep Stage Transition Detection (SSTD) is defined as the task of predicting, from X, the set of tran-sition events E = {(τk, s − 
+
+> k
+
+, s + 
+
+> k
+
+)}Kk=1 , where τk ∈ { 1, . . . , T } is the onset time of the k-th transition in seconds, s− 
+
+> k
+
+is the stage immediately before the transition, and s+
+
+> k
+
+̸ = s− 
+
+> k
+
+is the stage immediately after. Stage labels are drawn from a four-class vocabulary S = {Wake , Light , Deep , REM }.
+
+Four-class stage vocabulary. The standard AASM taxonomy is partially collapsed: Wake is retained; N1 and N2 are merged into Light sleep; N3 is retained as Deep sleep; and REM is retained explicitly. This design preserves the clinically important REM state and its associated transition patterns while removing the notoriously unreliable N1/N2 boundary, and therefore serves as the main benchmark choice for the present single-modality PPG setting [ 38 , 19 ]. Appendix F reports a five-class extension that separates N1 and N2, showing that the same framework remains applicable under the full AASM taxonomy but with lower label quality and weaker downstream performance. 
+
+Relationship to conventional staging. SSTD and epoch-level staging are complementary : a complete SSTD prediction implies a piecewise-constant stage assignment collapsible to epoch labels by majority vote, while consecutive differing epoch labels identify candidate windows for SSTD refinement. 
+
+Evaluation metrics. We introduce two dedicated metrics that quantify aspects of prediction quality: 
+
+Boundary Error (BE). For each predicted transition event ˆτ matched to a reference event τ ∗ of the same type within a matching tolerance δmatch , the boundary error is BE = |ˆτ − τ ∗| in seconds. We 5report the mean BE and its standard deviation over all matched pairs. Unmatched predicted events and unmatched reference events contribute to false positives and false negatives respectively. 
+
+Transition F1 (TF1). A predicted event is classified as a true positive if it falls within tolerance δmatch 
+
+of a reference event of matching transition type; otherwise it is a false positive. Reference events with no matching prediction within tolerance are false negatives. Transition precision, recall, and F1 are computed from these counts, so TF1 is an event-level F1 score over typed transitions. Together, TF1 measures detection completeness and type accuracy while BE measures temporal localization sharpness, two dimensions that standard epoch-level metrics cannot capture. In the present benchmark, the sec-level reference events are produced by the label expansion pipeline described in Section 3.3 and externally checked against expert review before downstream use. We report TF1 at δmatch = 10 sin the main text and provide a sensitivity study over δmatch in Appendix D.3. 
+
+3.3 Label Expansion: Constructing Sec-Level SSTD Annotations Overview. We develop a two-stage label expansion pipeline that converts the coarse 30-second epoch labels available in existing datasets into sec-level pseudo-labels. 
+
+Stage 1: Hidden semi-Markov model. Sleep stages persist for several minutes, yet a standard HMM permits a state change at every time step. An HSMM addresses this by introducing an explicit duration distribution P (d | s) for each stage s, constraining dwell times to physiologically plausible ranges [ 32 ]. We define an HSMM over PPG feature vectors emitted at 1-second stride 1 with Gaussian emissions and Poisson duration distributions; the transition matrix is estimated from the observed 30-second label sequences, and coarse epoch-level sleep stage labels enter as multiplicative soft constraints: for each second t, the emission likelihood P (xt | st) is scaled by λ when st agrees with the enclosing 30-second epoch label ℓt and by 1/λ otherwise, with λ = 3 ; sensitivity to this parameter is reported in Appendix D.1. The joint inference objective is: 
+
+P (s1: T , d 1: K | X, L ) = 
+
+> K
+
+Y
+
+> k=1
+
+P (dk | sk ) ·
+
+> T
+
+Y
+
+> t=1
+
+P (xt | st) · c(st, ℓ t) · P (sk | sk−1), (1) 
+
+where dk is the dwell time of segment k, c(st, ℓ t) = λ if st = ℓt and 1/λ otherwise encodes the soft coarse-label constraint, L = {ℓt} denotes the coarse epoch labels, and K is the number of contiguous state segments. Viterbi decoding produces an initial sec-level state sequence with physiologically plausible dwell-time structure. 
+
+Stage 2: Local changepoint refinement. The HSMM provides sec-level state sequences, but its smoothed emission model can blur the exact onset timing that SSTD ultimately evaluates. For each HSMM-identified boundary τ , we search within a local window [τ − ∆, τ + ∆] for the refined position τ ∗ that maximizes the evidence of a distributional shift: 
+
+τ ∗ = arg max     
+
+> τ′∈[τ−∆, τ +∆]
+
+μbefore (τ ′) − μafter (τ ′) ·
+
+
+
+1 + β · σafter (τ ′)
+
+σbefore (τ ′)
+
+
+
+, (2) 
+
+where μbefore/after and σbefore/after are the mean and standard deviation of feature vectors in 10-second windows on either side of τ ′, and β weights the post-transition variance increase. We set ∆ = 15 sand β = 0 .5; sensitivity of the expanded labels to these parameters is analyzed in Appendix D.1. 
+
+Physiological transition constraints. In normal adult sleep, direct Wake ↔Deep transitions do not occur without traversing an intermediate Light-sleep stage [ 42 ]. A post-processing step enforces this constraint by inserting a brief Light-sleep segment at any detected Wake-to-Deep or Deep-to-Wake boundary, with the inserted duration set to the minimum credible Light-stage dwell time estimated from the training population. 
+
+Label quality assessment. We evaluate expanded labels using three metrics: (1) window consistency ,the fraction of 30-second windows in which the majority pseudo-label agrees with the corresponding PSG epoch label; (2) implausible transition rate , the fraction of consecutive state pairs that violate physiological progression rules; and (3) pseudo-transition density , the number of adjacent stage 
+
+> 1The feature sequence is indexed at 1-second resolution, but HRV-derived quantities that require longer temporal support are computed from rolling 30-second buffers updated every second rather than from isolated 1-second segments. Frequency-domain HRV is therefore defined over buffered context rather than single-second windows. The full feature specification is provided in the appendix.
+
+6changes per hour in the sec-level pseudo-label sequence. The third quantity is used as a fragmentation diagnostic rather than as a direct estimate of clinical macro-stage dwell times. Quantitative assessment of label quality on the evaluation cohorts is reported in Section 4. 
+
+Applicability. The pipeline is designed for PSG-scored datasets that provide epoch-level labels and concurrent PPG recordings, without requiring dataset-specific architectural modifications; cohort-specific instantiation details are provided in Section 4. 
+
+# 4 Experiments 
+
+4.1 Experimental Setup Datasets. All training and primary evaluation use the MESA (Multi-Ethnic Study of Atherosclero-sis) [ 41 ] cohort: 2,108 community-dwelling adults aged 54–93 and broad ethnic diversity of 38% White, 28% Black, 23% Hispanic, and 11% Asian; PPG is sampled at 64 Hz from finger pulse oximetry. The label expansion pipeline of Section 3.3 is applied to MESA’s AASM-scored PSG epoch labels to produce sec-level SSTD annotations under the four-class vocabulary. MESA pro-vides the original 30-second PSG labels used for the primary conventional sleep-staging comparison after majority-vote collapse of per-second predictions. As supplementary cross-cohort validation, we evaluate on the Cleveland Family Study (CFS) [ 43 ]: 730 subjects aged 6–88 scored under the Rechtschaffen & Kales protocol rather than AASM. CFS introduces two compounding sources of domain shift, population differences and annotation-protocol differences, and is reported separately in Appendix E. All models evaluated on CFS are trained exclusively on MESA and applied zero-shot. 
+
+Pipeline validation dataset. To assess label fidelity before large-scale label expansion, we use a separate expert-reviewed PPG dataset with concurrent PSG and sec-level sleep stage boundaries. This dataset serves to validate the label expansion procedure before it is applied to MESA and CFS; it plays no role in model training, model selection, or baseline comparison. We report the main agreement statistics in the body text, while the full review protocol and adjudication procedure are provided in Appendix G. 
+
+Evaluation metrics. SSTD metrics : Boundary Error (BE, seconds ↓) and Transition F1 (TF1 ↑) with 
+
+δmatch = 10 s (Section 3.2). Epoch metrics : Accuracy (Acc) and Macro-F1 (MF1) for four-class stage prediction via majority-vote collapse to 30-second epochs. Unless otherwise stated, conventional staging comparisons are reported against the original PSG-scored epoch labels after this collapse, whereas BE and TF1 are used to analyze transition localization under the expanded-label setting; Appendix D.3 reports sensitivity to δmatch .
+
+Baseline methods. We compare LightSleep and five representative existing approaches spanning four design paradigms (Table 5). Simple reference baseline : LightSleep , a deliberately lightweight 1D CNN comprising four temporal convolution blocks with max pooling and a linear classification head. It is intentionally kept simple, with no attention mechanism, multi-branch decomposition, or hand-crafted task-specific inductive bias, so that the contribution of sec-level supervision can be assessed without relying on an unusually strong architecture. Feature-based : HRV-RF [ 16 ], a random forest operating on hand-crafted HRV statistics per epoch. End-to-end waveform : SleepPPGNet [ 15 ], a CNN–RNN architecture trained on raw PPG; PPG-TCN [17 ], a temporal convolutional network with dilated causal convolutions. Time-frequency : SleepPPGNet2 [ 44 ], a model that employs multi-source domain training strategies; CWT-ResNet , a ResNet-18 encoder applied to CWT scalograms as a strong time-frequency reference. These baselines provide representative coverage of major single-modality PPG families. All deep baselines are retrained as matched variants under the same input segmentation and optimization setup. We focus on methods that admit matched epoch-only and SSTD supervision so that differences can be attributed to the supervision as cleanly as possible. 
+
+4.2 Label Expansion Validation 
+
+The practical role of this label expansion pipeline in this paper is to provide sec-level supervision for downstream training on public datasets. Before using it in that role, we validate label quality from three complementary angles that each avoid circularity. 
+
+Automatic consistency metrics. Table 2 reports two automatic quality metrics computed against the original PSG-scored epoch labels, which are independent of the expansion pipeline. On MESA, 7the full pipeline achieves window consistency of 0.857 and reduces the implausible transition rate to 7.83%, compared to 41.4% for the HSMM-only Stage 1 baseline; the N1/N2 merge into a single Light class and the physiological-constraint post-processing jointly account for this improvement [ 45 , 42 ]. On CFS, window consistency remains at 0.839 despite the R&K-to-AASM annotation-protocol shift, suggesting that the pipeline retains similar coarse-label agreement under a dataset with different labeling rules. Window consistency measures 30-second coarse agreement and functions as a lower bound on label fidelity; it does not directly assess sec-level boundary placement. Pseudo-transition density is likewise interpreted comparatively rather than normatively: it counts every adjacent state change in the sec-level pseudo-label sequence, including brief intermediary segments such as the Light stage inserted to eliminate physiologically impossible Wake ↔Deep jumps. We therefore read this quantity jointly with the implausible transition rate and the external expert agreement reported below, rather than as a standalone estimate of macro-stage dwell time. Table 2: Label expansion quality. Pipeline ablation on 100 separate MESA subjects (full ablation in Appendix D.1) and cross-cohort evaluation on CFS (R&K-scored).               
+
+> Configuration Win. consist. ↑Implaus. rate ↓Pseudo-trans./hr
+> HSMM only (5-class, MESA) 0.825 41.4% 8.31 Full pipeline (MESA) 0.857 7.83% 7.66 Full pipeline (CFS) 0.839 9.24% 8.17
+
+The most direct external check compares pipeline outputs on the separate expert-reviewed dataset against an independently established expert reference. Using the same hyperparameters as on MESA, the pipeline reaches κ = 0 .81 and TF1 = 78.6% against expert consensus, with a mean boundary error of 4.2 s (Table 3). These statistics support the clinical plausibility of the expanded labels and provide an external check that is fully separate from the downstream MESA and CFS experiments. Review protocol, adjudication procedure, and additional agreement analysis are provided in Appendix G. Table 3: Expert annotation agreement on the separate validation set.       
+
+> Comparison κTF1 (%)
+> Pipeline vs. Expert consensus 0.81 78.6 Expert inter-rater agreement 0.89 —
+
+Sleep-wake detection as a functional label-quality check. A second non-circular check uses sleep-wake detection on MESA, a binary task with established evaluation criteria whose ground-truth labels are the original PSG wake/sleep annotations, independent of the expansion pipeline. If the expanded sec-level labels encode genuine physiological boundary information rather than pipeline artefacts, features derived from those labels should provide a training signal that transfers to this independent binary task. We evaluate this transfer on LightSleep and on SleepPPGNet as an existing baseline; results and analysis are in Table 4. We use sleep-wake detection here only as an auxiliary non-circular validation task. The aim is not to claim a new state-of-the-art solution for wearable sleep-wake monitoring, but to test whether the expanded sec-level labels transfer useful information to an independently supervised task whose labels are available. Table 4: Sleep-wake detection results on MESA (Wake vs. Sleep binary classification). Epoch-only: trained on 30-second epoch labels only. SSTD →Sleep Wake: SSTD pre-trained then fine-tuned on sleep-wake labels. Metrics are against original epoch labels (independent of the expansion pipeline).           
+
+> Method Acc (%) F1 (%)
+> Epoch-only (SleepPPGNet) 87.3 83.6 SSTD →Sleep-Wake (SleepPPGNet) 92.6 89.1 Epoch-only (LightSleep) 85.1 80.8 SSTD →Sleep-Wake (LightSleep) 89.3 85.3
+
+8Table 5: Transition-level comparison on the MESA four-class setting. LightSleep is trained against the expanded SSTD labels first, then trained and evaluated with other models against MESA’s original 30s labels; this analysis examines whether the learned representations capture boundary timing.                                 
+
+> Method BE (s) ↓TF1 (%) ↑Acc (%) ↑MF1 (%) ↑
+> HRV-RF [16] 9.7 38.2 68.4 54.1 SleepPPGNet [15] 7.4 46.5 74.1 62.3 PPG-TCN [17] 6.8 49.1 73.6 63.8 SleepPPGNet2 [44] 6.5 50.3 74.8 64.2 CWT-ResNet 6.1 52.7 71.3 62.0 LightSleep 4.6 59.4 77.2 68.5
+
+4.3 Transition-Level Analysis on MESA 
+
+Table 5 provides a transition-level analysis under the expanded-label setting; the primary conventional sleep-staging comparison against MESA’s original PSG epoch labels is deferred to Table 6. Two patterns emerge. First, SSTD metrics differentiate methods that epoch metrics cannot: SleepPPGNet and PPG-TCN achieve similar epoch accuracy (74.1% vs. 73.6%) yet differ in TF1 (46.5% vs. 49.1%) and BE (7.4 s vs. 6.8 s), confirming the diagnostic value of transition-level evaluation. Second, lower boundary error is generally accompanied by higher epoch accuracy, although the ordering is not perfectly monotonic across architectures. Notably, even the deliberately lightweight LightSleep baseline attains the strongest results in this comparison (BE 4.6 s, TF1 59.4%, Acc 77.2%, MF1 68.5%), suggesting that the value of sec-level supervision is not confined to unusually high-capacity or heavily engineered models. The sensitivity analysis to matching tolerance δmatch in Appendix D.3 confirms that these rankings are preserved across δ ∈ { 5, 10 , 15 } s. 
+
+4.4 Transfer to Epoch-Level Staging 
+
+Table 6: Transfer benefit of SSTD pre-training on conventional 30 s four-class epoch staging.                                
+
+> Method Epoch-only SSTD →Epoch
+> Acc MF1 Acc [ ∆]MF1 [ ∆]HRV-RF 68.4 54.1 73.5 [+5.1] 57.0 [+2.9] SleepPPGNet 74.1 62.3 79.8 [+5.7] 67.0 [+4.7] PPG-TCN 73.6 63.8 78.3 [+4.7] 65.5 [+1.7] SleepPPGNet2 74.8 64.2 80.3 [+5.5] 68.5 [+4.3] CWT-ResNet 71.3 62.0 75.0 [+3.7] 64.9 [+2.9] LightSleep 72.4 62.3 77.2 [+4.8] 68.5 [+6.2]
+
+Transfer (Table 6). Table 6 is the primary practical comparison for conventional sleep staging because it evaluates models against MESA’s original PSG epoch labels after collapsing per-second predictions. Within each matched architecture pair, SSTD pre-training consistently improves four-class epoch-level staging across all six evaluated architectures. This transfer is practically meaningful because the hardest 30-second windows cluster near true stage transitions, where the majority label is most sensitive to boundary placement. A representation that resolves second-level boundary structure more accurately therefore provides cleaner evidence for conventional epoch prediction. Crucially, the epoch-level gains are evaluated against the original PSG epoch labels, which are independent of the pseudo-label pipeline, thereby decoupling the transfer benefit from any label-construction choices and mitigating concerns about circularity between the expansion process and downstream evaluation. Appendix E extends this analysis to CFS under a zero-shot cross-cohort protocol, showing that the transfer benefit is preserved despite compounding demographic and annotation-protocol shifts. 
+
+# 5 Conclusion 
+
+This work introduces Sleep Stage Transition Detection (SSTD), motivated by a characteristic asym-metry in PPG: stage-specific differences are comparatively weak within stable epochs, yet transition-9related perturbations are sharper on sec-level timescales than in the EEG reference examined here. A label expansion pipeline converts coarse PSG-scored epoch labels into sec-level SSTD annotations; dedicated BE and TF1 metrics expose performance differences invisible to epoch-level evaluation. Even with a deliberately lightweight 1D CNN baseline, LightSleep, sec-level supervision remains effective: LightSleep attains 4.6 s BE and 59.4% TF1 on the four-class MESA benchmark, outper-forming the more complex representative baselines included in the current evaluation protocol. SSTD pre-training improves conventional four-class epoch-level staging by 1.7–4.7 pp in MF1 across five representative existing baselines against MESA’s original PSG epoch labels, with the transfer benefit preserved under supplementary zero-shot cross-cohort evaluation on CFS (Appendix E). Limitations of the current work are discussed in Appendix H. 
+
+# References 
+
+[1] Leon Ting and Atul Malhotra. Disorders of sleep: an overview. Primary care , 32(2):305, 2005. [2] Michael J Sateia. International classification of sleep disorders. Chest , 146(5):1387–1394, 2014. [3] Richard B Berry, Rita Brooks, Charlene E Gamaldo, Susan M Harding, Carole Marcus, Bradley V Vaughn, et al. The aasm manual for the scoring of sleep and associated events. 
+
+Rules, Terminology and Technical Specifications, Darien, Illinois, American Academy of Sleep Medicine , 176(2012):7, 2012. [4] Karmen Markov, Mohamed Elgendi, Vera Birrer, and Carlo Menon. Interpretable feature-based machine learning for automatic sleep detection using photoplethysmography. npj Biosensing ,2(1):24, 2025. [5] Bing Zhai, Ignacio Perez-Pozuelo, Emma A. D. Clifton, Joao Palotti, and Yu Guan. Making sense of sleep: Multimodal sleep stage classification in a large, diverse population using movement and cardiac sensing. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. , 4(2), June 2020. [6] Ignacio Perez-Pozuelo, Bing Zhai, Joao Palotti, Raghvendra Mall, Michaël Aupetit, Juan M. Garcia-Gomez, Shahrad Taheri, Yu Guan, and Luis Fernandez-Luque. The future of sleep health: a data-driven revolution in sleep science and medicine. npj Digital Medicine , 3(1):42, 2020. [7] Joseph AP Quino, Diego AC Cardenas, Marcelo AF Toledo, Felipe M Dias, Estela Ribeiro, José E Krieger, and Marco A Gutierrez. Optimizing photoplethysmography-based sleep staging models by leveraging temporal context for wearable devices applications. arXiv preprint arXiv:2410.00693 , 2024. [8] Seiichi Morokuma, Toshinari Hayashi, Masatomo Kanegae, Yoshihiko Mizukami, Shinji Asano, Ichiro Kimura, Yuji Tateizumi, Hitoshi Ueno, Subaru Ikeda, and Kyuichi Niizeki. Deep learning-based sleep stage classification with cardiorespiratory and body movement activities in individuals with suspected sleep disorders. Scientific reports , 13(1):17730, 2023. [9] Jiawei Wang, Yu Guan, Chen Chen, Ligang Zhou, Laurence T Yang, and Sai Gu. On improving ppg-based sleep staging: A pilot study. In Companion of the 2025 ACM International Joint Conference on Pervasive and Ubiquitous Computing , pages 1640–1644, 2025. [10] Ahsan Habib, Mohammod Abdul Motin, Thomas Penzel, Marimuthu Palaniswami, John Yearwood, and Chandan Karmakar. Performance of a convolutional neural network derived from ppg signal in classifying sleep stages. IEEE Transactions on Biomedical Engineering ,70(6):1717–1728, 2022. [11] Scott Ryals, Ambrose Chiang, Sharon Schutte-Rodin, Arvind Chandrakantan, Nitun Verma, Steven Holfinger, Fariha Abbasi-Feinberg, Anuja Bandyopadhyay, Kelly Baron, Sumit Bhargava, et al. Photoplethysmography—new applications for an old technology: a sleep technology review. Journal of Clinical Sleep Medicine , 19(1):189–195, 2023. 10 [12] John Trinder, Jan Kleiman, Melinda Carrington, Simon Smith, Sibilah Breen, Nellie Tan, and Young Kim. Autonomic activity during human sleep as a function of time and sleep stage. 
+
+Journal of sleep research , 10(4):253–264, 2001. [13] Marek Malik. Heart rate variability: Standards of measurement, physiological interpretation, and clinical use: Task force of the european society of cardiology and the north american society for pacing and electrophysiology. Annals of Noninvasive Electrocardiology , 1(2):151–181, 1996. [14] Shirel Attia, Revital Shani Hershkovich, Alissa Tabakhov, Angeleene Ang, Sharon Haimov, Riva Tauman, and Joachim A Behar. Sleepppg-net2: Deep learning generalization for sleep staging from photoplethysmography. arXiv preprint arXiv:2404.06869 , 2024. [15] Kevin Kotzen, Peter H Charlton, Sharon Salabi, Lea Amar, Amir Landesberg, and Joachim A Behar. Sleepppg-net: A deep learning algorithm for robust sleep staging from continuous photoplethysmography. IEEE Journal of Biomedical and Health Informatics , 27(2):924–932, 2022. [16] Pedro Fonseca, Marco Ross, Andreas Cerny, Peter Anderer, Fokke van Meulen, Hennie Janssen, Angelique Pijpers, Sylvie Dujardin, Pauline van Hirtum, Merel van Gilst, et al. A computation-ally efficient algorithm for wearable sleep staging in clinical populations. Scientific Reports ,13(1):9182, 2023. [17] Riku Huttunen, Timo Leppänen, Brett Duce, Arie Oksenberg, Sami Myllymaa, Juha Töyräs, and Henri Korkalainen. Assessment of obstructive sleep apnea-related sleep fragmentation utilizing deep learning-based sleep staging from photoplethysmography. Sleep , 44(10):zsab142, 2021. [18] Mustafa Radha, Pedro Fonseca, Arnaud Moreau, Marco Ross, Andreas Cerny, Peter Anderer, Xi Long, and Ronald M Aarts. Sleep stage classification from heart-rate variability using long short-term memory neural networks. Scientific reports , 9(1):14149, 2019. [19] Pedro Fonseca, Xi Long, Mustafa Radha, Reinder Haakma, Ronald M Aarts, and Jérôme Rolink. Sleep stage classification with ecg and respiratory effort. Physiological measurement ,36(10):2027–2040, 2015. [20] Ozal Yildirim, Ulas Baran Baloglu, and U Rajendra Acharya. A deep learning model for automated sleep stages classification using psg signals. International journal of environmental research and public health , 16(4):599, 2019. [21] Stanislas Chambon, Mathieu N Galtier, Pierrick J Arnal, Gilles Wainrib, and Alexandre Gram-fort. A deep learning architecture for temporal sleep stage classification using multivariate and multimodal time series. IEEE Transactions on Neural Systems and Rehabilitation Engineering ,26(4):758–769, 2018. [22] Arnaud Sors, Stéphane Bonnet, Sébastien Mirek, Laurent Vercueil, and Jean-François Payen. A convolutional neural network for sleep stage scoring from raw single-channel eeg. Biomedical Signal Processing and Control , 42:107–114, 2018. [23] Xiangfa Zhao and Guobing Sun. A multi-class automatic sleep staging method based on photoplethysmography signals. Entropy , 23(1):116, 2021. [24] Emadeldeen Eldele, Zhenghua Chen, Chengyu Liu, Min Wu, Chee-Keong Kwoh, Xiaoli Li, and Cuntai Guan. An attention-based deep learning approach for sleep stage classification with single-channel eeg. IEEE Transactions on Neural Systems and Rehabilitation Engineering ,29:809–818, 2021. [25] Huy Phan, Kristian P Lorenzen, Elisabeth Heremans, Oliver Y Chén, Minh C Tran, Philipp Koch, Alfred Mertins, Mathias Baumert, Kaare B Mikkelsen, and Maarten De Vos. L-seqsleepnet: Whole-cycle long sequence modeling for automatic sleep staging. IEEE Journal of Biomedical and Health Informatics , 27(10):4748–4757, 2023. 11 [26] Akara Supratak, Hao Dong, Chao Wu, and Yike Guo. Deepsleepnet: A model for automatic sleep stage scoring based on raw single-channel eeg. IEEE transactions on neural systems and rehabilitation engineering , 25(11):1998–2008, 2017. [27] Loris Constantin, Christian M Horvath, Florent Baty, Clémentine Aguet, Jérôme Van Zaen, Alia Lemkaddem, Loïc Jeanningros, Martin Proença, Xiaoli Yang, Kurt De Jaegere, et al. Towards long-term sleep staging via wearable reflective photoplethysmography. SLEEPJ , page zsaf246, 2025. [28] Henri Korkalainen, Juhani Aakko, Brett Duce, Samu Kainulainen, Akseli Leino, Sami Nikko-nen, Isaac O Afara, Sami Myllymaa, Juha Töyräs, and Timo Leppänen. Deep learning en-ables sleep staging from photoplethysmogram for patients with suspected sleep apnea. Sleep ,43(11):zsaa098, 2020. [29] William G Coon, Diego Luna, Akshita Panagrahi, Matthew Reid, and Mattson Ogg. Getting more from less: Transfer learning improves sleep stage decoding accuracy in peripheral wearable devices. arXiv preprint arXiv:2506.00730 , 2025. [30] Rebecca Killick, Paul Fearnhead, and Idris A Eckley. Optimal detection of changepoints with a linear computational cost. Journal of the American Statistical Association , 107(500):1590–1598, 2012. [31] Ryan Prescott Adams and David JC MacKay. Bayesian online changepoint detection. arXiv preprint arXiv:0710.3742 , 2007. [32] Shun-Zheng Yu. Hidden semi-markov models. Artificial intelligence , 174(2):215–243, 2010. [33] Ling Bao and Stephen S Intille. Activity recognition from user-annotated acceleration data. In 
+
+International conference on pervasive computing , pages 1–17. Springer, 2004. [34] Andreas Bulling, Ulf Blanke, and Bernt Schiele. A tutorial on human activity recognition using body-worn inertial sensors. ACM Computing Surveys (CSUR) , 46(3):1–33, 2014. [35] Natalia Neverova, Christian Wolf, Graham Taylor, and Florian Nebout. Moddrop: adaptive multi-modal gesture recognition. IEEE Transactions on Pattern Analysis and Machine Intelligence ,38(8):1692–1706, 2015. [36] Awni Y Hannun, Pranav Rajpurkar, Masoumeh Haghpanahi, Geoffrey H Tison, Codie Bourn, Mintu P Turakhia, and Andrew Y Ng. Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network. Nature medicine , 25(1):65–69, 2019. [37] Jonathan F Carter, João Jorge, Oliver Gibson, and Lionel Tarassenko. Sleepvst: Sleep staging from near-infrared video signals using pre-trained transformers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 12479–12489, 2024. [38] Richard B Berry, Rita Brooks, Charlene Gamaldo, Susan M Harding, Robin M Lloyd, Stuart F Quan, Matthew T Troester, and Bradley V Vaughn. Aasm scoring manual updates for 2017 (version 2.4), 2017. [39] John Allen. Photoplethysmography and its application in clinical physiological measurement. 
+
+Physiological measurement , 28(3):R1–R39, 2007. [40] Esther Werth, Peter Achermann, Derk-Jan Dijk, and Alexander A Borbély. Spindle frequency activity in the sleep eeg: individual differences and topographical distribution. Electroen-cephalography and clinical neurophysiology , 103(5):535–542, 1997. [41] Xiaoli Chen, Rui Wang, Phyllis Zee, Pamela L Lutsey, Sogol Javaheri, Carmela Alcántara, Chandra L Jackson, Michelle A Williams, and Susan Redline. Racial/ethnic differences in sleep disturbances: the multi-ethnic study of atherosclerosis (mesa). Sleep , 38(6):877–888, 2015. [42] Mary A Carskadon, William C Dement, et al. Normal human sleep: an overview. Principles and practice of sleep medicine , 4(1):13–23, 2005. 12 [43] Susan Redline, Peter V Tishler, Tor D Tosteson, John Williamson, Kenneth Kump, Ilene Browner, Veronica Ferrette, and Patrick Krejci. The familial aggregation of obstructive sleep apnea. American journal of respiratory and critical care medicine , 151(3):682–687, 1995. [44] Shirel Attia, Revital Shani Hershkovich, Alissa Tabakhov, Angeleene Ang, Arie Oksenberg, Riva Tauman, and Joachim A Behar. Sleepppg-net2: Deep learning generalization for sleep staging from photoplethysmography. Physiological Measurement , 46(12):125001, 2025. [45] Heidi Danker-Hopfe, Peter Anderer, Josef Zeitlhofer, Marion Boeck, Hans Dorn, Georg Gruber, Esther Heller, Erna Loretz, Doris Moser, Silvia Parapatics, et al. Interrater reliability for sleep scoring according to the rechtschaffen & kales and the new aasm standard. Journal of sleep research , 18(1):74–84, 2009. [46] Virend K Somers et al. Sympathetic-nerve activity during sleep in normal subjects. New England Journal of Medicine , 328(5):303–307, 1993. 
+
+# A Implementation Details, Resources, and Human-Subjects Notes 
+
+A.1 Training Details 
+
+To keep the comparison focused on supervision rather than extensive architecture-specific retuning, all deep baselines are trained under a shared default optimization setup unless a method requires a minor implementation-specific adjustment. For the current submission draft, the common initialization uses AdamW with an initial learning rate of 3 × 10 −4, weight decay of 5 × 10 −4, batch size 16, and random seed 42. Model selection is performed on the fixed MESA validation split described in Section 4.1, and early stopping monitors validation MF1 with a patience of 30 epochs without improvement. The sec-level supervision is produced once from the same four-class label expansion pipeline used throughout the paper, with fixed hyperparameters λ = 3 , ∆ = 15 s, and β = 0 .5.
+
+A.2 Compute Resources 
+
+The experiments reported in this paper are run on a single NVIDIA GeForce RTX 3060 GPU with 6 GB of memory. This budget is sufficient because label expansion is performed offline and the downstream baselines are moderate in size relative to large-model pre-training. The dominant cost therefore comes from recording-wise HSMM plus changepoint label expansion and from retraining several downstream baselines under the same protocol, rather than from large hyperparameter sweeps or multi-node training. 
+
+A.3 Participant Collection and Handling 
+
+The separate expert-reviewed validation set consists of overnight physiological recordings collected for non-invasive sleep-monitoring research and used here only for label-fidelity validation. Before physician review, the records are prepared in de-identified form and access is restricted to authorized study personnel and the reviewing sleep physicians. No crowdsourcing is involved in this study. Institution-specific approval identifiers, recruitment language, compensation details, and any site-specific consent wording are omitted from the anonymized submission draft and should be finalized with the study team before submission. 
+
+A.4 Broader Impacts and Responsible Use 
+
+The positive motivation of this work is to improve the use of wearable PPG for lower-burden and more scalable sleep assessment when full PSG is impractical. At the same time, the method is not presented as a substitute for clinical PSG or physician judgment: pseudo-label errors, cohort shift, motion artifacts, and atypical sleep architecture may still affect predictions, so any deployment-oriented use would require prospective clinical validation, careful data governance, and human oversight. 13 B Metric Definitions: Transition Detection Latency and Boundary Discriminability Index 
+
+Table 1 reports two metrics, Transition Detection Latency (TDL) and Boundary Discriminability Index (BDI), alongside the normalized variance ratio. We provide their formal definitions here. 
+
+Transition Detection Latency (TDL) 
+
+TDL quantifies how quickly a modality’s feature representation responds to a ground-truth sleep stage transition. Let ft ∈ Rd be the d-dimensional feature vector at second t and let δt = ∥ft − ft−1∥2 be the frame-to-frame feature-change magnitude. A per-modality detection threshold θ is set to the 95th percentile of {δt} computed over all seconds within stable-epoch windows (at least 15 s from any PSG boundary). For a transition at time τk, the detection latency is: 
+
+TDL k = min t ≥ τk : δt > θ − τk. (3) The reported TDL is the median of {TDL k} over all K = 1 ,000 evaluated transition events. A lower value indicates that the modality’s features respond earlier and more sharply to the transition. 
+
+Boundary Discriminability Index (BDI) 
+
+BDI measures how separable the feature distribution near a transition boundary is from the stable-epoch distribution. For transition event k, let F (k) 
+
+> B
+
+denote the feature vectors sampled within a ±5 swindow centered on τk, and let F (k) 
+
+> S
+
+denote vectors from a matched 10-second stable-epoch reference window drawn at least 30 s from any transition. BDI is the mean Cohen’s d across all d features in the modality’s feature set, averaged over all events: 
+
+BDI = 1
+
+K
+
+> K
+
+X
+
+> k=1
+
+1
+
+d
+
+> d
+
+X
+
+> j=1
+
+¯f (k) 
+
+> B,j
+
+− ¯f (k)
+
+> S,j
+
+s(k)
+
+> j, pooled
+
+, (4) where s(k) 
+
+> j, pooled
+
+=
+
+q
+
+(s2( k) 
+
+> B,j
+
++ s2( k) 
+
+> S,j
+
+)/2 is the pooled standard deviation of feature j. Features are Z-scored using each modality’s own stable-epoch statistics prior to aggregation, so BDI is expressed in modality-specific standard-deviation units and is directly comparable across modalities with different feature scales. A higher value indicates greater separability of boundary and stable windows under that modality’s feature representation. 
+
+# C Compared Baselines and Evaluation Notes 
+
+All deep baselines, including LightSleep, are retrained on the same SSTD dataset with identical sec-level pseudo-labels and class-weighted cross-entropy to ensure a fair comparison of representation and training signal. LightSleep follows the same protocol but remains intentionally lightweight: a four-layer 1D CNN with max pooling and a linear classification head, as summarized in Section 4.1. For the transfer study we report the architectures that admit matched epoch-only and SSTD-pretrained variants under the same optimization protocol. For epoch-level baselines originally designed for 30-second classification, we replace the final output layer with a per-second prediction head and train on the same sec-level labels, collapsing per-second predictions to 30-second epochs by majority vote at evaluation time; these are accordingly task-retrofitted adaptations rather than architectures purpose-built for temporal event localization. Classical changepoint detectors are not included as baselines because they produce unlabelled change-times without assigning a from/to stage identity; they therefore cannot be evaluated on the TF1 metric, which requires correct transition-type classification. The HSMM-derived boundaries from Stage 1 of the label expansion pipeline do provide a labelled-event reference: on MESA they achieve BE = 5.3 s and TF1 = 56.2%, as reported in Appendix D.1, and serve as a reference point for the performance level achievable through the label-expansion pipeline’s Stage 1 output, prior to any sequence model trained on the SSTD objective. Comparison with purpose-built event-detection methods remains an open direction. 14 D Additional Experimental Results 
+
+D.1 Label Expansion Ablation 
+
+Table 2 in the main text reports the full pipeline against the HSMM-only baseline. Table 7 provides a finer-grained ablation showing the incremental effect of each pipeline component. Table 7: Incremental label expansion ablation on 100 separate MESA subjects.                  
+
+> Pipeline variant Win. consist. ↑Implaus. rate ↓Pseudo-trans./hr
+> HSMM only (5-class) 0.825 41.4% 8.31 + Changepoint refinement 0.831 39.2% 8.15 + 4-class remapping 0.846 18.6% 7.83 + physiological constraints 0.857 7.83% 7.66
+
+The four-class remapping contributes the largest single reduction in implausible transitions (39.2% 
+
+→ 18.6%), confirming that the N1/N2 merge eliminates a major source of unreliable boundary assignments. Physiological constraints further halve the implausible rate. Changepoint refinement improves window consistency modestly, but its primary benefit, more precise boundary timing, is better reflected in the downstream model’s BE as shown in Appendix D.2. The absolute pseudo-transition density should therefore be read as a fragmentation statistic for comparing pipeline variants, not as a normative summary of clinical sleep-architecture dwell times. The label-consistency weight 
+
+λ is set to 3 throughout; varying λ ∈ { 2, 3, 5} changes window consistency by at most 0.004 and the implausible transition rate by at most 0.6 pp. The changepoint search radius is ∆ = 15 s and the variance-asymmetry weight is β = 0 .5; varying ∆ ∈ { 10 , 15 , 20 } s and β ∈ { 0.3, 0.5, 0.8}
+
+changes downstream LightSleep BE by at most 0.4 s and TF1 by at most 1.6 pp, confirming moderate robustness of the expanded labels to these hyperparameter choices. 
+
+D.2 Impact of Changepoint Refinement on Downstream Model Performance 
+
+Table 8: Effect of changepoint boundary refinement on downstream LightSleep performance.                 
+
+> Training labels BE (s) ↓TF1 (%) ↑Acc (%) ↑MF1 (%) ↑
+> HSMM + 4-class + constraints (no CP) 5.3 56.2 76.5 67.4 Full pipeline (with CP) 4.6 59.4 77.2 68.5
+
+Changepoint refinement reduces downstream LightSleep BE by 0.7 s and improves TF1 by 3.2 pp, confirming that the precision of boundary localization in pseudo-labels directly translates to improved transition detection in trained models. 
+
+D.3 Sensitivity to Matching Tolerance δmatch 
+
+Table 9: TF1 (%) and mean BE (s) under varying matching tolerances for the top three methods.                                 
+
+> Method δ= 5 sδ= 10 sδ= 15 sTF1 BE TF1 BE TF1 BE CWT-ResNet 39.5 4.1 52.7 6.1 60.8 7.3 PPG-TCN 36.2 3.8 49.1 6.8 57.4 7.9 LightSleep 46.3 3.2 59.4 4.6 66.1 5.4
+
+The ranking among methods is preserved across all three tolerance values, confirming that the conclusions drawn in the main text are robust to the choice of δmatch . LightSleep’s advantage is most pronounced at the strictest tolerance ( δ = 5 s), where precise boundary localization matters most. 15 E Cross-Cohort Validation on CFS 
+
+This appendix uses the Cleveland Family Study (CFS) only as a supplementary zero-shot check of whether the supervision learned from MESA transfers under simultaneous population and annotation-protocol shift. CFS differs from MESA in two respects that compound during evaluation: (i) the population is younger and broader in age (6–88 vs. 54–93), with a higher prevalence of sleep-disordered breathing, and (ii) the original PSG annotations use the Rechtschaffen & Kales (R&K) scoring protocol rather than AASM. All models are trained on MESA without using CFS for model selection. We report these results separately from the main MESA experiments to provide an honest assessment of cross-cohort robustness without conflating the two sources of domain shift. 
+
+E.1 Annotation Protocol Differences 
+
+The R&K protocol defines four NREM stages (S1–S4) and applies somewhat different transition criteria than AASM, particularly at the S1/S2 boundary (corresponding to our N1/N2 →Light merge) and at slow-wave sleep onset (S3 onset vs. AASM N3 threshold of 20% delta waves per epoch). Under the four-class vocabulary used in the main text, the mapping is Wake →Wake, S1/S2 →Light, S3/S4 →Deep, and REM →REM, which is conceptually aligned but introduces residual boundary timing ambiguity: an R&K-scored S2 →S3 transition may not coincide exactly with where an AASM scorer would place the N2 →N3 boundary. This annotation-level uncertainty inflates both BE and the implausible transition rate on CFS relative to MESA, independent of any population-level performance difference. 
+
+E.2 Cross-Modal Variance Ratio on CFS 
+
+Table 10: Cross-modal variance ratio (boundary vs. interior) on MESA and CFS. Values > 1 indicate boundary-concentrated sensitivity.       
+
+> Modality MESA CFS
+> PPG 1.84 1.91 EEG 1.31 1.28
+
+Table 10 confirms that the characteristic asymmetry persists on CFS. The PPG variance ratio is in fact slightly elevated (1.91 vs. 1.84), potentially reflecting the increased frequency of arousals and associated autonomic transients in this sleep-disordered population. The physiological basis for SSTD is therefore not specific to MESA’s elderly community-dwelling demographic. 
+
+E.3 Supplementary Transition-Level Evaluation on CFS 
+
+Table 11: Supplementary transition-level evaluation on CFS (730 subjects, zero-shot from MESA-trained models). All methods are trained on MESA labels and evaluated on CFS without adaptation (only LightSleep is pre-trained on SSTD expanded labels).                                 
+
+> Method BE (s) ↓TF1 (%) ↑Acc (%) ↑MF1 (%) ↑
+> HRV-RF 13.8 24.3 63.2 48.7 CWT-ResNet 7.8 43.6 67.1 57.4 SleepPPGNet 9.6 38.4 70.4 58.2 PPG-TCN 9.1 39.8 69.8 59.1 SleepPPGNet2 8.8 40.9 71.2 59.6 LightSleep 5.5 53.2 73.6 64.3
+
+Despite the compounding domain shift, the method ranking on CFS is broadly consistent with MESA. LightSleep (SSTD pre-trained) achieves the lowest BE (5.5 s) and highest TF1 (53.2%), outperforming SleepPPGNet2 by 3.3 s and 12.3 pp in TF1 respectively. The absolute performance drop from MESA (TF1 59.4%) to CFS (53.2%) is 6.2 pp, which reflects both population-level difficulty and annotation-protocol mismatch. Among the epoch-only baselines, the ordering follows the same pattern as MESA: HRV-RF degrades the most severely (TF1 38.2% →24.3%, −13.9 pp), while the stronger architectures (SleepPPGNet2, SleepPPGNet, PPG-TCN) maintain higher accuracy 16 despite the domain shift. LightSleep with SSTD pre-training (73.6%) outperforms all epoch-only baselines on CFS, consistent with the transfer benefit observed on MESA. 
+
+E.4 Transfer Benefit on CFS 
+
+Table 12: SSTD pre-training transfer benefit on epoch-level staging: MESA vs. CFS. All models trained on MESA, CFS evaluated zero-shot.                             
+
+> Cohort Method Epoch-only Acc SSTD →Epoch Acc [∆]Epoch-only MF1 SSTD →Epoch MF1 [∆]CFS HRV-RF 63.2 68.6 [ +5.4] 48.7 52.1 [ +3.4] CWT-ResNet 67.1 71.3 [ +4.2] 57.4 60.8 [ +3.4] LightSleep 68.3 73.6 [ +5.3] 57.8 64.3 [ +6.5] SleepPPGNet 70.4 76.6 [ +6.2] 58.2 63.4 [ +5.2] PPG-TCN 69.8 75.0 [ +5.2] 59.1 61.3 [ +2.2] SleepPPGNet2 71.2 77.2 [ +6.0] 59.6 64.4 [ +4.8]
+
+The SSTD pre-training benefit is preserved on CFS: the average MF1 gain across six architectures is 4.3 pp, compared to 3.8 pp on MESA. The modestly larger benefit on CFS is consistent with the interpretation that SSTD-learned temporal representations are especially valuable when epoch-level features are degraded by population-level variability or annotation-protocol mismatch, as the greater headroom available on CFS due to lower absolute performance may amplify the observable gain. However, we note that this difference should be interpreted with caution given the compounding domain shift; we therefore report it as an observation rather than a strong claim. 
+
+E.5 Discussion: Disentangling Population and Annotation Effects 
+
+The CFS evaluation introduces two confounded sources of domain shift. To provide a rough de-composition, we note that the label quality degradation from MESA to CFS (window consistency 0.857 →0.839, implausible rate 7.83% →9.24%) is moderate, suggesting that the annotation-protocol mismatch has a measurable but limited effect on pseudo-label quality. The remaining performance gap likely reflects genuine population differences: CFS subjects span a much wider age range (in-cluding pediatric subjects aged 6–17 not represented in MESA training) and exhibit higher rates of sleep-disordered breathing. A controlled experiment isolating the annotation effect alone, for instance by re-scoring a subset of CFS recordings under AASM rules, would be informative but falls outside the scope of this work. Overall, the CFS evaluation suggests that the characteristic asymmetry, method rankings, and SSTD transfer benefit are not solely artifacts of MESA-specific conditions. The pipeline can be applied without dataset-specific tuning to a cohort with different demographics and a different annotation protocol, although broader generalization claims require further evaluation. 
+
+# F Five-Class Extension Beyond the Main Four-Class Setting 
+
+The main text adopts a four-class vocabulary (Wake, Light, Deep, REM) that merges N1/N2 into a single Light stage. This appendix examines whether the proposed SSTD framework extends further to the full five-class AASM taxonomy, and quantifies the degradation induced by separating N1 and N2. 
+
+F.1 Experimental Protocol 
+
+We constructed one additional label expansion variant using the same HSMM–changepoint pipeline. The main experiments use a four-class vocabulary with Wake, Light (N1+N2), Deep (N3), and REM. The appendix-only extension follows the full AASM taxonomy with Wake, N1, N2, N3, and REM as separate classes. All other pipeline parameters, including the changepoint refinement window and physiological constraints, remain identical. LightSleep is retrained from scratch on each label set with identical hyperparameters. 17 Table 13: Label expansion quality as a function of stage vocabulary granularity (100 separate MESA subjects).            
+
+> Vocabulary Win. consist. ↑Implaus. rate ↓Pseudo-trans./hr
+> 4-class (Wake, Light, Deep, REM) 0.857 7.83% 7.66 5-class (full AASM) 0.791 14.6% 8.94
+
+F.2 Label Expansion Quality Across Vocabularies 
+
+Table 13 reveals a consistent degradation pattern. Separating N1 and N2 reduces window consistency from 0.857 to 0.791 and nearly doubles the implausible transition rate. The primary source of degradation is the combination of REM ambiguity and the weak separability between N1 and N2. From a PPG perspective, REM sleep presents a distinctive challenge: autonomic dynamics during REM episodes resemble those of light wakefulness, with elevated and irregular heart rate variability, reduced parasympathetic tone, and phasic bursts that overlap with Wake signatures in the cardiovascular feature space [ 46 ]. Unlike the EEG, which distinguishes REM through characteristic low-amplitude mixed-frequency activity and rapid eye movements recorded on EOG channels, PPG lacks direct access to these cortical and ocular markers. At the same time, the N1/N2 distinction is intrinsically noisy even in standard PSG scoring, so splitting Light sleep into two adjacent classes introduces additional boundary uncertainty. Consequently, the HSMM emission model more frequently confuses neighboring states and produces spurious transitions that inflate both the implausible rate and the transition density. Here again, the density statistic is most informative comparatively: the increase indicates stronger fragmentation of the pseudo-label sequence rather than a direct claim about clinical macro-stage dwell times. 
+
+F.3 Downstream Model Performance Across Vocabularies 
+
+Table 14: LightSleep performance across stage vocabularies on the MESA test set (316 subjects).                 
+
+> Vocabulary BE (s) ↓TF1 (%) ↑Acc (%) ↑MF1 (%) ↑
+> 4-class (Wake, Light, Deep, REM) 4.6 59.4 77.2 68.5
+> 5-class (full AASM) 5.8 48.3 71.6 57.2
+
+Table 15: Per-transition-type F1 (%) for LightSleep under the main four-class vocabulary. 
+
+Transition type Wake ↔Light Light ↔Deep Light ↔REM Wake ↔REM 
+
+TF1 (%) 56.1 52.8 31.4 24.7 Table 14 confirms that finer vocabularies degrade all metrics. The five-class model loses 11.1 pp in TF1 and 5.6 pp in epoch accuracy relative to the main four-class model. The per-type breakdown in Table 15 localizes one source of this difficulty already visible in the main setting: even under four-class supervision, transitions involving REM achieve TF1 of 24.7–31.4%, far below the 52–56% range for Wake ↔Light and Light ↔Deep transitions. 
+
+F.4 Discussion 
+
+These results support the four-class vocabulary as the most stable benchmark setting for SSTD from PPG in the current study. The degradation observed in the five-class extension reflects the combined difficulty of REM ambiguity and fine-grained N1/N2 separation rather than any limitation of the SSTD framework itself. The core methodology, including the label expansion pipeline, the SSTD task formulation, and the evaluation metrics, remains vocabulary-agnostic and extends to the full AASM taxonomy without modification. At the same time, the five-class results indicate that further gains in stage-specific discriminability will be necessary before fully fine-grained labeling becomes equally reliable from PPG alone. 18 G Clinical Validation: Expert Physician Review 
+
+Pseudo-labels produced by the HSMM–changepoint pipeline are evaluated against coarse PSG epoch labels in the main text (Table 2). However, PSG labels themselves are 30-second annotations that do not capture sub-epoch boundary timing. To assess whether the expanded sec-level labels are clinically plausible, we conducted an independent expert review. 
+
+G.1 Review Protocol 
+
+Three board-certified sleep physicians independently reviewed a separate expert-reviewed validation set of 50 recordings. For each recording, the reviewers were presented with concurrent PSG signals, including EEG, EOG, EMG, and ECG channels, at full temporal resolution and were asked to annotate the onset time of each sleep stage transition at sec-level precision. The reviewers were blinded to the pipeline’s pseudo-labels during annotation. Pairwise inter-rater agreement was computed across the three independent annotations before consensus adjudication, and disagreements exceeding 10 s were then resolved to form the expert reference standard. The expert annotations serve as the reference standard for this validation. We compare the pipeline’s pseudo-labels against these expert annotations using the same SSTD metrics (BE, TF1) employed throughout the paper, as well as Cohen’s κ for epoch-level agreement. 
+
+G.2 Agreement Between Pseudo-Labels and Expert Annotations 
+
+Table 16: Agreement between pseudo-labels and expert physician annotations on 50 separate record-ings, evaluated under the main four-class setting and its five-class extension. Expert inter-rater κ is reported for reference.                  
+
+> Vocabulary BE (s) ↓TF1 (%) ↑Epoch κ↑Expert inter-rater κ
+> 4-class (Wake, Light, Deep, REM) 4.2 78.6 0.81 0.89 5-class (full AASM) 6.1 63.4 0.72 0.84
+
+Table 16 reveals several findings. 
+
+Four-class agreement is strong. Under the main four-class vocabulary, the pipeline achieves a mean boundary error of 4.2 s and TF1 of 78.6% against expert annotations, with epoch-level κ = 0 .81 .This level of agreement is close to the expert inter-rater κ of 0.89 and provides external evidence that the pseudo-labels are clinically plausible in the adopted benchmark setting. The 4.2 s BE is within the range of inter-rater boundary disagreement observed across physician pairs (mean 3.8 s, std 2.1 s). 
+
+Agreement degrades in the five-class extension. Separating N1 and N2 reduces κ to 0.72 and TF1 to 63.4%, with boundary error increasing to 6.1 s. The degradation pattern mirrors the label quality results in Appendix F and is consistent with the view that fine-grained stage separation remains the dominant source of disagreement. 
+
+Expert inter-rater agreement also decreases. Notably, expert inter-rater κ itself drops from 0.89 (4-class) to 0.84 (5-class), reflecting the well-documented difficulty of N1/N2 boundary scoring even among trained polysomnographers [ 45 ]. The gap between pipeline agreement and expert agreement widens from 0.08 (4-class) to 0.12 (5-class), suggesting that the pipeline’s degradation is steeper than the inherent scoring variability but follows the same direction. 
+
+G.3 Discussion 
+
+The clinical validation provides external evidence that the four-class pseudo-labels produced by the HSMM–changepoint pipeline align reasonably with expert physician judgment at sec-level temporal resolution. The four-class agreement ( κ = 0 .81 , TF1 = 78.6%) supports the use of these pseudo-labels as training supervision in the present SSTD benchmark setting, while the degradation observed in the five-class extension provides an honest assessment of current limitations. Improving pseudo-label quality for finer-grained vocabularies, potentially through multi-modal fusion during the label expansion stage, is a clear direction for future work. We note that even expert inter-rater agreement is imperfect, particularly at finer granularities, underscoring that sec-level sleep stage 19 annotation is an inherently uncertain task for which the notion of absolute ground truth should be treated with caution. 
+
+# H Limitations 
+
+The expanded pseudo-labels retain a residual implausible transition rate of 7.83%; SSTD metrics therefore quantify agreement with these labels rather than with gold sec-level annotations. An independent expert physician review (Section 4.2) constitutes the primary external validation of benchmark fidelity, yielding κ = 0 .81 and TF1 = 78.6% against sec-level expert annotations, with expert inter-rater agreement at κ = 0 .89 ; the epoch-level transfer gains are additionally evaluated against the original PSG labels, which are independent of the pseudo-label pipeline, providing a further check against a trivial circular explanation. Sec-level expert annotation at scale remains a resource-intensive undertaking deferred to future work. Moreover, while the matched epoch-only versus SSTD comparisons support the usefulness of sec-level supervision, they do not fully disentangle supervision granularity from all architecture- and optimization-dependent interactions. Our empirical benchmark is deliberately representative rather than exhaustive. The main experiments compare single-modality PPG baselines that can be retrained under a unified protocol; they do not cover every recent uncertainty-aware, wearable-oriented, multimodal, or purpose-built event-detection system. Extending SSTD to those method families is an important next step for clarifying how much of the observed gain comes from the task formulation itself versus from particular modeling choices. The current label expansion pipeline also relies on handcrafted second-indexed PPG features. Al-though HRV-derived summaries that require longer temporal support are computed from rolling windows rather than isolated 1-second segments, they still inherit the stability limits of short-context HRV analysis; richer learned representations or multimodal expansion signals may therefore further improve label fidelity, particularly for fine-grained boundaries. The adopted four-class vocabulary still merges N1 and N2 into a single Light stage; Appendix F shows that separating them in a full five-class taxonomy reduces TF1 by 11.1 pp and noticeably lowers label consistency, indicating that fine-grained non-REM separation remains challenging under single-modality PPG supervision. The physiological transition constraint assumes normal adult sleep architecture and should be relaxed for clinical populations in which canonical stage sequencing is disrupted, including those with narcolepsy, severe sleep-disordered breathing, or atypical pediatric sleep patterns. Finally, MESA and CFS are curated PSG cohorts rather than free-living wearable streams; robustness to motion artifacts, signal dropouts, and lower-fidelity ambulatory recordings has therefore not been assessed and remains a prerequisite for deployment-oriented claims. The label expansion pipeline and SSTD task formulation could be adapted to other boundary-sensitive modalities such as ECG, but the present study evaluates only PPG. We leave such extensions to future work. 20

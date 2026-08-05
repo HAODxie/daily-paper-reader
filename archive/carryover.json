@@ -1,12 +1,129 @@
 {
-  "generated_at": "2026-08-03T21:39:26.458083+00:00",
-  "updated_date": "20260803",
+  "generated_at": "2026-08-05T21:27:08.865630+00:00",
+  "updated_date": "20260805",
   "carryover_days": 9,
   "tag_states": {
     "neuro-mental": {
-      "updated_date": "20260803",
+      "updated_date": "20260805",
       "carryover_days": 9,
-      "items": []
+      "items": [
+        {
+          "id": "2608.03176v1",
+          "source": "arxiv",
+          "title": "Frequency-Decorrelated Temporal Ensembles for EEG--fNIRS Imagined-Handwriting Decoding",
+          "abstract": "Imagined handwriting offers a temporally rich paradigm for non-invasive neural decoding, yet reliable recognition across unseen participants remains difficult because scalp EEG is noisy and internally generated stroke sequences vary across individuals. The Multimodal Brain-Computer Interface Grand Challenge provides synchronized EEG and fNIRS for four-class subject-independent handwriting-trajectory classification. We propose FRED, a task-adapted system that models imagined handwriting as a multi-second motor sequence and trains a compact multi-scale temporal network on three complementary EEG frequency views. With three seeds per view, cross-band members produce substantially less-correlated errors than same-band replicas, yielding a clean nine-member ensemble accuracy of 0.8076/0.7242/0.7492 on the public/private/overall test partitions without test-set adaptation or output constraints. The submitted pipeline further incorporates transductive pseudo-label training, three EEG-Conformer members, posterior aggregation, and a paradigm-aware decoder. Because every 12-trial randomization block contains three instances of each class, the final predictions are obtained by Hungarian assignment under the known block quota. On one fixed posterior pool, independent, session-constrained, and block-constrained decoding achieve 0.7600, 0.7758, and 0.7952 overall accuracy, respectively. The complete system reaches 0.8498/0.7718/0.7952, ranking fourth on the private split. A modality audit finds fNIRS-only decoding at chance (0.2511 overall), while adding fNIRS to EEG changes accuracy by only +0.0025. These results identify frequency-diverse temporal EEG modeling and protocol-matched structured inference as the principal sources of performance in this sparse-montage EEG--fNIRS setting. The source code is available at https://github.com/XiuFan719/EEG-fNIRS-fuse-method-for-MM-challenge.",
+          "authors": [
+            "Xiao Fan",
+            "Hongbin Guo",
+            "Yubo Han",
+            "Yi Zhang"
+          ],
+          "primary_category": "cs.CV",
+          "categories": [
+            "cs.CV",
+            "cs.HC"
+          ],
+          "published": "2026-08-04T06:08:11+00:00",
+          "link": "https://arxiv.org/pdf/2608.03176v1",
+          "tags": [
+            "keyword:neuro-mental",
+            "query:neuro-mental"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "EEG-fNIRS multimodal BCI system for subject-independent imagined-handwriting decoding",
+          "llm_evidence_cn": "基于EEG-fNIRS多模态的BCI系统，实现跨被试手写想象解码",
+          "llm_evidence": "基于EEG-fNIRS多模态的BCI系统，实现跨被试手写想象解码",
+          "canonical_evidence": "基于EEG-fNIRS多模态的BCI系统，实现跨被试手写想象解码",
+          "llm_tldr_en": "This paper presents FRED, a task-adapted EEG-fNIRS BCI system for subject-independent imagined-handwriting decoding, using multi-scale temporal networks on three EEG frequency views with frequency-decorrelated ensembles.",
+          "llm_tldr_cn": "想象笔迹解码面临头皮脑电噪声大和个体笔画差异问题，跨被试识别困难。针对EEG-fNIRS多模态脑机接口挑战赛，本文提出FRED系统，将想象笔迹建模为多秒运动序列，并在三种互补EEG频率视图上训练紧凑多尺度时间网络。通过每视图多种子训练，跨频带集成成员产生更低相关误差，提升四类笔迹轨迹分类性能。该系统验证了频率去相关集成在非侵入式精细运动解码中的有效性。",
+          "llm_tldr": "想象笔迹解码面临头皮脑电噪声大和个体笔画差异问题，跨被试识别困难。针对EEG-fNIRS多模态脑机接口挑战赛，本文提出FRED系统，将想象笔迹建模为多秒运动序列，并在三种互补EEG频率视图上训练紧凑多尺度时间网络。通过每视图多种子训练，跨频带集成成员产生更低相关误差，提升四类笔迹轨迹分类性能。该系统验证了频率去相关集成在非侵入式精细运动解码中的有效性。",
+          "llm_tags": [
+            "query:neuro-mental"
+          ],
+          "matched_query_tag": "query:neuro-mental",
+          "matched_query_text": "brain-computer interface technology",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.03176v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.03067v1",
+          "source": "arxiv",
+          "title": "Activation-Guided Neuron Intervention to Induce Alzheimer's-Related Computational Language Phenotypes in a Large Language Model",
+          "abstract": "Changes in spontaneous speech provide an early signal of cognitive dysfunction in Alzheimer's disease (AD) that large language models (LLMs) can detect. However, detection alone cannot establish whether the underlying model representations contribute functionally to behavior. We introduce an activation-guided intervention framework using Qwen3-8B. The framework identifies feed-forward neurons with higher activation rates for AD than control transcripts and modulates their output contributions during generation by scaling the corresponding down-projection weights. This yielded nine edited variants differing in intervention direction, magnitude, and scope. The original and edited models completed the same 12-turn neuropsychological battery, assessed through blinded human ratings and computational linguistic measures. Amplifying AD-associated neurons produced graded impairments in story recall, verbal fluency, working memory, procedural discourse, scene construction, and coreference resolution. Attenuation largely preserved performance and selectively improved several outcomes. Amplification also reduced lexical surprisal, idea density, syntactic complexity, and discourse quantity, broadly paralleling changes reported in human AD speech. These findings show that neurons identified solely from clinical language differences can influence behavior across multiple cognitive domains, providing proof of concept for an AD-related computational phenotype and a controlled framework for experimentally examining links between language and broader cognitive dysfunction.",
+          "authors": [
+            "Rui He",
+            "Ercong Nie",
+            "Hong Jiang",
+            "Iris E. Sommer",
+            "Philipp Homan",
+            "Wolfram Hinzen"
+          ],
+          "primary_category": "cs.CL",
+          "categories": [
+            "cs.CL"
+          ],
+          "published": "2026-08-04T03:28:37+00:00",
+          "link": "https://arxiv.org/pdf/2608.03067v1",
+          "tags": [
+            "keyword:neuro-mental",
+            "query:neuro-mental"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "uses LLM activation-guided intervention to induce Alzheimer's-related language phenotypes, applying large language models in medical research",
+          "llm_evidence_cn": "通过LLM激活引导干预诱发阿尔茨海默相关语言表型，将大语言模型用于医学研究",
+          "llm_evidence": "通过LLM激活引导干预诱发阿尔茨海默相关语言表型，将大语言模型用于医学研究",
+          "canonical_evidence": "通过LLM激活引导干预诱发阿尔茨海默相关语言表型，将大语言模型用于医学研究",
+          "llm_tldr_en": "Introduces an activation-guided neuron intervention framework on Qwen3-8B to modulate feed-forward neurons for Alzheimer's detection, producing edited variants that change computational language phenotypes.",
+          "llm_tldr_cn": "自发言语变化可作为阿尔茨海默病（AD）的早期认知指标，大语言模型虽能检测但无法确认模型表示是否功能性地贡献于行为。本文提出激活引导的神经元干预框架，在Qwen3-8B中识别AD与对照转录本上激活率更高的前馈神经元，并通过缩放下投影权重调制其生成贡献，获得九种干预变体。该框架能够在LLM中诱导与AD相关的计算语言表型，为理解模型表征与疾病行为之间的联系提供了工具。",
+          "llm_tldr": "自发言语变化可作为阿尔茨海默病（AD）的早期认知指标，大语言模型虽能检测但无法确认模型表示是否功能性地贡献于行为。本文提出激活引导的神经元干预框架，在Qwen3-8B中识别AD与对照转录本上激活率更高的前馈神经元，并通过缩放下投影权重调制其生成贡献，获得九种干预变体。该框架能够在LLM中诱导与AD相关的计算语言表型，为理解模型表征与疾病行为之间的联系提供了工具。",
+          "llm_tags": [
+            "query:neuro-mental"
+          ],
+          "matched_query_tag": "query:neuro-mental",
+          "matched_query_text": "large language models in research",
+          "matched_requirement_id": "req-1",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.03067v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.03883v1",
+          "source": "arxiv",
+          "title": "DS@GT-ARC at eRisk 2026 Task 3: Sparse, Semantic, and LLM Reranking for ADHD Symptom Sentences",
+          "abstract": "This paper describes our submissions to eRisk 2026 Task 3, ADHD Symptom Sentence Ranking. The task requires systems to rank candidate Reddit sentences according to their relevance to each of the 18 symptoms in the Adult ADHD Self-Report Scale (ASRS-v1.1). Because no annotated training data were released for this first edition of the task, we relied on zero-shot experimentation, manual validation, and unsupervised or weakly guided retrieval pipelines. Our systems combine sparse BM25 retrieval, evidence-aware rescoring for self-referential symptom reports, embedding-based reranking, query-prototype expansion, and LLM-based reranking. All submitted systems follow a staged retrieval design in which BM25 retrieves candidates at scale and semantic or LLM rerankers refine the final rankings. Among our submissions, the LLM reranker achieved the strongest official scores, followed by the prototype query-expansion run. Our manual top-10 analysis aligned with the official expert scoring trend, suggesting that staged reranking is a promising direction for further development.",
+          "authors": [
+            "David Guecha"
+          ],
+          "primary_category": "cs.CL",
+          "categories": [
+            "cs.CL"
+          ],
+          "published": "2026-08-04T16:19:22+00:00",
+          "link": "https://arxiv.org/pdf/2608.03883v1",
+          "tags": [
+            "keyword:neuro-mental"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "LLM reranking pipeline for ADHD symptom sentence ranking in mental health text",
+          "llm_evidence_cn": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
+          "llm_evidence": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
+          "canonical_evidence": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
+          "llm_tldr_en": "Describes zero-shot retrieval and LLM-reranking systems for ranking Reddit sentences by 18 ADHD symptom criteria, combining BM25 sparse retrieval, evidence-aware rescoring, embeddings, and query-prototype expansion.",
+          "llm_tldr_cn": "针对无标注训练数据情况下的ADHD症状句子排序任务，提出结合BM25稀疏检索、证据感知重打分、嵌入重排、查询原型扩展和LLM重排序的分阶段检索流程。该系统在eRisk 2026 Task 3中处理Reddit语句与ASRS的18个症状匹配，通过零样本与无监督策略完成排序。该方法为心理健康文本中的症状自动识别提供了实用管线，可辅助ADHD筛查研究。",
+          "llm_tldr": "针对无标注训练数据情况下的ADHD症状句子排序任务，提出结合BM25稀疏检索、证据感知重打分、嵌入重排、查询原型扩展和LLM重排序的分阶段检索流程。该系统在eRisk 2026 Task 3中处理Reddit语句与ASRS的18个症状匹配，通过零样本与无监督策略完成排序。该方法为心理健康文本中的症状自动识别提供了实用管线，可辅助ADHD筛查研究。",
+          "llm_tags": [
+            "query:neuro-mental"
+          ],
+          "matched_query_tag": "query:neuro-mental",
+          "matched_query_text": "mental health studies",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.03883v1",
+          "carry_days": 1
+        }
+      ]
     }
   }
 }

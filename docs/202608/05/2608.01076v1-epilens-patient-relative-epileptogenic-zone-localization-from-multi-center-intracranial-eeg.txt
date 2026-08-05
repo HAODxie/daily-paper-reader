@@ -1,0 +1,914 @@
+Title: EpiLENS: Patient-Relative Epileptogenic Zone Localization from Multi-Center Intracranial EEG
+
+URL Source: https://arxiv.org/pdf/2608.01076v1
+
+Published Time: Tue, 04 Aug 2026 01:26:36 GMT
+
+Number of Pages: 17
+
+Markdown Content:
+# EpiLENS: Patient-Relative Epileptogenic Zone Localization from Multi-Center Intracranial EEG 
+
+## Yuanchu Gong 1, Zibo Yan 1, Yibo Lyu 1, Chen Chen 2,* , Sixian Chan 3,* , Yalin Wang 1,* 
+
+> 1
+
+School of Information Science and Engineering, Lanzhou University, Lanzhou 730000, China 
+
+> 2
+
+Human Phenome Institute, Fudan University, Shanghai 201203, China 
+
+> 3
+
+College of Computer Science and Technology, Zhejiang University of Technology, Hangzhou 310023, China 
+
+gongyc22@lzu.edu.cn; chenchen_fd@fudan.edu.cn; sxchan@zjut.edu.cn; yalinwang@lzu.edu.cn 
+
+> *
+
+Corresponding authors 
+
+Abstract 
+
+Drug-resistant epilepsy remains a major clinical challenge, as successful neurosurgery depends critically on accurate epileptogenic zone (EZ) localization accounting for substan-tial variability across patients, seizures, implantation lay-outs, recording systems and clinical centers. Existing in-tracranial electroencephalogram (iEEG) methods typically rely on channel-wise classifiers trained globally, which of-ten obscure patient-specific electrophysiological abnormal-ities and exhibit instability under severe class imbalance and noisy clinical annotations. To address these limitations, we present EpiLENS , a primary-guided asymmetric dual-branch framework for patient-relative epileptogenic localiza-tion. Its localization strategy, Conservative Dual-Evidence Localization (CDEL) , asymmetrically combines indepen-dently trained but complementary branches at inference: the 
+
+Patient-Relative Quantile Network (PRQ-Net) , which cap-tures seizure-consistent deviations from each patient’s internal electrophysiological baseline, and the Boundary-Coverage Ranking Network (BCR-Net) , which emphasizes ambigu-ous epileptogenic zone or non-epileptogenic zone boundaries and recovery of the patient-specific epileptogenic set. CDEL retains PRQ-Net as the primary branch while incorporating complementary patient-wise ranking evidence from BCR-Net. Experiments on a heterogeneous four-center cohort demon-strate improved balanced localization over classical feature-based and raw-iEEG neural baselines, while component abla-tions and within-patient permutation analyses support the con-tributions of patient-relative normalization, lower-tail seizure aggregation, and boundary-coverage ranking. Cross-seizure and leave-one-center-out generalization experiments further confirm that the proposed patient-relative evidence remains robust across repeated recordings and transfers effectively to unseen clinical centers. 
+
+## Introduction 
+
+Drug-resistant epilepsy (DRE) is defined by the failure of adequate antiseizure medication trials, after which surgery may offer seizure freedom when the tissue necessary for seizure generation can be localized and treated (Kwan et al. 2010; Rosenow and Luders 2001). Intracranial EEG (iEEG) supports this decision by sampling electrical activity directly from implanted contacts. As shown in Figure 1, the central computational task is spatial: assign each implanted channel evidence for belonging to the epileptogenic zone (EZ), while 
+
+Figure 1: Importance of precise EZ localization. (a) Preop-erative planning for drug-resistant epilepsy relies on accurate EZ localization. (b) Complete EZ resection leads to success-ful surgical outcomes and seizure freedom. (c) Incomplete resection leaves residual EZ, causing seizure recurrence. avoiding unnecessary extension into the non-epileptogenic zone (NEZ). Quantitative iEEG studies show that useful localization evidence exists in interictal activity, spectral abnormalities, and directed network interactions (Varatharajah et al. 2018; Taylor et al. 2022; Bernabei et al. 2022; Johnson et al. 2023; Gunnarsdottir et al. 2022). Normative mapping and cross-subject neural models further show that this evidence can be converted into channel-level predictions (Bernabei et al. 2023b; Wang et al. 2022, 2026a). A recent synthesis situates these advances within the broader convergence of computa-tional neuroelectrophysiology and artificial intelligence for drug-resistant epilepsy (Wang et al. 2026b). These complementary approaches establish informative signal, but channel-level localization still needs a refer-ence frame. An absolute score learned across pooled con-tacts assumes that comparable electrophysiological values retain comparable meaning across patients. Multi-center iEEG challenges this assumption through implantation, de-vice, seizure, and physiological variation. A recent multi-center stereo-electroencephalography (SEEG) study further shows that excitation–inhibition dynamics and spectral fea-tures carry transferable localization evidence across clinical centers (Wang et al. 2026c). The remaining question is there-fore not only whether a contact exceeds a universal value, but whether it remains abnormal among the contacts observed arXiv:2608.01076v1 [cs.CE] 2 Aug 2026 for the same patient. This patient-conditioned comparison aligns spatial localization with the way implanted evidence is interpreted in practice. Three coupled properties make a global channel bound-ary especially brittle. Patient heterogeneity changes both the scale of recorded features and the set of anatomical sites against which each channel is compared. Seizure heterogene-ity means that informative EZ evidence may recur consis-tently or appear strongly in only part of a patient’s seizure set; temporal-stability analyses confirm that aggregation across recordings is a substantive modeling choice (Wang et al. 2023). Set imbalance arises because the annotated EZ is typ-ically a minority within the implanted set, making average channel classification insensitive to whether the complete patient-specific target rises to the top; resampling studies document this imbalance in iEEG localization (Varotto et al. 2021). Together, these properties suggest that an implanted channel should be judged not only by an absolute cross-patient score, but also by its deviation and rank relative to the other channels observed in the same patient. We present EpiLENS, a patient-relative framework that turns this observation into the organizing principle of epilep-togenic localization. Figure 2 summarizes its Conservative 
+
+Dual-Evidence Localization (CDEL) strategy. EpiLENS first extracts nine spectral and waveform descriptors per channel and window, then expresses each through four self-referenced views relative to the channel’s own pre-onset baseline. The four views retain raw electrophysiology while exposing ad-ditive, standardized, and multiplicative deviations, and are standardized within the patient’s implanted set so that no contact is judged against a universal scale. CDEL separates two complementary branches. The 
+
+Patient-Relative Quantile Network (PRQ-Net) serves as the primary probabilistic classifier, aggregating recurrent cross-seizure evidence while a bounded lower-tail correction pro-tects EZ-like activity that appears strongly in only a sub-set of seizures from being erased by mean aggregation. Independently, the Boundary-Coverage Ranking Network (BCR-Net) concentrates supervision on ambiguous EZ/NEZ boundaries and on placing the complete annotated EZ set at the top of each patient’s ranking. A fixed asymmetric probability-space fusion then conservatively adds this rank-ing evidence without allowing the auxiliary objective to over-ride the primary classifier. Our contributions are as follows: 
+
+• We propose EpiLENS, a patient-relative, primary-guided collaborative framework for cross-patient epileptogenic lo-calization in heterogeneous multi-center iEEG, incorporat-ing CDEL with PRQ-Net and BCR-Net. 
+
+• We introduce CDEL, which combines PRQ-Net’s patient-relative quantile evidence with BCR-Net’s boundary- and coverage-aware ranking through an independently trained, fixed conservative fusion rule. 
+
+• We evaluate the resulting mechanism with patient-disjoint cross-validation, patient-equal metrics, component and permutation controls, cross-seizure tests, and leave-one-center-out transfer on a heterogeneous four-center cohort. 
+
+## Related Work 
+
+Quantitative iEEG Biomarkers 
+
+Quantitative localization has progressed from individual biomarkers to multivariate and network-level descriptions of epileptogenic tissue. High-frequency oscillations provide one established line of evidence, including network-level analyses linked to surgical outcome (Frauscher et al. 2017; Gonzalez Otarula et al. 2019), although a randomized trial found HFO-guided surgery non-inferior, rather than superior, to spike-guided surgery (Zweiphenning et al. 2022). Inter-ictal alternatives include automated spectral and waveform analysis (Varatharajah et al. 2018), normative abnormality maps (Taylor et al. 2022; Bernabei et al. 2022), inward– outward connectivity asymmetries (Johnson et al. 2023), resting-state connectivity (Jiang et al. 2022; Rijal et al. 2023), source–sink connectivity (Gunnarsdottir et al. 2022). Col-lectively, these studies motivate combining complementary channel descriptors rather than treating any single biomarker as universal. CDEL instead interprets evidence within each patient’s implanted channel set. 
+
+Learning-Based and Patient-Relative Localization 
+
+Machine learning has converted handcrafted iEEG features into automated channel decisions. Early work integrated real-time interictal features with supervised learning (Varathara-jah et al. 2018); SEEG-Net learned explainable cross-subject pathological-activity detection (Wang et al. 2022); and SEEGformer jointly addressed personalized seizure de-tection and localization (Wang et al. 2026a). Parallel nor-mative approaches score a patient’s contacts against refer-ence distributions built from other recordings (Taylor et al. 2022; Bernabei et al. 2022, 2023b). These approaches dif-fer in architecture and supervision, yet both must transfer a reference learned outside the target patient’s implanted set. Complementary network models evaluate surgical rele-vance through simulated resections and network ictogenic-ity (Goodfellow et al. 2016; Sinha et al. 2017; Kini et al. 2019). Patient-relative modeling addresses a distinct ques-tion: which channels are most abnormal for this patient? Two considerations are central. Epileptogenic channels form an imbalanced subset of implanted contacts (Varotto et al. 2021), and abnormality maps can vary across recording seg-ments (Wang et al. 2023). CDEL adopts a primary-guided dual-branch design: PRQ-Net provides the primary multi-seizure classification evidence, while BCR-Net contributes complementary boundary- and coverage-aware ranking evi-dence. The two branches are trained independently and fused only at inference. 
+
+## Method 
+
+Overview 
+
+We propose EpiLENS, as shown in Figure 2, which con-structs patient-relative multi-seizure evidence and encodes it with two independently parameterized branches, incorpo-rating CDEL with PRQ-Net and BCR-Net. The following subsections present task, representation, two branches, infer-ence rule, and branch-specific objectives. Figure 2: The pipeline of our EpiLENS localization. (a) Multi-center SEEG/ECoG recordings are organized by patient, seizure, channel, and temporal window. Nine spectral and waveform descriptors are converted into four self-referenced views: absolute features (ABS), reference differences ( ∆REF), standardized deviations (Z-∆), and log-relative ratios (LOG-R). (b) PRQ-Net produces patient-relative NEZ probabilities using channel contextualization and a lower-tail Q10 correction, whereas BCR-Net learns complementary EZ-oriented evidence through boundary and coverage objectives. The independently trained branches are combined at inference by the parameter-free CDEL rule 0.8 PRQ -Net + 0 .2 BCR -Net ; the complementary probability ranks EZ candidates. 
+
+Problem Formulation 
+
+For patient i, let Xi = {Xis }Si 
+
+> s=1
+
+denote the available multi-seizure iEEG recordings, where 
+
+Xis ∈ RTis ×Ci×F . (1) Here, Tis , Ci, and F are the numbers of windows, implanted channels, and features. Masks exclude unavailable seizures, windows, and channels. Each valid channel c ∈ V i has the label yic ∈ { 0, 1}, with 0 for EZ and 1 for NEZ. We learn 
+
+pi = floc (Xi), pic = P (yic = 1 | X i), (2) with sEZ  
+
+> ic
+
+= 1 − pic . Therefore, each prediction can use tem-poral evolution, repeated seizures, and within-patient channel context. Localization should also rank annotated EZ channels above NEZ channels: 
+
+sEZ  
+
+> ic
+
+> s EZ  
+
+> id
+
+, c ∈ E i, d ∈ N i. (3) Supervision uses postoperative seizure-free patients and the complete clinician-defined target set. Surgical metadata and postoperative outcome are not predictive inputs. 
+
+Patient-Relative Evidence Construction 
+
+For patient i, seizure s, channel c, and window w, let 
+
+xiscw ∈ RF contain nine spectral and waveform descriptors. Negative-time pre-onset windows provide a seizure–channel reference with feature-wise mean μisc and standard deviation 
+
+σisc . Defining ∆xiscw = xiscw − μisc , we form 
+
+ϕiscw =
+
+
+
+xiscw , ∆xiscw , ∆xiscw 
+
+σisc + ϵ , log |xiscw | + ϵ
+
+|μisc | + ϵ
+
+
+
+.
+
+(4) These views preserve absolute electrophysiology while ex-posing additive, standardized, and multiplicative deviations from the same channel’s pre-onset state. Dataset-level stan-dardization is fitted only on training patients in each outer fold. 
+
+CDEL: Conservative Dual-Evidence Localization 
+
+CDEL uses two branches with the same encoder topology but independent parameters. For branch b ∈ { P, B}, define 
+
+Abℓ(X) = LN 
+
+
+
+X + MHA bc,ℓ (X)
+
+
+
+. (5) Stacking ϕiscw across channels yields Φisw ∈ RCi×4F .Each branch computes 
+
+Hbisw = Ab
+
+> 1
+
+
+
+MLP b(Φisw )
+
+
+
+. (6) Let hbiscw denote the row for channel c. Masked hierarchical pooling gives 
+
+zbisc = Mean w hbiscw , gbic = Mean s zbisc ∥ Std s zbisc . (7) The mean captures recurrent evidence, while the standard deviation retains cross-seizure variation. After stacking gbic 
+
+into Gbi , we obtain 
+
+Rbi = Ab
+
+> 2
+
+ PRZ( Gbi ) , (8) where PRZ performs masked feature-wise z-scoring across valid channels. The row rbic is passed to the corresponding branch head. PRQ-Net outputs an NEZ probability pP
+
+> ic
+
+, whereas BCR-Net outputs an EZ-oriented logit eic . At inference, CDEL aligns and combines them as 
+
+pB 
+
+> ic
+
+= 1 − sigm( eic ),pCDEL  
+
+> ic
+
+= 0 .8pP 
+
+> ic
+
++ 0 .2pB
+
+> ic
+
+, sEZ  
+
+> ic
+
+= 1 − pCDEL  
+
+> ic
+
+. (9) This fixed asymmetric rule preserves PRQ-Net as the primary probabilistic branch while using BCR-Net as complemen-tary ranking evidence. For outer fold f , a validation-selected threshold is applied unchanged to all associated test patients: 
+
+byic = IpCDEL  
+
+> ic
+
+≥ tf
+
+ . (10) 
+
+PRQ-Net: Patient-Relative Quantile Classification 
+
+PRQ-Net maps rP 
+
+> ic
+
+to a base NEZ logit aP
+
+> ic
+
+. Mean aggregation can suppress EZ-like activity that appears strongly in only a subset of seizures. PRQ-Net therefore retains the lower tail of seizure-level NEZ scores: 
+
+uisc = sigm  w⊤ 
+
+> q
+
+LN( zP
+
+> isc
+
+) + bq
+
+ ,qic = Q0.10 ({uisc }s:misc =1 ) . (11) A low qic indicates EZ-like evidence in part of the seizure set. We robustly standardize its logit across the patient’s valid channels: 
+
+ηic = clip [−4,4] (RZ i(logit qic )) , (12) where RZ i uses the median and MAD, with a standard-deviation fallback for a degenerate MAD. The final prediction is 
+
+pP 
+
+> ic
+
+= sigm( aP 
+
+> ic
+
++ ρη ic ), ρ = 0 .2 sigm( γP). (13) The bounded residual can adjust, but cannot dominate, the base probability. 
+
+BCR-Net: Boundary and Coverage Ranking 
+
+BCR-Net maps rB 
+
+> ic
+
+to an EZ-oriented logit eic . It targets two patient-wise ranking failures: confusion near the EZ/NEZ boundary and incomplete recovery of the annotated EZ set. For boundary mining, set mi = ⌈0.3|E i|⌉ and ki =min {|N i|, max(1 , min(16 , |E i|)) }. We select 
+
+H+ 
+
+> i
+
+= Bottom mi {eic : c ∈ E i},
+
+H− 
+
+> i
+
+= Top ki {eic : c ∈ N i}. (14) The two sets contain the weakest annotated EZ channels and the most EZ-like NEZ channels, respectively. For coverage, let Ki = |E i| and approximate the rank of channel c by 
+
+eric = 1 + X
+
+> d∈V i
+> d̸=c
+
+sigm 
+
+ eid − eic 
+
+τr
+
+
+
+, (15) with soft top-Ki membership 
+
+πic = sigm 
+
+ Ki + 0 .5 − eric 
+
+τk
+
+
+
+. (16) These quantities isolate difficult boundary channels and mea-sure whether each annotated EZ channel enters the leading patient-specific ranks. 
+
+Branch-Specific Objectives 
+
+The branches are optimized independently; no joint or fu-sion loss is used. PRQ-Net minimizes masked channel-level binary cross-entropy: 
+
+LP = 1
+
+Nch 
+
+X
+
+> i∈I
+
+X
+
+> c∈V i
+
+ℓBCE (pP
+
+> ic
+
+, y ic ), Nch = X
+
+> i∈I
+
+|V i|.
+
+(17) BCR-Net uses patient-balanced BCE with EZ-oriented target 
+
+1 − yic :
+
+LBCE = 1
+
+|I| 
+
+X
+
+> i∈I
+
+1
+
+|V i|
+
+X
+
+> c∈V i
+
+ℓBCE (sigm( eic ), 1 − yic ). (18) The boundary term separates the mined sets: 
+
+δi = 0 .05 + Mean( H− 
+
+> i
+
+) − Mean( H+ 
+
+> i
+
+),
+
+Lbd = 1
+
+|I bd |
+
+X
+
+> i∈I bd
+
+softplus( δi). (19) The coverage term penalizes annotated EZ channels outside the leading Ki ranks: 
+
+Lcov = 1
+
+|I cov |
+
+X
+
+> i∈I cov
+
+1 − 1
+
+Ki
+
+X
+
+> c∈E i
+
+πic 
+
+!
+
+. (20) Here, Ibd contains patients with both EZ and NEZ channels, while Icov contains patients with at least one EZ channel. The complete BCR-Net objective is 
+
+LB = LBCE + 0 .05 Lbd + 0 .08 Lcov . (21) We set τr = 0 .10 and τk = 0 .25 . All BCR terms are com-puted within each patient and then averaged across valid patients, giving each patient equal contribution. Table 1: Summary of the two public and two private local-ization cohorts. EZ/NEZ is reported as a percentage of valid implanted channels.                         
+
+> Cohort Patients Seizures Channels EZ/NEZ (%) HUP (Bernabei et al. 2023a) 36 117 3,667 16.8/83.2 Multi-site (Li et al. 2023) 15 45 925 17.7/82.3 LZU 21 72 2,141 38.2/61.8 Fudan 822 902 16.2/83.8
+> Total 80 256 7,635 22.8/77.2
+
+## Experiments 
+
+Experimental Setup 
+
+Cohort and task. We evaluate channel-level EZ local-ization on 80 postoperative seizure-free patients from four centers, comprising 256 valid seizures and 7,635 implanted channels, of which 1,743 (22.83%) are annotated as EZ. Ta-ble 1 summarizes the cohort. This study was approved by the ethics committees of the Second Hospital of Lanzhou Uni-versity (approval number: 2023A-765) and the Children’s Hospital of Fudan University (approval number: 2020-521). The retrospective EZ annotations should be interpreted as clinician-defined surgical-target surrogates rather than definitive biological ground truth. Table 2: Comparison on the 80-patient localization splits. Results are reported as mean ± standard deviation over three seeds.                                                                                                                                                                                                                                                                                  
+
+> Method Input Macro-F1 ↑EZ-F1 ↑NEZ-F1 ↑Acc. ↑AUROC ↑EZ-Frac. Bias →0
+> Logistic Regression Feature 0.4910 ±0.0000 0.2740 ±0.0000 0.7080 ±0.0000 0.6690 ±0.0000 0.5930 ±0.0000 +0.0713
+> RBF-SVM Feature 0.5020 ±0.0026 0.2830 ±0.0034 0.7210 ±0.0025 0.6800 ±0.0029 0.6080 ±0.0003 +0.0557
+> Random Forest Feature 0.4820 ±0.0128 0.3000 ±0.0166 0.6630 ±0.0313 0.6360 ±0.0164 0.5880 ±0.0023 +0.1203
+> LightGBM Feature 0.4890 ±0.0000 0.2640 ±0.0000 0.7130 ±0.0000 0.6670 ±0.0000 0.5940 ±0.0000 +0.0420
+> DeepSets + BCE Feature 0.4862 ±0.0171 0.3060 ±0.0073 0.6664 ±0.0413 0.6522 ±0.0327 0.6300 ±0.0138 +0.0960
+> MLP + patient-wise rank Feature 0.5753 ±0.0072 0.3446 ±0.0011 0.8060 ±0.0133 0.7136 ±0.0157 0.6380 ±0.0079 -0.0298
+> Logistic + patient-wise z-score Feature 0.6065 ±0.0000 0.3988 ±0.0000 0.8142 ±0.0000 0.7356 ±0.0000 0.6835 ±0.0000 -0.0138
+> RBF-SVM + patient-wise z-score Feature 0.5888 ±0.0003 0.3958 ±0.0010 0.7819 ±0.0012 0.7047 ±0.0015 0.6799 ±0.0001 +0.0541
+> SEEGNet Raw iEEG 0.4540 ±0.0100 0.0630 ±0.0180 0.8440 ±0.0050 0.7550 ±0.0060 0.6264 ±0.0122 −0.2020
+> TimeConv-CNN Raw iEEG 0.4570 ±0.0080 0.0610 ±0.0140 0.8530 ±0.0040 0.7660 ±0.0040 0.5922 ±0.0087 −0.2083
+> CLAP Raw iEEG 0.4310 ±0.0140 0.0270 ±0.0180 0.8360 ±0.0070 0.7500 ±0.0080 0.5051 ±0.0150 −0.1995
+> SEEGformer Raw iEEG 0.4202 ±0.0101 0.1187 ±0.0176 0.7216 ±0.0110 0.7056 ±0.0061 0.6208 ±0.0005 −0.0261
+> PRQ-Net Feature 0.6282 ±0.0018 0.4299 ±0.0035 0.8265 ±0.0001 0.7511 ±0.0003 0.7416 ±0.0007 −0.0097
+> BCR-Net Feature 0.6248 ±0.0024 0.4303 ±0.0083 0.8192 ±0.0063 0.7443 ±0.0042 0.7392 ±0.0034 +0.0040
+> CDEL Feature 0.6371 ±0.0072 0.4485 ±0.0118 0.8256 ±0.0030 0.7526 ±0.0029 0.7468 ±0.0004 +0.0034
+> Metrics are computed independently for each patient and then macro-averaged across the 80 patients. The reported standard deviation is computed across three seeds. EZ-Frac. Bias is defined as bπEZ −πEZ , where πEZ = 0 .2283 ; values closer to zero are better.
+
+Evaluation protocol. We use fixed patient-wise five-fold outer splits with seeds 42, 52, and 62. Outer-test patients are reserved exclusively for final evaluation. Within each outer-training fold, 20% of patients are used for checkpoint selection and a single fold-level decision threshold, which is applied unchanged to the corresponding test patients. Met-rics are computed per patient and then averaged. Macro-F1 is the primary metric; we additionally report EZ-F1, NEZ-F1, AUROC, EZ-fraction bias, EZ-AUPRC, and NDCG-EZ. No patient-specific threshold or true EZ count is used at inference. 
+
+Baselines and implementation. We compare CDEL, PRQ-Net, and BCR-Net with logistic regression, RBF-SVM, random forest, LightGBM, DeepSets with BCE, an MLP with patient-wise rank normalization, logistic regression with patient-wise z-score normalization, RBF-SVM with patient-wise z-score normalization, SEEGNet (Wang et al. 2022), TimeConv-CNN, CLAP (Duan et al. 2026), and SEEGformer (Wang et al. 2026a). All methods use the same cohort, patient partitions, channel labels, retained sig-nal intervals, bad-channel exclusions, and validation-only threshold selection. Feature-based methods use determinis-tic summaries of the self-referenced descriptors, the patient-relative controls explicitly test within-patient normalization or permutation-invariant set modeling, and the neural raw-iEEG baselines retain their architecture-specific represen-tations. Full preprocessing, model configurations, prediction aggregation, and training details are provided in Appendix C. PRQ-Net and BCR-Net use a 32-dimensional encoder, two attention heads, dropout 0.4, learning rate 10 −4, weight decay 10 −3, and patient batches of four. CDEL applies the locked rule 0.8pPRQ +0 .2pBCR ; only the fold-level threshold is validation-selected. 
+
+Localization Results 
+
+Table 2 shows that EpiLENS framework achieves the highest Macro-F1, EZ-F1, and AUROC while maintaining the small-est absolute EZ-Frac. Bias. Relative to the strongest baseline, logistic regression with patient-wise z-score normalization, CDEL improves Macro-F1 by 0.0306 and EZ-F1 by 0.0497. The near-zero bias shows that the improvement is obtained without systematically enlarging or shrinking the predicted EZ set. CDEL also improves over PRQ-Net by 0.0089 Macro-F1, 0.0186 EZ-F1, and 0.0052 AUROC. The raw-iEEG baselines obtain high NEZ-F1 or accuracy but substantially lower EZ-F1 and strongly negative EZ-Frac. Bias, indicating that those scores are dominated by the majority NEZ class. CDEL in-stead combines balanced thresholded localization with strong continuous discrimination. 
+
+Ablation and Analysis 
+
+Component and Objective Ablation. Each variant is re-trained from scratch using the same folds, seeds, validation-only threshold selection, and patient-equal evaluation as Ta-ble 2. For PRQ-Net, we evaluate temporal aggregation, Q10, and patient-relative normalization. Additional Q05 and Q20 sensitivity results are reported in Appendix D.1. The BCR BCE control keeps the same encoder, heads, parameter count, and optimization; only auxiliary losses differ. We also com-pare Q10, boundary-only, coverage-only, and their joint ob-jective. Patient-relative normalization is the dominant PRQ-Net component: removing it reduces Macro-F1 from 0.6282 to 0.5550 and accuracy from 0.7511 to 0.6985. Smaller Base, Temporal, and Q10 differences do not isolate a Q10 effect. Boundary-only gives the strongest standalone BCR-Net Macro-F1 (0.6268), whereas coverage-only does not im-prove over BCE. Boundary+Coverage was prespecified to encode boundary discrimination and annotated-set recovery. Table 3: Component ablation. Results are mean (s.d.) over three seeds. Bold rows denote the predefined full variants; BCR Q10 is an alternative control.                                                            
+
+> Variant Macro-F1 ↑Acc. ↑AUROC ↑
+> PRQ-Net
+> Base 0.6267 (.0048) 0.7434 (.0038) 0.7403 (.0030)
+> + Temporal 0.6261 (.0040) 0.7469 (.0015) 0.7414 (.0003)
+> + Q10 (Full) 0.6282 (.0018) 0.7511 (.0003) 0.7416 (.0007)
+> w/o Pat.-Rel. 0.5550 (.0265) 0.6985 (.0245) 0.7479 (.0025)
+> BCR-Net
+> Base (BCE) 0.6207 (.0043) 0.7408 (.0040) 0.7403 (.0022)
+> Q10 control 0.6227 (.0030) 0.7349 (.0062) 0.7402 (.0018)
+> + Boundary 0.6268 (.0019) 0.7480 (.0025) 0.7371 (.0050)
+> + Coverage 0.6198 (.0060) 0.7386 (.0058) 0.7369 (.0048)
+> + Bnd.+Cov. (Full) 0.6248 (.0024) 0.7443 (.0042) 0.7392 (.0034)
+
+Table 4: Post hoc patient-level Macro-F1 comparison of two CDEL objective variants across three random seeds.             
+
+> CDEL variant Seed 42 Seed 52 Seed 62 Mean PRQ + BCR-Boundary 0.6441 0.6276 0.6316 0.6344
+> PRQ + BCR-Full 0.6446 0.6364 0.6302 0.6371
+
+Table 4 is post hoc: under the locked 0.8/0.2 rule, the full and boundary-only fusions reach 0.6371 and 0.6344, respec-tively. This comparison did not select the objective, and no standalone benefit is claimed for coverage. 
+
+Complementary EZ Ranking. Threshold-free ranking re-sults further clarify the role of BCR-Net. BCR-Net obtains the strongest EZ-AUPRC and NDCG-EZ, 0.5564 ± 0.0112 
+
+and 0.7859 ± 0.0091 , respectively, compared with 0.5304 ±
+
+0.0083 and 0.7615 ± 0.0050 for PRQ-Net. CDEL retains most of this ranking gain, reaching 0.5475 ± 0.0038 EZ-AUPRC and 0.7765 ±0.0009 NDCG-EZ, while achieving the strongest thresholded localization in Table 2. The branches therefore provide complementary evidence: PRQ-Net sup-plies stable patient-relative scores, whereas BCR-Net im-proves the ordering of difficult EZ candidates. 
+
+Fusion Strategy and Statistical Validation. CDEL uses 
+
+pCDEL = (1 − λ)pPRQ + λp BCR ,
+
+with λ = 0 .20 locked before outer-test evaluation. Other predefined grid points use frozen OOF predictions only for post hoc robustness and do not inform selection (Figure 3). To test whether BCR-Net contributes patient-specific structure rather than generic score smoothing, we indepen-dently shuffle its channel scores within each patient while keeping PRQ-Net scores, the fusion weight, and the original fold thresholds fixed. The resulting null distribution has mean Macro-F1 0.6068, compared with the observed CDEL value of 0.6371. After 1,000 permutations, the one-sided corrected value is p = 0 .001 .We further perform a patient-level paired bootstrap with 10,000 resamples after averaging each patient’s metric across the three seeds. Relative to PRQ-Net, CDEL improves Macro-F1 by 0.0088 (95% CI [0.0032, 0.0146]), EZ-F1 by 
+
+Figure 3: Post hoc fusion sensitivity and statistical validation. (a) Macro-F1 across fusion weights; λ = 0 .20 was locked before outer-test evaluation and others show robustness only. (b) Null distribution from 1,000 within-patient BCR-Net per-mutations. (c) Patient-level bootstrap differences from PRQ-Net; bars denote 95% confidence intervals. 0.0186 ([0.0097, 0.0280]), EZ-AUPRC by 0.0171 ([0.0094, 0.0257]), and NDCG-EZ by 0.0150 ([0.0079, 0.0226]). All intervals remain above zero. 
+
+Boundary-Channel Analysis. We define channel diffi-culty by the PRQ-Net margin |pPRQ − tf |, where tf is the validation-selected threshold for the corresponding fold. Within each patient, the same hardest 10%, 20%, and 30% channel subsets are evaluated for PRQ-Net, BCR-Net, and CDEL. Figure 4(a) shows that CDEL raises EZ-F1 from 0.3858 to 0.4077, from 0.4198 to 0.4434, and from 0.4397 to 0.4642 across the three subsets. EZ recall increases by 0.0682, 0.0607, and 0.0504, respectively. The improvement therefore concentrates on ambiguous contacts, consistent with the boundary-focused supervision of BCR-Net. 
+
+Cross-Seizure Evidence. We freeze all checkpoints, fu-sion weights, and validation thresholds and restrict the avail-able seizure set before cross-seizure aggregation. For one-and two-seizure inference, seizure subsets are sampled ten times with fixed seeds, and all three models use exactly the same subset for a given patient and repeat. The primary anal-ysis uses the matched cohort of 73 patients with at least two valid seizures, ensuring an identical patient set for the one-, two-, and all-seizure conditions. As shown in Figure 4(b), CDEL Macro-F1 rises from 0.6146 with one seizure to 0.6254 with two seizures and 0.6395 with all available seizures. Patient-level bootstrap differences for all versus one and all versus two seizures are 0.0249 (95% CI [0.0110, 0.0397]) and 0.0141 ([0.0079, 0.0206]), respectively. The corresponding confidence inter-vals for EZ-F1, EZ-AUPRC, and NDCG-EZ are also entirely positive. The all-seizure value differs from Table 2 because this matched analysis uses the same 73 patients in every seizure condition, whereas the main experiments use all 80 patients. Table 5: Leave-one-center-out patient Macro-F1 across held-out centers (mean ± SD over 3 seeds).                                                                                           
+
+> Method HUP Multi-site LZU Fudan Center Mean Worst RBF-SVM 0.4872 ±0.0012 0.5080 ±0.0004 0.4399 ±0.0026 0.4516 ±0.0000 0.4717 0.4399 TimeConv-CNN 0.5015 ±0.0087 0.4816 ±0.0395 0.4696 ±0.0139 0.4568 ±0.0422 0.4774 0.4568 Logistic + patient-wise z-score 0.6181 ±0.0000 0.5956 ±0.0000 0.4995 ±0.0000 0.5830 ±0.0000 0.5741 0.4995 PRQ-Net 0.6480 ±0.0051 0.6322 ±0.0190 0.5714 ±0.0082 0.6022 ±0.0282 0.6135 0.5714 BCR-Net 0.6483 ±0.0144 0.6153 ±0.0231 0.5631 ±0.0327 0.5909 ±0.0182 0.6044 0.5631
+> CDEL 0.6508 ±0.0110 0.6414 ±0.0166 0.5773 ±0.0102 0.5956 ±0.0355 0.6163 0.5773
+
+Figure 4: Mechanism and cross-seizure analysis. (a) EZ-F1 on the hardest 10%, 20%, and 30% PRQ-defined channels. (b) Patient-level Macro-F1 using one, two, or all seizures in the matched 73-patient cohort. Error bars denote variation over three seeds. 
+
+Generalization 
+
+We next perform four leave-one-center-out evaluations. For each target center, model fitting, early stopping, threshold selection, and every other selection decision use only the remaining three source centers. The held-out center is eval-uated once using the locked configuration, without target-center threshold adaptation. Table 5 shows that CDEL achieves the highest center-mean Macro-F1 (0.6163) and the strongest worst-center re-sult (0.5773). It obtains the best result on HUP, the public multi-site cohort, and LZU, and the best overall center mean. Relative to logistic regression with patient-wise z-score nor-malization, the strongest external LOCO baseline, CDEL improves the center mean by 0.0422. These results support robust patient-relative transfer, with CDEL retaining the best center-average and worst-center performance despite modest center-specific variation. Together, these experiments support a coherent mecha-nism: patient-relative construction, complementary bound-ary ranking, and conservative fusion transfer across seizures and centers. 
+
+## Discussion 
+
+Supervision in iEEG localization is not uniform across co-horts. Brief interictal models use clinician-marked SOZ con-tacts (Sundrani et al. 2025), whereas outcome-oriented stud-ies use resected contacts, the clinical SOZ, or both as proxies for the latent EZ (Ho et al. 2026). In multicenter resources, SOZ and surgical-zone labels may derive from local review, postoperative imaging, operative notes, or retrospective con-tact inspection (Bernabei et al. 2023b); their positive class therefore absorbs center-specific surgical decisions and an-notation conventions (Wang et al. 2026c). By contrast, non-resected, non-SOZ contacts from seizure-free patients form a comparatively cleaner negative anchor (Ho et al. 2026). This motivates our patient-relative NEZ reference without assuming it is noise-free. Richer inputs did not improve this operating point. Under the same patient-wise protocol, we tested connectivity and graph-node features, 80–150 Hz HFO-lite markers, graph residuals, and a hybrid raw-window CNN plus engineered-feature encoder. None improved validation-thresholded per-formance on held-out patients; Macro-F1 was generally 
+
+0.05 –0.10 below CDEL. Although connectivity, HFO, graph, and raw-signal representations are well motivated for local-ization (Bernabei et al. 2023b; Wang et al. 2026b; Sundrani et al. 2025), here they were more sensitive to montage, sampling-rate, and recording-system differences, while the hybrid model introduced alignment and optimization insta-bility. We therefore retain the compact spectral and waveform representation because it best preserves CDEL’s main advan-tage: stable patient-relative generalization across centers. 
+
+## Conclusion 
+
+EpiLENS formulates EZ localization as a patient-relative decision problem for heterogeneous multi-center iEEG. Its CDEL framework combines PRQ-Net, which provides stable channel-wise probabilities, with BCR-Net, which contributes complementary boundary and coverage evidence. Across patient-disjoint, cross-seizure, and leave-one-center-out eval-uations, the proposed design consistently improves localiza-tion while remaining robust to variation in seizure availability and recording center. These results support patient-relative modeling as an effective strategy for cross-patient EZ local-ization. Funding 
+
+This work was supported in part by the National Natural Science Foundation of China under Grant 62503209, and in part by the Gansu Province Science and Technology Program under Grant 26YFFA024 and Grant 25JRRA721. 
+
+## References 
+
+Bernabei, J. M.; Li, A.; Revell, A. Y.; Smith, R. J.; Gunnars-dottir, K. M.; Ong, I. Z.; Davis, K. A.; Sinha, N.; Sarma, S.; and Litt, B. 2023a. HUP iEEG Epilepsy Dataset. Open-Neuro. Bernabei, J. M.; Li, A.; Revell, A. Y.; Smith, R. J.; Gunnars-dottir, K. M.; Ong, I. Z.; Davis, K. A.; Sinha, N.; Sarma, S.; and Litt, B. 2023b. Quantitative Approaches to Guide Epilepsy Surgery from Intracranial EEG. Brain , 146(6): 2248–2258. Bernabei, J. M.; Sinha, N.; Arnold, T. C.; Conrad, E.; Ong, I.; Pattnaik, A. R.; Stein, J. M.; Shinohara, R. T.; Lucas, T. H.; Bassett, D. S.; Davis, K. A.; and Litt, B. 2022. Norma-tive Intracranial EEG Maps Epileptogenic Tissues in Focal Epilepsy. Brain , 145(6): 1949–1961. Duan, C.; Zhang, Y.; Kanai, S.; Ding, Y.; Daida, A.; Yu, P.; Zheng, T.; Kuroda, N.; Hussain, S. A.; Asano, E.; et al. 2026. Omni-iEEG: A Large-Scale, Comprehensive iEEG Dataset and Benchmark for Epilepsy Research. arXiv:2602.16072. Frauscher, B.; Bartolomei, F.; Kobayashi, K.; Cimbalnik, J.; van ’t Klooster, M. A.; Rampp, S.; Otsubo, H.; Höller, Y.; Wu, J. Y.; Asano, E.; Engel, J.; Kahane, P.; Jacobs, J.; and Gotman, J. 2017. High-Frequency Oscillations: The State of Clinical Research. Epilepsia , 58(8): 1316–1329. Gonzalez Otarula, K. A.; von Ellenrieder, N.; Cuello-Oderiz, C.; Dubeau, F.; and Gotman, J. 2019. High-Frequency Os-cillation Networks and Surgical Outcome in Adult Focal Epilepsy. Annals of Neurology , 85(4): 485–494. Goodfellow, M.; Rummel, C.; Abela, E.; Richardson, M. P.; Schindler, K.; and Terry, J. R. 2016. Estimation of Brain Net-work Ictogenicity Predicts Outcome from Epilepsy Surgery. 
+
+Scientific Reports , 6(1): 29215. Gunnarsdottir, K. M.; Li, A.; Smith, R. J.; Kang, J.-Y.; Korze-niewska, A.; Crone, N. E.; Rouse, A. G.; Cheng, J. J.; Kins-man, M. J.; Landazuri, P.; Uysal, U.; Ulloa, C. M.; Cameron, N.; Cajigas, I.; Jagid, J.; Kanner, A.; Elarjani, T.; Bicchi, M. M.; Inati, S.; Zaghloul, K. A.; Boerwinkle, V. L.; Wyckoff, S.; Barot, N.; Gonzalez-Martinez, J.; and Sarma, S. V. 2022. Source–Sink Connectivity: A Novel Interictal EEG Marker for Seizure Localization. Brain , 145(11): 3901–3915. Ho, T. K. K.; Lai, T.; Klimes, P.; et al. 2026. Foundation Mod-els for Epileptogenic Zone Identification in Drug-Resistant Epilepsy. arXiv:2606.22657. Jiang, H.; Kokkinos, V.; Ye, S.; et al. 2022. Interictal SEEG Resting-State Connectivity Localizes the Seizure Onset Zone and Predicts Seizure Outcome. Advanced Science , 9(18): 2200887. Johnson, G. W.; Doss, D. J.; Morgan, V. L.; Paulo, D. L.; Cai, L. Y.; Shless, J. S.; Negi, A. S.; Gummadavelli, A.; Kang, H.; Reddy, S. B.; Naftel, R. P.; Bick, S. K.; Williams Roberson, S.; Dawant, B. M.; Wallace, M. T.; and Englot, D. J. 2023. The Interictal Suppression Hypothesis in Focal Epilepsy: Network-Level Supporting Evidence. Brain , 146(7): 2828– 2845. Kini, L. G.; Bernabei, J. M.; Mikhail, F.; Hadar, P.; Shah, P.; Khambhati, A. N.; Oechsel, K.; Archer, R.; Boccanfuso, J.; Conrad, E.; Shinohara, R. T.; Stein, J. M.; Das, S.; Kheder, A.; Lucas, T. H.; Davis, K. A.; Bassett, D. S.; and Litt, B. 2019. Virtual Resection Predicts Surgical Outcome for Drug-Resistant Epilepsy. Brain , 142(12): 3892–3905. Kwan, P.; Arzimanoglou, A.; Berg, A. T.; Brodie, M. J.; Hauser, W. A.; Mathern, G.; Moshe, S. L.; Perucca, E.; Wiebe, S.; and French, J. 2010. Definition of Drug Resistant Epilepsy: Consensus Proposal by the ad hoc Task Force of the ILAE Commission on Therapeutic Strategies. Epilepsia ,51(6): 1069–1077. Li, A.; Inati, S.; Zaghloul, K.; Crone, N.; Anderson, W.; Johnson, E.; Cajigas, I.; Brusko, D.; Jagid, J.; Claudio, A.; Kanner, A.; Hopp, J.; Chen, S.; Haagensen, J.; and Sarma, S. 2023. Epilepsy-iEEG-Multicenter-Dataset. OpenNeuro. Rijal, S.; Corona, L.; Perry, M. S.; Tamilia, E.; Madsen, J. R.; Stone, S. S. D.; Bolton, J.; Pearl, P. L.; and Papadelis, C. 2023. Functional Connectivity Discriminates Epileptogenic States and Predicts Surgical Outcome in Children with Drug Resistant Epilepsy. Scientific Reports , 13(1): 9622. Rosenow, F.; and Luders, H. 2001. Presurgical Evaluation of Epilepsy. Brain , 124(9): 1683–1700. Sinha, N.; Dauwels, J.; Kaiser, M.; Cash, S. S.; Westover, M. B.; Wang, Y.; and Taylor, P. N. 2017. Predicting Neuro-surgical Outcomes in Focal Epilepsy Patients Using Compu-tational Modelling. Brain , 140(2): 319–332. Sundrani, S.; Johnson, G. W.; Doss, D. J.; et al. 2025. Deep Learning on Brief Interictal Intracranial Recordings Can Ac-curately Characterize Seizure Onset Zones. Epilepsia , 66(9): 3180–3192. Taylor, P. N.; Papasavvas, C. A.; Owen, T. W.; Schroeder, G. M.; Hutchings, F. E.; Chowdhury, F. A.; Diehl, B.; Dun-can, J. S.; McEvoy, A. W.; Miserocchi, A.; de Tisi, J.; Vos, S. B.; Walker, M. C.; and Wang, Y. 2022. Normative Brain Mapping of Interictal Intracranial EEG to Localize Epilep-togenic Tissue. Brain , 145(3): 939–949. Varatharajah, Y.; Berry, B.; Cimbalnik, J.; Kremen, V.; Van Gompel, J.; Stead, M.; Brinkmann, B.; Iyer, R.; and Worrell, G. 2018. Integrating Artificial Intelligence with Real-Time Intracranial EEG Monitoring to Automate Inter-ictal Identification of Seizure Onset Zones in Focal Epilepsy. 
+
+Journal of Neural Engineering , 15(4): 046035. Varotto, G.; Susi, G.; Tassi, L.; Gozzo, F.; Franceschetti, S.; and Panzica, F. 2021. Comparison of Resampling Techniques for Imbalanced Datasets in Machine Learning: Application to Epileptogenic Zone Localization from Interictal Intracranial EEG Recordings in Patients with Focal Epilepsy. Frontiers in Neuroinformatics , 15: 715421. Wang, C.; Hong, J.; Liu, S.; Jiao, R.; Wang, R.; Xue, B.; Fang, X.; Yuan, Y.; Zu, W.; Chen, Y.; Zhang, Y.; Wang, Y.; Lu, S.; Jiang, X.; Wan, Y.; Li, L.; Xu, J.; and Jin, C. 2026a. SEEGformer: personalised SEEG-based seizure de-tection and epileptogenic zone localisation for drug-resistant epilepsy. EBioMedicine , 123: 106085. Wang, Y.; Schroeder, G. M.; Horsley, J. J.; Panagiotopoulou, M.; Chowdhury, F. A.; Diehl, B.; Duncan, J. S.; McEvoy, A. W.; Miserocchi, A.; de Tisi, J.; and Taylor, P. N. 2023. Temporal Stability of Intracranial Electroencephalographic Abnormality Maps for Localizing Epileptogenic Tissue. 
+
+Epilepsia , 64(8): 2070–2080. Wang, Y.; Yan, Z.; Gong, Y.; Lin, W.; Wang, T.; Liu, Y.; Han, Y.; Yang, M.; Liu, M.; Chen, W.; and Hu, B. 2026b. Computational Neuroelectrophysiology and Artificial Intel-ligence for Drug-Resistant Epilepsy: Recent Advances, Cur-rent Challenges, and Future Directions. Journal of Neural Engineering , 23(3): 031003. Wang, Y.; Yan, Z.; Liu, Y.; Zhou, Y.; Liu, M.; Gong, Y.; Wang, T.; Chen, W.; and Hu, B. 2026c. Localizing the Epilep-togenic Zone Using SEEG-Based Excitation–Inhibition Dy-namics and Spectral Features in Drug-Resistant Epilepsy: A Multicenter Retrospective Study. IEEE Transactions on Neu-ral Systems and Rehabilitation Engineering , 34: 2982–2993. Wang, Y.; Yang, Y.; Cao, G.; Guo, J.; Wei, P.; Feng, T.; Dai, Y.; Huang, J.; Kang, G.; and Zhao, G. 2022. SEEG-Net: An explainable and deep learning-based cross-subject patho-logical activity detection method for drug-resistant epilepsy. 
+
+Computers in Biology and Medicine , 148: 105703. Zweiphenning, W.; van ’t Klooster, M. A.; van Klink, N. E. C.; Leijten, F. S. S.; Ferrier, C. H.; Gebbink, T.; Huiskamp, G.; van Zandvoort, M. J. E.; van Schooneveld, M. M. J.; Bourez, M.; Goemans, S.; Straumann, S.; van Rijen, P. C.; Gosselaar, P. H.; van Eijsden, P.; Otte, W. M.; van Diessen, E.; Braun, K. P. J.; Zijlmans, M.; Bloemen-Carlier, E. M.; Cibulková, V.; de Munnink, R.; van der Salm, S.; Eijkemans, M. J. C.; Ophorst-van Eck, J. M.; Velders, A.; van Asch, C. J. J.; Zwemmer, J.; van Regteren-van Griethuysen, R.; Smed-ing, H.; van der Berg, L.; de Bresser, J.; de Kort, G. A. P.; and Dankbaar, J.-W. 2022. Intraoperative Electrocorticogra-phy Using High-Frequency Oscillations or Spikes to Tailor Epilepsy Surgery in the Netherlands (the HFO Trial): A Ran-domised, Single-Blind, Adaptive Non-Inferiority Trial. The Lancet Neurology , 21(11): 982–993. A Patient Demographics and Clinical Information 
+
+Table II reports the available patient-level clinical informa-tion for the 80 postoperative seizure-free patients included in this study. To preserve patient privacy, participants from the LZU and pediatric cohorts were anonymized as A1–A21 and B1–B8, respectively. HUP participants were indexed se-quentially as HUP-1–HUP-36, whereas participants from the public multi-site cohort retained their original dataset iden-tifiers. Because the source cohorts provide heterogeneous metadata, only clinically comparable fields are reported, and unavailable entries are denoted by “–”. As a representative clinical example, Figure I shows the bilateral SEEG implantation scheme and the resulting per-sonalized craniotomy and resection plan for patient B02. Table I: Stereotactic electrode implantation scheme for pa-tient B2.                
+
+> Electrode Implantation trajectory
+> A′Anterior superior frontal gyrus–precentral sulcus F′Inferior frontal gyrus–inferior anterior cingulate gyrus I′Middle frontal gyrus–anterior insula K′Anterior middle frontal gyrus–medial frontal surface L′Posterior middle frontal gyrus–pre-supplementary motor area (pre-SMA) M′Precentral gyrus–precentral sulcus–posterior supe-rior frontal gyrus–supplementary motor area (SMA) R′Middle superior frontal gyrus–anterior midcingulate cortex X′Frontomarginal gyrus–superior anterior cingulate gyrus Y′Anterior superior frontal gyrus–lateral orbitofrontal gyrus Z′Superior occipital gyrus–posterior cingulate gyrus
+
+## B Base Feature Construction and Patient-Relative Reference 
+
+This section details the window-level descriptors used by EpiLENS and the motivation for comparing each channel with a reference derived from the same patient. The feature extractor is intentionally compact and interpretable: it sum-marizes complementary spectral, amplitude, waveform, and complexity properties before the patient-relative transforma-tion described in the main text. 
+
+B.1 Signal Segmentation and Spectral Estimation 
+
+After the center-specific recordings are converted to a com-mon channel–time representation, signals are restricted to the 1–150 Hz range and divided into 2-s windows with a 
+
+1-s stride. Features are computed independently for each valid channel and window. The same procedure is applied to SEEG and ECoG recordings; recording modality, center identity, and patient identity are not supplied to the localiza-tion model. For a windowed signal x = [ x1, . . . , x N ] sampled at fs,the power spectral density (PSD), denoted by bSx(f ), is es-timated using Welch’s method. The implementation uses a segment length 
+
+NWelch = min( N, max(64 , ⌊2fs⌉)) , (22) with 50% overlap and no additional detrending. Spectral power is integrated over frequency using the trapezoidal rule. A small constant ϵ is used throughout to avoid numerical in-stability. 
+
+B.2 Base Spectral and Waveform Descriptors 
+
+For every channel and window, EpiLENS uses nine base descriptors. These features are not treated as individually sufficient biomarkers of the epileptogenic zone. Instead, they provide complementary descriptions of the same local iEEG segment, which are subsequently interpreted relative to the patient’s own reference activity. For spectral entropy, ePk = Pk/ PKj=1 Pj is the normal-ized PSD over the K retained frequency bins. The normaliza-tion by log K makes the entropy comparable across windows with the same spectral support. Band powers are transformed with log(1 + ·) to reduce the influence of extreme power val-ues and improve numerical conditioning across centers. The selected descriptors cover four complementary as-pects of peri-onset iEEG. Band powers describe how energy is distributed from slow activity to high-frequency recruit-ment. RMS and variance summarize signal magnitude and dispersion. Line length captures waveform variation using both amplitude and temporal change. Spectral entropy dis-tinguishes concentrated rhythmic patterns from broadband or irregular activity. The model therefore does not depend on a single predefined electrophysiological marker; it receives a compact description from which patient-relative evidence can be learned. 
+
+B.3 Why Compare Each Patient with Their Own Reference? 
+
+Absolute iEEG feature values are not directly compara-ble across patients. Several sources of variation affect the recorded scale even when the underlying physiological state is similar. These include amplifier and referencing choices, electrode type, contact impedance, implantation geometry, sampled anatomy, seizure morphology, and center-specific acquisition procedures. Moreover, intracranial implantation is clinically targeted rather than anatomically uniform: dif-ferent patients contain different channel sets and therefore different internal comparison populations. A universal cross-patient boundary may consequently learn acquisition or im-plantation differences instead of patient-specific epilepto-genic abnormality. EpiLENS addresses this problem by treating the same pa-tient’s pre-onset activity as the immediate electrophysiologi-cal reference. For seizure s and channel c, let Wref  
+
+> isc
+
+denote the valid negative-time windows preceding the annotated seizure onset. The reference mean and standard deviation are 
+
+μisc = 1
+
+|W ref  
+
+> isc
+
+|
+
+X
+
+> w∈W ref
+> isc
+
+xiscw , (23) Table II: Patient-level demographics and available clinical information for the 80 postoperative seizure-free patients included in Task 1. 
+
+Patient Age Sex Procedure Modality Engel 
+
+LZU 
+
+A1 – – Abl.+Res. SEEG IA2 – – – SEEG IA3 – – Res. SEEG IA4 – – Res. SEEG IA5 – – Abl.+Res. SEEG IA6 – – Res. SEEG IA7 – – Res. SEEG IA8 – – Res. SEEG IA9 – – Res. SEEG IA10 – – Abl.+Res. SEEG IA11 – – Abl. SEEG IA12 – – Abl. SEEG IA13 – – Abl. SEEG IA14 – – Res. SEEG IA15 – – – SEEG IA16 – – Res. SEEG IA17 – – Res. SEEG IA18 – – Abl. SEEG IA19 – – Abl. SEEG IA20 – – Abl. SEEG IA21 – – Res. SEEG I
+
+Fudan 
+
+B1 13 M Res. SEEG IB2 3 M Abl. SEEG IB3 4 M Abl. SEEG IB4 3 F Abl. SEEG IB5 15 M Abl. SEEG IB6 7 M Abl. SEEG IB7 3 F Abl. SEEG IB8 10 M Abl. SEEG I
+
+HUP cohort 
+
+HUP-1 21 M Res. ECoG I-D HUP-2 36 M Res. ECoG I-B HUP-3 33 M Res. ECoG I-B HUP-4 25 F Res. ECoG I-C HUP-5 56 F Res. ECoG I-A HUP-6 24 M Res. ECoG I-D HUP-7 35 F Res. ECoG I-D HUP-8 29 M Res. ECoG I-B HUP-9 48 F Res. ECoG I-B HUP-10 39 F Res. ECoG I-D HUP-11 39 M Res. ECoG I-A 
+
+Patient Age Sex Procedure Modality Engel 
+
+HUP cohort 
+
+HUP-12 45 F Res. ECoG I-B HUP-13 36 M Res. ECoG I-A HUP-14 40 F Res. ECoG I-B HUP-15 59 F Abl. SEEG I-A HUP-16 39 M Res. SEEG I-A HUP-17 36 M Res. ECoG I-A HUP-18 26 F Abl. ECoG I-A HUP-19 46 F Abl. SEEG I-B HUP-20 32 M Res. SEEG I-B HUP-21 20 M Abl. SEEG I-A HUP-22 47 F Abl. SEEG I-B HUP-23 30 M Abl. SEEG I-C HUP-24 30 M Abl. SEEG I-D HUP-25 31 M Res. SEEG I-D HUP-26 16 M Res. SEEG I-A HUP-27 23 M Abl. SEEG I-A HUP-28 17 M Abl. SEEG I-B HUP-29 25 M Abl. SEEG I-B HUP-30 45 F Res. SEEG I-A HUP-31 42 F Abl. SEEG I-D HUP-32 34 F Abl. SEEG I-D HUP-33 24 F Res. SEEG I-A HUP-34 42 F Res. SEEG I-A HUP-35 28 F Abl. SEEG I-A HUP-36 38 M Abl. SEEG I-A 
+
+Public multi-site cohort 
+
+sub-jh105 – – – – Isub-pt2 28 F – – Isub-pt3 45 M – – Isub-pt8 25 M – – Isub-pt11 31 M – – Isub-pt15 59 F – – Isub-pt16 52 F – – Isub-pt17 13 M – – Isub-umf001 37 F – – Isub-ummc003 31 M – – Isub-ummc004 38 M – – Isub-ummc005 47 M – – Isub-ummc006 36 M – – Isub-ummc008 49 M – – Isub-ummc009 36 M – – I
+
+Note. Age is reported in years. Abl., ablation; Res., resection; Abl.+Res., combined ablation and resection. Modality denotes the intracranial recording modality. Engel class I indicates postoperative seizure freedom; subclasses are reported when available. Figure I: Patient-specific SEEG implantation and surgical planning for patient B02. (a) Bilateral stereoelectroencephalography (SEEG) implantation scheme, showing the planned electrode trajectories and target contacts. (b) Representative magnetic resonance imaging slices showing the individualized surgical resection regions highlighted in blue, with the corresponding contact labels shown in yellow. Together, the two panels illustrate how invasive electrophysiological monitoring was translated into a personalized craniotomy and resection strategy. Table III: Base channel descriptors used by EpiLENS. Each descriptor is computed independently for every valid channel and temporal window before patient-relative expansion. 
+
+Descriptor Definition Captured signal property 
+
+Log delta power log 
+
+
+
+1 + 
+
+Z 41
+
+bSx(f ) df 
+
+
+
+Slow activity and low-frequency shifts accompanying changes in local electrophysiological state. Log theta power log 
+
+
+
+1 + 
+
+Z 84
+
+bSx(f ) df 
+
+
+
+Low-frequency rhythmic recruitment not fully repre-sented by amplitude-only statistics. Log beta power log 
+
+
+
+1 + 
+
+Z 30 13 
+
+bSx(f ) df 
+
+
+
+Faster rhythmic activity and changes associated with rapid local recruitment. Log low-gamma power 
+
+log 
+
+
+
+1 + 
+
+Z 80 30 
+
+bSx(f ) df 
+
+
+
+Local fast activity and broadband excitation in the lower gamma range. Log high-gamma power 
+
+log 
+
+
+
+1 + 
+
+Z 150 80 
+
+bSx(f ) df 
+
+
+
+High-frequency local activation without requiring a sep-arate event-level high-frequency-oscillation detector. Root mean square RMS( x) = 
+
+vuut 1
+
+N
+
+> N
+
+X
+
+> t=1
+
+x2 
+
+> t
+
++ ϵ Window-level signal magnitude and energy. Variance Var( x) = 1
+
+N
+
+> N
+
+X
+
+> t=1
+
+(xt − ¯x)2 Amplitude dispersion around the local mean. Line length per sec-ond 
+
+LL( x) = 1
+
+N/f sNX
+
+> t=2
+
+|xt − xt−1| Joint variation in amplitude and temporal rate; sensitive to rapid, sharp, or sustained waveform changes. Spectral entropy Hspec = − 1log K
+
+> K
+
+X
+
+> k=1
+
+ePk log( ePk + ϵ) Spectral concentration and complexity, where narrow-band rhythmic and broadband irregular activity produce different entropy profiles. 
+
+and 
+
+σisc =
+
+vuut 1
+
+|W ref  
+
+> isc
+
+|
+
+X
+
+> w∈W ref
+> isc
+
+(xiscw − μisc )2. (24) This comparison serves three purposes. First, it controls for static channel-specific factors: a contact is compared with its own earlier activity, so persistent differences caused by electrode location, gain, or baseline amplitude are reduced. Second, it isolates seizure-related change: the model receives evidence describing how strongly the current window departs from the local state observed before seizure onset. Third, it makes the comparison clinically patient-specific: the ques-tion becomes whether a channel is abnormal relative to the signals available for that patient, rather than whether it ex-ceeds a single cohort-wide absolute value. The reference is derived separately for each seizure and channel. It therefore does not assume that a patient’s baseline is stationary across recording sessions or that every seizure has the same background state. This is important because medication, vigilance, recording duration, and electrode con-ditions may vary across seizures. Using a same-seizure ref-erence limits these session-level shifts before evidence is aggregated across seizures. We use the term pre-onset reference rather than an inde-pendent interictal recording because the reference windows are drawn from the negative-time portion associated with the same recorded seizure. This choice also avoids requiring a separate interictal segment for every patient and center, which is not uniformly available in heterogeneous clinical datasets. No channel label, resection information, or postop-erative outcome is used to construct the reference. 
+
+B.4 Four-View Patient-Relative Expansion 
+
+Let xiscw ∈ R9 denote the nine base descriptors for patient 
+
+i, seizure s, channel c, and window w. EpiLENS constructs four complementary views: 
+
+xABS  
+
+> iscw
+
+= xiscw ,
+
+x∆ 
+
+> iscw
+
+= xiscw − μisc ,
+
+xZ-∆ 
+
+> iscw
+
+= xiscw − μisc 
+
+σisc + ϵ ,
+
+xLOG -R 
+
+> iscw
+
+= log |xiscw | + ϵ
+
+|μisc | + ϵ .
+
+(25) Their concatenation gives 
+
+ϕiscw = xABS 
+
+> iscw
+
+, x∆
+
+> iscw
+
+, xZ-∆
+
+> iscw
+
+, xLOG -R
+
+> iscw
+
+ ∈ R36 . (26) The absolute view preserves physiologically meaningful signal magnitude and prevents relative normalization from discarding all cross-window intensity information. The dif-ference view measures additive deviation from the channel’s own pre-onset state. The standardized-difference view ac-counts for the natural variability of each descriptor, so the same absolute change can be interpreted differently for sta-ble and highly variable channels. The log-ratio view rep-resents multiplicative change and compresses large relative shifts. Retaining all four views allows the network to de-cide whether an absolute value, an additive departure, a variability-adjusted departure, or a relative fold change is most informative for a particular channel and feature. 
+
+B.5 Normalization, Masking, and Leakage Control 
+
+Reference statistics in Eqs. (23)–(24) are computed only from valid pre-onset windows of the same seizure and channel. Missing channels and padded windows are excluded explic-itly by masks. Non-finite values produced by degenerate win-dows are replaced with finite zeros after the corresponding validity mask has been constructed. After the four-view representation is formed, dataset-level feature standardization is fitted using only the training pa-tients of the current outer fold. The fitted statistics are then applied unchanged to the validation and test patients. The pre-onset reference itself uses only the patient’s signal and does not depend on EZ/NEZ labels. Consequently, neither test labels nor information from other test patients enters feature construction, model selection, or threshold selection. 
+
+## C Baseline Implementations and Training Details 
+
+C.1 Outer-Fold Protocol and Selection Isolation 
+
+All external baselines use the same frozen 80-patient co-hort, outer-test fold assignments, channel labels, retained signal intervals, bad-channel exclusions, and random seeds 
+
+{42 , 52 , 62 } as the primary experiment. The outer-test pa-tients are never used for preprocessing estimation, check-point selection, epoch selection, hyperparameter selection, or threshold selection. Feature-based baselines, the four patient-relative controls, and the three iEEG raw baselines use the explicit fit/validation/test manifest of each outer fold. SEEG-former uses patient-grouped inner folds formed only from the outer-training patients; its inner out-of-fold predictions determine the epoch budget and threshold before the outer-test fold is evaluated once. Thus, the implementation details differ by model family, but every selection decision remains confined to outer-training patients. The label convention is NEZ = 1 and EZ = 0 . Every model outputs a continuous NEZ probability, and its com-plement is used for EZ ranking. A single threshold is se-lected for each outer fold; patient-specific, center-specific, and true-EZ-count-based thresholds are prohibited. Center, modality, patient identity, postoperative outcome, resection information, and stimulation metadata are retained only for cohort construction, audits, and stratified reporting, and are not supplied as model inputs. All experiments were conducted on a single worksta-tion equipped with an Intel Core i9-13900K CPU and one NVIDIA GeForce RTX 5090 GPU. Each model was trained and evaluated using a single GPU. 
+
+C.2 Feature-Based Baselines 
+
+The conventional classifiers use the same P2-matched self-referenced feature construction as the neural feature mod-els, rather than a reduced collection of unrelated summary statistics. Each window first produces the 36-dimensional four-view representation in Eq. (26). The high-gamma, line-length, RMS, and variance descriptors additionally con-tribute standardized-difference and absolute-difference state terms, yielding 44 window-level dimensions. Valid windows are averaged within each seizure; for each channel, the cross-seizure mean and standard deviation of every dimension are concatenated into an 88-dimensional input vector. Window and seizure counts are recorded for auditing but are excluded from the classifier input. Missing values are imputed with training-partition means. Logistic regression and RBF-SVM additionally standardize every dimension using statistics fitted only on the outer-fit patients. The estimator settings are fixed before outer evalua-tion: logistic regression uses an ℓ2 penalty, the liblinear 
+
+solver, C = 1 , balanced class weights, and at most 2,000 iterations; RBF-SVM uses C = 1 , γ = scale , balanced class weights, and probabilistic outputs; random forest uses 300 trees, maximum depth 5, minimum leaf size 2, square-root feature subsampling, and balanced-subsample weights; LightGBM uses 300 boosting rounds, 7 leaves, maximum depth 3, learning rate 0.05, minimum child size 10, and bal-anced class weights. These fixed configurations are fitted on the outer-fit patients, and only the fold-level threshold is selected on the corresponding validation patients. 
+
+C.3 Patient-Relative Control Baselines 
+
+To separate the effect of patient-relative construction from the specific PRQ-Net and BCR-Net architectures, we ad-ditionally implement four controls using exactly the same 88-dimensional P2-matched channel feature table, outer-fold assignments, and fixed fit/validation/test manifests described above. These controls are not given center, modality, postop-erative outcome, resection, stimulation, channel coordinates, or the true number of EZ contacts. All patient-relative trans-formations are label-free and are computed independently within each patient. 
+
+DeepSets + BCE. This control tests whether a generic permutation-invariant set model is sufficient without the pro-posed temporal-tail or boundary/coverage objectives. Each channel vector is mapped by ϕ : R88 → R64 through layer normalization, a 96-unit GELU layer, dropout 0.15, and a 64-unit GELU layer. For each patient, the channel embed-ding is concatenated with the mean-pooled and max-pooled patient embeddings. The resulting 192-dimensional vector is processed by a 96-unit GELU head with dropout 0.15 to produce one NEZ logit per channel. The model is trained only with class-weighted channel BCE. 
+
+MLP + patient rank normalization. This model uses the same channel-wise MLP on the unmodified P2-matched fea-ture vectors. Its sigmoid NEZ scores are subsequently con-verted, separately for each patient, to increasing percentile ranks using average ranks divided by ni + 1 , where ni is the number of valid contacts for patient i. The same trans-formation is applied to validation and test predictions before thresholding. It therefore tests whether simple label-free out-put ranking can replace the proposed patient-relative repre-sentation and dual-evidence learning. 
+
+Logistic + patient z-score and RBF-SVM + patient z-score. For both controls, each feature is z-scored across the valid channels of the same patient before training-fold mean imputation and training-fold standardization are applied. Lo-gistic regression uses an ℓ2 penalty, the liblinear solver, 
+
+C = 1 , balanced class weights, and at most 2,000 itera-tions. RBF-SVM uses C = 1 , γ = scale , balanced class weights, and probabilistic outputs. They quantify how much of the gain can be explained by patient-relative preprocessing alone when paired with standard classifiers. The neural controls are optimized with AdamW, learn-ing rate 10 −3, weight decay 10 −4, gradient clipping at 1.0, and one complete patient’s channels per optimization step. Training is capped at 30 epochs, with patience 6 and no early stopping before epoch 6. After every epoch, the checkpoint and one global fold threshold are selected using validation patient Macro-F1, with patient EZ-F1 as the first tie-breaker. For the two classical controls, the estimator is fitted once on the outer-fit patients and only the global threshold is selected on validation patients. The locked checkpoint or estimator and threshold are then applied unchanged to the outer-test patients. 
+
+C.4 Shared Raw-iEEG Preprocessing 
+
+SEEGNet, TimeConv-CNN, and CLAP are run through the strengthened Omni-iEEG adapter, while SEEGformer uses the repository’s multichannel adapter. For the three single-channel Omni baselines, the five audited 4-s windows closest to seizure onset are retained from each seizure whenever they lie fully inside the valid raw interval. Each channel segment is fourth-order band-pass filtered at 0.5–80 Hz, notch filtered at 50 Hz with quality factor 30, resampled to 200 Hz, and padded or truncated to 800 samples. Robust segment-wise normalization subtracts the median and divides by the in-terquartile range; values are then clipped to [−8, 8] . The same filtering, resampling, robust normalization, and clip-ping parameters are used by the SEEGformer data adapter. No center- or modality-specific normalization is applied. For all trainable raw baselines, class imbalance is han-dled by binary cross-entropy with logits and a positive-class weight computed from the outer-fit partition. Optimization uses AdamW with weight decay 10 −4, mixed precision when CUDA is available, and gradient clipping at 1.0. The strength-ened runner enforces a predeclared minimum training budget and aborts when a weaker budget is requested. It also requires the pretrained TimeConv-CNN and CLAP weights to be lo-cally available and fails rather than silently replacing them with random or frozen substitutes. 
+
+C.5 SEEGNet, TimeConv-CNN, and CLAP 
+
+SEEGNet. The SEEGNet comparison uses the Omni-iEEG multiscale convolutional recurrent adapter (Wang et al. 2022; Duan et al. 2026). A 4-s single-channel waveform is processed by three Conv1D branches with kernel/stride pairs 
+
+(51 , 4) , (17 , 2) , and (3 , 1) , each producing 24 channels fol-lowed by batch normalization and GELU. The aligned branch outputs are concatenated, mixed by a 1×1 convolution into 96 channels, regularized with dropout 0.5, and pooled to 32 temporal steps. A bidirectional LSTM with hidden size 64 per direction and learned temporal attention produces a 128-dimensional summary, which is mapped to one channel logit. The model is trained from scratch with learning rate 10 −3
+
+and batch size 128. 
+
+TimeConv-CNN. TimeConv-CNN follows the time– frequency image pathway provided by Omni-iEEG (Duan Table IV: Code-aligned configuration of the feature-based baselines. All imputation and scaling statistics are fitted using outer-fit patients only.                            
+
+> Method Preprocessing Fixed estimator configuration Balancing
+> Logistic regression Mean imputation; standardiza-tion
+> ℓ2,liblinear ,C= 1 , 2,000 iterations Balanced weights RBF-SVM Mean imputation; standardiza-tion RBF kernel, C= 1 ,γ=scale , probability output Balanced weights Random forest Mean imputation 300 trees, depth 5, leaf size 2, √dfeature sampling Balanced subsam-pling LightGBM Mean imputation 300 rounds, 7 leaves, depth 3, learning rate 0.05, child size 10 Balanced weights
+
+Table V: Code-aligned patient-relative controls. All controls use the same P2-matched 88-dimensional channel representation and fixed outer-fold fit/validation/test partitions.                                     
+
+> Control Patient-relative operation Predictor Selection
+> DeepSets + BCE Mean/max patient context in la-tent space
+> 88 →96 →64 channel encoder; concate-nated channel/mean/max context; 192 →
+> 96 →1head Validation patient Macro-F1 MLP + patient rank nor-malization Per-patient percentile rank of predicted NEZ scores LayerNorm; 88 →96 →1MLP; dropout 0.15 Validation patient Macro-F1 after ranking Logistic + patient z-score Per-patient, per-feature channel z-score
+> ℓ2logistic regression, C= 1 , balanced weights Validation-only thresh-old RBF-SVM +patient z-score Per-patient, per-feature channel z-score RBF-SVM, C= 1 ,γ=scale , balanced weights Validation-only thresh-old
+
+et al. 2026). The waveform is transformed using a Hann-window STFT with nFFT = 128 and hop length 20. Log-magnitude values are standardized within each time– frequency map, passed through two Conv2D layers ( 1 → 16 
+
+and 16 → 32 ), and then processed by an ImageNet-initialized ResNet-18. Its first convolution is replaced by a 32-channel layer initialized from the mean ImageNet kernel, and its final classification layer is replaced by a 512-to-1 head. Newly ini-tialized layers use learning rate 10 −3, the pretrained ResNet-18 uses 10 −4, and the batch size is 128. 
+
+CLAP. CLAP uses the audio branch of 
+
+laion/clap-htsat-fused through the Omni-iEEG adapter (Duan et al. 2026). The feature extractor is configured for the 4-s, 200-Hz signal with 64 mel bins, 0–100 Hz support, a 256-point FFT, and hop length 20. The pretrained audio encoder and audio projection are fine-tuned at learning rate 10 −5; all other pretrained components remain frozen. A linear head from the CLAP projection dimension to one logit is trained at 10 −3. The batch size is 8. For these three models, training is scheduled for 30 epochs with patience 6, and early stopping cannot occur before epoch 6. After each epoch, segment probabilities from validation patients are averaged to one probability per patient–channel pair. The retained checkpoint maximizes validation patient-level Macro-F1, with patient EZ-F1 as the first tie-breaker. SEEGNet may extend from 30 to 50 epochs only when its best validation Macro-F1 occurs within the final three scheduled epochs and exceeds the value three epochs earlier by at least 0.002. This extension rule is fixed and validation-only. For final inference, the arithmetic mean of all retained segment probabilities forms the channel score. 
+
+C.6 SEEGformer 
+
+SEEGformer is a direct cross-patient channel-supervised adaptation of the public tri-branch frequency-domain Trans-former (Wang et al. 2026a). Each example contains all avail-able channels from one 4-s window, resampled to 200 Hz; examples are padded only along the channel axis and ac-companied by an explicit channel mask. A 1,600-point FFT over 0.5–80 Hz provides separate real, imaginary, and ampli-tude representations. Each branch projects the FFT features to dimension 64 and applies two masked Transformer blocks with four attention heads, MLP ratio 2, and dropout 0.2. A 
+
+64 → 32 → 1 head produces one logit per valid channel, and learned softmax weights combine the three branch logits. Within every outer fold, four patient-grouped inner folds are used. Each inner model is optimized with AdamW, learn-ing rate 5 × 10 −4, weight decay 10 −4, batch size 8, gradient accumulation over two steps, mixed precision, and gradient clipping at 1.0. Training is capped at 30 epochs and uses patience 6 on inner-validation loss. The median selected epoch across the inner folds defines the final epoch bud-get, after which a fresh model is fitted on all outer-training patients. The fold threshold is selected from the aggregated inner out-of-fold predictions. Window probabilities are re-duced by taking the median within each seizure and then the median across seizures for the same channel. Table VI: Optimization settings of the strengthened raw-iEEG baselines. All checkpoint, epoch, and threshold decisions use outer-training patients only. 
+
+Method Initialization Optimizer Learning rate Batch Epoch rule Selection signal 
+
+SEEGNet From scratch AdamW 10 −3 128 30; conditional exten-sion to 50 Validation patient Macro-F1 TimeConv-CNN ImageNet ResNet-18 AdamW 10 −3 / 10 −4
+
+backbone 128 30; patience 6 after epoch 6 Validation patient Macro-F1 CLAP LAION CLAP AdamW 10 −3 / 10 −5 au-dio backbone 8 30; patience 6 after epoch 6 Validation patient Macro-F1 SEEGformer From scratch AdamW 5 × 10 −4 8 × 2 30 per inner fold; pa-tience 6 Inner validation loss; inner-OOF threshold 
+
+C.7 Thresholding, Aggregation, and Reproducibility Audits 
+
+For every outer fold, candidate thresholds are evaluated on {0, 0.005 , . . . , 1}. Selection maximizes patient-averaged Macro-F1, followed by patient EZ-F1 and balanced accuracy as tie-breakers; the selected threshold is stored and applied unchanged to the corresponding outer-test patients. All re-ported baseline results are produced from held-out channel ledgers and summarized over the three complete seeds. The baseline runners write the resolved configuration, fold and cohort hashes, input-cache hashes, per-epoch his-tories, selected thresholds, checkpoints, and channel-level OOF ledgers. The patient-relative control runner also stores the feature manifest and one training audit per model, seed, and outer fold. Feature baselines additionally require ex-act subject–center–channel–fold–label alignment with the frozen reference ledger. The strengthened Omni suite re-quires all 3 models × 3 seeds × 5 folds = 45 held-out ledgers and aborts on missing or duplicate patient–channel predic-tions. SEEGformer separately records architecture prove-nance and center-, modality-, and patient-level data audits. These checks prevent partial runs, silently changed cohorts, or duplicated held-out channels from entering the reported comparison. 
+
+## D Additional Localization Analyses 
+
+This section provides additional results characterizing the stability and ranking behavior of EpiLENS beyond the ag-gregate comparison reported in the main experiments. All analyses use the same fixed 80-patient cohort, patient-wise outer folds, random seeds {42 , 52 , 62 }, and validation-only model and threshold selection. Metrics are computed inde-pendently for each patient and then averaged with equal pa-tient weight, except for the global EZ-fraction bias. PRQ-Net and BCR-Net are trained independently, and all analyses use frozen out-of-fold predictions unless re-inference is explic-itly specified. 
+
+D.1 Sensitivity to the Lower-Tail Quantile 
+
+To assess whether the Q10 design depends strongly on the selected lower-tail quantile, we retrained PRQ-Net with 
+
+q ∈ { 0.05 , 0.20 } using the same patient splits, three seeds, validation-only threshold selection, and evaluation proto-Table VII: Sensitivity to the lower-tail quantile. Results are mean (s.d.) over three seeds; bold denotes the default setting.                                 
+
+> qMacro-F1 EZ-F1 Acc. EZ-AUROC EZ-AUPRC 0.05 0.6271 (.0019) 0.4276 (.0023) 0.7508 (.0015) 0.7416 (.0007) 0.5304 (.0083)
+> 0.10 0.6282 (.0018) 0.4299 (.0035) 0.7511 (.0003) 0.7416 (.0007) 0.5304 (.0083)
+> 0.20 0.6272 (.0019) 0.4277 (.0024) 0.7508 (.0015) 0.7416 (.0007) 0.5304 (.0083)
+
+Table VIII: Per-seed localization results on the fixed 80-patient cohort. 
+
+Seed Method Macro-F1 EZ-F1 EZ-Frac. Bias 
+
+42 PRQ-Net 0.6285 0.4303 −0.0075 
+
+42 BCR-Net 0.6274 0.4387 +0 .0127 
+
+42 CDEL 0.6446 0.4602 +0 .0059 
+
+52 PRQ-Net 0.6263 0.4262 −0.0161 
+
+52 BCR-Net 0.6243 0.4221 −0.0195 
+
+52 CDEL 0.6364 0.4488 +0 .0021 
+
+62 PRQ-Net 0.6299 0.4331 −0.0055 
+
+62 BCR-Net 0.6227 0.4301 +0 .0187 
+
+62 CDEL 0.6302 0.4366 +0 .0022 
+
+col as the main experiment. Table VII includes the default 
+
+q = 0 .10 result for reference. The two alternative quantiles remain within 0.0011 Macro-F1 of Q10, and their threshold-free EZ-AUROC and EZ-AUPRC are effectively unchanged. Q10 retains slightly higher EZ-F1 and accuracy, but the small differences show that performance is stable over q ∈ [0 .05 , 0.20] rather than depending on a sharply tuned quantile. We therefore retain Q10 as the central default setting. 
+
+D.2 Seed-Wise Stability and Ranking Behavior 
+
+Table VIII reports the individual runs underlying the three-seed averages in the primary comparison. CDEL consistently improves balanced localization across the three random seeds while maintaining a predicted EZ fraction close to the ob-served cohort prevalence. Table IX further evaluates retrieval-style EZ ranking at the patient level. BCR-Net obtains the strongest performance on all three measures, consistent with its boundary and coverage objectives. CDEL retains most of this ranking benefit while preserving the stronger thresholded localization behavior of Table IX: Additional patient-wise EZ ranking metrics. Re-sults are mean ± standard deviation over three seeds. 
+
+Method MRR-EZ Recall@ true-K
+
+Top-1 EZ Rate 
+
+PRQ-Net 0.6944 ±0.0079 0.4795 ±0.0131 0.5792 ±0.0191 
+
+BCR-Net 0.7663 ±0.0098 0 .4928 ±0.0129 0 .6667 ±0.0191 
+
+CDEL 0.7427 ±0.0125 0.4899 ±0.0141 0.6417 ±0.0315 
+
+Table X: CDEL performance vs. available seizure count on the matched 73-patient cohort (mean ± SD over 3 seeds).                           
+
+> No. EZ-F1 AUPRC NDCG Recall@ true-K
+> 10.4146 (.0059) 0.5133 (.0060) 0.7527 (.0033) 0.4554 (.0105)
+> 20.4268 (.0075) 0.5370 (.0078) 0.7730 (.0054) 0.4736 (.0167)
+> All 0.4524 (.0108) 0.5557 (.0038) 0.7844 (.0005) 0.4959 (.0145)
+
+PRQ-Net. 
+
+D.3 Cross-Seizure Stability 
+
+To examine the contribution of repeated recordings, we eval-uate CDEL using one, two, or all available seizures on the matched cohort of 73 patients with at least two valid seizures. The trained checkpoints, fusion weights, and validation-selected thresholds remain fixed. For the one- and two-seizure conditions, seizure subsets are sampled using the same fixed repetitions across models. Table X shows that localization and ranking performance improve as additional seizures are incorporated. The all-seizure condition obtains the strongest EZ-F1, EZ-AUPRC, NDCG-EZ, and Recall@true-K, indicating that repeated recordings provide complementary patient-specific evidence rather than merely redundant observations. Patient-level bootstrap comparisons confirm the benefit of incorporating all available seizures. Relative to one-seizure inference, the all-seizure condition improves Macro-F1 by 
+
+0.0249 with a 95% confidence interval of [0 .0110 , 0.0397] ,EZ-F1 by 0.0378 with [0 .0161 , 0.0612] , EZ-AUPRC by 
+
+0.0424 with [0 .0215 , 0.0635] , and NDCG-EZ by 0.0317 with 
+
+[0 .0152 , 0.0484] . Relative to two-seizure inference, the cor-responding improvements are 0.0141 with [0 .0079 , 0.0206] ,
+
+0.0256 with [0 .0157 , 0.0365] , 0.0187 with [0 .0092 , 0.0299] ,and 0.0114 with [0 .0043 , 0.0192] , respectively. 
+
+## E Center Robustness and Evaluation Audit 
+
+E.1 Center-Wise OOF Performance 
+
+Figure II stratifies the frozen five-fold OOF predictions by center. This is a descriptive analysis under the primary patient-wise protocol rather than an unseen-center experi-ment. CDEL obtains the highest center-wise patient Macro-F1 in all four cohorts. 
+
+E.2 Leave-One-Center-Out Uncertainty 
+
+For each held-out center, per-patient Macro-F1 was first aver-aged across seeds 42, 52, and 62 and then bootstrapped over 
+
+Figure II: Center-wise OOF patient Macro-F1. The outline marks the best method within each center. Table XI: Patient-level bootstrap 95% confidence intervals for leave-one-center-out Macro-F1.                                   
+
+> Held-Out Center Method Macro-F1 [95% CI] HUP PRQ-Net 0.6480 [0 .6054 ,0.6913]
+> BCR-Net 0.6483 [0 .6068 ,0.6888]
+> CDEL 0.6508 [0.6079 ,0.6943 ]
+> Multi-site PRQ-Net 0.6322 [0 .5720 ,0.6978]
+> BCR-Net 0.6153 [0 .5340 ,0.6912]
+> CDEL 0.6414 [0.5722 ,0.7116 ]
+> LZU PRQ-Net 0.5714 [0 .5309 ,0.6120]
+> BCR-Net 0.5631 [0 .5266 ,0.6000]
+> CDEL 0.5773 [0.5365 ,0.6176 ]
+> Fudan PRQ-Net 0.6022 [0.5198 ,0.6857 ]
+> BCR-Net 0.5909 [0 .5062 ,0.6737]
+> CDEL 0.5956 [0 .5184 ,0.6713]
+
+patients using 2,000 resamples. Table XI reports patient-sampling 95% confidence intervals rather than seed standard deviations. CDEL obtains the highest point estimate in HUP, Multi-site, and LZU, while remaining comparable on the smaller Fudan. 
+
+E.3 Evaluation Controls 
+
+All formal prediction ledgers contain exactly 80 patients and 7,635 valid channels. Each patient belongs to one outer test fold only, and no patient contributes channels to both train-ing and test partitions. Decision thresholds are selected from validation patients and then reused unchanged on the corre-sponding test fold. The cross-seizure analysis uses the same 73-patient matched cohort and identical sampled seizures across models within each repeat. In every leave-one-center-out run, the held-out center is excluded from model fitting, early stopping, threshold selection, and all other selection decisions.
