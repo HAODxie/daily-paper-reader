@@ -1,0 +1,467 @@
+Title: From Wearable Data to Personalized and Actionable Health Insights
+
+URL Source: https://arxiv.org/pdf/2608.03251v1
+
+Published Time: Wed, 05 Aug 2026 00:47:10 GMT
+
+Number of Pages: 52
+
+Markdown Content:
+# From Wearable Data to Personalized and Actionable Health Insights 
+
+## ESTHER BROWN 1, KARIS MOON, VICTORIA DEAN, PHD 2, FINALE DOSHI-VELEZ, PHD 1,
+
+> 1
+
+Harvard University, Cambridge, MA; 2Princeton University, Princeton, NJ 
+
+Fig. 1. Combining wearable data with human reflection: Our interactive tool enables users to overlay user-tagged life events and interventions on physiological variables such as heart rate variability, shown here. 
+
+Abstract 
+
+Commercial wearable devices continuously capture rich physiological data (e.g., heart rate, respiration), opening new possibilities for monitoring health conditions, notably around stress. Despite their promise, turning raw wearable physiological data streams into visualizations that surface stress-related insights in daily activities, and that ultimately foster reflection, awareness, and better stress management, remains a significant challenge. The data are noisy and context - dependent: the same spike in heart rate can come from sprinting, a tense presentation, or laughing with friends. To address these challenges, we propose a framework that combines user annotations with wearable data to support better stress management. We introduce a web framework offering interactive visualizations that layer daily activities, stress events, and interventions onto raw physiological streams, enabling users to reflect and identify trends. In a four-week pilot with seven university graduate and undergraduate student participants who logged 269 events, our tool revealed patterns between different types of interventions and stress: social interaction reduced average heart rate by 4.35 to 5.0 beats per minute, deliberate rest reduced average Garmin stress scores by 10 .03 to 13 .83 points, and mindfulness activities decreased average HRV by 6.61 to 13 .22 milliseconds. 
+
+1 Introduction 
+
+Commercial wearable devices, such as Garmin, Apple Watch, Fitbit, and Whoop, generate continuous streams of physiological data (e.g., heart rate (HR), heart - rate variability (HRV), inter - beat intervals (BBI), and respiration), offering opportunities for real -world health monitoring of conditions like stress and sleep. Stress, for example, is a major concern 
+
+Author’s Contact Information: Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1,
+
+> 1
+
+Harvard University, Cambridge, MA; 2Princeton University, Princeton, NJ. 
+
+1arXiv:2608.03251v1 [cs.HC] 4 Aug 2026 2 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+in both general and workplace settings, where it can lead to accidents, absenteeism, and reduced productivity. Recent estimates suggest that stress - related conditions cost the global economy around $1 trillion per year in lost productivity [ 40 ], with direct healthcare costs in the United States approaching $190 billion annually [ 20 ]. Although these devices provide continuous tracking beyond occasional clinical assessments, turning raw wearable physiological data streams into visualizations that surface stress-related insights in daily activities - and that ultimately foster reflection, awareness, and better stress management - remains a significant challenge. In particular, inherent noise, context dependency, and inter - individual variability mean that the same physiological signal (e.g., an elevated heart rate) may result from stress, exercise, or even positive emotional experiences. This ambiguity makes it difficult to reflect on how and when different activities or events can help reduce physiological stress. To overcome this ambiguity, our work uses activity tagging —the process by which participants annotate their daily lives with events and activities. By pairing these self - reported tags with their physiological sensor data, we empower users to see how different activities and events in their day are associated with stress - related physiological changes. In our approach, we define an activity as either an intervention (an intentional action aimed at reducing stress) or any other contextual event. These self -reported tags provide essential contextual information that enables users to gain a deeper understanding of their physiological data by linking sensor measurements to their daily experiences. Prior work has demonstrated the potential of wearable data for stress monitoring. For instance, Chalmers et al. [6]explored differences in HR and HRV between resting and stress states in controlled settings, while Dunn et al. [12 ]showed that wearable data can reliably predict clinical laboratory outcomes. Similarly, Hickey et al. [ 21 ] and Pakhomov 
+
+et al. [41 ] found that metrics such as HRV and heart rate changes correlate with stress, and Smith et al. [ 49 ] applied wearable technology to monitor stress in workplace environments. However, these studies primarily focus on stress detection without addressing the dynamic impact of interventions. Moreover, previous work on contextual self-reporting [36, 38] illustrates that user-reported context can significantly enhance the interpretation of wearable signals. 
+
+In this work we ask: 
+
+(1) RQ1: When self -tagged context is integrated with continuous wearable data, what patterns emerge between everyday activities/interventions and stress-related physiology (HR, HRV, BBI, subjective stress)? (2) RQ2: Can interactive visualizations that overlay self-reported tags on physiological time-series data empower and influence users’ ability to interpret their data and choose stress-management strategies? Based on these questions, we propose the following hypotheses: (1) H1 (Pattern Discovery): Integrating self-tagged contextual data with wearable sensor outputs will uncover patterns that correlate specific activities or interventions with improvements in physiological markers related to stress. (2) H2 (Enhanced Self-Management): When self - tagged activities are overlaid on their physiological time series, users will find their data easier to interpret and feel empowered to explore their data and adopt more effective stress management strategies. 
+
+Our Contributions: 
+
+(1) We examine how interactive and personalized visualizations that integrate participant-tagged interventions and contextual events with continuous wearable data empower users to dynamically explore their physiological responses across different contexts. (2) Building on this examination, we consider various visualization techniques and propose a framework that overlays self-reported tags on physiological time-series data, enabling users to analyze the relationships between From Wearable Data to Personalized and Actionable Health Insights 3their daily activities and physiological responses. Participants found the tool intuitive and reported uncovering actionable insights for managing stress through the tool. One user realized they became more stressed about meetings than necessary, with stress levels gradually decreasing as the meeting progressed. This insight prompted them to try using positive self-talk to reduce anticipatory stress before the scheduled meeting. In a four-week pilot with seven undergraduate and graduate university participants who logged 269 events, our tool showed stress patterns: social interaction reduced heart rate by ≈5 bpm in 30 minutes, deliberate rest reduced Garmin stress scores by ≈8 points, and sometimes mindfulness decreased HRV. We propose a framework that combines user annotations with wearable data to support better stress management in social, workplace, and clinical settings. 
+
+2 Related Work 2.1 Systems to Support Self-experimentation 
+
+A growing body of work has focused on building systems that help people use self-tracking data to run N-of-1 experiments in daily life. For example, Daskalova et al. [11 ] designed SleepCoacher , a self-experimentation framework focused on sleep. The SleepCoacher framework integrates mobile sleep sensing with clinician-authored recommendation templates and guides users through short AB-style experiments to evaluate which behaviors improve their own sleep. Daskalova et al. [ 10 ] also introduced Self-E , which guides and generalizes users’ self-experimentation beyond a single domain (e.g., sleep) to include nutrition, physical activity, and meditation. In Self-E, the smartphone app scaffolds the full self-experimentation loop: selecting and designing interventions, randomizing conditions, collecting and interpreting results, to lower the barrier for users with little to no personal analytics background. In addition, Karkar et al. [28 ]introduced TummyTrials , a system that supports people with irritable bowel syndrome (IBS) in testing individualized dietary triggers via randomized self-experiments. Related work has broadened the ecosystem: Kravitz et al.’s Trialist (PREEMPT) randomized clinical trial evaluated smartphone-supported N-of-1 trials for chronic musculoskeletal pain [ 31 ], and platforms such as Taylor et al. ’s QuantifyMe [ 51 ], Konigorski et al. ’s StudyU [30 ], and Wernicke et al. ’s StudyMe [ 57 ]facilitate the design and execution of N-of-1 trials. Together, these systems show the feasibility of everyday self-experiments while highlighting open challenges around balancing freedom and guidance, maintaining rigor with low burden, and supporting trustworthy interpretation of individualized results [ 10 , 11 , 28 , 30 , 31 , 51 , 57 ]. Our work extends this line of research by empowering people to layer annotations onto their raw physiological data—capturing, for example, a tense team meeting or a supportive chat with friends—and to reflect on the resulting patterns, turning personal data into actionable insights. 
+
+2.2 Wearable Data Analysis and Stress Monitoring 
+
+Wearable devices continuously collect physiological data such as heart rate, heart rate variability (HRV), respiration, and beat-to-beat interval (BBI), enabling the detection of stress-related changes. For example, Chalmers et al. [ 6]explored differences in HR and HRV between resting and stress states, although without considering the effect of interventions. Dunn et al. [12 ] demonstrated that wearable data can predict clinical laboratory outcomes more accurately than conventional measures, emphasizing the reliability of resting heart rate data. Moreover, Hickey et al. [ 21 ] compared various wearable statistics and found that HRV, electrodermal activity, and respiratory rate may serve as more robust stress indicators than heart rate alone. Pakhomov et al. [41 ] showed that wearable-detected heart rate changes correlate with stressful events, while Smith et al. [49 ] applied wearable technology to monitor stress following mindfulness 4 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+interventions. Collectively, these studies highlight the potential of wearable data for stress monitoring but focus on stress detection rather than the dynamic impact of interventions. 
+
+2.3 Self-Tagging and Context-Based Monitoring 
+
+A growing body of work highlights the importance of integrating user-generated context with sensor data. Neupane et al. [ 36 ] used a mobile app to prompt participants to log stressors throughout the day, while Novak et al. [ 38 ] used a combination of wearable and environmental sensors to support participatory research in urban health. Suh et al. [ 50 ]took an alternative approach by having participants log their feelings multiple times per day and then inviting those who were stressed to participate in interventions. Although these methods demonstrate the value of contextual self-reporting, they largely rely on retrospective analysis rather than integrating real-time annotations with continuous wearable data. 
+
+2.4 Interactive Machine Learning and Visual Analytics 
+
+Interactive machine learning (ML) and visual analytics have proven to be effective in improving the interpretability and performance of the model by incorporating user feedback. Comito et al. [7 ] used ML to identify diagnostic patterns in physiological parameters, while Evin et al. [ 14 ] correlated physiological data with personality and behavioral metrics. Olyanasab and Annabestani [ 39 ] reviewed ML applications in wearables, categorizing methods into bioelectrical, bioimpedance/electrochemical, and electromechanical. Tazarv et al. [52 ] explored active reinforcement learning for personalized stress monitoring, and Xu et al. [ 59 ] applied clustering techniques to personalize stress evaluation. Despite these advances, many of these approaches operate as “black boxes” without incorporating user context, thereby limiting their practical relevance. 
+
+2.5 Machine Learning-Driven Personalization in Wearable Health 
+
+Recent work has begun to focus on enhancing personalization in wearable health systems through ML. Olyanasab and Annabestani [ 39 ] provided a comprehensive review of ML applications for personalized wearable biomedical devices, emphasizing early intervention. Brons et al. [5] reviewed ML methods for personalizing persuasive strategies in mHealth interventions, while Fang et al. [15 ] developed a deep reinforcement learning algorithm for dynamically personalizing exercise goals. In addition, interactive visualization systems such as CarePortal [ 44 ] and RemoteHealthConnect [ 2]have been proposed to present wearable data in clinician- and patient-friendly formats. Abdelaal et al. [1] have explored explainable AI techniques for making wearable data analytics more interpretable, and Holzinger [ 22 ] highlighted the benefits of human-in-the-loop ML in health informatics. Esna Ashari and Ghasemzadeh [ 3 ] introduced an active learning framework tailored to wearable sensor data, while Wu et al. [58] demonstrated that integrating clinical expertise into reinforcement learning can improve treatment outcomes. Finally, Zhu et al. [ 60 ] and Lazarou and Exarchos [ 33 ] further advanced multimodal and real-time stress detection models. These studies collectively suggest that integrating ML with wearable data has the potential to deliver more personalized and actionable health insights. 
+
+3 System Design 3.1 Visualization Tool 
+
+For this work, we built a web - based visualization tool with the goal of empowering participants by showing how their self -tagged interventions and events relate to changes in physiological responses. This tool directly supports both of our hypotheses, which center on integrating self - tagged contextual data with wearable sensor output to help participants (1) From Wearable Data to Personalized and Actionable Health Insights 5discover patterns around their stress and (2) gain insight into how certain interventions might be more or less helpful for stress management. 
+
+Tool Architecture and Workflow 
+
+The visualization tool merges continuous wearable data—such as beat - to - beat interval (BBI) and heart -rate variabil-ity (HRV)—with events and interventions tagged by participants. Its main view shows interactive time -series plots annotated with these tags. Users can zoom in to inspect the pre - and post -intervention time windows and filter by tag type (e.g., interventions vs. contextual events) to explore how specific activities impact their physiological response curves. 
+
+Viewing Annotations 
+
+Users can view their annotations overlaid on their data for any of the physiological variables, as shown in Figures 1 and 2. Examples of visualizations with the additional physiological variables can be seen in Figure 15 in Appendix A. Users can also toggle events and interventions to view one, both, or none overlaid on their physiological data using a checkbox interface in the tool’s sidebar. 
+
+Intervention Comparison 
+
+Users can select the intervention they want to compare, the physiological features they are interested in analyzing, and the amount of time before and after each intervention or event to visualize, as shown in Figure 11b in Appendix A. The visualization tool then generates a set of plots (see Figure 3) displaying the participant’s physiological sensor data before, during, and after the selected intervention or event. Each plot shows separate instances of the same intervention or event, for example, the physiological response to “meditation” on Monday compared to the response to "meditation” on Tuesday. Participants can customize these visualizations further by choosing to view each instance of the intervention in separate plots or overlay all instances onto a single plot. When visualizations are overlaid, the physiological data for each instance is aligned at a common starting point (0 minutes), marking the beginning of each intervention or event. Additionally, each intervention or event instance is color-coded to indicate its overall reported effect on stress (blue for positive effects and red for negative effects) for that selected time window. By changing the size of the time window, users can explore the amount of time it takes for an intervention to have a positive effect on their physiological data and when it stops having a positive effect or “stops working". Finally, we also display participants’ sleep quality scores (measured by Garmin’s proprietary sleep metric) from the night before each intervention to provide additional context around the intervention’s impact on their stress-related metrics. Showing sleep quality alongside these visualizations helps participants understand why certain instances of an intervention appear more effective than others. For example, even if meditation generally has a positive effect on a user’s stress-related physiological markers, it might be less effective following a night of poor sleep, as the user may not have fully recovered overnight. 
+
+Aggregate Comparison 
+
+In addition to the plots comparing the detailed trajectories of the user’s physiological responses, we provide a bar plot showing the aggregate effect of each intervention or event. This is reported as the percent change in the sensor data variable before and after the intervention or event. The aggregate plot allows participants to quickly compare the 6 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1 
+
+> Fig. 2. View Annotations : Users can view their data for any of the six variables, with any combination of intervention categories overlaid. Here, a user’s data for Heart Rate, Stress Level, and HRV are shown.
+
+overall effect of many different instances of an intervention or event (e.g. "meditation" on Monday decreased stress by 10% but "meditation" on Tuesday decreased stress by only 1%), seen in Figure 16 in Appendix A. 
+
+3.2 Feature Extraction Visualizations 
+
+Within our visualization tool, we provide additional feature extraction visualizations designed to help users quickly compare the effects of all their recorded events and interventions at the same time. These visual summaries enable users to rapidly identify when their stress-related physiological metrics show improvement and uncover trends across different types of activities. 
+
+Analysis Window Configuration 
+
+In the feature extraction visualizations, users can customize the analysis window, choosing intervals ranging from 5 to 120 minutes before and after each event or intervention, as depicted in Figure 20 in Appendix A. This flexibility allows users to examine both short-term and longer-term physiological responses associated with their activities, events, or interventions. From Wearable Data to Personalized and Actionable Health Insights 7
+
+> Fig. 3. Compare Interventions This visualization displays a user’s data for the selected variable before, during, and after each intervention, together with the sleep quality of the preceding and following nights. Each intervention instance can be shown individually or overlaid with the others (see Figure 17 in Appendix A). The comparison plot also highlights the overall effect across all instances—blue indicates a positive effect and red a negative effect.
+
+Change Analysis 
+
+To summarize the physiological impact of various activities and interventions, we include a bar chart visualization showing the average percentage change of physiological variables such as HRV, stress level, and BBI across different event or intervention types. Figure 4 illustrates this visualization specifically for Heart Rate Variability (HRV). In this figure, higher values (represented in green) indicate a more relaxed physiological state and improved recovery. Similar visualizations for BBI and stress can be found in Figure 21 and Figure 22 in Appendix A, respectively. 
+
+Temporal Patterns Heatmap 
+
+Users are provided with a temporal patterns heatmap that visualizes standardized stress reduction scores, organized by day of the week and time of day, as shown in Figure 5. By aggregating a user’s physiological data across multiple events and interventions, the heatmap helps identify optimal timing for stress management activities. Darker colors (purple/blue) indicate periods of less effective or negative stress reduction, while brighter colors (yellow) reflect higher average stress reduction effectiveness. For example, users might find that they experience greater stress relief on Thursday afternoons and less effective stress reduction on Monday mornings—insights that can prompt reflection on the types of activities or interventions performed during those times and guide more intentional scheduling of future stress-reducing actions. 
+
+Continuous Change Analysis 
+
+To help users better understand their recovery trajectories, the tool also plots average percentage change in physi-ological measurements, HRV, stress, and BBI, for the first 60 minutes after the end of an activity. Time 𝑡 = 0 marks the exact moment the event or intervention ends, so users can compare how they respond to different activities over time. An example plot for a participant in the study is shown in Appendix A (Figure 24). The purpose of this plot is to help users assess which interventions generally improve recovery and how long their effects typically last. In that 8 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+> Fig. 4. HRV Change Analysis Visualization This visualization shows the percentage change in HRV before and after each activity for a single user. Green bars indicate improvements, while red bars indicate declines. Activities are sorted from positive to negative, allowing for quick identification of the most or least effective interventions.
+> Fig. 5. Temporal Heatmap Patterns of Stress Reduction Average standardized stress-reduction scores for one participant, aggregated by day of week and time of day. Lighter cells mark larger reductions (e.g. +1.76 on Thursday afternoon); darker cells mark increases (e.g. –0.65 on Monday morning). In an exit interview, the participant noted that Thursday afternoons coincide with the end of their weekly meetings, which may explain the pronounced stress reduction at that time.
+
+figure, each colored line represents one activity type that a user logged (e.g., Meditation , Walk , Nap ) and is calculated by averaging all instances of that activity (e.g., meditation sessions on Monday, Tuesday, etc.). By summarizing the typical post-intervention trajectory of each intervention type, users gain an overview of how they respond to different interventions. If users want finer details, they can drill down to individual instances of that intervention type through the intervention-comparison view described in Section 3.1. 
+
+Intervention Category Impact Table 
+
+To complement the continuous change plots, we include a summary table showing different categories of inter-ventions and their impact on BBI or HRV at 15, 30, and 60-minute intervals, with associated frequency percentages personalized to the interventions logged by that specific user. We chose these three time windows because prior work on wearable stress dynamics suggests that most autonomic recovery unfolds within the first hour after a stressor or intervention [ 45 ]. The 15 -minute column captures immediate effects, the 30 - minute column reflects medium - term adaptation, and the 60 - minute column shows whether physiological impacts persist. Figures 25 and 26, both found in Appendix A, display the table for HRV and BBI, respectively. 
+
+4 Methods 4.1 Study Design and Data Collection 
+
+Study Overview: The IRB-approved study by [anonymous institutions] consisted of two phases. In the first phase, participants wore a Garmin Vívosmart 5 for two weeks to collect raw physiological data while tagging interventions and contextual events. They were given login credentials for our visualization web tool, where they could explore From Wearable Data to Personalized and Actionable Health Insights 9personalized physiological responses to their own annotations (logged interventions and events). In a follow-up phase, participants from the first phase who agreed to continue collected additional physiological data while continuing to tag events and interventions. Participants were then given enhanced visualizations, also personalized to their own data and annotations. The purpose of these additional visualizations was to make insights from their data easier to find. In Phase 1, our primary objective was to collect rich, self-tagged data linking wearable sensor streams with daily activities and interventions. This phase forms the core of our study. 
+
+Participants: Seven students (graduate and undergraduate) from two academic institutions participated in the study. For demographics, participants’ ages averaged 22.6 years (median 24, SD ≈ 2.9); five identified as women and two as men. Participants were recruited through university-wide email lists and campus posters. Based on pre-study survey responses, participants reported a range of stressors (from academic deadlines to poor sleep) and used various strategies to manage stress, including walking, journaling and music. Most of the participants had previous experience with wearable devices or physiological self-tracking. Retention and participation were high, and six of the seven participants continued in the optional second phase of the study. Despite the small size of the cohort, participants logged 269 events and interventions over the course of the study, capturing a diverse set of self-tagged activities. 
+
+Devices: Each participant was provided a Garmin Vívosmart 5, which was to be worn continuously (day and night) for a period of two weeks. It was recommended that the device be removed only for charging. 
+
+Procedure: Participants completed a pre-study survey that captured their baseline stress behaviors, use of wearable devices, common stressors, and preferred coping strategies. Informed consent was obtained via a required checkbox at the beginning of the survey form. Over the two-week period, participants were asked to tag daily interventions (e.g., meditation, listening to music) and contextual events (e.g., meetings, work sessions). In addition, participants synced their wearable data daily, allowing us to continuously capture physiological data. At the end of the study, exit interviews were conducted to gather anecdotal evidence of participants’ experiences, insights gained, and how the tool influenced their stress awareness and self-management strategies. 
+
+Interventions and Context: Participants annotated both intentional stress-reduction actions (interventions) and everyday events. They had three main options for tagging: (i) syncing a calendar (we encouraged creating a study-specific calendar to protect privacy); (ii) using an annotation form to log events or interventions as they occurred—capturing start and end times, names, and anticipated effects on stress (positive, negative, or neutral); or (iii) annotating directly in our web tool (see Figures 10 and 11b in the appendix). All annotations were automatically synced with participants’ physiological data and displayed in the visualization interface. 
+
+Daily Tagging and Syncing: Participants were expected to log at least two events per day related to stress and sleep management. Tagging and syncing together took approximately 5–10 minutes daily. 
+
+Compensation: Each participant received a $25 gift card as token compensation for their participation. After the first week of Phase One, participants received login credentials for a website where they could visualize their annotations overlaid on their physiological data. Sensor data and logged annotations were automatically synced to their accounts every three days by the research team. Phase 2 lasted an additional two weeks and began immediately after Phase One for participants who opted to continue. During this phase, participants continued wearing their Garmin devices and tagging events and interventions daily. They were also provided with an expanded set of visualizations (see Section 3.2) to help them more easily identify when interventions were most effective and how different events influenced their physiological responses. 10 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+4.2 Feature Selection and Processing 
+
+In our analysis, we process several physiological features from Garmin data, each with its own design choices tailored to capture the underlying signal while balancing noise. In this subsection, we describe the processing methodology for each feature, explain our design decisions, and provide the mathematical formulas. 
+
+4.2.1 Physiological Features and Data Processing. We analyze six physiological signals collected from a Garmin Vívosmart 5 using the Labfront Continuous Data Collection Companion App [ 32 ]. The physiological features and their temporal resolutions are: beat-to-beat intervals (BBI) at every heartbeat (the device’s finest resolution), heart rate and step count at 1-minute resolution, Garmin stress score and respiration rate at 3-minute resolution, and nightly sleep summaries auto-detected by Garmin Connect. All of these features were configured to the most granular sampling settings supported by the device at the time of this study. All timestamps were then converted from UTC to the participant’s local time (America, Eastern Time, Daylight Saving Time-aware). While Garmin does not expose HRV directly on the Vívosmart 5, we compute it from the raw BBI data (as described in Section 4.2.2). We also use Garmin’s 0–100 stress index and map it to four levels (resting: 0–25; low: 26–50; medium: 51–75; high: 76–100). The 0–100 sleep score was similarly classified into Garmin’s tiers: excellent (90–100), good (80–89), fair (60–79), and poor (< 60). Table 1 summarizes each variable, its display unit or scale, and its relevance to stress monitoring and recovery. 
+
+Physiological Feature Unit / Scale Interpretation and Rationale 
+
+Heart-Rate Variability (HRV) ms HRV derived from beat-to-beat intervals BBI quantifies the variability between consecutive heartbeats and is widely considered one of the best indicators of stress and recovery [29, 45]. High HRV reflects robust autonomic adaptability, whereas low HRV is linked to increased stress and fatigue. Because HRV can be influenced by physical activity and age, contextual data improve interpretation [34]. Stress 0–100 scale Garmin’s proprietary stress score (Stress Score) combines HR and HRV to give an estimate of stress [26]. Lower values indicate rest; higher values indicate physiological arousal. Because excitement and exercise can also elevate the score [4], it should be interpreted in context. We include it because Garmin users are already familiar with the metric [43]. Steps Taken steps at timestamp Step count provides general activity context. Including it helps distinguish whether HR/HRV changes stem from psychological stress or physical exertion, improving stress-detection accuracy [48]. Heart Rate beats per minute (bpm) Heart rate can be an indicator of autonomic arousal (“fight-or-flight”). Because HR also rises with exercise, caffeine, etc., we interpret it alongside HRV and step count for a fuller stress picture [23]. Respiration Rate breaths per minute Breathing rate increases under acute stress (tachypnea) and slows during recovery [54]. It adds insight into autonomic function and the effect of relaxation techniques, though speech and activity can also alter it [16]. Sleep Summary 0–100 scale Garmin derives a nightly sleep score from duration, stress during sleep, and stage composition [18, 19]. We include it because next-day stress responses could be influenced by prior-night sleep quality[ 56 ]. Scores are labeled Excellent (90–100), Good (80–89), Fair (60–79), and Poor (0–59). 
+
+Table 1. Physiological features used in this work, along with their units and the rationale for each feature’s role in stress monitoring and recovery. From Wearable Data to Personalized and Actionable Health Insights 11 
+
+4.2.2 Calculations and Formulas. We derive HRV as the root-mean-square of successive differences (RMSSD) from the raw BBI series. RMSSD is a frequently used metric in prior work involving wearable devices [17, 25, 46, 47]. RMSSD is computed using the following equations: RMSSD =
+
+vut 1
+
+𝑁 
+
+> 𝑁
+
+∑︁ 
+
+> 𝑖 =1
+
+(BBI 𝑖 − BBI 𝑖 −1)2, (1) In Equation (1), BBI 𝑖 − BBI 𝑖 −1 is the difference between consecutive beat-to-beat intervals, representing the instan-taneous variability between heartbeats. Here, BBI 𝑖 is the 𝑖 th interval (measured in milliseconds). The variable 𝑁 is the total number of BBI intervals within the analysis window, with a minimum requirement of 𝑁 ≥ 20 . To ensure data continuity, intervals are only included if there are no significant recording gaps (> 30 minutes) in the data, which could indicate device removal or sensor issues. This minimum count threshold is necessary to ensure that the RMSSD calculation is statistically robust—fewer than 20 intervals could make the variance overly sensitive to noise or transient artifacts, leading to unreliable HRV estimates. The RMSSD provides a robust measure of HRV; higher RMSSD values suggest better recovery and a more balanced autonomic nervous system [13]. RMSSD is computed from a 15 minute sliding window that advances every 30 seconds. A 30 second step size captures sufficient heartbeats for a reliable ultra-short HRV estimate—while still tracking rapid autonomic changes, mirroring other wearable-stress studies [8, 9, 35, 53, 55]. 
+
+HRV RMSSD Smoothing Window 
+
+The RMSSD is computed over a rolling window of 15 minutes from the raw BBI data, with the result re-sampled every 30 seconds. This window captures short-term variations in HRV while ensuring that enough data points are available for a reliable estimate. Our analysis (see Figure 30 in Appendix A) shows that a 15-minute window with a 30-second step provides a good balance between temporal resolution and statistical robustness. 
+
+Visualization Smoothing 
+
+For visualization purposes, both BBI and RMSSD data are further smoothed to enhance readability and highlight underlying trends. When plotting trajectories, we apply a centered 5-point rolling average to the data. The smoothed value at index 𝑖 for a time series {RMSSD 1, RMSSD 2, . . . , RMSSD 𝑛 } (sampled at 30-second intervals) is given by: RMSSD vis (𝑖 ) = 1min (5, 2𝑖 − 1, 2(𝑛 − 𝑖 ) + 1)
+
+> min (𝑛, 𝑖 +2)
+
+∑︁  
+
+> 𝑗 =max (1, 𝑖 −2)
+
+RMSSD 𝑗 . (2) The same formula is applied to the BBI data (with BBI substituted for RMSSD ), resulting in a centered moving average that spans approximately 2 minutes (5 data points × 30 seconds). This procedure reduces high-frequency fluctuations while preserving meaningful patterns. 
+
+4.3 Qualitative Measures 
+
+This pilot study is designed to observe user behavior and reflections through the following measures: (1) Ease of Use: How intuitively users can navigate and interact with the visualization tool. (2) Frequency of Use: How often the tool is used, indicating user engagement. (3) Tagging Frequency: The average number of tags entered per day, indicating user engagement. 12 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+(4) User Satisfaction: Feedback on the effectiveness of the tool to help users understand their physiological responses to interventions. (5) Recommendation Likelihood: Whether users would recommend the tool to friends and family, indicating overall satisfaction and perceived value. This feedback will guide future improvements and iterations of the system, helping to refine both the visualization and the ML components towards a useful system that can give personalized and actionable insights. 
+
+5 Findings 5.1 Participant Retention and Data-Collection Compliance Was High 
+
+All seven participants completed Phase One of the study, which lasted two weeks, and six elected to continue into Phase Two, which lasted another two weeks. Most participants preferred using the annotation form to log events and interventions, rather than syncing their calendars or logging directly through the visualization tool. 
+
+High data-collection compliance. Participants wore the device for most of each day, averaging 20.1 h in Phase 1 and 19.1 h in Phase 2 (see Appendix A, Figures 31–32). Participants were encouraged to log one to two events or interventions per day and generally complied, although some opted to log at times that were more convenient rather than immediately after an event, as recommended. In total, 269 interventions and events were recorded. 
+
+5.2 RQ1 — Self-tagged Interventions Enabled Pattern Discovery in Physiological Data 
+
+Hypothesis H1 (Pattern Discovery). Integrating self - tagged context with wearable sensor outputs will uncover patterns that correlate specific activities or interventions with improvements in physiological markers related to stress. 
+
+Intervention diversity–What did participants tag? The 269 tags of the participants were split into nine categories. We considered different ways of categorizing these tags, and found that the distributions were generally similar. Table 2 describes each of the intervention categories used in this study. Figure 34 in the appendix visualizes the data in Table 2. 
+
+Intervention duration. Table 2 shows the median duration of interventions and events in each category. Physical Ac-tivity - Non-Cardio interventions took the longest, with the median intervention taking more than 2 hours, and exhibited the highest variability in duration. In contrast, Mindful Activities were the quickest interventions, with most being a little over 5 minutes per intervention. Despite these differences in duration, longer interventions did not always correspond with stronger physiological effects; even brief activities, when matched to a user’s unique needs, can yield positive effects. 
+
+When were interventions logged? Logging of intervention start times peaked on Sunday around 09:00 and Wednesday around 15:00, while overnight hours (00:00 – 06:00) saw almost no entries (see Appendix A, Figure 33). 
+
+Agreement across physiological measures. 
+
+The three measures for stress: HRV, HR, and Garmin stress scores do not always move in perfect alignment. Depend-ing on the event or intervention, each metric corresponds to different aspects and time scales of the stress-response trajectory [ 45 ]. Mindful Activities were associated with consistent reductions in heart rate (-0.68 to -2.97 bpm) and a short-term drop in stress score (-2 points at 15 minutes post-intervention), suggesting some positive effects (see Table 3 in the appendix for full results). However, HRV decreased simultaneously (-6.61 to -13.22 ms), which may seem contradictory to these improvements. A drop in HRV can be expected during a supposedly ‘calming’ mindful activity. This is because many mindfulness practices require sustained concentration and that cognitive effort can briefly activate the sympathetic branch of the autonomic nervous system (the fight-or-flight pathway), reducing beat-to-beat variability From Wearable Data to Personalized and Actionable Health Insights 13                      
+
+> Category Description Number Logged Median Duration
+> (minutes) (1) Socializing / Social Interaction Any in-person or virtual activity that fosters connection with others (e.g. chatting with friends, group meals, or social events). 52 60 (2) Academic & Educational Coursework, study sessions, lectures, or professional skill-building that primarily engages cognitive effort. 44 75 (3) Spirituality / Mindful Activities Prayer, meditation, journaling, or routines that cultivate presence or reflection. 37 5(4) Food / Drink / Nutrition Preparing, consuming, or enjoying food and beverages, from snacks and coffee breaks to full meals or cooking sessions. 32 75 (5) Physical Activity – Cardio Aerobic exercises such as running, cycling, brisk walking, or HIIT that raise heart rate. 28 62.5 (6) Physical Activity – Non-cardio Movement with lower cardiovascular demand, including stretch-ing, yoga, light strength training, or mobility work. 16 137.5 (7) Rest & Recovery Deliberate downtime for recuperation, such as napping, quiet rest, passive relaxation, or foam rolling. 27 30 (8) Healthcare / Therapy Medical or therapeutic appointments and self-care actions (e.g., counseling sessions, physiotherapy, doctor visits). 10 60 (9) Other Miscellaneous activities not captured by the preceding categories. 723
+> Table 2. Description of the nine intervention categories used to group self-tagged interventions.
+
+even as paced breathing slows the average heart rate [ 24 , 37 , 42 ]. In our study, interventions categorized as Mindful Activities primarily involved journaling and prayer, both of which demand substantial cognitive engagement. Rest and Recovery is the only intervention category that shows consistent positive effects across all metrics: increasing HRV, decreasing HR, and decreasing stress score. Because the three physiological metrics rarely align perfectly across all points in the stress trajectory, they serve as complementary indicators. Together, they offer a more comprehensive view of physiological responses to stress, highlighting the value of using multiple measures rather than relying on a single indicator for analyzing stress and recovery. 
+
+Intervention preferences and physiological impact. Interventions recorded most frequently by participants, such as Socializing (20.6%) and Mindful Activities (14.6%) were not always the most physiologically beneficial. At the population level, Socializing produced mixed results. Interventions in this category were associated with a decrease in heart rate (-4.35 to -4.95 bpm) and stress score (-6.36 to -7.25 points), but also with slight reductions in HRV (-0.81 to -2.18 ms). Similarly, Mindful Activities resulted in a sharp decrease in HRV (-6.61 to -13.22 ms) and slight changes in the stress score (-2.00 to 1.07 points), while also reducing heart rate (-0.68 to -2.97 bpm). Interestingly, Rest and Recovery ,which accounted for only 10.7% of all events and interventions tagged, resulted in the most consistent improvements in all variables. These patterns highlight a potential disconnect between participant preferences and interventions that produce the strongest physiological recovery indicators. Notably, some of the most effective strategies, such as Rest and Recovery ,were the least frequently tagged. This may reflect differences in how consciously certain interventions were tagged. For example, participants may have been more likely to tag intentional activities, such as socializing or journaling, while overlooking more passive behaviors such as resting. These findings open opportunities for future iterations of 14 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+the system to gently nudge users toward underutilized but effective strategies, such as deliberate rest, while tailoring recommendations to account for individual variability in response and preference. 
+
+Temporal variation in physiological impact. The data reveal meaningful differences in how various interventions influence physiological stress markers over time and across measures. Socializing is associated with sustained reductions in stress score, from –6.81 points at 15 minutes to –7.25 points at 120 minutes post-intervention. In contrast, Mindful Activities produced the most immediate reduction in stress score (–2 points at 15 minutes), which then reversed, reaching a slight increase (+1.07 points) by 120 minutes. Further illustrating these temporal dynamics in the physiological data, Non-cardio Exercise showed an initial sharp decline in HRV (-10.16 ms), likely due to sympathetic nervous system activation during exertion, while improvements in stress score peaked (at -8.31 points) later, 120 minutes post-intervention. These patterns highlight the importance of considering not just the type of intervention, but also the timing of its physiological effects. To examine whether these temporal patterns around the interventions are statistically meaningful, we compared each intervention category against null distributions derived from random timestamps (constrained to 8 am - 11 pm local time) uniformly sampled across all user data (Figure 6). The goal with this approach is to distinguish changes that follow a specific intervention from those that occur naturally over the day. The Socializing category shows a statistically significant reduction in heart rate at the 30-minute window ( 𝑝 = 0.004 , Cohen’s 𝑑 = −0.60 , Figure 6a), with a distribution clearly shifted toward negative values compared to the null distribution. Similarly, Rest and Recovery 
+
+demonstrates a significant reduction in stress levels over the same timeframe ( 𝑝 = 0.0227 , Cohen’s 𝑑 = −0.66 , Figure 6b). In contrast, Spirituality / Mindful Activities shows a significant decrease in HRV at the 30-minute window ( 𝑝 = 0.005 ,Cohen’s 𝑑 = −1.00 , Figure 6c), suggesting initial nervous system activation during focused practice. Furthermore, the 
+
+Healthcare/Therapy category showed increases in stress levels at the 30-minute window that, while not statistically significant, still suggest a meaningful pattern in the data ( 𝑝 = 0.0735 , Cohen’s 𝑑 = 1.28 , Figure 6d), with a distribution notably shifted toward positive values. Additional distribution plots for 120-minute effects of both Rest and Recovery and 
+
+Healthcare/Therapy , where the effects are more pronounced and statistically significant, are provided in the appendix (Figure 44). These distribution comparisons further support our observation that different intervention types are associated with different temporal patterns in physiological responses. Our analysis involved multiple statistical comparisons across physiological variables, intervention categories, and time windows. To account for potential false positives, we interpret results in the context of both p-values and effect sizes. All comparisons shown in Figure 6 achieved p-values below 0.1 and medium to large effect sizes (| 𝑑 | > 0.60), suggesting these effects are substantial. Future iterations of the study with a larger participant cohort could incorporate formal corrections for multiple comparisons, such as Bonferroni or false discovery rate (FDR) adjustments, to further validate these patterns. Figure 36 in the appendix provides additional temporal insight by showing HRV trajectories over time for each intervention category. Although some categories such as Rest and Recovery show relatively smooth and sustained increases in HRV, others such as Physical Activity or Mindful Activities exhibit more volatile patterns, further illustrating the variability in physiological responses between different types of interventions. 
+
+5.3 RQ2 — Self-tagged Interventions Support Reflection, Insight, and Personalized Stress Management 
+
+Hypothesis H2 (Enhanced Self-Management). Interactive plots that overlay self-tags on physiology will (i) be easy to use and (ii) help participants surface insights they can act on. From Wearable Data to Personalized and Actionable Health Insights 15                       
+
+> (a) Socializing vs Null: Heart Rate (30min window) (b) Rest & Recovery vs Null: Stress Level (30min window)
+> (c) Spirituality / Mindful Activities vs Null: HRV (30min window) (d) Healthcare/Therapy vs Null: Stress Level (30min window) Fig. 6. Distribution comparisons between intervention categories and null distributions. (a) Socializing shows a significant shift toward reduced heart rate ( 𝑝 =0.004 ,𝑑 =−0.60 ). (b) Rest & Recovery demonstrates significant stress reduction ( 𝑝 =0.0227 ,𝑑 =−0.66 ). (c) Spirituality / Mindful Activities shows decreased HRV initially ( 𝑝 =0.005 ,𝑑 =−1.00 ). (d) Healthcare/Therapy shows a marginal increase in stress ( 𝑝 =0.0735 ,𝑑 =1.28 ). Gray distributions represent random timestamps (null distribution), while blue distributions show the intervention category.
+
+High usability. Figure 7a shows that Phase One participants rated tagging as manageable , the interface intuitive ,and the plots insightful ; most used the tool daily. After phase two ended, we conducted 30-minute exit interviews with four participants in the study who responded to having interest. The participants were asked the same questions around three open-ended themes: 1) their experience using the visualization tool and 2) insights they gained about stress from using the tool. One interviewee noted: "The website’s flow was very user-friendly. The left-hand navigation bar made the different parts of the tool easy to find." 
+
+Built-in reflection. Two participants said that logging events immediately, rather than batching tags later, created a brief pause for self-reflection. One participant mentioned: "I treated the logging process as a moment of reflection. I would pause after an intervention to decide whether it really helped or whether I should do less of it next time." 
+
+Insight discovery for better stress management. Several participants reported concrete takeaways that emerged from using the tool. One participant focused on their physiological response to one-on-one meetings: 16 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+“The visualization showed me I get more stressed about meetings than I need to be. During the meeting, my body gradually realizes that everything is fine and calms down again. Next time I can try some self-talk beforehand so I don’t get as stressed at the beginning.” Although the participant logged only one instance of a 1-to-1 meeting, Appendix A (Figure 54) supports the pattern: HR and stress metrics spike at the start and then drift back toward baseline by the end of the meeting. One participant also focused on the aggregated effects of all the interventions they tried and their overall impact over the course of the study. The participant noted: "An insight I gained was that all the interventions I tried helped reduce my stress over the course of the study. I feel much less stressed overall at the end of the study than I did at the beginning. I can’t say that any one intervention worked better for me; rather, they all worked together to help me lower my stress over time." These comments and feedback suggest that the tool not only revealed patterns; it led to concrete self-management strategies. For one participant, recognizing the pre-meeting stress spike prompted a plan to use calming self-talk before future meetings. For another, seeing the cumulative downward trend in stress reinforced the value of maintaining a range of intervention routines over time rather than looking for a single ’best’ technique. 
+
+Iterative improvement. Following additional visualization updates, feedback shows improved satisfaction com-pared with Phase One (Figure 7b), especially for daily engagement, tagging frequency, and willingness to recom-mend—supporting H2 .
+
+5.4 Physiological Response to Stress Varies by Individual, Personality, and Perception 
+
+Individual variability. Across all intervention categories, the magnitude of physiological response varied substantially between the participants (Figure 8). While some individuals (e.g. participant B) exhibited pronounced increases in HRV immediately after most interventions, others (e.g. participants C and F) showed muted or even negative responses. Additionally, individual-level trends reinforce our earlier finding that different intervention categories vary in their magnitude of their physiological impact. For example, although both Healthcare / Therapy and Non-cardio Physical Activity resulted in a decrease in HRV 30 minutes post-intervention, the decrease was more pronounced following non-cardio physical activity. Figure 45 in the appendix presents the same data as Figure 8 but uses a consistent y-axis scale to better highlight these differences across intervention types. These patterns highlight the need to learn person-specific and category-specific baselines and response profiles in future work. 
+
+Personality signals. Qualitative interviews suggest that self-identified extroverts experienced greater HRV gains from social interventions, while introverts tended toward neutral or negative shifts (anecdotal, 𝑛 =3). These self - reports align with physiological variations—particularly HRV changes during socializing events—seen between participants. Figure 8 illustrates this variability: some participants experienced HRV improvements or close to neutral effects after social interactions, while others showed declines. This variation hints at possible moderation by factors such as personality traits, social context, or baseline stress state. A validated personality scale (for example, the Big Five Inventory[ 27 ]) could be explored in follow-up work to go beyond anecdotal evidence and formally test these trait–state interactions. 
+
+User reporting versus physiological data. Figure 9 compares the self-reported stress impact ratings of the participants (positive, neutral, or negative) with the measured HRV change ( Δ RMSSD) over a 60-minute window. In From Wearable Data to Personalized and Actionable Health Insights 17      
+
+> (a) Usability metrics after Phase One ( 𝑛 =7). (b) Usability metrics after Phase Two ( 𝑛 =6). Fig. 7. Responses to the post-study survey after Phase One and Phase Two.
+
+general, the accuracy of the participants’ perception varied between the types of intervention, highlighting a meaningful but imperfect alignment between subjective experience and physiological stress response. In particular, physical activity (cardio) interventions often had short-term negative HRV changes despite the partici-pants labeling them as positive. This suggests a potential mismatch between perceived benefits and acute physiological response, possibly reflecting short-term sympathetic activation followed by long-term recovery benefits. Future work might explore longitudinal HRV recovery windows or delayed annotations to capture this nuance more accurately. In contrast, academic or educational activities often showed small HRV improvements in positively tagged instances, although the number of those logged are limited. These early signals suggest that intellectually engaging contexts may sometimes support stress regulation, but a larger sample size is needed to draw firmer conclusions. For socializing interventions, variation in HRV response was especially wide, with some positive and negative tags producing similar physiological profiles. This reinforces earlier anecdotal findings (Section 5.4) around individual personality differences, where extroverts reported more benefit from social interaction than introverts. These findings point to a broader challenge: self-perception does not always map cleanly to physiological state. Future iterations could prompt participants to log the perceived impact of stress immediately after the intervention, reducing 18 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+> Fig. 8. Average changes in HRV by participant and category. Change was calculated as the difference between the average HRV in the 15-minute window before the intervention and the 30-minute window after the intervention These plots show the average change in HRV for each participant and each intervention category.
+
+retrospective bias or emotional drift. Additionally, these variations underscore the need for personalized models and real-time annotation tools that can better capture how individuals interpret and respond to different stress-related events. 
+
+> Fig. 9. Agreement between perceived and measured HRV change (60 minute window). Violin plot showing the change in average HRV in the 60-minute window before the intervention and the 60-minute window after the intervention.
+
+6 Discussion and Conclusion 
+
+Interpretation of findings. Our pilot supports our hypotheses 1) that pairing continuous wearable signals with a participant-tagged context can expose stress patterns and 2) we can build towards a personalized visualization tool that participants can use to identify when and how interventions affect their physiological response. 
+
+RQ1/H1 supported. Overlaying tags with sensor data revealed interpretable patterns—especially for social, rest, and cardio activities—that would be invisible in raw streams. 
+
+Divergence across metrics. Our analysis highlights some discrepancies between HRV, HR, and Stress Score as physiological measures of stress. While one metric might suggest that an intervention had a positive effect, the other From Wearable Data to Personalized and Actionable Health Insights 19 measures might show the opposite trend. This emphasizes the importance of multi-metric tracking to ensure a more comprehensive understanding of stress responses, as relying on a single metric could lead to misleading conclusions about participant well-being. Future research should strongly consider incorporating multiple physiological measures, which will allow for more nuanced interpretation of intervention effectiveness. For example, in our study, each metric captures different aspects of the stress response. HRV captures autonomic adaptability, heart rate reflects autonomic arousal, and stress score combines multiple physiological measures with proprietary algorithms. By examining multiple signals, researchers can detect and analyze more complex and layered patterns in stress responses. 
+
+Presence of temporal trends. We also found temporal dynamics in how different interventions affect stress-related physiological measures. Not all interventions had immediate effects. Non-cardio Exercise resulted in a sharp decline of HRV at 15 minutes post-intervention, while the greatest reduction to stress score for the same intervention category occurred 120 minutes post-intervention. Furthermore, the net effects of interventions were not consistent over time. For example, Mindful Activities led to an initial decrease in stress score 15 minutes post-intervention, but this effect gradually reversed, resulting in an increased stress score by 120 minutes post-intervention. These lagged effects suggest that evaluating interventions based solely on immediate or fixed post-activity windows may miss important delayed responses. This finding supports our design decision to allow users to customize pre- and post-intervention time windows in the visualization tool, enabling them to understand how interventions unfold over different durations. Since interventions operate on varying timescales, fixed time windows risk obscuring meaningful trends. Future systems should offer flexible or adaptive time windows, potentially recommending time ranges based on intervention type or user-specific patterns. Additional research could explore methods to identify optimal time windows across different physiological metrics or intervention types, such as detecting inflection points in the stress response trajectory. 
+
+Disconnect between physiological impact and participant preferences and perception. Our findings reveal a mismatch between the interventions participants chose most frequently and those that resulted in the strongest physiological benefits. For example, Socializing and Academic Activities were the two most common interventions, yet they did not consistently lead to improvements across HRV, HR, or Stress Score. On the other hand, less common interventions such as Rest and Recovery showed the most sustained and consistent positive physiological effects. This suggests that users may gravitate toward familiar or habitual behaviors rather than those that are most restorative. Additionally, we observe very little correlation between perceived stress impact and physiological response. Participants sometimes rated interventions as positive or negative despite worsening physiological measures. From a design perspective, these findings suggests that stress-tracking systems could support more informed decision-making by highlighting discrepancies between perceived and physiological effects. Such systems could also encourage users to try interventions that may be more effective, even if they are less familiar or frequently used. Future research could investigate how users form and update beliefs about what interventions work for them, and how systems can support that process through personalized recommendations or reflection prompts. 
+
+RQ2/H2 supported. The tagging workflow was adopted and users reported high engagement. The system was perceived as intuitive and became more efficient to use over time, especially as participants became familiar with the interface and workflow. 
+
+Usability and interaction feedback. Survey responses indicate that the web tool was easy to navigate, tagging became faster over time, and visualizations were perceived as helpful. Gains in satisfaction and willingness to recommend 20 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+between phase one and two reflect a general increase in engagement, even without the presence of push notifications or gamification, suggesting that the tool has intrinsic value. 
+
+Role of visualizations in insight generation. The exit interviews provide anecdotal evidence that the visualiza-tions played a key role in helping participants reflect on their physiological responses. Several users noted that the tool helped them recognize which interventions were most effective and why certain strategies were more effective than others. One participant was able to connect changes in their Stress Score to a group work session, while another identified that their interventions were more effective on days following high-quality sleep. These examples suggest that interactive visualizations not only helped participants interpret noisy physiological data but also supported the generation of meaningful, personalized insights. While the tool is individually used, it enables richer self-understanding that can positively influence social interaction, helping individuals recognize when they are stressed, how they recover, and how their stress responses differ from others. This creates new opportunities for shared awareness, coordination, and mutual support around stress in work and other collaborative settings. 
+
+Limitations. The study’s scope was intentionally meant to be a pilot study, serving primarily as a proof of concept. First, the sample was small and drawn from university settings, limiting generalizability. Second, self -tagging introduces timing errors and subjective bias that may blur true sensor–context relationships. Third, the four - week duration is too short to evaluate long - term adherence or durable stress - management change. Finally, although anecdotal interview comments hinted that introversion–extroversion may shape responses to social interventions, we did not administer a validated personality scale, so these observations remain suggestive. 
+
+Future work. Next steps will focus on scaling the participant pool, collecting validated personality measures, and extending the deployment period. A larger and more diverse cohort will allow us to test whether the intro-version–extroversion pattern persists and to explore other personality traits. Adding a more in-depth personality assessment during onboarding of the study could let us correlate personality types with physiological responses to specific intervention types, especially social versus solitary activities. Longer -term deployments will reveal whether personalized insights translate into sustained behavior change, while lightweight prompting and semi-automated tag suggestions can reduce logging burden without sacrificing user engagement. We could also allow users to log emotions alongside interventions, enabling more nuanced comparisons between perceived emotional states and physiological data. 
+
+Conclusion. Although limited in scale, this study lays the groundwork for truly personalized stress - management tools. By blending objective physiology, subjective context, and individual personality traits, future systems could recommend the right intervention at the right moment for each user—moving the field beyond one -size - fits - all advice toward precision self - care. More broadly, our work shows how personalized insights from wearable data can support reflection and improve stress self-management, ultimately fostering awareness in social and collaborative contexts. 
+
+References         
+
+> [1] Yasmin Abdelaal, Michaël Aupetit, Abdelkader Baggag, and Dena Al-Thani. 2024. Exploring the Applications of Explainability in Wearable Data Analytics: Systematic Literature Review. Journal of Medical Internet Research 26, 24 (2024), e53863. doi:10.2196/53863 [2] Sasipriya Arun, Edward R. Sykes, and Syed Tanbeer. 2024. RemoteHealthConnect: Innovating patient monitoring with wearable technology and custom visualization. Digital Health 10 (2024). doi:10.1177/20552076241300748 [3] Zhila Esna Ashari and Hassan Ghasemzadeh. 2019. Mindful Active Learning. In Proceedings of the 28th International Joint Conference on Artificial Intelligence (IJCAI-19) . 2265–2271. doi:10.24963/ijcai.2019/314
+
+From Wearable Data to Personalized and Actionable Health Insights 21 
+
+[4] Brandon M Booth, Hana Vrzakova, Stephen M Mattingly, Gonzalo J Martinez, Louis Faust, and Sidney K D’Mello. 2022. Toward robust stress prediction in the age of wearables: Modeling perceived stress in a longitudinal study with information workers. IEEE Transactions on Affective Computing 13, 4 (2022), 2201–2217. [5] Annette Brons, Shihan Wang, Bart Visser, Ben Kröse, Sander Bakkes, and Remco Veltkamp. 2024. Machine Learning Methods to Personalize Persuasive Strategies in mHealth Interventions That Promote Physical Activity: Scoping Review and Categorization Overview. Journal of Medical Internet Research 26, 1 (2024), e47774. doi:10.2196/47774 [6] Taryn Chalmers, Blake Anthony Hickey, Phillip Newton, Chin-Teng Lin, David Sibbritt, Craig S McLachlan, Roderick Clifton-Bligh, John Morley, and Sara Lal. 2021. Stress watch: The use of heart rate and heart rate variability to detect stress: A pilot study using smart watch wearables. Sensors 
+
+22, 1 (2021), 151. [7] Carmela Comito, Deborah Falcone, and Agostino Forestiero. 2021. Diagnosis prediction based on similarity of patients physiological parameters. In 
+
+Proceedings of the 2021 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining . 487–494. [8] Kathryn M. Dalmeida and Giovanni Luca Masala. 2021. HRV Features as Viable Physiological Markers for Stress Detection Using Wearable Devices. 
+
+Sensors 21, 8 (2021), 2873. doi:10.3390/s21082873 [9] Basil A. Darwish, Shafiq Ul Rehman, Ibrahim Sadek, Nancy M. Salem, Ghada Kareem, and Lamees N. Mahmoud. 2025. From Lab to Real-Life: A Three-Stage Validation of Wearable Technology for Stress Monitoring. MethodsX 14 (2025), 103205. doi:10.1016/j.mex.2025.103205 [10] Nediyana Daskalova, Eindra Kyi, Kevin Ouyang, Arthur Borem, Sally Chen, Sung Hyun Park, Nicole Nugent, and Jeff Huang. 2021. Self-E: Smartphone-Supported Guidance for Customizable Self-Experimentation. In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI ’21) . doi:10.1145/3411764.3445100 [11] Nediyana Daskalova, Danaë Metaxa-Kakavouli, Adrienne Tran, Nicole Nugent, Julie Boergers, John McGeary, and Jeff Huang. 2016. SleepCoacher: A Personalized Automated Self-Experimentation System for Sleep Recommendations. In Proceedings of the 29th Annual Symposium on User Interface Software and Technology (UIST ’16) . 347–358. doi:10.1145/2984511.2984534 [12] Jessilyn Dunn, Lukasz Kidzinski, Ryan Runge, Daniel Witt, Jennifer L Hicks, Sophia Miryam Schüssler-Fiorenza Rose, Xiao Li, Amir Bahmani, Scott L Delp, Trevor Hastie, et al . 2021. Wearable sensors enable personalized predictions of clinical laboratory measurements. Nature medicine 27, 6 (2021), 1105–1112. [13] Kyle T Ebersole, David J Cornell, Robert J Flees, Corey M Shemelya, and Sabrina E Noel. 2020. Contribution of the autonomic nervous system to recovery in firefighters. Journal of athletic training 55, 9 (2020), 1001–1008. [14] Morgane Evin, Antonio Hidalgo-Munoz, Adolphe James Béquet, Fabien Moreau, Helène Tattegrain, Catherine Berthelon, Alexandra Fort, and Christophe Jallais. 2022. Personality trait prediction by machine learning using physiological data and driving behavior. Machine Learning with Applications 9 (2022), 100353. [15] Ji Fang, Vincent C. S. Lee, Hao Ji, and Haiyan Wang. 2024. Enhancing digital health services: A machine learning approach to personalized exercise goal setting. Digital Health 10 (2024). doi:10.1177/20552076241233247 [16] Guy W. Fincham, Joanna Mitrouska, Andrea Mantovani, Frances Meeten, Chiara Moneta, and Igor M. Marchetti. 2023. Effect of breathwork on stress and mental health: A meta-analysis of randomised-controlled trials. Scientific Reports 13 (2023), 432. doi:10.1038/s41598-022-27247-y [17] Tor T Finseth, Michael C Dorneich, Stephen Vardeman, Nir Keren, and Warren D Franke. 2023. Real-time personalized physiologically based stress detection for hazardous operations. IEEE Access 11 (2023), 25431–25454. [18] Firstbeat Analytics. [n. d.]. Sleep Detection Component. https://www.firstbeatanalytics.com/en/features/sleep-detection/. Accessed: 2025-05-02. [19] Firstbeat Technologies Oy. 2019. A Sleep Analysis Method Based on Heart Rate Variability . Technical Report. Firstbeat Technologies. https: //assets.firstbeat.com/firstbeat/uploads/2019/11/A-Sleep-Analysis-Method-Based-on-Heart-Rate-Variability-071119-1.pdf White paper. [20] Joel Goh, Jeffrey Pfeffer, and Stefanos A. Zenios. 2016. The Relationship Between Workplace Stressors and Mortality and Health Costs in the United States. Management Science 62, 2 (2016), 608–628. doi:10.1287/mnsc.2014.2115 This study estimates approximately $190 billion per year in direct healthcare costs related to work-related stress in the United States.. [21] Blake Anthony Hickey, Taryn Chalmers, Phillip Newton, Chin-Teng Lin, David Sibbritt, Craig S McLachlan, Roderick Clifton-Bligh, John Morley, and Sara Lal. 2021. Smart devices and wearable technologies to detect and monitor mental health conditions and stress: A systematic review. Sensors 
+
+21, 10 (2021), 3461. [22] Andreas Holzinger. 2016. Interactive machine learning for health informatics: when do we need the human-in-the-loop? Brain Informatics 3, 2 (2016), 119–131. doi:10.1007/s40708-016-0042-6 [23] Talha Iqbal, Andrew J. Simpkin, Davood Roshan, Nicola Glynn, John Killilea, Jane Walsh, Gerard Molloy, Sandra Ganly, Hannah Ryman, Atif Shahzad, et al . 2022. Stress Monitoring Using Wearable Sensors: A Pilot Study and Stress-Predict Dataset. Sensors 22, 21 (2022), 8135. doi:10.3390/s22218135 [24] Daniella Iskaf. 2024. Breath-Heart-Brain: Investigating the Relationship Between Autonomic Activity, Interoception, and Emotion Regulation . Ph. D. Dissertation. Swinburne. [25] Rosmina Jaafar and Onn Chung Xian. 2021. Analysis of heart rate variability using wearable device. In Computational Science and Technology: 7th ICCST 2020, Pattaya, Thailand, 29–30 August, 2020 . Springer, 453–461. [26] Ravinder Jerath, Mohammad Syam, and Shajia Ahmed. 2023. The future of stress management: integration of smartwatches and HRV technology. 
+
+Sensors 23, 17 (2023), 7314. [27] Oliver P John, Sanjay Srivastava, et al. 1999. The Big-Five trait taxonomy: History, measurement, and theoretical perspectives. (1999). 22 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+[28] Rahil Karkar, Jasmine Schroeder, Daniel A. Epstein, Luz Rello Piña, James J. Scofield, James Fogarty, Julie A. Kientz, Sean A. Munson, Rodrigo Vilardaga, and Jasmine Zia. 2017. TummyTrials: A Feasibility Study of Using Self-Experimentation to Detect Individualized Food Triggers. In 
+
+Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems (CHI ’17) . 6850–6863. doi:10.1145/3025453.3025480 [29] Hye-Geum Kim, Eun-Jin Cheon, Dai-Seg Bai, Young Hwan Lee, and Bon-Hoon Koo. 2018. Stress and Heart Rate Variability: A Meta-Analysis and Review of the Literature. Psychiatry Investigation 15, 3 (2018), 235–245. doi:10.30773/pi.2017.08.17 [30] Stefan Konigorski, Sarah Wernicke, Tamara Slosarek, Alexander M. Zenner, Nils Strelow, Ferenc D. Ruether, Florian Henschel, Manisha Manaswini, Fabian Pottbäcker, Jonathan A. Edelman, Babajide Owoyele, Matteo Danieletto, Eddye Golden, Micol Zweig, Girish Nadkarni, and Erwin Böttinger. 2022. StudyU: A Platform for Designing and Conducting Innovative Digital N-of-1 Trials. Journal of Medical Internet Research 24, 7 (2022), e35884. doi:10.2196/35884 [31] Richard L. Kravitz, Christopher H. Schmid, Maria Marois, Barth Wilsey, Deborah Ward, Ron D. Hays, et al . 2018. Effect of Mobile Device–Supported Single-Patient Multi-Crossover Trials on Treatment of Chronic Musculoskeletal Pain: A Randomized Clinical Trial. JAMA Internal Medicine 178, 10 (2018). doi:10.1001/jamainternmed.2018.3981 [32] Labfront. 2024. Learn about Labfront. https://help.labfront.com/learn-about-labfront. Accessed 2 May 2025. [33] Evgenia Lazarou and Themis P. Exarchos. 2024. Predicting stress levels using physiological data: Real-time stress prediction models utilizing wearable devices. AIMS Neuroscience 11, 1 (2024), 89–100. doi:10.3934/Neuroscience.2023005 [34] Ke Li, Cristiano Cardoso, Angel Moctezuma-Ramirez, Abdelmotagaly Elgalad, and Emerson Perin. 2023. Heart Rate Variability Measurement through a Smart Wearable Device: Another Breakthrough for Personal Health Monitoring? Int. J. Environ. Res. Public Health 20, 24 (2023), 7146. doi:10.3390/ijerph20247146 [35] Kun Liu, Yubo Jiao, Congcong Du, Xiaoming Zhang, Xiaoyu Chen, Fang Xu, and Chaozhe Jiang. 2023. Driver Stress Detection Using Ultra-Short-Term HRV Analysis under Real World Driving Conditions. Entropy 25, 2 (2023), 194. doi:10.3390/e25020194 [36] Sameer Neupane, Mithun Saha, Nasir Ali, Timothy Hnat, Shahin Alan Samiei, Anandatirtha Nandugudi, David M Almeida, and Santosh Kumar. 2024. Momentary stressor logging and reflective visualizations: Implications for stress management with wearables. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems . 1–19. [37] Prabhjot Singh Nijjar, Venkata Krishna Puppala, Oana Dickinson, Sue Duval, Daniel Duprez, Mary J Kreitzer, and David G Benditt. 2014. Modulation of the autonomic nervous system assessed through heart rate variability by a mindfulness based stress reduction program. International journal of cardiology 177, 2 (2014), 557–559. [38] Rok Novak, Johanna Amalia Robinson, Tjaša Kanduč, Dimosthenis Sarigiannis, Sašo Džeroski, and David Kocman. 2023. Empowering participatory research in urban health: Wearable biometric and environmental sensors for activity recognition. Sensors 23, 24 (2023), 9890. [39] Ali Olyanasab and Mohsen Annabestani. 2024. Leveraging Machine Learning for Personalized Wearable Biomedical Devices: A Review. Journal of Personalized Medicine 14, 2 (2024), 203. doi:10.3390/jpm14020203 [40] World Health Organization. 2019. Mental health in the workplace: Information Sheet. World Health Organization press release. https://www.who. int/news/item/28-05-2019-mental-health-in-the-workplace Depression and anxiety disorders cost the global economy approximately $1 trillion per year in lost productivity.. [41] Serguei VS Pakhomov, Paul D Thuras, Raymond Finzel, Jerika Eppel, and Michael Kotlyar. 2020. Using consumer-wearable technology for remote assessment of physiological response to stress in the naturalistic environment. Plos one 15, 3 (2020), e0229942. [42] Caroline Peressutti, Juan M Martín-González, and Juan M García-Manso. 2012. Does mindfulness meditation shift the cardiac autonomic nervous system to a highly orderly operational state? International journal of cardiology 154, 2 (2012), 210–212. [43] Hadar Rosenbach, Alon Itzkovith, Yori Gidron, and Tom Schonberg. 2025. Assessing Garmin’s Stress Level Score Against Heart Rate Variability Measurements. bioRxiv [Preprint] (2025). doi:10.1101/2025.01.06.630177 [44] Shehjar Sadhu, Dhaval Solanki, Leslie A. Brick, Nicole R. Nugent, and Kunal Mankodiya. 2023. Designing a Clinician-Centered Wearable Data Dashboard (CarePortal): Participatory Design Study. JMIR Formative Research 7 (2023), e46866. doi:10.2196/46866 [45] Fred Shaffer and Julian P. Ginsberg. 2017. An Overview of Heart Rate Variability Metrics and Norms. Frontiers in Public Health 5 (2017), 258. doi:10.3389/fpubh.2017.00258 [46] David C Sheridan, Ryan Dehart, Amber Lin, Michael Sabbaj, and Steven D Baker. 2020. Heart rate variability analysis: How much artifact can we remove? Psychiatry Investigation 17, 9 (2020), 960. [47] David C Sheridan, Karyssa N Domingo, Ryan Dehart, and Steven D Baker. 2021. Heart rate variability duration: Expanding the ability of wearable technology to improve outpatient monitoring? Frontiers in Psychiatry 12 (2021), 682553. [48] Elena Smets, Emmanuel Rios Velazquez, Giuseppina Schiavone, Imen Chakroun, Ellie D’Hondt, and Chris Van Hoof. 2018. Large-scale wearable data reveal digital phenotypes for daily-life stress detection. NPJ Digital Medicine 1 (2018), 67. doi:10.1038/s41746-018-0074-9 [49] Eric N Smith, Erik Santoro, Neema Moraveji, Michael Susi, and Alia J Crum. 2020. Integrating wearables in stress management interventions: Promising evidence from a randomized trial. International Journal of Stress Management 27, 2 (2020), 172. [50] Jina Suh, Esther Howe, Robert Lewis, Javier Hernandez, Koustuv Saha, Tim Althoff, and Mary Czerwinski. 2024. Toward Tailoring Just-in-Time Adaptive Intervention Systems for Workplace Stress Reduction: Exploratory Analysis of Intervention Implementation. JMIR Mental Health 11 (2024), e48974. [51] Sara Taylor, Akane Sano, Craig Ferguson, Akshay Mohan, and Rosalind W. Picard. 2018. QuantifyMe: An Open-Source Automated Single-Case Experimental Design Platform. Sensors 18, 4, Article 1097 (2018). doi:10.3390/s18041097 From Wearable Data to Personalized and Actionable Health Insights 23 
+
+[52] Ali Tazarv, Sina Labbaf, Amir Rahmani, Nikil Dutt, and Marco Levorato. 2023. Active reinforcement learning for personalized stress monitoring in everyday settings. In ACM/IEEE CHASE ’23 . 44–55. [53] Jaakko Tervonen, Kati Pettersson, and Jani Mäntyjärvi. 2021. Ultra-Short Window Length and Feature Importance Analysis for Cognitive Load Detection from Wearable Sensors. Electronics 10, 5 (2021), 613. doi:10.3390/electronics10050613 [54] Abhishek Tiwari, Shrikanth Narayanan, and Tiago H Falk. 2019. Breathing rate complexity features for “in-the-wild” stress and anxiety measurement. In 2019 27th European Signal Processing Conference (EUSIPCO) . IEEE, 1–5. [55] Pedro Elkind Velmovitsky, Matheus Lotto, Paulo Alencar, Scott T. Leatherdale, Donald Cowan, and Plinio Pelegrini Morita. 2023. Can Heart Rate Variability Data from the Apple Watch Electrocardiogram Quantify Stress? Frontiers in Public Health 11 (2023), 1178491. doi:10.3389/fpubh.2023. 1178491 [56] Jin H Wen, Patrick Klaiber, Kate A Leger, Patrick L Hill, Gabrielle N Pfund, Danica C Slavish, Anita DeLongis, and Nancy L Sin. 2024. Nightly sleep predicts next-morning expectations for stress and positive experiences. Psychosomatic Medicine (2024), 10–1097. [57] Sarah Wernicke, Tamara Slosarek, Nils Strelow, Alexander M. Zenner, Stefan Konigorski, and Erwin Böttinger. 2022. StudyMe: A New Mobile App for User-Centric N-of-1 Trials. Trials 23, 1 (2022), 1080. doi:10.1186/s13063-022-06893-7 [58] Xiaodan Wu, Ruichang Li, Zhen He, Tianzhi Yu, and Changqing Cheng. 2023. A value-based deep reinforcement learning model with human expertise in optimal treatment of sepsis. NPJ Digital Medicine 6, 1 (2023), 15. doi:10.1038/s41746-023-00755-5 [59] Qianli Xu, Tin Lay Nwe, and Cuntai Guan. 2014. Cluster-based analysis for personalized stress evaluation using physiological signals. IEEE journal of biomedical and health informatics 19, 1 (2014), 275–281. [60] Lili Zhu, Petros Spachos, and Sergio Gregori. 2022. Multimodal Physiological Signals and Machine Learning for Stress Detection by Wearable Devices. In 2022 IEEE International Symposium on Medical Measurements and Applications (MeMeA) . 1–6. doi:10.1109/MeMeA54994.2022.9856603 24 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+A Appendix A. Visualization Tool Screenshots A1 Data Collection 
+
+> Fig. 10. Google Form used for collecting data.
+
+From Wearable Data to Personalized and Actionable Health Insights 25 
+
+(a) Activity Labeling: Users can fine-tune the time range and select or add an activity. 
+
+(b) Intervention Selection: Users choose the specific intervention they wish to analyze. Fig. 11. User Interface for entering annotations and selecting interventions. 26 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 12. User interface for uploading data. From Wearable Data to Personalized and Actionable Health Insights 27 
+
+A2 User Interface 
+
+> Fig. 13. Home screen of the website
+
+28 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+(a) Signup Page 
+
+(b) Login Page Fig. 14. User authentication screens. From Wearable Data to Personalized and Actionable Health Insights 29 
+
+(a) Heart Rate (b) Respiration Rate 
+
+(c) Steps Taken Fig. 15. Annotated visualizations for a user’s physiological variables. 
+
+Fig. 16. Aggregate Comparison This visualization displays the percent change in Stress Score for each instance of a user’s intervention, allowing for easy comparison across repeated occurrences. 30 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 17. Compare Interventions This visualization displays a user’s data (overlaid on each other) for the chosen variable before, during, and after the intervention, as well as the sleep quality of the previous and next night. 
+
+Fig. 18. Visualization Options From Wearable Data to Personalized and Actionable Health Insights 31 
+
+(a) Managing Events 
+
+(b) Managing Interventions Fig. 19. Users can manage their events and interventions easily. 32 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+A3 Feature Extraction 
+
+Fig. 20. Analysis Options 
+
+Fig. 21. A user’s average BBI percentage change for each activity From Wearable Data to Personalized and Actionable Health Insights 33 
+
+Fig. 22. A user’s average stress percentage change for each activity 
+
+Fig. 23. A user’s average BBI percentage change for each activity 34 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 24. Continuous HRV Change One user’s average HRV changes after an intervention are displayed. Different instances of the same intervention are averaged. This user tagged many different types of interventions. 
+
+Fig. 25. Intervention Category Impact Table This table presents data from the user shown in Figure 24. Each intervention was categorized by our ML model and the table reports the average impact of each intervention over varying time windows after it occurred, along with how frequently each intervention was used. From Wearable Data to Personalized and Actionable Health Insights 35 
+
+Fig. 26. A table displaying the average BBI change for each instance of an activity 36 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 27. Users can determine the number of minutes to analyze before and after events. From Wearable Data to Personalized and Actionable Health Insights 37 
+
+Fig. 28. A user’s summary of how different categories of events/interventions affect HRV over time. 38 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+B Appendix B. Supplementary Results B1 Data Smoothing Visualizations 
+
+> Fig. 29. BBI Robustness Analysis and Search.
+
+From Wearable Data to Personalized and Actionable Health Insights 39 
+
+> Fig. 30. HRV Robustness Analysis and Search.
+
+B2 Utilization Metrics 40 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 31. Mean watch wear-time (hours per day) during Phase One. Participants wore the device for the vast majority of each day. 
+
+Fig. 32. Mean watch wear-time in hours per day in the phase one of the study 
+
+Participants adhered to the recommendation to wear their watches for most hours each day during phase two of the study. 
+
+Fig. 33. Logged interventions by day and hour. The heatmap shows the average number of interventions logged at specific times across all participants. Darker cells indicate a higher number of interventions logged. 
+
+B3 Aggregated Results From Wearable Data to Personalized and Actionable Health Insights 41                                                                                                                                      
+
+> Intervention Category Freq. (%) 15 min 30 min 60 min 120 min HRV HR Stress HRV HR Stress HRV HR Stress HRV HR Stress
+> Socializing / Social Interaction 20.6% -0.814 -4.483 -6.814 -1.725 -4.950 -6.810 -2.184 -4.346 -6.361 -1.044 -4.816 -7.251 Academic & Educational 17.4% -0.574 4.349 4.522 -0.598 4.009 2.387 -1.065 4.921 2.123 -1.123 6.128 1.056 Spirituality / Mindful Activities 14.6% -6.605 -2.971 -2.002 -9.825 -0.683 0.022 -11.700 -1.093 0.919 -13.215 -1.439 1.074 Food / Drink / Nutrition 12.6% -2.748 1.010 0.816 -2.511 1.143 2.342 -2.349 2.441 4.394 -1.207 0.406 1.466 Physical Activity – Cardio 11.1% -7.819 -4.822 -4.435 -5.761 -5.097 -3.831 -3.546 -3.006 -0.634 -2.547 -4.808 -6.361 Rest & Recovery 10.7% 0.360 -1.848 -11.926 0.255 -2.516 -10.033 1.294 -5.264 -10.489 2.756 -7.351 -13.826 Physical Activity – Non-cardio 6.3% -10.155 -2.257 -6.046 -7.011 -0.955 -5.137 -3.207 -1.591 -6.953 -2.075 1.918 -8.314 Healthcare / Therapy 4.0% -4.542 10.040 13.522 -4.230 11.191 13.401 -3.164 7.674 11.383 -1.731 7.733 10.716 Other 2.8% -2.554 12.376 -0.783 -2.431 12.963 -5.007 -4.445 4.158 -13.054 -5.281 3.598 2.226
+
+Table 3. Average changes in HRV, heart rate (bpm), and Stress Score (Garmin 0–100 scale) measured at 15, 30, 60, and 120 minutes after the intervention. Each change was calculated by comparing the mean value within each post-intervention time window to the mean value in the 15-minute window before the intervention. Finally, changes in the physiological variables were averaged across interventions in the same category. This table displays the average change in HRV, heart rate, and Stress Score for each intervention category, along with how frequently each intervention occurred. Values are shown across multiple post-intervention time windows, enabling comparison of short and longer-term physiological effects. 
+
+Fig. 34. Distribution of intervention categories. The number of tagged activities belonging to each intervention category. 
+
+Fig. 35. Duration of intervention/event (in minutes), by category. The median and standard error of duration for activities belonging to each intervention category. 42 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 36. Population-level average change in HRV (RMSSD) 60 minutes post-intervention. The plot above shows the mean trajectory for change in HRV (RMSSD) for all activities in each intervention category. 
+
+Fig. 37. View Annotations 
+
+Average change in HRV 30 and 60 minutes before and after intervention by participant. From Wearable Data to Personalized and Actionable Health Insights 43 
+
+Fig. 38. View Annotations 
+
+Average change in BBI 15, 30, 60 minutes before and after intervention by participant. 44 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 39. View Annotations 
+
+Average change in Garmin Stress 15, 30, 60 minutes before and after intervention by participant. From Wearable Data to Personalized and Actionable Health Insights 45 
+
+Fig. 40. View Annotations 
+
+Average change in HR by category for 15, 30, 60, 120 minutes before and after intervention by participant. 
+
+Fig. 41. View Annotations 
+
+Average change in HRV by category for 15, 30, 60, 120 minutes before and after intervention by participant. 46 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 42. View Annotations 
+
+Average change in BBI by category for 15, 30, 60 minutes before and after intervention by participant. 
+
+Fig. 43. View Annotations 
+
+Average change in Garmin Stress by category for 15, 30, 60 minutes before and after intervention by participant. From Wearable Data to Personalized and Actionable Health Insights 47 
+
+Fig. 44. View Annotations 
+
+Distribution of change in stress level 120 minutes post-intervent for activities in the Rest & Recoveries and Healthcare / Therapy categories. 
+
+Fig. 45. Average changes in HRV (RMSSD) by participant and category. Change was calculated as the difference between the average HRV (RMSSD) in the 15-minute window before the intervention and the 30-minute window after the intervention 
+
+This plot presents the same data in Figure 8 but uses a consistent y-axis scale to highlight differences in the magnitude of the physiological impact. 48 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 46. View Annotations 
+
+Difference in perceived HRV impact of an intervention vs. actual impact for 15, 30, 60, and 120 minutes. 
+
+Fig. 47. View Annotations 
+
+Change in HRV for one user at 15, 30, 60 and 120 minutes after an intervention in a certain category. From Wearable Data to Personalized and Actionable Health Insights 49 
+
+Fig. 48. Comparing two users HRV change 60 minutes after an intervention by intervention category. 
+
+Fig. 49. View Annotations 
+
+Change in HRV at 15, 30, 60 and 120 minutes after an academic activity. 50 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 50. View Annotations 
+
+Change in HRV at 15, 30, 60 and 120 minutes after cardio exercise. 
+
+Fig. 51. View Annotations 
+
+Change in HRV at 15, 30, 60 and 120 minutes after food-related activity. From Wearable Data to Personalized and Actionable Health Insights 51 
+
+Fig. 52. View Annotations 
+
+Change in HRV at 15, 30, 60 and 120 minutes after social activity. 
+
+Fig. 53. View Annotations 
+
+Change in HRV at 15, 30, 60 and 120 minutes after spirituality-related activities. 52 Esther Brown 1, Karis Moon, Victoria Dean, PhD 2, Finale Doshi-Velez, PhD 1
+
+Fig. 54. View Annotations 
+
+In an exit interview, one participant shared an observation about their physiological response patterns during meetings—they became calmer over the course of the meeting.

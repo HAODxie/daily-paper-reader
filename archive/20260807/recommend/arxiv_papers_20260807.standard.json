@@ -1,0 +1,727 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-07T02:07:09.340767+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 12,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 17,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.02070v2",
+      "source": "arxiv",
+      "title": "STEAM: A Spatio-TEmporal Alignment Mixture-of-Experts Model with Hierarchical Pre-training for EEG Decoding",
+      "abstract": "Brain-computer interfaces (BCIs) have been widely used in motor rehabilitation, disease diagnosis, and other neural engineering scenarios. However, conventional neural signal decoding algorithms often suffer from limited generalizability and high adaptation costs, motivating recent interest in BCI foundation models. Existing approaches still struggle to jointly achieve general transferability, accurate decoding, and efficient downstream adaptation. We present STEAM, a hierarchical transfer framework that reconciles general-purpose representation learning with paradigm-specific specialization in EEG foundation models. The framework is instantiated as a dual-branch spatio-temporal encoder in which a shared soft mixture-of-experts (SSMoE) module aligns the spatial and temporal branches, allowing complementary representations to exchange information through a compact set of soft slots. Across seven downstream datasets and fourteen evaluation settings, STEAM attains the best average rank among the compared methods at a competitive inference cost measured in FLOPs. Building upon the Stage-I general initialization, the hierarchical pre-training strategy further specializes the model to a target paradigm without retraining from scratch, yielding consistent gains in paradigm-specific decoding accuracy.",
+      "authors": [
+        "Zhu Chen",
+        "Dingkun Liu",
+        "Yuheng Chen",
+        "Dongrui Wu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-03T11:15:22+00:00",
+      "link": "https://arxiv.org/pdf/2608.02070v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "BCI foundation model with spatio-temporal mixture-of-experts for EEG decoding",
+      "llm_evidence_cn": "面向脑机接口的EEG解码基础模型，提出时空混合专家与层次预训练方法",
+      "llm_evidence": "面向脑机接口的EEG解码基础模型，提出时空混合专家与层次预训练方法",
+      "canonical_evidence": "面向脑机接口的EEG解码基础模型，提出时空混合专家与层次预训练方法",
+      "llm_tldr_en": "STEAM proposes a hierarchical transfer framework for EEG foundation models, using a dual-branch spatio-temporal encoder with a shared soft mixture-of-experts to achieve general transferability, accurate decoding, and efficient downstream adaptation for BCIs.",
+      "llm_tldr_cn": "脑机接口(BCI)依赖的神经信号解码算法常面临泛化性有限与适配成本高的问题。STEAM提出一种分层迁移框架，由双分支时空编码器与共享软混合专家构成，旨在同时兼顾通用表征学习与特定范式专化。通过层次预训练与任务适配机制，该框架在保证跨对象迁移能力的同时保持精准解码效果。实验验证了其在多个EEG解码任务上的有效性，为BCI基础模型的发展提供了系统方案。",
+      "llm_tldr": "脑机接口(BCI)依赖的神经信号解码算法常面临泛化性有限与适配成本高的问题。STEAM提出一种分层迁移框架，由双分支时空编码器与共享软混合专家构成，旨在同时兼顾通用表征学习与特定范式专化。通过层次预训练与任务适配机制，该框架在保证跨对象迁移能力的同时保持精准解码效果。实验验证了其在多个EEG解码任务上的有效性，为BCI基础模型的发展提供了系统方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.03176v1",
+      "source": "arxiv",
+      "title": "Frequency-Decorrelated Temporal Ensembles for EEG--fNIRS Imagined-Handwriting Decoding",
+      "abstract": "Imagined handwriting offers a temporally rich paradigm for non-invasive neural decoding, yet reliable recognition across unseen participants remains difficult because scalp EEG is noisy and internally generated stroke sequences vary across individuals. The Multimodal Brain-Computer Interface Grand Challenge provides synchronized EEG and fNIRS for four-class subject-independent handwriting-trajectory classification. We propose FRED, a task-adapted system that models imagined handwriting as a multi-second motor sequence and trains a compact multi-scale temporal network on three complementary EEG frequency views. With three seeds per view, cross-band members produce substantially less-correlated errors than same-band replicas, yielding a clean nine-member ensemble accuracy of 0.8076/0.7242/0.7492 on the public/private/overall test partitions without test-set adaptation or output constraints. The submitted pipeline further incorporates transductive pseudo-label training, three EEG-Conformer members, posterior aggregation, and a paradigm-aware decoder. Because every 12-trial randomization block contains three instances of each class, the final predictions are obtained by Hungarian assignment under the known block quota. On one fixed posterior pool, independent, session-constrained, and block-constrained decoding achieve 0.7600, 0.7758, and 0.7952 overall accuracy, respectively. The complete system reaches 0.8498/0.7718/0.7952, ranking fourth on the private split. A modality audit finds fNIRS-only decoding at chance (0.2511 overall), while adding fNIRS to EEG changes accuracy by only +0.0025. These results identify frequency-diverse temporal EEG modeling and protocol-matched structured inference as the principal sources of performance in this sparse-montage EEG--fNIRS setting. The source code is available at https://github.com/XiuFan719/EEG-fNIRS-fuse-method-for-MM-challenge.",
+      "authors": [
+        "Xiao Fan",
+        "Hongbin Guo",
+        "Yubo Han",
+        "Yi Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.HC"
+      ],
+      "published": "2026-08-04T06:08:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.03176v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-fNIRS imagined-handwriting decoding for brain-computer interface",
+      "llm_evidence_cn": "面向脑机接口的脑电-近红外想象手写解码",
+      "llm_evidence": "面向脑机接口的脑电-近红外想象手写解码",
+      "canonical_evidence": "面向脑机接口的脑电-近红外想象手写解码",
+      "llm_tldr_en": "FRED presents a task-adapted system for subject-independent EEG-fNIRS imagined-handwriting decoding, using a multi-scale temporal network with frequency-decorrelated ensembles to improve cross-participant BCI performance.",
+      "llm_tldr_cn": "想象手写为非侵入式神经解码提供了丰富范式，但跨人识别仍因脑电噪声和个体差异而困难。FRED 针对多模态脑机接口挑战赛设计任务自适应系统，将想象手写建模为多秒运动序列，并在三种互补脑电频视图上训练紧凑的多尺度时间网络。通过频解相关集成，系统有效降低同频带副本误差，在受试者独立的笔迹轨迹分类上获得更好效果。",
+      "llm_tldr": "想象手写为非侵入式神经解码提供了丰富范式，但跨人识别仍因脑电噪声和个体差异而困难。FRED 针对多模态脑机接口挑战赛设计任务自适应系统，将想象手写建模为多秒运动序列，并在三种互补脑电频视图上训练紧凑的多尺度时间网络。通过频解相关集成，系统有效降低同频带副本误差，在受试者独立的笔迹轨迹分类上获得更好效果。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.04156v1",
+      "source": "arxiv",
+      "title": "BrainBench: Benchmarking Large Language Models for Comprehensive EEG Understanding",
+      "abstract": "Electroencephalography (EEG) analysis extends beyond assigning predefined labels to recordings; it requires workflows connecting natural-language instructions, signal processing, quantitative evidence, and scientific interpretation. We term this capability \\emph{comprehensive EEG understanding}. Existing evaluations, however, primarily target isolated decoding tasks or system-specific demonstrations, leaving the competence of large language models (LLMs) insufficiently quantified. We introduce \\benchmarkname{}, a unified benchmark for comprehensive, instruction-conditioned EEG understanding. It comprises four subsets---Foundational Analysis, Sleep Assessment, Neurocognitive Assessment, and Physiological Integration---covering 17 datasets, \\numcases{} tasks, and over \\numinstances{} real-data instances. Given an instruction and EEG recordings with optional physiological signals, a system must perform the analysis and produce a scientifically grounded report and, when required, artifacts. Outputs are assessed through numerical, categorical, set, sequence, semantic, and artifact validation. We evaluate \\nummodels{} representative LLMs across more than 100K executions under two paradigms: autonomous code execution with CodeAct and structured agentic analysis with BrainAgent. Results vary substantially across models, subsets, difficulty levels, and execution paradigms, showing that EEG competence depends on the model and its operationalization. \\benchmarkname{} provides a reproducible testbed for advancing LLM-based EEG understanding. The code and benchmark will be released soon, with evaluation results continuously updated.",
+      "authors": [
+        "Yangxuan Zhou",
+        "Sha Zhao",
+        "Yuning Chen",
+        "Chen Wu",
+        "Jiquan Wang",
+        "Shijian Li",
+        "Gang Pan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-04T19:07:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.04156v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Benchmark for evaluating large language models on comprehensive EEG understanding including sleep assessment",
+      "llm_evidence_cn": "构建全面评估LLM对EEG理解能力的基准，涵盖睡眠评估等子任务",
+      "llm_evidence": "构建全面评估LLM对EEG理解能力的基准，涵盖睡眠评估等子任务",
+      "canonical_evidence": "构建全面评估LLM对EEG理解能力的基准，涵盖睡眠评估等子任务",
+      "llm_tldr_en": "BrainBench introduces a unified benchmark for instruction-conditioned EEG understanding, spanning foundational analysis, sleep assessment, neurocognitive assessment, and physiological integration across 17 datasets, to quantify LLM competence in EEG workflows.",
+      "llm_tldr_cn": "脑电分析不仅需要给信号打标签，还涉及语言指令、信号处理与科学解释的完整流程，但现有评测往往只针对孤立解码任务。BrainBench提出统一的指令条件式EEG理解基准，包含基础分析、睡眠评估、神经认知评估与生理整合四个子集，覆盖17个数据集。该基准可用于量化大型语言模型在零样本和指令跟随下的EEG理解能力，为LLM在神经科学中的应用建立评测标准。这有助于推动LLM辅助脑电研究从单项任务迈向综合性科学工作流。",
+      "llm_tldr": "脑电分析不仅需要给信号打标签，还涉及语言指令、信号处理与科学解释的完整流程，但现有评测往往只针对孤立解码任务。BrainBench提出统一的指令条件式EEG理解基准，包含基础分析、睡眠评估、神经认知评估与生理整合四个子集，覆盖17个数据集。该基准可用于量化大型语言模型在零样本和指令跟随下的EEG理解能力，为LLM在神经科学中的应用建立评测标准。这有助于推动LLM辅助脑电研究从单项任务迈向综合性科学工作流。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.04389v1",
+      "source": "arxiv",
+      "title": "NeuroPB: Scaling Neural Decoding with Pretrained Behavioral Representations",
+      "abstract": "Decoding continuous motor trajectories from neural activity is essential for developing practical brain-computer interfaces (BCIs). However, current neural decoders are constrained by the limited scale and heterogeneity of neural recordings. In contrast, behavioral data can be collected more readily and at substantially larger scale from humans, animals, simulations, and robotic systems. Here, we introduce NeuroPB, a framework that scales neural decoding by transferring knowledge from pretrained behavioral representations. NeuroPB first pretrains a motor encoder on large-scale motor behavior data and then aligns neural activity with the resulting behavioral representation space using a limited set of paired neural-behavioral recordings. A neural encoder and lightweight motor decoder are subsequently optimized to reconstruct continuous movement from the aligned neural representations. Across multiple macaque motor datasets, behavioral pretraining improves trajectory decoding, including an 11% $R^2$ increase on center-out and 8% on random-target compared with training the motor encoder from scratch. Notably, pretraining on robotic trajectories achieves performance comparable to pretraining on macaque trajectories, demonstrating that transferable kinematic structure is shared across biological and artificial models. Moreover, decoding performance improves as the scale and diversity of robotic pretraining data increase, when the amount of neural data is fixed. Pretraining also enhances generalization across recording sessions, subjects, and motor tasks, with only 10% calibration needed to match training from scratch. Overall, these results establish behavioral pretraining as a scalable source for neural decoding and provide a promising route toward high-performance and calibration-efficient BCIs under limited neural data.",
+      "authors": [
+        "Luyao Jin",
+        "Yonghao Song",
+        "Huan Zhao",
+        "Vincent C. K. Cheung",
+        "Wei-Hsin Liao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-05T02:45:14+00:00",
+      "link": "https://arxiv.org/pdf/2608.04389v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "neural decoding for brain-computer interfaces",
+      "llm_evidence_cn": "面向脑机接口的神经解码",
+      "llm_evidence": "面向脑机接口的神经解码",
+      "canonical_evidence": "面向脑机接口的神经解码",
+      "llm_tldr_en": "NeuroPB scales neural decoding by pretraining a motor encoder on large-scale behavioral data and aligning neural activity to this representation, enabling practical BCIs with limited paired recordings.",
+      "llm_tldr_cn": "现有神经解码器受限于神经记录数据的规模与异质性，难以扩展到实际脑机接口。本文提出NeuroPB框架，先在大规模运动行为数据上预训练运动编码器，再用少量成对的神经-行为记录将神经活动对齐到行为表征空间，从而在数据稀缺条件下提升解码能力。实验表明，利用行为数据的丰富性可以有效弥补神经样本不足，相比直接在神经数据上训练更具泛化潜力，为实用脑机接口提供了数据高效的训练范式。",
+      "llm_tldr": "现有神经解码器受限于神经记录数据的规模与异质性，难以扩展到实际脑机接口。本文提出NeuroPB框架，先在大规模运动行为数据上预训练运动编码器，再用少量成对的神经-行为记录将神经活动对齐到行为表征空间，从而在数据稀缺条件下提升解码能力。实验表明，利用行为数据的丰富性可以有效弥补神经样本不足，相比直接在神经数据上训练更具泛化潜力，为实用脑机接口提供了数据高效的训练范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "brain-computer interface technology",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05004v1",
+      "source": "arxiv",
+      "title": "DelusionEval: Measuring Delusion-Linked Behaviors in AI Chatbots",
+      "abstract": "Mental health professionals have raised concerns about risks of psychological harm from interaction with large language models (LLMs), including \"delusional spirals\" in which concerning human and LLM behaviors reinforce each other over time. With growing public use of LLM-powered chatbots, there is an urgent need to build evaluations grounded in real-world episodes of psychological harm experienced by users. We developed DelusionEval, an evaluation protocol that tests a model's tendencies to exhibit behaviors linked to promoting user delusions. We prompt each model with 589 unique conversation histories from 18 participants, comprising 12,591 messages from users who experienced delusions and psychological harm. We find that the tendency of an evaluated LLM to exhibit delusion-linked behavior does not reliably correlate with model size, release date, or the presence of test-time reasoning. However, extending the context of prior messages substantially increases rates of delusion-linked behaviors, providing evidence for the importance of context in LLM safety evaluation. For example, the rate of failing to discourage self-harm when the user expresses suicidal ideation increases from 30.0% to 41.1% when an additional 350 messages are prepended to the conversation history. All model families (e.g., GPT, Claude) exhibit substantial rates of delusion-linked behaviors. Within families, later, larger, or higher-reasoning models are not uniformly better across all behavior categories. Our results raise concerns regarding the potential psychological impact of LLMs and the need for more rigorous studies of real-world human-AI interaction.",
+      "authors": [
+        "Jared Moore",
+        "Andrea Mock",
+        "Yifan Mai",
+        "Jacy Reese Anthis",
+        "Ryan Louie",
+        "William Agnew",
+        "Ashish Mehta",
+        "Kevin Klyman",
+        "Percy Liang",
+        "Nick Haber",
+        "Eric Lin",
+        "Desmond C. Ong"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-05T16:11:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.05004v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLM chatbot behaviors linked to psychological harm and delusions in mental health",
+      "llm_evidence_cn": "大语言模型聊天机器人行为与心理健康中的妄想和心理伤害相关",
+      "llm_evidence": "大语言模型聊天机器人行为与心理健康中的妄想和心理伤害相关",
+      "canonical_evidence": "大语言模型聊天机器人行为与心理健康中的妄想和心理伤害相关",
+      "llm_tldr_en": "Evaluates whether LLM chatbots exhibit delusion-promoting behaviors using 589 real-world conversation histories from 18 participants who experienced psychological harm; reveals risks for mental health.",
+      "llm_tldr_cn": "针对大语言模型聊天机器人可能加剧用户妄想和心理伤害的问题，提出DelusionEval评估协议。该协议利用18名曾经历妄想和心理伤害的用户共589段对话历史，测试模型展现促进用户妄想行为的倾向。结果显示被测大语言模型存在相关风险，提示需要构建基于真实世界心理伤害案例的评估体系。",
+      "llm_tldr": "针对大语言模型聊天机器人可能加剧用户妄想和心理伤害的问题，提出DelusionEval评估协议。该协议利用18名曾经历妄想和心理伤害的用户共589段对话历史，测试模型展现促进用户妄想行为的倾向。结果显示被测大语言模型存在相关风险，提示需要构建基于真实世界心理伤害案例的评估体系。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "How do large language models impact sleep and mental health",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.01366v2",
+      "source": "arxiv",
+      "title": "Asking Questions the Right Way: A Multi-Agent Conversational System for Prompt Formulation in Complex Task Resolution",
+      "abstract": "Large language models (LLMs) are integral to complex intellectual tasks, yet output quality remains constrained by user-provided prompts. Iterative multi-turn prompting often leads to context degradation and diminishing cognitive returns. We present PAWNI (Prompt Architecture Wizard using Neural Intelligence), an agentic conversational interface of eight agents that transforms unstructured queries into structured prompts through guided question-and-answer dialogue informed by a self-evolving knowledge base. Rather than optimising the model's response, PAWNI optimises the question itself by front-loading intent clarification. We also propose a three-tier framework of 18 prompt elements across Essential, Enhancement, and Elevation categories. To evaluate system behaviour and validate a measurement protocol, we conducted an exploratory within-subjects study (N=4) across four complex tasks, integrating 32-channel EEG, NASA-TLX workload, and behavioural metrics. Participants produced more structurally complete prompts with PAWNI (42% to 91% of assessed elements), rated LLM outputs higher across all quality dimensions, and reported lower workload (39.6 vs. 21.7 NASA-TLX). Every participant reached satisfactory output in a single turn, compared to 1-12 turns unaided. While effect sizes are unstable due to sample size, direction consistency supports the hypothesis that optimising prompt formulation front-end is a critical lever for human-AI collaboration.",
+      "authors": [
+        "B. Sankar",
+        "Pawni Yadav",
+        "Srinidhi Ranjini Girish",
+        "Amogh A. S"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-08-02T16:33:27+00:00",
+      "link": "https://arxiv.org/pdf/2608.01366v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-agent LLM system for prompt formulation in complex tasks",
+      "llm_evidence_cn": "多智能体大模型系统用于复杂任务提示词构建",
+      "llm_evidence": "多智能体大模型系统用于复杂任务提示词构建",
+      "canonical_evidence": "多智能体大模型系统用于复杂任务提示词构建",
+      "llm_tldr_en": "Proposes PAWNI, an agentic conversational interface of eight agents that transforms unstructured queries into structured prompts via guided dialogue and a self-evolving knowledge base, improving LLM output for complex tasks.",
+      "llm_tldr_cn": "大语言模型在复杂任务中的输出质量受用户提示词约束，而多轮追问常导致上下文退化。为此提出PAWNI，一个由八个智能体组成的对话界面，通过引导式问答和自我进化知识库，将非结构化查询转化为结构化提示词。与优化模型回答不同，PAWNI通过前置意图澄清来优化提问本身，并构建了三层18个提示元素体系。",
+      "llm_tldr": "大语言模型在复杂任务中的输出质量受用户提示词约束，而多轮追问常导致上下文退化。为此提出PAWNI，一个由八个智能体组成的对话界面，通过引导式问答和自我进化知识库，将非结构化查询转化为结构化提示词。与优化模型回答不同，PAWNI通过前置意图澄清来优化提问本身，并构建了三层18个提示元素体系。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.29347v1",
+      "source": "arxiv",
+      "title": "SeekBrain: An Autonomous Multi-Agent System for Accelerating Neuroscience Discovery",
+      "abstract": "Modern neuroscience relies on integrating multi-scale, multimodal datasets to uncover the neural principles underlying intelligence. However, analytical challenges posed by highly heterogeneous data and fragmented workflows increasingly constrain discoveries. Here we introduce SeekBrain, an autonomous multi-agent framework designed to accelerate neuroscience discovery through domain-grounded hierarchical planning and cross-modal data analysis. SeekBrain dynamically constructs a repertoire of analysis recipes extracted from code-paper pairs. By coupling this codified expertise with agentic planning and execution engines, the framework scalably generates hypotheses and analytical pipelines on demand. Systematic evaluation on the expert-annotated BrainArena benchmark demonstrates that SeekBrain substantially outperforms state-of-the-art agent baselines across various analysis tasks. Crucially, when deployed in real-world research, SeekBrain integrated behavioral, neural, and anatomical data to reveal structured, distributed neural representations of larval zebrafish behavior and a shared axis of regional decoding strength across the brain in a mouse decision-making task. These results establish SeekBrain as a scalable and practical tool for accelerating data-driven discoveries in neuroscience.",
+      "authors": [
+        "Jiamin Wu",
+        "Peishan Xiang",
+        "Jingyang Chen",
+        "Yuqing Zhu",
+        "Yuxi Li",
+        "Ling Luo",
+        "Qihao Zheng",
+        "Jialiang Zu",
+        "Yongchao Wu",
+        "Mindong Liu",
+        "Haitao Wu",
+        "Chaofan Hu",
+        "Yijie Sun",
+        "Yuqi Hang",
+        "Yu Zhu",
+        "Shuo Li",
+        "Yue Fan",
+        "Shiyang Feng",
+        "Wanghan Xu",
+        "Tianlei Zhang",
+        "Jie Zhang",
+        "Wenlong Zhang",
+        "Bo Zhang",
+        "Kai Wang",
+        "Lei Bai",
+        "Mianxin Liu",
+        "Wanli Ouyang",
+        "Jiulin Du",
+        "Chunfeng Song"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-07-31T12:30:12+00:00",
+      "link": "https://arxiv.org/pdf/2607.29347v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-agent system for neuroscience discovery",
+      "llm_evidence_cn": "多智能体系统用于神经科学发现",
+      "llm_evidence": "多智能体系统用于神经科学发现",
+      "canonical_evidence": "多智能体系统用于神经科学发现",
+      "llm_tldr_en": "SeekBrain is an autonomous multi-agent framework that extracts analysis recipes from code-paper pairs and uses hierarchical planning with cross-modal execution to generate hypotheses and analytical pipelines for neuroscience.",
+      "llm_tldr_cn": "神经科学研究受多模态数据异构和工作流碎片化制约。开发SeekBrain自主多智能体系统，从代码-论文对抽取分析配方，结合分层规划与执行引擎按需生成假设与分析管线。专家标注评估显示其能规模化支撑跨模态数据发现，为神经科学分析提供了可编排的智能体基础设施。",
+      "llm_tldr": "神经科学研究受多模态数据异构和工作流碎片化制约。开发SeekBrain自主多智能体系统，从代码-论文对抽取分析配方，结合分层规划与执行引擎按需生成假设与分析管线。专家标注评估显示其能规模化支撑跨模态数据发现，为神经科学分析提供了可编排的智能体基础设施。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.02491v2",
+      "source": "arxiv",
+      "title": "Long-term Measurements: Towards a Longitudinal Understanding of Human-AI Interactions",
+      "abstract": "Language models have taken on the role of a very new type of technology, by virtue of their \"human-ness\" and rapid integration into users' daily lives. This combination of features can introduce longitudinal risks---cognitive, developmental and socio-affective changes in humans---that might not surface during a short-term interaction, but can have lasting long-term effects on users. This forms the basis of a critical new mission for NLP: to pivot from static, short-term evaluations of text generations to long-term measurements of behavioral changes, towards a diachronic understanding of human-model interactions. In this work, we draw from measurements used in social science fields that are crucial to understand emergent phenomena in longitudinal data. We discuss how computational methods in the field of NLP need to be combined with such measurements, not only to understand long-term safety risks of human-model interactions, but to help steer model development towards positive rather than negative outcomes for users. This ability to model human behavioral shifts as a function of model interactions can facilitate online rather than post-hoc detection of problematic behaviors, and should be leveraged in alignment frameworks to mitigate long-term risks in users.",
+      "authors": [
+        "Nicole Mitchell",
+        "Dhruv Agarwal",
+        "Maty Bohacek",
+        "Remi Denton",
+        "Roma Patel"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-03T16:55:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.02491v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Long-term impacts of language models on human socio-affective health",
+      "llm_evidence_cn": "语言模型对人类情感健康的长期影响",
+      "llm_evidence": "语言模型对人类情感健康的长期影响",
+      "canonical_evidence": "语言模型对人类情感健康的长期影响",
+      "llm_tldr_en": "Argues for pivoting NLP from static short-term evaluation to longitudinal measurements of human-AI interactions, borrowing social science methods to track cognitive, developmental, and socio-affective changes over time.",
+      "llm_tldr_cn": "语言模型具有人性和快速融入日常生活的特点，可能带来认知、发展及情感社会层面的纵向风险，而短期评估难以发现。该文借鉴社会科学中的长期测量方法，提出NLP应转向对人类-模型交互中行为变化的纵向测量，以理解长期效应。这对于评估大模型对睡眠和心理健康等影响具有方法论启示。",
+      "llm_tldr": "语言模型具有人性和快速融入日常生活的特点，可能带来认知、发展及情感社会层面的纵向风险，而短期评估难以发现。该文借鉴社会科学中的长期测量方法，提出NLP应转向对人类-模型交互中行为变化的纵向测量，以理解长期效应。这对于评估大模型对睡眠和心理健康等影响具有方法论启示。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "How do large language models impact sleep and mental health",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.27260v1",
+      "source": "arxiv",
+      "title": "Regularizing modality contribution drift in multimodal continual learning",
+      "abstract": "Multimodal continual learning (MMCL) aims to learn emerging knowledge from multimodal data while preserving knowledge. To mitigate forgetting, current MMCL methods usually focus on cross-modal representation alignment or semantic similarity, but they overlook whether the relative contributions of individual modalities and their interactions remain stable across incremental tasks. We term this decision-level shift Modality Contribution Drift (MCD) and quantify it with the MCD score, which combines contribution-strength and relative-reliance changes under controlled interventions on modality subsets. Theoretical and empirical analyses further explain why current MMCL methods cannot reliably mitigate this drift. To this end, we propose Continual Modality Contribution Drift Regularization (CMCDR), which preserves the modality contribution structure of previously learned tasks. Since MMCL settings differ in whether old exemplars are available, CMCDR includes both replay-based and replay-free versions. The replay-based version uses modality-subset interventions as diagnostic probes on stored old samples, compares their contribution profiles between the current model and a frozen previous model, and constrains changes in old-sample modality-specific and interaction contributions. The replay-free version uses current-task samples as probes and distills the frozen model's old-task contribution responses, thereby regularizing the observed contribution profile without exemplars. Experiments on multimodal class-incremental learning and continual visual question answering validate the generality and effectiveness of CMCDR.",
+      "authors": [
+        "Zhen Zhang",
+        "Jielei Chu",
+        "Bin Liu",
+        "Tianrui Li"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-29T05:36:19+00:00",
+      "link": "https://arxiv.org/pdf/2607.27260v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multimodal continual learning method for health monitoring",
+      "llm_evidence_cn": "多模态持续学习方法，可用于健康监测",
+      "llm_evidence": "多模态持续学习方法，可用于健康监测",
+      "canonical_evidence": "多模态持续学习方法，可用于健康监测",
+      "llm_tldr_en": "This paper proposes Continual Modality Contribution Regularization to stabilize modality contributions in multimodal continual learning, preventing decision-level drift and mitigating forgetting in sequential tasks.",
+      "llm_tldr_cn": "多模态持续学习需要在增量任务中保留旧知识，但现有方法忽略了各模态相对贡献的稳定性。本文定义了模态贡献漂移（MCD）并给出量化指标，提出持续模态贡献正则化方法，在任务增量过程中保持模态贡献稳定，从而减少灾难性遗忘并提升多模态学习效果。理论分析和多组实验验证了该方法的有效性，为多模态持续学习提供了新视角。",
+      "llm_tldr": "多模态持续学习需要在增量任务中保留旧知识，但现有方法忽略了各模态相对贡献的稳定性。本文定义了模态贡献漂移（MCD）并给出量化指标，提出持续模态贡献正则化方法，在任务增量过程中保持模态贡献稳定，从而减少灾难性遗忘并提升多模态学习效果。理论分析和多组实验验证了该方法的有效性，为多模态持续学习提供了新视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.02491v1",
+      "source": "arxiv",
+      "title": "Long-term Measurements: Towards a Longitudinal Understanding of Human-AI Interactions",
+      "abstract": "Language models have taken on the role of a very new type of technology, by virtue of their \"human-ness\" and rapid integration into users' daily lives. This combination of features can introduce longitudinal risks---cognitive, developmental and socio-affective changes in humans---that might not surface in short-term interactions, but can have lasting long-term effects on users. This forms the basis of a critical new mission for NLP: to pivot from static, short-term evaluations of text generations to long-term measurements of behavioral changes, towards a diachronic understanding of human-model interactions. In this work, we draw from measurements used in social science fields that are crucial to understand emergent phenomena in longitudinal data. We discuss how computational methods in the field of NLP need to be combined with such measurements, not only to understand long-term safety risks of human-model interactions, but to help steer model development towards positive rather than negative outcomes for users. This ability to model human behavioral shifts as a function of model interactions can facilitate online rather than post-hoc detection of problematic behaviors, and should be leveraged in alignment frameworks to mitigate long-term risks in users.",
+      "authors": [
+        "Nicole Mitchell",
+        "Dhruv Agarwal",
+        "Maty Bohacek",
+        "Remi Denton",
+        "Roma Patel"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-03T16:55:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.02491v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Longitudinal study of human-AI interactions focusing on cognitive and socio-affective changes caused by language models",
+      "llm_evidence_cn": "从纵向角度研究语言模型导致的人类认知与社会情感变化，涉及心理健康影响",
+      "llm_evidence": "从纵向角度研究语言模型导致的人类认知与社会情感变化，涉及心理健康影响",
+      "canonical_evidence": "从纵向角度研究语言模型导致的人类认知与社会情感变化，涉及心理健康影响",
+      "llm_tldr_en": "This paper argues for shifting NLP evaluation from short-term text generation quality to long-term measurement of behavioral changes in users, drawing on social science methods to capture cognitive and socio-affective risks of human-AI interaction.",
+      "llm_tldr_cn": "语言模型的高度人性化与快速普及可能引发认知、发展与社会情感层面的长期风险，但现有NLP评估大多是静态的短时文本质量。作者主张转向纵向测量用户行为变化，从社会科学引入测量工具来记录人们在与模型长期交互中的变化。文章提出新的研究使命，即建立历时的人机交互理解框架，以识别短期实验无法显现的持久影响，例如测量用户的情感状态、认知习惯与社会关系演变。这项工作为评估LLM对身心健康的潜在作用提供了方法论基础。",
+      "llm_tldr": "语言模型的高度人性化与快速普及可能引发认知、发展与社会情感层面的长期风险，但现有NLP评估大多是静态的短时文本质量。作者主张转向纵向测量用户行为变化，从社会科学引入测量工具来记录人们在与模型长期交互中的变化。文章提出新的研究使命，即建立历时的人机交互理解框架，以识别短期实验无法显现的持久影响，例如测量用户的情感状态、认知习惯与社会关系演变。这项工作为评估LLM对身心健康的潜在作用提供了方法论基础。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "How do large language models impact sleep and mental health",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03810v1",
+      "source": "arxiv",
+      "title": "VIBE: A VAD-Informed Benchmark for Entity-Centered Affective Profiling of Large Language Model Outputs",
+      "abstract": "Large language models routinely describe socially salient targets, including political figures, countries, religions, organizations, historical events, and social groups, encoding affective framing alongside factual content: a target may appear favorable or threatening, calm or conflictual, powerful or vulnerable. Existing work captures parts of this space through sentiment, favorability, and emotion benchmarks, but none combines target-directed VAD attribution, an explicit scorer contract, and a passport reporting format. We introduce VIBE, a benchmark for entity-centered affective profiling of LLM outputs in Valence-Arousal-Dominance (VAD) space. Its core contribution is a measurement contract: VIBE separates generation from external scoring, distinguishes scalar favorability, response-level VAD, and target-directed VAD, and reports profiles through an Affective Passport. Three empirical layers support the contract. H1 shows scalar favorability does not subsume arousal and dominance: valence findings are cross-validated (rV = 0.944 judge-human, rV = 0.954 inter-scorer); arousal and dominance are single-scorer directional estimates, not point-precise, consistent with known inter-annotator difficulty on these axes (rA = 0.495, rD = 0.702 among human annotators). H2 shows whole-response and target-directed VAD are different contracts: the same text can carry one affective tone overall while representing the named target differently. H3 is a protocol-drift diagnostic: elicitation conditions shift profiles, motivating context metadata in every affective report. These results motivate entity-centered affective profiling as a documented practice: profiles should be released with scorer identity, coverage, protocol, and interpretation limits.",
+      "authors": [
+        "Andrei Chetvergov",
+        "Alexander Evseev",
+        "Timofei Sivoraksha",
+        "Stepan Ukolov",
+        "Mikhail Solovev",
+        "Danil Sazanakov",
+        "Sergey Bolovtsov"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-04T15:22:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.03810v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Introduces VAD-based benchmark for affective profiling of LLM outputs, relevant to LLM research on emotion",
+      "llm_evidence_cn": "提出基于VAD的大语言模型输出情感剖析基准，与大语言模型研究和情绪分析相关",
+      "llm_evidence": "提出基于VAD的大语言模型输出情感剖析基准，与大语言模型研究和情绪分析相关",
+      "canonical_evidence": "提出基于VAD的大语言模型输出情感剖析基准，与大语言模型研究和情绪分析相关",
+      "llm_tldr_en": "VIBE is a benchmark for entity-centered affective profiling of LLM outputs in valence-arousal-dominance space. It combines target-directed VAD attribution, an explicit scorer contract, and passport reporting to standardize evaluation of affective framing.",
+      "llm_tldr_cn": "针对现有情感基准无法同时提供目标级VAD归属、明确打分协议和报告格式的不足，本文提出VIBE基准，用于在效价-唤醒-支配（VAD）空间中剖析大语言模型对实体的情感刻画。该基准将生成过程与评分过程分离，并采用护照式报告格式，为评估LLM输出的情感倾向提供了统一框架。该工具可用于分析LLM对社会目标的偏见或情感影响，对心理健康相关文本分析有参考价值。",
+      "llm_tldr": "针对现有情感基准无法同时提供目标级VAD归属、明确打分协议和报告格式的不足，本文提出VIBE基准，用于在效价-唤醒-支配（VAD）空间中剖析大语言模型对实体的情感刻画。该基准将生成过程与评分过程分离，并采用护照式报告格式，为评估LLM输出的情感倾向提供了统一框架。该工具可用于分析LLM对社会目标的偏见或情感影响，对心理健康相关文本分析有参考价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.00503v1",
+      "source": "arxiv",
+      "title": "Recursive Gaussian Processes and the Bayesian Brain",
+      "abstract": "Predictive coding offers a powerful framework for cortical computation, yet scalable implementations that respect both Bayesian exactness and neurobiological constraints remain scarce. We bridge this gap by formally connecting predictive coding to Recursive Gaussian Processes (RGPs). RGPs employ a single Gaussian process \\( g(t, \\cdot) \\) indexed by layer index and input value, preventing the representational collapse of standard deep Gaussian processes while allowing learnable cross-layer dependence via \\( r_{1g} \\). We demonstrate that RGPs intrinsically implement hierarchical Bayesian inference, uncertainty propagation, and precision-weighted prediction error. Critically, we map RGP components---the shared GP, spike-and-slab variable selection, and MCMC dynamics---onto the canonical cortical microcircuit, providing a neurobiological substrate for these computations. Drawing on the free energy principle, we show that RGP inference minimizes variational free energy, formally linking Bayesian mechanics to neuronal dynamics. Our synthesis positions RGPs as both a principled computational tool and a candidate model for the brain's predictive machinery, generating testable predictions for laminar-specific dynamics and spectral asymmetries between feedforward and feedback processing.",
+      "authors": [
+        "Moumita Das",
+        "Dipanjan Ray",
+        "Sourabh Bhattacharya"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-08-01T07:53:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.00503v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Theoretical connection between predictive coding and recursive Gaussian processes for Bayesian brain modeling",
+      "llm_evidence_cn": "将预测编码与递归高斯过程连接，为贝叶斯大脑建模提供计算理论",
+      "llm_evidence": "将预测编码与递归高斯过程连接，为贝叶斯大脑建模提供计算理论",
+      "canonical_evidence": "将预测编码与递归高斯过程连接，为贝叶斯大脑建模提供计算理论",
+      "llm_tldr_en": "This paper formally connects predictive coding to Recursive Gaussian Processes, showing RGPs implement hierarchical Bayesian inference and uncertainty propagation, and maps RGP components onto Bayesian brain mechanisms.",
+      "llm_tldr_cn": "预测编码是解释皮层计算的重要框架，但扩展实现面临贝叶斯精确性与神经约束的矛盾。本文建立预测编码与递归高斯过程(RGP)的正式联系，RGP用单一高斯过程索引层与输入值，避免表征坍缩并支持可学习的跨层依赖。作者证明RGP天然实现分层贝叶斯推断、不确定性传播与精度加权预测误差，并将其组件映射到大脑机制。这种映射不仅统一了多种预测编码变体，还为设计可扩展的脑启发算法开辟了道路。",
+      "llm_tldr": "预测编码是解释皮层计算的重要框架，但扩展实现面临贝叶斯精确性与神经约束的矛盾。本文建立预测编码与递归高斯过程(RGP)的正式联系，RGP用单一高斯过程索引层与输入值，避免表征坍缩并支持可学习的跨层依赖。作者证明RGP天然实现分层贝叶斯推断、不确定性传播与精度加权预测误差，并将其组件映射到大脑机制。这种映射不仅统一了多种预测编码变体，还为设计可扩展的脑启发算法开辟了道路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03067v1",
+      "source": "arxiv",
+      "title": "Activation-Guided Neuron Intervention to Induce Alzheimer's-Related Computational Language Phenotypes in a Large Language Model",
+      "abstract": "Changes in spontaneous speech provide an early signal of cognitive dysfunction in Alzheimer's disease (AD) that large language models (LLMs) can detect. However, detection alone cannot establish whether the underlying model representations contribute functionally to behavior. We introduce an activation-guided intervention framework using Qwen3-8B. The framework identifies feed-forward neurons with higher activation rates for AD than control transcripts and modulates their output contributions during generation by scaling the corresponding down-projection weights. This yielded nine edited variants differing in intervention direction, magnitude, and scope. The original and edited models completed the same 12-turn neuropsychological battery, assessed through blinded human ratings and computational linguistic measures. Amplifying AD-associated neurons produced graded impairments in story recall, verbal fluency, working memory, procedural discourse, scene construction, and coreference resolution. Attenuation largely preserved performance and selectively improved several outcomes. Amplification also reduced lexical surprisal, idea density, syntactic complexity, and discourse quantity, broadly paralleling changes reported in human AD speech. These findings show that neurons identified solely from clinical language differences can influence behavior across multiple cognitive domains, providing proof of concept for an AD-related computational phenotype and a controlled framework for experimentally examining links between language and broader cognitive dysfunction.",
+      "authors": [
+        "Rui He",
+        "Ercong Nie",
+        "Hong Jiang",
+        "Iris E. Sommer",
+        "Philipp Homan",
+        "Wolfram Hinzen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-04T03:28:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.03067v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Using neuron interventions in LLMs to model Alzheimer's-related language phenotypes",
+      "llm_evidence_cn": "通过对大语言模型进行神经元干预来模拟阿尔茨海默病相关语言表型",
+      "llm_evidence": "通过对大语言模型进行神经元干预来模拟阿尔茨海默病相关语言表型",
+      "canonical_evidence": "通过对大语言模型进行神经元干预来模拟阿尔茨海默病相关语言表型",
+      "llm_tldr_en": "This paper develops an activation-guided intervention framework using Qwen3-8B to identify feed-forward neurons that differentiate Alzheimer's from control transcripts, and shows that modulating these neurons produces edited variants with altered language phenotypes.",
+      "llm_tldr_cn": "自发言语变化可早期提示阿尔茨海默病(AD)，但仅靠检测无法证明模型表征是否真正驱动行为。作者提出激活引导的神经元干预框架，使用Qwen3-8B识别AD文本中激活率更高的前馈神经元，并通过缩放其下投影权重来调节生成过程。由此产生九个干预方向、幅度和范围各异的编辑变体，用于比较原始与编辑模型的输出差异，验证神经元与语言表型的因果联系。该方法为探索LLM内部表示与临床表型之间的功能关系提供了新手段。",
+      "llm_tldr": "自发言语变化可早期提示阿尔茨海默病(AD)，但仅靠检测无法证明模型表征是否真正驱动行为。作者提出激活引导的神经元干预框架，使用Qwen3-8B识别AD文本中激活率更高的前馈神经元，并通过缩放其下投影权重来调节生成过程。由此产生九个干预方向、幅度和范围各异的编辑变体，用于比较原始与编辑模型的输出差异，验证神经元与语言表型的因果联系。该方法为探索LLM内部表示与临床表型之间的功能关系提供了新手段。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.04351v1",
+      "source": "arxiv",
+      "title": "HyPASE: Hyperbolic Geometry for Parameter-Efficient Speech Emotion Fine-Tuning Framework for Large Audio-Language Models",
+      "abstract": "Large Audio-Language Models (LALMs) excel at general speech understanding; however, adapting them to fine-grained tasks like Speech Emotion Recognition (SER) remains a significant bottleneck. Current Parameter-Efficient Fine-Tuning (PEFT) methods typically operate in flat Euclidean space, and this geometry fails to capture the multi-granularity nature of emotion cues, which range from low-level prosody to high-level semantics. To address this, we propose HyPASE, a hyperbolic PEFT framework for LALM-based SER. HyPASE leverages the Poincare ball model, using the hyperbolic radius as an explicit proxy for representational granularity. The framework consists of two core components: a Hyperbolic Geometric Adapter (HGA) for layer-adaptive weight modulation, and an Emotion-aware Multi-capacity Cross-modal Aggregator (EMCA) that compresses multi-scale features into compact audio prefixes. Empirical results on standard benchmarks show that HyPASE outperforms Euclidean PEFT baselines across all metrics on MELD and achieves a notable Unweighted Accuracy gain on IEMOCAP, particularly in class-imbalanced emotion recognition, with the accompanying slight Weighted Accuracy trade-off reflecting hyperbolic space's geometric prioritization of minority-class representations; furthermore, HyPASE achieves robust zero-shot cross-dataset generalization within a constrained parameter budget. By grounding the adaptation process in hyperbolic geometry, HyPASE offers a highly efficient path for LALM fine-tuning.",
+      "authors": [
+        "Tian Jin",
+        "Ruikang Zhang",
+        "Zefeng Zhao",
+        "Ding Luo",
+        "Jin Zeng"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "published": "2026-08-05T01:50:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.04351v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Multimodal AI with large audio-language models for speech emotion recognition",
+      "llm_evidence_cn": "多模态人工智能与大音频语言模型用于语音情感识别",
+      "llm_evidence": "多模态人工智能与大音频语言模型用于语音情感识别",
+      "canonical_evidence": "多模态人工智能与大音频语言模型用于语音情感识别",
+      "llm_tldr_en": "HyPASE designs a hyperbolic PEFT framework for large audio-language models; using the Poincare ball model to capture multi-granularity emotion cues, it improves speech emotion recognition.",
+      "llm_tldr_cn": "大型音频语言模型在通用语音理解上表现优异，但在语音情感识别等细粒度任务上仍受瓶颈。现有参数高效微调多在欧几里得空间操作，难以表达情感线索的多粒度特性。为此提出HyPASE，利用庞加莱球模型的超曲半径显式表征表示粒度，设计双曲几何适配模块，在保持参数高效的同时提升语音情感识别性能。",
+      "llm_tldr": "大型音频语言模型在通用语音理解上表现优异，但在语音情感识别等细粒度任务上仍受瓶颈。现有参数高效微调多在欧几里得空间操作，难以表达情感线索的多粒度特性。为此提出HyPASE，利用庞加莱球模型的超曲半径显式表征表示粒度，设计双曲几何适配模块，在保持参数高效的同时提升语音情感识别性能。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.01462v1",
+      "source": "arxiv",
+      "title": "Loud or Silent? A Reusable Framework for Per-Modality Failure Analysis in Multimodal Clinical AI",
+      "abstract": "Multimodal clinical models are usually judged on accuracy with every modality present, but deployment removes modalities; an echocardiogram is often unavailable where an ECG is routine. Two questions then matter beyond the size of the accuracy loss: which modality was responsible, and whether the model fails loudly or silently once that modality is dropped. The distinction is per-example and modality-level, and is separate from post-hoc feature attribution (e.g. SHAP). Models are replaced often; the evaluation that answers these questions is reused. We present a model-agnostic modality-failure framework: given N modality embeddings, any mask-aware probe, and labels, it returns a per-example failure taxonomy, a per-modality complementarity matrix that attributes error to modalities, and a loud-vs-silent dropout profile separating monitorable failures from those that pass unflagged far from the decision boundary, using only deployment-observable signals. We release it as a small, unit-tested harness and validate it against planted ground truth. Across seeds it recovers that planted modality dominance and complementary subset, reports per-modality loud-vs-silent rates, and scales to a three-modality complementarity matrix; because the planted structure is known by construction, this validates recovery of per-example attribution rather than clinical performance. We then instantiate the framework on frozen EchoJEPA and HuBERT-ECG embeddings for LVEF and the EF <= 40% HFrEF gate over a paired MIMIC-IV cohort, where on the held-out test split (n = 245) dropping echo nearly doubles error. The narrow echo-to-ECG overlap that bounds cohort size is itself a deployment finding for cardiac foundation models. All of our work can be found at https://github.com/criticaldata/PRIMED-AI.",
+      "authors": [
+        "Quang Bui",
+        "Shlok Jaiswal",
+        "Samuel Paik-Heintz",
+        "Kevin Zhou",
+        "Kaushik Madapati",
+        "Krittaphas Chaisutyakorn",
+        "Noah Dane Hebdon",
+        "Dimitrios Proios",
+        "Sebastián Andrés Cajas Ordóñez",
+        "Kacper Dobek",
+        "Boya Zhang",
+        "Aly Dhedhi",
+        "Ahram Han",
+        "Kushul Reddy Palakala",
+        "Rahul Gorijavolu",
+        "Jacques Kpodonu",
+        "Leo Anthony Celi"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-02T19:38:56+00:00",
+      "link": "https://arxiv.org/pdf/2608.01462v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Reusable multimodal failure analysis framework for clinical AI",
+      "llm_evidence_cn": "多模态临床AI失败分析可复用框架",
+      "llm_evidence": "多模态临床AI失败分析可复用框架",
+      "canonical_evidence": "多模态临床AI失败分析可复用框架",
+      "llm_tldr_en": "A model-agnostic modality-failure framework returns a per-example failure taxonomy and per-modality attribution for multimodal clinical models, characterizing whether models fail loudly or silently when modalities are dropped.",
+      "llm_tldr_cn": "多模态临床AI部署时因模态缺失导致性能下降，但现有评估只关注准确率变化。提出模型无关的逐模态失败分析框架，利用掩码感知探针生成失败分类学与逐模态归因，区分大声/沉默失败。在多种临床模态上验证了可复用性，为多模态医疗AI的鲁棒性评估提供了通用工具，可迁移到睡眠与心理健康监测。",
+      "llm_tldr": "多模态临床AI部署时因模态缺失导致性能下降，但现有评估只关注准确率变化。提出模型无关的逐模态失败分析框架，利用掩码感知探针生成失败分类学与逐模态归因，区分大声/沉默失败。在多种临床模态上验证了可复用性，为多模态医疗AI的鲁棒性评估提供了通用工具，可迁移到睡眠与心理健康监测。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03187v1",
+      "source": "arxiv",
+      "title": "NeuroMosaic: Anatomically Grounded Multimodal Large Language Modeling for Molecularly Aware Glioma Reasoning from 3D MRI and Clinical Narratives",
+      "abstract": "Multimodal medical large language models remain structurally weak for neuro-oncology because volumetric evidence is compressed into generic visual tokens and diagnostic conclusions often lack an auditable link to MRI regions. We present NeuroMosaic, a 3D multimodal language model that converts multi-sequence brain MRI into anatomy-indexed regional tokens, aligns them with clinical narrative and molecular concepts, and generates evidence-linked outputs. The architecture combines a multi-resolution volumetric tokenizer, a neuroanatomical graph router, a molecular concept memory, and selective risk control. Across four glioma cohorts, NeuroMosaic achieved an internal subtype macro-F1 of 0.827 and external macro-F1 values of 0.784, 0.761, and 0.742. On UPenn-GBM, it improved over the strongest matched-input baseline by 3.6 percentage points (95% CI: 1.8 to 5.4, adjusted p = 0.0018), with IDH, 1p/19q, and MGMT AUROCs of 0.918, 0.861, and 0.781. Evidence pointing accuracy reached 0.703, and targeted evidence deletion reduced correct-answer probability by 0.187, compared with 0.046 for random deletion. These results establish anatomy-indexed routing as a measurable mechanism for accurate, grounded, and calibrated volumetric medical-language reasoning.",
+      "authors": [
+        "Yantong Liu",
+        "Zheyu Zhang",
+        "Runpeng Liu",
+        "Mu Xitang",
+        "Seong-Yoon Shin",
+        "Hyun-Ae Lee"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-08-04T06:26:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.03187v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "anatomically grounded multimodal large language model for 3D MRI and clinical narrative reasoning",
+      "llm_evidence_cn": "结合解剖先验的多模态大语言模型，用于3D MRI与临床叙事推理",
+      "llm_evidence": "结合解剖先验的多模态大语言模型，用于3D MRI与临床叙事推理",
+      "canonical_evidence": "结合解剖先验的多模态大语言模型，用于3D MRI与临床叙事推理",
+      "llm_tldr_en": "NeuroMosaic presents a 3D multimodal large language model that converts MRI into anatomy-indexed tokens, aligns with clinical narratives and molecular concepts, and outputs evidence-linked glioma subtype reasoning.",
+      "llm_tldr_cn": "现有的医学多模态大模型通常将三维MRI压缩成通用视觉token，导致诊断结论缺乏可审计的影像依据。NeuroMosaic 构建解剖感知的多模态大语言模型，将多序列脑MRI转换为按解剖结构索引的区域token，并与临床叙事和分子概念对齐。模型包含多分辨率体素分词器、神经解剖图路由器、分子概念记忆和选择性风险控制，可生成有证据链的胶质瘤亚型推理结果，并在多个队列上取得较高准确率。",
+      "llm_tldr": "现有的医学多模态大模型通常将三维MRI压缩成通用视觉token，导致诊断结论缺乏可审计的影像依据。NeuroMosaic 构建解剖感知的多模态大语言模型，将多序列脑MRI转换为按解剖结构索引的区域token，并与临床叙事和分子概念对齐。模型包含多分辨率体素分词器、神经解剖图路由器、分子概念记忆和选择性风险控制，可生成有证据链的胶质瘤亚型推理结果，并在多个队列上取得较高准确率。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03251v1",
+      "source": "arxiv",
+      "title": "From Wearable Data to Personalized and Actionable Health Insights",
+      "abstract": "Commercial wearable devices continuously capture rich physiological data (e.g., heart rate, respiration), opening new possibilities for monitoring health conditions, notably around stress. Despite their promise, turning raw wearable physiological data streams into visualizations that surface stress-related insights in daily activities, and that ultimately foster reflection, awareness, and better stress management, remains a significant challenge. The data are noisy and context-dependent: the same spike in heart rate can come from sprinting, a tense presentation, or laughing with friends. To address these challenges, we propose a framework that combines user annotations with wearable data to support better stress management. We introduce a web framework offering interactive visualizations that layer daily activities, stress events, and interventions onto raw physiological streams, enabling users to reflect and identify trends. In a four-week pilot with seven university graduate and undergraduate student participants who logged 269 events, our tool revealed patterns between different types of interventions and stress: social interaction reduced average heart rate by 4.35 to 5.0 beats per minute, deliberate rest reduced average Garmin stress scores by 10.03 to 13.83 points, and mindfulness activities decreased average HRV by 6.61 to 13.22 milliseconds.",
+      "authors": [
+        "Esther Brown",
+        "Karis Moon",
+        "Victoria Dean",
+        "Finale Doshi-Velez"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI"
+      ],
+      "published": "2026-08-04T07:23:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.03251v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "wearable data for stress management and mental health insights",
+      "llm_evidence_cn": "可穿戴数据用于压力管理与心理健康洞察",
+      "llm_evidence": "可穿戴数据用于压力管理与心理健康洞察",
+      "canonical_evidence": "可穿戴数据用于压力管理与心理健康洞察",
+      "llm_tldr_en": "This paper presents a framework combining wearable physiological data with user annotations to generate personalized visualizations for stress monitoring, helping users reflect and manage stress in daily life.",
+      "llm_tldr_cn": "商用可穿戴设备可连续采集心率、呼吸等生理数据，为压力监测提供可能，但原始数据噪声大且依赖情境。本文提出一个结合用户标注与可穿戴数据的框架，将噪声生理流转化为与日常活动相关的压力洞察可视化，促进用户反思和压力管理。通过用户标注提供情境信息，可视化能区分运动、演讲或社交引起的相同心率变化，帮助用户理解压力来源。该框架在真实场景中展示了可行性，为面向日常生活的心理健康监测提供了新思路。",
+      "llm_tldr": "商用可穿戴设备可连续采集心率、呼吸等生理数据，为压力监测提供可能，但原始数据噪声大且依赖情境。本文提出一个结合用户标注与可穿戴数据的框架，将噪声生理流转化为与日常活动相关的压力洞察可视化，促进用户反思和压力管理。通过用户标注提供情境信息，可视化能区分运动、演讲或社交引起的相同心率变化，帮助用户理解压力来源。该框架在真实场景中展示了可行性，为面向日常生活的心理健康监测提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}
