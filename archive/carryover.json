@@ -1,46 +1,89 @@
 {
-  "generated_at": "2026-08-07T02:07:09.342216+00:00",
-  "updated_date": "20260807",
+  "generated_at": "2026-08-08T20:36:38.805677+00:00",
+  "updated_date": "20260808",
   "carryover_days": 9,
   "tag_states": {
     "neuro-mental": {
-      "updated_date": "20260807",
+      "updated_date": "20260808",
       "carryover_days": 9,
       "items": [
         {
-          "id": "2608.03883v1",
+          "id": "2608.06023v1",
           "source": "arxiv",
-          "title": "DS@GT-ARC at eRisk 2026 Task 3: Sparse, Semantic, and LLM Reranking for ADHD Symptom Sentences",
-          "abstract": "This paper describes our submissions to eRisk 2026 Task 3, ADHD Symptom Sentence Ranking. The task requires systems to rank candidate Reddit sentences according to their relevance to each of the 18 symptoms in the Adult ADHD Self-Report Scale (ASRS-v1.1). Because no annotated training data were released for this first edition of the task, we relied on zero-shot experimentation, manual validation, and unsupervised or weakly guided retrieval pipelines. Our systems combine sparse BM25 retrieval, evidence-aware rescoring for self-referential symptom reports, embedding-based reranking, query-prototype expansion, and LLM-based reranking. All submitted systems follow a staged retrieval design in which BM25 retrieves candidates at scale and semantic or LLM rerankers refine the final rankings. Among our submissions, the LLM reranker achieved the strongest official scores, followed by the prototype query-expansion run. Our manual top-10 analysis aligned with the official expert scoring trend, suggesting that staged reranking is a promising direction for further development.",
+          "title": "BioKD: Selective Physiology-to-Video Knowledge Distillation via Reliability Gate for Emotion Recognition",
+          "abstract": "To address the limitations of video-based emotion recognition under ambiguous or socially masked behavioral cues, as well as the poor deployability of physiological signals, this paper proposes a reliability-aware physiology-to-video knowledge distillation framework, termed BioKD. The proposed framework leverages physiological signals as privileged information during training to guide a video-based student model in learning deep affective representations, while relying solely on non-intrusive video inputs at inference time. To cope with the high noise and instability of physiological teacher supervision caused by inter-subject variability, signal artifacts, and temporal inconsistency, BioKD incorporates a sample-wise reliability-aware gating mechanism together with a progressive distillation strategy. By adaptively regulating the strength of knowledge transfer, the framework suppresses negative transfer induced by unreliable physiological supervision and enables more stable cross-modal distillation. Experiments on DEAP and AMIGOS show that BioKD consistently outperforms representative baselines under both trial-wise and subject-wise evaluation protocols for valence and arousal recognition. For example, BioKD achieves 68.01\\% on DEAP (trial-wise arousal) and 65.29\\% under the more challenging subject-wise setting, demonstrating improved performance under a subject-independent evaluation setting. Further analyses show that BioKD effectively mitigates overconfident teacher errors and outperforms an entropy-only weighting strategy, confirming the importance of explicitly modeling supervision reliability. In addition, BioKD introduces no additional inference-time overhead relative to the same video student architecture and removes the need for physiological sensing and multimodal synchronization.",
           "authors": [
-            "David Guecha"
+            "Bojing Hou",
+            "Ruohao Li",
+            "Yitong Zhu",
+            "Hongjun Liu",
+            "Luwen Yu",
+            "Yuyang Wang"
+          ],
+          "primary_category": "cs.LG",
+          "categories": [
+            "cs.LG"
+          ],
+          "published": "2026-08-06T13:30:13+00:00",
+          "link": "https://arxiv.org/pdf/2608.06023v1",
+          "tags": [
+            "keyword:neuro-mental",
+            "query:neuro-mental"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "emotion recognition via physiology-to-video knowledge distillation",
+          "llm_evidence_cn": "基于生理到视频知识蒸馏的情绪识别",
+          "llm_evidence": "基于生理到视频知识蒸馏的情绪识别",
+          "canonical_evidence": "基于生理到视频知识蒸馏的情绪识别",
+          "llm_tldr_en": "BioKD uses physiological signals as privileged information to train a video-based emotion recognition student, via a reliability gate to handle noisy teacher signals.",
+          "llm_tldr_cn": "针对视频情绪识别在自然遮挡或社交掩饰下线索模糊的问题，论文提出BioKD框架，利用生理信号作为特权信息，通过可靠性门控机制对视频学生模型进行知识蒸馏。该方法在推理时仅需视频输入，同时能降低生理教师信号噪声和信息不稳定的影响，提升情绪识别的泛化性。",
+          "llm_tldr": "针对视频情绪识别在自然遮挡或社交掩饰下线索模糊的问题，论文提出BioKD框架，利用生理信号作为特权信息，通过可靠性门控机制对视频学生模型进行知识蒸馏。该方法在推理时仅需视频输入，同时能降低生理教师信号噪声和信息不稳定的影响，提升情绪识别的泛化性。",
+          "llm_tags": [
+            "query:neuro-mental"
+          ],
+          "matched_query_tag": "query:neuro-mental",
+          "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+          "matched_requirement_id": "req-8",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.06023v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.05993v1",
+          "source": "arxiv",
+          "title": "Clinical Communication Processing with Models Trained on LLM-Generated Synthetic Data: A Structured Survey and Novel Application Case Studies",
+          "abstract": "Much clinical value is conveyed not through structured records but through communication: exchanges in which patients describe symptoms, clinicians reason and give instructions, ambulances hand over to emergency departments, and nurses pass on a shift. Such language differs from tabular data because meaning depends on speaker role, intent, causality, uncertainty, omission, and channel noise. Healthcare natural language processing must therefore interpret information as conveyed rather than coded. This requires well-annotated corpora, which are scarce because authentic exchanges are private, fragmented, and costly to annotate. Large language models offer a way forward by transforming clinical sources, such as records, diagnostic labels, symptom lists, or care plans, into written and transcribed communication for downstream models. We present a structured narrative survey organized by source representation, communication form and participants, generation method, and downstream task, complemented by thirteen novel case studies. These build clinical NLP systems for communication channels and languages without labeled real-world data, including EMS pre-arrival reports, field-radio casualty documentation, nurse handoffs, patient-portal triage, and low-resource discharge communication. They show that synthetic communication can bootstrap such systems. Findings include the competitiveness of fine-tuned encoder models over evaluated zero-shot baselines and the value of deliberately degraded communication for robustness. The main limitation is that most studies evaluate on held-out synthetic communication, while train-on-synthetic, test-on-authentic evidence remains limited. We conclude that syn-thetic clinical communication is becoming a practical research resource; establishing it as reusable clinical infrastructure will require authentic-data transfer, safety and external validation.",
+          "authors": [
+            "Alexander Apartsin",
+            "Yehudit Aperstein"
           ],
           "primary_category": "cs.CL",
           "categories": [
             "cs.CL"
           ],
-          "published": "2026-08-04T16:19:22+00:00",
-          "link": "https://arxiv.org/pdf/2608.03883v1",
+          "published": "2026-08-06T13:04:42+00:00",
+          "link": "https://arxiv.org/pdf/2608.05993v1",
           "tags": [
-            "keyword:neuro-mental"
+            "keyword:neuro-mental",
+            "query:neuro-mental"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "LLM reranking pipeline for ADHD symptom sentence ranking in mental health text",
-          "llm_evidence_cn": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
-          "llm_evidence": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
-          "canonical_evidence": "使用LLM重排序对ADHD症状句子进行排序，服务于心理健康文本挖掘",
-          "llm_tldr_en": "Describes zero-shot retrieval and LLM-reranking systems for ranking Reddit sentences by 18 ADHD symptom criteria, combining BM25 sparse retrieval, evidence-aware rescoring, embeddings, and query-prototype expansion.",
-          "llm_tldr_cn": "针对无标注训练数据情况下的ADHD症状句子排序任务，提出结合BM25稀疏检索、证据感知重打分、嵌入重排、查询原型扩展和LLM重排序的分阶段检索流程。该系统在eRisk 2026 Task 3中处理Reddit语句与ASRS的18个症状匹配，通过零样本与无监督策略完成排序。该方法为心理健康文本中的症状自动识别提供了实用管线，可辅助ADHD筛查研究。",
-          "llm_tldr": "针对无标注训练数据情况下的ADHD症状句子排序任务，提出结合BM25稀疏检索、证据感知重打分、嵌入重排、查询原型扩展和LLM重排序的分阶段检索流程。该系统在eRisk 2026 Task 3中处理Reddit语句与ASRS的18个症状匹配，通过零样本与无监督策略完成排序。该方法为心理健康文本中的症状自动识别提供了实用管线，可辅助ADHD筛查研究。",
+          "llm_evidence_en": "clinical communication processing with LLM-generated synthetic data",
+          "llm_evidence_cn": "利用大语言模型生成的合成数据进行临床沟通处理",
+          "llm_evidence": "利用大语言模型生成的合成数据进行临床沟通处理",
+          "canonical_evidence": "利用大语言模型生成的合成数据进行临床沟通处理",
+          "llm_tldr_en": "Structured survey and case studies on using LLM-generated synthetic data to train models for clinical communication processing, addressing scarce annotated corpora.",
+          "llm_tldr_cn": "针对临床沟通语料稀缺且标注昂贵的问题，论文系统梳理了使用大语言模型生成合成数据来训练临床沟通处理模型的方法，并给出新的应用案例。文章指出医疗NLP需要解释说话者角色、意图、因果关系等言语传递的信息，合成数据提供了扩展标注语料的重要途径，为临床文本处理中的LLM应用提供了实用指导。",
+          "llm_tldr": "针对临床沟通语料稀缺且标注昂贵的问题，论文系统梳理了使用大语言模型生成合成数据来训练临床沟通处理模型的方法，并给出新的应用案例。文章指出医疗NLP需要解释说话者角色、意图、因果关系等言语传递的信息，合成数据提供了扩展标注语料的重要途径，为临床文本处理中的LLM应用提供了实用指导。",
           "llm_tags": [
             "query:neuro-mental"
           ],
           "matched_query_tag": "query:neuro-mental",
-          "matched_query_text": "mental health studies",
-          "matched_requirement_id": "req-3",
+          "matched_query_text": "large language models in research",
+          "matched_requirement_id": "req-1",
           "selection_source": "carryover_cache",
-          "paper_id": "2608.03883v1",
-          "carry_days": 3
+          "paper_id": "2608.05993v1",
+          "carry_days": 1
         }
       ]
     }

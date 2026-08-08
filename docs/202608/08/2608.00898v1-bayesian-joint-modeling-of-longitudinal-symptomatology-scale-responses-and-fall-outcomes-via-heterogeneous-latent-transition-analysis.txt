@@ -1,0 +1,510 @@
+Title: Bayesian Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes via Heterogeneous Latent Transition Analysis
+
+URL Source: https://arxiv.org/pdf/2608.00898v1
+
+Published Time: Tue, 04 Aug 2026 00:58:15 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# BAYESIAN JOINT MODELING OF LONGITUDINAL 
+
+# SYMPTOMATOLOGY SCALE RESPONSES AND FALL OUTCOMES VIA HETEROGENEOUS LATENT TRANSITION ANALYSIS 
+
+A P REPRINT 
+
+Mingyan Yu 
+
+Department of Biostatistics University of Michigan Ann Arbor, MI 48109 
+
+myanyu@umich.edu 
+
+Zhenke Wu 
+
+Department of Biostatistics University of Michigan Ann Arbor, MI 48109 
+
+zhenkewu@umich.edu 
+
+Michelle M. Hood 
+
+Department of Epidemiology University of Michigan Ann Arbor, MI 48109 
+
+mmhood@umich.edu 
+
+Carrie A. Karvonen-Gutierrez 
+
+Department of Epidemiology University of Michigan Ann Arbor, MI 48109 
+
+ckarvone@umich.edu 
+
+Fan Bu 
+
+Department of Biostatistics University of Michigan Ann Arbor, MI 48109 
+
+fbu@umich.edu 
+
+Michael R. Elliott 
+
+Department of Biostatistics University of Michigan Ann Arbor, MI 48109 
+
+mrelliot@umich.edu 
+
+August 4, 2026 
+
+ABSTRACT 
+
+The Study of Womens Health Across the Nation (SWAN) has followed women for over 30 years, from midlife premenopause until later life. The study has 16 surveys at approximately 2 years intervals that cover a wide range of physical and psychological symptoms. These multivariate cat-egorical survey responses potentially contain rich health-related information. Temporal trajectories of the survey responses can be characterized by both the responses profiles and the evolving dy-namics of the responses over time. To capture those two features and investigate how they inform subsequent health outcomes, we propose a joint multi-layer latent transition model. We combine a latent transition model that classifies individuals based on their response profiles over time with an additional layer of clustering of these latent class transition sequences, with the goal of connecting these cluster profiles with health outcomes: in this application, self-reported falls. In addition, we evaluate the operating characteristics of the method through simulation studies. 
+
+Keywords Bayesian hierarchical model · Joint multivariate categorical modeling · Latent transition analysis · Midlife falls · Women’s Health 
+
+1 Introduction 
+
+Falls are a well-recognized public health concern, especially among older adults (O’Loughlin et al., 1993; Gill et al., 2005). Evidence suggests that females are more likely than males to experience falls and fall-related injuries across all age groups (Ylitalo and Karvonen-Gutierrez, 2016), highlighting the importance of preventive interventions for females. Although most research has focused on females aged 65 years and older, emerging studies suggest a rising prevalence of falls during midlife. For example, Peeters et al. (2018) reported that the prevalence of falls increased from 8.7% among females aged 40-44 to 29.9% among those aged 60-64 years across four population-based cohort study. Moreover, Karvonen-Gutierrez et al. (2020) found that midlife females who experienced recurrent falls had more than a three-fold higher hazard of morality within 10 years compared to others. Together, these findings emphasize the necessity to initiate early preventive efforts at middle ages. arXiv:2608.00898v1 [stat.AP] 1 Aug 2026 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+A wide range of risk factors for falls among midlife females has been identified (White et al., 2018; Peeters et al., 2019), including obesity, poor physical functioning, stiff/painful joints, depression, osteoporosis, severe tiredness, and other chronic conditions. These factors often present in clusters, suggesting that falls arise from a dynamic integration of multiple risk factors rather than an isolated cause. Consequently, examining risk factors jointly as clusters may better capture the underlying risk profiles. However, most existing studies rely on cross-sectional measurements and do not account for how these risk factors change over time. Understanding their longitudinal trajectories may provide additional insights into midlife falls and support earlier intervention. To address this gap, we analyze the longitudinal symptomatology data from the Study of Women’s Health Across the Nation (SWAN) (Sowers et al., 2000), which contains repeated categorical measures of physical, social and psychological symptoms along with self-reported fall outcomes. Our study has two primary aims: (1) to identify potential symptom clustering and characterize their longitudinal dynamics while accounting for population heterogeneity; and (2) to examine how these symptom profiles and their temporal dynamics are associated with the occurrence of falls, particularly recurrent falls. Conceptually, symptom clustering can be approached from either a variable-centered or a person-centered view (Howard and Hoffman, 2018). Variable-centered approaches, such as factor analysis (Huang et al., 2016; Seppälä et al., 2020), group interrelated symptoms according to similarity measures under a homogeneous population assump-tion (Kim and Abraham, 2008). In contrast, person-centered approaches identify subgroups of individuals with similar patterns of symptoms within a heterogeneous population. Since our goal is to characterize individual symptom pro-files and their dynamics over time, we adopt a person-centered approach and develop an extension of latent transition analysis (LTA) that we term heterogeneous latent transition analysis or HTLA. Standard LTA (Collins and Lanza, 2013) is a longitudinal extension of latent class analysis (LCA), a finite mixture model that groups individuals based on their response patterns. By incorporating repeated symptom measurements, LTA models both latent class memberships and the transitions between classes over time through Markovian transition probability matrices (Collins and Lanza, 2013). LTA has been widely applied in psychological, social and health studies. For example, Harlow et al. (2017) identified six symptoms classes among midlife women based on physical, menopausal and psychological symptoms and found substantial stability in class memberships over time. Similarly, Ni et al. (2017) identified three depression subgroups from the China Health and Retirement Longitudinal Study and observed considerable stability, with a moderate fraction transitioning from “mild" and “severe" depression classes to the “lack of positive affect" class. Although LTA has been widely used to identify latent subgroups and characterize their transition dynamics, relatively few studies have examined whether these transition patterns are predictive of subsequent health outcomes. For ex-ample, based on two waves of the Chinese Longitudinal Healthy Longevity Survey, Wang et al. (2024) identified three latent classes of social participation and found that transitions to classes with higher levels of social participa-tion were associated with reduced depression. However, such approaches become impractical when the number of possible transition patterns grows with the number of visits and latent classes. An alternative approach introduces a mover-stayer second-order latent variable (Goodman, 1961) within the LTA framework, which partitions individuals into subgroups who either remain in the same class over time (“stayers") or transition between classes (“movers"). Zammit et al. (2020) applied this approach to neuropsychological measures from the Rush Memory and Aging Project and found that movers had a substantially higher risk of developing Alzheimers disease. Though appealing, this ap-proach imposes a restrictive assumption that a subgroup of individuals never change class and does not account for the heterogeneity in transition patterns among “movers". To address these limitations, we introduce an additional layer of heterogeneity by clustering the latent class sequences obtained from LTA. Our approach is motivated by the model-based pattern clustering for categorical time series (Frühwirth-Schnatter and Pamminger, 2010; McNicholas, 2016), where the observed series are modeled using a fi-nite mixture of first-order Markov processes; this approach has been used to model, e.g., wage morbidity (Frühwirth-Schnatter and Pamminger, 2010) and daily activity patterns (Zhou et al., 2021). In contrast, the sequences in our setting arise from an underlying latent processes and are unobserved. By incorporating both latent classes and se-quence clusters, our model captures heterogeneity at multiple levels. Building on this framework, we further examine how latent states and transition dynamics relate to subsequent out-comes by linking the outcome to sequence cluster membership and latent states at certain time points through re-gression models. A key technical challenge is properly accounting for the uncertainty in both latent classes and sequence clusters to avoid biased inference. In the simpler setting of relating only the latent class membership to a distal outcome, several approaches has been proposed. The naive classify-analyze approach (Clogg, 1993) uses modal class assignments as predictors but ignores the classification error, thus introducing measurement error bias. To address this issue, several correction methods have been developed, including the pseudo-class draw approach (Bandeen-Roche et al., 1997; Wang et al., 2005), the maximum-likelihood based three-step approach (Vermunt, 2010), the Bolck-Croon-Hagenaars (BCH) approach (Bolck et al., 2004), and a model-based approach that leverages Bayes 2Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+theorem (Lanza et al., 2013). However, the multi-layer and longitudinal structure of our method introduces additional complexity for bias correction. We therefore adopt a Bayesian joint modeling framework that fully propagates uncer-tainty from both latent classes and sequence clusters into the outcome model. Joint modeling has been widely used to analyze longitudinal measurements and cross-sectional outcomes for its flexibility and ability to yield unbiased association estimation. For example, Elliott et al. (2020) examined acculturation behaviors using LCA with the latent class membership associated with depression outcome, demonstrating the advantages of joint modeling in uncertainty quantification. This paper has three major innovations: 1) extending the LTA model to allow for heterogeneity (HLTA); 2) developing a Bayesian joint model to account for measurement error in relating the HTLA sequence classes to the outcome, and 3) developing methods to account for label switching at both the latent class and latent transition layers in the MCMC algorithm. The manuscript is organized as follows: Section 2 develops the statistical details of the proposed joint modeling approach for longitudinal symptomatology data and subsequent cross-sectional outcomes in a Bayesian framework; Section 3 evaluates the performance of the method through simulation studies; Section 4 applies our proposed method to the longitudinal item-responses and fall outcomes from SWAN to address the motivating scientific question, and Section 5 concludes with a summary and discusses potential limitations and directions for future work. 
+
+2 Methods 
+
+2.1 Notation 
+
+Let Xi be a T × K matrix of categorical item-responses for individual i collected over T visits, with K representing the total number of items administered. The t-th row of Xi, Xit = ( Xit 1, . . . , X itK ), contains the responses of individual i at visit t, for t = 1 , . . . , T . We allow individuals to miss some visits, therefore their item-responses can be all missing at those visits. We also assume that not all items are necessarily administered at every visit, thus some item-responses may be missing at some visits by design. For the k-th item, its responses can take values in 
+
+{1, . . . , d k}, dk ≥ 2. Let scalar Yi denote the observed cross-sectional outcome for individual i, and let vector Zi
+
+denote the baseline covariates. 
+
+2.2 Proposed Joint Modeling Framework 
+
+Our proposed joint modeling framework consists of two connected components. First, we propose a sequence cluster-ing method based on the latent transition analysis to capture the individual-level longitudinal patterns of item-responses collected over T visits. Then we are interested in associating the cross-sectional outcome Yi with the sequence clusters and item-response profiles to draw inferences on how the longitudinal item-response trajectories and profiles inform the outcome. 
+
+2.2.1 Longitudinal Patterns of Item-Responses 
+
+We begin by summarizing individuals’ multivariate item-responses at a single visit using latent class analysis (LCA). LCA defines classes through class-specific item-response probabilities and assumes conditional independence of item-responses given the latent class. Let L < ∞ denote the number of latent classes and let ηi ∈ { 1, . . . , L } represent the latent class membership for individual i. For the k-th item with dk categories, we denote the class-specific item-response probabilities as p(k) 
+
+> lj
+
+= Pr (xitk = j|ηi = l), j = 1 , . . . , d k, l = 1 , . . . , L , which are shared by individuals within the same latent class. The LCA framework can be extended to longitudinal multivariate item-responses col-lected over T visits, yielding a sequence of latent classes {ηi, 1, . . . , η i,T }, where ηi,t denotes the latent class mem-bership of individual i at visit t. We assume that the number of latent classes and their item-response profiles remain constant over time. Individuals are allowed to transition between latent classes across visits, with the temporal de-pendency modeled through an L × L transition matrix τ , where τl,l ′ = Pr (ηi,t +1 = l′|ηi,t = l) represents the probability of transitioning from class l to class l′, with ∑Ll′=1 τl,l ′ = 1 . We further assume the transition matrix is time-invariant and shared across individuals, although extensions to time-varying transition matrices are possible. Let 
+
+π = ( π1, . . . , π L) denote the vector of initial class probabilities at visit 1, with πl = Pr (ηi, 1 = l) and ∑Ll=1 πl = 1 .Together, the longitudinal item-response trajectories are characterized by π and τ .
+
+2.2.2 Extending LTA To Allow for Heterogeneous Transition Patterns 
+
+While LTA captures individual-level item-response dynamics, it does not explicitly account for heterogeneity in the transition patterns across individuals. To address this limitation, we introduce an additional layer of clustering on the latent class sequences. Specifically, we assume that individuals can be grouped into R < ∞ sequence clusters, 3Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+with sequence cluster membership denoted by λi ∈ { 1, . . . , R } and Pr (λi = r) = br with ∑Rr=1 br = 1 . Within each sequence cluster r, individuals share common initial class probabilities π(r) and transition matrix τ (r). The item-response probabilities p(k) 
+
+> lj
+
+are assumed to be invariant across time and sequence clusters, ensuring a consistent interpretation of the latent classes. Built upon LTA and latent class sequence clustering, the longitudinal multivariate item-response model is specified as 
+
+xitk |ηi,t = l ∼ Multinomial (p(k) 
+
+> l1
+
+, . . . , p (k) 
+
+> ld k
+
+), k = 1 , . . . , K, l = 1 , . . . , L ;
+
+λi ∼ Multinomial (b1, . . . , b R), independently for i = 1 , . . . , N ;
+
+ηi, 1|λi = r ∼ Multinomial (π(r)1 , . . . , π (r) 
+
+> L
+
+),ηi,t +1 |ηi,t = l, λ i = r ∼ Multinomial (τ (r) 
+
+> l, 1
+
+, . . . , τ (r) 
+
+> l,L
+
+), r = 1 , . . . , R, t = 1 , . . . , T − 1, l = 1 , . . . , L. 
+
+(1) 
+
+Prior Specification We assign Dirichlet priors to all the multinomial probability vectors in the model for their conjugacy and flexibility in modeling probabilities: 
+
+b1, . . . , b R ∼ Dirichlet (ζ1, . . . , ζ R); 
+
+π(r)1 , . . . , π (r) 
+
+> L
+
+∼ Dirichlet (a(r)1 , . . . , a (r) 
+
+> L
+
+),τ (r) 
+
+> l, 1
+
+, . . . , τ (r) 
+
+> l,L
+
+∼ Dirichlet (ψ(r) 
+
+> l1
+
+, . . . , ψ (r) 
+
+> lL
+
+), r = 1 , . . . , R, p(k) 
+
+> l1
+
+, . . . , p (k) 
+
+> ld k
+
+∼ Dirichlet (ω(k) 
+
+> l1
+
+, . . . , ω (k) 
+
+> ld k
+
+), k = 1 , . . . , K, l = 1 , . . . , L. 
+
+(2) In our simulation and application implementation, we choose to use weakly informative priors by setting all hyper-parameters to 1. More informative prior can be used if prior knowledge regarding the expected sequence cluster and cluster-specific latent class distributions or item-response probabilities is available. 
+
+2.3 Cross-Sectional Outcomes 
+
+We model the association between the longitudinal multivariate item-responses and the cross-section outcome Yi
+
+through the sequence cluster λi and the latent class at the final visit ηi,T . The inclusion of λi as a predictor aims to examine how longitudinal item-response trajectories impact the outcome, while ηi,T captures the effect of the most recent item-response profile. The outcome model is given by 
+
+g(E[Yi]) = γ(W i, β), W i = (1 , λ i, η i,T , Z⊤ 
+
+> i
+
+)⊤. (3) where g(·) represents a link function. The vector β represents the regression coefficients, for which we assume independent weakly informative N (0 , σ 2) priors with σ = 10 . Flexible specification for the functional form γ(·) of the predictors W i can be assumed, and in our simulation studies and application, we adopt a linear combination of the predictors. 
+
+2.4 Posterior Inference 
+
+Our method is implemented using the NIMBLE (de Valpine et al., 2017, 2025) package in R. NIMBLE has the nice feature to compile a BUGS model using C++ , which substantially speed up the sampling process. For the simulation studies, we run three chains each with 10,000 iterations and 5,000 burnin. For the application study, we run one chain with 24,000 iterations and 12,000 burnin. Convergence is assessed by visual inspection of the traceplots and the Gelman-Rubin ˆR measure (Gelman et al., 2013). For label switching issue commonly seen in mixture models, we adopt and extend Stephens’ relabeling algorithm (Stephens, 2000) in an efficient way to relabel the posterior samples. The standard Stephens’ relabeling algorithm for latent classes involves considering the posterior classification probability all of the possible label assignment permutations for each MCMC draw, and maximizing this posterior classification probability across all draws iteratively. Directly obtaining this posterior classification probability at the sequence cluster required marginalizing across the latent class assignments at each time point, which quickly becomes intractable as the number of time points grows beyond 3 ot 4. Thus this extension separates the “untangling” of the latent class assignment and sequence cluster assignments via a forward-backwards algorithm (with respect to the label permutations). The detailed algorithm can be found in Supplementary Materials Section 1. 4Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+3 Simulation 
+
+Before applying the proposed joint modeling approach to the longitudinal scales dataset from SWAN, we conduct simulation studies to evaluate the performance of the proposed method and identify an appropriate model selection criterion. 
+
+3.1 Data Generation 
+
+We start with generating the longitudinal item-responses data through three steps. We consider R = 3 underlying sequence clusters and L = 4 underlying item-response latent classes. The observed data consist of responses to 
+
+K = 30 items collected over T = 10 visits for N = 1500 individuals. First, for each individual i, we sample the sequence cluster membership λi from a Multinomial (0 .20 , 0.35 , 0.45) distribution. Given λi, the latent class sequence 
+
+{ηi, 1, . . . , η i,T } is generated from a first-order Markov process. The initial latent class at visit 1 in sampled as: 
+
+ηi, 1|λi = r ∼ Multinomial (π(r)1 , . . . , π (r) 
+
+> L
+
+), r = 1 , . . . , R, i = 1 , . . . , N ;
+
+π(1) = (0 .142 , 0.137 , 0.299 , 0.422) , π(2) = (0 .326 , 0.148 , 0.127 , 0.399) ,
+
+π(3) = (0 .131 , 0.282 , 0.449 , 0.138) .
+
+(4) and the transition of latent classes at t = 2 , . . . , T follows: 
+
+ηi,t +1 |ηi,t = l, λ i = r ∼ Multinomial (τ (r) 
+
+> l, 1
+
+, . . . , τ (r) 
+
+> l,L
+
+), r = 1 , . . . , R, l = 1 , . . . , L, t = 1 , . . . , T − 1; 
+
+τ (1) =
+
+
+
+0.965 0.010 0.014 0.011 0.007 0.226 0.166 0.601 0.028 0.130 0.318 0.524 0.002 0.126 0.182 0.691 
+
+ , τ (2) =
+
+
+
+0.577 0.190 0.227 0.005 0.315 0.458 0.215 0.012 0.341 0.256 0.394 0.009 0.005 0.016 0.009 0.970 
+
+ ,
+
+τ (3) =
+
+
+
+0.109 0.257 0.440 0.195 0.063 0.784 0.032 0.121 0.095 0.075 0.745 0.085 0.088 0.356 0.233 0.323 
+
+ .
+
+(5) After generating the latent class sequences, the longitudinal item-responses are generated accordingly through 
+
+xitk |ηi,t = l ∼ Multinomial (p(k) 
+
+> l1
+
+, . . . , p (k) 
+
+> ld k
+
+) as the second step, where the number of categories dk takes values in {2, 5, 6}, k = 1 , . . . , K . The illustration of the latent class-specific item-response probabilities can be found in Figure S3. The simulated individual latent class sequences and their transitions can be found in Figure S4 and S5. Finally, to better reflect the real world settings, we introduce missingness at both the visit and item levels. For each individual, we randomly pick 0-4 visits to be missing, and for each non-missing individual visit, 0-10 items are further set to be missing. We consider two types of outcomes in this simulation experiment: a binary outcome and a nominal outcome. The binary outcome is generated as 
+
+Yi ∼ Bernoulli (θi),
+
+logit (θi) = β0 + β11(ηi,T = 2) + β21(ηi,T = 3) + β31(ηi,T = 4) + β41(λi = 2) + β51(λi = 3) ,
+
+β = ( −1.15 , 0.95 , 0.35 , −0.70 , 0.60 , −0.55) .
+
+(6) and is subsequently fitted through a logistic regression model. For the nominal outcome, we generate a three-category outcome that takes values in 0, 1 and 2 with category 0 as the reference category: 
+
+Yi ∼ Multinomial (1; qi0, q i1, q i2),
+
+log( qij /q i0) = γj0 + γj11(ηi,T = 2) + γj21(ηi,T = 3) + γj31(ηi,T = 4) + γj41(λi = 2) + γj51(λi = 3) ,
+
+γ1 = ( −2.10 , 0.65 , 0.95 , 1.20 , 0.50 , 0.80) , γ2 = ( −2.45 , 0.35 , 0.60 , 0.90 , 0.25 , 0.50) .
+
+(7) The nominal outcome is then modeled through a multinomial logistic regression model. The simulated binary out-come has an average event rate of 29.2% across S = 200 simulations, while for the nominal outcome, the average proportions of each category are 61.5%, 27.2% and 11.3%, respectively. 
+
+3.2 Method Evaluation 
+
+To evaluate the performance of the proposed method and demonstrate its superiority over two-stage alternatives, the simulated data are analyzed using both the joint model and a two-stage approach. The joint model follows the frame-work described in Section 2. For the two-stage approach, we first model the longitudinal item-responses as described 5Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+Table 1: Simulation results including coverage rate, bias, average interval length and RMSE of outcome coefficients comparing joint model with two-stage approach. The first panel on the left presents the results of the outcome coeffi-cients corresponding to the simulated binary outcomes. The two panels on the right present the results corresponding to the simulated nominal results. Binary Outcomes Nominal Outcomes: 1 vs 0 Nominal Outcomes: 2 vs 0 Method Parameter Coverage (%) Bias Average Interval Length RMSE Parameter Coverage (%) Bias Average Interval Length RMSE Parameter Coverage (%) Bias Average Interval Length RMSE                                                                                                                                                                                                                          
+
+> β0=−1.15 95.5 -0.00 0.96 0.24 γ10 =−2.10 95.5 -0.01 1.04 0.26 γ20 =−2.45 91.0 -0.03 1.35 0.37
+> β1= 0 .95 96.0 -0.01 0.88 0.23 γ11 = 0 .65 96.0 -0.02 0.99 0.26 γ21 = 0 .35 95.0 -0.02 1.34 0.35 Joint Model β2= 0 .35 94.5 -0.00 0.90 0.25 γ12 = 0 .95 94.5 -0.02 0.90 0.26 γ22 = 0 .60 94.5 -0.02 1.22 0.30
+> β3=−0.70 95.0 0.00 0.88 0.23 γ13 = 1 .20 95.0 -0.01 0.86 0.22 γ23 = 0 .90 94.5 -0.00 1.13 0.29
+> β4= 0 .60 94.5 -0.00 0.83 0.20 γ14 = 0 .50 95.5 -0.01 0.89 0.22 γ24 = 0 .25 93.5 0.02 1.17 0.31
+> β5=−0.55 96.5 -0.01 0.93 0.22 γ15 = 0 .80 96.5 0.01 0.93 0.23 γ25 = 0 .50 92.0 0.01 1.22 0.34
+> β0=−1.15 93.5 0.08 0.78 0.23 γ10 =−2.10 64.0 0.37 0.82 0.50 γ20 =−2.45 85.5 0.23 1.10 0.48
+> β1= 0 .95 90.0 -0.08 0.74 0.22 γ11 = 0 .65 80.0 -0.23 0.83 0.33 γ21 = 0 .35 91.5 -0.17 1.17 0.35 Two-stage approach β2= 0 .35 85.0 -0.14 0.66 0.23 γ12 = 0 .95 56.5 -0.30 0.67 0.37 γ22 =−0.70 91.0 0.04 0.74 0.26
+> β3=−0.70 91.0 0.04 0.74 0.22 γ13 = 1 .20 63.5 -0.26 0.71 0.36 γ23 = 0 .90 83.5 -0.15 0.97 0.39
+> β4= 0 .60 88.0 -0.16 0.69 0.24 γ14 = 0 .50 90.0 -0.14 0.71 0.28 γ24 = 0 .25 91.5 -0.15 0.96 0.65
+> β5=−0.55 89.5 0.11 0.75 0.23 γ15 = 0 .80 80.5 -0.30 0.75 0.76 γ25 = 0 .50 89.0 -0.24 1.01 0.85
+
+in Section 2.2.1, and obtain posterior probabilities for each individual’s sequence cluster membership and latent class memberships. The sequence cluster membership for individual i is then assigned to the cluster with the highest poste-rior probability: ˆλi = max r ˆPr (λi = r | xi), and the latent class memberships over time are assigned analogously. In the second stage, the estimated ˆλi and ˆηi,T are used as covariates in the outcome regression models. We evaluate the performance of the methods based on coverage rate (the 95% credible interval is formed via empirical percentiles from the draws), bias, average interval length, and root mean square error (RMSE). In addition, we assess how well our method recovers the true class assignments by measuring the agreement between the true and estimated class memberships using the adjusted Rand index (ARI). We conduct 200 simulations. Table 1 summarizes the simulation results for the outcome parameters, comparing the proposed joint model with the two-stage alternative. Figure 1 presents the results for the parameters associated with the longitudinal item-responses estimated from the joint model. From both the table and the figure, the joint model produces consistently unbiased estimates with desirable coverage rates across different outcome types. In addition, it is able to recover the true latent class and sequence cluster memberships as reflected by relatively high ARI values. In contrast, while the two-stage approach yields reasonably acceptable coverage for the binary outcome coefficients, it performs substantially worse for the nominal outcomes. Moreover, estimates from the two-stage approach exhibit non-negligible bias and are consistently attenuated towards the null. Overall, these simulation studies demonstrate the effectiveness of the proposed joint model. 
+
+4 Application to the Longitudinal Symptomatology Scale Responses from SWAN 
+
+4.1 Study Description 
+
+The Study of Women’s Health Across the Nation (SWAN) is a multi-site, multi-racial, and multi-ethnic longitudinal cohort study that follows midlife women through the menopausal transition (Sowers et al., 2000). Eligible participants were women aged 42-52 years who had a uterus and at least one ovary, were not on exogenous hormones, had at least one menstrual period in the past three months, and self-identified with one of the predesignated race or ethnic groups. 3302 females were enrolled in 1996 and have been followed annually for approximately 16 visits. The annual visits in-clude questionnaires, blood and urine specimen collection and physical measures. To investigate factors impacting the menopausal transition, the data collection instruments and approaches involve biological, psychological/psychosocial, sociocultural/environmental, and feminist approaches. Detailed descriptions of the study design and data collection can be found in Sowers et al. (2000). In this application study, we focus on participants’ responses to the longitudinal symptomatology scales and examine how individual symptom profiles influence subsequent health outcomes. The symptomatology scales capture a broad range of physical and psychological symptoms and include the 36-item Short-Form Health Survey (SF-36, Ware et al. (1993)), the Pittsburgh Sleep Quality Index (PSQI, Buysse et al. (1989)), the Center for Epidemiologic Studies Depression Scale (CES-D, Radloff (1977)), the 4-item Cohen’s Perceived Stress Scale (Cohen et al., 1983), and 19 miscellaneous items around sleep, menopause-related symptoms and mood. To-gether, these scales contain 98 items, though some items are administered only at certain visits. To maximize the number of items while maintaining measurement consistency across visits, we focus on 60 items collected at every other visit from baseline to visit 12 (7 visits in total), including SF-36 domains of role-physical, bodily pain, vitality, 6Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT Bias Coverage Rate (%) Binary Outcome  Nominal Outcome Sequence cluster probabilities br  
+
+> Latent class probabilities
+> π(r) at visit 1 Transition matrix
+> τ(r)
+> Item response probabilities plj (k)
+> Sequence cluster probabilities br
+> Latent class probabilities
+> π(r) at visit 1 Transition matrix
+> τ(r)
+> Item response probabilities plj (k)
+> 90 95 100 90 95 -0.01 0.00 0.01 -0.01 0.00 0.01
+
+(A) Method evaluation criteria    
+
+> Binary Outcome Nominal Outcome Class Membership ARI Latent classes
+> i1 , …, iT
+> Sequence cluster
+>  i
+> Latent classes
+> i1 , …, iT
+> Sequence cluster
+>  i
+> 0.60 0.65 0.70 0.75 0.80
+
+(B) Class membership ARI 
+
+Figure 1: Simulation results for parameters associated with the longitudinal item-responses estimated from the joint model. Panel (A) summarizes the model performance regarding bias and coverage rate (%) for parameters br , π(r),
+
+τ (r), r = 1 , . . . , R , and p(k) 
+
+> lj
+
+, l = 1 , . . . , L, j = 1 , . . . , d k, k = 1 , . . . , K . Panel (B) presents the the adjusted Rand index (ARI) for evaluating the agreement between the true and estimated individual latent class memberships over time and sequence cluster assignments. social functioning and role-emotional, one item from SF-36 domain of general health, an overall sleep quality item from PSQI, the full CES-D and Cohen’s Perceived Stress Scale, and the 19 miscellaneous items. Based on individual’s longitudinal response patterns, we aim to classify their responses at each visit into latent classes, group the resulting latent classes sequences into sequence clusters, and investigate how these latent profiles are associated with subsequent health outcomes. The health outcome of interest is the fall patterns collected at visit 15. Participants were asked whether they had fallen and landed on the floor or ground (or fallen and hit an object like a table or stair) in the past year and, if so, how many times. We aim to examine whether individuals’ latent class membership at visit 12 and their sequence cluster membership are associated with (a) the occurrence of any fall and (b) fall frequency, categorized as no falls, a single fall or recurrent falls. Baseline BMI was included as a covariate. After excluding females (a) without responses to the fall pattern questions at visit 15; (b) with more than four missing visits; (c) with baseline BMI missing, and removing individual visits with more than 20 items without responses, our final analytical sample contains 1934 females with an average of 6.2 visits and 61.2 non-missing item responses per visit. Among these females, 1360 reported no falls in the past year at visit 15, 328 reported a single fall, and 246 reported recurrent falls. The average baseline BMI was 27.61 (SD = 7.07). 7Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+4.2 Method Implementation 
+
+To accomplish our study objective, we fit two separate joint models. In the first model, we investigate the association between longitudinal patterns of item-responses and the occurrence of any fall in the past year, and the outcome is connected with the longitudinal component through a logistic regression model. In the second model, the fall frequency categories are associated with the longitudinal patterns through a multinomial logistic regression model. For both models, the individual sequence clusters λi, their latent class memberships at the 12th annual visit ηi,T , and their baseline BMI measurement are used as predictors for the outcome submodel. 
+
+4.3 Results 
+
+Guided by a previous study (Harlow et al., 2017), which analyzed a similar set of longitudinal symptomatology data from SWAN, and using AIC and BIC as model selection criteria (the detailed model selection criteria can be found in Supplementary Materials Section 2.2), our method identifies 6 item-response latent classes for both the fall occurrence model and the fall frequency model consistent with the number of classes in Harlow et al. (2017). We also identify 4 distinct sequence clusters corresponding to different baseline distributions and transition probabilities for the latent classes. 
+
+4.3.1 Outcome I: Fall Occurrence Item-Response Latent Classes Figure 2 presents the symptom intensity of the six identified latent classes using a heatmap representation. The average symptom intensity for the k-th item in the l-th latent class is calculated by 
+
+∑dk 
+
+> j=1
+
+p(k) 
+
+> lj
+
+(j − 1) /(dk − 1) on a scale of [0,1], with values closer to 1 indicating greater symptom severity. The latent classes are ordered by decreasing overall symptom intensity. Latent class 1 exhibits high symptom intensity across most items and is labeled as the “high symptom class", whereas latent class 2 displays a similar but less severe profile and is labeled the “moderate symptom class". Unlike latent class 1 and 2, latent class 3 is characterized by moderate to high intensity in physical symptoms, including impact of physical health, bodily pain, loss of vitality and sleep problems, and is therefore referred to as the “high physical symptoms class". The remaining classes represent relatively healthier profiles. We label latent class 4 as the “fatigue & moderate psychological symptoms class" based on the moderate symptom intensity with respect to loss of vitality and depressive symptomatology items. Latent class 5 exhibits fewer psychological issues but more pronounced fatigue and sleep problems, and we name it as the “fatigue class". Latent class 6 has the lowest overall symptom intensity, with only mild fatigue-related symptoms, and is labeled as the “low symptoms & fatigue class". Notably, high symptom intensity with respect to leaked beyond control and lose of sexual desire is observed across all latent classes. (Note the similarity between these LCs and the LCs defined in Harlow et al. (2017), which used a similar, though not identical, set of symptoms in their latent transition analysis.) In the following text, we refer to the latent classes as LC 1-6 and their assigned names interchangeably. 
+
+Sequence Cluster Profile Figure 3 presents the profiles of the four identified sequence clusters, summarized by 
+
+π(r), τ (r) and ˆPr (ηi,t = l|λi), l = 1 , . . . , L, t = 1 , . . . , T , with the clusters ordered by increasing overall health status. Sequence cluster 1 contains 20% of the sample and is characterized by persistently poor health. At the baseline visit, most females belong to either the high symptoms class (34.5%) or the moderate symptoms class (41.0%). Over time, females in the high and moderate symptoms classes tend to remain in the same class (61.2% and 65.1%) or transition between each other (15.4% and 25.6%). In contrast, females in the less symptomatic LC3-LC6 exhibit only moderate probabilities of staying in their own classes (18.7%-29.9%) and are more likely to transition to the moderate symptoms class (34.2%-51.0%) than to healthier classes. The trajectory and alluvial plots further show that the moderate and high symptoms classes consistently dominate this cluster throughout follow-up, indicating persistent or worsening symptoms over time and the poorest overall health status among the four sequence clusters. Sequence cluster 2 consists of 21% of the sample. At baseline visit, more than half of the females fall into the moderate symptoms class (20.9%) and the high physical symptoms class (34.9%), with smaller but comparable proportions in the high symptoms class (13.1%), the fatigue & moderate psychological symptoms class (12.2%) and the fatigue class (14.7%). The transition matrix indicates a strong tendency to remain in or transition to the high physical symptoms class and the fatigue class. Females in these two classes are relatively stable, with a high probability of remaining in the same class (59.3% and 49.2%), and there are also noticeable transitions between them (19.8% and 19.6%). For females in the remaining classes, transitions to the high physical symptoms class (25.1%-44.4%) and the fatigue class (19.2%-33.0%) are common, while transitions to other classes, particularly LC4 and LC6, are relatively uncommon. The trajectory and alluvial plots further demonstrate a consistently high proportion of females in the high physical symptoms class and an increasing proportion in the fatigue class over time, suggesting a general shift toward classes dominated by physical burden and fatigue symptoms. 8Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT Physical health impact: Cut down time on work or other activities Physical health impact: Accomplish less Physical health impact: Limited in work or other activities Physical health impact: Di ffi culty performing work or other activities Emotional problem impact: Cut down time on work or other activities Emotional problem impact: Accomplish less Emotional problem impact: Less careful with work or other activities Physical/Emotional interfere: Normal social activities with others Physical/Emotional interfere: Social activities Body Pain Pain interfere with normal work Not full of pep Little energy Worn out Feel tired Sti ff ness or soreness Cold sweats Night sweats Vaginal dryness Dizzy spells Heart pounding Headache Hot fl ashes or fl ushes Leaked beyond control Sexual desire Trouble asleep Wake up several times a night Wake up earlier & unable to fall asleep again Sleep quality Overall health Feel blue or depressed Irritability or grouchiness Tense or nervous Forgetfulness Frequent mood changes Fealful for no reason Unable to control Lose con fi dent Things not going my way Cannot overcome di ffi culties Bother Poor appetite Blues Not feel just as good as others Lose focus Depressed Everything is an e ff ort Hopeless about future Life been a failure Fearful Restless Not happy Talk less Lonely Unfriendly Not enjoy life Crying spells Sad People dislike me Cannot get going 
+
+Latent Class 1 Latent Class 2 Latent Class 3 Latent Class 4 Latent Class 5 Latent Class 6 
+
+Intensity 
+
+20 40 60 80 
+
+Figure 2: Heatmap of symptom intensity by the six identified item-response latent classes from the joint model with outcome of fall occurrence, with darker red representing higher intensity. From left to right, the latent classes are ordered from class with most symptoms to class with least symptoms. The names on the left are shorter labels for the originally administered items. 9Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 34.5% 41.0% 11.7% 11.1% 1.1% 0.7% 
+
+Latent class distribution at baseline visit 
+
+0.65 0.15 0.17 0.03 0.07 0.13 0.26 0.61 0.42 0.51 0.34 0.39 0.06 0.08 0.3 0.09 0.1 0.07 0.02 0.11 0.06 0.21 0.19 0.11 0.01 0.04 0.03 0.13 0.26 0.11 0.01 0.01 0.02 0.04 0.04 0.19 
+
+Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 
+
+To Class From Class 
+
+Transition matrix 
+
+0.0 0.1 0.2 0.3 0.4 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Probabilities
+
+Latent class probabilities over time 
+
+0100 200 300 400 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Number of individuals
+
+Latent class transitions over time 
+
+(A) Pro fi le of sequence cluster 1 (n=398) 
+
+13.1% 20.9% 34.9% 12.2% 14.7% 4.1% 
+
+0.2 0.15 0.09 0.09 0.07 0.06 0.18 0.17 0.05 0.17 0.16 0.04 0.35 0.25 0.59 0.3 0.2 0.44 0.05 0.08 0.03 0.05 0.06 0.04 0.19 0.33 0.2 0.26 0.49 0.29 0.03 0.02 0.03 0.12 0.03 0.13 
+
+Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 
+
+To Class From Class 0.1 0.2 0.3 0.4 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Probabilities
+
+0100 200 300 400 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Number of individuals
+
+(B) Pro fi le of sequence cluster 2 (n=401) 
+
+2.1% 17.7% 9.4% 53.3% 8.8% 8.7% 
+
+0.07 0.02 0.01 0.01 0.01 0.01 0.4 0.32 0.11 0.14 0.03 0.02 0.08 0.07 0.16 0.06 0.04 0.03 0.25 0.44 0.38 0.6 0.03 0.26 0.13 0.1 0.26 0.1 0.76 0.23 0.06 0.03 0.08 0.1 0.13 0.45 
+
+Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 
+
+To Class From Class 0.0 0.2 0.4 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Probabilities
+
+0200 400 600 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Number of individuals
+
+(C) Pro fi le of sequence cluster 3 (n=672) 
+
+1.0% 2.3% 5.1% 29.2% 4.6% 57.8% 
+
+0.08 0.05 0.02 0.01 0.02 00.08 0.06 0.04 0.01 0.02 0.01 0.11 0.08 0.17 0.03 0.1 0.02 0.09 0.18 0.1 0.28 0.09 0.07 0.14 0.24 0.14 0.1 0.36 0.05 0.51 0.4 0.54 0.57 0.41 0.84 
+
+Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 Class 1 Class 2 Class 3 Class 4 Class 5 Class 6 
+
+To Class From Class 0.0 0.2 0.4 0.6 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Probabilities
+
+0100 200 300 400 
+
+Visit 0 Visit 2 Visit 4 Visit 6 Visit 8 Visit 10Visit 12 
+
+> Number of individuals
+
+(D) Pro fi le of sequence cluster 4 (n=463) 
+
+Item-response latent class High symptoms Moderate symptoms High physical symptoms Fatigue & moderate psychological symptoms Fatigue Low symptoms & fatigue 
+
+Figure 3: Profile of the four identified sequence clusters from the joint model with outcome of fall occurrence. Each row presents the profile of one sequence cluster. The panels from left to right on the r-th row are: a pie chart representation of initial proba-bilities π(r); the transition matrix τ (r), with darker blue indicating higher transition probabilities; a trajectory plot illustrating the development of latent class probabilities across visits, i.e., a representation of ˆPr (ηit = l|λi = r), l = 1 , . . . , R, t = 1 , . . . , T ;and an alluvial diagram visualizing individual-level latent class transitions over time, with the individual latent class membership assigned based on modal class assignment. 
+
+10 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+Table 2: Association between individual sequence cluster memberships and latent class memberships at the 12th visit and fall outcomes at Visit 15. Panel (A) presents odds ratio and 95% credible intervals (CrI) for the fall occurrence outcome and Panel (B) presents the odds ratio and 95% credible intervals (CrI) for the fall frequency outcome. (A) Outcome I: fall occurrence (B): Outcome II: fall frequency A single fall vs never fall Recurrent falls vs never fall Covariate Odds Ratio (95% CrI) Odds Ratio (95% CrI) Odds Ratio (95% CrI) Sequence cluster (ref = sequence cluster 1) Sequence cluster 2 1.59 (0.92, 2.61) 1.32 (0.68, 2.31) 1.98 (0.99, 3.57) Sequence cluster 3 0.89 (0.53, 1.43) 1.00 (0.51, 1.77) 0.77 (0.37, 1.42) Sequence cluster 4 0.87 (0.47, 1.54) 0.73 (0.34, 1.40) 1.18 (0.47, 2.45) Latent class at visit 12 (ref = High symptoms class) Moderate symptoms class 0.64 (0.41, 0.96) 0.85 (0.47, 1.40) 0.57 (0.31, 0.95)                
+
+> High physical symptoms class 0.41 (0.23, 0.67) 0.67 (0.34, 1.19) 0.29 (0.14, 0.51)
+> Fatigue & moderate psychological symptoms class 0.45 (0.24, 0.74) 0.66 (0.32, 1.22) 0.34 (0.14, 0.66)
+> Fatigue class 0.57 (0.33, 0.91) 0.77 (0.39, 1.38) 0.52 (0.27, 0.91)
+> Low symptoms class 0.38 (0.20, 0.66) 0.77 (0.35, 1.43) 0.17 (0.07, 0.35)
+> Baseline BMI (by 5 units) 1.02 (0.95, 1.10) 0.96 (0.88, 1.06) 1.09 (0.99, 1.19)
+
+Sequence cluster 3 includes 35% of the sample and is characterized by a predominance of the fatigue & moderate psychological symptoms class (53.3%) at the baseline visit. The remaining females are distributed relatively evenly across the other classes, except for a very small proportion in the high symptoms class. Females in LC1-LC3 tend to transition toward less symptomatic classes or remain in their current classes, showing little evidence of progression to more severe symptom classes. Females in LC4 and LC5 exhibit relatively high stability, with probabilities of staying in the same class of 59.5% and 76.1%. Females in LC6 also exhibit moderate stability (45.2%), with some developing more pronounced fatigue symptoms and moderate psychological symptoms. This cluster is overall characterized by a gradual decline in the proportion of females in the fatigue & moderate psychological symptoms class, accomplished by a steady increase in the fatigue class. The overall health status of females in sequence cluster 3 is much better compared to the first two clusters. The remaining 24% of the sample belong to sequence cluster 4, the healthiest group among the four sequence clusters. At the baseline visit, this cluster is primarily composed of females in the low symptoms & fatigue class (57.8%) and the fatigue & moderate psychological symptoms class (29.2%). Over time, females tend to transition to or remain in classes with less symptoms regardless of their initial class membership. In particular, the low symptoms & fatigue class acts as an absorbing state and becomes increasingly prevalent over time. The trajectory and alluvial plots further suggest a consistent improvement or maintenance of better health status throughout follow-up. 
+
+Association with Fall Occurrence Panel (A) in Table 2 summarizes the outcome model results in terms of posterior mean odds ratio. Compared with individuals in sequence cluster 1, those in other sequence clusters do not exhibit significantly different odds of falling. However, further pairwise comparisons reveal that individuals in sequence cluster 2 have significantly higher odds of falling than those in sequence cluster 3 (OR = 1.82, 95% CrI: 1.15, 2.76) and sequence cluster 4 (OR = 1.92, 95% CrI: 1.09, 3.16). These findings indicate that individuals with a strong tendency to transition toward and remain in latent classes with high physical burden (LC 3) and fatigue symptoms (LC 5) have nearly twice the risk of falling compared with individuals who follow healthier symptom trajectories. Latent class membership at visit 12, the closet visit included in the analysis to visit 15, also shows a strong association with fall occurrence. Compared with individuals in the high symptoms class (LC1), those in LC2-LC6 have signifi-cantly lower odds of falling. For example, individuals in LC2 have 64.1% (95% CrI: 40.8%, 95.7%) of the odds of falling relative to those in LC1, while individuals in LC6 have the lowest risk, with only 37.9% (95% CrI: 19.5%, 65.8%) of the odds of falling. These findings suggest that fall occurrence is also strongly driven by an individual’s most recent symptom profile. In addition, individuals in the high and moderate symptoms classes have higher odds of falling than those in the high physical symptoms class, indicating that beyond physical symptoms, psychological symptom burden may further increase fall risk. Baseline BMI is not significantly associated with fall occurrence, with a five-unit increase in baseline BMI associated with a non-significant 2.03% (95% CrI: -5.25%, 9.19%) increase in the odds of falling. 11 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+4.3.2 Outcome II: Fall Frequency Item-Response Latent Classes and Sequence Cluster Profile The profiles of the six identified item-response latent classes and the four identified sequence clusters can be found in Figure S6 and Figure S7 in Supplementary Materi-als, respectively. These profiles closely resemble those obtained from the fall occurrence outcome model, which is expected since the two outcomes are both defined base on the same underlying measure of falls. As a result, we keep the same labels and interpretations for the latent classes and sequence clusters as discussed in 4.3.1 and 4.3.1 in the following text. 
+
+Association with Fall Frequency Panel (B) of Table 2 presents the associations between individual sequence clus-ter and latent class membership at visit 12 and fall frequency, reported as posterior mean odds ratio. Studying the fall frequency can help us further understand how the longitudinal item-response patterns affect the occurrence of fall. From the first column of Panel (B), sequence cluster membership is not significantly associated with the odds of expe-riencing a single fall relative to no falls. Similarly, latent class membership at visit 12 does not appear to significantly change individuals’ odds of having a single fall relative to no falls. Baseline BMI also does not exhibit a significant association with individuals’ odds of having a single fall over no falls. These findings suggest that the occurrence of a single fall is more of a random event and is likely not driven by the long-term symptom trajectories, the most recent symptom profiles or the baseline characteristics. The second column of Panel (B) in Table 2 gives us more insights into the risk factors of the falls. First, latent class membership at visit 12 shows a strong association with the odds of recurrent falls. Individuals in the high symptoms class have the highest risk, while those in the remaining classes have significantly lower odds of recurrent falls. For example, compared to individuals in the high symptoms class, those in the moderate symptoms class have 43.2% (95% CrI: 5.3%, 68.7%) lower odds of experiencing recurrent falls relative to no falls, and those in the low symptoms & fatigue class have the lowest risk to experience recurrent falls (OR = 0.17, 95% CrI: 0.07, 0.35). Comparisons between the high and moderate symptoms classes and the high physical symptoms class further emphasize that recurrent falls may be a joint consequence of physical and psychological symptoms. The symptom trajectories, quantified by the sequence cluster, also explains the fall occurrence. Individuals in sequence cluster 2 have nearly twice the odds of experiencing recurrent falls relative to no falls compared with those in sequence cluster 1 (OR = 1.98, 95% CrI: 0.99, 3.57) and sequence cluster 3 (OR = 2.71, 95% CrI: 1.42, 4.77). These findings suggest that individuals who tend to develop and retain high physical symptoms (LC3) and fatigue symptoms (LC5) are at particularly high risk of recurrent falls, even compared with individuals whose trajectories are consistently dominated by high and moderate symptoms. This pattern further suggests that, among individuals in sequence cluster 1, recurrent fall risk may be largely driven by the recent symptom profiles rather than the historical trajectories. The latter finding explains how individuals in sequence cluster 2 have higher odds of fall occurrence than individuals in sequence cluster 3 as described in 4.3.1 through having higher odds of recurrent falls. Baseline BMI also has a meaningful, though non-significant, association with recurrent falls. With a five-unit increase in the baseline BMI, the odds of recurrent falls relative to no falls are increased by 9.1% (95% CrI: -0.7%, 19.3%). 
+
+5 Discussion 
+
+The application of our method to the longitudinal symptomatology scale responses and self-reported fall outcomes from the SWAN study both confirms prior findings and provides additional insights into fall risk among midlife females: • We identify six latent symptom classes, including two classes with high or moderate intensity across all measured symptoms, one dominated by high physical symptoms, two characterized by a predominant fatigue burden with or without additional psychological symptoms, and one with generally low symptom intensity. These findings are consistent with a previous study by Harlow et al. (2017), who examined a similar set of symptoms over menopausal transition (pre, early peri-, late peri- and post-menopause) and reported similar symptom subgroups. • At the longitudinal level, we identified four distinct sequence clusters. The first cluster is characterized by persistent high and moderate symptom burden. The second begins with a relatively even distribution across symptom classes but exhibits a strong tendency to transition toward and remain in classes dominated by physical symptoms and fatigue. The third is primarily composed of females in less symptomatic classes at baseline, with substantial stability in less symptomatic classes and transitions from more symptomatic classes to less symptomatic states. The last one is dominated by low or fatigue symptoms at baseline and demonstrates consistent transitions toward healthier profiles over time. These patterns highlight substantial 12 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+heterogeneity in symptom evolution during midlife, suggesting that jointly monitoring symptom profiles and transition dynamics may help identify females at elevated risk of falls and facilitate targeted interventions. • Connecting the symptom classes and sequence clusters with fall outcomes confirms findings from previous literature and provides some additional insights. Females in the high and moderate symptom classes exhibit significantly higher odds of recurrent falls, supporting prior evidence that falls arise from a complex combi-nation of symptoms from multiple domains (White et al., 2018; Peeters et al., 2019). In addition, individuals in the sequence cluster with a strong tendency to develop and retain high physical and fatigue symptoms over time have the highest risk of experiencing recurrent falls, indicating the importance of monitoring symptom trajectories rather than relying solely on cross-sectional symptom profiles. In contrast, we do not observe meaningful differences in the odds of a single fall across symptom classes and sequence clusters. As pointed out by Karvonen-Gutierrez et al. (2020), recurrent falls are more strongly driven by intrinsic factors of fe-males, whereas a single fall may be more likely caused by environmental factors. That explains why different symptom classes and sequence clusters did not show differences in the risk of single falls but significant differences in risk of recurrent falls. Also, the fact that the most symptomatic of the HTLA clusters does not correspond to the highest risk for recurrent falls suggests that high symptomatology may lead to reduced mobility so that fall risk decreases, suggesting a “U-shaped” risk of falls relative to overall health status. Several limitations of our study warrant discussion. First, we assume that the latent symptom classes are invariant across demographic and socioeconomic characteristics, which may be restrictive as previous work has shown that factors such as financial strain, obesity and smoking are associated with symptom class membership among midlife women Harlow et al. (2017). Future work could incorporate baseline covariates when estimating symptom classes. Second, we assume time-invariant transition probabilities within sequence clusters, implying that symptom dynamics remain constant over time. This assumption may be problematic during menopausal transition that also occurs in midlife, which is accompanied by substantial physiological and hormonal changes. Extending the model to allow for time-varying or menopausal stage-specific transition probabilities would provide a more flexible representation of symptom evolution at the cost of reduced interpretability of the model. Finally, while our analysis focuses on fall outcomes at a single visit, SWAN has collected fall outcomes over multiple annual visits. Future work could extend the current framework to develop a dynamic prediction model that incorporates both longitudinal symptom trajectories and fall history. Such an extension could enable individualized risk prediction and support targeted interventions. 
+
+Acknowledgments 
+
+The Study of Women’s Health Across the Nation (SWAN) has grant support from the National Institutes of Health (NIH), DHHS, through the National Institute on Aging (NIA), the National Institute of Nursing Research (NINR) and the NIH Office of Research on Womens Health (ORWH) (Grants U01NR004061; U01AG012505, U01AG012535, U01AG012531, U01AG012539, U01AG012546, U01AG012553, U01AG012554, U01AG012495, and U19AG063720). The content of this article is solely the responsibility of the authors and does not necessarily represent the official views of the NIA, NINR, ORWH or the NIH. This research was also partly supported through computational resources and services provided by Advanced Research Computing (ARC), a division of Information and Technology Services (ITS) at the University of Michigan, Ann Arbor. Clinical Centers: University of Michigan, Ann Arbor—Carrie Karvonen-Gutierrez, PI 2021present, Siobán Harlow, PI 20112021, MaryFran Sowers, PI 1994-2011; Massachusetts General Hospital, Boston, MA—SherriAnn BurnettBowie, PI 2020Present; Joel Finkelstein, PI 19992020; Robert Neer, PI 19941999; Rush University, Rush University Medical Center, Chicago, IL—Imke Janssen, PI 2020Present; Howard Kravitz, PI 20092020; Lynda Powell, PI 19942009; University of California, Davis/Kaiser—Elaine Waetjen and Monique Hedderson, PIs 2020Present; Ellen Gold, PI 1994-2020; University of California, Los Angeles—Arun Karlamangla, PI 2020Present; Gail Greendale, PI 1994-2020; Albert Einstein College of Medicine, Bronx, NY—Carol Derby, PI 2011present, Rachel Wildman, PI 20102011; Nanette Santoro, PI 20042010; University of Medicine and DentistryNew Jersey Medical School, Newark—Gerson Weiss, PI 19942004, and the University of Pittsburgh, Pittsburgh, PA—Rebecca Thurston, PI 2020Present; Karen Matthews, PI 1994-2020 .NIH Program Office: National Institute on Aging, Bethesda, MD—Rosaly Correa-de-Araujo 2020-present; Chhanda Dutta 2016-present; Winifred Rossi 20122016; Sherry Sherman 19942012; Marcia Ory 19942001; National Institute of Nursing Research, Bethesda, MD—Program Officers .Central Laboratory: University of Michigan, Ann Arbor—Daniel McConnell (Central Ligand Assay Satellite Services) .Coordinating Center: University of Pittsburgh, Pittsburgh, PA—Maria Mori Brooks, PI 2012-present; Kim Sutton-Tyrrell, PI 20012012; New England Research Institutes, Watertown, MA—Sonja McKinlay, PI 19952001 .13 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+Steering Committee: Susan Johnson, Current Chair, Chris Gallagher, Former Chair. We thank the study staff at each site and all the women who participated in SWAN. The authors would also like to thank the SWAN team at the University of Michigan for providing the datasets for analysis. 
+
+Disclosure Statement 
+
+The authors report there are no competing interests to declare. 
+
+Data Availability Statement 
+
+The data that support findings in this paper will be shared on reasonable request. 
+
+Supplementary Materials 
+
+The Supplementary Materials provide information on the relabeling algorithm, the model selection criteria and supple-mentary of the simulation study and application results. 
+
+References 
+
+Bandeen-Roche, K., Miglioretti, D. L., Zeger, S. L., and Rathouz, P. J. (1997). Latent variable regression for multiple discrete outcomes. Journal of the American Statistical Association , 92(440):1375–1386. Bolck, A., Croon, M., and Hagenaars, J. (2004). Estimating latent structure models with categorical variables: One-step versus three-step estimators. Political Analysis , 12(1):3–27. Buysse, D. J., Reynolds III, C. F., Monk, T. H., Berman, S. R., and Kupfer, D. J. (1989). The Pittsburgh Sleep Quality Index: a new instrument for psychiatric practice and research. Psychiatry Research , 28(2):193–213. Clogg, C. C. (1993). Latent class models: recent developments and prospects for the future. Handbook of Statistical Modeling in the Social Sciences , pages 311–359. Cohen, S., Kamarck, T., and Mermelstein, R. (1983). A global measure of perceived stress. Journal of Health and Social Behavior , 24:385–396. Collins, L. M. and Lanza, S. T. (2013). Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences . John Wiley & Sons. de Valpine, P., Paciorek, C., Turek, D., Michaud, N., Anderson-Bergman, C., Obermeyer, F., Wehrhahn Cortes, C., Rodríguez, A., Temple Lang, D., Zhang, W., Paganin, S., Hug, J., and van Dam-Bates, P. (2025). NIMBLE: MCMC, particle filtering, and programmable hierarchical modeling. de Valpine, P., Turek, D., Paciorek, C., Anderson-Bergman, C., Temple Lang, D., and Bodik, R. (2017). Programming with models: writing statistical algorithms for general model structures with NIMBLE. Journal of Computational and Graphical Statistics , 26:403–417. Elliott, M. R., Zhao, Z., Mukherjee, B., Kanaya, A., and Needham, B. L. (2020). Methods to account for uncer-tainty in latent class assignments when using latent classes as predictors in regression models, with application to acculturation strategy measures. Epidemiology , 31(2):194–204. Frühwirth-Schnatter, S. and Pamminger, C. (2010). Model-based clustering of categorical time series. Bayesian Analysis , 5(2):345–368. Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., and Rubin, D. B. (2013). Bayesian Data Analysis .CRC press. Gill, T., Taylor, A. W., and Pengelly, A. (2005). A population-based survey of factors relating to the prevalence of falls in older people. Gerontology , 51(5):340–345. Goodman, L. A. (1961). Statistical methods for the mover-stayer model. Journal of the American Statistical Associa-tion , 56(296):841–868. Harlow, S. D., Karvonen-Gutierrez, C., Elliott, M. R., Bondarenko, I., Avis, N. E., Bromberger, J. T., Brooks, M. M., Miller, J. M., and Reed, B. D. (2017). It is not just menopause: symptom clustering in the study of womens health across the nation. Women’s Midlife Health , 3(1):2. 14 Joint Modeling of Longitudinal Symptomatology Scale Responses and Fall Outcomes A P REPRINT 
+
+Howard, M. C. and Hoffman, M. E. (2018). Variable-centered, person-centered, and person-specific approaches: Where theory meets the method. Organizational Research Methods , 21(4):846–876. Huang, J., Gu, L., Zhang, L., Lu, X., Zhuang, W., and Yang, Y. (2016). Symptom clusters in ovarian cancer patients with chemotherapy after surgery: A longitudinal survey. Cancer Nursing , 39(2):106–116. Karvonen-Gutierrez, C. A., Ylitalo, K. R., and Peng, M. Q. (2020). Midlife falls are associated with increased risk of mortality in women: findings from the National Health and Nutrition Examination Survey III. Archives of Gerontology and Geriatrics , 91:104206. Kim, H.-J. and Abraham, I. L. (2008). Statistical approaches to modeling symptom clusters in cancer patients. Cancer Nursing , 31(5):E1–E10. Lanza, S. T., Tan, X., and Bray, B. C. (2013). Latent class analysis with distal outcomes: A flexible model-based approach. Structural Equation Modeling: A Multidisciplinary Journal , 20(1):1–26. McNicholas, P. D. (2016). Model-based clustering. Journal of Classification , 33(3):331–373. Ni, Y., Tein, J.-Y., Zhang, M., Yang, Y., and Wu, G. (2017). Changes in depression among older adults in china: A latent transition analysis. Journal of Affective Disorders , 209:3–9. O’Loughlin, J. L., Robitaille, Y., Boivin, J.-F., and Suissa, S. (1993). Incidence of and risk factors for falls and injurious falls among the community-dwelling elderly. American Journal of Epidemiology , 137(3):342–354. Peeters, G., Cooper, R., Tooth, L., van Schoor, N. M., and Kenny, R. A. (2019). A comprehensive assessment of risk factors for falls in middle-aged adults: co-ordinated analyses of cohort studies in four countries. Osteoporosis International , 30(10):2099–2117. Peeters, G., van Schoor, N. M., Cooper, R., Tooth, L., and Kenny, R. A. (2018). Should prevention of falls start earlier? co-ordinated analyses of harmonised data on falls in middle-aged adults across four population-based cohort studies. 
+
+PLoS one , 13(8):e0201989. Radloff, L. S. (1977). The CES-D scale: A self-report depression scale for research in the general population. Applied Psychological Measurement , 1(3):385–401. Seppälä, S., Rajala, K., Lehto, J. T., Sutinen, E., Mäkitalo, L., Kautiainen, H., Kankaanranta, H., Ainola, M., Saarto, T., and Myllärniemi, M. (2020). Factor analysis identifies three separate symptom clusters in idiopathic pulmonary fibrosis. ERJ Open Research , 6(4). Sowers, M., Crawford, S., Sternfeld, B., Morganstein, D., Gold, E., Greendale, G., Evans, D., Neer, R., Matthews, K., Sherman, S., Lo, A., Weiss, G., and Kelsey, J. (2000). SWAN: A Multicenter, Multiethnic, Community-based Cohort Study of Women and the Menopausal Transition , chapter 11, pages 175–188. San Diego, CA: Academic Press. Stephens, M. (2000). Dealing with label switching in mixture models. Journal of the Royal Statistical Society: Series B (Statistical Methodology) , 62(4):795–809. Vermunt, J. K. (2010). Latent class modeling with covariates: Two improved three-step approaches. Political Analysis ,18(4):450–469. Wang, C.-P., Hendricks Brown, C., and Bandeen-Roche, K. (2005). Residual diagnostics for growth mixture models: Examining the impact of a preventive intervention on multiple trajectories of aggressive behavior. Journal of the American Statistical Association , 100(471):1054–1076. Wang, Y., Xu, X., He, Y., Liu, J., Lv, Q., Chang, H., Fu, L., Zhao, Y., Zhang, X., and Zang, X. (2024). Latent transition of social participation and its effects on depression among older adults in China: A National Longitudinal Study. 
+
+Preventive Medicine , 187:108122. Ware, J. E., Snow, K. K., Kosinski, M., and Gandek, B. (1993). SF-36 Health Survey Manual and Interpretation Guide, Volume 2 . Boston, MA, USA. White, A. M., Tooth, L. R., and Peeters, G. G. (2018). Fall risk factors in mid-age women: The Australian Longitudinal Study on Womens Health. American Journal of Preventive Medicine , 54(1):51–63. Ylitalo, K. R. and Karvonen-Gutierrez, C. A. (2016). Body mass index, falls, and injurious falls among us adults: Findings from the 2014 behavioral risk factor surveillance system. Preventive Medicine , 91:217–223. Zammit, A. R., Bennett, D. A., Hall, C. B., Lipton, R. B., Katz, M. J., and Muniz-Terrera, G. (2020). A latent transition analysis model to assess change in cognitive states over three occasions: Results from the rush memory and aging project. Journal of Alzheimers Disease , 73(3):1063–1073. Zhou, Y., Yuan, Q., Yang, C., and Wang, Y. (2021). Who you are determines how you travel: Clustering human activity patterns with a markov-chain-based mixture model. Travel Behaviour and Society , 24:102–112. 15
