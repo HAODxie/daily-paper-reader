@@ -1,0 +1,411 @@
+Title: Quality Diversity for Reliable Data Driven Time-Use Optimization
+
+URL Source: https://arxiv.org/pdf/2608.05230v1
+
+Published Time: Fri, 07 Aug 2026 00:06:59 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+# QUALITY DIVERSITY FOR RELIABLE DATA DRIVEN TIME -U SE 
+
+# OPTIMIZATION 
+
+A P REPRINT 
+
+Aneta Neumann 
+
+Optimisation and Logistics School of Computer and Mathematical Sciences Adelaide University Adelaide, Australia 
+
+Ty Stanford 
+
+School of Allied Health and Human Performance Adelaide University Adelaide, Australia 
+
+Dorothea Dumuid 
+
+School of Allied Health and Human Performance Adelaide University Adelaide, Australia 
+
+Frank Neumann 
+
+Optimisation and Logistics School of Computer and Mathematical Sciences Adelaide University Adelaide, Australia August 7, 2026 
+
+# ABSTRACT 
+
+The daily allocation of the finite 24-hour time budget is strongly associated with physical, men-tal, and cognitive health. While predictive models can estimate the relationship between time-use compositions and health outcomes such as body mass index, life satisfaction, and cognition, most optimization approaches focus only on maximizing expected benefit and do not consider the uncer-tainty inherent in data-driven prediction. Ignoring uncertainty in health-related decisions can lead to unrealistic time-use recommendations. To address this gap, we introduce an uncertainty quantifi-cation Quality Diversity (QD) framework for a more reliable time-use recommendation. Objective functions are derived using compositional data analysis using a large child cohort dataset n > 1000 ,to capture the relationship between daily activity compositions and multiple health indicators. We develop a new approach that incorporates predictive uncertainty into QD processes and produces more reliable recommendations that balance the expected health benefits with the confidence of the model. We explore the solution space through variable-based and objective-based behavioral repre-sentations, revealing diverse high-quality time-use composition and explicit relationships between health outcomes under uncertainty. By embedding uncertainty directly into optimization, our frame-work shifts the time-use recommendations toward regions of lower uncertainty while preserving high-quality structures for more reliable decision-making in behavioral health. 
+
+Keywords Stochastic Time-Use Optimization, Quality Diversity, Health Improvement, Uncertainty Quantification 
+
+# 1 Introduction 
+
+Time-use optimization problems aim to provide guidance on how to structure daily activities in order to improve health outcomes. These problems are formulated using predictive models trained on real-world datasets, which esti-mate relationships between time-use compositions and outcomes such as physical, cognitive, and psychological health. However, such models are inherently uncertain due to limited data coverage, measurement noise, and extrapolation effects in compositional spaces. Traditional time-use optimization approaches focus on maximizing expected health benefits but thereby overlook the uncertainty associated with these predictions [30, 22]. By explicitly incorporating uncertainty into the optimization framework, recommendations can shift towards solutions that balance expected ben-efits with reliability, revealing more robust strategies. This probabilistic perspective improves the interpretability of arXiv:2608.05230v1 [stat.ML] 5 Aug 2026 Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+results and provides insights that standard approaches may miss, enabling more informed decision-making in health-related contexts. In this paper, we develop a Quality Diversity framework that explicitly considers uncertainty in the high-dimensional behavioral space for time-use optimization, to make reliable data-driven recommendations. 
+
+1.1 Background and related work 
+
+Daily time use is a constrained 24-hour constant-sum budget where activities are mutually exclusive and exhaustive. This co-dependency has driven a paradigm shift in behavioral epidemiology toward Compositional Data Analysis (CoDA), which evaluates health outcomes based on time reallocations rather than isolated behaviors [8, 6]. A sys-tematic review of studies using compositional data analysis [15] confirmed that these daily compositions significantly affect adiposity, cardiometabolic health, and mental wellbeing, leading global health authorities to establish integrated time-allocation guidelines. While the 2019 Australian 24-Hour Movement Guidelines [2], provide specific bench-marks such as 9–11 hours of sleep and ≥ 1 hour of MVPA for children, the evidence base remains limited. While Quality Diversity (QD) approaches can estimate how time-use compositions relate to outcomes such as body mass index, life satisfaction, and cognition, existing optimization approaches focus on maximizing benefit and ignore the uncertainty inherent in data-driven recommendations [22]. Exact methods identify optimal compositions for health outcomes but are computationally intensive for higher-dimensional, real-world time-use patterns and assume a single optimum, limiting choice. To address these issues, we propose an uncertainty-quantified Quality Diversity framework that enables more reliable time-use recommendations. By evaluating the confidence intervals of solutions relative to the training data, we shift the objective from simple maximization to a reliability-based optimization, ensuring that the recommended time-use compositions are high-performing and statistically robust. Quality-Diversity (QD) algorithms, which have gained considerable momentum in recent years, aim to find a set of high-performing solutions that are explicitly diverse with respect to behavioral descriptors [12, 24, 25, 26]. QD introduces mechanisms to preserve elite individuals while encouraging exploration of sparsely and noisy populated behavioral regions [4, 11, 9]. MAP-Elites, introduced by [16], discretize a behavioral space into cells and maintain the best-performing solution per cell, and enable illumination of the performance landscape rather than convergence to a single optimum. This competition allows QD algorithms to evolve a diverse, high-quality behavioral set of solu-tions that are particularly valuable in complex and high-dimensional domains. QD has been successfully applied in robotics [3, 23, 14], logistics [31], communication networks [10, 20], control systems and game design [1, 13, 32]. More recently, the paradigm has been applied in combinatorial optimization such as traveling thief problems [21], coevolutionary Pareto optimization [18] and monotone submodular functions [27, 19]. QD was applied to behavioral epidemiology for time-use optimization to improve health outcomes [22]. The authors demonstrated that QD can nav-igate the constrained simplex of 24-hour time-use to identify a diverse set of optimal health-promoting compositions. While QD has shown significant promise in behavioral modeling, its capacity for uncertainty quantification within the context of time-use recommendations remains largely underexplored. 
+
+1.2 Our contribution 
+
+In this paper, we introduce a data driven time-use optimization framework based on Quality Diversity (QD) that allows systematic exploration of solutions not only in terms of health benefits but also the reliability of diverse behavioral recommendations. Unlike standard approaches that optimize expected outcomes alone, our framework explicitly accounts for uncertainty arising from data-driven prediction models. We show that ignoring uncertainty leads to the selection of solutions in weakly supported regions of the model, which can result in unreliable or unrealistic time-use recommendations. To address this, we incorporate uncertainty directly into the QD process, propose methods to reduce uncertainty through reliable data selection and discounting, and provide systematic analysis of uncertainty in behavioral QD maps. We develop our framework in the context of health-related time-use optimization, where daily activity compositions are linked to outcomes such as physical, psychological, and cognitive health using models derived from a large co-hort dataset. Solutions correspond to 24-hour activity allocations, with predicted benefits and associated uncertainties computed from these models. We investigate variable-based and objective-based behavioral spaces, revealing diverse sets of high-quality solutions and highlighting how uncertainty shapes the structure of the solution space. Further-more, we provide a comprehensive investigation of real-world data on multiple health objectives and analyze how uncertainty improves the reliability of recommendations. Our framework provides a new approach for generating diverse, high-quality, and reliable time-use recommendations, offering practical value to health professionals by ex-plicitly accounting for model confidence in decision-making. We show that uncertainty is not uniformly distributed across the solution space and can significantly influence which solutions are high-quality. Our results demonstrate that incorporating uncertainty leads to more reliable and interpretable recommendations while preserving behavioral diversity. 2Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+The paper is organized as follows. Section 2 introduces Quality Diversity for time-use optimization. Sections 3 and 4 present uncertainty quantification for time-use recommendations and the QD approach for more reliable guid-ance. Section 5 carries out comprehensive experimental investigations, including 4D and 7D problems for real-world datasets. The paper concludes with final remarks. 
+
+# 2 Quality Diversity for Time-Use Optimization 
+
+Quality Diversity algorithms, e.g., MAP-Elites, are optimization methods designed to identify high-performing "elite" solutions across a diverse behavioral spectrum [16]. Unlike Evolutionary Algorithms that may converge on a single global optimum, MAP-Elites employs a niche-based survival selection. Competition is restricted to individuals with similar Behavioral Descriptors (BDs). This ensures that the archive maintains a diverse map of top-performance solutions throughout the feasible space. We define two different settings for MAP-Elites such as Variable-Based Behavioral Spaces (VBS) and Objective-Based Behavioral Spaces (OBS) as done in [22]. MAP-Elites operates by mapping elites across a discretized behav-ioral space, where solutions compete only within regions defined by similar behavioral descriptors (BDs), thereby promoting diversity while preserving quality. In a VBS, the behavioral descriptors (BDs) are derived directly from the solution space variables ( xi, x j ), with the grid resolution determined by the parameter αi to control cell granularity across the feasible range [xmin , x max ]. Each cell stores the best-performing solution associated with that region, en-suring coverage across the range of variable values. In contrast, an OBS utilizes objective function outputs ( ˆyi, ˆyj ) as BDs, mapping the distribution of elite solutions across the performance. Both configurations require discretizations where the number of niches is a function of the range and the user-defined resolution ( δi for OBS), ensuring that survival selection occurs only between solutions with localized phenotypic similarities. This formulation enables the algorithm to illuminate tradeoffs among objectives by preserving elites across different regions of the objective space. Together, these representations highlight how MAP-Elites balances exploration and exploitation by maintaining a structured archive of diverse and high-quality solutions. 
+
+# 3 Data-Driven Time-Use Recommendations and Uncertainty Quantification 
+
+In the following, we describe how we predict health outcomes based on given datasets and describe how to measure uncertainty based on the used prediction model. For a given time-use solution x, we derive the expected health benefit 
+
+E(x) as well as the uncertainty U (x) of x. Our model is based on multiple linear regression, but the QD approach introduced in Section 4 can be used for any model for which E(x) and U (x) can be derived. 
+
+3.1 Observed data used in data-driven time-use predictions 
+
+Given a dataset containing n observations of an outcome (fitness) 
+
+y = ( y1, . . . , y n)T ,
+
+and n corresponding sets of predictor values 
+
+X =
+
+
+
+1 z11 z12 . . . z1D′ z211 z11 z12 . . . z21D′
+
+1 z21 z22 . . . z2D′ z221 z21 z22 . . . z22D′
+
+... ... ... ... ... ... ...
+
+1 zn1 zn2 . . . znD ′ z2 
+
+> n1
+
+zn1zn2 . . . z2
+
+> nD ′
+
+ ,
+
+where xi = ( xi1, x i2, . . . , x iD )T is the D × 1 time-use vector of person i = 1 , 2, . . . , n with constraint PDj=1 xij =1440 minutes, zi = ilr (xi) = VT ln ∗(xi) with VT a D′ ×D a valid orthonormal basis matrix for the chosen isometric log-ratio ( ilr ) transform with D′ = D − 1, and ln ∗(.) is an element-wise operator of the natural logarithm. Note that the terms z2
+
+> i1
+
+, z i1zi2, . . . , z 2 
+
+> iD ′
+
+allow the fitness function to vary non-linearly with the ilr s, if statistically significant (otherwise are removed). 
+
+3.2 Multiple linear regression model 
+
+A multiple linear regression model fit on these data to linearly relate the observed outcomes, y, from the predictor values is written 
+
+y = Xβ + ϵ
+
+3Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+where β is a vector of D′ + D′(D′ − 1) /2 + 1 coefficients and ϵ ∼ N n(0n, σ 2In) is the model error in the predicted outcomes, Xβ , from the observed outcomes, y.Multiple linear regression uses the method of least-squares, which minimises the summed squared differences between the observed outcomes y and predicted values Xβ, written 
+
+arg min  
+
+> β
+
+∥y − Xβ∥2.
+
+If the columns of X are linearly independent, ˆβ = ( XT X)−1XT y uniquely minimizes the summed squared differ-ences. This is the reason the ilr transformation of the time-use variables as the constraint PDj=1 xij = 1440 minutes necessarily makes the time-use variables linearly dependent (which can easily be seen as xiD = 1440 − xi1 − xi2 −
+
+. . . − xiD ′ for every person i = 1 , 2, . . . , n ). Like all statistical models, there are assumptions that need to be met (namely, independent observations and ϵ ∼ N n(0n, σ 2In)). These assumptions can be assessed using the experi-mental design (independence of observations) and diagnostic plots of the residuals ( y − X ˆβ, residual normality with constant variance and no systematic relationships with the predictors). 
+
+3.3 Prediction on a new observation 
+
+Using the assumed statistical model, the predicted fitness for a new set of predictor values x0 is written Y0 = xT 
+
+> 0
+
+β+ϵ0.
+
+As ϵ0 is distributed around a mean of 0, the expected value of Y0 is equal to xT 
+
+> 0
+
+β. However, as we do not know the true population parameter vector of β, we instead must use the sample-estimated predicted value of xT 
+
+> 0
+
+ˆβ so we define 
+
+E∗(x0) = xT 
+
+> 0
+
+ˆβ (where E∗(.) is the prediction function in this context and not to be confused with the expectation of a random variable or random vector). As the function E∗(.) expects a full regression set of predictors (e.g., all the elements in a row of the "design matrix" X previously denoted as x0), we will define a convenience predictive function we will use herein as 
+
+E(x) := E∗(x0)
+
+where xT 
+
+> 0
+
+= [1 z1 z2 . . . z D′ z1z1 z1z2 . . . zD′ zD′ ] so that only the time-use composition vector x needs to be provided to the prediction function E(x).
+
+3.4 Uncertainty quantification for a new observation 
+
+Once again, for a new set of predictors, x0, the assumed model is Y0 = xT 
+
+> 0
+
+β + ϵ0 so the prediction error variance can be re-expressed as var( ϵ0) = var( Y0 − xT 
+
+> 0
+
+β). However, like before, we must use the sample-based estimates instead of the unknown population parameter vector, β, so we use the estimated variance of the error, noting that the variance of the estimated parameter vector is var( ˆβ) = σ2(XT X)−1,
+
+ˆvar( ϵ0) = var( Y0 − xT 
+
+> 0
+
+ˆβ)= var( Y0) + xT 
+
+> 0
+
+var( ˆβ) x0 as Y0 and ˆβ are independent 
+
+= σ2 + σ2xT 
+
+> 0
+
+(XT X)−1 x0 as Y0 ∼ N (0 , σ 2)= σ2  1 + xT 
+
+> 0
+
+(XT X)−1 x0
+
+ .
+
+From the above, we can see the uncertainty of a prediction E∗(x0) is a function of (a) the variance in the outcome (because of the normally distributed model error), and (b) the variance in the sample-based prediction xT 
+
+> 0
+
+ˆβ (as opposed to using the true population parameter vector β). Therefore we denote the uncertainty in a predicted outcome as, 
+
+U ∗ (x0) = ˆSD( E∗ (x0)) = p ˆvar( E∗ (x0)) = σ
+
+q
+
+1 + xT 
+
+> 0
+
+(XT X)−1x0.
+
+Similarly to the convenience function in prediction, E(x) := E∗(x0), we define a convenience uncertainty function used herein as 
+
+U (x) := U ∗(x0)
+
+where xT 
+
+> 0
+
+= [1 z1 z2 . . . z D′ z1z1 z1z2 . . . zD′ zD′ ] as before. Note that U ∗(x0) does not depend on the predicted value E∗ (x0) = xT 
+
+> 0
+
+ˆβ itself but only it varies only with inputs (solutions) x0, as σ (estimated by ˆσ = se = 1 
+
+> n−p
+
+∥Y − X ˆβ∥) and the design matrix X are constant for any (new) input. The variance (and therefore the standard deviation/uncertainty) of a prediction increases as xT 
+
+> 0
+
+moves away from the column-wise mean of the predictor variables μTX = mean columnwise (X) relative to the estimated predictor variable variance (and covariances) as seen in the term, σ2 xT 
+
+> 0
+
+(XT X)−1x0.4Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+# 4 QD Approach for More Reliable Recommendations 
+
+In the following, we assume that we maximize given function E(x) measuring the health outcome of time-use. Based on the given set of data, we have developed a model that allows to compute for each given time-use the solution the expected health benefit E(x) and uncertainty U (x). The optimization of the expected health benefit using QD has been considered in [22] and we study an extension of this approach to incorporate uncertainty. The first part is to observe with each of the optimized solutions computed in the behavioral space not only the expected health benefit E(x) but also its uncertainty U (x). Observing U (x) in addition to E(x) allows the user to judge how reliable to different solutions provided by QD in the map are and identify regions of reliable high quality solutions. If the uncertainty for solutions with a high expected health benefit is low, then this provides additional confidence in the time-use recommendation achieving the highest expected benefit. If the uncertainty is high for solution of high expected benefit, then the user might shift its focus to solutions with a lower uncertainty but also slightly lower expected health benefits in order to reduce the risk associated with the considered solution. We use fitness functions of the form F (x) = E(x) − Cα · U (x) which should be maximized. Here, E(x) is the expected score for solution x according to our data model and U (x) is the uncertainty of the prediction for solutions x
+
+with respect to the given data set as derived in Section 3. In the case, where we aim to minimize the health outcome, we use fitness functions of the form F (x) = E(x) + Cα · U (x) which should be minimized. To define a different certainty level, we use Cα based on the α-fractile point of the standard normal distribution. We note that uncertainty is not necessarily normally distributed in this way. We use Cα = 6 .36134 which is motivated by the α-fractile point of the standard normal distribution for α = 1 − 10 −10 . We note that differences in expected benefit are usually much higher than differences in uncertainty quantification. This means that a factor of Cα = 6 .36134 has a relatively moderate effect on the shift in expected health benefit. We also consider the case Cα = 0 which means that only the expected value E(x) is used to direct the search. Using Cα = 0 , we call it the standard model and it matches the setting considered in [21]. For all choices of Cα, we store the solutions x and the values F (x), E (x),
+
+U (x) as part of our quality diversity approach. We note that the search is directed by F (x) where as E(x) and U (x)
+
+for the solutions obtained are displayed in the maps obtained in our experimental investigations. 
+
+4.1 Quality Diversity approach 
+
+Our algorithm introduces a reliability-driven Quality Diversity framework that departs from standard MAP-Elites for time-use optimization introduced in [22] by embedding predictive modeling and uncertainty quantification directly into the search and selection process. Algorithm 1 provides an outline for the MAP-Elites for reliable time-use rec-ommendations in the case where a given health outcome objective should be maximized. Crossover and mutation operators to create new solutions are the same as introduced in [22]. Our new approach leverages a surrogate model M to estimate the expected performance E(x) of candidate solutions 
+
+x, in conjunction with an uncertainty measure U (x) that captures the confidence of these predictions. This formulation enables the definition of a risk-aware fitness function, F (x) = E(x) − Cα · U (x), which explicitly penalizes uncer-tain solutions and promotes robust decision-making. As such, the algorithm is designed not only to explore diverse regions of the behavioral space but also to prioritize solutions that are both high-performing and reliable under model uncertainty. The search process follows a MAP-Elites structure, where candidate solutions are generated either through random sampling or variation of previously discovered elites, and mapped into a discretized behavioral space via their descrip-tors [22]. However, selection within each cell is guided by the uncertainty-aware fitness rather than only performance. A solution replaces the current elite in a cell only if it offers a superior trade-off between predicted quality and un-certainty. This mechanism ensures that the archive evolves towards a set of solutions that are robust to prediction errors, addressing a key limitation of conventional QD approaches in data-driven contexts. The final output is a struc-tured map that captures diverse behavioral patterns while systematically prioritizing robustness and reliability in their predicted outcomes. 
+
+# 5 Detailed Experimental Investigations for Health Models 
+
+This section presents a comprehensive experimental analysis of the QD algorithm under uncertainty, their performance, and the structure of behavioral spaces. First, we describe the real-world data sources and the experimental setting. We evaluate the 4D and 7D problem from [22], and conduct a comprehensive examination of the results at a given confidence level for several objectives. 5Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+Algorithm 1 MAP-Elites for Reliable Time-Use Recommendations  
+
+> 1:
+
+Input: model M, empty maps X ← ∅ , F ← ∅ , E ← ∅ , U ← ∅ , parameters Cα, I (total number of fitness evaluations), G (number of initial solutions).  
+
+> 2:
+
+for k = 1 → I do  
+
+> 3:
+
+if k ≤ G then  
+
+> 4:
+
+Choose solution x′ randomly.  
+
+> 5:
+
+else  
+
+> 6:
+
+Produce new solution x′ by mutation or crossover. (parent(s) are selected uniformly at random from X ) 
+
+> 7:
+
+end if  
+
+> 8:
+
+b′ ← descriptor (x′) (obtains cell corresponding to x′ in the behavioral space)  
+
+> 9:
+
+Compute E(x′) and U (x′) based on the given model M 
+
+> 10:
+
+F (x′) ← E(x′) − Cα · U (x′) 
+
+> 11:
+
+if X (b′) = ∅ OR F(b′) < F (x′) then  
+
+> 12:
+
+F(b′) ← F (x′), E(b′) ← E(x′), U(b′) ← U (x′), X (b′) ← x′ 
+
+> 13:
+
+end if  
+
+> 14:
+
+end for  
+
+> 15:
+
+return (X , F, E, U)
+
+This work utilizes data from a large population-based child cohort to demonstrate the practical application of our QD time-use approach for more reliable recommendations. Data were obtained from the Child Health CheckPoint - Growing Up in Australia study [17], a cross-sectional module embedded in Release 9.1 C1 (Waves 1-9) of the Longitudinal Study of Australian Children (LSAC) [5]. Children from the LSAC birth cohort, which began in 2003 with over 10 , 000 participants, who remained in the study through Wave 9 (n = 7 , 658 ) were invited to participate in the Child Health CheckPoint at ages 11 –12 years. The daily behaviors were quantified via 7-day, 24-hour wrist-worn accelerometry (4D composition: sleep, sedentary, LPA, MVPA) and 24-hour recalls ( 7D composition including domains e.g., screen time and school activities). To map these behaviors to multi-dimensional health objectives, we assessed metrics including NAPLAN academic performance, NIH Toolbox cognition, VO2 max via cycle ergometry, and standardized BMI z-scores. To handle the intrinsic collinearity and constant-sum constraint of the 24-hour budget, we employed Compositional Data Analysis (CoDA) and Simplexity using the compositions package in R [29, 28]. Specifically, we addressed the singularity of the covariance matrix by applying a log-ratio expectation maximization algorithm for zero-replacement, followed by an isometric log-ratio (ilr) transformation. This mapped the D-part simplex into D − 1 linearly independent coordinates, enabling the robust estimation of objective functions via least-squares regression without violating the assumption of predictor independence. 
+
+5.1 The 4D problem 
+
+We explore the behavioral space of the 4D problem under uncertainty and compare the results obtained from the discounted QD algorithm with those from a standard approach. We consider four dimensions such as sleep (SL), sedentary activities (SED), light physical activity (LPA), and moderate-to-vigorous physical activity (MVPA). Objec-tive functions include BMIz, cognitive performance (COG), life satisfaction (LS), and fitness (VO2). All objectives are modeled as maximization problems, except BMIz, which is formulated as minimizing its absolute value. These ob-jective functions follow the same definitions as in [30], and the corresponding regression coefficients for the expected health benefit can be found in that work. The valid ilr basis matrix used for the 4D problem is 
+
+V T =         
+
+> "−0.7071068 0.7071068 0.0000000 0.0000000
+> −0.4082483 −0.4082483 0.8164966 0.0000000
+> −0.2886751 −0.2886751 −0.2886751 0.8660254
+> #
+
+Table 1: The (XT X)−1 matrix used in the uncertainty function U (x) = U ∗(x0) = se
+
+p1 + xT 
+
+> 0
+
+(XT X)−1x0 in the 4D problem for the Life Satisfaction outcome. Note that the se value for the Life Satisfaction regression was 4634.088. (Intercept) z1 z2 z3
+
+(Intercept) 0.0144878 -0.0139283 0.0002623 -0.0001188 
+
+z1 -0.0139283 0.0410740 -0.0142235 -0.0058197 
+
+z2 0.0002623 -0.0142235 0.0142227 -0.0046780 
+
+z3 -0.0001188 -0.0058197 -0.0046780 0.0105197 6Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT       
+
+> (a) Obj=VO2, E(x) (b) Obj=VO2, U(x) (c) Obj=LS, E(x) (d) Obj=LS, U(x)
+> (e) Obj=BMIz, E(x) (f) Obj=BMIz, U(x) (g) Obj=COG, E(x) (h) Obj=COG, U(x)
+
+Figure 1: Distribution of expected health benefits and associated uncertainties for the 4D model in the VBS space (LPA, MVPA) using the standard approach. As an example, we provide the matrix used for the uncertainty quantification U ∗(x0) of the health objective Life Satisfaction in Table 1. Similar tables have been constructed for the other health objectives studied in our experimental investigations for the 4D as well as the 7D model. 
+
+5.2 Experimental results for uncertainty quantification 
+
+We evaluate uncertainty quantification by comparing the maps produced by the standard and discounted approaches for 10 independent runs. Our algorithm is terminated after 10 6 fitness evaluations. The 4D model does not allow for very different solutions for the different behavioral spaces. We will use the 4D model mainly to illustrate the ability of our approach to highlight the uncertainty associated with optimized solutions. To do this, we consider the standard set up using no discounting and display the expected health benefit as well as the uncertainty associated with it. 
+
+5.2.1 The variable-based behavioral space 
+
+We show the results for the standard QD approach using the variable-based behavioral space (VBS) given by LPA and MVPA for the different health objectives in Figure 1. For the different objectives, we can observe the expected health benefit as well as the uncertainty associated with the corresponding solution. The best solution for the stan-dard approach (red dot in Figure 1a) has a VO2 value of E(x)=60 .0145 and U (x)=8.9677 , corresponding to the time-use elite [ 514 ,450 ,261 ,215 ]. In Figures 1c and 1d, the approach achieves an LS value of E(x)=13215 .0981 
+
+with U (x)=4648 .4160 for the elite solution [ 613 ,436 ,230 ,161 ]. In Figures 1e and 1f, the method identifies the elite [557 ,536 ,197 ,150 ] with a BMIz value of E(x)=0.00001 and uncertainty U (x)=1.0958 . The approach achieves a COG value E(x)=2.4523 with U (x)=0.1365 at the solution [ 527 ,738 ,159 ,16 ], as shown in Figures 1g and 1h. Under the discounted approach, the resulting maps remain similar to those obtained under the standard approach. This is pri-marily due to the small number of behavioral variables, which strongly constrains the structure of the solution space. As a result, even under strong discounting, the overall patterns and identified high-performing regions stay largely unchanged, with only marginal shifts observed in a few local areas. Our results show that the relationship between expected performance and uncertainty is strongly objective-specific. For example, for VO2, high-quality solutions are consistently associated with low uncertainty. This indicates a stable region of the learned model where optimal solutions are robust to uncertainty. In contrast, LS and BMIz exhibit a different uncertainty-quality patterns, where high-quality solutions are linked to higher uncertainty. This suggests that optimal regions for these objectives arise partly in areas of weaker model support or greater extrapolation. Uncertainty discounting slightly changes the selected best solutions and does not remove this pattern, indicating that performance and uncertainty are closely connected. COG exhibits a third behavior in which the objective landscape shows little variation in performance across solutions. In this case, uncertainty has limited influence on ranking and mainly serves as a secondary criterion for distinguishing between near-equivalent solutions. Overall, the results reveal three distinct 7Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT    
+
+> (a) Obj=BMIz, E(x) (b) Obj=BMIz, U(x) (c) Obj=COG, E(x) (d) Obj=COG, U(x)
+
+Figure 2: Distribution of expected health benefits and associated uncertainties for the 4D model in the OBS space (LS, Cog) (left two columns and (LS, BMIz) (right two columns) using the standard approach. regimes: low-uncertainty reliable optima (VO2), uncertainty-driven high-performance regions (LS, BMIz), and low-discriminative objectives (COG). This shows that uncertainty in QD serves as an indicator of model reliability rather than a uniform penalty, and it reshapes the archive differently for each objective while still preserving diversity. 
+
+5.2.2 The objective-based behavioral space 
+
+We evaluate the performance of our algorithm within the objective-based behavioral space (OBS). Figure 2 illustrates the elite solutions identified by the standard QD approach within two objective-based behavioral spaces such as COG x LS, BMIz x LS, where the objective functions correspond to Body Mass Index (BMI z-score) and cognitive perfor-mance (COG), respectively. Instead of giving one recommendation, our approach provides a map of elite behavioral compositions, together with their associated uncertainty. This allows for personalized health interventions, for exam-ple if a person cannot increase MVPA, the map shows the next best elite composition within their feasible sedentary or LPA range, while also indicating the reliability of the predicted outcome. OBS map is useful for finding the most certain behaviors by mapping one health objective against another, systematically identifying regions with high per-formance and low uncertainty across the space. Figure 2 shows that regions with higher cognitive scores and higher life satisfaction correspond to higher BMIz values. The best-performing solution in this space has E(x)=0.9626 and 
+
+U (x)=1.0968 at position ( 20 ,10 ). It also highlights that there are no solutions where both cognitive and life satisfac-tion values are simultaneously very low or very high. Furthermore, Figure 2 shows a clear contrast in the uncertainty patterns for BMIz and COG. On the another hand, the discounted strategy leads to a similar uncertainty patterns, while the expected value maps for BMIz and COG remain largely unchanged. The discounted approach reduces uncertainty in specific regions of the space, indicating improved robustness without substantially altering the overall structure of the expected value landscape. Figures 2c and 2d show the E(x) and U (x) maps obtained for cognitive function as the objective. The feasible region in this space is more constrained than in the BMIz space, indicating stronger behavioral restrictions. The results suggest that higher cognitive performance is associated with increased BMIz and reduced LS. The best cognitive value achieved is E(x)=2.4771 and U (x)=0.1372 at position ( 1,20 ). 
+
+5.3 The 7D problem 
+
+We analyze the performance of the QD algorithms on the 7D problem, where the behavioral space consists of sleep, screen time, physical activity, quiet time, passive transport, school-related activities, and domestic/self-care time. The optimization involves three objective functions such as academic performance, body fat percentage and psychiatric score [7]. We use this setting to further investigate how uncertainty propagates across the high-dimensional behavioral space and interacts with solutions. In particular, we analyze how our discounted approach can effectively reduce uncertainty, typically at the cost of lower expected health benefit. We further compare the standard and discounted approaches in terms of expected value and uncertainty in order to enable more informed and practical decision-making for behavioral health intervention. 
+
+5.3.1 The variable-based behavioral space 
+
+For the 7D optimization problem, the search space becomes substantially larger. To ensure convergence within a reasonable number of fitness evaluations, we restrict the analysis to 2D behavioral spaces. For each cell, we com-pute the expected value and uncertainty. Figure 3 presents the maps obtained using the standard and discounted approach, with behavioral spaces defined by physical activity × sleep. We note that the discounting approach leads to a significant reduction in uncertainty and the color-coding for the two approaches is on different scales due to this. Across all objectives, the maps show that high quality solutions are not evenly distributed but instead concentrate 8Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT     
+
+> (a) Obj=Acad, E(x), U(x) (b) Obj=BF, E(x), U(x) (c) Obj=Psy, E(x), U(x)
+> (d) Obj=Acad, E(x), U(x) (e) Obj=BF, E(x), U(x) (f) Obj=Psy, E(x), U(x)
+
+Figure 3: Distribution of expected health benefits and associated uncertainties for the 7D model in the VBS space (PA, SL) using the standard approach (top) and discounted approach with Cα = 6 .36134 (bottom). in specific regions of the space. The relationship between expected value E(x) and uncertainty U (x) is objective-specific. High-quality solutions are localized near the boundaries of the behavioral space for academics and body fat, whereas the interior is dominated by solutions with moderate performance and a wide range of uncertainty levels. Here, higher performance aligns with low uncertainty, and both approaches identify similar high-quality regions. For example, in Figure 3a and 3b, the elite [ 480 ,1,28 ,95 ,137 ,609 ,90 ] for academic performance achieves E(x)=580 .03 ,
+
+U (x)=73 .41 , while the elite [ 510 ,281 ,24 ,284 ,1,320 ,20 ] for body fat achieves E(x)=3.22 and U (x)=1.53 , respec-tively. Figure 3d and 3e presents the elite [ 554 ,1,21, 13 ,190 ,418 ,243 ] for academic performance with E(x)=572 .27 
+
+and U (x)=65 .08 , and the elite [ 529 ,28 ,34 ,128 ,268 ,123 ,330 ] for body fat with E(x)=3.07 and U (x)=0.39 , respectively. In contrast, for psychiatric, high-quality regions are concentrated in areas of elevated uncertainty. The elite solution [569 ,1,242 ,123 ,403 ,26 ,76 ] gives E(x)=90 .04 , U (x)=15 .80 (see Fig. 3c), and the elite [ 520 ,1,35 ,17 ,616 ,70 ,181 ] has 
+
+E(x)=87 .03 , U (x)=14.29 (see Fig. 3f). In this objective, high-quality solutions are predominantly located in regions of higher uncertainty. Our discounted approach preserves the overall structure and location of high-quality regions but shifts solutions toward lower uncertainty. High-uncertainty extremes become less prominent, while the main perfor-mance patterns remain unchanged. This effect varies across objectives, with minimal changes in stable regions and more noticeable redistribution where performance is closely related to uncertainty. For psychiatric, both approaches show noticeable differences. While similar performance regions are observed, the discounted approach shifts solutions toward the boundaries and reduces high uncertainty areas. In contrast, the standard approach shows a wider spread in uncertainty, with solutions more concentrated near boundary regions associated with lower physical activity. In a nut-shell, the results demonstrate that the discounted approach leads to a strong reduction in uncertainty across solutions in an objective-specific manner. It reveals distinct uncertainty performance relationships for different objectives and systematically shifts solutions toward lower uncertainty regions while preserving the overall structure of the search space. 
+
+5.3.2 The objective-based behavioral space 
+
+We define the behavioral space using objective functions, selecting two objectives as descriptors and one as fitness. Descriptor ranges are based on maximum values from prior experiments, except body fat, which follows recommended values for 12-year-old [ 14 .1, 26 .4]. Academic and psychiatric ranges are [ 533 .5, 580 .39 ] and [ 77 .1, 90 .11 ], with lower bounds set to reported mean values [7]. Figure 4 presents the MAP-Elites results for the 7D time-use optimization problem in terms of expected values E(x) and uncertainty U (x) for different behavioral spaces and objectives, and compares the standard QD approach with our discounted approach. For all objectives, the standard approach pro-duces high-performing regions with maximum values of 580 for academics, 2.6 for body fat, and 90 for psychiatric. These solutions cover a large portion of the behavioral space but extend into extreme regions (e.g., very low body fat or very high psychiatric scores). In contrast, our approach leads to a more compact distribution of high-quality solutions. While maintaining comparable best performance, it removes extreme regions and concentrates solutions in more balanced areas (e.g., academics ( 550 -575 ), body fat ( 2.7-2.9)), psychiatric ( 75 -85 ), avoiding extreme and less reliable combinations. In a nutshell, incorporating uncertainty leads to more constrained and realistic solution spaces, 9Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT          
+
+> (a) Obj=Acad, E(x) (b) Obj=Acad, U(x) (c) Obj=Acad, E(x) (d) Obj=Acad, U(x)
+> (e) Obj=BF, E(x) (f) Obj=BF, U(x) (g) Obj=BF, E(x) (h) Obj=BF, U(x)
+> (i) Obj=Psy, E(x) (j) Obj=Psy, U(x) (k) Obj=Psy, E(x) (l) Obj=Psy, U(x)
+
+Figure 4: Distribution of expected health benefits and associated uncertainties for the 7D model in OBS spaces using the standard approach (first two columns) and discounted approach with Cα = 6 .36134 (last two columns). showing that some high-quality solutions under the standard approach are likely to high. The uncertainty plots show a consistent pattern across all objectives. Under the standard approach, high-performing regions often coincide with elevated uncertainty, particularly near the boundaries of the behavioral space. For example, uncertainty values range for academics ( 0.38 -0.42 ), body fat ( 0.40 -0.46 ), and psychiatric ( 0.30 -0.34 ). These results indicate that the highest uncertainty is observed for extreme combinations of outcomes. With the discounted approach, solutions shift toward lower-uncertainty regions, avoiding unreliable extremes. Solutions are concentrated in central regions with lower uncertainty, indicating stronger support from real-world data. 
+
+# 6 Conclusions 
+
+We introduced a new QD framework for data-driven 24-hour time-use optimization that embeds predictive uncertainty directly into the search process. Using compositional data analysis to define health objectives and quantify uncertainty within each behavioral simplex, our approach explicitly balances expected outcomes with model confidence. The re-sults demonstrate that considering uncertainty shifts the recommended time-use patterns and reveals a clear divergence between regions of high expected benefit and regions of low uncertainty. Furthermore, our discounting approach leads to a substantial reduction in high-uncertainty elites, effectively guiding the search toward more reliable regions of the high-dimensional behavioral space. The analysis of variable-based and objective-based behavioral representations highlights how uncertainty influences the distribution and quality of solutions. This reliable data driven time-use QD framework provides insight into the interaction between health benefits and reliability to find diverse, high-quality daily schedules. A diverse solution set provides decision-makers with a wider range of time-use options that remain effective under different requirements and are robust to uncertainty. Consequently, embedding uncertainty into the QD process leads to more reliable data-driven time-use recommendations. This supports more robust and trustworthy decision-making in behavioral health optimization. 10 Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+# Acknowledgments 
+
+This work has been supported by the National Health and Medical Research Council (NHMRC) through grant 2039039 and by the Australian Research Council (ARC) through grant FT200100536. 
+
+# References 
+
+[1] A. Alvarez, S. Dahlskog, J. M. Font, and J. Togelius. Interactive constrained MAP-Elites: Analysis and evalua-tion of the expressiveness of the feature dimensions. IEEE Trans. Games , 14(2):202–211, 2022. [2] Australian Government Department of Health and Aged Care. Australian 24-hour movement guidelines for children (5-12 years) and young people (13-17 years): An integration of physical activity, sedentary behaviour, and sleep. Technical report, Commonwealth of Australia, Canberra, ACT, 2019. [3] A. Cully, J. Clune, D. Tarapore, and J. Mouret. Robots that can adapt like animals. Nature , 521(7553):503–507, 2015. [4] A. Cully and J. Mouret. Behavioral repertoire learning in robotics. In Genetic and Evolutionary Computation Conference, GECCO 2013 , pages 175–182. ACM, 2013. [5] Department of Social Services and Australian Institute of Family Studies and Australian Bureau of Statistics. Growing Up in Australia: Longitudinal Study of Australian Children (LSAC) Release 9.1 C1 (Waves 1-9), 2021. [6] D. Dumuid, T. Olds, K. Lange, B. Edwards, K. Lycett, D. P. Burgner, P. Simm, T. Dwyer, H. Le, and M. Wake. Goldilocks days: Optimising children’s time use for health and well-being. J Epidemiol Community Health ,76(3):301–308, 2022. [7] D. Dumuid, T. Olds, M. Wake, C. L. Rasmussen, Ž. Pediši´ c, J. H. Hughes, D. J. R. Foster, R. Walmsley, A. J. Atkin, L. Straker, et al. Your best day: An interactive app to translate how time reallocations within a 24-hour day are associated with health measures. PLOS ONE , 17(9):e0272343, 2022. [8] D. Dumuid, T. E. Stanford, J.-A. Martin-Fernández, Željko Pediši´ c, C. A. Maher, L. K. Lewis, K. Hron, P. T. Katzmarzyk, J.-P. Chaput, M. Fogelholm, and et al. Compositional data analysis for physical activity, sedentary time, and sleep. Statistical Methods in Medical Research , 27(12):3726–3738, 2018. [9] M. Flageat, J. Huber, F. Hélénon, S. Doncieux, and A. Cully. Extract-QD Framework: A generic approach for quality-diversity in noisy, stochastic or uncertain domains. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2025 , pages 140–148. ACM, 2025. [10] S. Gounder, F. Neumann, and A. Neumann. Evolutionary diversity optimisation for sparse directed communica-tion networks. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2024 , pages 996–1004. ACM, 2024. [11] L. Grillotti, M. Flageat, B. Lim, and A. Cully. Don’t bet on luck alone: Enhancing behavioral reproducibility of quality-diversity solutions in uncertain domains. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2023 , pages 156–164. ACM, 2023. [12] J. Lehman and K. O. Stanley. Improving evolvability through novelty search and self-adaptation. In Proceedings of the IEEE Congress on Evolutionary Computation, CEC 2011 , pages 2693–2700. IEEE, 2011. [13] A. Medina, M. Richey, M. Mueller, and J. Schrum. Evolving flying machines in minecraft using quality diversity. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2023 , pages 1418–1426. ACM, 2023. [14] A. Mertan and N. Cheney. Controller distillation reduces fragile brain-body co-adaptation and enables migrations in MAP-Elites. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2025 , pages 158–166. ACM, 2025. [15] A. Miatke, T. Olds, C. Maher, T. Stanford, and D. Dumuid. The relationship between reallocating time in 24-hour movement behaviours and health outcomes in adults: a systematic review of compositional data analysis studies. 
+
+International Journal of Behavioral Nutrition and Physical Activity , 20(1):1–24, 2023. [16] J. Mouret and J. Clune. Illuminating search spaces by Mapping Elites. CoRR , abs/1504.04909, 2015. [17] Murdoch Children’s Research Institute. Child health checkpoint – growing up in Australia. https://www. mcri.edu.au/research/projects/about-the-child-health-checkpoint , 2025. Accessed: 2026-02-10. [18] A. Neumann, D. Antipov, and F. Neumann. Coevolutionary pareto diversity optimization. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2022 , pages 832–839. ACM, 2022. 11 Quality Diversity for Reliable Data Driven Time-Use Optimization A P REPRINT 
+
+[19] A. Neumann, J. Bossek, and F. Neumann. Diversifying greedy sampling and evolutionary diversity optimisation for constrained monotone submodular functions. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2021 , pages 261–269. ACM, 2021. [20] A. Neumann, S. Gounder, X. Yan, G. Sherman, B. Campbell, M. Guo, and F. Neumann. Diversity optimization for the detection and concealment of spatially defined communication networks. In Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2023 , pages 1436–1444. ACM, 2023. [21] A. Nikfarjam, A. Neumann, and F. Neumann. On the use of quality diversity algorithms for the travelling thief problem. ACM Transactions on Evolutionary Learning and Optimization , 4(2):1–22, 2024. [22] A. Nikfarjam, T. Stanford, A. Neumann, D. Dumuid, and F. Neumann. Quality diversity approaches for time-use optimisation to improve health outcomes. In Proceedings of the Genetic and Evolutionary Computation Confer-ence (GECCO) , pages 1318–1326. ACM, 2024. Journal version appears in ACM Transactions on Evolutionary Learning and Optimization. [23] J. Nordmoen, F. Veenstra, K. O. Ellefsen, and K. Glette. MAP-Elites enables powerful stepping stones and diversity for modular robotics. Frontiers Robotics AI , 8:639173, 2021. [24] J. K. Pugh, L. B. Soros, and K. O. Stanley. Quality diversity: A new frontier for evolutionary computation. 
+
+Frontiers in Robotics and AI , 3:40, 2016. [25] H. Qin, Y. Xiang, H. Zhang, Y. Han, Y. Wang, X. Tao, and Y. Liu. A survey on quality-diversity optimization: Approaches, applications, and challenges. Swarm and Evolutionary Computation , 100:102240, 2026. [26] L. Rojas, E. Vega, L. Jorquera, and J. Garcia. Quality diversity and illumination algorithms in discrete combina-torial domains: Diversity metrics and implications for resilient mining operations. Mathematics , 14(7), 2026. [27] M. Schmidbauer, A. Opris, J. Bossek, F. Neumann, and D. Sudholt. Guiding quality diversity on monotone submodular functions: Customising the feature space by adding boolean conjunctions. In Proceedings of the Genetic and Evolutionary Computation Conference (GECCO) 2024 , pages 1336–1344. ACM, 2024. [28] T. Stanford. simplexity: Functions to generate, manipulate and plot data on the simplex, 2024. R package version 0.2.0. [29] T. Stanford, C. L. Rasmussen, and D. Dumuid. codaredistlm: Compositional Data Linear Models with Compo-sition Redistribution , 2022. R package version 0.1.0. [30] Y. Xie, A. Neumann, T. Stanford, C. L. Rasmussen, D. Dumuid, and F. Neumann. Evolutionary time-use op-timization for improving children’s health outcomes. In Parallel Problem Solving from Nature - PPSN XVII -17th International Conference, PPSN 2022, Proceedings, Part II , volume 13399 of Lecture Notes in Computer Science , pages 323–337. Springer, 2022. [31] M. Xu, F. Neumann, A. Neumann, and Y. S. Ong. Quality diversity genetic programming for learning schedul-ing heuristics. In Proceedings of the Genetic and Evolutionary Computation Conference , GECCO 2025, page 1090–1098, New York, NY, USA, 2025. ACM. [32] H. Zhang, Q. Chen, A. Tonda, B. Xue, W. Banzhaf, and M. Zhang. MAP-Elites with cosine-similarity for evolutionary ensemble learning. In Genetic Programming - 26th European Conference, EuroGP 2023 , LNCS, pages 84–100, Cham, 2023. Springer Nature Switzerland. 12

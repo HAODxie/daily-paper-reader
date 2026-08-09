@@ -1,0 +1,485 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-09T20:35:49.198456+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 12,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.06023v1",
+      "source": "arxiv",
+      "title": "BioKD: Selective Physiology-to-Video Knowledge Distillation via Reliability Gate for Emotion Recognition",
+      "abstract": "To address the limitations of video-based emotion recognition under ambiguous or socially masked behavioral cues, as well as the poor deployability of physiological signals, this paper proposes a reliability-aware physiology-to-video knowledge distillation framework, termed BioKD. The proposed framework leverages physiological signals as privileged information during training to guide a video-based student model in learning deep affective representations, while relying solely on non-intrusive video inputs at inference time. To cope with the high noise and instability of physiological teacher supervision caused by inter-subject variability, signal artifacts, and temporal inconsistency, BioKD incorporates a sample-wise reliability-aware gating mechanism together with a progressive distillation strategy. By adaptively regulating the strength of knowledge transfer, the framework suppresses negative transfer induced by unreliable physiological supervision and enables more stable cross-modal distillation. Experiments on DEAP and AMIGOS show that BioKD consistently outperforms representative baselines under both trial-wise and subject-wise evaluation protocols for valence and arousal recognition. For example, BioKD achieves 68.01\\% on DEAP (trial-wise arousal) and 65.29\\% under the more challenging subject-wise setting, demonstrating improved performance under a subject-independent evaluation setting. Further analyses show that BioKD effectively mitigates overconfident teacher errors and outperforms an entropy-only weighting strategy, confirming the importance of explicitly modeling supervision reliability. In addition, BioKD introduces no additional inference-time overhead relative to the same video student architecture and removes the need for physiological sensing and multimodal synchronization.",
+      "authors": [
+        "Bojing Hou",
+        "Ruohao Li",
+        "Yitong Zhu",
+        "Hongjun Liu",
+        "Luwen Yu",
+        "Yuyang Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-06T13:30:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.06023v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "deep learning for emotion recognition via physiology-to-video distillation",
+      "llm_evidence_cn": "通过生理到视频知识蒸馏进行深度学习情感识别",
+      "llm_evidence": "通过生理到视频知识蒸馏进行深度学习情感识别",
+      "canonical_evidence": "通过生理到视频知识蒸馏进行深度学习情感识别",
+      "llm_tldr_en": "BioKD uses physiological signals as privileged training information to teach a video-based student model emotion recognition, with a reliability gate to handle noisy physiological teacher supervision, improving deployment with only video inputs.",
+      "llm_tldr_cn": "视频情感识别受限于模糊或社交掩饰的行为线索，而生理信号虽然可靠但难以部署。BioKD提出可靠性感知的生理到视频知识蒸馏框架，在训练过程中利用生理信号监督视频学生模型，并通过逐样本可靠性门抑制噪声和伪影。推理时仅需视频输入即可获得深度情感表征，实验验证该方法生成的表征优于仅用视频训练的模型，为视频情感识别提供了实用且鲁棒的解决方案。",
+      "llm_tldr": "视频情感识别受限于模糊或社交掩饰的行为线索，而生理信号虽然可靠但难以部署。BioKD提出可靠性感知的生理到视频知识蒸馏框架，在训练过程中利用生理信号监督视频学生模型，并通过逐样本可靠性门抑制噪声和伪影。推理时仅需视频输入即可获得深度情感表征，实验验证该方法生成的表征优于仅用视频训练的模型，为视频情感识别提供了实用且鲁棒的解决方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.00680v1",
+      "source": "arxiv",
+      "title": "Multi-Dimensional Assessment for AI Cognition (MAAC): A Theoretical Framework for Process-Oriented Cognitive Evaluation of Text-Based AI Systems",
+      "abstract": "Evaluating artificial intelligence systems has historically relied on outcome-based benchmarks that measure task accuracy, robustness, or fairness. While indispensable, these benchmarks provide limited diagnostic insight into the underlying cognitive processes that generate performance-leaving critical questions unanswered about how AI systems reason, integrate memory, manage complexity, or avoid generating false information. This paper introduces the Multi-Dimensional Assessment for AI Cognition (MAAC), a theoretically grounded framework for shifting evaluation from what text-based AI systems produce to how they think. MAAC defines nine cognitively motivated dimensions: Cognitive Load, Tool Execution, Content Quality, Memory Integration, Complexity Handling, Hallucination Control, Knowledge Transfer, Processing Efficiency, and Process-Outcome Alignment. Each dimension is grounded in established cognitive science theory-drawing on Marr's tri-level hypothesis, Baddeley's working memory model, Sweller's cognitive load theory, and unified theories of cognition. Five theoretical analyses provide initial support for the framework's coherence and empirical testability: dimension-to-theory mapping; a coverage matrix assessing breadth and non-redundancy; a formal gap analysis relative to current evaluation practice; a worked diagnostic illustration; and a set of a priori interdependency predictions for future empirical testing. MAAC provides a theoretical and operational framework for principled process-level cognitive assessment of text-based AI systems, complementing existing outcome-based benchmarks with cognitively grounded, multi-dimensional evaluation.",
+      "authors": [
+        "Abdalla Doleh",
+        "Ratna Babu Chinnam"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-01T14:01:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.00680v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a cognitive evaluation framework for text-based AI systems, relevant to large language model research",
+      "llm_evidence_cn": "提出文本AI系统的过程导向认知评估框架，与大语言模型研究相关",
+      "llm_evidence": "提出文本AI系统的过程导向认知评估框架，与大语言模型研究相关",
+      "canonical_evidence": "提出文本AI系统的过程导向认知评估框架，与大语言模型研究相关",
+      "llm_tldr_en": "Argues outcome-based benchmarks lack diagnostic value for how text-based AI systems think, introducing MAAC, a nine-dimension theoretically grounded framework for process-oriented cognitive evaluation of AI cognition.",
+      "llm_tldr_cn": "针对现有AI评测仅看任务结果、难以诊断系统内部认知过程的问题，提出MAAC多维度评估框架。该框架从理论出发定义九个认知维度，将评估重点从AI“产出什么”转向“如何思考”，涵盖推理、记忆整合、复杂管理和防幻觉等能力。它为大语言模型/文本AI的可解释评测提供了过程化新思路。",
+      "llm_tldr": "针对现有AI评测仅看任务结果、难以诊断系统内部认知过程的问题，提出MAAC多维度评估框架。该框架从理论出发定义九个认知维度，将评估重点从AI“产出什么”转向“如何思考”，涵盖推理、记忆整合、复杂管理和防幻觉等能力。它为大语言模型/文本AI的可解释评测提供了过程化新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.01622v1",
+      "source": "arxiv",
+      "title": "SMM Transformer: Leveraging Spiking Neural Networks for Multimodal Tasks",
+      "abstract": "Spiking Neural Networks (SNNs) enable event-driven computation with sparse activations, but building multimodal Transformers on SNNs is hindered by unstable training in deep spiking stacks and the mismatch between dense softmax attention and spike-based communication. We propose SMM Transformer, an SNN-based multimodal Transformer framework that combines (i)PLMP, a Parallel LIF with Multistage Learnable Parameters neuron and a tailored P-STBP algorithm for stable deep SNN training, (ii) SMSA, an attention-inspired spike-driven token-mixing module that replaces dense pairwise softmax attention with channel-wise spike co-activation and self-compensation, and (iii)SMoE, a spiking mixture-of-experts module for modality-aware fusion. Across visual and multimodal benchmarks, SMM Transformer achieves competitive accuracy compared to ANN baselines. Under a standard MAC/AC arithmetic model, SMSA reduces the estimated operator-level compute energy of the attention module by up to 97%, while whole-model profiling shows more moderate but consistent efficiency gains.",
+      "authors": [
+        "Xiubo Liang",
+        "Jinxing Han",
+        "Yuke Li",
+        "Haoqi Zhu",
+        "Yu Zhao",
+        "Hongzhi Wang"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE",
+        "cs.MM"
+      ],
+      "published": "2026-08-03T02:54:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.01622v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Methodological bridge: brain-inspired spiking transformer for multimodal tasks, potentially useful for neuroscience-oriented deep learning and EEG processing",
+      "llm_evidence_cn": "方法桥接：类脑脉冲Transformer用于多模态任务，对神经科学导向的深度学习和脑电处理具有潜在价值",
+      "llm_evidence": "方法桥接：类脑脉冲Transformer用于多模态任务，对神经科学导向的深度学习和脑电处理具有潜在价值",
+      "canonical_evidence": "方法桥接：类脑脉冲Transformer用于多模态任务，对神经科学导向的深度学习和脑电处理具有潜在价值",
+      "llm_tldr_en": "SMM Transformer builds a spiking neural network based multimodal transformer with stable training and spike-driven token-mixing, offering efficient brain-inspired multimodal learning; relevant as a methodological bridge to neuroscience.",
+      "llm_tldr_cn": "该工作提出SMM Transformer，在脉冲神经网络框架下实现多模态Transformer，解决深层脉冲堆叠训练不稳定与密集软注意力不匹配问题。其模块包括并行LIF神经元、脉冲驱动token混合和脉冲专家混合，适用于视觉等多模态任务。该工作为类脑计算和多模态学习提供高效方案，可作为神经科学深度学习的方法参考。",
+      "llm_tldr": "该工作提出SMM Transformer，在脉冲神经网络框架下实现多模态Transformer，解决深层脉冲堆叠训练不稳定与密集软注意力不匹配问题。其模块包括并行LIF神经元、脉冲驱动token混合和脉冲专家混合，适用于视觉等多模态任务。该工作为类脑计算和多模态学习提供高效方案，可作为神经科学深度学习的方法参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.04885v1",
+      "source": "arxiv",
+      "title": "Evaluating the Diagnostic Robustness of Vision-Language Models Under Visual and Textual Perturbations",
+      "abstract": "Standard accuracy metrics for VLMs often mask significant reliability failures in sensitive domains. In this work, we utilize a histopathology-validated brain MRI dataset to systematically assess the diagnostic robustness of four VLM families under evidence-preserving perturbations. By reordering anatomical slices and swapping target label positions, we evaluate whether models maintain consistent predictions when clinical evidence remains invariant. Our results reveal significant vulnerabilities in presentation-order stability, with models exhibiting prediction flips in up to 48.9% of cases under simple sequence reversals. We further identify a textual selection bias, where label reordering triggers inconsistent diagnoses in up to 67.8% of cases despite identical visual inputs. Negative-control tests further reveal diagnostic overcommitment: models generate categorical diagnoses in up to 76.1% of cases after expert-annotated lesion slices are removed. These results demonstrate that high accuracy can overestimate clinical reliability, masking sensitivity to sequential presentation and textual framing that is not captured by aggregate accuracy. Our findings highlight the necessity of stability-based metrics for the deployment of VLMs in safety-critical clinical applications. Our evaluation data and code will be made public upon acceptance.",
+      "authors": [
+        "Ali Khoramfar",
+        "Mohammad Javad Dousti",
+        "Alireza Mohamadian",
+        "Heshaam Faili"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "published": "2026-08-05T14:09:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.04885v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Vision-language model robustness on brain MRI",
+      "llm_evidence_cn": "脑MRI上视觉语言模型的鲁棒性评估",
+      "llm_evidence": "脑MRI上视觉语言模型的鲁棒性评估",
+      "canonical_evidence": "脑MRI上视觉语言模型的鲁棒性评估",
+      "llm_tldr_en": "Systematically evaluates four VLM families on brain MRI diagnosis under evidence-preserving perturbations, revealing high prediction flips and textual selection bias, highlighting reliability risks in clinical use.",
+      "llm_tldr_cn": "针对视觉语言模型在敏感医疗领域标准准确率掩盖可靠性缺陷的问题，本文利用经过组织病理学验证的脑MRI数据集，系统评估4类VLM在保持证据不变扰动下的诊断鲁棒性。通过重排解剖切片和交换目标标签位置，发现模型在简单序列反转时最高可出现48.9%的预测翻转，并表现出文本选择偏差。结果表明，VLM在脑影像诊断中的表现受输入顺序和标签位置影响，可靠性存在显著短板。该研究为医疗多模态模型的鲁棒性测评提供了方法学参考。",
+      "llm_tldr": "针对视觉语言模型在敏感医疗领域标准准确率掩盖可靠性缺陷的问题，本文利用经过组织病理学验证的脑MRI数据集，系统评估4类VLM在保持证据不变扰动下的诊断鲁棒性。通过重排解剖切片和交换目标标签位置，发现模型在简单序列反转时最高可出现48.9%的预测翻转，并表现出文本选择偏差。结果表明，VLM在脑影像诊断中的表现受输入顺序和标签位置影响，可靠性存在显著短板。该研究为医疗多模态模型的鲁棒性测评提供了方法学参考。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.02331v1",
+      "source": "arxiv",
+      "title": "Context-Aware Mixture of Domain Experts for Bodily Expression of Emotion in the Wild",
+      "abstract": "The same body posture can convey entirely different emotions depending on its surrounding context, yet most methods for recognising bodily emotions treat scene and object cues as auxiliary feature augmentations rather than as structured priors over the plausibility of emotions. We introduce the Context-Aware Mixture of Domain Experts (CA-MoDE) for bodily emotion recognition. CA-MoDE incorporates dedicated scene and object experts to generate soft distributions over emotion categories conditioned on their respective domains. These domain-conditioned soft predictions serve as structured contextual priors that modulate the body expert's predictions at the distributional level rather than at the feature level. To fuse these multi-domain signals, we propose a task-tailored max-endorsement gating strategy that selects the strongest contextual signal across experts for each emotion dimension. Our gating strategy mitigates the signal dilution that typically occurs when conflicting or uninformative context distributions are averaged. CA-MoDE achieves an Emotion Recognition Score of 0.3269 on the Body Language Database. By outperforming existing temporal models using only single still images, our framework demonstrates that explicitly modelling structured spatial context can serve as a complementary discriminative proxy for the behavioural dynamics typically captured by video.",
+      "authors": [
+        "Mohammad Mahdi Dehshibi",
+        "David Masip"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-03T14:52:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.02331v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "deep learning emotion recognition from body expressions using context-aware mixture of domain experts",
+      "llm_evidence_cn": "基于上下文感知混合领域专家的身体情绪识别深度学习方法",
+      "llm_evidence": "基于上下文感知混合领域专家的身体情绪识别深度学习方法",
+      "canonical_evidence": "基于上下文感知混合领域专家的身体情绪识别深度学习方法",
+      "llm_tldr_en": "CA-MoDE uses dedicated scene and object experts to provide structured contextual priors that modulate body-emotion predictions at distribution level, improving bodily emotion recognition in the wild.",
+      "llm_tldr_cn": "同样身体姿态在不同场景中可能表达完全不同的情绪，但现有方法仅将场景和物体线索作为辅助特征。本文提出上下文感知混合领域专家（CA-MoDE），引入专门的场景和物体专家，生成条件于各自领域的情绪分布，进而作为结构化上下文先验，在分布层面调控身体专家预测，而非在特征层面拼接。该融合方式能更好地将多领域信号与身体姿态结合。实验表明CA-MoDE在野外身体情绪识别任务上优于现有方法，为多模态情绪识别提供了可迁移的融合思路。",
+      "llm_tldr": "同样身体姿态在不同场景中可能表达完全不同的情绪，但现有方法仅将场景和物体线索作为辅助特征。本文提出上下文感知混合领域专家（CA-MoDE），引入专门的场景和物体专家，生成条件于各自领域的情绪分布，进而作为结构化上下文先验，在分布层面调控身体专家预测，而非在特征层面拼接。该融合方式能更好地将多领域信号与身体姿态结合。实验表明CA-MoDE在野外身体情绪识别任务上优于现有方法，为多模态情绪识别提供了可迁移的融合思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.05481v1",
+      "source": "arxiv",
+      "title": "From Local Learning to Global Prediction Through Layered Surprise Cascades",
+      "abstract": "Hierarchical predictive coding proposes a compelling hypothesis of brain computation, suggesting that the cortex builds layered predictions to minimize surprise. Yet most models rely on error-coding neurons or generative modeling of unclear biological plausibility. Here, we examine a biologically plausible framework in which the functional goals of predictive coding emerge from local contrastive learning and simple activity cancellation. Building on recent machine learning advances, we present a recurrent variant of the Forward-Forward (FF) algorithm with an inverted objective that increases activity for negative data. This setup yields predictive representations across layers, capturing hallmark features of cortical computation such as top-down modulation and surprise signaling. Our results suggest that key principles of predictive coding can emerge from simple, local learning rules, offering a new bridge between neuroscience and machine learning.",
+      "authors": [
+        "Andrew L. Smith",
+        "Linxing Preston Jiang",
+        "Jason K. Eshraghian",
+        "Matthew S. Bull",
+        "Stefano Recanatesi"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC"
+      ],
+      "published": "2026-08-06T00:06:10+00:00",
+      "link": "https://arxiv.org/pdf/2608.05481v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Presents a biologically plausible deep learning framework for hierarchical predictive coding, linking brain computation to local contrastive learning",
+      "llm_evidence_cn": "提出生物可解释的分层预测编码深度学习框架，将皮层计算与局部对比学习联系起来",
+      "llm_evidence": "提出生物可解释的分层预测编码深度学习框架，将皮层计算与局部对比学习联系起来",
+      "canonical_evidence": "提出生物可解释的分层预测编码深度学习框架，将皮层计算与局部对比学习联系起来",
+      "llm_tldr_en": "Proposes a recurrent Forward-Forward variant with an inverted objective to make predictive coding emerge from local contrastive learning, capturing top-down modulation and cortical computation features without biologically implausible error neurons.",
+      "llm_tldr_cn": "针对预测编码模型依赖错误编码神经元或生成建模而生物可解释性不足的问题，提出基于前向-前向算法的循环变体。通过倒置目标函数增加负样本激活，使分层预测表征从局部对比学习和活动抵消中涌现，并捕捉自上而下调节等皮层计算特征。该工作用简单局部学习机制统一了机器学习与神经科学中的预测处理理论。",
+      "llm_tldr": "针对预测编码模型依赖错误编码神经元或生成建模而生物可解释性不足的问题，提出基于前向-前向算法的循环变体。通过倒置目标函数增加负样本激活，使分层预测表征从局部对比学习和活动抵消中涌现，并捕捉自上而下调节等皮层计算特征。该工作用简单局部学习机制统一了机器学习与神经科学中的预测处理理论。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.04358v1",
+      "source": "arxiv",
+      "title": "NeuMoSync: End-to-End Neuromodulatory Control for Plasticity and Adaptability in Continual Learning",
+      "abstract": "Continual learning (CL) requires models to learn tasks sequentially, yet deep neural networks often suffer from plasticity loss and poor knowledge transfer, which can impede their long-term adaptability. Drawing high-level inspiration from global neuromodulatory mechanisms in the brain, we introduce Neuromodulation and Synchronization (NeuMoSync), a novel architecture that integrates dynamic, neuron-specific modulation into deep neural networks to enhance their adaptability and plasticity. NeuMoSync extends standard neural network architectures with learnable feature vectors for each neuron that track network-wide historical context and with a module operating at a higher level of abstraction. This module synthesizes neuron-specific signals, conditioned on both current inputs and the network's evolving state, to adaptively regulate activation dynamics and synaptic plasticity. Evaluated on diverse CL benchmarks, including memorization (Random Label CIFAR-10 and Random Label MNIST), concept drift (Shuffle CIFAR-10 and Shuffle Mini-ImageNet), class-incremental learning (Class Split ImageNet and Class Split CIFAR-100), and domain-incremental learning (Permuted MNIST), NeuMoSync demonstrates strong performance in retaining plasticity and achieves improvements in both forward and backward adaptation compared with existing methods. Ablation studies validate the necessity of each component, while analysis of the learned modulatory signals reveals interpretable coordination patterns across tasks. Our work underscores the potential of integrating global coordination mechanisms into deep learning systems to advance robust, adaptive continual learning. The code is publicly available at https://github.com/RoozbehRazavi/NeuMoSync.",
+      "authors": [
+        "Seyed Roozbeh Razavi Rohani",
+        "Khashayar Khajavi",
+        "Wesley Chung",
+        "Mandana Samiei",
+        "Mo Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-05T02:01:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.04358v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces neuromodulatory mechanisms into deep neural networks for continual learning, a brain-inspired deep learning architecture",
+      "llm_evidence_cn": "将神经调质机制引入深度神经网络以增强持续学习能力，是脑启发的深度学习方法",
+      "llm_evidence": "将神经调质机制引入深度神经网络以增强持续学习能力，是脑启发的深度学习方法",
+      "canonical_evidence": "将神经调质机制引入深度神经网络以增强持续学习能力，是脑启发的深度学习方法",
+      "llm_tldr_en": "Addresses plasticity loss in continual learning with NeuMoSync, a brain-inspired architecture that adds neuron-specific neuromodulation and a higher-level synchronization module to improve adaptability and plasticity.",
+      "llm_tldr_cn": "针对深度神经网络在持续学习中可塑性下降和迁移不足的问题，提出NeuMoSync架构。它受大脑全局神经调质机制启发，为每个神经元引入可学习的特征向量以追踪历史上下文，并由高层模块合成神经调制信号。该设计在不牺牲旧知识的情况下提升模型的适应性与可塑性，为类脑持续学习提供了一条新路径。",
+      "llm_tldr": "针对深度神经网络在持续学习中可塑性下降和迁移不足的问题，提出NeuMoSync架构。它受大脑全局神经调质机制启发，为每个神经元引入可学习的特征向量以追踪历史上下文，并由高层模块合成神经调制信号。该设计在不牺牲旧知识的情况下提升模型的适应性与可塑性，为类脑持续学习提供了一条新路径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.05966v1",
+      "source": "arxiv",
+      "title": "A Modular Workflow for Multimodal Reading Experiments",
+      "abstract": "We introduce a web-based modular workflow for real-time multimodal experiments in naturalistic online reading. The workflow integrates eye tracking, EEG, and interaction data from mouse and keyboard, synchronizes them via Lab Streaming Layer, and links gaze to browser-based text at the word, sentence, and AOI levels. It is designed as a reusable experimental procedure that can be adapted to different sensors, tasks, and analysis goals. As a use case, we apply the workflow to a study of selective exposure in online news search and reading. During the experiment, gaze-derived measures are computed online, while EEG and other synchronized streams are processed immediately after task sessions based on fixation-triggered segmentation. The resulting behavioral, neural, and linguistic metrics support selecting text passages for targeted post-task rating or labelling within the same lab session. The workflow thus provides a general basis for multimodal research on reading and related cognitive processes, and supports the empirical validation, in ecological contexts, of constructs that are typically operationalised through self-report measures.",
+      "authors": [
+        "Thomas Krämer",
+        "Thomas Kosch",
+        "Dagmar Kern",
+        "Daniel Hienert"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-08-06T12:41:18+00:00",
+      "link": "https://arxiv.org/pdf/2608.05966v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Integrates EEG with eye tracking and interaction data in a modular workflow for multimodal experiments",
+      "llm_evidence_cn": "将脑电与眼动和交互数据集成到模块化工作流中，涉及脑电信号处理和多模态实验",
+      "llm_evidence": "将脑电与眼动和交互数据集成到模块化工作流中，涉及脑电信号处理和多模态实验",
+      "canonical_evidence": "将脑电与眼动和交互数据集成到模块化工作流中，涉及脑电信号处理和多模态实验",
+      "llm_tldr_en": "Introduces a web-based modular workflow integrating EEG, eye tracking, and interaction data with Lab Streaming Layer for real-time multimodal reading experiments.",
+      "llm_tldr_cn": "自然阅读实验需要同步多种模态数据，但现有流程难以同时集成眼动、脑电和交互数据并实现实时处理。论文提出一个基于网页的模块化工作流，通过Lab Streaming Layer同步眼动、脑电与鼠标键盘交互，并将注视与文本词汇/句子/感兴趣区关联起来，支持实时计算注视指标和事后基于注视触发的脑电分割。该工作流可复用于多种传感器和任务，为多模态认知实验提供了高效的数据采集与分析方法。",
+      "llm_tldr": "自然阅读实验需要同步多种模态数据，但现有流程难以同时集成眼动、脑电和交互数据并实现实时处理。论文提出一个基于网页的模块化工作流，通过Lab Streaming Layer同步眼动、脑电与鼠标键盘交互，并将注视与文本词汇/句子/感兴趣区关联起来，支持实时计算注视指标和事后基于注视触发的脑电分割。该工作流可复用于多种传感器和任务，为多模态认知实验提供了高效的数据采集与分析方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.05122v1",
+      "source": "arxiv",
+      "title": "IRIS: A Visual Cortex-Inspired Framework for Analyzing Orientation Selectivity in Vision Transformers",
+      "abstract": "Vision transformers (ViTs) have become the de facto standard for image encoding across many perception tasks. Despite their empirical success, it remains mechanistically unclear how they encode low-level features, given their lack of inductive biases: ViTs process information globally rather than relying on local structure. Biological visual systems, in contrast, build low-level features, such as orientation selectivity in the primary visual cortex, by combining information from small, localized regions of the visual field. These features are general-purpose representations, shared and required across multiple specialized neural pathways, unlike higher-level, task-specific semantic features. This raises the question if such biologically-grounded features arise in ViTs. In this work, we systematically study how orientation selectivity emerges in ViTs by introducing a suite of neuroscience-inspired metrics: representational similarity score (RSS), orientation recruitment score (ORS), and orientation tuning bandwidth to quantify how orientation is encoded in representational geometry and as a function of model depth. Through extensive analysis, we find that: (1) the training paradigm is the strongest determinant of orientation selectivity, with models sharing an objective, peaking at comparable relative depths regardless of scale (2) many units are orientation-selective early in training, with early-to-middle layers recruiting more such units over time, while deeper layers lose selectivity and broaden their tuning toward semantic encoding and (3) our metrics offer a mechanistic heuristic for how many layers to unfreeze for best downstream generalization. Our framework presents a way to track biologically-grounded features during ViT training, probes how desired properties are encoded in transformer representations, and builds a systematic understanding of how ViTs generalize across tasks.",
+      "authors": [
+        "Vaishnavi B Mohan",
+        "Vijayakrishna Naganoor",
+        "Yashas Annadani",
+        "Shashank Hegde"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-05T17:49:45+00:00",
+      "link": "https://arxiv.org/pdf/2608.05122v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses visual cortex orientation selectivity to analyze vision transformer representations, linking deep learning to neuroscience concepts",
+      "llm_evidence_cn": "借鉴视觉皮层朝向选择性来剖析视觉Transformer的表征机制，建立深度学习与神经科学的联系",
+      "llm_evidence": "借鉴视觉皮层朝向选择性来剖析视觉Transformer的表征机制，建立深度学习与神经科学的联系",
+      "canonical_evidence": "借鉴视觉皮层朝向选择性来剖析视觉Transformer的表征机制，建立深度学习与神经科学的联系",
+      "llm_tldr_en": "Introduces IRIS, a visual-cortex-inspired framework to analyze orientation selectivity in vision transformers, addressing the gap in mechanistic understanding of low-level feature encoding in global-processing models.",
+      "llm_tldr_cn": "针对视觉Transformer缺乏局部归纳偏置、难以理解其低层特征编码机制的问题，提出受视觉皮层启发的IRIS框架来分析朝向选择性。该框架借助初级视觉皮层的局部整合特性，解释这类全局处理模型如何形成通用低层表征，并可能为神经科学启发的深度学习模型设计提供启示。",
+      "llm_tldr": "针对视觉Transformer缺乏局部归纳偏置、难以理解其低层特征编码机制的问题，提出受视觉皮层启发的IRIS框架来分析朝向选择性。该框架借助初级视觉皮层的局部整合特性，解释这类全局处理模型如何形成通用低层表征，并可能为神经科学启发的深度学习模型设计提供启示。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.06013v1",
+      "source": "arxiv",
+      "title": "OneEmo: A Unified Multimodal Reasoning Model for Emotion Perception, Understanding, and Interaction",
+      "abstract": "Multimodal Large Language Models (MLLMs) have demonstrated remarkable capabilities in emotional intelligence. However, prevailing research predominantly focuses on task-specific specialization, often neglecting inter-task synergy and leaving latent reasoning potential underexplored. To bridge this gap, we introduce OneEmo, a unified affective generalist capable of mastering emotion perception, comprehension, and interaction. For this purpose, we first construct EmoWorld-130K, a comprehensive dataset that distills specialized affective knowledge into explicit reasoning trajectories via a human-in-the-loop workflow. Supervised fine-tuning on this corpus reveals significant mutual benefits derived from multi-task learning. Second, to fully unlock the latent reasoning potential, we propose Emo-Chord, a novel reinforcement learning strategy that stabilizes optimization through unified multi-task reward allocation. Extensive experiments demonstrate that OneEmo achieves state-of-the-art performance against similarly sized baselines across most benchmarks. Notably, despite having significantly fewer parameters than commercial models, OneEmo delivers highly competitive results. This paper paves the way for more reliable and interpretable affective computing. The code is available at https://github.com/waHAHJIAHAO/OneEmo.",
+      "authors": [
+        "Jiahao Huang",
+        "Zheng Lian",
+        "Jingyi Zhang",
+        "Zhide Chen",
+        "Xiaojiang Peng",
+        "Shaonan Wang"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-08-06T13:18:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.06013v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Multimodal emotion reasoning for mental health applications",
+      "llm_evidence_cn": "面向心理健康应用的多模态情绪推理",
+      "llm_evidence": "面向心理健康应用的多模态情绪推理",
+      "canonical_evidence": "面向心理健康应用的多模态情绪推理",
+      "llm_tldr_en": "Introduces OneEmo, a unified multimodal LLM for emotion perception, understanding, and interaction, trained on EmoWorld-130K with supervised fine-tuning to leverage multi-task synergies.",
+      "llm_tldr_cn": "针对多模态大语言模型在情感智能研究中任务特化、缺少任务间协同的问题，本文提出统一情感通才模型OneEmo。该模型能够同时完成情绪感知、情绪理解和情绪交互三种任务。作者构建了EmoWorld-130K数据集，通过人机协同流程将专门的情感知识蒸馏为显式推理轨迹，并采用监督微调进行训练。实验表明，多任务学习能够带来显著的相互增益，为通用情感智能体提供了新范式。",
+      "llm_tldr": "针对多模态大语言模型在情感智能研究中任务特化、缺少任务间协同的问题，本文提出统一情感通才模型OneEmo。该模型能够同时完成情绪感知、情绪理解和情绪交互三种任务。作者构建了EmoWorld-130K数据集，通过人机协同流程将专门的情感知识蒸馏为显式推理轨迹，并采用监督微调进行训练。实验表明，多任务学习能够带来显著的相互增益，为通用情感智能体提供了新范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.05230v1",
+      "source": "arxiv",
+      "title": "Quality Diversity for Reliable Data Driven Time-Use Optimization",
+      "abstract": "The daily allocation of the finite 24-hour time budget is strongly associated with physical, mental, and cognitive health. While predictive models can estimate the relationship between time-use compositions and health outcomes such as body mass index, life satisfaction, and cognition, most optimization approaches focus only on maximizing expected benefit and do not consider the uncertainty inherent in data-driven prediction. Ignoring uncertainty in health-related decisions can lead to unrealistic time-use recommendations. To address this gap, we introduce an uncertainty quantification Quality Diversity (QD) framework for a more reliable time-use recommendation. Objective functions are derived using compositional data analysis using a large child cohort dataset n > 1000, to capture the relationship between daily activity compositions and multiple health indicators. We develop a new approach that incorporates predictive uncertainty into QD processes and produces more reliable recommendations that balance the expected health benefits with the confidence of the model. We explore the solution space through variable-based and objective-based behavioral representations, revealing diverse high-quality time-use composition and explicit relationships between health outcomes under uncertainty. By embedding uncertainty directly into optimization, our framework shifts the time-use recommendations toward regions of lower uncertainty while preserving high-quality structures for more reliable decision-making in behavioral health.",
+      "authors": [
+        "Aneta Neumann",
+        "Ty Stanford",
+        "Dorothea Dumuid",
+        "Frank Neumann"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.AI",
+        "cs.LG",
+        "cs.NE"
+      ],
+      "published": "2026-08-05T12:41:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.05230v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Time-use optimization associated with mental and cognitive health outcomes",
+      "llm_evidence_cn": "与心理和认知健康结果相关的时间使用优化",
+      "llm_evidence": "与心理和认知健康结果相关的时间使用优化",
+      "canonical_evidence": "与心理和认知健康结果相关的时间使用优化",
+      "llm_tldr_en": "Introduces an uncertainty quantification Quality Diversity framework for time-use optimization, using compositional data analysis on a large child cohort to produce more reliable and diverse recommendations that account for predictions of mental and cognitive health.",
+      "llm_tldr_cn": "每天24小时的时间分配与身体、心理和认知健康密切相关。已有预测模型能估计时间使用组合与健康结局的关系，但多数优化只关注期望效果最大化，忽略了数据预测中的不确定性。该文提出一种不确定性量化质量多样性框架，利用成分数据分析从儿童队列数据中构造目标函数，给出更可靠的时间使用建议，避免因忽略不确定性而产生不切实际的推荐。",
+      "llm_tldr": "每天24小时的时间分配与身体、心理和认知健康密切相关。已有预测模型能估计时间使用组合与健康结局的关系，但多数优化只关注期望效果最大化，忽略了数据预测中的不确定性。该文提出一种不确定性量化质量多样性框架，利用成分数据分析从儿童队列数据中构造目标函数，给出更可靠的时间使用建议，避免因忽略不确定性而产生不切实际的推荐。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.06122v1",
+      "source": "arxiv",
+      "title": "Is Self-Pretraining really useful to improve diagnosis in medical Time Series?",
+      "abstract": "Inspired by recent evidence that transformer architectures benefit from Self-PreTraining (SPT) on long-context benchmarks, we investigate whether similar gains extend to multimodal, multivariate, and even simple univariate medical time series. Our objective is to assess the impact of SPT on the performance and scalability of transformer-based models across diverse medical applications, particularly under limited data conditions. We evaluate transformer architectures on three representative medical time-series tasks: rehabilitation robotics (Camargo dataset), stress detection (Non-EEG Stress), and Parkinson's disease detection (Gait Parkinson's Disease). Models are trained either from scratch or through SPT using four masking-based objectives designed to promote temporal and cross-modal representation learning, and we systematically vary model depth to examine how capacity interacts with pre-training benefits. Across datasets and configurations, SPT consistently improves classification accuracy by 0-6 percentage points depending on masking strategy, dataset and architecture, with gains observed not only in multivariate settings but also when models are restricted to simple univariate inputs. The improvements increase for deeper models that can better exploit the enriched temporal representations learned during pre-training. These findings indicate that SPT is a simple and general strategy that enhances transformer performance on medical time-series tasks without requiring task-specific architectural changes, supporting its potential to improve robustness and accuracy in data-limited clinical settings.",
+      "authors": [
+        "Omar Coser",
+        "Antonio Orvieto",
+        "Paolo Soda",
+        "Loredana Zollo"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-06T14:53:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.06122v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Self-pretraining for medical time series including Parkinson's and stress, related to deep learning in neuroscience",
+      "llm_evidence_cn": "医学时间序列自预训练研究，包含帕金森病与压力检测，关联神经科学深度学习",
+      "llm_evidence": "医学时间序列自预训练研究，包含帕金森病与压力检测，关联神经科学深度学习",
+      "canonical_evidence": "医学时间序列自预训练研究，包含帕金森病与压力检测，关联神经科学深度学习",
+      "llm_tldr_en": "This paper examines whether self-pretraining improves transformer-based diagnosis on medical time series, evaluating four masking objectives on rehabilitation robotics, stress detection, and Parkinson's disease detection, showing mixed benefits across tasks.",
+      "llm_tldr_cn": "Transformer架构在长上下文基准上从自预训练中获益，但医学时间序列是否同样受益尚不明确。研究在康复机器人、压力检测和帕金森病检测三个任务上，比较了从零训练与四种掩码式自预训练的效果。结果显示自预训练对医学时间序列的影响因任务与数据规模而异，并非总是优于从头训练。这为医疗AI中高效利用预训练策略提供了实证参考。",
+      "llm_tldr": "Transformer架构在长上下文基准上从自预训练中获益，但医学时间序列是否同样受益尚不明确。研究在康复机器人、压力检测和帕金森病检测三个任务上，比较了从零训练与四种掩码式自预训练的效果。结果显示自预训练对医学时间序列的影响因任务与数据规模而异，并非总是优于从头训练。这为医疗AI中高效利用预训练策略提供了实证参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
