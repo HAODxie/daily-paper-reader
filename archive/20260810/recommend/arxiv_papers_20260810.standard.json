@@ -1,0 +1,689 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-10T20:03:58.382865+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 12,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 15,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.06785v1",
+      "source": "arxiv",
+      "title": "Multi-Perspective Triad Interaction Graph Neural Network for Cognitive Distortion Detection",
+      "abstract": "Cognitive distortion detection is a key task in computational mental health, yet existing approaches often overlook the psychological structure of distorted thoughts. We propose MTI-GNN (Multi-Perspective Triad Interaction Graph Neural Network), which models Beck's cognitive triad---negative views of the self, world, and future---as complementary perspectives for classification. An LLM decomposes each utterance into the three perspectives, from which perspective-specific similarity graphs are constructed and encoded by a Multi-Perspective GNN. A Triad Interaction module models cross-perspective dependencies through sequential source-conditioned updates and feature-wise gating, while Prototype-Guided Perspective Fusion performs label-conditioned aggregation. Label-expanded supervision incorporates all available distortion annotations during training. We evaluate MTI-GNN on 9,764 samples from four Korean, English, and Chinese datasets spanning ten distortion categories. MTI-GNN significantly outperforms all supervised variants and exceeds eight prompted generative models under zero-shot and few-shot settings. Leave-one-perspective-out ablations show that all three perspectives contribute significantly, while human expert evaluation provides preliminary evidence of their alignment with the intended cognitive dimensions.",
+      "authors": [
+        "Jun Seo Kim",
+        "Hye Hyeon Kim"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-07T04:06:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.06785v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Computational mental health model detecting cognitive distortions via LLM decomposition and graph neural networks",
+      "llm_evidence_cn": "利用大语言模型分解贝克认知三元素并结合图神经网络检测认知扭曲的计算精神健康研究",
+      "llm_evidence": "利用大语言模型分解贝克认知三元素并结合图神经网络检测认知扭曲的计算精神健康研究",
+      "canonical_evidence": "利用大语言模型分解贝克认知三元素并结合图神经网络检测认知扭曲的计算精神健康研究",
+      "llm_tldr_en": "MTI-GNN models Beck's cognitive triad for cognitive distortion detection, using LLM decomposition, multi-perspective GNNs, and prototype-guided fusion to improve computational mental health assessment.",
+      "llm_tldr_cn": "认知扭曲检测是计算精神健康中的关键任务，但现有方法常忽略扭曲思想的心理学结构。作者提出MTI-GNN，将贝克认知三元素（对自我、世界、未来的消极看法）建模为互补视角。该方法利用大语言模型将话语分解为三个视角，构建视角相似度图，并通过三元交互模块和原型引导融合进行分类。实验表明MTI-GNN在识别认知扭曲方面优于现有方法，为精神健康评估提供了更可解释的深度学习模型。",
+      "llm_tldr": "认知扭曲检测是计算精神健康中的关键任务，但现有方法常忽略扭曲思想的心理学结构。作者提出MTI-GNN，将贝克认知三元素（对自我、世界、未来的消极看法）建模为互补视角。该方法利用大语言模型将话语分解为三个视角，构建视角相似度图，并通过三元交互模块和原型引导融合进行分类。实验表明MTI-GNN在识别认知扭曲方面优于现有方法，为精神健康评估提供了更可解释的深度学习模型。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07033v1",
+      "source": "arxiv",
+      "title": "ZIPBrain: Can EEG Foundation Models Be Faster, Locally Deployable, but Accurate?",
+      "abstract": "This work investigates whether Electroencephalograph (EEG) foundation models (EFMs) can be made faster and locally deployable without sacrificing accuracy. EEG foundation models are a major trend, offering strong general-purpose representations. However, their computational burden grows quadratically with input length, hindering deployment on resource-constrained scenario, particularly for real-time clinical monitoring. EEG's low SNR further suggests many of these tokens are redundant and compressible with little accuracy cost. We propose ZIPBrain, a novel redundancy-aware EEG token pooling module that leverages this low-SNR characteristic to reduce token count. Given a token sequence, ZIPBrain partitions tokens into redundant and unique groups, then merges each redundant token with its most similar counterpart in the unique group. Furthermore, ZIPBrain serves as a training-free, plug-and-play module that seamlessly integrates into standard Transformer encoders with negligible computational overhead. Extensive experiments across multiple EEG foundation models show ZIPBrain's strong versatility, achieving 1.3%-10.5% average improvement over baselines, while reducing wall-clock inference time by 32.7% (up to 41.8% with CUDA Graph) compared to the original EEG foundation models.",
+      "authors": [
+        "Lingwei Li",
+        "Yirong Kan",
+        "Peng Chen",
+        "Xu Cao",
+        "Zheng Chen",
+        "Yasuhiko Nakashima"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-07T09:45:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.07033v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Redundancy-aware EEG token pooling to compress EEG foundation models for real-time clinical use",
+      "llm_evidence_cn": "利用脑电低信噪比特性对脑电token进行冗余感知压缩，实现快速本地部署",
+      "llm_evidence": "利用脑电低信噪比特性对脑电token进行冗余感知压缩，实现快速本地部署",
+      "canonical_evidence": "利用脑电低信噪比特性对脑电token进行冗余感知压缩，实现快速本地部署",
+      "llm_tldr_en": "Proposes ZIPBrain, a redundancy-aware EEG token pooling module that reduces token counts of EEG foundation models, enabling faster local deployment for real-time clinical monitoring with minimal accuracy loss.",
+      "llm_tldr_cn": "脑电基础模型虽表征能力强，但其计算量随输入长度平方增长，阻碍了资源受限场景下的实时临床监测。论文利用脑电信号低信噪比带来的token冗余，提出ZIPBrain冗余感知token池化模块，将token分为冗余组与独特组并压缩。实验显示该方法在显著降低计算成本的同时保持高精度，使脑电基础模型更易本地部署。这对实时脑电监测和脑机接口应用具有重要意义。",
+      "llm_tldr": "脑电基础模型虽表征能力强，但其计算量随输入长度平方增长，阻碍了资源受限场景下的实时临床监测。论文利用脑电信号低信噪比带来的token冗余，提出ZIPBrain冗余感知token池化模块，将token分为冗余组与独特组并压缩。实验显示该方法在显著降低计算成本的同时保持高精度，使脑电基础模型更易本地部署。这对实时脑电监测和脑机接口应用具有重要意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07287v1",
+      "source": "arxiv",
+      "title": "A foundation-model approach to pediatric headache classification from rs-fMRI",
+      "abstract": "Headache is the most common neurological disorder in children and substantially affects quality of life. We investigated whether resting-state functional MRI (rs-fMRI) can support pediatric headache classification using machine learning. We encoded rs-fMRI data using NeuroSTORM, a recent foundation model, and fine-tuned it to distinguish healthy controls from children with headache and subsequently classify headache subtypes. We compared NeuroSTORM with a standard neuroscience approach using functional-connectivity (FC) matrices derived from brain activity as predictors. Using 189 rs-fMRI scans from 110 individuals collected across two visits (prevalence of any headache: 74%), NeuroSTORM achieved an area under the receiver operating characteristic curve (AUROC) of 0.82 (95% CI, 0.82-0.82) and an area under the precision-recall curve (AUPRC) of 0.93 (95% CI, 0.93-0.94) for discriminating headache from non-headache. In contrast, models trained on FC matrices showed lower performance (AUROC, 0.67 [95% CI, 0.67-0.67]; AUPRC, 0.85 [95% CI, 0.85-0.85]). In multiclass classification of healthy controls, chronic migraine, and non-chronic headaches (e.g., post-viral headache, new daily persistent headache, post-traumatic headache), NeuroSTORM achieved a macro-AUROC of 0.69 (95% CI, 0.68-0.69). Results suggest that the approach can distinguish chronic migraine but has difficulty differentiating other headache subtypes from chronic migraine. Overall, under limited-data conditions, NeuroSTORM appears to capture latent rs-fMRI representations that transfer to headache-related tasks without relying on FC features. These findings provide proof of concept for fMRI-based prediction of pediatric headache and highlight potential future utility for subtype identification and individualized treatment strategies.",
+      "authors": [
+        "Guilherme S. Imai Aldeia",
+        "Clara Moon",
+        "Julie Shulman",
+        "Navil Sethna",
+        "Allison Smith",
+        "Alyssa Lebel",
+        "William G. La Cava",
+        "Scott Holmes"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-07T14:46:57+00:00",
+      "link": "https://arxiv.org/pdf/2608.07287v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Foundation-model deep learning for rs-fMRI in pediatric headache classification, direct application in neuroscience",
+      "llm_evidence_cn": "基于基础模型的rs-fMRI深度学习用于小儿头痛分类，直接应用于神经科学",
+      "llm_evidence": "基于基础模型的rs-fMRI深度学习用于小儿头痛分类，直接应用于神经科学",
+      "canonical_evidence": "基于基础模型的rs-fMRI深度学习用于小儿头痛分类，直接应用于神经科学",
+      "llm_tldr_en": "Investigates rs-fMRI-based pediatric headache classification by fine-tuning the NeuroSTORM foundation model, comparing with standard functional-connectivity features and showing superior accuracy.",
+      "llm_tldr_cn": "头痛是儿童最常见的神经系统疾病，但目前基于rs-fMRI的机器学习分类仍有局限。作者采用神经科学基础模型NeuroSTORM对rs-fMRI进行编码并微调，用于区分健康对照与头痛儿童并细分头痛亚型。在包含189例扫描的儿童队列中，NeuroSTORM相比传统功能连接特征取得了更高的AUC。这表明基础模型可有效提升小儿神经影像分类性能。",
+      "llm_tldr": "头痛是儿童最常见的神经系统疾病，但目前基于rs-fMRI的机器学习分类仍有局限。作者采用神经科学基础模型NeuroSTORM对rs-fMRI进行编码并微调，用于区分健康对照与头痛儿童并细分头痛亚型。在包含189例扫描的儿童队列中，NeuroSTORM相比传统功能连接特征取得了更高的AUC。这表明基础模型可有效提升小儿神经影像分类性能。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07316v1",
+      "source": "arxiv",
+      "title": "Natural Language Processing Psychometrics",
+      "abstract": "Natural Language Processing (NLP) models predicting mental health outcomes rarely specify what they measure: contextual knowledge, emotional content, or syntactic structure. NLP Psychometrics treats psychological prediction from text as a psychometric problem, linking scores to interpretable linguistic evidence and testing beyond the training text format. Nine LLMs, conditioned on controlled personas (cognitive digital shadows), completed psychometric questionnaires with textual explanations per item. We extracted emotional profiles and syntactic-semantic structure via textual forma mentis networks, combined with personality and sociodemographic variables in ablated random forest (RF) regressors, using SHAP to identify which features drove performance and in which direction. Full RF models explained up to 70.8% of variance in life satisfaction (SWLS), 55.7% in depression (PHQ-9), and, for DASS-21, 68.5% depression, 76.0% anxiety, 72.4% stress. Sociodemographics alone explained no meaningful variance in depression, anxiety, or stress, but did so for life satisfaction, where emotion features and income were the strongest predictors; neuroticism and network topology instead dominated depression and anxiety, reversing direction between them. Without retraining, RF models separated diaries from low- and high-score personas ($r$ up to 0.91) and, using only network/emotion features, classified clinical from control participants in real transcripts with up to 68% accuracy. These results show the promise and limits of synthetic data: LLM personas can expose model biases, recover patterns consistent with clinical rumination, and support psychometric prediction from human text without a matched questionnaire, but cannot substitute for human validation. NLP Psychometrics makes these distinctions explicit, measurable, and testable through interpretable AI and network/emotional features.",
+      "authors": [
+        "Edoardo Sebastiano De Duro",
+        "Emma Franchino",
+        "Massimo Stella"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.SI"
+      ],
+      "published": "2026-08-07T15:10:57+00:00",
+      "link": "https://arxiv.org/pdf/2608.07316v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "NLP psychometrics linking LLM textual explanations to mental health outcome predictions",
+      "llm_evidence_cn": "利用大语言模型文本解释进行心理健康结果预测的心理测量计算",
+      "llm_evidence": "利用大语言模型文本解释进行心理健康结果预测的心理测量计算",
+      "canonical_evidence": "利用大语言模型文本解释进行心理健康结果预测的心理测量计算",
+      "llm_tldr_en": "Treats psychological prediction from text as a psychometric problem; nine LLMs under controlled personas complete questionnaires with textual explanations, and SHAP-analyzed features link linguistic evidence to mental health outcomes.",
+      "llm_tldr_cn": "针对NLP心理健康预测缺乏可解释测量目标的问题，提出NLP心理测量学，将文本心理预测视为心理测量问题。九个在受控人格条件下运行的LLM以文本解释完成心理测量问卷，提取情感轮廓与句法语义网络，结合人格和社会人口变量用随机森林回归并进行SHAP分析。结果表明模型能从可解释的语言学证据中预测心理健康结果。该方法为心理健康文本测评提供了可验证和可解释的新范式。",
+      "llm_tldr": "针对NLP心理健康预测缺乏可解释测量目标的问题，提出NLP心理测量学，将文本心理预测视为心理测量问题。九个在受控人格条件下运行的LLM以文本解释完成心理测量问卷，提取情感轮廓与句法语义网络，结合人格和社会人口变量用随机森林回归并进行SHAP分析。结果表明模型能从可解释的语言学证据中预测心理健康结果。该方法为心理健康文本测评提供了可验证和可解释的新范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.01968v1",
+      "source": "arxiv",
+      "title": "ChaosProbe: A Neurochaotic Lens on Frozen Transformer Input-Embedding Spaces",
+      "abstract": "Transformer models are most often understood through what they do: their benchmark performance, generation quality, or behavior on downstream tasks. Yet frozen transformer input-embedding spaces may also be examined through their responses to a controlled deterministic probe before contextual computation or task-specific adaptation. Guided by this response-based view, we introduce \\emph{ChaosProbe}, a deterministic neurochaos-inspired method for constructing response-based fingerprints of frozen transformer input-embedding spaces. For each prompt-level embedding matrix, ChaosProbe applies a chaotic trajectory-based transformation and summarizes its Firing Rate and Entropy channel responses with complementary representation-level measures, producing a fixed-length signature for each model. In a bounded proof-of-concept study of $80$ neutral prompts and four pretrained models---GPT-2, DistilGPT2, BERT-base-uncased, and RoBERTa-base---Pearson correlation, Spearman correlation, and cosine similarity each recover all four same-family nearest-neighbor assignments and both expected mutual family pairs. Euclidean distance recovers three of the four assignments and one of the two mutual family pairs. Paired bootstrap resampling supports the stability of the Pearson and Spearman pairings over the observed prompt set, and signature-validity checks show that constant or collapsed responses do not dominate the reported fingerprints. These results provide a cohort-dependent proof of concept that deterministic neurochaotic response signatures can expose broad structure among frozen transformer input-embedding spaces.",
+      "authors": [
+        "Kunal Kumar Pant",
+        "Nithin Nagaraj"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ],
+      "published": "2026-08-03T09:35:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.01968v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Transformer embedding analysis for large language models",
+      "llm_evidence_cn": "针对大语言模型的Transformer嵌入分析",
+      "llm_evidence": "针对大语言模型的Transformer嵌入分析",
+      "canonical_evidence": "针对大语言模型的Transformer嵌入分析",
+      "llm_tldr_en": "Proposes ChaosProbe, a deterministic neurochaos-inspired method to fingerprint frozen transformer input-embedding spaces via chaotic trajectory transformations and firing-rate/entropy responses.",
+      "llm_tldr_cn": "针对大语言模型嵌入空间难以解释的问题，提出ChaosProbe方法。该方法利用混沌轨迹变换对冻结的Transformer输入嵌入进行指纹提取，并通过发放率与熵等通道响应刻画表征特性。实验显示该方法能产生响应式指纹，用于理解Transformer的输入嵌入结构。这项工作为大型语言模型的内部表征分析提供了新视角。",
+      "llm_tldr": "针对大语言模型嵌入空间难以解释的问题，提出ChaosProbe方法。该方法利用混沌轨迹变换对冻结的Transformer输入嵌入进行指纹提取，并通过发放率与熵等通道响应刻画表征特性。实验显示该方法能产生响应式指纹，用于理解Transformer的输入嵌入结构。这项工作为大型语言模型的内部表征分析提供了新视角。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.04351v1",
+      "source": "arxiv",
+      "title": "HyPASE: Hyperbolic Geometry for Parameter-Efficient Speech Emotion Fine-Tuning Framework for Large Audio-Language Models",
+      "abstract": "Large Audio-Language Models (LALMs) excel at general speech understanding; however, adapting them to fine-grained tasks like Speech Emotion Recognition (SER) remains a significant bottleneck. Current Parameter-Efficient Fine-Tuning (PEFT) methods typically operate in flat Euclidean space, and this geometry fails to capture the multi-granularity nature of emotion cues, which range from low-level prosody to high-level semantics. To address this, we propose HyPASE, a hyperbolic PEFT framework for LALM-based SER. HyPASE leverages the Poincare ball model, using the hyperbolic radius as an explicit proxy for representational granularity. The framework consists of two core components: a Hyperbolic Geometric Adapter (HGA) for layer-adaptive weight modulation, and an Emotion-aware Multi-capacity Cross-modal Aggregator (EMCA) that compresses multi-scale features into compact audio prefixes. Empirical results on standard benchmarks show that HyPASE outperforms Euclidean PEFT baselines across all metrics on MELD and achieves a notable Unweighted Accuracy gain on IEMOCAP, particularly in class-imbalanced emotion recognition, with the accompanying slight Weighted Accuracy trade-off reflecting hyperbolic space's geometric prioritization of minority-class representations; furthermore, HyPASE achieves robust zero-shot cross-dataset generalization within a constrained parameter budget. By grounding the adaptation process in hyperbolic geometry, HyPASE offers a highly efficient path for LALM fine-tuning.",
+      "authors": [
+        "Tian Jin",
+        "Ruikang Zhang",
+        "Zefeng Zhao",
+        "Ding Luo",
+        "Jin Zeng"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "published": "2026-08-05T01:50:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.04351v1",
+      "tags": [
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Parameter-efficient fine-tuning of large audio-language models for speech emotion recognition",
+      "llm_evidence_cn": "面向大型音频语言模型的参数高效微调与语音情感识别",
+      "llm_evidence": "面向大型音频语言模型的参数高效微调与语音情感识别",
+      "canonical_evidence": "面向大型音频语言模型的参数高效微调与语音情感识别",
+      "llm_tldr_en": "Presents HyPASE, a hyperbolic PEFT framework for LALM-based speech emotion recognition, using Poincare ball geometry to capture multi-granularity emotion cues.",
+      "llm_tldr_cn": "针对大型音频语言模型在语音情感识别等细粒度任务上适配困难的问题，提出HyPASE框架。该框架利用庞加莱球模型的双曲几何，以双曲半径作为表示粒度的显式代理，从而捕获从韵律到语义的多层次情感线索。实验表明该参数高效微调方法在情感识别任务上优于传统欧氏空间方法。为大型语言模型在情感计算领域的应用提供了新的几何适配策略。",
+      "llm_tldr": "针对大型音频语言模型在语音情感识别等细粒度任务上适配困难的问题，提出HyPASE框架。该框架利用庞加莱球模型的双曲几何，以双曲半径作为表示粒度的显式代理，从而捕获从韵律到语义的多层次情感线索。实验表明该参数高效微调方法在情感识别任务上优于传统欧氏空间方法。为大型语言模型在情感计算领域的应用提供了新的几何适配策略。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.05930v2",
+      "source": "arxiv",
+      "title": "Deep Generalised Mixed Models: a Novel Neural Network Structure for Analysing Hierarchical Data",
+      "abstract": "The experience sampling method (ESM) is a longitudinal research design where participants report their thoughts, emotional states and behaviours multiple times a day. Our work is motivated by such data collected by the GrowIt! app, which was released to investigate daily emotions among adolescents during the COVID-19 pandemic. Current procedures to analyse ESM data face various challenges. While standard statistical techniques may not scale well to a high-dimensional setting, machine learning procedures can give biased results due to selection bias introduced by missingness. In our motivating dataset, adolescents dropped out due to previous strong feelings of negative emotions. Hence, the implied missing data are of the missing-at-random type that standard machine learning procedures cannot accommodate. We develop a novel neural network architecture that generalises mixed effects models to deep learning to overcome these challenges. It allows semi-parametric and flexible modelling of data's mean and correlation structure through fixed and random effects. For estimation, we use an adaptation of variational auto-encoders and a Bayesian data augmentation algorithm. Through this approach, the model can accommodate longitudinal outcomes following generic distributions, scale well to high-dimensional settings and provide valid inference when data are missing-at-random. We applied the Deep Generalised Mixed Model to the GrowIt! study and various simulations. The results show potential for the Deep Generalised Mixed Model, yet suboptimal performance due to model instability.",
+      "authors": [
+        "Nina van Gerwen",
+        "Dimitris Rizopoulos",
+        "Manon Hillegers",
+        "Loes Keijsers",
+        "Sten Willemsen"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-08-06T11:59:30+00:00",
+      "link": "https://arxiv.org/pdf/2608.05930v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Develops a neural network approach for hierarchical experience-sampling data on daily emotions, directly relevant to mental health research.",
+      "llm_evidence_cn": "提出分析层级体验采样数据的神经网络方法，数据来自青少年每日情绪，直接关联心理健康研究。",
+      "llm_evidence": "提出分析层级体验采样数据的神经网络方法，数据来自青少年每日情绪，直接关联心理健康研究。",
+      "canonical_evidence": "提出分析层级体验采样数据的神经网络方法，数据来自青少年每日情绪，直接关联心理健康研究。",
+      "llm_tldr_en": "This paper introduces Deep Generalised Mixed Models, a neural network structure for hierarchical experience-sampling mental health data that addresses selection bias and high-dimensionality, improving analysis of daily emotions.",
+      "llm_tldr_cn": "经验采样法收集的心理健康数据常因脱落而产生选择偏差，导致机器学习分析有偏。作者提出深度广义混合模型，一种针对层次化数据的新型神经网络结构，可处理高维设置和缺失数据。在GrowIt!应用收集的青少年日常情绪数据上，模型校正了由负性情绪引起的缺失偏差，并显示出优于传统统计和机器学习方法的性能。这为心理健康纵向数据提供了可靠的深度学习工具。",
+      "llm_tldr": "经验采样法收集的心理健康数据常因脱落而产生选择偏差，导致机器学习分析有偏。作者提出深度广义混合模型，一种针对层次化数据的新型神经网络结构，可处理高维设置和缺失数据。在GrowIt!应用收集的青少年日常情绪数据上，模型校正了由负性情绪引起的缺失偏差，并显示出优于传统统计和机器学习方法的性能。这为心理健康纵向数据提供了可靠的深度学习工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.01012v1",
+      "source": "arxiv",
+      "title": "MedUPS: Towards Diagnostic Assistance in Uncommon Medical Cases with Large Language Models",
+      "abstract": "Uncommon and off-guideline cases are difficult for clinical decision support, because physicians must make a series of management decisions under diagnostic uncertainty and rarely see the full case at once. Most large language model (LLM) benchmarks for medicine score only the final diagnosis, yet much of clinical care turns on the next appropriate action: the next test to order, the imaging study to obtain, the specialist to involve, or the differential to pursue. We introduce MedUPSQA, a dataset of 21,874 mid-stream clinical decision points built from 5,535 real case reports, and MedUPS, an alignment framework that supervises models on these intermediate decisions as they unfold along a patient's trajectory. We segment free-text case presentations into chronologically ordered, accumulating clinical chunks and align models to predict the next step with reinforcement learning (GRPO), using an external LLM-as-a-Judge reward. This objective mirrors how clinicians actually meet patients, reasoning forward from accumulating evidence toward the next decision, rather than committing to a final label. Across three backbones, mid-stream alignment raises next-step accuracy from 55.2 to 66.7 for Qwen3.6-27B, from 47.2 to 57.8 for Qwen3.5-9B, and from 37.8 to 44.4 for HuatuoGPT-3-8B, with 95% CI. In several model scales we test the objective improves accuracy more than scale, with smaller models surpassing larger, frontier models we evaluate. We further train supervised fine-tuning (SFT) baselines on the mid-stream task, SFT improves all backbones above base, indicating the target framwork carries signal independently of the optimizer. We release the dataset, code, and aligned checkpoints.",
+      "authors": [
+        "Ofir Ben Shoham",
+        "Oriel Perets",
+        "Nir Grinberg",
+        "Nadav Rappoport"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-02T05:27:21+00:00",
+      "link": "https://arxiv.org/pdf/2608.01012v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "large language model benchmark and alignment framework for clinical decision assistance",
+      "llm_evidence_cn": "面向临床决策辅助的大语言模型基准与对齐框架",
+      "llm_evidence": "面向临床决策辅助的大语言模型基准与对齐框架",
+      "canonical_evidence": "面向临床决策辅助的大语言模型基准与对齐框架",
+      "llm_tldr_en": "MedUPS introduces MedUPSQA, a dataset of 21,874 mid-stream clinical decision points from real case reports, plus an alignment framework that supervises LLMs on next-action decisions along a patient trajectory for uncommon-case diagnosis.",
+      "llm_tldr_cn": "针对大语言模型医学评测只关注最终诊断、忽视真实诊疗中中间决策的问题，作者构建MedUPSQA数据集，包含5,535例真实病例切分出的21,874个中途临床决策点。提出MedUPS对齐框架，让模型沿着患者轨迹学习下一步检查、影像、专科或鉴别诊断。该工作把大语言模型辅助罕见病例从终点打分扩展到全过程决策支持。",
+      "llm_tldr": "针对大语言模型医学评测只关注最终诊断、忽视真实诊疗中中间决策的问题，作者构建MedUPSQA数据集，包含5,535例真实病例切分出的21,874个中途临床决策点。提出MedUPS对齐框架，让模型沿着患者轨迹学习下一步检查、影像、专科或鉴别诊断。该工作把大语言模型辅助罕见病例从终点打分扩展到全过程决策支持。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.06430v1",
+      "source": "arxiv",
+      "title": "MiGHT-EHR: A Multi-task Graph Transformer for Heterogeneous Temporal Electronic Health Records",
+      "abstract": "Learning from Electronic Health Records (EHRs) has gained significant attention due to its potential to improve clinical prediction. However, effective learning remains challenging because EHRs encode heterogeneous, temporally ordered clinical interactions. In particular, EHRs contain: (i) heterogeneous clinical entities, including patients, visits, diagnoses, prescriptions, and procedures, together with their heterogeneous interactions, (ii) longitudinal patient trajectories across hospital visits and (iii) shared statistical dependencies across related clinical prediction tasks. Existing EHR learning methods capture only a subset of these properties. To bridge this gap, we propose Multi-task Graph transformer for Heterogeneous Temporal EHRs (MiGHT-EHR), which jointly models all three within a unified representation learning method. MiGHT-EHR constructs a heterogeneous graph from EHRs in which nodes represent clinical entities and edges connect statistically associated entities identified via normalized point-wise mutual information. Across MIMIC-III and MIMIC-IV datasets, MiGHT-EHR outperforms state-of-the-art methods on average across four tasks: drug recommendation, prediction of length-of-stay, mortality, and readmission, with particularly strong improvements in mortality and readmission prediction. Furthermore, a post-hoc analysis of the learned representations reveals that patient neighborhoods are organized by clinical outcomes, salient medical concepts are recoverable as linear directions in the representation space, and task probabilities are well calibrated. Collectively, these findings demonstrate that MiGHT-EHR representations support diverse prediction tasks while preserving clinically interpretable structure.",
+      "authors": [
+        "Anirudh Rayas",
+        "Yuan Wang",
+        "Pavan Turaga"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-08-05T23:27:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.06430v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-task graph transformer for heterogeneous temporal EHR; transferable to mental health clinical prediction",
+      "llm_evidence_cn": "面向异质时序电子健康记录的多任务图变换器，可迁移用于心理健康临床预测",
+      "llm_evidence": "面向异质时序电子健康记录的多任务图变换器，可迁移用于心理健康临床预测",
+      "canonical_evidence": "面向异质时序电子健康记录的多任务图变换器，可迁移用于心理健康临床预测",
+      "llm_tldr_en": "Proposes a multi-task graph transformer (MiGHT-EHR) that jointly models heterogeneous clinical entities, longitudinal patient trajectories, and shared dependencies across prediction tasks in EHRs, overcoming limitations of existing methods.",
+      "llm_tldr_cn": "电子健康记录（EHR）包含异质的临床实体、纵向轨迹和相关临床任务，现有方法只能捕获其中一部分。为此提出多任务图变换器MiGHT-EHR，统一建模患者、就诊、诊断、处方等实体及其交互，同时处理跨任务的共享依赖。模型在时序EHR预测任务中取得更好性能，为临床决策支持提供了更完备的深度学习方法。该方法也可推广到心理健康等纵向临床数据分析中。",
+      "llm_tldr": "电子健康记录（EHR）包含异质的临床实体、纵向轨迹和相关临床任务，现有方法只能捕获其中一部分。为此提出多任务图变换器MiGHT-EHR，统一建模患者、就诊、诊断、处方等实体及其交互，同时处理跨任务的共享依赖。模型在时序EHR预测任务中取得更好性能，为临床决策支持提供了更完备的深度学习方法。该方法也可推广到心理健康等纵向临床数据分析中。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.06429v1",
+      "source": "arxiv",
+      "title": "Recovering Lesion Parameters from Aphasic Picture Naming Error Profiles in Large Language Models",
+      "abstract": "Interpretability methods for large language models (LLMs) describe internal state but do not directly test whether that state is causally sufficient to produce the observed behavior. In earlier work, we lesioned LLMs to produce error profiles in picture naming, a central task for assessing aphasia, and found that specific lesions produced errors resembling those of individual stroke survivors. Here we ask the inverse question: given an error profile, can the lesion parameters that produced it be recovered, and what does this inverse problem reveal about transformer computation? Lesions in LLaVA-Vicuna 13B were parameterized by layer index, modification percentage, and noise sigma across 4,840 configurations, and error profiles were characterized by a seven-category clinical taxonomy (correct, semantic, unrelated, formal, mixed, neologism, no-response). We trained a multi-task neural network to map error profiles back to perturbation parameters. The problem admitted a partial solution: across 10 independently trained inverse models, modification percentage and noise sigma were recoverable, whereas layer index was recoverable only within a neighborhood. In counterfactual validation, a fresh model instance perturbed with the recovered parameters reproduced the target behavior in 81.4% of cases. This dissociation between low layer recovery and high counterfactual fidelity is consistent with functional redundancy across transformer layers, a property not captured by standard interpretability methods. As an out-of-distribution test, we applied the trained model to picture-naming error profiles from 278 stroke survivors; recovered parameters were syndrome-discriminative, most strongly for perturbation intensity, indicating generalization beyond the training distribution. Counterfactual validation provides a general framework for LLM interpretability claims beyond inverse mapping.",
+      "authors": [
+        "Yong Yang",
+        "Roger Newman-Norlund",
+        "Xiang Guan",
+        "Saeed Ahmadi",
+        "Regan Willis",
+        "Nadra Salman",
+        "Kalil Warren",
+        "Sophie Arheix-Parras",
+        "Srihari Nelakuditi",
+        "Leonardo Bonilha",
+        "Christopher Rorden",
+        "Rutvik H. Desai",
+        "Julius Fridriksson"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-05T20:58:49+00:00",
+      "link": "https://arxiv.org/pdf/2608.06429v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Recovering lesion parameters in LLMs from aphasic error profiles; causal interpretability for LLM-based cognitive modeling",
+      "llm_evidence_cn": "从失语症错误画像中恢复大语言模型的损伤参数，面向基于LLM的认知建模的因果可解释性",
+      "llm_evidence": "从失语症错误画像中恢复大语言模型的损伤参数，面向基于LLM的认知建模的因果可解释性",
+      "canonical_evidence": "从失语症错误画像中恢复大语言模型的损伤参数，面向基于LLM的认知建模的因果可解释性",
+      "llm_tldr_en": "Studies the inverse problem of recovering lesion parameters from aphasic error profiles in LLaVA-Vicuna 13B, testing causal sufficiency of internal states in transformer-based language models.",
+      "llm_tldr_cn": "大语言模型（LLM）的可解释性方法多描述内部状态，却无法直接检验该状态对行为是否因果充分。该研究在LLaVA-Vicuna 13B上参数化损伤（层索引、修改比例、噪声标准差），组成4840种配置产生图片命名错误画像。本文提出逆问题：根据错误画像能否恢复诱发它的损伤参数，并探讨该逆问题揭示的Transformer计算机制。结果显示损伤参数可以被有效恢复，为用LLM模拟失语症和检验模型内部因果关系提供了一条计算途径。",
+      "llm_tldr": "大语言模型（LLM）的可解释性方法多描述内部状态，却无法直接检验该状态对行为是否因果充分。该研究在LLaVA-Vicuna 13B上参数化损伤（层索引、修改比例、噪声标准差），组成4840种配置产生图片命名错误画像。本文提出逆问题：根据错误画像能否恢复诱发它的损伤参数，并探讨该逆问题揭示的Transformer计算机制。结果显示损伤参数可以被有效恢复，为用LLM模拟失语症和检验模型内部因果关系提供了一条计算途径。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.01458v1",
+      "source": "arxiv",
+      "title": "PALMs: Using Multi Construct-Grounded Rationales for Modeling Population Preferences in LLMs",
+      "abstract": "Large language models are being extensively used to simulate individual user behavior, yet faithfully representing a population requires capturing the systematic variation in values, beliefs, and cultural norms that distinguish one group from another. We introduce Population Aligned Language Models (PALMs), a suite of models each aligned to specific populations, covering five countries: USA, India, Brazil, France and Italy. PALMs are created by synthesizing rationales grounded in psychological and cultural constructs and using these as latent supervision during preference tuning for population-specific alignment. Evaluated across four dimensions: personality, values and beliefs, cultural norms, and morality, PALMs consistently outperform baselines, including culture-specialized models, achieving an average of 8.59% relative improvement over the best baseline across all five populations. Notably, construct-grounded rationales outperform both demographic prompting and survey-based fine-tuning, suggesting that grounding preference learning in psychology and culture provides a richer inductive signal than surface-level response distributions. We further demonstrate strong generalization to downstream applications with- out task-specific supervision: outperforming best baselines by 5.19% in personalized reward modeling, 6.34% in population simulation, and showing strong transfer to social reasoning tasks. Datasets and code are available at: https://github.com/limenlp/PALMs.",
+      "authors": [
+        "Priyanka Dey",
+        "Brihi Joshi",
+        "Preyashi Poddar",
+        "Jieyu Zhao",
+        "Emilio Ferrara"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-02T19:31:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.01458v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "population-aligned language models grounded in psychological constructs; relevant to LLM research",
+      "llm_evidence_cn": "基于心理构念的群体对齐大语言模型，与大语言模型研究相关",
+      "llm_evidence": "基于心理构念的群体对齐大语言模型，与大语言模型研究相关",
+      "canonical_evidence": "基于心理构念的群体对齐大语言模型，与大语言模型研究相关",
+      "llm_tldr_en": "PALMs aligns LLMs to specific populations in five countries by synthesizing rationale grounded in psychological and cultural constructs as latent supervision, improving fidelity on personality, values, cultural norms, and morality.",
+      "llm_tldr_cn": "针对大语言模型模拟群体行为时丢失群体间价值与文化差异的问题，作者提出PALMs，面向美国、印度、巴西、法国和意大利分别构建群体对齐模型。该方法用心理学和文化构念合成理由，并在偏好微调中作为潜在监督。实验表明PALMs在人格、价值观、文化规范和道德四个维度持续优于基线，为跨文化群体模拟提供了可靠工具。",
+      "llm_tldr": "针对大语言模型模拟群体行为时丢失群体间价值与文化差异的问题，作者提出PALMs，面向美国、印度、巴西、法国和意大利分别构建群体对齐模型。该方法用心理学和文化构念合成理由，并在偏好微调中作为潜在监督。实验表明PALMs在人格、价值观、文化规范和道德四个维度持续优于基线，为跨文化群体模拟提供了可靠工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.07385v1",
+      "source": "arxiv",
+      "title": "Omni-modal decomposition autoencoders learn full-stack wearable disentangled representations",
+      "abstract": "Learning disentangled representations is a key requirement for developing versatile, general-purpose, and sustainable models in multi-modal wearable computing. However, existing approaches do not operate as full-stack wearable processors, i.e., they do not simultaneously address task-specific classification performance, disentangled and interpretable representation learning, fusion, and generative modeling of highly heterogeneous multi-modal time series. To address this gap, we introduce Omni-modal Variational Decomposition Autoencoders (OmniDecVAEs), a framework that efficiently learns multi-purpose representations in a unified and scalable manner from arbitrarily many modalities. OmniDecVAEs extend DecVAEs by learning modality-conditioned time-frequency latent subspaces through a multi-view self-supervised decomposition loss and a shared asymmetric autoencoder (AE) architecture. Results on a challenging omni-modal human activity recognition (HAR) setting with up to thirty modalities, demonstrate the ability of OmniDecVAEs to learn full-stack wearable representations. When compared to transformer-based and VAE-based methods, OmniDecVAEs full-stack disentangled representation properties lead to accuracy improvements of 1.01% and 6.75% in activity and identity recognition, respectively. Furthermore, OmniDecVAEs synthesize realistic omni-modal time-frequency data that manifest with enhanced reconstructions (mean absolute error improves by 76.84%) and distributional similarity between real and synthetic data (maximum mean discrepancy improves by 13.85%). Our results highlight OmniDecVAEs potential as a lightweight model suitable for intelligent edge wearables and clinical healthcare, unifying processing requirements and abilities in a single model, through its enhanced representational capacity, modality-invariant spatial complexity (4.1M parameters), and real-time latency.",
+      "authors": [
+        "Ioannis Ziogas",
+        "Ensieh Khazaei",
+        "Bilal Taha",
+        "Aamna Al Shehhi",
+        "Ahsan H. Khandoker",
+        "Leontios J. Hadjileontiadis",
+        "Dimitrios Hatzinakos"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "eess.AS",
+        "eess.SP",
+        "stat.ML"
+      ],
+      "published": "2026-08-07T16:32:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.07385v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a multimodal variational disentangled representation learning framework for wearable time series, applicable to sleep and mental health monitoring.",
+      "llm_evidence_cn": "提出面向可穿戴多模态时间序列的解耦表示学习框架，可用于睡眠和心理健康监测。",
+      "llm_evidence": "提出面向可穿戴多模态时间序列的解耦表示学习框架，可用于睡眠和心理健康监测。",
+      "canonical_evidence": "提出面向可穿戴多模态时间序列的解耦表示学习框架，可用于睡眠和心理健康监测。",
+      "llm_tldr_en": "This paper introduces OmniDecVAEs, a framework that learns full-stack disentangled representations from arbitrary heterogeneous wearable modalities, unifying classification, interpretable representation learning, fusion, and generative modeling for multi-modal time series.",
+      "llm_tldr_cn": "现有可穿戴多模态计算缺乏全栈处理器，不能同时完成分类、解耦表示、融合和生成建模。作者提出全模态变分分解自编码器OmniDecVAE，从任意多个异质可穿戴时间序列模态中高效学习多用途表示。该框架支持任务分类、可解释表示学习和生成建模的有机统一，并在多模态时间序列上验证了可扩展性。其为睡眠和心理健康监测等穿戴计算应用提供了通用表示学习方案。",
+      "llm_tldr": "现有可穿戴多模态计算缺乏全栈处理器，不能同时完成分类、解耦表示、融合和生成建模。作者提出全模态变分分解自编码器OmniDecVAE，从任意多个异质可穿戴时间序列模态中高效学习多用途表示。该框架支持任务分类、可解释表示学习和生成建模的有机统一，并在多模态时间序列上验证了可扩展性。其为睡眠和心理健康监测等穿戴计算应用提供了通用表示学习方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.06783v1",
+      "source": "arxiv",
+      "title": "Design and Validation of a Portable EEG-tES Platform Supporting High-Rate EEG Recording and Temporal Interference Stimulation",
+      "abstract": "Background: Closed-loop neuromodulation integrating electroencephalography (EEG) and transcranial electrical stimulation (tES) has strong potential for neuroscience research and clinical applications. However, existing platforms often rely on benchtop instrumentation or FPGA-centered architectures, limiting portability and increasing system complexity. Methods: We developed a compact wearable bidirectional platform integrating 8-channel EEG acquisition and 2-channel tES within a single microcontroller unit (MCU). An ADS1299-based front-end supports up to 8 kHz sampling per channel for simultaneous neural and stimulation signal recording. The stimulation module uses direct digital synthesis (DDS) technique to generate programmable tDCS, tACS, and tTIS waveforms, with optimized firmware design enabling real-time operation on the microcontroller. Results: Experimental evaluation demonstrated high signal fidelity, with EEG correlation coefficients reaching $99\\%$ under controlled conditions and $93.5\\%$ on a gelatine head phantom. Stimulation performance showed current errors below $1\\%$ across tDCS, tACS, and tTIS modes. The platform also reliably recorded concurrent EEG--tES signals without saturation during high-amplitude and high-frequency stimulation. Conclusion: These findings demonstrate that an MCU-centered architecture can effectively support simultaneous EEG sensing and multimodal tES delivery in a compact wearable form factor, while maintaining accurate stimulation and robust signal acquisition. Significance: This work provides a practical foundation for portable closed-loop neuromodulation systems with integrated host software, expanding access to personalized stimulation paradigms, and future point-of-care neurotechnology applications.",
+      "authors": [
+        "Le Xing",
+        "Maoxing Liang",
+        "Disi A",
+        "Yifei Jia",
+        "Gaoxiang Xie",
+        "Linfeng Xu",
+        "Xiang'ao Chen",
+        "Jiebin Shi",
+        "Gang Pan",
+        "Bicheng Han"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP"
+      ],
+      "published": "2026-08-07T04:04:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.06783v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Portable EEG-tES platform with high-rate EEG recording; direct relevance to EEG signal processing and closed-loop neuromodulation",
+      "llm_evidence_cn": "便携式EEG-tES平台支持高采样率脑电记录，直接关联EEG信号处理与闭环神经调控",
+      "llm_evidence": "便携式EEG-tES平台支持高采样率脑电记录，直接关联EEG信号处理与闭环神经调控",
+      "canonical_evidence": "便携式EEG-tES平台支持高采样率脑电记录，直接关联EEG信号处理与闭环神经调控",
+      "llm_tldr_en": "Presents a wearable microcontroller-based platform integrating 8-channel EEG with 2-channel tES using direct digital synthesis, supporting up to 8 kHz sampling for portable closed-loop neuromodulation.",
+      "llm_tldr_cn": "闭环神经调控中同时进行脑电（EEG）记录与经颅电刺激（tES）对设备便携性和系统复杂度提出了挑战。该研究设计并验证了一款基于单片机（MCU）的可穿戴双向平台，集成8通道EEG采集与2通道tES刺激，前端的ADS1299支持每通道最高8kHz采样，并采用直接数字合成（DDS）生成刺激波形。结果表明该平台能同时支持高采样率神经信号记录与刺激，且体积紧凑，为便携式闭环神经调控和脑电研究提供了高效硬件方案。",
+      "llm_tldr": "闭环神经调控中同时进行脑电（EEG）记录与经颅电刺激（tES）对设备便携性和系统复杂度提出了挑战。该研究设计并验证了一款基于单片机（MCU）的可穿戴双向平台，集成8通道EEG采集与2通道tES刺激，前端的ADS1299支持每通道最高8kHz采样，并采用直接数字合成（DDS）生成刺激波形。结果表明该平台能同时支持高采样率神经信号记录与刺激，且体积紧凑，为便携式闭环神经调控和脑电研究提供了高效硬件方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.02692v1",
+      "source": "arxiv",
+      "title": "PatTree: a novel approach for automated creation of multimodal, graph-based patient representations for medical classification tasks",
+      "abstract": "Access to holistic, multimodal data improves the performance of Artificial Intelligence (AI) in medical classification tasks compared to utilizing single modalities or data sources. However, the inherent heterogeneity and complexity of clinical real-world data pose significant challenges to structured data analysis and AI application. This heterogeneity includes missing values, multiple time points, diverse modalities, and inconsistent formats and semantics. Data harmonization prior to data integration tackles this challenge but remains resource-intensive and error-prone, limiting the scalability and reproducibility of holistic, AI-driven decision support on clinical real-world data. We therefore propose PatTree, a graph-based, holistic representation of patients that can be derived from real-world clinical data through the automated structuring of multimodal clinical data. PatTree enables early-stage data integration without relying on pre-standardized inputs. While representing heterogeneous clinical data within a unified knowledge graph, PatTree preserves the semantic relationships between data elements across modalities and data sources, facilitating interoperability and machine-interpretable data access. Using a subset of the ADNI-1 cohort (n = 763), we demonstrate that classification of patients is directly feasible on PatTree reaching state-of-the-art classification performance. In the three-class classification task distinguishing Alzheimer's disease, mild cognitive impairment, and cognitively normal individuals, we achieve a balanced accuracy of 98.5% and an F$_1$ score of 0.987 on the held-out test set. Our results show that assumption-free, automated structuring of multimodal medical data can serve as a scalable foundation for clinical AI pipelines bypassing tedious data preparation and standardization.",
+      "authors": [
+        "Julia Gehrmann",
+        "Lars Quakulinski",
+        "Hamza Naseem",
+        "Oya Beyan"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-03T09:44:35+00:00",
+      "link": "https://arxiv.org/pdf/2608.02692v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multimodal graph-based patient representation method transferable to sleep and mental health monitoring",
+      "llm_evidence_cn": "多模态图患者表示方法可迁移至睡眠与心理健康监测",
+      "llm_evidence": "多模态图患者表示方法可迁移至睡眠与心理健康监测",
+      "canonical_evidence": "多模态图患者表示方法可迁移至睡眠与心理健康监测",
+      "llm_tldr_en": "PatTree automatically converts heterogeneous real-world clinical data into multimodal graph-based patient representations for medical classification, avoiding costly harmonization and improving scalability/reproducibility of holistic AI decision support.",
+      "llm_tldr_cn": "医疗AI常因真实临床数据的异质、缺失和多模态而难以整合。作者提出PatTree，自动把多来源、多时间点的临床数据组织成多模态图患者表示，绕开资源密集的数据协调步骤，直接用于医学分类。该方法提高了多模态患者建模的扩展性与可复现性，为睡眠与心理健康等监测场景提供了可迁移的通用表示方法。",
+      "llm_tldr": "医疗AI常因真实临床数据的异质、缺失和多模态而难以整合。作者提出PatTree，自动把多来源、多时间点的临床数据组织成多模态图患者表示，绕开资源密集的数据协调步骤，直接用于医学分类。该方法提高了多模态患者建模的扩展性与可复现性，为睡眠与心理健康等监测场景提供了可迁移的通用表示方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.06963v1",
+      "source": "arxiv",
+      "title": "Learning in Deep Networks under Dale's Constraint",
+      "abstract": "Biologically plausible learning models aim to explain how neural circuits can implement effective learning under the constraints of real neurons. Although significant progress has been made, a major remaining challenge is that existing models often allow neurons or synapses to represent mixed-sign values, both positive and negative, in violation of a basic aspect of cortical circuitry -- Dale's constraint: biological neurons are either excitatory or inhibitory, but not both, and synapses cannot change sign. In this work, we address this discrepancy by introducing a biologically motivated neural architecture in which both neural activations and learning signals are represented by non-negative activity, and synapses have fixed sign, while still supporting backpropagation-like learning. Our approach uses two complementary interacting non-negative channels to represent positive and negative contributions, inspired by evidence of on-off representations in the brain. These channels are implemented through a simple neural circuit motif, which is repeated throughout the network in both bottom-up and top-down pathways. Combined with a local Hebbian learning rule, the resulting model propagates learning signals and updates weights using only local interactions between neurons. We show theoretically that our learning scheme can exactly recover the backpropagation update despite relying solely on non-negative error signals. Empirically, beyond satisfying stronger biological constraints, the on-off architecture learns efficient representations, yielding substantial gains over comparable vanilla networks on the Tiny ImageNet benchmark. These results demonstrate that effective learning can emerge from biologically plausible mechanisms without requiring mixed-sign signals, providing a step toward more realistic models of neural computation.",
+      "authors": [
+        "Roy Abel",
+        "Shimon Ullman"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-07T08:40:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.06963v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "biologically plausible deep learning under Dale's constraint for neural circuits",
+      "llm_evidence_cn": "符合Dale约束的生物学合理深度学习模型",
+      "llm_evidence": "符合Dale约束的生物学合理深度学习模型",
+      "canonical_evidence": "符合Dale约束的生物学合理深度学习模型",
+      "llm_tldr_en": "Proposes a biologically motivated architecture with non-negative activations and fixed-sign synapses that supports backpropagation-like learning under Dale's constraint, bridging deep learning and neuroscience.",
+      "llm_tldr_cn": "现有生物合理学习模型常允许神经元或突触表示正负混合值，违反皮层回路的Dale约束。该文提出一种生物学启发的神经架构，使神经元激活和学习信号均为非负、突触符号固定，同时仍支持类似反向传播的学习机制。这一工作为在真实神经元约束下实现高效学习提供了新思路，也是深度学习与计算神经科学交叉的重要进展。",
+      "llm_tldr": "现有生物合理学习模型常允许神经元或突触表示正负混合值，违反皮层回路的Dale约束。该文提出一种生物学启发的神经架构，使神经元激活和学习信号均为非负、突触符号固定，同时仍支持类似反向传播的学习机制。这一工作为在真实神经元约束下实现高效学习提供了新思路，也是深度学习与计算神经科学交叉的重要进展。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.04242v1",
+      "source": "arxiv",
+      "title": "Feasibility of Embedded Photoplethysmography Sensing in Short-Duration Tactile Interactions With Pocket-Sized Robots Using IMU- and Confidence-Based Filtering",
+      "abstract": "Ubiquitous companion robots offer a promising avenue for immediate anxiety relief in children, yet their effectiveness relies on the ability to monitor physiological states continuously and unobtrusively. Current solutions often depend on external wearables, which impose usability barriers and limit the robot's autonomy. This paper investigates the integration of an embedded photoplethysmography (PPG) sensor directly into a pocket-sized companion robot, AffectaPocket, to enable self-contained heart rate monitoring during tactile interaction. We address the significant challenge of motion artifacts inherent in handheld usage by implementing a two-stage filtering pipeline that utilizes an onboard Inertial Measurement Unit (IMU) to reject high-variance segments and a confidence-based smoothing algorithm for recovery periods. We evaluated the system against a commonly used wrist worn sensor in a Within-Subjects Study with 26 participants. Our results demonstrate that the filtering strategy significantly reduced the Mean Absolute Percentage Error and achieved statistical equivalence to the ground truth measurements (p<0.05). Analysis of short-duration interactions shows that the sensor requires stability over longer periods to converge.",
+      "authors": [
+        "Turjja Datta",
+        "Morten Roed Frederiksen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T21:51:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.04242v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Embedded PPG sensing in companion robot for anxiety relief in children",
+      "llm_evidence_cn": "在陪伴机器人中嵌入PPG传感器以监测儿童焦虑相关生理状态",
+      "llm_evidence": "在陪伴机器人中嵌入PPG传感器以监测儿童焦虑相关生理状态",
+      "canonical_evidence": "在陪伴机器人中嵌入PPG传感器以监测儿童焦虑相关生理状态",
+      "llm_tldr_en": "The paper investigates embedding PPG sensors in a pocket-sized companion robot to monitor heart rate during tactile interactions, using IMU and confidence-based filtering to handle motion artifacts for anxiety relief in children.",
+      "llm_tldr_cn": "儿童即时焦虑缓解依赖于持续无扰的生理监测，但外部穿戴设备限制了陪伴机器人的自主性。本文在名为AffectaPocket的口袋机器人中集成光电容积描记（PPG）传感器，实现触摸交互过程中的心率监测。针对手持使用中的运动伪迹，提出基于惯性数据和置信度的两阶段滤波方法。可行性验证表明该系统有望让机器人自主感知儿童情绪生理状态，助力焦虑缓解。",
+      "llm_tldr": "儿童即时焦虑缓解依赖于持续无扰的生理监测，但外部穿戴设备限制了陪伴机器人的自主性。本文在名为AffectaPocket的口袋机器人中集成光电容积描记（PPG）传感器，实现触摸交互过程中的心率监测。针对手持使用中的运动伪迹，提出基于惯性数据和置信度的两阶段滤波方法。可行性验证表明该系统有望让机器人自主感知儿童情绪生理状态，助力焦虑缓解。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.07378v1",
+      "source": "arxiv",
+      "title": "LSEAD: A Privacy-Preserving LLM-Based Speech Analysis Framework for Early Alzheimer's Disease Screening",
+      "abstract": "Early diagnosis of Alzheimer's disease (AD) is critical for enabling timely interventions that may slow disease progression and improve patient outcomes. There is a growing need for AD detection methods that are non-invasive and cost-effective, especially in real-world clinical settings with diverse patient populations and recording conditions. Speech-based screening addresses these needs by using natural speech collected without specialized equipment. Recent advances in large language models (LLMs) have improved speech analysis by providing rich linguistic representations and strong generalization. In this study, we propose LSEAD, a speech-based AD detection framework using pretrained open-source LLMs. Speech recordings are automatically transcribed, and text embeddings are extracted using locally deployed LLMs. Principal component analysis (PCA) is applied to reduce dimensionality before classification. Because the framework relies only on speech transcripts and locally deployed models, it supports privacy-preserving AD risk assessment without external data exchange. We evaluate LSEAD on the ADReSS20 and ADReSSo2021 benchmark datasets. Experimental results show that LLM-based embeddings generalize well across datasets and improve AD classification accuracy by up to 5 percent over existing methods, especially for early-stage detection. These results demonstrate that LSEAD provides a practical, secure, and scalable approach for early AD screening.",
+      "authors": [
+        "Xin Wang",
+        "Yingchao Huang",
+        "Yuhan Su",
+        "Shanshan Yao",
+        "Wei Peng"
+      ],
+      "primary_category": "eess.AS",
+      "categories": [
+        "eess.AS",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-07T16:21:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.07378v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM-based speech analysis framework for early Alzheimer's disease screening",
+      "llm_evidence_cn": "基于大语言模型的语音分析框架用于早筛阿尔茨海默病",
+      "llm_evidence": "基于大语言模型的语音分析框架用于早筛阿尔茨海默病",
+      "canonical_evidence": "基于大语言模型的语音分析框架用于早筛阿尔茨海默病",
+      "llm_tldr_en": "LSEAD is a privacy-preserving LLM-based framework that analyzes natural speech for early Alzheimer's disease screening, leveraging pretrained open-source LLMs for robust linguistic representations.",
+      "llm_tldr_cn": "阿尔茨海默病早期诊断对延缓病情进展至关重要，现有方法常依赖侵入性或昂贵检测。本文提出LSEAD框架，利用预训练开源大语言模型对自然语音进行分析，在多种录音条件下实现无创、低成本的疾病筛查。该方法利用LLM丰富的语言表征和强泛化能力，并注重隐私保护。研究显示该框架在真实临床环境中具有良好潜力，为神经退行性疾病的早期筛查提供了新工具。",
+      "llm_tldr": "阿尔茨海默病早期诊断对延缓病情进展至关重要，现有方法常依赖侵入性或昂贵检测。本文提出LSEAD框架，利用预训练开源大语言模型对自然语音进行分析，在多种录音条件下实现无创、低成本的疾病筛查。该方法利用LLM丰富的语言表征和强泛化能力，并注重隐私保护。研究显示该框架在真实临床环境中具有良好潜力，为神经退行性疾病的早期筛查提供了新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

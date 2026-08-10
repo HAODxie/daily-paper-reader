@@ -1,0 +1,498 @@
+Title: ChaosProbe: A Neurochaotic Lens on Frozen Transformer Input-Embedding Spaces
+
+URL Source: https://arxiv.org/pdf/2608.01968v1
+
+Published Time: Tue, 04 Aug 2026 02:08:29 GMT
+
+Number of Pages: 11
+
+Markdown Content:
+# ChaosProbe: A Neurochaotic Lens on Frozen Transformer Input-Embedding Spaces 
+
+## Kunal Kumar Pant †
+
+Department of Electronics and Communication Engineering (ECE) Amrita Vishwa Vidyapeetham Kollam, Kerala, India 
+
+## Nithin Nagaraj ‡
+
+Complex Systems Programme National Institute of Advanced Studies (NIAS) IISc Campus, Bengaluru Karnataka, India 
+
+Abstract 
+
+Transformer models are most often understood through what they do: their benchmark performance, generation quality, or behavior on downstream tasks. Yet frozen transformer input-embedding spaces may also be examined through their responses to a controlled deterministic probe before contextual computation or task-specific adaptation. Guided by this response-based view, we introduce ChaosProbe , a deterministic neurochaos-inspired method for constructing response-based fingerprints of frozen transformer input-embedding spaces. For each prompt-level embedding matrix, ChaosProbe applies a chaotic trajectory-based transformation and summarizes its Firing Rate and Entropy channel responses with complementary representation-level measures, producing a fixed-length signature for each model. In a bounded proof-of-concept study of 80 neutral prompts and four pretrained models— GPT-2, DistilGPT2, BERT-base-uncased, and RoBERTa-base—Pearson correlation, Spearman correlation, and cosine similarity each recover all four same-family nearest-neighbor assignments and both expected mutual family pairs. Euclidean distance recovers three of the four assignments and one of the two mutual family pairs. Paired bootstrap resampling supports the stability of the Pearson and Spearman pairings over the observed prompt set, and signature-validity checks show that constant or collapsed responses do not dominate the reported fingerprints. These results provide a cohort-dependent proof of concept that deterministic neurochaotic response signatures can expose broad structure among frozen transformer input-embedding spaces. 
+
+Keywords: Neurochaos Learning, transformer input embeddings, representation fingerprinting, response surfaces, representation similarity, model-family analysis 
+
+# 1 Introduction 
+
+Generative-AI systems have moved rapidly from re-search prototypes to widely used digital infrastruc-ture. The 2026 Stanford AI Index reports that genera-tive AI reached an estimated 53% population adoption within three years, while 70% of surveyed organizations used generative AI in at least one business function in 2025 [1]. At consumer scale, ChatGPT reported 700 million weekly active users in 2025; an analysis of 1 .5million privacy-preserving sampled conversations found that approximately three-quarters concerned practical guidance, information seeking, or writing [2]. Such systems support search and question answering, transla-tion, summarization, writing assistance, conversational agents, and code-generation tools. Much of this progress in language-focused gener-ative AI has been enabled by Transformer architec-tures. Prominent autoregressive and masked-language models, including GPT-2, BERT, and RoBERTa, use Transformer-based representations to map tokenized text into vector spaces from which subsequent contextual computation and output generation proceed [3, 4, 5, 6]. As these models become embedded in products and re-search workflows, it becomes important to understand   
+
+> †kunal.kpant@gmail.com ‡nithin@nias.res.in
+
+not only the outputs they produce, but also the repre-sentational structures from which those outputs arise. Transformer models are commonly evaluated behav-iorally through the tasks they solve, the text they gen-erate, and the benchmarks on which they succeed or fail. Yet frozen Transformer input-embedding spaces may also be examined through their responses to a controlled deterministic probe before contextual com-putation or task-specific adaptation. Before contextual computation begins, a model-specific tokenizer converts input text into discrete token IDs, and the learned token-embedding table maps those IDs to vectors. These vec-tors occupy a model-specific input-embedding space: the continuous geometric substrate from which the model’s subsequent computation begins. Table 1 lists the acronyms and model identifiers used throughout the paper, while Table 2 summarizes the principal mathematical notation. For a transformer model with tokenizer vocabulary V
+
+and token embedding dimension d, let 
+
+E ∈ R|V|× d (1) denote the learned token-embedding lookup table. The row Ev, : ∈ Rd is the embedding associated with token ID v. Thus, the rows of E form a finite set of learned token embeddings in Rd. For the pretrained models 1arXiv:2608.01968v1 [cs.LG] 3 Aug 2026 Table 1: Acronyms and model identifiers used through-out the paper.              
+
+> Term Acronym or identifier
+> Neurochaos Learning NL Generalized Lüroth Series GLS Machine Learning ML Deep Learning DL Natural Language Processing NLP Large Language Model LLM Generative Pre-trained Transformer GPT Generative Pre-trained Transformer 2 GPT-2 Distilled GPT-2 model DistilGPT2
+> Bidirectional Encoder Representations from Transformers BERT Base uncased BERT model BERT-base-uncased
+> Robustly Optimized BERT Pretraining Approach RoBERTa Base RoBERTa model RoBERTa-base
+> Nearest Neighbor NN
+
+Table 2: Principal mathematical notation used through-out the paper.             
+
+> Symbol Meaning
+> VTokenizer vocabulary.
+> |V| Number of tokens in the vocabulary.
+> dToken-embedding dimension.
+> EFrozen token-embedding lookup table.
+> Ev, :Embedding vector associated with token ID v.
+> TNumber of tokens in an input prompt.
+> XPrompt-level token-embedding matrix.
+> QInitial neurochaotic neural activity.
+> BDiscrimination threshold.
+> ϵNumerical matching tolerance.
+
+considered in this study, E is held fixed throughout all experiments. Given a prompt, the tokenizer produces a sequence of token IDs ( i1, i 2, . . . , i T ), where T denotes the tokenized sequence length. The corresponding token-embedding matrix is obtained by lookup: 
+
+X =
+
+
+
+Ei1,:
+
+Ei2,:
+
+...
+
+EiT ,:
+
+ ∈ RT ×d (2) Here, X denotes the token-embedding lookup output before any architecture-specific positional, segment, nor-malization, or related input-processing operations. Each row of X contains the token embedding at one sequence position, while each column corresponds to one em-bedding dimension. In this work, X contains only the vectors retrieved from the learned token embed-ding table; model-dependent positional or token-type embeddings and contextual hidden states are not in-cluded. The token vectors retrieved from the model’s learned input-embedding table, before the addition of any model-dependent components or processing can be referred to as the input embedding . In the initial stage, the embeddings are non-contextualized: a given token ID retrieves the same learned vector wherever it occurs. The input-embedding space therefore forms the model’s initial continuous organization of discrete tokens, that is, the geometry through which those tokens first enter its computational pipeline. Although these input embeddings precede contex-tual computation, their geometry is neither empty nor arbitrary. Foundational work on distributed word representations demonstrated that learned embedding spaces can contain meaningful semantic and syntactic regularities [7, 8]. Subsequent work has also shown that language-model embedding spaces may also ex-hibit shared directional components, frequency-related organization, anisotropy, and representation degener-ation [9, 10]. An experiment by Biś et al. [10] ex-amined the non-contextualized embedding matrices of BERT, RoBERTa, and GPT-2 and identified system-atic geometric structure before contextual processing begins. The findings establish frozen transformer input-embedding spaces as legitimate geometric objects of analysis, while also cautioning that their structure should not be conflated with the contextual hidden states generated by later transformer layers. Existing representation-analysis methods primarily characterize learned spaces through direct geometric measurements, cross-representation alignment, or learned diagnostic probes [11, 12, 13, 14]. A complementary question therefore remains: can a frozen transformer input-embedding space be char-acterized by how it responds to a fixed deterministic nonlinear probe? We approach this question through Neurochaos Learning (NL), a brain-inspired learning paradigm in which one-dimensional Generalized Lüroth Series (GLS) chaotic maps generate neural firing trajectories from which descriptors such as Firing Rate, Firing Time, En-ergy, and Entropy are extracted [15, 16]. In established NL variants, these trajectory-derived descriptors are typically treated as features for classification or related predictive tasks and have been employed in various appli-cations such as SARS-CoV-2 genome sequence classifica-tion [17], forest fire classification [18], hypothetical pro-tein classification [19, 20] and for widely used Machine Learning (ML) datasets like Iris classification, Breast Cancer Wisconsin classification and many more [21]. Thus, the success or failure of the transformation is typically judged by downstream performance. In this work, instead of asking whether neurochaotic descrip-tors improve a classifier, we investigate the systematic response of a frozen transformer input-embedding space across neurochaotic probe configurations. From this point of view, the space is not only characterized by the coordinates it contains, but also by the response profile it presents to a controlled deterministic probe. Guided by this response-based view, we introduce 
+
+ChaosProbe , a deterministic neurochaos-inspired frame-work for response-surface fingerprinting of frozen trans-former input-embedding spaces. For each prompt-level input embedding matrix X defined in Equation (2), 2ChaosProbe applies global min–max normalization and generates skew-tent trajectories governed by an ini-tial neural activity Q and discrimination threshold B.For every normalized embedding coordinate, trajectory-derived descriptors are computed using a matching tol-erance ϵ. The resulting descriptor responses are summa-rized through representation-level metrics over a fixed Q–
+
+B–ϵ grid, forming a response surface whose fixed-order vectorization yields a model-level response signature. The response signature characterizes the interaction between a frozen input-embedding space and a fixed deterministic neurochaotic probe. The principal contributions of this work are as follows: • We introduce a deterministic neurochaos-inspired framework that extends trajectory-descriptor meth-ods from classification-oriented feature extraction to response-surface fingerprinting of frozen trans-former input-embedding spaces. • We formulate a fixed Q–B–ϵ probing procedure that converts prompt-level input embedding ma-trices into 800-dimensional model-level response signatures. • We show, within a four-model proof-of-concept setting, that the response signatures recover the expected GPT-2/DistilGPT2 and BERT-base-uncased/RoBERTa-base nearest-neighbor pairings under Pearson correlation, Spearman correlation, and cosine similarity. Euclidean distance recovers the same-family nearest neighbor for three of the four models. • We assess prompt-level stability through boot-strap resampling and examine zero-variance and descriptor-collapse behavior to guard against trivial or predominantly degenerate response signatures. 
+
+# 2 Background and Motivation 
+
+The motivation for ChaosProbe lies at the intersec-tion of two lines of research: the geometric analysis of learned representation spaces and the use of deter-ministic chaotic dynamics to transform numerical in-puts into trajectory-derived descriptors. The former asks what structure a learned space exhibits; the latter asks how an input is expressed through its interaction with a controlled nonlinear system. ChaosProbe brings these perspectives together, while restricting its object of study to frozen transformer input-embedding spaces. 
+
+## 2.1 Frozen Input-Embedding Spaces as Objects of Study 
+
+A transformer’s input-embedding matrix is learned dur-ing pretraining. Once the model is frozen, the input-embedding matrix defines a fixed mapping from token IDs to vectors. These vectors constitute the model’s non-contextualized lexical representation. Before the transformation layers operate, the same token identi-fier retrieves the same learned vector, independently of the surrounding sequence. These vectors only become context-dependent representations after being combined with any model-specific positional or token-type infor-mation and processed through the transformer layers. Although input embeddings precede contextual com-putation, they are not arbitrary numerical initializations. Their organization emerges from the interaction among the training corpus, tokenization scheme, vocabulary, optimization process, and pretraining objective. Previ-ous work has shown that transformer embedding spaces may exhibit directional concentration, frequency-related organization, and non-uniform utilization of their dimen-sions [10, 13]. Such observations motivate the treatment of a frozen input-embedding space as a legitimate, al-though deliberately bounded, object of representation analysis. An additional qualification concerns how the embed-ding space is sampled. Each prompt samples a finite subset of rows from a model’s full embedding table, and different models may tokenize the same text differently. The empirical object probed by ChaosProbe is therefore the collection of prompt-level input-embedding matrices produced by the frozen embedding lookup and model-specific tokenizer. The resulting response signature depends on the embedding table, tokenizer, preprocess-ing procedure, and prompt distribution. ChaosProbe consequently characterizes the input-embedding space as sampled by the controlled prompt set rather than every vector in the complete vocabulary. 
+
+## 2.2 Representation-Space Comparison and Probing 
+
+There are several complementary methodological tradi-tions for studying neural representation spaces. Geomet-ric approaches deal directly with similarity, alignment, anisotropy, dimensional use, and neighborhood structure. Instead, representational-similarity methods compare the relationship among activations across models or layers. For example, centered kernel alignment (CKA) measures the similarity between representation matrices and is invariant to some transformations of their coordi-nates [12]. Further work on isotropy has demonstrated that seemingly simple geometric properties can be sub-stantially influenced by the manner in which they are mathematically defined and measured [13]. Another method of analysis of representations involves probing classifiers, where an auxiliary model is trained to predict a particular linguistic or behavioral property from a representation [14]. Such methods lend them-selves to tests of recoverability of specific information, but they need to be interpreted according to the capacity of the probe, the design of control tasks, and the dis-tinction between encoded information and information actually used by the original model. ChaosProbe takes another methodological direction. It does not learn an auxiliary classifier nor attempt to decode a linguistic property, or directly align em-bedding coordinates between models. This is impor-tant because the models considered here differ in vo-cabulary, tokenization, embedding dimensionality, and 3architectural objective, so a raw coordinate-wise com-parison is ill-defined. Instead, ChaosProbe applies the same deterministic nonlinear probing procedure to each prompt-level input-embedding matrix and compares the resulting fixed-length response signatures. 
+
+# 3 The ChaosProbe Framework 
+
+## 3.1 Framework Overview 
+
+ChaosProbe constructs a fixed-length signature for a frozen transformer model by measuring how its prompt-level input embeddings respond to a controlled family of deterministic neurochaotic probe configurations. This response-based formulation maps models with differ-ent tokenizers, vocabulary sizes, sequence lengths, and embedding dimensions into a common signature space. Let m denote a pretrained transformer model and let p
+
+denote a prompt from a common set of P prompts. The model-specific tokenizer converts p into a sequence of token identifiers. Lookup in the frozen token-embedding matrix then produces the prompt-level input-embedding matrix 
+
+Xm,p ∈ RTm,p ×dm , (3) where Tm,p is the number of tokens retained for prompt p and dm is the embedding dimension of model 
+
+m. Each row of Xm,p represents one token position, while each column represents one embedding dimension. 
+
+3.1.1 Prompt-Level Normalization 
+
+Because embedding coordinates may occupy different numerical ranges across models, each prompt-level ma-trix is globally min–max normalized over all of its entries. Let xmin  
+
+> m,p
+
+= min t,j (Xm,p )t,j and xmax  
+
+> m,p
+
+= max t,j (Xm,p )t,j .The normalized matrix is 
+
+˜Xm,p = Xm,p − xmin 
+
+> m,p
+
+xmax  
+
+> m,p
+
+− xmin 
+
+> m,p
+
+. (4) If xmax  
+
+> m,p
+
+= xmin 
+
+> m,p
+
+, we define ˜Xm,p = 0 to avoid division by zero. Consequently, ˜Xm,p ∈ [0 , 1] Tm,p ×dm . Normalization preserves the shape of the prompt-level matrix while placing its coordinates in the unit interval on which the chaotic map operates. 
+
+3.1.2 Deterministic Neurochaotic Probing 
+
+ChaosProbe evaluates each normalized prompt-level ma-trix over a fixed parameter grid. The cth probe configu-ration is denoted by 
+
+θc = ( Qc, B c, ϵ c) , c = 1 , . . . , C, (5) where Qc is the initial neural activity, Bc is the dis-crimination threshold, and ϵc is the matching tolerance. Evaluation is done via the Cartesian product of the parameter values listed in Table 3. The grid is fixed before model comparison and contains 10 × 5 × 2 = 100 configurations. Table 3: Fixed parameter grid used to construct the response signatures.                 
+
+> Parameter Values Count
+> Initial activity, Q0.06 ,0.16 , . . . , 0.96 10 Threshold, B0.06 ,0.16 , . . . , 0.46 5Tolerance, ϵ0.06 ,0.16 2
+
+For a given pair ( Qc, B c), the chaotic activity is ini-tialized at A0 = Qc. Subsequent neural activity is generated by iterating the GLS skew-tent map shown in Fig. 1(a): 
+
+An+1 = GBc (An) = 
+
+
+
+An
+
+Bc
+
+, 0 ≤ An < B c,
+
+1 − An
+
+1 − Bc
+
+, Bc ≤ An ≤ 1.
+
+(6) Every scalar coordinate x = ( ˜Xm,p )t,j is treated as a stimulus presented to the same deterministic trajectory. Let the set of matching trajectory indices be defined as 
+
+ML(x; θc) = {n ∈ { 0, . . . , L − 1} : |An − x| < ϵ c} .
+
+(7) For a trajectory of fixed length L = 1000, the first matching index is then 
+
+τL(x; θc) = 
+
+
+
+min ML(x; θc), ML(x; θc)̸ = ∅,L, ML(x; θc) = ∅.
+
+(8) Thus, τL = L indicates that no matching trajectory value was found within the available trajectory. The resulting trajectory and its first matching itera-tion are illustrated in Fig. 1(b). The trajectory segment used for descriptor calcula-tion consists of the trajectory values preceding the first matching index. Thus, when 1 ≤ τL(x; θc) ≤ L, the segment is ( A0, A 1, . . . , A τL(x;θc)−1). The matching tra-jectory value itself is excluded. If the initial activity satisfies the matching criterion, i.e., τL(x; θc) = 0, the segment is defined as ( A0) so that descriptor calcu-lation remains nonempty. When no match is found, 
+
+τL(x; θc) = L and the complete length-L trajectory is used. 
+
+3.1.3 Descriptor Channels 
+
+Conventional Neurochaos feature extraction produces four trajectory-derived descriptors: Firing Rate, Energy, Firing Time, and Entropy [21]. ChaosProbe retains only Firing Rate and Entropy for constructing the response signatures reported in this study. Firing Rate is the fraction of the descriptor trajectory segment Ax,c for which the neural activity exceeds the discrimination threshold Bc. It is therefore a dimen-sionless threshold-occupancy proportion. Entropy is the binary Shannon entropy of the corresponding thresh-olded symbolic sequence, whose states record whether the neural activity exceeds Bc.Let FR( x; θc) and ENT( x; θc) denote the Firing Rate and Entropy, respectively, obtained for scalar stimulus 40.0 0.2 0.4 0.6 0.8 1.0 
+
+Current activity, An
+
+> 0.0 0.2 0.4 0.6 0.8 1.0
+> Next activity,  An + 1  = GB(An)
+
+B
+
+> (B, 1)
+> slope = 1/ B
+> slope = −1/(1 −  B)
+
+(a) GLS skew-tent map. 0 1 ⋯ τ − 1 τ      
+
+> Iteration index, n
+> 0
+> Bx
+> 1
+> Chaotic activity,  An
+> A0=Q
+> first match, Aτ
+> ε-neighbourhood of stimulus x
+
+(b) Trajectory and first ϵc-match. 
+
+Figure 1: Deterministic GLS probing mechanism used by ChaosProbe: (a) the skew-tent map parameterized by the discrimination threshold Bc, and (b) trajectory evolution from the initial neural activity Qc until the first ϵc-match with stimulus x.
+
+x under parameter configuration θc. Applying these descriptors coordinatewise to ˜Xm,p gives 
+
+(DFR 
+
+> m,p,c
+
+) 
+
+> t,j
+
+= FR 
+
+(( ˜Xm,p 
+
+)
+
+> t,j
+
+; θc
+
+)
+
+,
+
+(DENT 
+
+> m,p,c
+
+) 
+
+> t,j
+
+= ENT 
+
+(( ˜Xm,p 
+
+)
+
+> t,j
+
+; θc
+
+)
+
+,
+
+(9) where t = 1 , . . . , T m,p and j = 1 , . . . , d m. Thus, 
+
+DFR  
+
+> m,p,c
+
+and DENT  
+
+> m,p,c
+
+both belong to RTm,p ×dm and pre-serve the dimensions of the normalized prompt-level embedding matrix. These matrices constitute the two de-scriptor channels used in the subsequent representation-level analysis. 
+
+3.1.4 Representation-Level Response Measures 
+
+For every prompt, probe configuration, and re-tained descriptor channel, ChaosProbe computes four representation-level measures: 
+
+K = {mean cosine similarity , linear CKA ,
+
+anisotropy , normalized effective rank }. (10) 
+
+Mean cosine similarity compares each row of adescriptor-channel matrix with the corresponding row of the normalized input-embedding matrix and aver-ages the resulting cosine similarities over all retained token positions. It therefore measures the average di-rectional alignment between the original and descriptor-transformed token representations. Consistent with the implementation, a row with a zero norm contributes zero to the average. 
+
+Linear centered kernel alignment (CKA) compares the centered relational structure of the normalized input-embedding and descriptor-channel matrices [12]. Before computing linear CKA, both matrices are centered by subtracting their respective column means. The feature-space formulation is then applied to the centered matri-ces. A value of zero is assigned when the normalization denominator vanishes. 
+
+Anisotropy characterizes the internal directional con-centration of a descriptor-channel matrix. It is computed as the mean cosine similarity across all distinct pairs of descriptor rows, excluding self-similarities [11]. Higher values indicate greater alignment among the descriptor rows, whereas lower values indicate a more directionally dispersed representation. Pairs containing a zero-norm row contribute zero. 
+
+Effective rank characterizes the utilization of the singular-value spectrum of a matrix [22]. ChaosProbe uses a normalized form so that the measure is bounded independently of the maximum attainable matrix rank. Let σ1, . . . , σ q denote the singular values of the uncentered descriptor matrix Dhm,p,c , where q =min( Tm,p , d m). The normalized effective rank is 
+
+pi = σi
+
+∑qj=1 σj
+
+,
+
+NER (Dhm,p,c 
+
+) = 1
+
+q exp 
+
+(
+
+−
+
+> q
+
+∑
+
+> i=1
+
+pi ln pi
+
+)
+
+.
+
+(11) The normalized effective rank lies in [0 , 1], with larger values indicating broader utilization of the available singular directions. The implementation assigns a value of zero to an all-zero descriptor matrix. Let ρm,p,c,h,k denote the scalar value obtained for model m, prompt p, probe configuration c, descriptor channel h, and representation-level measure k. Mean cosine similarity and linear CKA compare ˜Xm,p with 
+
+Dhm,p,c , whereas anisotropy and normalized effective rank depend only on Dhm,p,c .Let C = {θc}Cc=1 denote the fixed set of probe config-urations and let H = {FR , ENT } denote the retained 5descriptor channels. The model-level response for each configuration, channel, and measure is obtained by av-eraging over the common set of P prompts: (Rm)c,h,k = 1
+
+P
+
+> P
+
+∑
+
+> p=1
+
+ρm,p,c,h,k . (12) The resulting response tensor satisfies 
+
+Rm ∈ R|C|×|H|×|K| . (13) 
+
+3.1.5 Response-Signature Construction 
+
+The response surface is vectorized using an identical ordering for every model. Parameter configurations are ordered by Q, then B, and then ϵ. Within each configuration, Firing Rate precedes Entropy, and the representation-level measures follow the order given in Eq. (10). The model response signature is therefore 
+
+sm = vec( Rm) ∈ R800 . (14) The dimensionality follows from the 100 parame-ter configurations, two descriptor channels, and four representation-level measures: 100 × 2 × 4 = 800. Before model signatures are compared, each signa-ture dimension is standardized across the M evaluated models. For signature dimension ℓ, let 
+
+μℓ = 1
+
+M
+
+> M
+
+∑
+
+> m=1
+
+sm,ℓ ,σℓ =
+
+[
+
+1
+
+M
+
+> M
+
+∑
+
+> m=1
+
+(sm,ℓ − μℓ)2
+
+]1/2
+
+,zm,ℓ =
+
+
+
+sm,ℓ − μℓ
+
+σℓ
+
+, σℓ > 0,
+
+0, σℓ = 0 .
+
+(15) The resulting vector zm is the standardized compari-son signature for model m. Dimensions with zero vari-ance across models are assigned zero after standardiza-tion. Pearson correlation, Spearman correlation, cosine similarity, and Euclidean distance are subsequently com-puted between the standardized signatures. The unstandardized signature sm is algorithmically deterministic conditional on fixed model and tokenizer revisions, software environment, prompt set and or-dering, preprocessing procedure, parameter grid, and aggregation order. The standardized signature zm, how-ever, also depends on the set of models included in the comparison because its mean and standard deviation are estimated across that model set. 
+
+3.1.6 Model-Level Signature Comparison 
+
+Model relationships are evaluated using the standard-ized signatures zm. Pearson correlation measures linear correspondence between signature dimensions, whereas Spearman correlation measures correspondence between their rank orderings. Cosine similarity measures the angular agreement between two standardized signature vectors, while Euclidean distance measures their abso-lute separation. Higher Pearson, Spearman, and cosine values indicate greater similarity; lower Euclidean values indicate greater proximity. The cosine similarity used here operates on complete model-level signatures and is distinct from the mean cosine similarity used as a representation-level response measure in Section 3.1.4. The latter compares corre-sponding rows of a normalized prompt-level embedding matrix and its descriptor-channel matrix. For each comparison method, the nearest neighbor of a model is selected from the remaining models. The neighbor with the highest value is selected for the three similarity measures, whereas the neighbor with the low-est value is selected for Euclidean distance. Nearest-neighbor family accuracy is the fraction of evaluated models whose selected neighbor belongs to the same preassigned model family. A model pair is considered mutually recovered when each member selects the other as its nearest neighbor. If an exact tie occurs, the imple-mentation selects the first candidate in the fixed model ordering. 
+
+## 3.2 Experimental Setup 
+
+3.2.1 Models and Prompt Set 
+
+The study evaluates four pretrained transformer check-points: GPT-2, DistilGPT2, BERT-base-uncased, and RoBERTa-base. GPT-2 and DistilGPT2 are assigned to the autoregressive GPT-style family, whereas BERT-base-uncased and RoBERTa-base are assigned to the masked-encoder family [4, 5, 6]. These family assign-ments are specified before response-signature compari-son and are used only to evaluate broad nearest-neighbor family recovery. A common set of 80 English-language prompts is used for all four models. The prompt set contains 20 prompts from each of four categories: factual, reasoning, mathematical, and conversational. The prompts are neutral and non-adversarial and are used solely to sam-ple each model’s frozen input-embedding space. Prompt answers, generated continuations, and task accuracy are not evaluated. 
+
+3.2.2 Tokenization and Preprocessing Settings 
+
+Each prompt is tokenized independently using the to-kenizer associated with its pretrained checkpoint. Se-quence packing and padding are not applied, and the short prompts do not require truncation. Token rows identified by the tokenizer as special tokens are excluded before further processing. The retained token IDs are mapped through the model’s frozen input-embedding table, and the resulting prompt-level matrices are converted to double-precision floating-point arrays. Global min–max normalization is then applied separately to each prompt-level matrix according to the procedure defined in Section 3.1.1. 6Table 4: Interpretation criteria and thresholds for the bounded four-model evaluation.                
+
+> Criterion Interpretation threshold
+> Family-level accuracy At least 0.75 for each comparison method; 1 .00 = 4 /4 denotes full re-covery Mutual-pair recovery At least one expected mutual pair per comparison method; 2 /2 denotes full recovery. Bootstrap stability At least 0 .80 of paired resamples for Pearson and Spearman only. Signature variation A zero-variance signature-dimension fraction below 0 .20. Descriptor non-collapse An all-zero response fraction below 0.20 for every model.
+
+3.2.3 Correlation-Based Bootstrap Stability Analysis 
+
+Prompt-level stability is evaluated using 200 bootstrap resamples. In each bootstrap iteration, 80 prompt in-dices are sampled with replacement from the common prompt set. The same sampled indices are used for all models so that prompt correspondence is preserved. Prompt aggregation, response-signature construction, and cross-model standardization are repeated for every bootstrap sample. Stability is evaluated for Pearson and Spearman comparisons using two criteria. First, the mean within-family similarity is compared with the mean between-family similarity. Second, mutual nearest-neighbor recovery is recorded separately for the GPT-2–DistilGPT2 and BERT-base-uncased–RoBERTa-base pairs. The reported bootstrap statistics are the fractions of resamples for which within-family similarity exceeds between-family similarity and for which the expected mutual nearest-neighbor pairs are recovered. 
+
+3.2.4 Evaluation Protocol 
+
+For each model-level comparison measure—Pearson cor-relation, Spearman correlation, cosine similarity, and Euclidean distance, we compute nearest-neighbor as-signments, nearest-neighbor family accuracy, and the number of mutually recovered expected family pairs. Pearson and Spearman similarity matrices are visual-ized in Section 4 and are additionally assessed using 200 paired prompt-bootstrap resamples. Zero-variance signature dimensions and descriptor-channel collapse rates are reported as signature-validity checks. Table 4 provides interpretation thresholds for the bounded four-model evaluation. The family-recovery thresholds are applied to all four comparison measures, whereas the bootstrap threshold applies only to Pearson and Spearman correlation. These thresholds are descrip-tive interpretation guides for this fixed cohort; they are not combined into a single aggregate pass–fail decision rule. 
+
+# 4 Results 
+
+## 4.1 Parameter-Response Variation Across the Probe Grid 
+
+Before comparing the final model-level signatures, we ex-amine how the representation-level responses vary across the probing grid. Figure 2 presents one-dimensional sum-maries of mean cosine similarity and linear CKA as the initial neural activity Q is varied. Both measures exhibit pronounced variation across Q
+
+rather than remaining approximately constant. Mean cosine similarity generally decreases over the lower-to-intermediate part of the grid and then increases toward the largest Q values. Linear CKA exhibits a related response pattern, with a marked reduction at interme-diate values of Q followed by recovery at higher values. The precise response magnitude and trajectory differ across the four models, particularly in the lower and intermediate regions of the grid. These results show that the probe parameters ma-terially affect the measured relationship between the input embeddings and their descriptor-derived repre-sentations. Consequently, retaining responses from the complete fixed grid captures parameter-dependent be-havior that would be discarded if the fingerprint were constructed from a single selected configuration. 
+
+## 4.2 Model-Level Signature Similarity 
+
+Figure 3 compares the standardized 800-dimensional response signatures under Pearson and Spearman cor-relation. Under Pearson correlation, GPT-2 and Dis-tilGPT2 have a similarity of 0 .57. This is the largest off-diagonal similarity for both models; their cross-family correlations range from −0.69 to −0.40. BERT-base-uncased and RoBERTa-base have a Pear-son correlation of −0.16. Although this value is nega-tive, it is greater than their respective correlations with the two GPT-style models, which range from −0.69 to 
+
+−0.40. Thus, BERT-base-uncased and RoBERTa-base are recovered as nearest neighbors in relative correla-tion space, but the result does not indicate positive correlation between their complete signatures. Spearman correlation produces a closely related pat-tern. GPT-2 and DistilGPT2 have a rank correlation of 0 .58, while BERT-base-uncased and RoBERTa-base again have a correlation of −0.16. The cross-family Spearman correlations range from −0.70 to −0.41. Con-sequently, every model’s highest off-diagonal correlation is with the other member of its preassigned family under both Pearson and Spearman comparison. 
+
+## 4.3 Nearest-Neighbor Family Recovery 
+
+Table 5 summarizes nearest-neighbor recovery across the four model-level comparison methods. Pearson cor-relation, Spearman correlation, and cosine similarity each assign all four models to a nearest neighbor from the same preassigned family, corresponding to a family-recovery accuracy of 1 .00. Under each of these compar-isons, both expected family pairs are mutually recovered: 70.2 0.4 0.6 0.8 1.0 
+
+> Q
+> 0.5 0.6 0.7 0.8 0.9
+> Mean mean_cosine_similarity
+> gpt2 distilgpt2 bert-base-uncased roberta-base
+
+(a) Mean cosine similarity. 0.2 0.4 0.6 0.8 1.0  
+
+> Q
+> 0.5 0.6 0.7 0.8 0.9
+> Mean linear_cka
+> gpt2 distilgpt2 bert-base-uncased roberta-base
+
+(b) Linear CKA. 
+
+Figure 2: Parameter-response variation across the initial-activity parameter Q for the four evaluated models: (a) mean cosine similarity and (b) linear CKA. At each Q, each curve averages the prompt-level response over all 80 prompts, all five B values, both matching tolerances, and both retained descriptor channels. Both measures vary non-uniformly across the deterministic probe grid, demonstrating that the response signatures contain parameter-dependent structure rather than repetitions of an approximately constant response. GPT-2 DistilGPT2 BERT-base-uncased RoBERTa-base GPT-2 DistilGPT2 BERT-base-uncased RoBERTa-base             
+
+> 1.00 0.57 -0.54 -0.66 0.57 1.00 -0.69 -0.40 -0.54 -0.69 1.00 -0.16 -0.66 -0.40 -0.16 1.00
+> 0.6
+> 0.4
+> 0.2
+> 0.0 0.2 0.4 0.6 0.8 1.0
+
+(a) Pearson correlation. GPT-2 DistilGPT2 BERT-base-uncased RoBERTa-base GPT-2 DistilGPT2 BERT-base-uncased RoBERTa-base              
+
+> 1.00 0.58 -0.51 -0.65 0.58 1.00 -0.70 -0.41 -0.51 -0.70 1.00 -0.16 -0.65 -0.41 -0.16 1.00
+> 0.6
+> 0.4
+> 0.2
+> 0.0 0.2 0.4 0.6 0.8 1.0
+
+(b) Spearman correlation. 
+
+Figure 3: Pairwise comparison of the standardized 800-dimensional model response signatures using (a) Pearson correlation and (b) Spearman correlation. Under both measures, GPT-2 and DistilGPT2 are mutual nearest neighbors, while BERT-base-uncased and RoBERTa-base are mutual nearest neighbors. The negative BERT– RoBERTa correlations indicate relative nearest-neighbor recovery rather than positive within-family agreement. GPT-2 selects DistilGPT2 and vice versa, while BERT-base-uncased selects RoBERTa-base and vice versa. Euclidean distance correctly assigns three of the four models to a same-family nearest neighbor, giving an accuracy of 0 .75. It therefore recovers one of the two expected family pairs mutually, while producing one cross-family nearest-neighbor assignment. Thus, the expected family structure is recovered most consistently under correlation and cosine-based compar-isons, whereas Euclidean distance reaches the minimum family-accuracy threshold with weaker mutual-pair re-covery. 
+
+## 4.4 Bootstrap Stability Under Prompt Resampling 
+
+Table 6 reports the stability of the Pearson and Spear-man results across 200 paired bootstrap resamples of the 80 prompts. For both comparison methods, the mean within-family similarity exceeded the mean between-family similarity in all 200 resamples, producing an observed fraction of 1 .00. The two expected mutual nearest-neighbor pairs were also recovered simultaneously in all 200 resamples un-der both Pearson and Spearman correlation. Both correlation-based bootstrap statistics exceed the descrip-tive stability threshold of 0 .80 in Table 4. These results indicate that the observed family-recovery pattern is stable to resampling and reweighting prompts within the evaluated prompt set. They do not, by themselves, establish stability for unseen prompts or 8Table 5: Nearest-neighbor family recovery across model-level signature comparison methods.                
+
+> Comparison Same-family assignments Family accuracy Mutual expected pairs
+> Pearson correlation 4/41.00 2/2Spearman correlation 4/41.00 2/2Cosine similarity 4/41.00 2/2Euclidean distance 3/40.75 1/2
+
+Table 6: Prompt-resampling stability across 200 paired bootstrap resamples.         
+
+> Comparison Within >between Both pairs
+> Pearson correlation 200 /200 (1 .00) 200 /200 (1 .00) Spearman correlation 200 /200 (1 .00) 200 /200 (1 .00)
+
+different prompt distributions. Within the evaluated cohort, the correlation-based outcomes meet the descriptive family-recovery and bootstrap-stability criteria in Table 4. This conclu-sion is restricted to the evaluated checkpoints, prompt set, probe grid, descriptor channels, and comparison procedure. It should not be interpreted as evidence that ChaosProbe identifies arbitrary model families or generalizes to unseen architectures without further eval-uation. The signature-validity checks further indicate that the responses are not predominantly degenerate. Among the 800 unstandardized signature dimensions, 60 ex-hibited zero cross-model variance (60 /800 = 0 .075), while the remaining 740 varied across the evaluated cohort. At the prompt–configuration–channel level, a response was classified as collapsed when its complete descriptor-response matrix was zero. Collapse fractions ranged from 800 /16 ,000 = 0 .0500 for RoBERTa-base to 871 /16 ,000 = 0 .0544 for GPT-2. Both quantities remain below the interpretation thresholds in Table 4, indicat-ing that constant dimensions and all-zero responses do not dominate the reported signatures. 
+
+# 5 Discussion 
+
+ChaosProbe represents each evaluated model through an 800-dimensional response signature derived from its frozen input-embedding responses across a fixed neu-rochaotic probing surface. Similarity between two sig-natures therefore indicates similar responses under the sampled configurations and representation-level mea-sures; it does not imply equality of model parameters, token embeddings, linguistic behavior, or downstream capability. The recovered relationships may reflect several in-teracting properties, including embedding-table geome-try, tokenization and vocabulary construction, prompt-specific token sequences, normalization, and probe-response behavior. GPT-2 and DistilGPT2 have a di-rect teacher–student relationship [23], while BERT-base-uncased and RoBERTa-base share a masked-encoder lineage. However, the present experiment does not iso-late the contribution of these factors, nor does it analyze contextual hidden states or transformer-layer computa-tion. The neurochaotic component provides deterministic trajectories and trajectory-derived descriptors that are aggregated into a model-level response surface. The non-uniform parameter responses support using the complete fixed grid rather than one selected probe configuration. Nevertheless, this study does not establish that chaotic trajectories are necessary for the observed family recov-ery or superior to matched non-chaotic transformations. The result should therefore be interpreted as a bounded proof of concept within the evaluated four-model cohort. 
+
+# 6 Limitations 
+
+The present study has several limitations that bound the interpretation of its results. • Small model cohort. The evaluation contains only four checkpoints arranged into two two-model fam-ilies. A nearest-neighbor family accuracy of 1 .00 therefore represents four correct assignments, rather than evidence of performance across a broad pop-ulation of models. Additional architectures, scales, and independently trained checkpoints are required before making general model-family identification claims. • Restricted representation and prompt scope. 
+
+Only frozen input-embedding matrices are analyzed; the results provide no evidence about contextual hidden states, attention patterns, or representation changes across transformer layers. Moreover, the evaluation uses 80 neutral English-language prompts. Bootstrap resampling assesses stability within this observed prompt set, but not generalization to inde-pendently collected prompts, longer contexts, mul-tilingual inputs, specialized domains, or adversarial distributions. • Probe-grid sensitivity and limited ablation. 
+
+The study uses one fixed Q–B–ϵ grid and one tra-jectory length. Sensitivity to alternative parame-ter ranges, grid resolutions, trajectory lengths, and matching tolerances has not been evaluated. In ad-dition, the final signatures combine Firing Rate and Entropy with four representation-level measures, and their individual contributions to family recovery have not been isolated. • Descriptive thresholds rather than calibrated decision rules. The interpretation thresholds are practical safeguards for this bounded evaluation, rather than statistically calibrated universal cutoffs. 9They should not be interpreted as a formal hypothesis test or a general acceptance criterion for model-family recovery. • No downstream or safety evaluation. The study does not evaluate text generation, task accuracy, robustness, jailbreak detection, prompt-injection de-tection, or other operational model capabilities. The reported evidence is restricted to representation-space fingerprinting. 
+
+# 7 Conclusion and Future Work 
+
+This work introduced ChaosProbe, a determinis-tic neurochaos-inspired framework for constructing response-surface fingerprints from frozen transformer input-embedding spaces. ChaosProbe applies a fixed grid of skew-tent trajectory probes, transforms the re-sulting behavior into Firing Rate and Entropy descriptor channels, and aggregates four representation-level mea-sures into an 800-dimensional model response signature. Within the evaluated four-model cohort, Pearson cor-relation, Spearman correlation, and cosine similarity recover GPT-2–DistilGPT2 and BERT-base-uncased– RoBERTa-base as mutual nearest-neighbor pairs. Eu-clidean distance recovers three of the four same-family nearest-neighbor assignments and one of the two ex-pected mutual pairs. The correlation-based relationships remain stable under 200 paired prompt-bootstrap re-samples, while the signature-validity diagnostics remain within their descriptive thresholds. These findings support a bounded proof-of-concept conclusion: deterministic neurochaotic response surfaces contain sufficient structure to recover the expected rela-tive relationships among the tested checkpoints. They do not establish general model-family identification per-formance or chaos-specific superiority. Future work should evaluate larger balanced cohorts containing independently trained checkpoints, varied model scales, and additional architecture families. It should also develop an out-of-sample standardization protocol; compare the neurochaotic construction with matched non-chaotic controls; assess channel, measure, and probe-grid sensitivity; and test robustness across independently collected prompt sets. Extending the analysis to contextual hidden states would further reveal how these response signatures change across layers and after adaptation such as fine-tuning or distillation. 
+
+# Code Availability 
+
+The implementation, experimental configuration, prompt set, and analysis scripts are available at https: //github.com/kunal1704/ChaosProbe .
+
+# References 
+
+[1] AI Index Steering Committee. The 2026 AI in-dex report. Technical report, Stanford Institute for Human-Centered Artificial Intelligence, 2026. Accessed: 2026-07-21. [2] OpenAI. How people are using ChatGPT, sep 2025. Accessed: 2026-07-21. [3] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems , 30, 2017. [4] Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever, et al. Lan-guage models are unsupervised multitask learners. 
+
+OpenAI blog , 1(8):9, 2019. [5] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectional transformers for language understand-ing. In Proceedings of the 2019 conference of the North American chapter of the association for com-putational linguistics: human language technologies, volume 1 (long and short papers) , pages 4171–4186, 2019. [6] Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. Roberta: A robustly optimized bert pretraining approach. 
+
+arXiv preprint arXiv:1907.11692 , 2019. [7] Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean. Efficient estimation of word rep-resentations in vector space. arXiv preprint arXiv:1301.3781 , 2013. [8] Jeffrey Pennington, Richard Socher, and Christo-pher D Manning. Glove: Global vectors for word representation. In Proceedings of the 2014 con-ference on empirical methods in natural language processing (EMNLP) , pages 1532–1543, 2014. [9] Jun Gao, Di He, Xu Tan, Tao Qin, Liwei Wang, and Tie-Yan Liu. Representation degeneration prob-lem in training natural language generation models. 
+
+arXiv preprint arXiv:1907.12009 , 2019. [10] Daniel Biś, Maksim Podkorytov, and Xiuwen Liu. Too much in common: Shifting of embeddings in transformer language models and its implications. In Proceedings of the 2021 conference of the North American chapter of the Association for Computa-tional Linguistics: Human Language Technologies ,pages 5117–5130, 2021. [11] Kawin Ethayarajh. How contextual are contex-tualized word representations? comparing the ge-ometry of bert, elmo, and gpt-2 embeddings. In 
+
+Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Lan-guage Processing (EMNLP-IJCNLP) , pages 55–65. Association for Computational Linguistics, 2019. 10 [12] Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton. Similarity of neural network representations revisited. In International conference on machine learning , pages 3519–3529. PMLR, 2019. [13] William Rudman, Nate Gillman, Taylor Rayne, and Carsten Eickhoff. Isoscore: Measuring the unifor-mity of embedding space utilization. In Findings of the Association for Computational Linguistics: ACL 2022 , pages 3325–3339, 2022. [14] Yonatan Belinkov. Probing classifiers: Promises, shortcomings, and advances. Computational Lin-guistics , 48(1):207–219, 2022. [15] NB Harikrishnan and Nithin Nagaraj. Neurochaos inspired hybrid machine learning architecture for classification. In 2020 International Conference on Signal Processing and Communications (SPCOM) ,pages 1–5. IEEE, 2020. [16] Harikrishnan NB, Aditi Kathpalia, and Nithin Na-garaj. Causality preserving chaotic transformation and classification using neurochaos learning. Ad-vances in Neural Information Processing Systems ,35:2046–2058, 2022. [17] NB Harikrishnan, SY Pranay, and Nithin Nagaraj. Classification of sars-cov-2 viral genome sequences using neurochaos learning. Medical & Biological Engineering & Computing , 60(8):2245–2255, 2022. [18] Kunal Kumar Pant, Nithin Nagaraj, et al. Ad-vancing forest fires classification using neurochaos learning. arXiv preprint arXiv:2510.26383 , 2025. [19] M Anusree, P Reshmi, Jayaram Valadi, Pramod P Nair, and Prashanth Suravajhala. Hypothetical protein classification using neurochaos learning ar-chitecture. In International Conference on Infor-mation and Communication Technology for Com-petitive Strategies , pages 337–346. Springer, 2024. [20] KH Sneha, Adhithya Sudeesh, Pramod P Nair, and Prashanth Suravajhala. Biologically inspired chaosnet architecture for hypothetical protein clas-sification. In 2023 Fifth International Conference on Electrical, Computer and Communication Tech-nologies (ICECCT) , pages 1–6. IEEE, 2023. [21] Deeksha Sethi, Nithin Nagaraj, et al. Neurochaos feature transformation for machine learning. Inte-gration , 90:157–162, 2023. [22] Olivier Roy and Martin Vetterli. The effective rank: A measure of effective dimensionality. In 
+
+Proceedings of the 15th European Signal Processing Conference , pages 606–610, 2007. [23] Hugging Face. distilgpt2 model card. https:// huggingface.co/distilbert/distilgpt2 , 2024. Accessed: 2026-07-23. 11

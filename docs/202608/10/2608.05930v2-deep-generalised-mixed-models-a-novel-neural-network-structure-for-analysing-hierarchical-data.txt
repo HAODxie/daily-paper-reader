@@ -1,0 +1,834 @@
+Title: Deep Generalised Mixed Models: a Novel Neural Network Structure for Analysing Hierarchical Data
+
+URL Source: https://arxiv.org/pdf/2608.05930v2
+
+Published Time: Mon, 10 Aug 2026 00:36:56 GMT
+
+Number of Pages: 21
+
+Markdown Content:
+# Deep Generalised Mixed Models: a Novel Neural Network Structure for Analysing Hierarchical Data 
+
+## Nina van Gerwen 1,2, Dimitris Rizopoulos 1,2, Manon Hillegers 3, Loes Keijsers 4, Sten Willemsen 1,2
+
+> 1
+
+Department of Biostatistics, Erasmus University Medical Center, the Netherlands 
+
+> 2
+
+Department of Epidemiology, Erasmus University Medical Center, the Netherlands 
+
+> 3
+
+Department of Child Psychiatry, Erasmus University Medical Center, the Netherlands 
+
+> 4
+
+Department of Psychology, Education and Child Studies, Erasmus University Rotterdam, the Netherlands August 10, 2026 
+
+Abstract 
+
+The experience sampling method (ESM) is a longitudinal research design where participants report their thoughts, emotional states and behaviours multiple times a day. Our work is motivated by such data collected by the GrowIt! app, which was released to investigate daily emotions among adolescents during the COVID-19 pandemic. Current procedures to analyse ESM data face various challenges. While standard statistical techniques may not scale well to a high-dimensional setting, machine learning procedures can give biased results due to selection bias introduced by missingness. In our motivating dataset, adolescents dropped out due to previous strong feelings of negative emotions. Hence, the implied missing data are of the missing-at-random type that standard machine learning procedures cannot accommodate. We develop a novel neural network architecture that generalises mixed effects models to deep learning to overcome these challenges. It allows semi-parametric and flexible modelling of data’s mean and correlation structure through fixed and random effects. For estimation, we use an adaptation of variational auto-encoders and a Bayesian data augmentation algorithm. Through this approach, the model can accommodate longitudinal outcomes following generic distributions, scale well to high-dimensional settings and provide valid inference when data are missing-at-random. We applied the Deep Generalised Mixed Model to the GrowIt! study and various simulations. The results show potential for the Deep Generalised Mixed Model, yet suboptimal performance due to model instability. 
+
+Keywords— longitudinal data, missing data, mixed models, neural networks, variational auto-encoders 
+
+1arXiv:2608.05930v2 [stat.ML] 7 Aug 2026 1 Introduction 
+
+Experience sampling method (ESM) data are becoming increasingly popular in predicting health outcomes in participants and improving their daily life experiences. The ESM is an intensive longitudinal research design that asks participants to report on their thoughts, emotional states and behaviours at multiple time points a day over a sustained period. Through this design, researchers capture important daily life health factors such as anxiety and stress. Our work is motivated by ESM studies performed via the GrowIt! app. During the COVID-19 pandemic, the GrowIt! app was released to improve adolescents’ affective and cognitive well-being. The app consists of two components; firstly monitoring the emotions and behaviours of adolescents in daily life using the ESM. Secondly, offering daily challenges that are based on CBT and aimed at strengthening adaptive coping 1–4 . Since then, the GrowIt! app has been further tested in a randomised controlled trial as an intervention to study its beneficial effects on a population of children and adolescents aged 10 to 18 and diagnosed with chronic somatic conditions 5.A common statistical framework for analysing longitudinal data is mixed effects models 6,7 . The advantage of this method is that it can accommodate common features of longitudinal data, such as unbalanced data, irregular time intervals and drop-out. However, ESM data are also characterised by high-dimensional complex correlation structures. Although extensions have been made in previous research to make mixed models more efficient for high-dimensional purposes 8–10 , standard mixed model implementations may either be too rigid or too computationally demanding to capture such high-dimensional structures properly. Mixed effect models also pose strict assumptions on the correlation structure that are violated. An alternative approach to modeling intensive longitudinal data is to use machine learning (ML) techniques designed to accommodate such high-dimensionality 11 . In the ML literature, deep learning (DL) is often used to analyse longitu-dinal data. For a general introduction to DL, we refer readers to Prince (2023) 12 . A well-known DL architecture for longitudinal data is recurrent neural networks (RNNs), which were designed to process sequential data by using recurrent connections 13 , though other architectures exist such as Temporal Convolutional Neural Networks 14 and more recently transformers 15 . However, a significant issue remains for the analysis of longitudinal data using these DL techniques. Namely, the selection bias that is introduced through missing data in longitudinal studies. Although various procedures to deal with missing data in DL have been studied previously 16–20 , most of these meth-ods such as mask matrices and mean imputation provide valid inference only when the missing data mechanism is missing-completely-at-random (MCAR), i.e. independent of any of the observed data. Nonetheless, previous research has shown that ML techniques may be robust in the face of missing data when the aim is prediction no matter the missing data mechanism 21–23 . In response, Catoire et al. (2026) recently published a pre-print to introduce a new formal framework for prediction tasks that explains these contradicting results between inference and prediction. However, the previous results and framework all assume a standard regression scenario where there is either no missing data in the outcome, or that the missing data in the outcome is non-informative. Yet, in longitudinal studies, the missingness is more 
+
+2complex. There frequently is either intermittent missingness in the outcome or drop-out over time. Furthermore, this drop-out usually depends on earlier observed data, potentially introducing selection bias. For example, in our motivating dataset, youths may have missed measurements or completely stopped using the GrowIt! app due to previous strong feelings of negative emotions 24 . In this scenario, we have to appropriately account for the missing data if we want to accurately and unbiasedly predict the future trajectories of individuals that dropped-out from our study. As far as we were able to find, only Che et al. (2018) 25 have researched a method where a RNN leverages the infor-mation of patterns in the missing data to account for potential selection bias and improve performance. However, their method makes two assumptions on the missingness mechanisms. The method assumes that missing values decay back to some empirical mean, and that the missingness mechanisms depends only on the time difference between measurements. Both these assumptions may not hold in all scenarios. For example, a participant who dropped out may have done so due to an abnormal state such as a major depressive disorder. In this case, the patient may not return to their previous empirical mean. Furthermore, missingness may also be related to other variables such as the previously measured out-comes. In this work, we overcome the issues described above for the analysis of intensive longitudinal data by developing a novel neural network (NN) architecture that generalises mixed effects models to DL, combining the advantages of both statistical techniques and machine learning methods. We call this new framework the Deep Generalised Mixed Model (DGMM). Previously, Mandel et al. 26 generalised mixed models such that the fixed effects were estimated using a NN and any remaining heterogeneity was modeled using random intercepts. For the DGMM, we build upon their work by estimating both the fixed effects and random effects using NNs, allowing for more flexible and semi-parametric modelling of both within- and between-person differences. The remainder of the paper is organised as follows. In Section 2, we formally introduce the architecture, estimation procedure, missing data generalisation and forecasting algorithm for the DGMM. In Section 3, we apply the DGMM to the GrowIt! app studies. In Section 4, we compare the performance of the DGMM in various simulation studies to the performance of a RNN and a standard mixed effects model. Finally, we conclude our findings and practical implications with a discussion in Section 5. 
+
+# 2 Model Definition 
+
+Let Yi = ( yi, 1, . . . , yi,K ) denote a matrix of k = 1 , . . . , K longitudinal outcomes for subjects i = (1 , . . . , n ) of subject-and outcome-specific sizes ni,k obtained at time points til,k > 0. We also let Xi denote an (ni,k × p) matrix of baseline covariates excluding time. We model the correlations in the longitudinal data with the conditional independence assumption given a vector of random effects bi of length u, i.e. the longitudinal measurements Yi are assumed independent conditioning on bi. We use a general model specification to accommodate longitudinal outcomes following a generic 
+
+3distribution. Specifically, 
+
+[yi,k | bi, Xi, Ti,k ; θ] ∼ F k
+
+(
+
+Gk
+
+{
+
+μ1(Xi, Ti,k ) + μ2(Bi, Ti,k )
+
+}
+
+, ς k
+
+)
+
+, (1) in which 
+
+[bi] ∼ N (0, I),
+
+μ1(Xi, Ti,k ) = f (Xi, Ti,k ; β1),
+
+μ2(Bi, Ti,k ) = g(Bi, Ti,k ; β2).
+
+The k-th longitudinal response yi,k conditional on the random effects bi follows distribution Fk (·) with mean defined by some functions g(·) and f (·), parameterised by vectors β1 and β2, and (potential) shape or dispersion parameter 
+
+ςk . The function Gk (·) is a monotonic and differentiable link function and Bi is the vector of bi, repeated to the length of yi,k . Lastly, Ti,k is a matrix of the vector of all timepoints til,k and potential transformations of this vector. The formulation in (1) presents a universal description of a generalised multivariate linear mixed models, in which Fk (·) can be a probability distribution, such as a Gaussian, Student’s t, gamma, beta, binomial, Poisson or negative binomial. Similar to a standard mixed model, the prediction equation is split up into a fixed effect part, μ1(·), to capture the population consistent trend, and a random effect part, μ2(·), to model remaining subject-specific heterogeneity. However, compared to a mixed effects model, the DGMM assumes a (multivariate) standard normal prior for the random effects bi instead of a (multivariate) normal distribution with mean(s) 0 and covariance matrix D.To implement the model, we approximate the functions g(·) and f (·) through two NNs. In particular, 
+
+f (Xi, Ti,k ; β1) = NN {(Xi, Ti,k ); β1, λβ1
+
+},g(Bi, Ti,k ; β2) = NN {(Bi, Ti,k ); β2, λβ2
+
+},
+
+where we let NN (X; β, λ) denote a NN with input variables X, parameters β and hyperparameters λ.
+
+## 2.1 Neural Network Architecture 
+
+For notational simplicity, we assume Ti,k does not vary over the K outcomes and denote it by Ti. A general form for the architecture of the DGMM for the jth measurement of the ith individual for the K outcomes can be seen in Figure 1. The figure shows three NNs: (1) h = {h(Lh), . . . , h (1) }, a standard feed-forward NN that models the fixed effects part μ1(·), (2) e = {e(Le), . . . , e (1) }, a NN that encodes the data of individual i into u means (μ1, . . . , μ u) and variances (σ1, . . . , σ u), and (3) d = {d(Ld), . . . , d (1) }, a NN that decodes samples z1, . . . , z u from the encoded means and variances into a subject-specific random effects part μ2(·). These samples can be seen as an approximation of the random effects bi and are held constant within an individual over all time points Ti and K outcomes. Together, e
+
+and d create an architecture commonly known as a variational auto-encoder (VAE), which is a generative DL method 
+
+4tij 
+
+xi1
+
+...
+
+xip 
+
+h(L)1
+
+h(L)2
+
+...
+
+h(L)
+
+> khL
+
+………
+
+h(1) 1
+
+h(1) 2
+
+...
+
+h(1) 
+
+> kh1
+
+μ1ij, 1
+
+...
+
+μ1ij,K 
+
+Yi
+
+ti
+
+Xi
+
+e(L)1
+
+e(L)2
+
+...
+
+e(L)
+
+> keL
+
+………
+
+e(1) 1
+
+e(1) 2
+
+...
+
+e(1) 
+
+> ke1
+
+μ1
+
+...
+
+μu
+
+σ1
+
+...
+
+σu
+
+z1
+
+...
+
+zu
+
+tij 
+
+d(L)1
+
+d(L)2
+
+...
+
+d(L)
+
+> kdL
+
+………
+
+d(1) 1
+
+d(1) 2
+
+...
+
+d(1) 
+
+> kd1
+
+μ2ij, 1
+
+...
+
+μ2ij,K 
+
+ˆyij, 1
+
+...
+
+ˆyij,K 
+
+++
+
+G1(·)
+
+GK (·)
+
+Figure 1: General Neural Network Architecture for the Deep Generalised Mixed Model for K longitudinal outcomes. The shaded part indicates that the units within are held constant within an individual. 
+
+for simultaneously learning a deep latent variable representation and probabilistic inference. For information regarding VAE, we refer readers to Kingma and Welling (2019) 27 .The fixed effects network h has as input tij and Xi = ( xi1, . . . , x ip ) with Lh hidden layers of layer-specific lengths 
+
+khl = ( kh1 , . . . , k hL ) and multivariate outputs μ1ij = ( μ1ij, 1 , . . . , μ 1ij,K ). The outputs can be seen as a nonlinear function of the inputs and structure of the neural network. Specifically, Xi and tij enter the neural network through the first hidden layer h(L) with activation function ghL (·) to produce the vector of length khL :
+
+h(L) = ghL (ωh(L)
+
+ψi + δh(L)
+
+),
+
+where ωh(L)
+
+is a khL × (p + 1) matrix of coefficients (often referred to as weights in the DL literature), ψi is shorthand notation for the combined vector of Xi and tij and δh(L)
+
+is a vector of intercepts (commonly known as biases in the DL literature) of length khL . For the hidden layers in h where l = 2 , 3, . . . L , the output of the layer is defined by 
+
+h(l−1) = ghl−1 (ωh(l−1) 
+
+h(l) + δh(l−1) 
+
+),
+
+5where ωh(l−1) 
+
+is a matrix of size khl−1 × kl and δh(l−1) 
+
+has length khl with layer-specific activation function ghl−1 (·).Lastly, the output layer of h is 
+
+μ1ij = ωh(1) 
+
+h(1) + δh(1) 
+
+,
+
+of size K and the identity activation function is used. As mentioned above, e and d take the form of a VAE. First, the encoder e corresponds to the task of making a deep latent variable representation of the data. For an individual i, all available data, i.e. Yi, Ti and Xi, enter the NN through the hidden layers e = {e(1) , . . . , e (L)}. Mathematically, the same happens within the layers of e and d as it does in h with a difference in hyperparameters, input and output. The encoder e outputs a layer of (2 × u) units with the identity activation function that coincide with u means μ1, . . . , μ u and u log variances σ1, . . . , σ u, where u is a hyperparameter that defines the number of latent dimensions to encode the data into. Specifically, the encoder of a VAE maps the data to a probability distribution in latent space, as compared to directly estimating the latent dimensions as is done in a standard auto-encoder, making the architecture less prone to overfitting and able to generate new data 28 .The second NN in the VAE is the decoder d, which corresponds to the inference task. From the u means and log variances, we sample z = ( z1, . . . , z u), which are held fixed within an individual i. Together with measurement time 
+
+tij , the samples go through the layers of the decoder. As a result, the sampled z and time point tij are decoded into 
+
+μ2ij = ( μ2ij, 1 , . . . , μ 2ij,K ), where the final layer d(1) again has a linear activation function. In the last step, μ1ij and 
+
+μ2ij are added together element-wise. Each k-th addition is then put through link function Gk (·) to obtain a prediction for the k-th longitudinal outcome for individual i at time point tij , i.e. ˆyij,k .
+
+## 2.2 Estimation 
+
+Standard estimation of a set of model parameters θ in a mixed model with maximum likelihood estimation would involve calculation of the marginal likelihood function 
+
+L(θ) = 
+
+> n
+
+∏
+
+> i=1
+
+p(Yi; θ) = 
+
+> n
+
+∏
+
+> i=1
+
+∫
+
+p(Yi | bi; θ) p(bi) dbi,
+
+where the first term is the probability density of the conditional model for the outcome given the random effects bi and the second term is the probability density function of the random effects. However, because log {p(Yi | bi; θ)} of the DGMM is nonlinear in the random effects bi, classical estimation by integrating out bi to obtain the marginal likelihood becomes intractable. This makes the model unfeasible, especially as the dimensionality of bi grows. To overcome this challenge in estimating θ, we use the variational inference approach within a VAE to make the deep latent variable representation tractable. Specifically, instead of estimating p(bi) directly, we specify a tractable variational distribution for the random effects q(bi) from which we can sample. Following a series of algebraic steps shown in Web 
+
+6Appendix A, we establish that maximising the marginal log-likelihood can be seen as equivalent to maximising the Evidence Lower Bound 29 :
+
+˜ℓ(θ) = 
+
+> n
+
+∑
+
+> i=1
+
+∫
+
+log {p(Yi | bi; θ)} q(bi) dbi −
+
+∫
+
+log 
+
+{ q(bi)
+
+p(bi)
+
+}
+
+q(bi) dbi.
+
+The first term in ˜ℓ(θ) can be approximated via Monte-Carlo with 
+
+∫
+
+log {p(Yi | bi; θ)}q(bi) dbi ≈ 1
+
+M
+
+> M
+
+∑
+
+> m=1
+
+log {p(Yi | b(m) 
+
+> i
+
+; θ)},
+
+where b(1)  
+
+> i
+
+, . . . , b(M ) 
+
+> i
+
+denote samples from the variational distribution q(bi). The second term in ˜ℓ(θ) is the Kullback– Leibler (KL) divergence between the distributions q(bi) and p(bi)30 . When we set the variational distribution as a function of the data, i.e. q(bi) = p(bi | Yi; θ), we obtain the result that ˜ℓ(θ) = ℓ(θ). This suggests that we should specify the variational density q(bi) such that the KL divergence between p(bi | Yi; θ) and q(bi) is minimised. Linking these equations to the DGMM architecture in Figure 1, p(Yi | bi; θ) is the addition of the NN d and h, and p(bi | Yi; θ) are the estimated latent dimensions in e.Using a variant of Bayesian central limit theorem 31 and under general regularity conditions, we obtain that as the number of measurements within a person ni,k approaches infinity, p(bi | Yi; θ) converges to a multivariate normal distribution, i.e. 
+
+[bi | Yi; θ] ∼ N {μb(Yi; θ), Σb(Yi; θ)},
+
+where 
+
+μb(Yi; θ) = arg max 
+
+> b
+
+[
+
+log {p(Yi | b; θ)} + log {p(b)}]
+
+,
+
+and 
+
+Σb(Yi; θ) = 
+
+{
+
+− ∂2
+
+∂bi∂b⊤
+
+> i
+
+[
+
+log {p(Yi | bi; θ)} + log {p(bi)}]∣∣∣∣bi=μb
+
+}−1
+
+.
+
+The normal approximation to the posterior is exact when [Yi | bi; θ] is Gaussian with a mean that is linear in bi. We can also see μb(Yi; θ) and Σb(Yi; θ) as nonlinear functions of Hi = {Yi, Ti, Xi}. Hence, we can approximate both using a NN architecture. In particular, we specify the variational conditional distribution as a multivariate normal distribution, i.e. 
+
+
+
+[bi | Hi; ϕ] ∼ N {μb(Hi; ϕ), Σb(Hi; ϕ)},
+
+{μb(Hi; ϕ), Σb(Hi; ϕ)} = NN {Hi; ϕ, λϕ}.
+
+7In Figure 1, this is visualised as the encoder e. This structure estimates a (n × u) matrix of means and variances, and the set of parameters ϕ is assumed to be independent from θ. Using this specification, we maximise 
+
+˜ℓ(θ, ϕ) = 
+
+> n
+
+∑
+
+> i=1
+
+{ ∫ 
+
+q(bi | Hi; ϕ) log {p(Yi | bi; θ)} dbi −
+
+∫
+
+q(bi | Hi; ϕ) log 
+
+{ q(bi | Hi; ϕ)
+
+p(bi)
+
+}
+
+dbi
+
+}
+
+with respect to θ and ϕ, where the first term is approximated by 
+
+∫
+
+q(bi | Hi; ϕ) log {p(Yi | bi; θ)} dbi ≈ 1
+
+M
+
+> M
+
+∑
+
+> m=1
+
+log {p(Yi | b(m) 
+
+> i
+
+; θ}
+
+= 1
+
+M
+
+> M
+
+∑
+
+> m=1
+> ni
+
+∑
+
+> j=1
+
+log {p(yij | b(m) 
+
+> i
+
+; θ)},
+
+where b(1)  
+
+> i
+
+, . . . , b(M ) 
+
+> i
+
+now denote samples from q(bi | Hi; ϕ). The second term is now the KL divergence between N (0, I)
+
+and N {μb(Hi; ϕ), Σb(Hi; ϕ)}, which we can calculate in closed form: 
+
+∫
+
+q(bi | Hi; ϕ) log 
+
+{ q(bi | Hi; ϕ)
+
+p(bi)
+
+}
+
+dbi = 12
+
+> k
+
+∑
+
+> l=1
+
+μ2 
+
+> il
+
++ σ2 
+
+> il
+
+− 1 − log (σ2
+
+> il
+
+),
+
+where μil and σ2 
+
+> il
+
+are the l-th components of the parameter vectors μb(Hi; ϕ) and Σb(Hi; ϕ) for subject i, respectively. Note that the NN structure can also be generalised to estimate a full variance-covariance matrix by estimating the log Cholesky factor of this covariance matrix and changing the formula for the KL divergence accordingly. This generalisa-tion is presented in Web Appendix B. All together, these steps allow the DGMM to estimate both fixed and random effects with NNs, and let the model scale efficiently to high-dimensional data. 
+
+## 2.3 Missing Data Generalisation 
+
+An implicit requirement for NNs is that all subjects are required to have the same input size. However, a frequent feature of longitudinal data is that participants differ in the length of the vectors Yi and Ti. Although this does not pose an issue for the estimation of the decoder d, it does complicate the encoder e. This is because Yi and Ti are used as input for e. In existing NN structures for longitudinal data, this issue is usually resolved using techniques such as zero-padding and mask matrices, where missing values are removed from the estimation procedure. However, this method will not work for the encoder, as we cannot mask missing values from contributing to the latent dimensions in the estimation of the KL divergence. Furthermore, such a method is also not guaranteed to provide valid inference under MAR without extensions as it does not leverage the information in the patterns of missingness. To proceed, we assume that all subjects were supposed to provide longitudinal measurements at some pre-specified 
+
+8Algorithm 1 DGMM Fitting Algorithm 
+
+1: Define NN structures h, e and d.
+
+2: Obtain initial values for Y m, (0)  
+
+> i
+
+as part of H(0)  
+
+> i
+
+= {Hoi , Y m, (0)  
+
+> i
+
+, T mi }.
+
+3: for v = 1 to ne do 
+
+4: Step 1: Calculate (θ(v), ϕ(v)) = arg max 
+
+> θ,ϕ
+
+{˜ℓv (θ, ϕ; H(v−1)  
+
+> i
+
+)}.
+
+5: Step 2: Simulate Y m, (v) 
+
+> i
+
+from [Y mi | Y oi ; θ(v)].
+
+6: Step 3: Update H(v) 
+
+> i
+
+= {Hoi , Y m, (v) 
+
+> i
+
+, T mi }.
+
+7: end for 
+
+time points. We redefine Ti into T oi and T mi to respectively denote the time points of the observed longitudinal measurements and the missing longitudinal measurements. Similarly, we redefine Yi into Y oi and Y mi and define Hoi =
+
+{Y oi , T oi , Xi} and Hmi = {Y mi , T mi , Xi}.To properly train the encoder network e for μb
+
+{(Hoi , Hmi ); ϕ} and Σb
+
+{(Hoi , Hmi ); ϕ} under missing data, we will impute the longitudinal measurements Y mi we were supposed to collect at T mi . For the imputation process of 
+
+Y mi , we borrow ideas from a stochastic approximation expectation maximisation algorithm 32 and combine this with a Robbins–Monro process 33 . The heuristic steps of the fitting algorithm for a total of ne number of epochs are outlined in Algorithm 1. First, we initialise the model with parameters θ(0) , ϕ(0) and input values H(0)  
+
+> i
+
+. Then, at the v-th iteration 
+
+(v = 1 , . . . , n e) in Step 1, we use a stochastic gradient descent algorithm (e.g., 34 ) to optimise ˜ℓv (θ, ϕ; H(v−1)  
+
+> i
+
+) and obtain updated estimates of the parameters θ(v) and ϕ(v). In Step 2, we use these updated parameters to simulate a realisation of Y m, (v) 
+
+> i
+
+from the corresponding posterior predictive distribution, i.e. 
+
+p(Y m, (v) 
+
+> i
+
+| Y oi ; θ(v)) = 
+
+∫
+
+p(Y m, (v) 
+
+> i
+
+| Y oi ; θ(v))p(bi | Y oi ; θ(v)) dbi. (2) We use a Random Walk Metropolis–Hastings (RWMH) algorithm to sample (2). The exact inner steps performed in Step 2 and the Robbins–Monro process are detailed in Web Appendix C. Finally, in Step 3 we create H(v) 
+
+> i
+
+in which the missing values Y mi are updated using the simulated Y m, (v) 
+
+> i
+
+from Step 2 for the following epoch. 
+
+## 2.4 Dynamic Predictions and Prediction Error 
+
+Once we have estimated the DGMM in a dataset Dn = {yi, Xi, Ti; i = 1 , . . . , n }, we are interested in estimating predictions for the longitudinal outcomes of a new subject j from the same population. Formally, let Yj (t) denote the set of recorded measurements for the K outcomes of subject j up to time t. We are interested in the predictions 
+
+ˆyj,k (u, t ) = E{yj,k (u) | Y j (t), Dn
+
+}, u > t, t ≥ 0.
+
+9Under an asymptotic Bayesian formulation of the posited model, we obtain 
+
+E{yj,k (u) | Y j (t), Dn
+
+} =
+
+∫
+
+E{yj,k (u) | Y j (t); θ} p(θ | D n) dθ
+
+=
+
+∫ { ∫
+
+E{yj,k (u) | bj ; θ} p(bj | Y j (t); θ) dbi
+
+}
+
+p(θ | D n) dθ
+
+=
+
+∫ [∫
+
+Gk
+
+{
+
+μ1(Xj , u ; β1) + μ2(bj , u ; β2)
+
+}
+
+p(bj | Y j (t); θ) dbi
+
+]
+
+p(θ | D n) dθ.
+
+We focus on point predictions and calculate ˆyj,k (u, t ) using the estimated parameters ˆθ = { ˆβ1, ˆβ2, ˆς}. The inner integral is approximated using Monte Carlo sampling, i.e. 
+
+∫
+
+Gk
+
+{
+
+μ1(Xj , u ; ˆβ1) + μ2(bj , u ; ˆβ2)
+
+}
+
+p(bj | Y j (t); ˆθ) dbi
+
+≈ 1
+
+M
+
+> M
+
+∑
+
+> m=1
+
+Gk
+
+{
+
+μ1(Xj , u ; ˆβ1) + μ2(b(m) 
+
+> j
+
+, u ; ˆβ2)
+
+}
+
+,
+
+where (b(1)  
+
+> j
+
+, . . . , b(M ) 
+
+> j
+
+) denotes a sample from p(bi | Y j (t); ˆθ) obtained using a RWMH algorithm analogous to the one described in Web Appendix C. When investigating the performance of the DGMM in the simulation studies, we use the dynamic root mean square prediction error and dynamic bias, calculated by the formulas respectively RMSPE (u, t ) = 
+
+√
+
+E{( y(u) − ˆy(u, t ))2},
+
+bias (u, t ) = E{y∗(u) − ˆy(u, t )}.
+
+where the expectation is taken over individuals with respect to the true data-generation distribution with measurement error ( y(u)) or without measurement error ( y∗(u)). We use an independent test set to obtain an objective estimate of the dynamic RMSE and bias. Intuitively, we expect the RMSPE (u, t ) to increase as the time lag |u − t| increases. 
+
+# 3 The GrowIt! Study 
+
+We return to our motivating example of the GrowIt! studies during the COVID-19 pandemic to showcase the DGMM. The GrowIt! app released three waves of studies during the pandemic to research daily mood changes amongst young adults. We work with a subset of the complete dataset that contains follow-up data of 1174 participants and a total of 
+
+123270 measurement times, i.e. 105 measurements per participant. Among the participants, only one provided data at all measurement occasions. Participants provided a median of 33 measurements (IQR = 40). In total 74831 measurement times were missing, leaving us with 48439 observed measurements and a missingness proportion of approximately 0.61. For the analysis and evaluation, we randomly split participants into a train, validation and test dataset on a 7 : 1 : 2 
+
+10 ratio. The train dataset was used to train the model, the validation dataset was used for an early stopping criteria and the test set was used to evaluate the performance of dynamic predictions. We modeled three ESM outcomes following various distributions: negative affect, a bounded continuous outcome obtained by averaging four measurements on a 1 to 7 scale, and loneliness and boredom, which were both measured on a scale from 1 to 7. We rescaled negative affect to a range of 0 and 1 and dichotomised loneliness and boredom as lower than 4 or equal to/higher than 4. Together, these outcomes describe an individual’s negative state in real-time. For the analysis, we included the baseline variable standardised age at baseline. We specified time as first time since the participant started the study in weeks with a range of 0 to 3. The specification of the DGMM was slightly different compared to how we defined it in Section 2. In particular, we made a more parsimonious network by excluding the separate NN h (see Figure 1) for the fixed effects. Instead, we added the baseline information together with the time specifications to the decoder d. For the encoder e, we used only Yi as input and 4 hidden layers with 64 units. We estimated the KL-divergence for 5 correlated latent dimensions. For the decoder d, we used 2 hidden layers with 48 units. We chose a more shallow neural network for the decoder compared to the encoder to combat posterior collapse, which is a common problem in VAE where the estimated latent dimensions become equal to the prior distribution. A shallow decoder makes the model more inclined to learn meaningful latent dimensions and not rely solely on baseline information and time to reconstruct the data. For the same purpose, we also used a mix of cyclic KL-annealing 35 and β-VAE 36 .We also added a warm-up hyperparameter to aid convergence. Specifically, the warm-up denotes for how many epochs the model should be trained before starting the imputation algorithm. This is because we found that after only a few epochs of training, the error estimates were too large, leading to inaccurate imputations and worse optimalisation. We employed an early stopping criteria to improve generalisability of the model. In particular, the early stopping criteria minimised the sum of the mean squared error for negative affect, and the log binomial loss for loneliness and boredom in the validation data. Finally, we fitted a sequence-to-sequence multivariate RNN with 3 Long-Short-Term-Memory 37 
+
+(LSTM) layers with 34 units each for comparison. We present the results of the multivariate analysis of the ESM outcomes in Table 1 and Figure 2. Table 1 shows the predictive accuracy of the DGMM and RNN on all observed data of the train, validation and independent test dataset for the three outcomes. Interpreting these results, we see that the DGMM showed poorer fit on the data compared to the RNN, especially on the binary outcomes Loneliness and Boredom. Figure 2 describes the individualised dynamic predicted trajectory for three participants in the independent test set for landmark times u = {1, 2, 3} in weeks. From the observed data in the figure, we see that ID 150 experienced a prolonged period of much higher negative affect, and more frequent loneliness and boredom than ID 23 and 48. Based on this information that can be updated in real-time, a treating psychologist may look at the trajectories and opt to intervene by sending a message to this individual and ask whether they would like to have a consultation or provide a set of challenges on the app to aid their affective state, similar to just-in-time adaptive interventions 38 . Preferably, such decisions would also be made on the predicted trajectory past 
+
+11 Negative Affect Loneliness Boredom Model Train Val Test Train Val Test Train Val Test RNN 0.018 0.016 0.019 0.90 0.89 0.84 0.83 0.84 0.85 DGMM 0.029 0.020 0.023 0.76 0.81 0.86 0.70 0.79 0.80 Table 1: Accuracy metrics for the Deep Generative Mixed Effects Model and Recurrent Neural Network across the datasets for the multivariate analysis of three outcomes. For Negative Affect, the values denote the mean squared error. For Loneliness and Boredom, the values denote the Area Under the Receiver Operating Charac-teristic Curve. 
+
+the observed data. However, we find that both the DGMM and RNN are unable to forecast an individual’s negative state well. While the DGMM collapsed back to a linear model that provides a stable prediction past the landmark times, the RNN shows an overly flexible trajectory which follows the observed data better, yet provides a very unstable forecast. Furthermore, inspecting the forecasting of negative affect, we see that the DGMM keeps the trend at the same level for ID 150 which follows the true data better than the RNN, which predicts a large and inaccurate drop. This could be related to potential selection bias that is introduced through the missing data in the outcome, which the DGMM takes into account. Summarising the results, we contend the unfavourable performance for the DGMM and RNN may be caused by a shortcoming of information in the data. In particular, small sequential correlations in the data, strong right skewed distributions for the three outcomes and the high proportion of missing data make the data unsuitable for a prediction model. Instead clinical decision making as described above should be based on observed data only. Experts could design clinical cut-off values that would automate alerting a treating psychologist to save time and resources. For example, a participant should be contacted if they have experienced bouts of loneliness and boredom for more than three moments per day for two consecutive days combined with a high negative affect score. 
+
+# 4 Simulation Studies 
+
+We conducted numerical studies to empirically compare the performance of the DGMM, a RNN using LSTM cells and the true data generating model under various settings. 
+
+## 4.1 Simulation Design 
+
+We designed our simulations to be a simplified version of longitudinal data. In particular, we generated univariate continuous longitudinal data from a linear mixed model for 1200 individuals with 20 measurements each. The linear mixed model was specified to have nonlinear trajectories over time using natural splines with three degrees of freedom. After generating data, we apply a variety of missing data mechanisms for the different simulation studies. Specifically, for Simulation Study I, we assume no missing data and leave the generated data as is. For Simulation Study II, we assumed two types of MAR mechanisms. In the first mechanism, drop-out was decided using a probabilistic scheme: 
+
+12 Figure 2: Individualised dynamic predictions for three outcomes for three individuals in the GrowIt! test set at three landmark times, denoted by u. NA = negative affect; LON = loneliness; BOR = boredom; DGMM = Deep Generalised Mixed Model; RNN = Recurrent Neural Network. D                        
+
+> 
+> 
+>        
+> u,   
+> 
+>    
+> D        
+>    
+> " u
+> ")!( $# ()*  ')!('    '' # &$%$&( $#
+
+Figure 3: Plot (a) on the left depicts the RMSE in the train data for the three tested methods. Plots (b) on the right depict the average RMSPE (u, t ) for three methods at landmark times t = {5, 15 } in the test data. DGMM = Deep Generalised Mixed Model; RNN = Recurrent Neural Network; LMM = Linear Mixed Model. 13 at each measurement time, the probability to have subsequent measurements missing from the study was estimated using a logistic regression such that the higher someone’s outcome value, the higher the probability to drop-out. In the second mechanism, we specified a cut-off value such that if a measurement was taken for an individual above this value, all subsequent measurements would be missing. We varied the probabilities and cut-off value to have two different proportions of missing data (approximately 0.10 and 0.30). In total, this led to a total of 5 unique simulation scenarios over the two simulation studies. We repeated each unique simulation scenario 100 times. In each simulation scenario, we analysed the data in the following way. First, we split the data into a training, validation and test dataset, dividing individuals on a 4 : 1 : 1 ratio respectively. Then, we train (a) the true model, i.e. a linear mixed model with natural splines, (b) the DGMM and (c) a RNN with LSTM cells on the training dataset. For the LMM, the validation data is included to train the LMM, whereas for the DGMM and RNN, we use the validation data for an early-stopping criteria. After model fitting, we estimated the RMSPE (u, t ) and bias (u, t ) for the three methods for t = {5, 10 , 15 } and 
+
+u = {t + 1 , . . . , 19 }, which we visualised in line-graphs. We also ascertained the MSE of the different methods in the training dataset, which was visualised in box plots. Finally, we estimated the MSE of the imputed values that were used as input in the encoder for the DGMM in the final fitting epoch and compared this to the MSE had we imputed these values using the fitted true model. 
+
+## 4.2 Results 
+
+Figure 3 presents the results for Simulation Study I. Interpreting these results, we find that under no missing data, the DGMM showcases good fit in the training data with slightly worse predictive performance compared to a RNN in an independent test set. In Simulation Study II, where we introduce missing data into the design, we see that the variation in the training process increased by a large margin (see Figure 4). This is indicative that the DGMM suffers from model instability and may be susceptible to small changes in hyperparameters and initialisation. We hypothesise this occurs due to the variation introduced by varying number of observations per batch, the data imputation algorithm, complemented by both the variation due to the variational inference in the DGMM and inherent training variation in NNs introduced by batches, shuffling and initialisation. This entails that there we see iterations where the DGMM is either underfitted or overfitted in Simulation Study II. A consequence of the under- and overfitting of the DGMM is that there is large variation in the predictive performance of the DGMM, which complicates interpretation of the results. Nonetheless, we see that on average the performance of the DGMM is close to that of a RNN. Across the simulation scenarios, we do find iterations where the performance of the DGMM is higher than that of the RNN. In other words, when the DGMM shows good convergence, the model may more properly leverage information in the missing-at-random data mechanism and outperform a RNN, yet potentially 
+
+14 D                    
+
+>  (&'&(*"&% "))"%
+> D         
+>  (&'&(*"&% "))"%
+> D         
+>  (&'&(*"&% "))"%
+> D         
+>  (&'&(*"&% "))"%
+> (&"#")*" D(&'&+* +*& D(&'&+*
+> ("%"%  ((&( +%(  (,"%    !%")$)
+> *!& 
+
+Figure 4: Boxplots of the RMSE in the training data in Simulation Study II for the three methods under varying proportions missing data and MAR data generating mechanisms with outliers removed. DGMM = Deep Generalised Mixed Model; RNN = Recurrent Neural Network; LMM = Linear Mixed Model. For the full results with outliers, we refer readers to the Supplementary Materials. 
+
+fails to do so on average due to model instability. Furthermore, it is worth noting that the differences in RMSPE (u, t )
+
+are quite small when considering the scale of the outcome, which ranges from -20 to 20. In fact, from this perspective, all methods perform well. The benefit of the DGMM under MAR data is further strengthened by the dynamic bias results in Simulation Study II, which show that the DGMM on average recovered the true trajectory more unbiasedly than a RNN. Due to the large number of plots for Simulation Study II, we depict only the results for the probabilistic drop-out mechanism with a proportion of approximately 0.30 missing data in Figure 5. For all plots of Simulation Study II, we refer readers to Web Appendix D. Lastly, we researched the accuracy of the data augmentation algorithm of the DGMM at the final epoch and compare this to the accuracy had we imputed the values using the fitted data generating model. Figure 6 shows that the data augmentation algorithm can quite accurately impute the missing values in the train data. However, we do again see a 
+
+15 6       6                     
+
+> t  
+>    6      
+> t  
+> 6   6 
+> t  
+> 6     
+> t  
+> !! ' &$%%$)( '
+>  
+> ")!( $# ()*  ')!('    '' # &$%$&( $#
+> "  ,  t  ',  t
+
+Figure 5: Line graphs of the average RMSPE (u, t ) and bias (u, t ) for t = {5, 15 } in an independent test set for the three methods under a proportion of 0.30 missing data and a probabilistic drop-out data generating mechanisms. The line graphs in the left column are estimated over all simulated individuals, whereas the line graphs in the right column are estimated only over the individuals that were simulated to drop-out according to the missing data mechanism. DGMM = Deep Generalised Mixed Model; RNN = Recurrent Neural Network; LMM = Linear Mixed Model. 
+
+large variance in this. 
+
+# 5 Discussion 
+
+In this work, we propose the DGMM, a DL generalisation of mixed effect models that combines the benefits of statistical and machine learning techniques. The DGMM builds upon the work of Mandel et al. (2021) by allowing both the fixed effects and random effects to be estimated semi-parametrically using feed-forward NNs. As a result, the model becomes more flexible and may more accurately model heterogeneity in hierarchical data. The model is implemented using a VAE structure and through the use of a data augmentation algorithm should provide valid inference and prediction under 
+
+16 D                         
+
+>  &$%$&( $#  '' #
+> D  
+>  &$%$&( $#  '' #
+> D  
+>  &$%$&( $#  '' #
+> D  
+>  &$%$&( $#  '' #
+> &$ !'(  D&$%$)( )($ D&$%$)(
+> "%)(( $# &&$& )#&  &* #   # '"'
+> ($ 
+
+Figure 6: RMSE of the data augmentation algorithm in Simulation Study II for the DGMM under varying proportions missing data and MAR data generating mechanisms with outliers removed. DGMM = Deep Gen-eralised Mixed Model; LMM = Linear Mixed Model. For the full results with outliers, we refer readers to the Supplementary Materials. 
+
+MAR data. We applied the DGMM for a multivariate analysis of the GrowIt! ESM study to showcase how the model may dynamically provide individualised predictions for outcomes following varying distributions to aid decision making and compared this to a RNN, yet the data did not lend itself to a prediction model. In our simulation studies, we found that although the DGMM works properly and may outperform a RNN when data is MAR, especially as more data is collected over time, the DGMM suffers from instability issues such as hyperparameter sensitivity and posterior collapse, the latter of which is a known problem for VAE. For future uses of the architecture, such instabilities should be taken into account properly with techniques that are known to alleviate these (e.g., KL-annealing 35 , β-VAE 36 or guaranteeing identifiability of the deep latent variable representation 39 ). Despite the subpar performance and issues we encountered in the application and simulations, we believe that the DGMM can become a valuable architecture for the analysis of nonlinear hierarchical data. For this article, we took 
+
+17 a naive approach and used only standard layers in feed-forward NN for the DGMM. However, future users could also employ other layers such as LSTM layers or convolutional and pooling layers, commonly found in RNN and Temporal Convolutional Neural Networks respectively, to make better use of the structure of the data. Furthermore, although we focused solely on tabular intensive longitudinal data for the current article, the DGMM could be extended to other data types of hierarchical data. For example, medical imaging data where x-rays are taken of different body parts nested within individuals with the exact structure of the NN adjusted to better model such data. A limitation to note for the DGMM is that the model trades interpretability for its flexibility and semi-parametric estimation procedure. Future research could try to employ explainable AI methods, such as SHAP values 40 , to win back some of the lost interpretability. Another part of the DGMM that we did not utilise is the deep latent variable representation gained from the encoder. In our analysis, this was simply a byproduct. Future studies may look into the explainability or potential of these latent dimensions in predicting time-to-event outcomes by generalising the DGMM to a joint outcome setting as a shared parameter model 41 or in unsupervised machine learning tasks such as clustering 42,43 
+
+(e.g., clustering the latent dimensions to find different categories in the longitudinal trajectories). 
+
+# Acknowledgements 
+
+This research article was supported by Stress in Action. The research project ‘Stress in Action’ is financially supported by the Dutch Research Council and the Dutch Ministry of Education, Culture and Science (NWO gravitation grant number 024.005.010). 
+
+# Supporting Information 
+
+Web Appendices referenced in Sections 2.2, 2.3, 2.4, and 4.2 are available with this pre-print. 
+
+# Data Availability Statement 
+
+The data that support the findings of this study are available from the GrowIt! app COVID study. Restrictions apply to the availability of these data, which were used under license for this study. Data are available at https://www.growitapp.nl 
+
+with the permission of the GrowIt! app research team. 
+
+# References 
+
+(1) Dietvorst, E; Legerstee, J.; Vreeker, A; Koval, S; Mens, M.; Keijsers, L; Hillegers, M. The Grow It! app— longitudinal changes in adolescent well-being during the COVID-19 pandemic: a proof-of-concept study. 
+
+European Child & Adolescent Psychiatry 2023 , 32 , 1097–1107. 18 (2) Dietvorst, E.; Hillegers, M. H.; Legerstee, J. S.; Vries, L. P. D.; Vreeker, A.; Keijsers, L. Real-time personalized feedback in mHealth for adolescents. Digital Health 2024 , 10 , 20552076241247937. (3) Dietvorst, E.; Aukes, M. A.; Legerstee, J. S.; Vreeker, A.; Hrehovcsik, M. M.; Keijsers, L.; Hillegers, M. H. A smartphone serious game for adolescents (grow it! app): development, feasibility, and acceptance study. 
+
+JMIR Formative Research 2022 , 6, e29832. (4) Mens, M. M.; Keijsers, L.; Dietvorst, E.; Koval, S.; Legerstee, J. S.; Hillegers, M. H. Promoting daily well-being in adolescents using mHealth. Journal of Youth and Adolescence 2022 , 51 , 2173–2189. (5) Van Dalen, M.; Legerstee, J.; Scholten, H.; van Deutekom, A.; Pasmans, S.; Keijsers, L.; Hillegers, M. H. Promoting mental well-being using a multiplayer mHealth application (Grow It!) in adolescents with a chronic somatic illness: a randomised controlled trial, https://osf.io/xn5b9/ , OSF pre-registration (view_only: 053d743ac2e74f149dd7c4c490fb4a2f), 2025. (6) Hedeker, D.; Gibbons, R. D., Longitudinal data analysis ; John Wiley & Sons: 2006. (7) Cnaan, A.; Laird, N. M.; Slasor, P. Using the general linear mixed model to analyse unbalanced repeated measures and longitudinal data. Statistics in medicine 1997 , 16 , 2349–2380. (8) Parekh, P.; Fan, C. C.; Frei, O.; Palmer, C. E.; Smith, D. M.; Makowski, C.; Iversen, J. R.; Pecheva, D.; Holland, D.; Loughnan, R., et al. FEMA: Fast and efficient mixed-effects algorithm for large sample whole-brain imaging data ; tech. rep.; Wiley Online Library, 2024. (9) Li, S.; Cai, T. T.; Li, H. Inference for high-dimensional linear mixed-effects models: A quasi-likelihood approach. Journal of the American Statistical Association 2022 , 117 , 1835–1846. (10) Ong, P.; Haußmann, M.; Lönnroth, O.; Lähdesmäki, H. Latent mixed-effect models for high-dimensional longitudinal data. arXiv preprint arXiv:2409.11008 2024 .(11) Tuerlinckx, F.; Kuppens, P.; Ariens, S.; Cloos, L.; Dejonckheere, E.; Lafit, G.; Niemeijer, K.; Revol, J.; Schat, E.; Schreuder, M., et al. New developments in experience sampling methodology. British Journal of Mathematical and Statistical Psychology 2026 , 79 , 46–65. (12) Prince, S. J., Understanding deep learning ; MIT press: 2023. (13) Sherstinsky, A. Fundamentals of recurrent neural network (RNN) and long short-term memory (LSTM) network. Physica D: Nonlinear Phenomena 2020 , 404 , 132306. (14) Chen, Y.; Kang, Y.; Chen, Y.; Wang, Z. Probabilistic forecasting with temporal convolutional neural network. Neurocomputing 2020 , 399 , 491–501. 19 (15) Su, L.; Zuo, X.; Li, R.; Wang, X.; Zhao, H.; Huang, B. A systematic review for transformer-based long-term series forecasting. Artificial Intelligence Review 2025 , 58 , 80. (16) Bengio, Y.; Gingras, F. Recurrent neural networks for missing or asynchronous data. Advances in neural information processing systems 1995 , 8.(17) Tresp, V.; Briegel, T. A solution for missing data in recurrent neural networks with an application to blood glucose prediction. Advances in Neural Information Processing Systems 1997 , 10 .(18) Parveen, S.; Green, P. Speech recognition with missing data using recurrent neural nets. Advances in Neural Information Processing Systems 2001 , 14 .(19) Lipton, Z. C.; Kale, D.; Wetzel, R. In Machine learning for healthcare conference , 2016, pp 253–270. (20) Choi, E.; Bahadori, M. T.; Schuetz, A.; Stewart, W. F.; Sun, J. In Machine learning for healthcare conference , 2016, pp 301–318. (21) Le Morvan, M.; Josse, J.; Scornet, E.; Varoquaux, G. What’s a good imputation to predict with missing values? Advances in Neural Information Processing Systems 2021 , 34 , 11530–11540. (22) Fletcher Mercaldo, S.; Blume, J. D. Missing data and prediction: the pattern submodel. Biostatistics 
+
+2020 , 21 , 236–252. (23) Josse, J.; Chen, J. M.; Prost, N.; Varoquaux, G.; Scornet, E. On the consistency of supervised learning with missing values. Statistical Papers 2024 , 65 , 5447–5479. (24) März, J.; de Vries, L. P.; Scholten, H.; Vreeker, A.; Legerstee, J. S.; Keijsers, L.; Penninx, B. W.; Hillegers, M. H. Young people’s compliance with the Experience Sampling Method (ESM): Examining patterns, predictors and associations with well-being and mental health. Internet Interventions 2025 , 100859. (25) Che, Z.; Purushotham, S.; Cho, K.; Sontag, D.; Liu, Y. Recurrent neural networks for multivariate time series with missing values. Scientific reports 2018 , 8, 6085. (26) Mandel, F.; Ghosh, R. P.; Barnett, I. Neural networks for clustered and longitudinal data using mixed effects models. Biometrics 2023 , 79 , 711–721. (27) Kingma, D. P.; Welling, M., et al. An introduction to variational autoencoders. Foundations and Trends® in Machine Learning 2019 , 12 , 307–392. (28) Bowman, S. R.; Vilnis, L.; Vinyals, O.; Dai, A. M.; Jozefowicz, R.; Bengio, S. Generating Sentences from a Continuous Space, 2016. (29) Kingma, D. P.; Welling, M. Auto-encoding variational bayes. arXiv preprint arXiv:1312.6114 2013 .20 (30) Kullback, S.; Leibler, R. A. On information and sufficiency. The annals of mathematical statistics 1951 ,
+
+22 , 79–86. (31) Cox, D. R.; Hinkley, D. V., Theoretical statistics ; CRC Press: 1979. (32) Allassonnière, S.; Chevallier, J. A new class of stochastic EM algorithms. Escaping local maxima and handling intractable sampling. Computational Statistics & Data Analysis 2021 , 159 , 107159. (33) Garthwaite, P. H.; Fan, Y.; Sisson, S. A. Adaptive optimal scaling of Metropolis–Hastings algorithms using the Robbins–Monro process. Communications in Statistics-Theory and Methods 2016 , 45 , 5098– 5111. (34) Adam, K. D. B. J. et al. A method for stochastic optimization. arXiv preprint arXiv:1412.6980 2014 ,
+
+1412 .(35) Fu, H.; Li, C.; Liu, X.; Gao, J.; Celikyilmaz, A.; Carin, L. Cyclical annealing schedule: A simple approach to mitigating kl vanishing. arXiv preprint arXiv:1903.10145 2019 .(36) Burgess, C. P.; Higgins, I.; Pal, A.; Matthey, L.; Watters, N.; Desjardins, G.; Lerchner, A. Understanding disentangling in β-VAE. arXiv preprint arXiv:1804.03599 2018 .(37) Hochreiter, S.; Schmidhuber, J. Long short-term memory. Neural computation 1997 , 9, 1735–1780. (38) Wang, L.; Miller, L. C. Just-in-the-moment adaptive interventions (JITAI): a meta-analytical review. 
+
+Health Communication 2020 , 35 , 1531–1544. (39) Wang, Y.; Blei, D.; Cunningham, J. P. Posterior collapse and latent variable non-identifiability. Advances in neural information processing systems 2021 , 34 , 5443–5455. (40) Marcilio, W. E.; Eler, D. M. In 2020 33rd SIBGRAPI conference on Graphics, Patterns and Images (SIBGRAPI) , 2020, pp 340–347. (41) Tsiatis, A. A.; Davidian, M. Joint modeling of longitudinal and time-to-event data: an overview. Statistica Sinica 2004 , 809–834. (42) Jiang, Z.; Zheng, Y.; Tan, H.; Tang, B.; Zhou, H. Variational deep embedding: An unsupervised and generative approach to clustering. arXiv preprint arXiv:1611.05148 2016 .(43) Adipoetra, M.; Martin, S. Deep Generative Clustering with VAEs and Expectation-Maximization, 2025. 21
