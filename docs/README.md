@@ -6,75 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-10
-- 运行时间：2026-08-10 20:17:06 UTC
+- 最新运行日期：2026-08-11
+- 运行时间：2026-08-11 21:14:07 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日精读与速读共17篇，聚焦认知扭曲检测与EEG基础模型两大前沿。
-
-最值得关注：图神经网络在认知扭曲检测中表现亮眼，ZIPBrain证明EEG基础模型可实现快速本地部署且保持准确。
-
-下一步可深入探索分层数据建模与便携式EEG-tES平台，或关注大语言模型在失语症命名分析中的应用。
-- 详情：[/202608/10/README](/202608/10/README)
+今日精读聚焦脑电情绪识别与人类认知行为小模型，速读覆盖临床合成数据、fNIRS自闭症分类及女性健康可穿戴基座。  
+最值得关注的是《MGMCL》用多粒度流形对比+神经ODE提升跨被试情绪识别，以及《Small Foundation Models》探索轻量可解释的认知行为建模。  
+后续可优先尝试将这类小规模高效模型迁移到可穿戴或临床场景，兼顾精度与计算成本。
+- 详情：[/202608/11/README](/202608/11/README)
 
 ### 精读区论文标签
-1. [Multi-Perspective Triad Interaction Graph Neural Network for Cognitive Distortion Detection](/202608/10/2608.06785v1-multi-perspective-triad-interaction-graph-neural-network-for-cognitive-distortion-detection)  
+1. [MGMCL: Multi-Granularity Manifold Contrastive Learning With Neural ODEs for Cross-Subject EEG Emotion Recognition](/202608/11/2608.08440v1-mgmcl-multi-granularity-manifold-contrastive-learning-with-neural-odes-for-cross-subject-eeg-emotion-recognition)  
+   标签：评分：10.0/10、query:neuro-mental
+   evidence：用于跨被试脑电情绪识别的深度学习方法，基于黎曼流形对比学习
+2. [Small Foundation Models of Human Cognition and Behaviour](/202608/11/2608.05224v2-small-foundation-models-of-human-cognition-and-behaviour)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：利用大语言模型分解贝克认知三元素并结合图神经网络检测认知扭曲的计算精神健康研究
-2. [ZIPBrain: Can EEG Foundation Models Be Faster, Locally Deployable, but Accurate?](/202608/10/2608.07033v1-zipbrain-can-eeg-foundation-models-be-faster-locally-deployable-but-accurate)  
+   evidence：大语言模型用于人类行为认知建模
+3. [FedDOSE: Federated Learning Framework Decomposing Site Effects for Modeling Brain Dynamic Functional Connectivity](/202608/11/2608.07393v1-feddose-federated-learning-framework-decomposing-site-effects-for-modeling-brain-dynamic-functional-connectivity)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：利用脑电低信噪比特性对脑电token进行冗余感知压缩，实现快速本地部署
-3. [A foundation-model approach to pediatric headache classification from rs-fMRI](/202608/10/2608.07287v1-a-foundation-model-approach-to-pediatric-headache-classification-from-rs-fmri)  
+   evidence：基于联邦深度学习的fMRI动态功能连接建模
+4. [A continually expandable foundation model for brain MRI](/202608/11/2608.08319v1-a-continually-expandable-foundation-model-for-brain-mri)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：基于基础模型的rs-fMRI深度学习用于小儿头痛分类，直接应用于神经科学
-4. [Natural Language Processing Psychometrics](/202608/10/2608.07316v1-natural-language-processing-psychometrics)  
+   evidence：可持续扩展的脑部MRI深度学习基础模型
+5. [A Multi-Scale Temporal Framework with Dynamic Fusion for EEG-Based Emotion Recognition](/202608/11/2608.09088v1-a-multi-scale-temporal-framework-with-dynamic-fusion-for-eeg-based-emotion-recognition)  
    标签：评分：9.0/10、query:neuro-mental
-   evidence：利用大语言模型文本解释进行心理健康结果预测的心理测量计算
-5. [ChaosProbe: A Neurochaotic Lens on Frozen Transformer Input-Embedding Spaces](/202608/10/2608.01968v1-chaosprobe-a-neurochaotic-lens-on-frozen-transformer-input-embedding-spaces)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：针对大语言模型的Transformer嵌入分析
-6. [HyPASE: Hyperbolic Geometry for Parameter-Efficient Speech Emotion Fine-Tuning Framework for Large Audio-Language Models](/202608/10/2608.04351v1-hypase-hyperbolic-geometry-for-parameter-efficient-speech-emotion-fine-tuning-framework-for-large-audio-language-models)  
-   标签：评分：8.0/10、query:neuro-mental
-   evidence：面向大型音频语言模型的参数高效微调与语音情感识别
+   evidence：基于脑电的多尺度时间动态融合情绪识别
+6. [EEG-Based Characterization of Samatha and Vipassana Meditation States](/202608/11/2608.09784v1-eeg-based-characterization-of-samatha-and-vipassana-meditation-states)  
+   标签：评分：9.0/10、query:neuro-mental
+   evidence：利用脑电信号特征提取表征冥想状态
 
 ### 速读区论文标签
-1. [Deep Generalised Mixed Models: a Novel Neural Network Structure for Analysing Hierarchical Data](/202608/10/2608.05930v2-deep-generalised-mixed-models-a-novel-neural-network-structure-for-analysing-hierarchical-data)  
+1. [Clinical Communication Processing with Models Trained on LLM-Generated Synthetic Data: A Structured Survey and Novel Application Case Studies](/202608/11/2608.05993v1-clinical-communication-processing-with-models-trained-on-llm-generated-synthetic-data-a-structured-survey-and-novel-application-case-studies)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：提出分析层级体验采样数据的神经网络方法，数据来自青少年每日情绪，直接关联心理健康研究。
-2. [Recovering Lesion Parameters from Aphasic Picture Naming Error Profiles in Large Language Models](/202608/10/2608.06429v1-recovering-lesion-parameters-from-aphasic-picture-naming-error-profiles-in-large-language-models)  
+   evidence：利用大语言模型生成合成临床沟通数据用于NLP训练
+2. [Temporal Generalization in fNIRS-Based Autism Classification: A Cross-Time-Window Transfer Benchmark](/202608/11/2608.07567v1-temporal-generalization-in-fnirs-based-autism-classification-a-cross-time-window-transfer-benchmark)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：从失语症错误画像中恢复大语言模型的损伤参数，面向基于LLM的认知建模的因果可解释性
-3. [Design and Validation of a Portable EEG-tES Platform Supporting High-Rate EEG Recording and Temporal Interference Stimulation](/202608/10/2608.06783v1-design-and-validation-of-a-portable-eeg-tes-platform-supporting-high-rate-eeg-recording-and-temporal-interference-stimulation)  
+   evidence：基于fNIRS的自闭症分类深度学习基准，研究时间窗口迁移
+3. [FemWear: A Specialized Wearable Foundation Model for Women's Health](/202608/11/2608.08244v1-femwear-a-specialized-wearable-foundation-model-for-womens-health)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：便携式EEG-tES平台支持高采样率脑电记录，直接关联EEG信号处理与闭环神经调控
-4. [Learning in Deep Networks under Dale's Constraint](/202608/10/2608.06963v1-learning-in-deep-networks-under-dales-constraint)  
+   evidence：覆盖睡眠/恢复与情绪结果的可穿戴基础模型
+4. [Scale-to-Dialogue: Low-Burden Elicitation of Daily Premenstrual Symptom Ratings with Small Language Models](/202608/11/2608.08746v1-scale-to-dialogue-low-burden-elicitation-of-daily-premenstrual-symptom-ratings-with-small-language-models)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：符合Dale约束的生物学合理深度学习模型
-5. [LSEAD: A Privacy-Preserving LLM-Based Speech Analysis Framework for Early Alzheimer's Disease Screening](/202608/10/2608.07378v1-lsead-a-privacy-preserving-llm-based-speech-analysis-framework-for-early-alzheimers-disease-screening)  
+   evidence：使用小型语言模型进行包含睡眠问题与情绪波动的每日心理健康症状追踪。
+5. [Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors](/202608/11/2608.09830v1-deep-multimodal-wearable-sensor-fusion-for-detection-of-body-focused-repetitive-behaviors)  
    标签：评分：8.0/10、query:neuro-mental
-   evidence：基于大语言模型的语音分析框架用于早筛阿尔茨海默病
-6. [MedUPS: Towards Diagnostic Assistance in Uncommon Medical Cases with Large Language Models](/202608/10/2608.01012v1-medups-towards-diagnostic-assistance-in-uncommon-medical-cases-with-large-language-models)  
+   evidence：基于深度学习的身体聚焦重复行为检测，与强迫症和焦虑症相关
+6. [NTDH: Complex Reasoning for Comprehensive Affective Analysis](/202608/11/2608.06425v1-ntdh-complex-reasoning-for-comprehensive-affective-analysis)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：面向临床决策辅助的大语言模型基准与对齐框架
-7. [PALMs: Using Multi Construct-Grounded Rationales for Modeling Population Preferences in LLMs](/202608/10/2608.01458v1-palms-using-multi-construct-grounded-rationales-for-modeling-population-preferences-in-llms)  
+   evidence：面向综合情感分析的复杂推理方法
+7. [Thinking vs. NoThinking: Towards Interpreting Reasoning Mechanisms of Large Language Models via Sparse Autoencoders](/202608/11/2608.08168v1-thinking-vs-nothinking-towards-interpreting-reasoning-mechanisms-of-large-language-models-via-sparse-autoencoders)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：基于心理构念的群体对齐大语言模型，与大语言模型研究相关
-8. [PatTree: a novel approach for automated creation of multimodal, graph-based patient representations for medical classification tasks](/202608/10/2608.02692v1-pattree-a-novel-approach-for-automated-creation-of-multimodal-graph-based-patient-representations-for-medical-classification-tasks)  
+   evidence：通过稀疏自编码器解释大语言模型的推理机制
+8. [North Africa's Missing Framework: NLP-Driven Mental Healthcare in Algeria and Implications for Low-resource Settings](/202608/11/2608.08607v1-north-africas-missing-framework-nlp-driven-mental-healthcare-in-algeria-and-implications-for-low-resource-settings)  
    标签：评分：7.0/10、query:neuro-mental
-   evidence：多模态图患者表示方法可迁移至睡眠与心理健康监测
-9. [Feasibility of Embedded Photoplethysmography Sensing in Short-Duration Tactile Interactions With Pocket-Sized Robots Using IMU- and Confidence-Based Filtering](/202608/10/2608.04242v1-feasibility-of-embedded-photoplethysmography-sensing-in-short-duration-tactile-interactions-with-pocket-sized-robots-using-imu--and-confidence-based-filtering)  
-   标签：评分：7.0/10、query:neuro-mental
-   evidence：在陪伴机器人中嵌入PPG传感器以监测儿童焦虑相关生理状态
-10. [MiGHT-EHR: A Multi-task Graph Transformer for Heterogeneous Temporal Electronic Health Records](/202608/10/2608.06430v1-might-ehr-a-multi-task-graph-transformer-for-heterogeneous-temporal-electronic-health-records)  
+   evidence：提出低资源环境（阿尔及利亚）的NLP驱动心理健康护理框架。
+9. [ECHO: A Locally-Deployable Agentic Health Assistant with Temporal Memory, Safety Guardrails, and Speech Assessment](/202608/11/2608.06110v1-echo-a-locally-deployable-agentic-health-assistant-with-temporal-memory-safety-guardrails-and-speech-assessment)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：面向异质时序电子健康记录的多任务图变换器，可迁移用于心理健康临床预测
-11. [Omni-modal decomposition autoencoders learn full-stack wearable disentangled representations](/202608/10/2608.07385v1-omni-modal-decomposition-autoencoders-learn-full-stack-wearable-disentangled-representations)  
+   evidence：使用大语言模型并带安全护栏的智能健康助手
+10. [Is Self-Pretraining really useful to improve diagnosis in medical Time Series?](/202608/11/2608.06122v2-is-self-pretraining-really-useful-to-improve-diagnosis-in-medical-time-series)  
    标签：评分：6.0/10、query:neuro-mental
-   evidence：提出面向可穿戴多模态时间序列的解耦表示学习框架，可用于睡眠和心理健康监测。
+   evidence：评估自预训练在包含压力检测与帕金森诊断的医学时间序列任务中的作用。
+11. [PsychoAgent: An Affect-Sensitive Cognitive Architecture for Conflict-Aware Memory in LLM Agents](/202608/11/2608.07438v1-psychoagent-an-affect-sensitive-cognitive-architecture-for-conflict-aware-memory-in-llm-agents)  
+   标签：评分：6.0/10、query:neuro-mental
+   evidence：LLM智能体中的情感敏感记忆，涉及情绪显著性与心理健康
 
 
 <div class="dpr-home-promo-card">

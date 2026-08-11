@@ -1,0 +1,322 @@
+Title: Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors
+
+URL Source: https://arxiv.org/pdf/2608.09830v1
+
+Published Time: Tue, 11 Aug 2026 02:43:53 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# DEEP MULTIMODAL WEARABLE SENSOR FUSION FOR 
+
+# DETECTION OF BODY -F OCUSED REPETITIVE BEHAVIORS 
+
+A P REPRINT 
+
+# Samaneh Rezaeimanesh ∗ Mohsen Behradfar ∗ Mohammad Fili  Guiping Hu 
+
+Department of Systems Engineering and Operations Research George Mason University, Fairfax, VA 22030, USA 
+
+# ABSTRACT 
+
+Body-focused repetitive behaviors, such as hair pulling and skin picking, are compulsive motor actions commonly associated with obsessive-compulsive and anxiety disorders. Their early, ob-jective detection remains difficult because the movements are subtle and overlap with ordinary, non-pathological gestures. We developed and evaluated a multimodal deep learning framework to detect and classify these behaviors from wrist-worn sensor data. The data, collected by the Child Mind Institute using the Helios wrist-worn device, combine inertial measurement units, thermopile sensors, and time-of-flight sensors, capturing kinematic, thermal, and proximity information. The framework combined a convolutional neural network with a gated recurrent unit, alongside modality-specific autoencoders and a late-fusion classifier, to exploit temporal and spatial dynamics. It achieved an F1 score of 0.985 and an area under the receiver operating characteristic curve of 0.997 for binary detec-tion, distinguishing these behaviors from other activities, and a macro-averaged F1 score of 0.700 with an area under the curve of 0.963 across a nine-class scheme that distinguished each individual behavior from a single grouped Non-Target class, improving over single-modality baselines. Post-hoc interpretability based on Shapley additive explanations showed that the time-of-flight and inertial modalities dominated discriminative power by capturing spatial proximity and dynamic movement, while hierarchical clustering indicated that misclassifications were driven primarily by the anatomical region of the gesture. These findings demonstrate that multimodal sensor fusion enables accurate, objective, and continuous behavioral monitoring. This work establishes a foundation for real-time, wearable-assisted mental health diagnostics and personalized interventions in biomedical research and clinical care. 
+
+Keywords Body-focused repetitive behaviors (BFRB) · CNN–GRU architecture · inertial measurement units (IMUs) sensing · multimodal sensor fusion · thermopile (THM) sensing · time-of-flight (ToF) sensing. 
+
+# 1 Introduction 
+
+Body-focused repetitive behaviors (BFRBs), such as hair pulling (trichotillomania) and skin picking (excoriation disorder), are compulsive, self-directed motor habits grouped among obsessive-compulsive and related disorders. As clinically recognized conditions they are relatively common: a large US survey identified current trichotillomania in 1.7% and skin picking disorder in 2.1% of adults, both with high psychiatric comorbidity Grant et al. [2020], Grant and Chamberlain [2020]. Under broader definitions, the footprint grows, with up to 24% of a community sample meeting criteria for a clinically significant BFRB disorder and 97.1% reporting at least one BFRB in their lifetime Moritz et al. [2024]. Comorbid anxiety and obsessive-compulsive disorder (OCD) are frequent Barber et al. [2025], and stress-related markers such as heart rate variability distinguish OCD patients and predict treatment response, positioning BFRBs as indicators of emotional dysregulation Olbrich et al. [2022]. Clinically, these behaviors cause tangible harm, 
+
+> ∗
+
+These authors contributed equally to this work. This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible. arXiv:2608.09830v1 [cs.LG] 10 Aug 2026 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors tissue damage, scarring, and infection, alongside psychosocial consequences including diminished self-esteem and social avoidance Grant and Chamberlain [2021], Montali and Garnieri [2024]. Yet their assessment remains difficult: self-report questionnaires and clinical interviews are limited by subjectivity, recall bias, and the episodic, frequently unnoticed nature of the behaviors, which delays timely diagnosis and intervention Lønfeldt et al. [2023]. Wearable sensor technologies offer a promising path toward objective, continuous monitoring, using physiological and kinematic signals to detect behaviors in real time and support personalized mental health care Sheikh et al. [2021]. Such systems have already been applied across mental-health contexts, ranging from physiological stress detection Behradfar et al. [2025] to broader behavioral pattern recognition. However, BFRBs pose a harder problem than conventional human activity recognition (HAR) tasks such as gait analysis or exercise tracking: the target gestures are subtle, context-specific, and closely resemble benign everyday movements, so they must be separated from a background of similar non-pathological actions Searle et al. [2021]. Reliable detection therefore depends less on recognizing coarse activity than on capturing the fine-grained spatial and contact cues that set a pathological gesture apart. Meeting this requirement exposes the limits of motion sensing alone. Traditional inertial measurement units (IMUs), comprising accelerometers and gyroscopes, capture how the wrist moves but not where the hand is relative to the body, and thus lack the spatial context needed to resolve the fine-grained hand-to-body interactions characteristic of trichotillomania or excoriation disorder Son et al. [2019]. Complementary modalities close this gap: thermopile (THM) sensors measure infrared temperature and reveal skin contact or close proximity, while time-of-flight (ToF) sensors provide precise distance measurements that localize hand-to-face and hand-to-body movements across varied postures Son et al. [2019], Newman et al. [2025]. Prior work confirms the value of this fusion, adding thermal sensing improved wrist-worn tracking of hand position relative to the head beyond what IMU and proximity data achieved alone Son et al. [2019], and, more broadly, integrating auxiliary modalities with IMUs consistently enhances gesture-detection accuracy over unimodal systems Wang et al. [2026], Behradfar et al. [2026]. Translating these multimodal streams into reliable predictions calls for models that jointly exploit their temporal and spatial structure. Systematic reviews emphasize that fusing data across sensing modalities is critical for detecting complex behavioral and mental-health patterns, providing multi-dimensional context that single-sensor systems cannot Khoo et al. [2024]. Combining IMU data with physiological or environmental inputs has yielded granular insight into daily activities, fatigue, and cognitive states, surpassing unimodal approaches Bahador et al. [2021], Kakhi et al. [2025]. Deep learning is particularly well suited to this task: hybrid convolutional neural network-gated recurrent unit (CNN-GRU) architectures capitalize on both spatial features and temporal sequences to classify intricate behaviors with higher precision than conventional machine-learning methods Zhang et al. [2022], Mekruksavanich et al. [2024]. These properties make such architectures a natural fit for BFRB detection, where subtle changes in hand proximity and thermal contact must be tracked over time. Despite this progress, existing wearable BFRB studies have largely relied on single-modality or motion-plus-physiology sensing and have rarely fused fine-grained thermal and spatial-proximity cues within a deep spatio-temporal model; consequently, the objective, fine-grained discrimination of individual, anatomically similar BFRB gestures together with interpretable evidence of what drives model decisions remains underexplored. To address this gap, the Child Mind Institute developed the Helios wrist-worn device, which augments a standard IMU with five thermopile and five ToF sensors Newman et al. [2025]. In this study, we propose a multimodal deep learning framework that fuses synchronized IMU, THM, and ToF streams to bridge kinematic motion and spatial context in behavioral monitoring. We then evaluate this framework on the Child Mind Institute dataset Newman et al. [2025]. Built on a hybrid CNN-GRU architecture with modality-specific autoencoders, the framework jointly models temporal and spatial dynamics while remaining sensitive to the subtle, episodic nature of these behaviors, distinguishing pathological BFRBs from routine daily actions. The contributions of this study are listed below: • Multimodal Sensor Fusion: We introduce a framework that integrates IMU, THM, and ToF data streams, and evaluate it to assess its improved accuracy over unimodal baselines. • Hybrid Spatio-Temporal Deep Learning Architecture: We develop a hybrid CNN-GRU architecture that captures both spatial and temporal characteristics of wearable sensor data. • Autoencoder-Based Self-Supervised Pretraining: We incorporate modality-specific autoencoder pretraining to initialize the dynamic sensor encoders using reconstruction-informed representations. • Explainability in Behavioral Sensing: We implement post-hoc interpretability analysis using SHapley Additive exPlanations (SHAP) attributions and hierarchical clustering to reveal the relative importance of different sensor modalities and identify anatomical patterns in gesture misclassification. 2Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors The remainder of this paper is organized as follows. Section 2 details the dataset, per-modality preprocessing, and the proposed architecture. Section 3 presents binary and multi-class results with post-hoc interpretability and misclassification analyses. Section 4 discusses clinical implications, limitations, and future directions. 
+
+# 2 Methods 
+
+2.1 Dataset 
+
+This study utilizes the “CMI - Detect Behavior with Sensor Data” dataset, provided by the Child Mind Institute Newman et al. [2025]. The dataset comprises sensor recordings from participants performing BFRBs and non-BFRB gestures while wearing the Helios wrist-worn device. Data were collected in a controlled study where participants wore the Helios device on the wrist of their dominant arm Newman et al. [2025]. The device integrates three sensor types: (1) a CEVA Technologies, Inc. Inertial Measurement Unit (IMU; models BNO080/BNO085), measuring linear acceleration along three axes ( acc x, acc y , acc z in m/s²) and providing orientation data ( rot w, rot x, rot y , rot z ) by fusing accelerometer, gyroscope, and magnetometer measurements; (2) five Melexis thermopile sensors (model MLX90632), capturing non-contact temperature in degrees Celsius ( thm 1 to thm 5); and (3) five STMicroelectronics time-of-flight sensors (model VL53L7CX), recording proximity data across an 8 ×8 grid per sensor ( tv0 
+
+> 1
+
+to tv63  
+
+> 5
+
+), with values ranging from 0 to 254 (uncalibrated sensor units) or -1 for no response. Intermittent sensor communication issues resulted in missing values for a subset of thermopile and time-of-flight measurements in certain sequences. The dataset contains a total of 8,151 unique sequences. These data were collected from 81 unique participants ( N = 81 ). To ensure a robust representation of behavioral variability, each participant provided an average of ∼7,098 replicates (min: 4,008; max: 10,848). Individual sequences have an average length of 70.54 time steps (min: 29; max: 700). Each sequence represents a trial with three phases: (1) a transition from a rest position to the target location; (2) a brief pause; and (3) execution of a gesture. Participants performed 18 distinct gestures, including 8 BFRB-like gestures (e.g., pulling hair above the ear) and 10 non-BFRB-like gestures (e.g., drinking from a cup), conducted in at least one of four body positions: sitting, sitting leaning forward with the non-dominant arm resting on the leg, lying on the back, or lying on the side. These gestures are listed in Table 1, with detailed descriptions and video examples provided in the dataset documentation Newman et al. [2025]. Sequences are labeled with sequence type (Target or Non-Target), gesture, orientation, behavior phase, sequence counter, and subject identifier Newman et al. [2025]. The dataset includes participant demographics and anthropometric data, such as age (in years), sex (0: female; 1: male), handedness (0: left-handed; 1: right-handed), adult/child status (0: under 18 years; 1: adult), height (in cm), shoulder-to-wrist distance (in cm), and elbow-to-wrist distance (in cm). Participants were recruited through the Healthy Brain Network Child Mind Institute [2026], a Child Mind Institute initiative Newman et al. [2025]. Table 1: List of gestures included in the dataset. BFRB-Like Gestures (Target) non-BFRB-Like Gestures (Non-Target) Above ear – Pull hair Drink from bottle/cup Forehead – Pull hairline Glasses on/off Forehead – Scratch Pull air toward your face Eyebrow – Pull hair Pinch knee/leg skin Eyelash – Pull hair Scratch knee/leg skin Neck – Pinch skin Write name on leg Neck – Scratch Text on phone Cheek – Pinch skin Feel around in tray and pull out an object Write name in air Wave hello 
+
+2.2 Preprocessing 
+
+All modalities were standardized to a fixed temporal extent of T = 128 frames per sequence. This threshold was empirically selected because it fully preserves 95.13% of all recorded sequences, thereby capturing complete gesture trajectories while mitigating the computational overhead of extreme outliers. Sequences shorter than T were padded, and longer sequences were truncated. Padding respected modality semantics, with zeros used for IMU and THM channels, while −1 was reserved for ToF frames to denote “no sensor return.” A Boolean mask M ∈ { 0, 1}B×T
+
+encoded valid time steps and was propagated through recurrent packing operations as well as all masked reconstruction 3Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors and classification losses, thereby ensuring that masked regions neither contributed to attention weighting nor influenced optimization. Here, B denotes the batch size. 
+
+2.2.1 IMU preprocessing 
+
+Missing values within the sequence were imputed by linear interpolation to preserve local temporal trends. To resolve missing values at the sequence boundaries, we applied backward and forward filling using the nearest valid observations. From the tri-axial accelerations (acc x, acc y , acc z ), we computed the acceleration magnitude at each frame in Eq. (1), as commonly applied in biomechanics Winter [2009]. 
+
+acc mag =
+
+q
+
+acc 2 
+
+> x
+
++ acc 2 
+
+> y
+
++ acc 2 
+
+> z
+
+(1) Temporal derivatives were computed by first-order differences along time for each axis. The resulting jerk magnitude ,defined in Eq. (2), captures the rate of change of acceleration, a metric frequently used to quantify movement smoothness and coordination. This approach is informed by the minimum-jerk formulation prevalent in motor-control and biomechanics research, which posits that goal-directed human movements are optimized to minimize derivative fluctuations Winter [2009], Flash and Hogan [1985]. jerk mag =
+
+q ∆acc x
+
+2 +  ∆acc y
+
+2 +  ∆acc z
+
+2 (2) where ∆ represents the first-order temporal difference operator ( xt − xt−1) applied to the tri-axial acceleration components. To characterize orientation dynamics, we calculate the angular displacement between successive unit quaternions, qt
+
+and qt−1. This relative rotation, or ’difference’ quaternion ( ∆q = qt ⊗ q∗
+
+> t−1
+
+), is converted into a scalar angular-velocity proxy (ω) by extracting the rotation angle over a single sampling interval. Following standard quaternion kinematics, the angular change is derived from the scalar component of the unitized relative quaternion as shown in Eq. (3) Kuipers [1999]: 
+
+ω = 2 · arccos( |⟨ qt, q t−1⟩| ) (3) where ⟨qt, q t−1⟩ denotes the inner product of successive quaternions, providing a robust measure of angular change that is invariant to quaternion antipodal representation. We extracted summary statistics for sequences and the corresponding newly created features, including mean, standard deviation, minimum, maximum, range, interquartile range (IQR), skewness, and kurtosis. We also created several other features: (i) zero-crossings count to capture sign changes; (ii) number of local peaks using the find_peaks algorithm from the SciPy signal processing library 24; (iii) dominant frequency obtained from the magnitude spectrum of the fast Fourier transform (FFT) with unit sampling interval; and (iv) total spectral power as a proxy for overall energy in the frequency domain. This process resulted in a total of 156 static features for the IMU sensor. 
+
+2.2.2 THM preprocessing 
+
+To handle missing data, each thermopile channel first underwent linear interpolation across all gaps within the sequence. To guarantee complete sequences and impute any remaining missing values, particularly those at the extreme beginning or end of the recording, this interpolation was immediately followed by backward and forward filling. For every channel, we then computed sequence-level statistics such as mean, standard deviation, minimum, maximum, and range to quantify central tendency and dispersion. To capture distributional complexity beyond low-order moments, we constructed a 10-bin density-normalized histogram and computed its Shannon entropy, thereby quantifying irregularity and spread. Unlike statistical moments, which are exponentially skewed by the magnitude of extreme values, this histogram-based Shannon entropy evaluates probability mass, restricting an outlier’s impact to a mere frequency count. In addition, we aggregated cross-channel behavior by taking the mean, standard deviation, and range across the channel means, which yields global THM descriptors that stabilize the representation in the presence of channel-specific noise and varying signal-to-noise ratios. This process resulted in a total of 33 static features for the THM sensor. 
+
+2.2.3 ToF preprocessing 
+
+At each timestep, the ToF sensor provided up to five concurrent 8 × 8 proximity maps. To explicitly preserve the physical geometry of the sensor placement on the body, these patches were mapped onto a unified 32 × 32 spatial canvas based on their relative hardware locations (see Figure 1d). Specifically, the top, inner-top, left, right, and bottom sensors (designated as sensors 2, 1, 5, 3, and 4, respectively) were anchored at canvas origin coordinates (row, column) 4Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors of (0 , 12) , (9 , 12) , (14 , 0) , (14 , 24) , and (24 , 12) . This cross-like configuration resulted in a 1 × 32 × 32 tensor per frame. Valid proximity values were normalized to a [0 , 1] scale. Empty spatial regions on the canvas, as well as frames with missing returns, were explicitly padded with a sentinel value of −1.
+
+2.3 Labeling 
+
+The model is trained with an 18-class output layer that matches the gesture set in the dataset (8 BFRBs and 10 non-BFRBs). For evaluation, we first define a binary mapping in which all eight BFRB-like gestures are treated as Target and the ten non-BFRB-like gestures are treated as Non-Target, consistent with Table 1 and the dataset annotations. The binary classification score is obtained by summing the 18-class probabilities across all Target gestures, and the decision is positive when this aggregated Target probability meets or exceeds a threshold of 0.5. We also report a multi-class view that retains gesture specificity for the BFRB-like actions. For this purpose, a 9-class mapping is formed by keeping each Target gesture as its own class while merging all Non-Target gestures into a single Non-Target class. 
+
+2.4 Proposed Methodology 
+
+The proposed methodology introduces a comprehensive multimodal fusion framework designed to detect and classify BFRBs. A schematic overview of the data flow and overall architecture is illustrated in Figure 1. The system operates by aggregating two sets of features: dynamic and static. Dynamic features include three synchronized sensor streams: kinematic movements from the IMU, thermal heat signatures from the THM, and spatial proximity maps from the ToF sensors. Static features comprise summary-statistic variables (see Sections 2.2.1 and 2.2.2), demographics, and anthropometric data (see Figure 1a). We refer to the complete and integrated framework as the ALL-M ODALITY model. Within this architecture, prepro-cessed sequences (i.e., IMU, THM, and ToF) with a fixed length of T = 128 time steps are independently fed through dedicated, modality-specific temporal encoders (see Figures 1b and 1d). These encoders extract high-level dynamic embeddings with a uniform hidden dimension of H = 64 . The embeddings are subsequently pooled into S = 12 
+
+discrete segments via temporal attention. Concurrently, supplementary static context is established by integrating demographic and anthropometric data with static features from the IMU and THM signals (see Figure 1a). The dynamic and static feature embeddings are then concatenated using a late-fusion strategy and passed to a late-fusion Meta-Learner, implemented as a multi-layer perceptron (MLP), to predict the gesture class. We also proposed a self-supervised reconstruction-based pretraining strategy for initialization of encoders’ weights. Specifically, the dynamic IMU, THM, and ToF streams are first modeled within modality-specific autoencoder architec-tures, where each encoder learns modality-specific temporal or spatio-temporal structure by supporting reconstruction of the original signal. The details of the autoencoder architectures, reconstruction objective, and encoder weight transfer procedure are described in the following sections. 
+
+2.5 Autoencoders 
+
+In this stage, we train encoder-decoder models to reconstruct the original input signals. The primary purpose of this phase is to obtain reconstruction-informed weights for the dynamic sensor encoders, which are later used to initialize the corresponding supervised encoders for IMU, THM, and ToF, separately. The decoder components are used only during pretraining and are discarded afterward. 
+
+2.5.1 IMU/THM autoencoders 
+
+For the IMU and THM sensors, the autoencoders utilize a sequence-to-sequence architecture based on Gated Recurrent Units (GRUs). To capture both past and future temporal context, the encoder consists of a two-layer bidirectional GRU with a hidden dimension of 64 nodes per direction, regularized with a 0.2 dropout rate. This bidirectional processing yields a 128-dimensional latent embedding for each valid timestep. To properly handle variable-length trials, the encoder operates on packed sequences defined by the Boolean validity mask, ensuring padded frames are explicitly ignored. The corresponding decoder is structured as a single-layer unidirectional GRU with a 64-node hidden state, followed by a linear projection layer that reconstructs the original multi-channel inputs (7 channels for IMU, 5 for THM). This sequence-to-sequence design preserves temporal granularity and encourages the encoder to retain information sufficient to reproduce signal dynamics, which aligns the latent space with what the downstream recognition encoders later exploit. 5Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+(A) 
+
+(B) (C) 
+
+(D) 
+
+Figure 1: Overview of the proposed multimodal fusion architecture. (A) Late-fusion Meta-Learner that combines dynamic sequence summaries and projected static embeddings for gesture classification. (B) IMU and THM processing pipeline using modality-specific pretrained Bidirectional GRU encoders and segment-wise attention. (C) Bidirectional GRU architecture showing the concatenation of forward and backward hidden states. (D) ToF processing pipeline, where CNN-extracted spatial embeddings are modeled by a pretrained Bidirectional GRU and summarized using segment-wise attention. Dynamic encoders in (B) and (D) are initialized from masked autoencoders pretrained using a self-supervised reconstruction objective and subsequently fine-tuned end-to-end. 6Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+2.5.2 ToF autoencoder 
+
+For the ToF modality, a hybrid CNN-GRU autoencoder is utilized to model both spatial and temporal structures. The spatial encoder processes the 1 × 32 × 32 ToF canvas through three consecutive convolutional blocks. Each block applies a 3 × 3 convolution, batch normalization, rectified linear activation (ReLU), 2 × 2 max-pooling, and a 0.2 dropout rate, with filter sizes progressively expanding from 32 to 64 to 128. The resulting 128 × 4 × 4 feature map is flattened and linearly projected into a 64-dimensional spatial embedding per frame. This sequence of embeddings is then fed into a two-layer bidirectional GRU (64 hidden nodes per direction, 0.2 dropout), producing a 128-dimensional spatio-temporal latent representation for each valid timestep. The decoding pathway mirrors this architecture: a single-layer unidirectional GRU (64 hidden nodes) first reconstructs the temporal sequence. The spatial decoder then projects each timestep back to a 128 × 4 × 4 tensor, applying three symmetrical stages of nearest-neighbor upsampling (scale factor 2) paired with 3 × 3 convolutions, batch normalization, and ReLU activations to progressively reconstruct the original 1 × 32 × 32 spatial canvas. This pathway preserves frame-level locality while allowing the temporal module to capture motion-consistent factors in the latent sequence. 
+
+2.5.3 Static autoencoders 
+
+Demographic-anthropometric data and static IMU and THM features are handled during pretraining with independent, symmetric linear encoder-decoder branches. For each static branch, the encoder consists of a single fully connected linear layer that maps the respective input vector into a unified 64-dimensional latent space, immediately followed by 1D batch normalization. The corresponding decoder utilizes a single linear layer to project this 64-dimensional embedding back to the original input dimensionality for reconstruction. These static reconstruction branches allow the pretraining objective to incorporate the available non-sequential feature groups while maintaining a representation scale compatible with the 64-node static projections used during late fusion. 
+
+2.5.4 Masked reconstruction loss 
+
+Reconstruction employs a masked mean-squared error (MSE) that is calculated exclusively over valid elements, ensuring that sequence padding does not influence optimization. For the ToF modality, the validity mask is applied across the entire frame tensor to explicitly ignore the −1 sentinels denoting missing returns or empty canvas space. The static branches (demographics and static features) utilize standard MSE. The total pretraining objective is formulated as the sum of all individual branch losses, and the best autoencoder configuration is selected based on the minimum validation reconstruction loss. 
+
+2.5.5 Weight transfer 
+
+After pretraining, the learned weights are copied into the corresponding modality-specific encoders of the supervised model. The decoder segments of autoendcoders are discarded and are not used during classification. All transferred weights are then unfrozen and fine-tuned end-to-end together with the segment-wise attention layers, static projection heads, and late-fusion Meta-Learner. Therefore, in the current implementation, autoencoder pretraining provides reconstruction-informed initialization for the dynamic encoders in the final supervised model. The supervised fine-tuning phase is regularized using the AdamW optimizer with a weight decay of 10 −4, a network-wide dropout rate of 
+
+0.2, and an early stopping mechanism based on validation performance. 
+
+2.6 Encoders 2.6.1 Sequence encoders with segment-wise attention 
+
+As illustrated in Figure 1b, each of the IMU and THM streams are modeled with independent, modality-specific two-layer bidirectional GRUs that do not share weights. These bidirectional GRUs, which are initialized with the parameters learned during the autoencoder pretraining phase, operate directly on the preprocessed sequence of length 
+
+T = 128 timesteps. Operating in batch-first mode with a hidden size of H = 64 per direction, the encoder yields a latent sequence Z ∈ RB×T ×2H . This sequence captures forward and backward temporal context while strictly ignoring padded positions via length-aware sequence packing. To obtain a fixed-length representation that preserves coarse temporal organization and achieves dimensionality reduction, the T -length timeline is partitioned along the time-index axis into S = 12 contiguous segments. These segments are of roughly equal length in terms of time indices ( ⌊T /S ⌋
+
+frames per segment, with the final segment absorbing any remainder). Within each segment, a learned linear scoring function assigns one scalar score et per valid timestep t, formulated as et = w⊤zt + b, where w ∈ R2H and b ∈ R
+
+are the learnable weight and bias of the attention layer, respectively. The scores are then normalized over the valid 7Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors timesteps within each segment using a masked softmax: 
+
+αt = exp( et)
+
+P 
+
+> j∈V s
+
+exp( ej ) , t ∈ V s, (4) where Vs denotes the set of valid timesteps within segment s, and αt represents the normalized attention weight assigned to timestep t. Invalid or padded timesteps are assigned zero attention weight. These attention weights are then used to compute a weighted sum of the latent states Z over that segment. The segment-level representation is then computed as the weighted sum of the valid latent states: 
+
+zs = X
+
+> t∈V s
+
+αtzt, (5) where zs ∈ R2H denotes the attention-pooled representation of segment s.A dropout rate of 0.2 is applied to each segment-level representation zs after attention pooling for regularization. Finally, the S segment summaries, each of size 2H, are concatenated to form a single flattened descriptor of size 2H × S (i.e., 1,536 dimensions) for each modality. The resulting flattened tensor is then fed into the late-fusion concatenation layer. 
+
+2.6.2 Spatio-temporal ToF encoder 
+
+As depicted in Figure 1d, the ToF modality is processed by a hybrid convolutional-recurrent pathway designed to handle the sequence of 1 × 32 × 32 spatial proximity frames. First, each frame is embedded into a spatial feature vector using a three-block CNN. Each convolutional block consists of a 3 × 3 kernel, batch normalization, ReLU activation, 
+
+2 × 2 max-pooling, and a dropout regularization with a dropout rate of 0.2. The network progressively expands the channel dimension from 1 to 32, 64, and 128 through learned convolutional filters, while max-pooling reduces the spatial resolution from 32×32 to 16×16, 8×8, and 4×4. Thus, the network trades spatial resolution for a richer set of learned feature maps. A subsequent flattening operation unrolls the 128 × 4 × 4 tensor into a 2048-dimensional vector. A fully connected linear layer then projects this 2048-dimensional vector down to an H-dimensional (64-node) spatial embedding per frame. This sequence of per-frame embeddings is then passed through a two-layer bidirectional GRU identical to those used in the IMU/THM branches (see 2.6.1), initializing with its respective pretrained autoencoder weights. The identical segment-wise attention mechanism ( S = 12 ) is then applied to the bidirectional GRU output to obtain a fixed-length ToF sequence summary. This hybrid design preserves local spatial structure within each frame, while the recurrent layer and attention mechanism summarize longer-range temporal dependencies and emphasize the most informative intervals of the gesture. Finally, the S segment summaries are concatenated to yield a flattened descriptor of size 2H × S (1,536 dimensions). This resulting tensor is finally fed into the late-fusion concatenation layer, where it is aggregated with the dynamic summaries of the other modalities and the static projections prior to classification. 
+
+2.6.3 Static features 
+
+demographic, anthropometric, and static IMU and THM features are incorporated through lightweight projection heads that normalize the raw data and place them on the same latent scale as the dynamic sequence summaries. Each static data stream employs one fully connected layer to project its respective input vector into an H-dimensional embedding (here, H = 64 ). This projection is followed by a 1D batch normalization layer and a dropout layer with a dropout rate of 0.2. The only structural distinction among the branches is the choice of activation function: the static IMU and THM feature branches use ReLU activation, whereas the demographic and anthropometric branch uses the identity activation. 
+
+2.7 Data Fusion 
+
+All available modality embeddings are concatenated to form a single fused representation. For the full ALL-M ODALITY 
+
+configuration, this combined feature set integrates the three dynamic sequence summaries (IMU, THM, and ToF) and the three static projections (demographic and anthropometric data, static IMU features, and static THM features). Because each of the three dynamic sequence summaries has a size of 2H × S and each of the three static projections has a size of H, the fused dimensionality mathematically equals 3H(2 S + 1) . With H = 64 and S = 12 , it yields a 4800-dimensional fused representation. This fused vector is then fed into an aggregation network (i.e., Meta-Learner), which comprises two fully connected hidden layers with 128 nodes each. Each hidden layer applies a linear transformation followed by 1D batch normalization, a ReLU activation function, and dropout with a rate of 0.2. The output layer produces 18 logits corresponding to the original gesture classes. 8Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+2.8 Baseline Models 
+
+To evaluate the added value of multimodal sensor fusion, we compared the proposed ALL-M ODALITY model with three unimodal counterparts: IMU, THM, and ToF models. These unimodal models serve as ablation baselines, allowing us to quantify the relative contribution of each sensor stream under the same modeling framework. All unimodal baselines maintain the same underlying encoder, attention, and Meta-Learner design used in the proposed architecture, while isolating only one dynamic sensor stream at a time. For each unimodal configuration, the fused representation concatenates the sequence summary of the selected modality with the applicable static branches. Demographic and anthropometric features are included in all unimodal baselines, while static IMU and THM features are included only in their corresponding IMU and THM configurations, respectively. The ToF baseline includes the ToF sequence summary together with demographic and anthropometric features. 
+
+2.9 Training and Validation Procedures 
+
+We train the multimodal architecture in two sequential phases. First, a self-supervised pretraining phase initializes the modality-specific autoencoders to learn robust spatial and temporal representations. Next, a supervised fine-tuning phase integrates these pretrained encoders into the full classification pipeline for end-to-end optimization using labeled data. We employ a stratified, grouped train-validation-test split strategy for model evaluation. We used an independent held-out set Xtest (n = 1 , 627 sequences from 16 participants) as the test set. Stratification was performed on the gesture class labels to ensure balanced distributions across the splits, while grouping was applied strictly at the participant level to prevent participant overlap across subsets (i.e., avoid data leakage). The remaining data were split into Xtrain (n = 5 , 810 sequences from 58 participants) and Xval (n = 714 sequences from 7 participants) using the same strategy. Both autoencoder pretraining and supervised classifier training were performed on the training set, while the validation set was used for model selection and early stopping. The test set was reserved exclusively for final performance evaluation and post-hoc analysis. 
+
+2.9.1 Pretraining Procedure 
+
+During the unsupervised phase, the autoencoders are optimized using the AdamW optimizer with a learning rate of η = 0 .001 . The objective function for pretraining is a masked MSE loss (see Section 2.5.4). The autoencoders are trained for up to 100 epochs. Model selection was determined using an early stopping mechanism based on the validation reconstruction loss, with a patience of 25 epochs. This patience value was adopted to reduce the likelihood of overly early termination of training and to accommodate transient fluctuations in validation loss that are common in high-frequency physiological and motion data. 
+
+2.9.2 Supervised Training Procedure 
+
+During the supervised fine-tuning phase, we train the entire pipeline using the AdamW optimizer ( η = 0 .001 ). We use AdamW, which decouples weight decay from the adaptive gradient updates to improve generalization Loshchilov and Hutter [2017]. To update the network’s weights, we minimize the standard multi-class cross-entropy loss across all 18 original gesture classes. However, while cross-entropy drives the actual learning, we use a custom F1-based metric for model selection and stopping decision defined as the average of binary F1 (for Target vs. Non-Target problem) and macro-averaged F1 score (for the multi-class problem). We used F1 score instead of the training loss for validation to reduce the tendency of model to overfit to majority classes. We trained the model for 200 epochs with an early stopping criterion set for no improvement in 25 consecutive epochs. 
+
+2.10 Evaluation and Metrics 
+
+Evaluation is conducted on the test set using the aggregated probability scores defined in Section 2.3. We report a 
+
+binary view that distinguishes Target from Non-Target with a fixed decision threshold of 0.5, and a 9-class view that preserves each Target gesture as its own class while merging all Non-Target gestures into one class. Let TP , FP , TN ,and FN denote, respectively, the counts of true positives, false positives, true negatives, and false negatives obtained from the confusion matrix for the class under consideration, either the positive class (here, Target) in the binary setting or a one-vs-rest (OVR) class in the 9-class setting. The core metrics are defined as follows. 
+
+Precision = TP TP + FP (6) 
+
+Recall (Sensitivity) = TP TP + FN (7) 9Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+Specificity = TN TN + FP (8) 
+
+F1 score = 2 Precision · Recall Precision + Recall (9) Receiver operating characteristic area under the curve (ROC-AUC) summarizes discrimination across classification thresholds. In the 9-class setting, metrics are computed per class (OVR approach) and then macro-averaged to weight classes equally. All computations operate on these aggregated probabilities and their correspondingly merged ground-truth labels to remain consistent with the training head and the mappings described in Section 2.3. 
+
+2.11 Post-Hoc Analysis 
+
+We conducted a two-part post-hoc analysis to examine the network’s decision-making and error dynamics. First, we used SHAP to quantify the modality and feature-level contributions driving predictions. Second, we applied hierarchical clustering to misclassification patterns to identify overlapping behaviors and systematic confusion. 
+
+2.11.1 SHAP explanations on fused representations 
+
+Interpretability was assessed for the ALL-M ODALITY model by explaining the fused classifier input, including the concatenation of IMU, THM, and ToF sequence summaries together with static projections (i.e., demographics, anthropometric data, static IMU features, static THM features). We used Deep SHAP (DeepExplainer) Lundberg and Lee [2017] with a background set of fused vectors drawn from the training split and computed attributions with respect to the predicted 18-class logit. Let x ∈ RF denote the fused feature vector and fc(x) the logit for class c ∈ { 1, . . . , C }. The predicted class is 
+
+ˆc(x) = arg max  
+
+> c
+
+fc(x). (10) Deep SHAP yields per-feature attributions ϕ(c) 
+
+> j
+
+(x) for class c and fused feature index j ∈ { 1, . . . , F }. We select the attribution vector for the predicted class: 
+
+ϕj (x) = ϕ(ˆ c(x))  
+
+> j
+
+(x), j = 1 , . . . , F. (11) Let {Gk}Kk=1 be a partition of disjoint feature indices into modality-aligned fusion groups (here, K = 6 : IMU sequence, THM sequence, ToF sequence, demographics + anthropometric, static IMU features, static THM features). The per-sample group contribution is the sum of absolute SHAP values within each group: 
+
+sk(x) = X
+
+> j∈Gk
+
+ϕj (x) , k = 1 , . . . , K. (12) For reporting, we use the average contribution magnitude across the test set {xi}Ni=1 formulated as: 
+
+¯sk = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+X
+
+> j∈Gk
+
+ϕj (xi) , k = 1 , . . . , K. (13) Since the group sizes differ, we also report the average contribution per feature, defined as: 
+
+¯s′ 
+
+> k
+
+= ¯sk
+
+|Gk| , k = 1 , . . . , K. (14) where |Gk| denotes the size of feature set k.
+
+2.11.2 Hierarchical Clustering of Misclassification Patterns 
+
+To examine systematic misclassification patterns among the gesture classes, we derived a dendrogram from the grouped test set confusion matrix in the 9-class setting (rows correspond to ground truth and columns to predictions). The Non-Target class was excluded prior to normalization. We then row-normalized the remaining matrix to obtain conditional prediction distributions Muv = P (ˆ c = v | c = u) with P 
+
+> v
+
+Muv = 1 for each class u. For each pair of classes (u, v ),we defined a symmetric score 
+
+γuv = γvu = 12 (Muv + Mvu ) , (15) 10 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors which captures how frequently the model misclassifies class u as v and vice versa. A large value of γuv shows that the two classes are similar in characteristics, making it challenging for the model to distinguish between them. A corresponding distance matrix was then obtained through the relationship 
+
+duv = 1 − γuv , (16) with duu = 0 , ∀ u ∈ { 1, 2, . . . , C } \ { cNon-Target }. Hierarchical clustering with the average linkage method was then applied to construct the dendrogram. 
+
+# 3 Results 
+
+This Section presents the performance of the proposed models, evaluating their ability to classify BFRB versus non-BFRB gestures with binary and multi-class scopes. We then discuss the findings from post-hoc interpretability analyses. 
+
+3.1 Classification Results 
+
+The multimodal model was evaluated on a held-out test set using standard classification metrics described in Section 2.10. Table 2 shows the classification results for both binary and multi-class tasks across the full multimodal configuration (ALL-M ODALITY ) and the unimodal baselines (IMU, THM, and ToF). The ALL-M ODALITY model, integrating IMU, THM, and ToF data with static features, demographic, and anthropometric data, achieved the highest performance with an F1 score of 0.985, precision of 0.977, recall of 0.992, specificity of 0.960, and ROC-AUC of 0.997. This outperformed the unimodal baselines: IMU (F1 = 0.972), THM (F1 = 0.945), and ToF (F1 = 0.960). The binary classification task appears relatively less challenging, as all models achieved strong F1 scores. However, the ALL-M ODALITY model still provided a slight performance advantage, suggesting that multimodal sensor fusion offers complementary information beyond any single sensor stream. Table 2: Classification performance for binary and multi-class tasks Task Modality Precision Recall Specificity F1 score ROC-AUC Binary ALL-M ODALITY 0.977 0.992 0.960 0.985 0.997 
+
+IMU 0.967 0.978 0.944 0.972 0.995 THM 0.960 0.931 0.934 0.945 0.979 ToF 0.938 0.983 0.889 0.960 0.986 Multi-Class ALL-M ODALITY 0.709 0.704 0.973 0.700 0.963 
+
+IMU 0.487 0.487 0.953 0.484 0.894 THM 0.485 0.477 0.951 0.470 0.887 ToF 0.655 0.627 0.964 0.614 0.940 For multi-class evaluation, the ALL-M ODALITY model attained a macro F1 score of 0.700, precision of 0.709, recall of 0.704, specificity of 0.973, and ROC-AUC of 0.963, surpassing IMU (F1 = 0.484), THM (F1 = 0.470), and ToF (F1 = 0.614). Although the multi-class F1 score represents a decline from binary performance, this reduction was anticipated given the increased granularity required to differentiate among closely related BFRB gestures, such as those involving similar hand-to-face interactions. Nonetheless, the results remain promising, demonstrating the model’s capability to handle fine-grained classification in a challenging domain where gestural similarities contribute to classification difficulties. Per-class F1 scores for the ALL-M ODALITY model are presented in Table 3, further illustrating this variability, with the Non-Target class achieving the highest F1 (0.97), indicative of robust separation from BFRBs. Among BFRBs, Above ear – pull hair (0.877) and Forehead – scratch (0.746) showed strong performance, while 
+
+Eyelash – pull hair (0.594) and Eyebrow – pull hair (0.496) exhibited lower scores, likely due to overlapping kinematic and proximity patterns. To better understand the anatomical and behavioral overlaps driving these specific classification bottlenecks, we explore these systematic misclassification patterns further in the post-hoc hierarchical clustering analysis detailed in the following Section. 
+
+3.2 Post-Hoc Analyses 
+
+To assess the relative contributions of input features to model predictions, SHAP values were computed on a test set. Table 4 ranks sensor groups by the sum of mean absolute SHAP values ( ¯sk), alongside the per-feature contribution 11 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors Table 3: Class-specific F1 scores for the ALL-M ODALITY model Class F1 score Non-Target 0.973 Above ear – pull hair 0.877 Forehead – scratch 0.746 Forehead – pull hairline 0.734 Neck – pinch skin 0.667 Cheek – pinch skin 0.609 Neck – scratch 0.604 Eyelash – pull hair 0.594 Eyebrow – pull hair 0.496 (¯s′
+
+> k
+
+), which normalizes by group size. ToF sequences exhibited the highest total contribution (12.72), followed by IMU sequences (10.34), THM sequences (1.68), THM static features (0.79), IMU static features (0.73), and demographics (0.36). These rankings reveal that temporal sequences from the ToF and IMU sensors exert the most substantial overall impact on the prediction, likely due to their ability to effectively capture spatial proximity and dynamic gestural patterns over time. On a per-feature basis, however, the compact static descriptors are the most informative, with THM (0.01241) and IMU (0.01135) static features ranking above the ToF sequences (0.00828); this indicates that their large total attribution is distributed across many dimensions, whereas a few static features each carry disproportionate weight. Notably, ToF remains a top contributor under both measures, reinforcing the central role of spatial-proximity information. Table 4: Aggregated SHAP values across feature subsets, ranked by total contribution ¯sk.Rank Feature Subset ¯sk ¯s′
+
+> k
+
+1 ToF sequences 12.72 0.00828 2 IMU sequences 10.34 0.00673 3 THM sequences 1.68 0.00109 4 THM static features 0.79 0.01241 5 IMU static features 0.73 0.01135 6 Demographics 0.36 0.00569 The dendrogram in Figure 2 offers a hierarchical view of gesture-level misclassification patterns among the eight BFRBs. It summarizes how often classes are mistaken for one another; shorter branches indicate greater overlap in the model’s error patterns. Starting from the lowest linkages, two distinct pairs form almost simultaneously at a distance of approximately 0.80: the eye-region pair ( Eyebrow – pull hair and Eyelash – pull hair ) and the neck-region pair ( Neck – pinch skin and Neck – scratch ). Slightly higher in the hierarchy, Forehead – pull hairline and Forehead – scratch 
+
+merge into a forehead pair. As the clustering progresses, the tree clearly divides into two broader branches based on anatomical proximity. On the left, the eye pair merges directly with the forehead pair to form an upper-face cluster. On the right, Cheek – pinch skin merges with the neck pair to form a lower/side cluster. Finally, Above ear – pull hair 
+
+remains comparatively distinct, only merging with the lower-face/neck branch near the top of the hierarchy. Overall, the dendrogram indicates strong within-region misclassifications (eye with eye; forehead with forehead; neck with neck) and comparatively greater distinctiveness for the ear-region gesture. Taken together, the dendrogram structure and the per-class F1 scores are mutually consistent. The neck pair and the eyebrow–eyelash pair sit at the lowest linkage heights, reflecting strong mutual misclassification and matching their lower respective F1 scores (0.50–0.67). By contrast, the forehead pair merges at a higher distance, indicating a lower misclassification rate; this aligns with their higher F1 scores (0.73–0.75) and suggests these classes are more separable despite their shared anatomical region. Above ear – pull hair remains isolated until late in the hierarchy, which perfectly corroborates its strong F1 score (0.88). Overall, classes that cluster early tend to be harder to distinguish, while those that merge later achieve better per-class F1 performance. A coherent picture emerges indicating that misclassifications are driven more by contact location. The dendrogram consistently merges clusters within the same or adjacent anatomical regions (e.g., eye with forehead; cheek with neck), and the lowest per-class F1 scores appear within these tightly clustered groups. 12 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+Figure 2: Hierarchical clustering of the misclassification patterns from reported classes (excluding the Non-Target category). The y-axis is cropped to improve visual clarity. 
+
+# 4 Conclusion and Future Work 
+
+This study presents a multimodal deep learning framework for the reliable detection and fine-grained characterization of BFRBs using wrist-worn wearable sensors. Leveraging IMU, THM, and ToF modalities from the Child Mind Institute’s Helios device, the proposed architecture processes each sensor stream through dedicated encoders, for each the parameters are initialized from a pretrained autoencoder model. These representations are then pooled using temporal segment-wise attention to create fixed-length dynamic summaries. Finally, these summaries are concatenated with static demographic, anthropometric, and static features in a late-fusion layer, passing through a Meta-Learner to predict the gesture class. Evaluation on a subject-grouped held-out test set demonstrates that this multimodal fusion enhances discriminative performance, achieving near-perfect binary detection and strong multi-class recognition despite the inherent similarities among BFRB gestures. Beyond high classification performance, the incorporation of post-hoc interpretability methods provides transparent insights into the model’s reasoning and gesture-level confusion patterns. The SHAP-based feature attribution analysis explicitly confirmed that the network relies heavily on the complementary value of ToF and IMU signals to capture spatial proximity and dynamic motion. Furthermore, the hierarchical clustering analysis revealed a clear anatomical structure in the model’s errors, underscoring the practical challenges of distinguishing spatially adjacent BFRBs. In practice, this framework offers substantial benefits for both clinical professionals and individuals affected by BFRBs. For clinicians, the ability to objectively and continuously monitor BFRB episodes outside of clinical environments addresses the subjectivity and recall biases of traditional self-reporting. This provides actionable, data-driven insights into behavioral triggers and episode frequencies. For patients, integrating this lightweight, wearable-based detection system into digital mental health applications could facilitate real-time awareness and prompt timely, personalized behavioral interventions. Despite these strong results, several limitations must be acknowledged to guide future research. The current evaluation relies on data collected in controlled settings, which may not fully encapsulate the variability of BFRBs in unconstrained, daily-living environments. Additionally, our hierarchical clustering indicated that misclassifications are primarily driven by contact location. These findings suggest targeted improvements such as adding region-aware priors, refining ToF spatial calibration, and explicitly modeling hand-face geometry to reduce errors among anatomically adjacent gestures. Future work should also explore in-the-wild deployments to validate model robustness and investigate dynamic segmentation techniques for continuous streaming data. Finally, incorporating additional physiological signals could support closed-loop adaptive interventions by linking changes in emotional or stress-related states with the occurrence of BFRB-related motor behaviors. 13 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors 
+
+# Acknowledgment 
+
+The authors acknowledge the use of Google’s Gemini for language refinement throughout the manuscript. The authors fully reviewed the content and take responsibility for the final work. 
+
+# References 
+
+Jon E Grant, Darin D Dougherty, and Samuel R Chamberlain. Prevalence, gender correlates, and co-morbidity of trichotillomania. Psychiatry research , 288:112948, 2020. Jon E Grant and Samuel R Chamberlain. Prevalence of skin picking (excoriation) disorder. Journal of psychiatric research , 130:57–60, 2020. Steffen Moritz, Jakob Scheunemann, Lena Jelinek, Danielle Penney, Stella Schmotz, Luca Hoyer, Dominik Grudzie´ n, and Adrianna Aleksandrowicz. Prevalence of body-focused repetitive behaviors in a diverse population sample–rates across age, gender, race and education. Psychological Medicine , 54(8):1552–1558, 2024. Kathryn E Barber, Isabella F Cram, Elyse C Smith, Leila K Capel, Ivar Snorrason, and Douglas W Woods. Anxiety and body-focused repetitive behaviors: A systematic review and meta-analysis of comorbidity rates and symptom associations. Journal of psychiatric research , 181:80–90, 2025. Hanife Olbrich, Ina Jahn, Katarina Stengler, Erich Seifritz, and Michael Colla. Heart rate variability in obsessive com-pulsive disorder in comparison to healthy controls and as predictor of treatment response. Clinical Neurophysiology ,138:123–131, 2022. Jon E Grant and Samuel R Chamberlain. Trichotillomania and skin-picking disorder: an update. Focus , 19(4):405–412, 2021. Lorenzo Montali and Sara Garnieri. Feeling uncomfortable in your own skin: a qualitative study of problematic skin picking in italian women. Current Psychology , 43(14):12870–12881, 2024. Nicole Nadine Lønfeldt, Line Katrine Harder Clemmensen, and Anne Katrine Pagsberg. A wearable artificial intelligence feedback tool (wrist angel) for treatment and research of obsessive compulsive disorder: protocol for a nonrandomized pilot study. JMIR research protocols , 12(1):e45123, 2023. Mahsa Sheikh, Meha Qassem, and Panicos A Kyriacou. Wearable, environmental, and smartphone-based passive sensing for mental health monitoring. Frontiers in digital health , 3:662811, 2021. Mohsen Behradfar, Shotabdi Roy, and Joseph Nuamah. Optimizing mental stress detection via heart rate variability feature selection. Sensors , 25(13):4154, 2025. Benjamin Lucas Searle, Dimitris Spathis, Marios Constantinides, Daniele Quercia, and Cecilia Mascolo. Anticipatory detection of compulsive body-focused repetitive behaviors with wearables. In Proceedings of the 23rd International Conference on Mobile Human-Computer Interaction , pages 1–15, 2021. Jake J Son, Jon C Clucas, Curt White, Anirudh Krishnakumar, Joshua T Vogelstein, Michael P Milham, and Arno Klein. Thermal sensors improve wrist-worn position tracking. NPJ digital medicine , 2(1):15, 2019. Laura Newman, David LoBue, Arianna Zuanazzi, Florian Rupprecht, Luke Mears, Roxanne McAdams, Erin Brown, Yanyi Wang, Camilla Strauss, Arno Klein, Lauren Hendrix, Maki Koyama, Josh To, Curt White, Yuki Kotani, Michelle Freund, Michael Milham, Gregory Kiar, Martyna Plomecka, Sohier Dane, and Maggie Demkin. CMI – detect behavior with sensor data. https://kaggle.com/competitions/cmi-detect-behavior-with-sensor-data , 2025. Kaggle competition. Chunzhuo Wang, Hans Hallez, and Bart Vanrumste. Robust multimodal learning framework for intake gesture detection using contactless radar and wearable imu sensors. IEEE Journal of Biomedical and Health Informatics , 2026. Mohsen Behradfar, Samaneh Rezaeimanesh, Mohammad Fili, and Guiping Hu. Multimodal wearable sensor fusion for repetitive behavior detection. In Proceedings of the IISE Annual Conference & Expo , Arlington, TX, USA, 2026. Lin Sze Khoo, Mei Kuan Lim, Chun Yong Chong, and Roisin McNaney. Machine learning for multimodal mental health detection: a systematic review of passive sensing approaches. Sensors , 24(2):348, 2024. Nooshin Bahador, Denzil Ferreira, Satu Tamminen, Jukka Kortelainen, et al. Deep learning–based multimodal data fusion: Case study in food intake episodes detection using wearable sensors. JMIR mHealth and uHealth , 9(1): e21926, 2021. Kourosh Kakhi, Senthil Kumar Jagatheesaperumal, Abbas Khosravi, Roohallah Alizadehsani, and U Rajendra Acharya. Fatigue monitoring using wearables and ai: Trends, challenges, and future opportunities. Computers in Biology and Medicine , 195:110461, 2025. 14 Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors Shibo Zhang, Yaxuan Li, Shen Zhang, Farzad Shahabi, Stephen Xia, Yu Deng, and Nabil Alshurafa. Deep learning in human activity recognition with wearable sensors: A review on advances. Sensors , 22(4):1476, 2022. Sakorn Mekruksavanich, Wikanda Phaphan, Narit Hnoohom, and Anuchit Jitpattanakul. Recognition of sports and daily activities through deep learning and convolutional block attention. PeerJ Computer Science , 10:e2100, 2024. Child Mind Institute. Healthy brain network. https://childmind.org/science/global-open-science/ healthy-brain-network/ , 2026. Accessed: 2026-02-02. David A Winter. Biomechanics and motor control of human movement . John wiley & sons, 2009. Tamar Flash and Neville Hogan. The coordination of arm movements: an experimentally confirmed mathematical model. Journal of neuroscience , 5(7):1688–1703, 1985. Jack B Kuipers. Quaternions and rotation sequences: a primer with applications to orbits, aerospace, and virtual reality . Princeton university press, 1999. find_peaks — scipy v1.17.0 manual. https://docs.scipy.org/doc/scipy/reference/generated/scipy. signal.find_peaks.html . Accessed: 2026-04-03. Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 , 2017. Scott M Lundberg and Su-In Lee. A unified approach to interpreting model predictions. Advances in neural information processing systems , 30, 2017. 15

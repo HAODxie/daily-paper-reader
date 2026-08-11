@@ -1,0 +1,299 @@
+Title: FemWear: A Specialized Wearable Foundation Model for Women's Health
+
+URL Source: https://arxiv.org/pdf/2608.08244v1
+
+Published Time: Tue, 11 Aug 2026 01:01:49 GMT
+
+Number of Pages: 11
+
+Markdown Content:
+# FemWear: A Specialized Wearable Foundation Model for Women’s Health 
+
+A Preprint 
+
+Yifan Wang 
+
+The Chinese University of Hong Kong, Shenzhen 
+
+224050081@link.cuhk.edu.cn 
+
+Chenzhong Li 
+
+The Chinese University of Hong Kong, Shenzhen 
+
+lichenzhong@cuhk.edu.cn 
+
+August 2026 
+
+## Abstract 
+
+General-purpose wearable foundation models are pretrained across broad sensor streams and populations, but their reusable representations are not designed around women’s-health tasks. We introduce FemWear , a specialized wearable foundation model for women’s health, obtained by parameter-efficiently repurposing a pretrained general multimodal wearable backbone. FemWear retains the pretrained patch projection and Transformer encoder, and trains 239,236 encoder parameters (1.11% of a 21.54M-parameter encoder) through low-rank residual adapters and causal task-family heads. It produces one shared longitudinal representation for menstrual, symptom, affective, sleep/recovery, autonomic, activity, and pregnancy-related outcomes. We evaluate six cohorts with 63 comparable primary metrics, including 33 metrics from women’s-health cohorts, while retaining the 32-task OpenMHC 
+
+ability-retention benchmark. On a fixed participant split over three seeds, FemWear 
+
+improved cycle-phase macro-F1 by 8.15% and reduced mean absolute error for cramps, mood symptoms, and sleep problems by 9.32%, 5.80%, and 9.43%, respectively, although 24-hour onset AUPRC decreased by 3.40%. A stricter 42-participant nested leave-one-participant-out audit retained positive changes for 24-hour onset (+2.87%), 72-hour onset (+6.35%), and cramps (+2.19%), while phase, mood, and sleep changes were neutral or negative and no endpoint had a strictly positive corrected confidence interval. Capacity-matched experiments showed an advantage over a latest-day multilayer perceptron, but not over shared-GRU or multi-gate mixture-of-experts baselines. Train-only calibration reduced onset expected calibration error by 84.2–88.2% with zero temporal-nesting violations. FemWear therefore establishes a reproducible specialized wearable-model layer for women’s-health research: it enables targeted transfer and coherent probability outputs, but does not establish universal performance dominance or clinical validity. 
+
+Keywords wearable foundation model · women’s health · parameter-efficient adaptation · menstrual health ·
+
+multitask learning 
+
+## 1 Introduction 
+
+Consumer wearables provide continuous measurements of activity, sleep, heart rate, heart-rate variability, and temperature during everyday life. Recent wearable foundation models use self-supervised pretraining to transfer representations across sensor modalities and downstream tasks (Narayanswamy et al., 2024; Pillai et al., 2025). OpenMHC extends this direction with open data, model implementations, and a 32-task benchmark derived from more than 60 million hours of wearable data (Schuetz et al., 2026). These resources make it possible to build specialized models on top of a general wearable representation; however, a general representation is not automatically organized around women’s-health dynamics or outcomes. arXiv:2608.08244v1 [cs.AI] 8 Aug 2026 FemWear : Specialized Wearable Foundation Model A Preprint a Wearable signals b General wearable foundation encoder c Women’s-health specialization d Women’s-health tasks                   
+
+> ACT HR HRV
+> SLEEP TEMP SpO ₂
+> MTWTFSS
+> 7-day window (1 missing day) Daily patches (aligned)
+> LSM2
+> Frozen Transformer encoder Frozen Layer L Layer L−1
+> …
+> Layer 1
+> FemWear adapter
+> 239k · 1.11% trainable Causal history
+> t−5 t−4 t−3 t−2 t−1 t
+> E1 E2 E3
+
+𝐀 𝐀,𝐀        
+
+> Cycle & menstruation
+> phase onset risk cramps
+> Daily wellbeing
+> mood sleep fatigue
+> Physiology & life stage
+> HRV/sleep pregnancy activity
+> probability · score · class
+> Partial-label multitask learning
+> Cycle Wellbeing Physiology / Life stage
+> observed labels only C1 C2 C3 C4
+> ✓
+> −✓
+> ✓✓
+> ✓✓
+> ✓✓✓
+> −−−
+> Daily embeddings
+
+Figure 1: Overview of FemWear. (a) A seven-day multimodal wearable history is formed from activity, heart rate, heart-rate variability, sleep, temperature and oxygen signals. (b) A frozen general wearable foundation encoder maps aligned daily patches to daily embeddings. (c) The trainable FemWear adapter combines causal history with three physiological-regime expert pathways to form a shared female-health state; partial-label multitask learning uses only labels observed in each cohort. (d) Task-family heads return calibrated probabilities, scores or classes for cycle and menstrual outcomes, daily wellbeing, and physiology or life-stage outcomes. 
+
+Women’s wearable health is a heterogeneous longitudinal modeling problem. Menstrual phase and onset vary over days; symptoms and affect are sparse and self-reported; sleep and autonomic targets use different observation windows; and pregnancy activity follows a distinct longitudinal trajectory. Physiological studies show that wrist temperature and nocturnal pulse vary across the menstrual cycle (Lin et al., 2024; Shilaih et al., 2017), while the mcPHASES dataset links these wearable signals to daily symptoms and urine hormone measurements (Lin et al., 2025). The supervision required to model these phenomena is distributed across small cohorts, different devices, and partially overlapping task families. Training one predictor per task discards shared longitudinal structure, whereas unrestricted multitask sharing can create negative transfer when objectives compete (Standley et al., 2020). This work asks whether a general wearable foundation representation can be repurposed as a specialized model for women’s health with a small trainable parameter budget, and where that specialization transfers. We introduce FemWear , which specializes the OpenMHC backbone through low-rank residual adaptation, semantic sensor alignment, causal longitudinal aggregation, and task-family output heads. The resulting model is evaluated on menstrual, affective, sleep/HRV, pregnancy, and general ability-retention cohorts with participant-disjoint protocols. The experimental design measures positive transfer, neutral transfer, and degradation rather than treating specialization as synonymous with improvement on every endpoint. The study makes three contributions. First, it introduces FemWear as a specialized wearable foundation model for women’s health: a shared representation and task-family interface spanning heterogeneous women’s-health cohorts. Second, it provides a reproducible evaluation suite with 63 comparable primary metrics across six sources, including 33 metrics from women’s-health cohorts, and evaluates a 1.11%-trainable specialization against static, recurrent, and mixture-of-experts baselines under matched data, parameter counts, seeds, and fixed training budgets. Third, it reports the evidence boundary through nested participant validation, calibration, label-efficiency, and missing-history audits. The evidence supports parameter-efficient specialization and selected menstrual endpoints, while not establishing universal superiority over capacity-matched temporal baselines. 2FemWear : Specialized Wearable Foundation Model A Preprint 
+
+## 2 Related Work 
+
+Wearable foundation models. Large sensor models have shown that increasing data, model size, and compute can improve imputation and downstream transfer across wearable modalities (Narayanswamy et al., 2024). PaPaGei demonstrated open foundation representations for photoplethysmography across cardiovascular, sleep, pregnancy, and wellbeing tasks (Pillai et al., 2025). OpenMHC provides the open-weight and benchmark substrate used here (Schuetz et al., 2026). FemWear is a specialized wearable foundation model rather than a new from-scratch pretraining effort: it inherits a general wearable representation and repurposes it for women’s-health task families. 
+
+Foundation-model specialization. Domain work commonly distinguishes broad pretraining from the parameter-efficient repurposing of a frozen foundation backbone. Gen-P-Tuning adapts a frozen time-series foundation model to multivariate healthcare data (Liu et al., 2025); FORMED repurposes a generic time-series foundation model into a reusable medical time-series classifier and then adapts only lightweight task parameters to new datasets (Huang et al., 2026). FemWear follows this specialized-model formulation in the wearable setting. Its foundation-model claim refers to an inherited general wearable encoder, a shared representation across multiple women’s-health task families, and lightweight specialization; it does not imply a new large-scale, women-only pretraining run. 
+
+Women’s wearable health. Prior studies have related wearable temperature, pulse, sleep, and activity to menstrual and pregnancy dynamics (Lin et al., 2024; Shilaih et al., 2017; Ravindra et al., 2023). mcPHASES is particularly valuable because it synchronizes multimodal Fitbit signals, symptom diaries, glucose, and urine hormone measurements in 42 menstruating participants (Lin et al., 2025). These studies establish that women’s-health states leave measurable wearable signatures, but they do not provide a shared wearable representation and adaptation protocol spanning menstrual, mood, sleep, autonomic, activity, and pregnancy tasks. 
+
+Parameter-efficient and multitask adaptation. Residual adapters and low-rank updates reduce the number of parameters required to specialize pretrained models (Houlsby et al., 2019; Hu et al., 2022). Multi-gate mixture-of-experts (MMoE) models learn task-specific gates over shared experts (Ma et al., 2018), but heterogeneous objectives may still compete (Standley et al., 2020). We therefore compare FemWear 
+
+against both simple shared models and MMoE under matched trainable capacity, and we treat failure to outperform these controls as a result rather than hiding it in ablation material. 
+
+## 3 Method 
+
+3.1 Problem formulation 
+
+For participant i and day t, let xi,t denote the available wearable channels and mi,t their observation mask. Cohort c exposes labels only for a subset Tc of the global task registry T . The encoder produces a daily representation 
+
+zi,t = Eθ0,ϕ (xi,t , m i,t ), (1) where θ0 denotes frozen OpenMHC parameters and ϕ denotes trainable specialization parameters. A causal history model maps zi, 1: t to a participant state hi,t , and each observed task k has a task-family head fk(hi,t ). Labels absent from a cohort are never converted to negatives and do not enter the objective. 
+
+3.2 Parameter-efficient women’s-health specialization 
+
+The encoder reuses the pretrained OpenMHC LSM2 patch projection and Transformer (Vaswani et al., 2017). Sensor channels are aligned through descriptors that encode sensor identity, modality, unit, body location, and sampling characteristics, avoiding reliance on device-specific column positions. The pretrained projection and Transformer weights are frozen. Rank-32 bottleneck adapters are inserted into the final two Transformer blocks. For hidden tokens H, each zero-initialized residual update is Adapter( H) = H + Wup GELU( Wdown LN( H)) , (2) where Wdown ∈ R32 ×d and Wup ∈ Rd×32 . A three-expert physiological-regime adapter bank additionally computes a soft mixture of rank-32 residual updates from the pooled daily representation. Together with semantic sensor alignment, the trainable encoder contains 239,236 parameters out of 21,537,796 (1.1108%). 3FemWear : Specialized Wearable Foundation Model A Preprint                        
+
+> Table 1: Cohorts used to specialize and evaluate FemWear .Source Participants Days/windows Main wearable signals OpenMHC-XS retention 287 53,313 days activity, heart rate, sleep mcPHASES 42 5,546 encoded days steps, heart rate, HRV, temperature, oxygen variation, sleep DEPRESS Fitbit, female subset 66 5,728 days steps, heart rate, sleep inPHRsym, female subset 44 4,882 days steps, heart rate, sleep Wearable HRV/sleep, female subset 25 508 days steps, heart rate, HRV, light Pregnancy GA clock 1,230 2,463 seven-day windows wrist activity, light HRV denotes heart-rate variability. Participant counts describe the processed release used by this study; windowed pregnancy data are not treated as independent participants.
+
+3.3 Causal multitask heads 
+
+The downstream model observes only days up to prediction time. A gated recurrent unit (Cho et al., 2014) summarizes the daily sequence. Task-family heads cover menstrual, sleep/recovery, affect/stress, autonomic, activity, cardiometabolic, life-stage, and contextual outcomes. For a batch from cohort c, the partial-label loss is 
+
+Lc = 1
+
+|D c|
+
+∑
+
+> d∈D c
+
+1
+
+|T c,d |
+
+∑
+
+> k∈T c,d
+
+ℓk(fk(h), y k) , (3) where Dc is the set of active health domains and Tc,d contains observed tasks in domain d. Averaging first within domains prevents cohorts with more registered labels from dominating solely through task count. Menstrual onset is represented by a coherent three-bin distribution over onset within 24 hours, onset between 24 and 72 hours, and onset later than 72 hours. If the corresponding probabilities are ( p0, p 1, p 2), then 
+
+P24 = p0 and P72 = p0 + p1, which enforces P24 ≤ P72 for every example. Scalar temperature scaling is fitted using training participants only (Guo et al., 2017). 
+
+3.4 Women’s-health continual specialization 
+
+The locked women’s-health adapter is continually trained for 1,000 steps on the training partitions of five women’s-health cohorts, totaling 23,222 participant-days. Cohorts are sampled proportional to the square root of their training-day counts. The objective combines 15% masked-patch reconstruction, consistency between two corrupted views, preservation of the locked adapter, and retention of the native OpenMHC 
+
+representation. Sensor-channel dropping is applied with probability 0.35. The final-step checkpoint is used; validation early stopping is disabled. 
+
+## 4 Experimental Setup 
+
+4.1 Cohorts and tasks 
+
+Table 1 summarizes the six evaluated sources. OpenMHC-XS is a general ability-retention cohort and is not treated as women-only. The remaining sources contribute menstrual, affective, sleep/HRV, and pregnancy supervision. mcPHASES contains 42 menstruating participants observed across two three-month collection periods (Lin et al., 2025). The pregnancy activity data are derived from the gestational-age clock release (Ravindra et al., 2023). Within every source, participants are disjoint across training, validation, and test partitions. The current joint evaluation generates 69 task outputs; 63 have finite and comparable primary metrics, including 33 metrics from women’s-health cohorts. 
+
+4.2 Baselines and controls 
+
+The upstream OpenMHC representation is the primary transfer reference and is evaluated with the same downstream protocol. The capacity-matched architecture experiment compares four models with approxi-mately 1.97–1.99M trainable downstream parameters: a latest-observed-day multilayer perceptron, a shared 4FemWear : Specialized Wearable Foundation Model A Preprint                                                   
+
+> Table 2: Fixed participant-split menstrual-health results over three seeds. Task Metric OpenMHC FemWear, mean ±SD Rel. change Cycle phase Macro-F1 ↑0.4162 0.4500 ±0.0397 +8.15%
+> Onset within 24 h AUPRC ↑0.0843 0.0813 ±0.0138 −3.40% Onset within 72 h AUPRC ↑0.2002 0.2027 ±0.0345 +1.81% Cramps MAE ↓1.0268 0.9306 ±0.0155 +9.32%
+> Mood symptoms MAE ↓1.4301 1.3465 ±0.0252 +5.80%
+> Sleep problems MAE ↓1.4405 1.3048 ±0.0986 +9.43%
+> Relative changes are direction-normalized; positive values favor FemWear. This development split contains six validation participants and is therefore interpreted together with the nested audit.
+
+causal GRU, an eight-expert MMoE, and the FemWear dual-path temporal model. All arms use identical 768-dimensional daily inputs, task registries, participant splits, cohort draws, optimization schedules, seeds, and fixed final checkpoints. This isolates the contribution of temporal and routing structure from parameter-count and checkpoint-selection advantages. 
+
+4.3 Metrics and statistical analysis 
+
+Macro-F1 is primary for multiclass phase recognition. Area under the precision–recall curve (AUPRC) is primary for rare binary events because class prevalence is low (Saito and Rehmsmeier, 2015). Mean absolute error (MAE) is primary for symptom severity and continuous targets. AUROC, Brier score, expected calibration error (ECE), RMSE, and rank or linear correlation are secondary as appropriate. Every reported relative improvement is oriented so that positive values favor FemWear ; decreases in MAE, Brier score, and ECE therefore appear as positive improvements. Random-seed experiments use seeds 17, 42, and 73. Participant-cluster bootstrap resamples complete participants with replacement for 2,000 replicates, preserving within-participant longitudinal dependence. Holm correction is applied within each prespecified task family (Holm, 1979). The participant, not the participant-day, is the independent evaluation unit. Test labels are not used for model or checkpoint selection. 
+
+4.4 Implementation 
+
+The encoder uses the public OpenMHC LSM2 checkpoint. Adapter rank is 32, the final two Transformer blocks receive internal adapters, and downstream joint models contain approximately 1.98M trainable parameters. Encoder continual pretraining and downstream capacity-matched runs use 1,000 optimization steps. The capacity comparison uses batch size 16; continual pretraining uses batch size 8, AdamW with learning rate 10 −4, weight decay 0.01, and gradient clipping at 1.0. Experiments were executed on a single NVIDIA GeForce RTX 5090 D GPU. Recorded 1,000-step downstream runs required approximately 42–132 seconds depending on architecture. 
+
+## 5 Results 
+
+5.1 FemWear supports selected menstrual-health endpoints 
+
+On the fixed participant split, FemWear improved four of the six prespecified menstrual-health outputs in every seed (Table 2). Cycle-phase macro-F1 increased from 0.4162 to 0 .4500 ± 0.0397 (+8.15%). Cramps, mood symptoms, and sleep-problem MAE decreased by 9.32%, 5.80%, and 9.43%, respectively. The 72-hour onset AUPRC improved by 1.81% in two of three seeds. In contrast, 24-hour onset AUPRC decreased by 3.40%, demonstrating that specialization did not uniformly help closely related horizons. 
+
+5.2 Participant-level audit localizes the observed transfer 
+
+The 42-participant nested leave-one-participant-out audit produced a narrower result (Table 3 and Figure 2). The strongest positive change was 72-hour onset AUPRC (+6.35%), followed by 24-hour onset AUPRC (+2.87%) and cramps MAE (+2.19%). Cycle phase, mood, and sleep did not improve. No endpoint had a strictly positive confidence interval after the prespecified multiple-comparison procedure. The fixed-split gains 5FemWear : Specialized Wearable Foundation Model A Preprint −5.0 −2.5 0.0 2.5 5.0 7.5 10.0 
+
+> Relative change in task metric (%)
+> Sleep problems Mood symptoms Cramps Onset within 72 h Onset within 24 h Cycle phase
+> +9.43% +5.80% +9.32% +1.81% -3.40% +8.15%
+
+a Fixed participant split (3 seeds)       
+
+> −5.0 −2.5 0.0 2.5 5.0 7.5 10.0
+> Relative change in task metric (%)
+> Sleep problems Mood symptoms Cramps Onset within 72 h Onset within 24 h Cycle phase
+> -0.92% -0.01% +2.19% +6.35% +2.87% -1.11%
+
+b Nested leave-one-participant-out (42 women) 
+
+Figure 2: Menstrual transfer depends on the evaluation protocol. Relative changes are oriented so that positive values favor FemWear . (a) Fixed participant split over three seeds. (b) Single-seed nested leave-one-participant-out evaluation across all 42 mcPHASES participants. The stricter audit preserves positive onset and cramps trends but attenuates phase, mood, and sleep improvements. 
+
+Table 3: Nested leave-one-participant-out audit across 42 mcPHASES participants. Task Metric OpenMHC FemWear Rel. change Cycle phase Macro-F1 ↑ 0.2988 0.2955 −1.11% Onset within 24 h AUPRC ↑ 0.0389 0.0401 +2.87% Onset within 72 h AUPRC ↑ 0.1152 0.1225 +6.35% 
+
+Cramps MAE ↓ 1.4547 1.4229 +2.19% Mood symptoms MAE ↓ 1.5927 1.5929 −0.01% Sleep problems MAE ↓ 1.3908 1.4036 −0.92% 
+
+therefore indicate promising task-specific transfer, whereas the nested audit defines the current evidential boundary. 
+
+5.3 Temporal modeling contributes, but no architecture establishes a uniform advantage 
+
+The capacity-matched experiment removed validation checkpoint selection and constrained every model to approximately 1.98M parameters. FemWear achieved a validation loss of 0 .7691 ± 0.0027, improving over the latest-day MLP by 0.57%. It beat the MLP on 43 of 63 tasks and 23 of 33 female tasks. The shared GRU and MMoE obtained losses of 0 .7681 ± 0.0058 and 0 .7689 ± 0.0093, respectively, and FemWear failed the preregistered majority-task criteria against both (Table 4). No architecture pair produced a Holm-significant systematic advantage across at least two seeds. Figure 3a shows that temporal models are tightly grouped and that the latest-day MLP has greater across-seed dispersion. 
+
+5.4 Continual specialization produces domain-dependent transfer 
+
+Women’s-health continual specialization reduced the static-adapter validation loss by 0.59%, from 0.7610 to 0.7565, but remained 0.36% worse than the original OpenMHC representation at 0.7539. Relative to the static adapter, it improved the HRV/sleep domain by 2.01%, menstrual tasks by 0.51%, and affective tasks by 0.34%, while pregnancy loss worsened by 1.51% (Figure 3b). It won only 19 of 63 tasks and 11 of 33 women’s-health tasks against the static adapter, so additional seeds were not run under the preregistered stopping rule. The experiment supports partial repair of the static adapter rather than broad superiority. 
+
+5.5 Onset probabilities are coherent and calibratable 
+
+Train-only temperature scaling substantially improved probability reliability without changing ranking. For 24-hour onset, AUPRC and AUROC were 0.0801 and 0.7268; calibrated Brier score and ECE were 0.0300 6FemWear : Specialized Wearable Foundation Model A Preprint 
+
+Table 4: Fixed-step capacity-matched architecture comparison. Model Trainable params Validation loss Utility FemWear decision FemWear dual path 1,983,696 0.7691 ± 0.0027 0.5422 Reference Latest-day shared MLP 1,983,530 0.7736 ± 0.0085 0.3999 Passed: 43/63; 23/33 female Shared GRU 1,985,683 0.7681 ± 0.0058 0.5617 Failed: 31/63; 16/33 female MMoE, eight experts 1,967,366 0.7689 ± 0.0093 0.5663 Failed: 35/63; 17/33 female 0.76 0.77 0.78 0.79 
+
+> Validation loss (mean ± s.d.; lower is better)
+> Latest-day MLP FemMHC MMoE Shared GRU
+> 0.7736 0.7691 0.7689 0.7681
+
+a Capacity-matched temporal comparison     
+
+> −2 −1 012
+> Continued vs. static adapter (% change)
+> Menstrual Affective HRV and sleep Pregnancy
+> +0.51% +0.34% +2.01% -1.51%
+
+b Domain-dependent continued pretraining 
+
+Figure 3: Capacity control and transfer boundary. (a) Mean final validation loss with standard deviation over seeds 17, 42, and 73 for parameter-matched downstream architectures. Lower is better. (b) Relative domain loss change after women’s-health multi-cohort continual specialization compared with the locked static adapter. Positive values favor continued specialization. 
+
+and 0.0097. For 72-hour onset, AUPRC and AUROC were 0.2031 and 0.7343; calibrated Brier score and ECE were 0.0825 and 0.0305. Calibration reduced ECE by 88.2% and 84.2% for the two horizons and reduced Brier score by 19.8% and 30.7% (Figure 4a). The shared three-bin head produced zero P24 > P 72 violations in every seed. These results establish coherent, calibratable probability outputs, not product-level discrimination. 
+
+5.6 Recent history is more important than random completeness 
+
+The missing-history audit showed modest changes under 10–25% random deletion and one-to-three-day contiguous deletion. At 40% random deletion, median performance decreased by 6.07%. Removing the latest seven observed days was substantially more damaging, decreasing median performance by 17.99%, compared with 1.33% for a generic seven-day contiguous gap (Figure 4b). The model therefore tolerates moderate nonspecific missingness but depends on recent observations. 
+
+5.7 Women’s-health specialization does not yet provide a stable few-label advantage 
+
+At 1%, 5%, 10%, 25%, and 100% of training labels, FemWear won 2, 3, 3, 2, and 3 of six menstrual tasks. Median relative changes were −1.28%, −0.27%, −1.59%, −2.10%, and −0.35%, respectively. The non-monotonic curves and absence of a positive median effect make this a formal negative result. The current evidence supports partial-label multitask training, but not reduced label requirements. 
+
+## 6 Discussion 
+
+The main finding is that FemWear is viable as a parameter-efficient specialized wearable foundation model for women’s health, with benefits that are endpoint-dependent. With only 1.11% of encoder parameters trainable, FemWear produced clear fixed-split gains for cycle phase, cramps, mood, and sleep symptoms. The stricter nested participant audit localized the remaining positive trend to menstrual onset and cramps and does not support a claim of uniform improvement. This distinction matters because participant-days are abundant relative to independent participants: 5,546 mcPHASES days do not replace the uncertainty imposed by 42 individuals. 7FemWear : Specialized Wearable Foundation Model A Preprint 24 h onset 72 h onset 020 40 60 80 100  
+
+> Relative calibration-error reduction (%)
+> Brier 19.8% Brier 30.7% ECE 88.2% ECE 84.2%
+
+a Train-only probability calibration   
+
+> Low Moderate High −20 −15 −10 −5 05
+> Median relative performance change (%)
+> -6.1%
+> -1.3%
+> -18.0%
+
+b Recent history is the critical failure mode  
+
+> Random deletion Contiguous deletion Latest-day deletion
+> Figure 4: Reliability analyses. (a) Relative reductions in Brier score and expected calibration error (ECE) after scalar temperature scaling fitted on training participants only. (b) Median task performance under increasingly severe random, contiguous, and latest-day deletions. “Low”, “moderate”, and “high” correspond to 10/25/40% random deletion and 1/3/7-day deletion for the other conditions.
+
+The capacity controls further specify the algorithmic contribution. Temporal aggregation improved upon a model that uses only the latest day, but the proposed dual-path design did not establish a stable advantage over an equally sized shared GRU or MMoE. This result is consistent with multitask learning theory and empirical work showing that sharing can help some task combinations and harm others (Standley et al., 2020). Women’s health is not one homogeneous domain: continued specialization improved HRV/sleep more than menstrual or affective tasks and degraded pregnancy transfer. A useful specialized foundation model must therefore control negative transfer rather than merely add domain data. Calibration provides a complementary result. The onset head enforces logically nested horizons, while train-only temperature scaling substantially reduces Brier score and ECE. Good calibration does not compensate for low AUPRC, but it makes the meaning of an output probability more defensible. In practical evaluation, discrimination, calibration, and temporal consistency should be reported separately rather than collapsed into one accuracy number. Several limitations remain. The core menstrual cohort contains 42 participants, and the nested audit is internal cross-validation rather than independent external validation. The fixed development split contains only six validation participants. The women’s HRV/sleep cohort contains 25 participants, and target definitions vary across sources. Daily cached representations prevent the joint objective from adapting raw minute-level sensor features end to end. The current nested audit is single-seed, no endpoint has a strictly positive multiplicity-corrected interval, and the few-label experiment is negative. Missingness experiments remove daily history but do not simulate channel-specific sensor noise or motion artifacts. Finally, this model predicts research endpoints and has not been validated for diagnosis, treatment selection, or unsupervised deployment. These limitations define the next experiment rather than invalidate the current contribution. The immediate methodological target is a negative-transfer-aware adapter that preserves the strong general representation while activating women’s-health specialization only when task and cohort evidence support it. The immediate evidential target is repeated nested evaluation and a participant-disjoint menstrual cohort collected under a prespecified protocol. Until those results are available, FemWear should be presented as a specialized wearable foundation model for women’s-health research: a parameter-efficient repurposing of a general foundation backbone, rather than evidence of from-scratch women-only pretraining, uniform superiority, or clinical validation. 
+
+## 7 Conclusion 
+
+FemWear is a specialized wearable foundation model for women’s health, built by training 239,236 encoder parameters on top of a general open wearable foundation backbone. It improves selected menstrual, symptom, mood, and sleep endpoints on a fixed split; preserves positive onset and cramps trends under stricter participant-level validation; and produces coherent, calibratable onset probabilities. At the same time, it does not consistently outperform matched temporal baselines, does not improve every domain, and does not 8FemWear : Specialized Wearable Foundation Model A Preprint 
+
+yet show few-label superiority. The central contribution is a reproducible specialized-model formulation and evaluation suite for women’s-health wearables, together with a precise account of where its parameter-efficient transfer is promising and where additional evidence is required. 
+
+## Data and Code Availability 
+
+Code, configurations, processed-data interfaces, and aggregate experimental artifacts are available at https: //github.com/YifanWang-China/FemMHC . Raw participant-level datasets, upstream OpenMHC weights, training checkpoints, and individual-level predictions are excluded from version control and remain subject to their source licenses and data-use agreements. 
+
+## Ethics Statement 
+
+This study performs secondary analysis of de-identified public or access-controlled research datasets. The final manuscript must list the applicable source-study ethics approvals and data-use agreements after author verification. No model output in this work is evaluated as a diagnosis or treatment recommendation. 
+
+## Acknowledgments 
+
+Author acknowledgments and funding information will be added before submission. 
+
+## References 
+
+Girish Narayanswamy, Xin Liu, Kumar Ayush, Yuzhe Yang, Xuhai Xu, Shun Liao, Jake Garrison, Shyam Tailor, Jake Sunshine, Yun Liu, Tim Althoff, Shrikanth Narayanan, Pushmeet Kohli, Jiening Zhan, Mark Malhotra, Shwetak Patel, Samy Abdel-Ghaffar, and Daniel McDuff. Scaling wearable foundation models. 
+
+arXiv preprint arXiv:2410.13638 , 2024. URL https://arxiv.org/abs/2410.13638 .Arvind Pillai, Dimitris Spathis, Fahim Kawsar, and Mohammad Malekzadeh. PaPaGei: Open foundation models for optical physiological signals. In International Conference on Learning Representations , 2025. URL https://openreview.net/forum?id=kYwTmlq6Vn .Narayan Schuetz, Yuze Bai, Lianggang Pan, Edgar Eggert, Favour Nerrise, Juan Delgado-SanMartin, Max Rosenblattl, Milana Gurbanova, Mohammad Asadi, Anders Johnson, Paul Schmiedmayer, Dennis Wang, Allan Lawrie, Daniel Seung Kim, Xin Liu, Akshay Paruchuri, Ehsan Adeli, Euan Ashley, and Kelly W. Zhang. OpenMHC: Accelerating the science of wearable foundation models. arXiv preprint arXiv:2607.16235 , 2026. URL https://arxiv.org/abs/2607.16235 .Gloria Lin, Jin Yi Li, Kelsey Christofferson, Shwetak N. Patel, Khai N. Truong, and Alex Mariakakis. Understanding wrist skin temperature changes to hormone variations across the menstrual cycle. npj Women’s Health , 2:35, 2024. doi: 10.1038/s44294-024-00037-9. Mohaned Shilaih, Vanessa de Clerck, Luca Falco, Frank Kübler, and Brigitte Leeners. Pulse rate measurement during sleep using wearable sensors, and its correlation with the menstrual cycle phases: A prospective observational study. Scientific Reports , 7:1294, 2017. doi: 10.1038/s41598-017-01433-9. Blue Lin, Jin Yi Li, Kaavya Kalani, Khai Truong, and Alex Mariakakis. mcPHASES: A dataset of physiological, hormonal, and self-reported events and symptoms for menstrual health tracking with wearables. PhysioNet ,2025. doi: 10.13026/zx6a-2c81. URL https://physionet.org/content/mcphases/1.0.0/ . Version 1.0.0. Trevor Standley, Amir Zamir, Dawn Chen, Leonidas Guibas, Jitendra Malik, and Silvio Savarese. Which tasks should be learned together in multi-task learning? In Proceedings of the 37th International Conference on Machine Learning , volume 119 of Proceedings of Machine Learning Research , pages 9120–9132, 2020. URL 
+
+https://proceedings.mlr.press/v119/standley20a.html .Mingzhu Liu, Angela Chen, and George Chen. Generalized prompt tuning: Adapting frozen univariate time series foundation models for multivariate healthcare time series. In Proceedings of the 4th Machine Learning for Health Symposium , volume 259 of Proceedings of Machine Learning Research , pages 668–679, 2025. URL https://proceedings.mlr.press/v259/liu25a.html .Nan Huang, Haishuai Wang, Zihuai He, Marinka Zitnik, and Xiang Zhang. Repurposing foundation model for generalizable medical time series classification. In International Conference on Learning Representations ,2026. URL https://openreview.net/forum?id=wNEzRYiyZM .9FemWear : Specialized Wearable Foundation Model A Preprint 
+
+Neal G. Ravindra, Camilo Espinosa, Eloïse Berson, Thanaphong Phongpreecha, Peinan Zhao, Martin Becker, Alan L. Chang, Sayane Shome, Ivana Marić, Davide De Francesco, et al. Deep representation learning identifies associations between physical activity and sleep patterns during pregnancy and prematurity. npj Digital Medicine , 6:171, 2023. doi: 10.1038/s41746-023-00911-x. Neil Houlsby, Andrei Giurgiu, Stanislaw Jastrzebski, Bruna Morrone, Quentin de Laroussilhe, Andrea Gesmundo, Mona Attariyan, and Sylvain Gelly. Parameter-efficient transfer learning for NLP. Proceedings of Machine Learning Research , 97:2790–2799, 2019. URL https://arxiv.org/abs/1902.00751 .Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. LoRA: Low-rank adaptation of large language models. In International Conference on Learning Representations , 2022. URL https://openreview.net/forum?id=nZeVKeeFYf9 .Jiaqi Ma, Zhe Zhao, Xinyang Yi, Jilin Chen, Lichan Hong, and Ed H. Chi. Modeling task relationships in multi-task learning with multi-gate mixture-of-experts. In Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining , pages 1930–1939, 2018. doi: 10.1145/ 3219819.3220007. Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. Attention is all you need. In Advances in Neural Information Processing Systems ,volume 30, 2017. Kyunghyun Cho, Bart van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using RNN encoder–decoder for statistical machine translation. In Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing , pages 1724–1734, 2014. doi: 10.3115/v1/D14-1179. Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger. On calibration of modern neural networks. In 
+
+Proceedings of the 34th International Conference on Machine Learning , volume 70 of Proceedings of Machine Learning Research , pages 1321–1330, 2017. URL https://proceedings.mlr.press/v70/guo17a.html .Takaya Saito and Marc Rehmsmeier. The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets. PLOS ONE , 10(3):e0118432, 2015. doi: 10.1371/journal.pone.0118432. Sture Holm. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics , 6(2): 65–70, 1979. 
+
+## A Complete metric definitions 
+
+For multiclass cycle phase, the primary metric is macro-F1 so that all phases contribute equally. For rare binary onset and affect events, AUPRC is primary and AUROC is secondary. For symptom severity and continuous physiology, MAE is primary; RMSE and Pearson or Spearman correlation are secondary. Brier score and ECE measure probability quality. Unless otherwise stated, metrics are calculated over held-out observations and uncertainty is clustered by participant. 
+
+## B Label-efficiency audit                          
+
+> Table 5: Equal-width six-task label-efficiency experiment. Labels Task wins Task losses Median change Interquartile range 1% 24−1.28% [−2.59, +0 .97]% 5% 33−0.27% [−4.35, +2 .89]% 10% 33−1.59% [−3.99, +0 .45]% 25% 24−2.10% [−4.05, +0 .94]% 100% 33−0.35% [−2.59, +2 .95]%
+
+10 FemWear : Specialized Wearable Foundation Model A Preprint              
+
+> Table 6: Median relative task change under deterministic history deletion. Deletion family Low Moderate High Random observed days +0.24% (10%) +2.17% (25%) −6.07% (40%) Contiguous block +0.08% (1 day) +1.10% (3 days) −1.33% (7 days) Latest observed days −0.40% (1 day) −3.32% (3 days) −17 .99% (7 days)
+
+## C Missing-history conditions D Reproducibility checklist 
+
+All released aggregate experiments record configuration, seed, fixed-step budget, parameter counts, and evaluation artifacts. The locked capacity experiment uses seeds 17, 42, and 73 and participant-disjoint data splits. The manuscript source-data directory contains the exact values used to generate every numerical figure. Before conference submission, the author list, affiliations, ethics statements, dataset citations for DEPRESS Fitbit, inPHRsym, and the HRV/sleep release, and exact software versions must be finalized. 11

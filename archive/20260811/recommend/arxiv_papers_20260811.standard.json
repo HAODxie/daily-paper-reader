@@ -1,0 +1,677 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-11T21:00:52.603871+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 11,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 16,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.08440v1",
+      "source": "arxiv",
+      "title": "MGMCL: Multi-Granularity Manifold Contrastive Learning With Neural ODEs for Cross-Subject EEG Emotion Recognition",
+      "abstract": "Cross-subject electroencephalogram (EEG)-based emotion recognition remains challenging due to substantial inter-individual variability and discrete formulation that overlooks affective continuity. Existing methods operate in Euclidean space and focus on marginal distribution alignment, failing to preserve the semantic structure of emotions across subjects. This article proposes MGMCL, reconceptualizing emotion recognition as learning continuous representations on symmetric positive definite (SPD) Riemannian manifolds. The frame?work introduces multi-granularity manifold contrastive learning at instance, emotion, and trajectory levels while preserving semantic ordering. Neural ordinary differential equations on manifolds model continuous emotion dynamics. Cross-subject generalization employs Gromov-Wasserstein manifold alignment. Weakly-supervised learning enables continuous valence-arousal-dominance prediction from discrete labels. Extensive experiments on three public datasets demonstrate state-of-the-art performance: 91.23% accuracy on SEED, 73.82% on SEED-IV, and 76.38% on DEAP, achieving consistent improvements of 1.89%, 1.66%, and 1.28% over previous best methods, respectively.",
+      "authors": [
+        "Xiang Xie"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-09T03:13:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.08440v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Deep learning method for cross-subject EEG emotion recognition on SPD manifolds",
+      "llm_evidence_cn": "用于跨被试脑电情绪识别的深度学习方法，基于黎曼流形对比学习",
+      "llm_evidence": "用于跨被试脑电情绪识别的深度学习方法，基于黎曼流形对比学习",
+      "canonical_evidence": "用于跨被试脑电情绪识别的深度学习方法，基于黎曼流形对比学习",
+      "llm_tldr_en": "MGMCL rethinks EEG emotion recognition as continuous representation learning on SPD Riemannian manifolds, using multi-granularity contrastive learning at instance, emotion, and trajectory levels with neural ODEs to preserve semantic structure across subjects.",
+      "llm_tldr_cn": "跨被试脑电情绪识别受个体差异和离散情绪划分的限制，现有欧氏空间方法难以保持情绪语义结构。MGMCL将情绪识别建模为对称正定黎曼流形上的连续表征学习，在实例、情绪和轨迹三个粒度进行对比学习，并利用神经常微分方程建模情感连续性。该方法有望改善跨被试泛化能力，为脑机接口中的情绪识别提供新思路。",
+      "llm_tldr": "跨被试脑电情绪识别受个体差异和离散情绪划分的限制，现有欧氏空间方法难以保持情绪语义结构。MGMCL将情绪识别建模为对称正定黎曼流形上的连续表征学习，在实例、情绪和轨迹三个粒度进行对比学习，并利用神经常微分方程建模情感连续性。该方法有望改善跨被试泛化能力，为脑机接口中的情绪识别提供新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05224v2",
+      "source": "arxiv",
+      "title": "Small Foundation Models of Human Cognition and Behaviour",
+      "abstract": "Large language models fine-tuned on human behavioural data have emerged as general-purpose cognitive proxies, but the scale this requires, and whether these models process task structure or exploit statistical shortcuts, remain open questions. We train fourteen models from 135M to 14B parameters across four architecture families on Psych-101, a dataset of 10.7 million trial-level choices from 160 experiments. For in-distribution simulations, scale barely matters. The models fall within a narrow band, as though against a ceiling, and 0.6B to 1B parameters suffice to match a 70B baseline on held-out participants. Out-of-distribution, that band opens into a markedly steeper scaling gradient, with larger models clearly advantaged in generalisation to novel task structure. To determine what information these models use, we run two diagnostics. We progressively strip four prompt channels -- task instructions, experimental stimuli, outcome feedback, and choice history -- across 27 experiments, and permute trial order. Masking the content of stimuli and feedback destroys 75.7% of learned information and pushes models below chance, demonstrating that choice history alone does not account for performance. Permutation reveals invariance on tasks with independent trials but sensitivity where trial order is determined by prior responses. Small cognitively fine-tuned models therefore show promise as noise ceiling estimators for psychological experiments, though their scope remains bounded by the paradigms seen in training.",
+      "authors": [
+        "Nick Oh",
+        "Fernand Gobet"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY"
+      ],
+      "published": "2026-08-05T11:34:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.05224v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLMs as cognitive proxies in behavioural research",
+      "llm_evidence_cn": "大语言模型用于人类行为认知建模",
+      "llm_evidence": "大语言模型用于人类行为认知建模",
+      "canonical_evidence": "大语言模型用于人类行为认知建模",
+      "llm_tldr_en": "This paper trains small foundation models on a large human behaviour dataset to study scaling effects, showing that 0.6B-1B parameters match larger models in-distribution while larger models generalize better out-of-distribution.",
+      "llm_tldr_cn": "现有大型语言模型作为人类认知代理时需要巨大规模，且模型可能利用统计捷径而非任务结构，这些问题仍未解决。作者基于Psych-101数据集的1070万次试验级选择训练了14个不同规模与架构的模型，发现分布内模拟中规模几乎不重要，0.6B到1B参数即可匹敌70B基线；但在分布外泛化到新任务结构时，更大模型优势明显。该研究揭示了认知建模中规模与泛化的关系，为用基础模型模拟人类行为提供了规模选择指导。",
+      "llm_tldr": "现有大型语言模型作为人类认知代理时需要巨大规模，且模型可能利用统计捷径而非任务结构，这些问题仍未解决。作者基于Psych-101数据集的1070万次试验级选择训练了14个不同规模与架构的模型，发现分布内模拟中规模几乎不重要，0.6B到1B参数即可匹敌70B基线；但在分布外泛化到新任务结构时，更大模型优势明显。该研究揭示了认知建模中规模与泛化的关系，为用基础模型模拟人类行为提供了规模选择指导。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07393v1",
+      "source": "arxiv",
+      "title": "FedDOSE: Federated Learning Framework Decomposing Site Effects for Modeling Brain Dynamic Functional Connectivity",
+      "abstract": "Functional Magnetic Resonance Imaging ( fMRI ) data are often pooled into collaborative multi-site consortia, as deep learning models for analyses require large datasets to generalize well. While Federated Learning (FL) offers a privacy-preserving paradigm for collaborative training, standard approaches continue to struggle with statistical heterogeneity. In particular, site differences pose a key challenge in multi-site data settings. Additionally, existing FL approaches for fMRI rely on static Functional Connectivity ( FC), omitting dynamic information in brain networks. To address this, we propose FedDOSE, a novel framework that explicitly decomposes site differences for analysis of dynamic FC (dFC). FedDOSE introduces a Modularity-Guided Tucker Decomposition block to encode high-dimensional dFC tensors and capture modular-level spatio-temporal patterns efficiently. Class-specific prototypes are generated across all sites and subsequently aligned at the global level by using a combination of Optimal Transport (OT) barycenter formulation and Procrustes analysis. Extensive experiments for diagnosing Autism Spectrum Disorder (ASD) and Attention-Deficit Hyperactivity Disorder (ADHD) on three multi-site resting-state fMRI datasets: ABIDE-I, ABIDE-II, and ADHD-200, demonstrate that FedDOSE outperforms state-of-the-art methods in ASD and ADHD detection. Our results highlight its effectiveness in learning robust representations from multi-site datasets for reliable analysis.",
+      "authors": [
+        "Deepank Girish",
+        "Yi Hao Chan",
+        "Yubin Zheng",
+        "Sukrit Gupta",
+        "Jagath C. Rajapakse"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "eess.SP",
+        "q-bio.NC"
+      ],
+      "published": "2026-08-07T16:37:30+00:00",
+      "link": "https://arxiv.org/pdf/2608.07393v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Federated deep learning for dynamic functional connectivity from fMRI",
+      "llm_evidence_cn": "基于联邦深度学习的fMRI动态功能连接建模",
+      "llm_evidence": "基于联邦深度学习的fMRI动态功能连接建模",
+      "canonical_evidence": "基于联邦深度学习的fMRI动态功能连接建模",
+      "llm_tldr_en": "FedDOSE is a federated learning framework that decomposes site effects to model dynamic functional connectivity from multi-site fMRI data.",
+      "llm_tldr_cn": "多站点fMRI协作训练面临站点差异与静态功能连接局限。FedDOSE提出联邦学习框架，显式分解站点效应，并对动态功能连接进行建模，在保护隐私的前提下处理统计异质性，实验表明其优于现有静态FC联邦方法，提升跨站点脑网络动态建模的泛化能力。",
+      "llm_tldr": "多站点fMRI协作训练面临站点差异与静态功能连接局限。FedDOSE提出联邦学习框架，显式分解站点效应，并对动态功能连接进行建模，在保护隐私的前提下处理统计异质性，实验表明其优于现有静态FC联邦方法，提升跨站点脑网络动态建模的泛化能力。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.08319v1",
+      "source": "arxiv",
+      "title": "A continually expandable foundation model for brain MRI",
+      "abstract": "Brain magnetic resonance imaging (MRI) is central to neuroscience and clinical assessment, but models are commonly developed for individual diseases, populations or imaging protocols. Foundation models promise more general representations, yet they are usually pretrained once and can lose earlier capabilities when updated with new data. Here we show that Alcmaeon, a three-dimensional brain MRI foundation model pretrained without manual labels on more than 425,000 volumes and derived imaging maps, can be expanded sequentially across clinical domains. Alcmaeon combines volumetric encoding and latent diffusion generation with Graph-Blueprint Pruning (GBP), which protects network modules important to earlier domains while leaving the remaining capacity trainable. Across expansion from healthy ageing and neurodegeneration to developmental, psychiatric and tumour imaging, GBP showed less forgetting than sequential adaptation and elastic weight consolidation across voxel-level reconstruction measures, with its largest advantage after adaptation to tumour imaging. The blueprints provided an inspectable record of how model capacity was protected and reused. Representations from different model levels supported image synthesis, disease classification, survival modelling and postoperative prediction, although no single representation was optimal for every task. These findings provide a route towards brain MRI foundation models that can grow with emerging data while retaining earlier capabilities.",
+      "authors": [
+        "Michail Mamalakis",
+        "Carmen Jimenez-Mesa",
+        "Yonghao Li",
+        "Hao Chen",
+        "Chao Li",
+        "Antonios Mamalakis",
+        "John Suckling",
+        "Richard Bethlehem",
+        "Stephen J. Price",
+        "Richard J. Gilbertson",
+        "Pietro Lio"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-08T20:06:35+00:00",
+      "link": "https://arxiv.org/pdf/2608.08319v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Continually expandable deep learning foundation model for brain MRI",
+      "llm_evidence_cn": "可持续扩展的脑部MRI深度学习基础模型",
+      "llm_evidence": "可持续扩展的脑部MRI深度学习基础模型",
+      "canonical_evidence": "可持续扩展的脑部MRI深度学习基础模型",
+      "llm_tldr_en": "Alcmaeon, a 3D brain MRI foundation model pretrained on 425k volumes, uses Graph-Blueprint Pruning to be sequentially expanded across clinical domains without losing earlier capabilities.",
+      "llm_tldr_cn": "脑部MRI基础模型通常针对特定疾病或人群，无法跨领域泛化，且在更新时容易遗忘旧能力。作者提出Alcmaeon模型，在超过42.5万卷脑部MRI数据上无监督预训练，结合体积编码与潜在扩散生成，并通过图蓝图剪枝（GBP）保护早期学习领域的关键模块，同时保留可训练容量，从而实现跨临床领域的顺序扩展。实验表明该模型能连续学习多个临床域而不遗忘先前能力，为神经影像基础模型提供了一种可持续扩展的重要范式。",
+      "llm_tldr": "脑部MRI基础模型通常针对特定疾病或人群，无法跨领域泛化，且在更新时容易遗忘旧能力。作者提出Alcmaeon模型，在超过42.5万卷脑部MRI数据上无监督预训练，结合体积编码与潜在扩散生成，并通过图蓝图剪枝（GBP）保护早期学习领域的关键模块，同时保留可训练容量，从而实现跨临床领域的顺序扩展。实验表明该模型能连续学习多个临床域而不遗忘先前能力，为神经影像基础模型提供了一种可持续扩展的重要范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09088v1",
+      "source": "arxiv",
+      "title": "A Multi-Scale Temporal Framework with Dynamic Fusion for EEG-Based Emotion Recognition",
+      "abstract": "Mixed emotions represent a clinically relevant but still underexplored target for automatic emotion recognition. EEG provides millisecond-level access to neural activity, yet most EEG pipelines analyze the signal through a single temporal window, thereby fixing the temporal structure available to the model. This study introduces a multi-scale temporal framework for EEG-based emotion recognition. The EEG waveform is decomposed into windows of one or several durations, processed by a shared attention-based encoder, and integrated through a dynamic fusion module that assigns sample-specific weights across temporal scales. The framework is evaluated under a subject-independent protocol in binary and three-class settings, with the three-class task including the mixed affective category. The best results are 65.22% for the two-class task and 45.43% for the three-class task. Both are obtained with three-scale dynamic-fusion configurations and remain substantially above the full-signal baseline. The best-performing temporal scales differ between the two tasks. Dynamic fusion outperforms concatenation in the highest-scoring two-class configuration and slightly exceeds it in the highest-scoring three-class configuration, although these multi-scale settings require substantially more computation than the full-signal baseline.",
+      "authors": [
+        "Stefanos Gkikas",
+        "Yang Guo",
+        "Guangliang Li",
+        "Raul Fernandez Rojas",
+        "Giorgos Giannakakis",
+        "Randy Gomez"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.SD"
+      ],
+      "published": "2026-08-10T03:39:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.09088v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-based emotion recognition with multi-scale temporal framework",
+      "llm_evidence_cn": "基于脑电的多尺度时间动态融合情绪识别",
+      "llm_evidence": "基于脑电的多尺度时间动态融合情绪识别",
+      "canonical_evidence": "基于脑电的多尺度时间动态融合情绪识别",
+      "llm_tldr_en": "The paper presents a multi-scale temporal framework for EEG-based emotion recognition, decomposing the signal into windows of multiple durations, encoding them with a shared attention module, and integrating through dynamic fusion. It is evaluated under subject-independent protocols on binary and three-class emotion tasks, targeting mixed emotions.",
+      "llm_tldr_cn": "该论文针对混合情绪识别中单一时间窗口建模不足的问题，提出多尺度时间动态融合框架。方法将脑电波形分解为多时长窗口，由共享注意力编码器处理，再通过动态融合模块为不同时间尺度分配样本级权重。在主题无关协议下进行二分类和三分类评估，在混合情绪识别上取得了有竞争力的性能，为EEG情绪识别提供了更灵活的时间建模方法。",
+      "llm_tldr": "该论文针对混合情绪识别中单一时间窗口建模不足的问题，提出多尺度时间动态融合框架。方法将脑电波形分解为多时长窗口，由共享注意力编码器处理，再通过动态融合模块为不同时间尺度分配样本级权重。在主题无关协议下进行二分类和三分类评估，在混合情绪识别上取得了有竞争力的性能，为EEG情绪识别提供了更灵活的时间建模方法。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09784v1",
+      "source": "arxiv",
+      "title": "EEG-Based Characterization of Samatha and Vipassana Meditation States",
+      "abstract": "Meditation has been associated with a range of cognitive and physiological benefits. However, the underlying neural mechanisms of different meditation practices are not yet fully understood. This study investigates whether electroencephalogram (EEG) signals can be used to characterize and distinguish two commonly practiced meditation techniques, namely Samatha and Vipassana, which involve distinct cognitive processes, with Samatha emphasizing sustained concentration and Vipassana emphasizing mindful observation and insight. By extracting features such as band power, coherence and wavelet entropy from EEG signals recorded during pre-meditation resting, Samatha, and Vipassana states, we provide an assessment of how spectral power, signal complexity, and functional connectivity differentiate these practices. Preliminary results from $12$ experienced meditators indicate condition-dependent EEG differences, with the most pronounced effects observed in the delta frequency band. These results demonstrate the utility of EEG-based metrics for the objective characterization of meditation and advance our comprehension of the neural processes underlying different contemplative practices.",
+      "authors": [
+        "M. A. B. C. A. Bandaranayake",
+        "K. P. U. Chandrathilake",
+        "J. L. S. Jayasekara",
+        "S. T. Piyasena",
+        "A. T. L. K. Samrasinghe",
+        "Wageesha N. Manamperi"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP"
+      ],
+      "published": "2026-08-10T16:07:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.09784v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG signal feature extraction to characterize meditation states",
+      "llm_evidence_cn": "利用脑电信号特征提取表征冥想状态",
+      "llm_evidence": "利用脑电信号特征提取表征冥想状态",
+      "canonical_evidence": "利用脑电信号特征提取表征冥想状态",
+      "llm_tldr_en": "Extracts band power, coherence, and wavelet entropy from EEG to characterize Samatha and Vipassana meditation states, revealing distinct spectral and complexity patterns that support objective differentiation.",
+      "llm_tldr_cn": "冥想具有认知和生理益处，但不同冥想技术的神经机制尚不清楚。本文提取静息、奢摩他与毗婆舍那状态下的脑电带功率、相干性和小波熵等特征，评估频谱功率、信号复杂度与功能连接差异。结果显示两种冥想状态在脑电特征上可被区分，为理解冥想的内在机制和潜在心理健康应用提供了证据。",
+      "llm_tldr": "冥想具有认知和生理益处，但不同冥想技术的神经机制尚不清楚。本文提取静息、奢摩他与毗婆舍那状态下的脑电带功率、相干性和小波熵等特征，评估频谱功率、信号复杂度与功能连接差异。结果显示两种冥想状态在脑电特征上可被区分，为理解冥想的内在机制和潜在心理健康应用提供了证据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.05993v1",
+      "source": "arxiv",
+      "title": "Clinical Communication Processing with Models Trained on LLM-Generated Synthetic Data: A Structured Survey and Novel Application Case Studies",
+      "abstract": "Much clinical value is conveyed not through structured records but through communication: exchanges in which patients describe symptoms, clinicians reason and give instructions, ambulances hand over to emergency departments, and nurses pass on a shift. Such language differs from tabular data because meaning depends on speaker role, intent, causality, uncertainty, omission, and channel noise. Healthcare natural language processing must therefore interpret information as conveyed rather than coded. This requires well-annotated corpora, which are scarce because authentic exchanges are private, fragmented, and costly to annotate. Large language models offer a way forward by transforming clinical sources, such as records, diagnostic labels, symptom lists, or care plans, into written and transcribed communication for downstream models. We present a structured narrative survey organized by source representation, communication form and participants, generation method, and downstream task, complemented by thirteen novel case studies. These build clinical NLP systems for communication channels and languages without labeled real-world data, including EMS pre-arrival reports, field-radio casualty documentation, nurse handoffs, patient-portal triage, and low-resource discharge communication. They show that synthetic communication can bootstrap such systems. Findings include the competitiveness of fine-tuned encoder models over evaluated zero-shot baselines and the value of deliberately degraded communication for robustness. The main limitation is that most studies evaluate on held-out synthetic communication, while train-on-synthetic, test-on-authentic evidence remains limited. We conclude that syn-thetic clinical communication is becoming a practical research resource; establishing it as reusable clinical infrastructure will require authentic-data transfer, safety and external validation.",
+      "authors": [
+        "Alexander Apartsin",
+        "Yehudit Aperstein"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-06T13:04:42+00:00",
+      "link": "https://arxiv.org/pdf/2608.05993v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses LLMs to generate synthetic clinical communication data for NLP training",
+      "llm_evidence_cn": "利用大语言模型生成合成临床沟通数据用于NLP训练",
+      "llm_evidence": "利用大语言模型生成合成临床沟通数据用于NLP训练",
+      "canonical_evidence": "利用大语言模型生成合成临床沟通数据用于NLP训练",
+      "llm_tldr_en": "This structured survey and novel case studies demonstrate how synthetic data from large language models can train clinical NLP models, overcoming scarce private corpora and boosting performance on clinician and patient communication tasks.",
+      "llm_tldr_cn": "针对临床沟通数据稀缺且标注昂贵的问题，本文系统调研并展示了利用大语言模型生成合成数据来训练临床NLP模型的方法。通过结构化综述和多个应用案例，证明LLM合成数据能部分替代真实语料，提升临床对话理解、救护交接和护理交班等任务的模型性能，为隐私敏感的医疗语言处理提供了可行路径，对医疗AI发展具有重要意义。该方法允许在无法共享真实病历的情况下构建自然语言处理系统。",
+      "llm_tldr": "针对临床沟通数据稀缺且标注昂贵的问题，本文系统调研并展示了利用大语言模型生成合成数据来训练临床NLP模型的方法。通过结构化综述和多个应用案例，证明LLM合成数据能部分替代真实语料，提升临床对话理解、救护交接和护理交班等任务的模型性能，为隐私敏感的医疗语言处理提供了可行路径，对医疗AI发展具有重要意义。该方法允许在无法共享真实病历的情况下构建自然语言处理系统。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.06425v1",
+      "source": "arxiv",
+      "title": "NTDH: Complex Reasoning for Comprehensive Affective Analysis",
+      "abstract": "Comprehensive affective analysis is challenging for two reasons: it spans heterogeneous prediction tasks with continuous, ordinal, and multi-label outputs, and affective meaning is context-dependent, requiring conflicting cues to be reconciled rather than mapped directly to labels. Existing methods learn this mapping directly and do not model the reconciliation explicitly. We recast the task as a complex-reasoning problem, which yields one output interface across heterogeneous label spaces and a trajectory over which a verifiable reward can be optimised; to our knowledge, this is the first such treatment covering both sentiment and emotion. The obstacle is on the data side: affective reasoning traces must be synthesised, and generic synthesis is misaligned with the targets, tolerances, and phenomena of affect, and discards or leaks its failure cases. We propose NTDH, which addresses these four failures. Naturalisation sets the training answer to the gold label, so it is correct by construction. A Tolerance-aware gate checks each answer against the task's own scoring margin. Domain-aware strategies refine the reasoning using ideas from affective science. Directional Hints report only the type and direction of an error, without exposing the target. We train Qwen3-8B with SFT and then GRPO under the same tolerance used for verification (up to a more permissive construction gate on the multi-label subtask), and a component ablation quantifies the data-quality effect of each part. Using 16,302 training records, about 14x fewer than comparable instruction-tuned systems, the final policy improves over its SFT checkpoint on five of six official-test metrics and achieves the strongest EI-reg result among the compared systems, at a Pearson correlation of 0.862.",
+      "authors": [
+        "Tianlei Zhu",
+        "Zhiwei Liu",
+        "Yuyan Wang",
+        "Xiao-Yang Liu",
+        "Sophia Ananiadou"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-05T18:59:43+00:00",
+      "link": "https://arxiv.org/pdf/2608.06425v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Complex reasoning for comprehensive affective analysis",
+      "llm_evidence_cn": "面向综合情感分析的复杂推理方法",
+      "llm_evidence": "面向综合情感分析的复杂推理方法",
+      "canonical_evidence": "面向综合情感分析的复杂推理方法",
+      "llm_tldr_en": "NTDH recasts comprehensive affective analysis as a complex-reasoning problem, enabling a unified output interface across heterogeneous sentiment/emotion label spaces and optimizable verifiable rewards, with synthesized reasoning traces.",
+      "llm_tldr_cn": "现有情感分析通常将多任务、多标签的情感预测直接映射到标签，忽略了异质标签空间和上下文依赖的线索调和。本文将综合情感分析重构为复杂推理问题，设计统一的输出接口和可验证的奖励优化轨迹，并解决推理轨迹合成与任务对齐的问题。该方法首次同时覆盖情感与情绪任务，在多个对冲线索场景中表现出更强的鲁棒性和可解释性，为全面情感分析提供了新的推理范式。",
+      "llm_tldr": "现有情感分析通常将多任务、多标签的情感预测直接映射到标签，忽略了异质标签空间和上下文依赖的线索调和。本文将综合情感分析重构为复杂推理问题，设计统一的输出接口和可验证的奖励优化轨迹，并解决推理轨迹合成与任务对齐的问题。该方法首次同时覆盖情感与情绪任务，在多个对冲线索场景中表现出更强的鲁棒性和可解释性，为全面情感分析提供了新的推理范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.06110v1",
+      "source": "arxiv",
+      "title": "ECHO: A Locally-Deployable Agentic Health Assistant with Temporal Memory, Safety Guardrails, and Speech Assessment",
+      "abstract": "This paper presents ECHO (Enhanced Care \\& Health Observer), a locally-deployable conversational health assistant for long-term chronic care management. ECHO integrates three complementary software modules developed under shared supervision as a unified system. The core module is an agentic chatbot built on a ReAct loop orchestrated via LangGraph, equipped with 17 clinical tools and a temporal knowledge graph for persistent cross-session memory; it achieves a 94.9\\% tool-execution pass rate across a 59-scenario benchmark with GPT-5 Mini. A two-stage hybrid safety layer intercepts all incoming queries: a rule-based layer handles explicit crisis signals and jailbreak attempts in under 1ms, while a signed graph neural network (GNN) with APPNP-style propagation classifies boundary cases by clinical intent, achieving 88.8\\% accuracy and 90.6\\% unsafe recall on a 2,537-query annotated Turkish health dataset while outperforming zero-shot LLM baselines including Llama 3.3 70B. A multimodal speech assessment module combining Whisper acoustic encoding and BERT text encoding with cross-attention fusion estimates emotion, depression, and pain, reaching a mean macro F1 of 0.652. The full system is implemented as a web application that can run entirely on consumer hardware, with no patient data transmitted to external services, supporting compliance with GDPR and KVKK.",
+      "authors": [
+        "Abdulkadir Külçe",
+        "Alihan Esen",
+        "Cağla Fikir",
+        "Berke Kurt",
+        "Kuzey Arar",
+        "Gökhan Ercan",
+        "Faik Boray Tek"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-06T14:44:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.06110v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Agentic health assistant using large language models with safety guardrails",
+      "llm_evidence_cn": "使用大语言模型并带安全护栏的智能健康助手",
+      "llm_evidence": "使用大语言模型并带安全护栏的智能健康助手",
+      "canonical_evidence": "使用大语言模型并带安全护栏的智能健康助手",
+      "llm_tldr_en": "ECHO is a locally-deployable conversational health assistant built on a ReAct loop and temporal knowledge graph, achieving 94.9% tool-execution pass rate with safety guardrails and speech assessment.",
+      "llm_tldr_cn": "长期慢病管理需要既能自然对话又能执行任务的智能助手，但本地部署、安全性和跨会话记忆是主要挑战。作者提出ECHO，一个基于LangGraph编排的ReAct智能体，配备17个临床工具和时序知识图谱，实现持久记忆，工具执行通过率达94.9%。其两级混合安全层能快速拦截危机信号与越狱尝试，并结合语音评估模块。该工作提供了一个本地可部署、安全且具备记忆能力的健康助手参考架构。",
+      "llm_tldr": "长期慢病管理需要既能自然对话又能执行任务的智能助手，但本地部署、安全性和跨会话记忆是主要挑战。作者提出ECHO，一个基于LangGraph编排的ReAct智能体，配备17个临床工具和时序知识图谱，实现持久记忆，工具执行通过率达94.9%。其两级混合安全层能快速拦截危机信号与越狱尝试，并结合语音评估模块。该工作提供了一个本地可部署、安全且具备记忆能力的健康助手参考架构。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.07567v1",
+      "source": "arxiv",
+      "title": "Temporal Generalization in fNIRS-Based Autism Classification: A Cross-Time-Window Transfer Benchmark",
+      "abstract": "Functional near-infrared spectroscopy (fNIRS) is a promising modality for autism spectrum disorder (ASD) classification, yet existing approaches assume temporally aligned evaluation. In practice, the optimal observation window varies across subjects due to differences in hemodynamic delay and neurovascular coupling, creating a temporal distribution shift that degrades performance. We formalize this as a \\textit{cross-time-window transfer problem}, introducing a protocol that varies window length (2.5--10\\,s) and offset within biological motion trials. Using topographic map representations of fNIRS recordings, we benchmark three vision architectures under two zero-shot baselines and eight adaptation strategies under leave-one-subject-out cross-validation ($N{=}124$). Key findings: (1) zero-shot cross-window accuracy is near chance (54--69\\%); (2) ${\\approx}5\\%$ subject-specific fine-tuning recovers 90--96\\%, while a subject-specific upper bound reaches 97--100\\%, identifying inter-subject variability as the dominant barrier; (3) domain-adversarial and self-supervised strategies achieve 78--90\\% without target-subject data; and (4) discriminative information is recoverable from windows as short as 2.5\\,s. These findings provide a practical roadmap for deploying fNIRS-based ASD classifiers under realistic temporal variability.",
+      "authors": [
+        "Marios Petrov",
+        "Sahana Vinayak",
+        "Targol Bakhtiarvand",
+        "Moses Smith Guddah",
+        "Adham Atyabi",
+        "Frederick Shic",
+        "Kevin A. Pelphrey"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-03T18:50:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.07567v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Deep learning benchmark for fNIRS-based autism classification with temporal transfer adaptation",
+      "llm_evidence_cn": "基于fNIRS的自闭症分类深度学习基准，研究时间窗口迁移",
+      "llm_evidence": "基于fNIRS的自闭症分类深度学习基准，研究时间窗口迁移",
+      "canonical_evidence": "基于fNIRS的自闭症分类深度学习基准，研究时间窗口迁移",
+      "llm_tldr_en": "Proposes a cross-time-window transfer benchmark for fNIRS-based ASD classification, benchmarking vision architectures and adaptation strategies to handle temporal shifts.",
+      "llm_tldr_cn": "针对fNIRS自闭症分类中观测时间窗不一致导致的时间分布偏移问题，论文形式化提出跨时间窗迁移基准，在生物运动试次中变化窗口长度（2.5–10秒）与偏移量，使用地形图表示评测三种视觉架构、两种零样本基线与八种自适应策略，结果揭示现有方法在时间迁移下的性能下降，并验证自适应迁移策略的有效性，为脑信号分类的时间泛化提供系统性评测框架。",
+      "llm_tldr": "针对fNIRS自闭症分类中观测时间窗不一致导致的时间分布偏移问题，论文形式化提出跨时间窗迁移基准，在生物运动试次中变化窗口长度（2.5–10秒）与偏移量，使用地形图表示评测三种视觉架构、两种零样本基线与八种自适应策略，结果揭示现有方法在时间迁移下的性能下降，并验证自适应迁移策略的有效性，为脑信号分类的时间泛化提供系统性评测框架。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.08168v1",
+      "source": "arxiv",
+      "title": "Thinking vs. NoThinking: Towards Interpreting Reasoning Mechanisms of Large Language Models via Sparse Autoencoders",
+      "abstract": "While Large Language Models (LLMs) employing Chain-of-Thought (CoT) exhibit superior reasoning capabilities, the neural mechanisms distinguishing this explicit Thinking mode from direct answer generation (NoThinking mode) remain poorly understood. To deconstruct this cognitive process, we apply Top-K Sparse Autoencoders (SAEs) to the intermediate representations of DeepSeek-R1-Distill-Qwen-7B and examine the model's divergent behaviors across math-solving tasks of three distinct difficulty levels. Observationally, we identify a clear distinction in how the model functions under two reasoning modes: Thinking mode relies on sparse and high-intensity feature activations driving verbal deduction independent of problem complexity, whereas NoThinking mode exhibits an adaptive and diffuse pattern prioritizing symbolic manipulation. Causally, suppressing the three most active sparse features by Total Activation Volume reveals three principles: (i) reasoning and syntactic structure are tightly coupled, as interventions consistently degrade \\LaTeX{} and boxed-solution formatting; (ii) Thinking responds to disruption with compensatory over-generation marked by increased metacognitive cues and repetitive, low-information continuations; and (iii) coherent CoT behavior depends on a fragile coordination among specialized features, yielding distinct failure modes under perturbation but a consistently impaired output structure.",
+      "authors": [
+        "Bo Cheng",
+        "Qiaolin Lu",
+        "Yi Chang",
+        "Yuan Wu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-08T14:54:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.08168v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Interpreting reasoning mechanisms of large language models via sparse autoencoders",
+      "llm_evidence_cn": "通过稀疏自编码器解释大语言模型的推理机制",
+      "llm_evidence": "通过稀疏自编码器解释大语言模型的推理机制",
+      "canonical_evidence": "通过稀疏自编码器解释大语言模型的推理机制",
+      "llm_tldr_en": "This paper uses Top-K sparse autoencoders on DeepSeek-R1-Distill-Qwen-7B to interpret why Chain-of-Thought (Thinking) and direct answering (NoThinking) differ in LLM reasoning, revealing sparse high-intensity features in Thinking mode.",
+      "llm_tldr_cn": "大语言模型采用思维链推理时表现更优，但其思考模式与直接回答之间的神经机制差异尚未被充分解释。本文使用Top-K稀疏自编码器对DeepSeek-R1-Distill-Qwen-7B在三种难度数学任务上的中间表示进行分析，发现思考模式依赖稀疏且高强度的特征激活来驱动语言演绎，而非思考模式则无此特点。实验结果揭示了两者在推理机制上的可解释区别，有助于深入理解大语言模型的推理本质，并为后续可解释性研究提供新工具。",
+      "llm_tldr": "大语言模型采用思维链推理时表现更优，但其思考模式与直接回答之间的神经机制差异尚未被充分解释。本文使用Top-K稀疏自编码器对DeepSeek-R1-Distill-Qwen-7B在三种难度数学任务上的中间表示进行分析，发现思考模式依赖稀疏且高强度的特征激活来驱动语言演绎，而非思考模式则无此特点。实验结果揭示了两者在推理机制上的可解释区别，有助于深入理解大语言模型的推理本质，并为后续可解释性研究提供新工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.06122v2",
+      "source": "arxiv",
+      "title": "Is Self-Pretraining really useful to improve diagnosis in medical Time Series?",
+      "abstract": "Inspired by recent evidence that transformer architectures benefit from Self-PreTraining (SPT) on long-context benchmarks, we investigate whether similar gains extend to multimodal, multivariate, and even simple univariate medical time series. Our objective is to assess the impact of SPT on the performance and scalability of transformer-based models across diverse medical applications, particularly under limited data conditions. We evaluate transformer architectures on three representative medical time-series tasks: rehabilitation robotics (Camargo dataset), stress detection (Non-EEG Stress), and Parkinson's disease detection (Gait Parkinson's Disease). Models are trained either from scratch or through SPT using four masking-based objectives designed to promote temporal and cross-modal representation learning, and we systematically vary model depth to examine how capacity interacts with pre-training benefits. Across datasets and configurations, SPT consistently improves classification accuracy by 0-6 percentage points depending on masking strategy, dataset and architecture, with gains observed not only in multivariate settings but also when models are restricted to simple univariate inputs. The improvements increase for deeper models that can better exploit the enriched temporal representations learned during pre-training. These findings indicate that SPT is a simple and general strategy that enhances transformer performance on medical time-series tasks without requiring task-specific architectural changes, supporting its potential to improve robustness and accuracy in data-limited clinical settings.",
+      "authors": [
+        "Omar Coser",
+        "Antonio Orvieto",
+        "Paolo Soda",
+        "Loredana Zollo"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-06T14:53:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.06122v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evaluates transformer self-pretraining on medical time-series tasks including stress detection and Parkinson's diagnosis.",
+      "llm_evidence_cn": "评估自预训练在包含压力检测与帕金森诊断的医学时间序列任务中的作用。",
+      "llm_evidence": "评估自预训练在包含压力检测与帕金森诊断的医学时间序列任务中的作用。",
+      "canonical_evidence": "评估自预训练在包含压力检测与帕金森诊断的医学时间序列任务中的作用。",
+      "llm_tldr_en": "Systematically compares self-pretraining objectives for transformer-based medical time-series diagnosis, including stress detection and Parkinson's gait, showing mixed benefits.",
+      "llm_tldr_cn": "在医学时间序列诊断中，自预训练是否总能带来收益并不清楚。本文系统评估了四种掩码目标下自预训练对Transformer模型的影响，任务涵盖康复机器人、非EEG压力检测与帕金森步态诊断。结果显示自预训练在有限数据条件下对不同任务的影响不一致，提示该方法并非普适。研究为医学时间序列模型选择预训练策略提供了实证参考。",
+      "llm_tldr": "在医学时间序列诊断中，自预训练是否总能带来收益并不清楚。本文系统评估了四种掩码目标下自预训练对Transformer模型的影响，任务涵盖康复机器人、非EEG压力检测与帕金森步态诊断。结果显示自预训练在有限数据条件下对不同任务的影响不一致，提示该方法并非普适。研究为医学时间序列模型选择预训练策略提供了实证参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.08244v1",
+      "source": "arxiv",
+      "title": "FemWear: A Specialized Wearable Foundation Model for Women's Health",
+      "abstract": "General wearable foundation models are pretrained across broad sensor streams and populations, but are not designed around women's-health tasks. We introduce FemWear, a specialized wearable foundation model that parameter-efficiently repurposes a pretrained multimodal wearable backbone. FemWear retains the patch projection and Transformer encoder, training 239,236 parameters (1.11% of a 21.54M-parameter encoder) through low-rank residual adapters and causal task-family heads. It learns one shared longitudinal representation for menstrual, symptom, affective, sleep/recovery, autonomic, activity, and pregnancy-related outcomes. We evaluate six cohorts with 63 comparable primary metrics, including 33 from women's-health cohorts, while retaining the 32-task OpenMHC ability-retention benchmark. On a fixed participant split over three seeds, FemWear improved cycle-phase macro-F1 by 8.15% and reduced mean absolute error for cramps, mood symptoms, and sleep problems by 9.32%, 5.80%, and 9.43%, respectively. In a stricter 42-participant nested leave-one-participant-out audit, 24-hour onset, 72-hour onset, and cramps retained positive changes of 2.87%, 6.35%, and 2.19%; phase, mood, and sleep were neutral or negative, and no endpoint had a strictly positive corrected confidence interval. Capacity-matched experiments outperformed a latest-day multilayer perceptron but not shared-GRU or multi-gate mixture-of-experts baselines. Train-only calibration reduced onset expected calibration error by 84.2--88.2% with zero temporal-nesting violations. FemWear enables targeted transfer and coherent probability outputs for women's-health research, but does not establish universal performance dominance or clinical validity.",
+      "authors": [
+        "Yifan Wang",
+        "Chenzhong Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-08T17:13:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.08244v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "specialized wearable foundation model covering sleep/recovery and affective outcomes",
+      "llm_evidence_cn": "覆盖睡眠/恢复与情绪结果的可穿戴基础模型",
+      "llm_evidence": "覆盖睡眠/恢复与情绪结果的可穿戴基础模型",
+      "canonical_evidence": "覆盖睡眠/恢复与情绪结果的可穿戴基础模型",
+      "llm_tldr_en": "FemWear is a parameter-efficient wearable foundation model that repurposes a multimodal backbone to learn shared longitudinal representations for women's health, including sleep/recovery and affective outcomes.",
+      "llm_tldr_cn": "针对通用可穿戴基础模型未围绕女性健康任务设计的问题，FemWear通过低秩残差适配器与因果任务族头参数高效地改造预训练多模态骨干，为月经、症状、情绪、睡眠/恢复、自主神经、活动与妊娠相关结局学习共享纵向表征。在六个队列63项主要指标上的评估显示其仅训练21.54M编码器的1.11%参数即可保留32项任务性能，为多模态可穿戴健康监测提供了一种轻量而通用的范式。",
+      "llm_tldr": "针对通用可穿戴基础模型未围绕女性健康任务设计的问题，FemWear通过低秩残差适配器与因果任务族头参数高效地改造预训练多模态骨干，为月经、症状、情绪、睡眠/恢复、自主神经、活动与妊娠相关结局学习共享纵向表征。在六个队列63项主要指标上的评估显示其仅训练21.54M编码器的1.11%参数即可保留32项任务性能，为多模态可穿戴健康监测提供了一种轻量而通用的范式。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Multimodal AI integrating sleep data and mental health monitoring",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.08607v1",
+      "source": "arxiv",
+      "title": "North Africa's Missing Framework: NLP-Driven Mental Healthcare in Algeria and Implications for Low-resource Settings",
+      "abstract": "Mental health disorders are a leading cause of disability worldwide, yet Natural Language Processing (NLP) research for mental healthcare has remained concentrated in high-income, English-language settings. North Africa, and Algeria in particular, is largely absent from this literature despite its unique linguistic, historical, and healthcare context. We present the first conceptual framework examining the potential role of NLP within Algeria's mental healthcare system. Drawing on narrative synthesis of global NLP mental health research, Algerian healthcare literature, and low-resource NLP methodologies, we identify four structural barriers to mental healthcare: the language-of-care gap, geographic inequities in access, stigma-related barriers to help-seeking, and the absence of research and digital infrastructure. We then map existing NLP capabilities to each barrier, outlining their potential applications, implementation constraints, and the technical, institutional, and governance requirements necessary for deployment. Based on this analysis, we propose a research and policy roadmap that prioritizes data resources, multilingual language technologies, evaluation frameworks, and regulatory capacity. Although grounded in the Algerian context, the framework addresses challenges common to many multilingual, low-resource, and post-colonial settings. This work provides a foundation for future research on culturally and linguistically appropriate NLP for mental healthcare and offers a practical roadmap for developing responsible AI-enabled mental health systems in underrepresented regions.",
+      "authors": [
+        "Meriem Laifa",
+        "Abdallah Bengueddoudj"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-09T09:39:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.08607v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Addresses NLP-driven mental healthcare framework for low-resource settings in Algeria.",
+      "llm_evidence_cn": "提出低资源环境（阿尔及利亚）的NLP驱动心理健康护理框架。",
+      "llm_evidence": "提出低资源环境（阿尔及利亚）的NLP驱动心理健康护理框架。",
+      "canonical_evidence": "提出低资源环境（阿尔及利亚）的NLP驱动心理健康护理框架。",
+      "llm_tldr_en": "Conceptual framework reviewing NLP mental health research in Algeria and low-resource settings, identifying structural barriers to deployment.",
+      "llm_tldr_cn": "本文指出当前NLP心理健康研究集中于高收入英语环境，北非特别是阿尔及利亚几乎缺席。通过叙事综述与本地文献分析，首次提出面向阿尔及利亚心理健康体系的NLP概念框架，识别出语言护理鸿沟、地理不公平等四类结构性障碍。该工作为低资源地区如何部署NLP心理支持提供了系统性视角，对全球心理健康AI研究有重要补充意义。",
+      "llm_tldr": "本文指出当前NLP心理健康研究集中于高收入英语环境，北非特别是阿尔及利亚几乎缺席。通过叙事综述与本地文献分析，首次提出面向阿尔及利亚心理健康体系的NLP概念框架，识别出语言护理鸿沟、地理不公平等四类结构性障碍。该工作为低资源地区如何部署NLP心理支持提供了系统性视角，对全球心理健康AI研究有重要补充意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.07438v1",
+      "source": "arxiv",
+      "title": "PsychoAgent: An Affect-Sensitive Cognitive Architecture for Conflict-Aware Memory in LLM Agents",
+      "abstract": "Human-like cognition does not select past experience by topical similarity alone: affective significance and unresolved conflict also shape what becomes accessible. We present PsychoAgent, a cognitive architecture for LLM agents that separates factual and affective memory and integrates both through a conflict-aware executive controller. Affective memories are first filtered by semantic relevance and then re-ranked by salience, preserving topical fit while allowing emotionally important traces to enter the prompt. Across three controlled conflict scenarios, the full architecture retrieved more conflict-critical memories than semantic-affective and single-memory RAG baselines (0.933 vs. 0.500 and 0.667), with a small semantic-similarity cost. Five blinded raters evaluated 27 outputs. After within-rater standardization, the full architecture had the highest overall mean (+0.22 SD), but corrected pairwise differences were not significant. A three-day illustrative trace further shows persistent affect, offline memory recombination, and selective memory reweighting. The findings support affect-sensitive retrieval as an inspectable mechanism for modeling human-like conflict effects in LLM agents.",
+      "authors": [
+        "Mohammad Amanlou",
+        "Parham Abed Azad",
+        "Farbod Davoodi",
+        "Mostafa Masumi",
+        "Behnam Bahrak",
+        "Abdol-Hossein Vahabie"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.HC"
+      ],
+      "published": "2026-08-07T17:22:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.07438v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "affect-sensitive memory in LLM agents; emotional significance tied to mental health",
+      "llm_evidence_cn": "LLM智能体中的情感敏感记忆，涉及情绪显著性与心理健康",
+      "llm_evidence": "LLM智能体中的情感敏感记忆，涉及情绪显著性与心理健康",
+      "canonical_evidence": "LLM智能体中的情感敏感记忆，涉及情绪显著性与心理健康",
+      "llm_tldr_en": "PsychoAgent builds an affect-sensitive cognitive architecture with conflict-aware memory for LLM agents, separating factual and affective memory and retrieving more conflict-critical memories in controlled scenarios.",
+      "llm_tldr_cn": "人类认知对过往经验的选择不仅依赖主题相似性，还受情绪显著性和未解决冲突的影响。本文提出PsychoAgent认知架构，将事实记忆与情感记忆分离，并通过冲突感知执行控制器加以整合。其在三种冲突场景中比基于语义/情感RAG基线检索到更多冲突关键记忆（0.933对0.500和0.667）。该架构为构建贴近心理动态的LLM智能体提供了新思路，对精神健康领域的会话代理有借鉴意义。",
+      "llm_tldr": "人类认知对过往经验的选择不仅依赖主题相似性，还受情绪显著性和未解决冲突的影响。本文提出PsychoAgent认知架构，将事实记忆与情感记忆分离，并通过冲突感知执行控制器加以整合。其在三种冲突场景中比基于语义/情感RAG基线检索到更多冲突关键记忆（0.933对0.500和0.667）。该架构为构建贴近心理动态的LLM智能体提供了新思路，对精神健康领域的会话代理有借鉴意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.08746v1",
+      "source": "arxiv",
+      "title": "Scale-to-Dialogue: Low-Burden Elicitation of Daily Premenstrual Symptom Ratings with Small Language Models",
+      "abstract": "Prospective daily symptom tracking is central to premenstrual health assessment, but repeated ordinal forms impose substantial response burden. We formulate conversational administration as an ordinal label-recovery problem: the system actively elicits a small set of symptom clusters and maps each response to the original severity labels. We used 3,320 complete participant-days from the mcPHASES dataset, covering cramps, mood swing, fatigue, sleep issues, stress, and bloating on a six-level scale. Six participants were reserved for development and 36 for a frozen evaluation comprising 360 participant-days and 2,160 item labels. A ModernBERT evidence gate detected whether a symptom was expressed, and Qwen2.5-1.5B-Instruct produced deterministic structured severity scores. Fixed six-item questioning achieved a quadratic weighted kappa of 0.976, whereas three joint symptom-cluster questions achieved 0.913, 97.45% agreement within one severity level, and 80.94% recall for moderate-or-higher symptoms while reducing questions by 50%. Open-first adaptive policies required 3.92-5.98 questions and produced lower agreement than the corresponding fixed policies. Participant-cluster bootstrap analysis estimated a kappa difference of -0.062 (95% CI -0.076 to -0.048) between the three-cluster and six-item strategies. Active cluster-level elicitation provides a direct, local-model route from natural conversation to reusable daily symptom labels.",
+      "authors": [
+        "Yifan Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-09T14:50:28+00:00",
+      "link": "https://arxiv.org/pdf/2608.08746v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses small language models for daily mental-health symptom tracking including sleep issues and mood swings.",
+      "llm_evidence_cn": "使用小型语言模型进行包含睡眠问题与情绪波动的每日心理健康症状追踪。",
+      "llm_evidence": "使用小型语言模型进行包含睡眠问题与情绪波动的每日心理健康症状追踪。",
+      "canonical_evidence": "使用小型语言模型进行包含睡眠问题与情绪波动的每日心理健康症状追踪。",
+      "llm_tldr_en": "Small language models drive a conversational system that recovers daily premenstrual symptom severity labels, reducing response burden while covering sleep, mood, stress and other symptoms.",
+      "llm_tldr_cn": "针对经前健康评估中日复一日填写量表带来的负担问题，本文提出基于小型语言模型的对话式症状采集方法，将对话映射为顺序标签恢复任务。研究使用mcPHASES数据集，覆盖睡眠、情绪波动、压力等六等级症状，结合ModernBERT证据门与Qwen对话模型自动抽取症状表述。结果表明该方法能在降低应答负担的同时有效恢复原始严重度标签，为日常心理健康监测提供了轻量级对话方案。",
+      "llm_tldr": "针对经前健康评估中日复一日填写量表带来的负担问题，本文提出基于小型语言模型的对话式症状采集方法，将对话映射为顺序标签恢复任务。研究使用mcPHASES数据集，覆盖睡眠、情绪波动、压力等六等级症状，结合ModernBERT证据门与Qwen对话模型自动抽取症状表述。结果表明该方法能在降低应答负担的同时有效恢复原始严重度标签，为日常心理健康监测提供了轻量级对话方案。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.09830v1",
+      "source": "arxiv",
+      "title": "Deep Multimodal Wearable Sensor Fusion for Detection of Body-Focused Repetitive Behaviors",
+      "abstract": "Body-focused repetitive behaviors, such as hair pulling and skin picking, are compulsive motor actions commonly associated with obsessive-compulsive and anxiety disorders. Their early, objective detection remains difficult because the movements are subtle and overlap with ordinary, non-pathological gestures. We developed and evaluated a multimodal deep learning framework to detect and classify these behaviors from wrist-worn sensor data. The data, collected by the Child Mind Institute using the Helios wrist-worn device, combine inertial measurement units, thermopile sensors, and time-of-flight sensors, capturing kinematic, thermal, and proximity information. The framework combined a convolutional neural network with a gated recurrent unit, alongside modality-specific autoencoders and a late-fusion classifier, to exploit temporal and spatial dynamics. It achieved an F1 score of 0.985 and an area under the receiver operating characteristic curve of 0.997 for binary detection, distinguishing these behaviors from other activities, and a macro-averaged F1 score of 0.700 with an area under the curve of 0.963 across a nine-class scheme that distinguished each individual behavior from a single grouped Non-Target class, improving over single-modality baselines. Post-hoc interpretability based on Shapley additive explanations showed that the time-of-flight and inertial modalities dominated discriminative power by capturing spatial proximity and dynamic movement, while hierarchical clustering indicated that misclassifications were driven primarily by the anatomical region of the gesture. These findings demonstrate that multimodal sensor fusion enables accurate, objective, and continuous behavioral monitoring. This work establishes a foundation for real-time, wearable-assisted mental health diagnostics and personalized interventions in biomedical research and clinical care.",
+      "authors": [
+        "Samaneh Rezaeimanesh",
+        "Mohsen Behradfar",
+        "Mohammad Fili",
+        "Guiping Hu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-10T16:48:37+00:00",
+      "link": "https://arxiv.org/pdf/2608.09830v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "deep learning detection of body-focused repetitive behaviors linked to obsessive-compulsive and anxiety disorders",
+      "llm_evidence_cn": "基于深度学习的身体聚焦重复行为检测，与强迫症和焦虑症相关",
+      "llm_evidence": "基于深度学习的身体聚焦重复行为检测，与强迫症和焦虑症相关",
+      "canonical_evidence": "基于深度学习的身体聚焦重复行为检测，与强迫症和焦虑症相关",
+      "llm_tldr_en": "A multimodal deep learning framework combines IMU, thermal, and time-of-flight wearable data with CNN-GRU to detect body-focused repetitive behaviors, subtle compulsive movements associated with OCD and anxiety disorders.",
+      "llm_tldr_cn": "身体聚焦重复行为（如拔毛、抠皮）是强迫症和焦虑障碍相关的重要行为指标，但现有检测方法难以区分其与日常手势。本文提出一种基于腕戴式传感器数据的多模态深度学习框架，融合惯性测量、热敏和飞行时间传感器信息，利用CNN结合门控循环网络实现自动检测与分类。实验表明该方法能有效识别细微的病理动作，为精神障碍的客观早期评估提供了可穿戴监测工具。",
+      "llm_tldr": "身体聚焦重复行为（如拔毛、抠皮）是强迫症和焦虑障碍相关的重要行为指标，但现有检测方法难以区分其与日常手势。本文提出一种基于腕戴式传感器数据的多模态深度学习框架，融合惯性测量、热敏和飞行时间传感器信息，利用CNN结合门控循环网络实现自动检测与分类。实验表明该方法能有效识别细微的病理动作，为精神障碍的客观早期评估提供了可穿戴监测工具。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}

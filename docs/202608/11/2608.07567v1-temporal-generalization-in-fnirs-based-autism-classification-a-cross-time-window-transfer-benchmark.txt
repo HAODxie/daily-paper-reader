@@ -1,0 +1,365 @@
+Title: Temporal Generalization in fNIRS-Based Autism Classification: A Cross-Time-Window Transfer Benchmark
+
+URL Source: https://arxiv.org/pdf/2608.07567v1
+
+Published Time: Tue, 11 Aug 2026 00:03:39 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# Temporal Generalization in fNIRS-Based Autism Classification: A Cross-Time-Window Transfer Benchmark 
+
+Marios Petrov 1, Sahana Vinayak 1, Targol Bakhtiarvand 1, Moses Smith Guddah 1,Adham Atyabi 1, Frederick Shic 2,3, and Kevin A. Pelphrey 2
+
+Abstract — Functional near-infrared spectroscopy (fNIRS) is a promising modality for autism spectrum disorder (ASD) clas-sification, yet existing approaches assume temporally aligned evaluation. In practice, the optimal observation window varies across subjects due to differences in hemodynamic delay and neurovascular coupling, creating a temporal distribution shift that degrades performance. We formalize this as a cross-time-window transfer problem , introducing a protocol that varies window length (2.5–10 s) and offset within biological motion trials. Using topographic map representations of fNIRS record-ings, we benchmark three vision architectures under two zero-shot baselines and eight adaptation strategies under leave-one-subject-out cross-validation ( N=124 ). Key findings: (1) zero-shot cross-window accuracy is near chance (54–69%); (2) ≈5% 
+
+subject-specific fine-tuning recovers 90–96%, while a subject-specific upper bound reaches 97–100%, identifying inter-subject variability as the dominant barrier; (3) domain-adversarial and self-supervised strategies achieve 78–90% without target-subject data; and (4) discriminative information is recoverable from windows as short as 2.5 s. These findings provide apractical roadmap for deploying fNIRS-based ASD classifiers under realistic temporal variability. 
+
+I. INTRODUCTION Autism spectrum disorder (ASD) is a heterogeneous neu-rodevelopmental condition characterized by differences in social communication and restricted, repetitive behaviors [1]. Early identification is critical, as timely access to intervention can substantially improve developmental outcomes for af-fected children and their families [2]. However, current diag-nostic practice relies heavily on behavioral observation, clini-cal interviews, and parent-report instruments—processes that are time-intensive, subjective, and inequitably distributed, leaving many children in underserved communities undi-agnosed or diagnosed late [3]. This has motivated sus-tained interest in objective, neurophysiologically grounded biomarkers that could support scalable ASD screening. Functional near-infrared spectroscopy (fNIRS) is well suited to this goal. It is portable, tolerant of motion, safe for pediatric populations, and capable of monitoring cortical hemodynamics during naturalistic tasks [4]. Over the past decade, fNIRS studies have consistently identified atypical hemodynamic signatures associated with ASD across pre-frontal, temporal, and parietal regions during social and cog-nitive paradigms [5], [6], [7]. More recently, deep learning 
+
+> 1Department of Computer Science, University of Colorado Colorado Springs, Colorado Springs, CO 80918, USA
+> 2Center for Child Health, Behavior and Development, Seattle Children’s Research Institute, Seattle, WA, USA
+> 3Department of Pediatrics, University of Washington School of Medicine, Seattle, WA, USA
+
+methods—including graph-based models, attention mech-anisms, spatiotemporal convolution networks, and CNN– transformer hybrids—have achieved promising ASD-versus-TD classification accuracy from fNIRS signals [8], [9], [10], [11]. A recent systematic review of machine learning and deep learning applied to EEG and fNIRS for ASD diagnosis confirms the growing maturity of the field while highlight-ing persistent challenges in preprocessing heterogeneity and cross-site generalization [12]. These advances suggest that fNIRS carries sufficient information for automated diagnostic support when paired with appropriate computational models. Biological motion (BM) paradigms, which present brief point-light displays of human movement, are particularly attractive stimuli for fNIRS-based ASD classification. They reliably elicit differential neural responses between ASD and TD groups in prefrontal and temporal cortices [13], [14]. Re-cent work using high-density diffuse optical tomography— an advanced optical neuroimaging modality closely related to fNIRS—has confirmed that biological motion perception produces robust, regionally specific activation differences be-tween autistic and non-autistic children in visual, motor, and social processing areas, with brain function correlating di-mensionally with autism trait severity [15]. Complementary EEG evidence further demonstrates that biological motion elicits segregated, predominantly local network dynamics in ASD compared to the integrated long-range connectivity observed in typically developing controls [16]. The short, repeatable trial structure of BM paradigms enables dense temporal sampling of the hemodynamic response within a single recording session, making BM-fNIRS a promising combination for practical screening. Despite this progress, a critical and largely overlooked challenge limits the deployment of fNIRS-based classifiers: 
+
+temporal distribution shift . The hemodynamic response function (HRF) varies across individuals in peak latency, shape, and amplitude due to differences in neurovascular coupling, cortical anatomy, and age. Recent multimodal EEG-fNIRS work has shown that subject-specific model-ing of the HRF through parametric estimation significantly improves the characterization of neurovascular coupling, underscoring the extent of inter-individual variability even within healthy populations performing identical tasks [17]. Most existing classification studies train and evaluate on a single, fixed observation window—implicitly assuming that the chosen temporal segment generalizes across subjects and sessions. When this assumption is violated, as it inevitably is in heterogeneous populations such as children with ASD, arXiv:2608.07567v1 [cs.CV] 3 Aug 2026 classifier performance can degrade substantially [18]. This problem is compounded by a broader perception that fNIRS lacks the temporal resolution needed for fine-grained neural decoding due to the inherent sluggishness of the hemody-namic response. Yet if discriminative information is present in short fNIRS segments—and if its temporal location within a trial varies meaningfully across individuals—then the lim-itation may lie not in the modality itself, but in evaluation protocols that fail to account for this variability. In this work, we formalize this challenge as a cross-time-window transfer problem for fNIRS-based ASD classifica-tion. We convert multichannel fNIRS recordings from a bi-ological motion paradigm into two-dimensional topographic maps and treat classification as an image recognition task, benchmarking three architectures that span convolutional and hybrid transformer designs: EfficientNet-b0, EfficientNet-b3 [19], and MaxViT [20]. Our central contribution is a sys-tematic evaluation protocol that varies both window length (2.5 s–10 s) and temporal offset within the trial, training on one time window and evaluating on another under leave-one-subject-out cross-validation. Within this framework, we evaluate two zero-shot baselines and define eight adapta-tion strategies—spanning few-shot subject personalization, cohort-level window adaptation, domain-adversarial invari-ance learning, and self-supervised temporal pretraining— providing, to our knowledge, the first unified benchmark of temporal generalization strategies for fNIRS-based classifi-cation. Our principal findings are as follows: 1) Cross-time-window transfer is substantially harder than same-window cross-subject generalization, confirming that temporal shift is a first-order problem in fNIRS classification. 2) Even minimal subject-specific fine-tuning ( ≈5% of samples) largely closes the performance gap, demon-strating the value of lightweight personalization. 3) Domain-adversarial and self-supervised pretraining strategies offer competitive generalization without re-quiring any target-subject data, providing viable alter-natives when subject-specific calibration is impractical. 4) Discriminative ASD-versus-TD information is recov-erable from fNIRS windows as short as 2.5 seconds, challenging the assumption that hemodynamic signals are too temporally coarse for short-segment classifica-tion. Together, these results provide a practical roadmap for deploying fNIRS-based ASD classifiers under the realistic temporal variability encountered in clinical and field set-tings. II. RELATED WORK Several lines of prior work are closely aligned with the present study, spanning fNIRS-based ASD classification, bi-ological motion as a neural probe, deep learning architectures for fNIRS, and cross-subject transfer strategies. We review each in turn and conclude by positioning our contributions relative to the existing literature. 
+
+A. fNIRS as a Biomarker Modality for ASD 
+
+Reviews published in the early years of clinical fNIRS in ASD consistently positioned the technique as a promis-ing modality for studying the condition, citing evidence for atypical activation and connectivity in prefrontal and temporal social brain regions and the technique’s portability and suitability for infants and young children who must remain awake and socially engaged [5], [6], [4]. A more recent systematic review focused exclusively on preschool-aged children synthesized thirteen clinical fNIRS studies and described convergent evidence for disrupted resting-state connectivity and task-evoked responses, arguing explicitly for a fNIRS “signature” that could serve as a biomarker for early detection or treatment monitoring [7]. A 2026 system-atic review of machine learning and deep learning applied to EEG and fNIRS for ASD diagnosis further confirms the growing maturity of the field while highlighting persistent heterogeneity in preprocessing pipelines and classification models, and a lack of cross-site and cross-session general-ization studies [12]. Closer to the present aims, several studies have targeted quantitative biomarkers and automated classification. Using simple visual stimuli, Mazziotti et al. showed that occipital hemodynamic response amplitude and variability correlate with autistic traits in typically developing children [13], while Scaffei et al. demonstrated that hemodynamic re-sponse amplitude and lateralization can distinguish female preschoolers with ASD from matched peers [14]. These works establish the feasibility of short, child-friendly visual protocols for extracting discriminative fNIRS features related to social-communication differences. 
+
+B. Biological Motion Paradigms in ASD Neuroimaging 
+
+Biological motion (BM) paradigms using point-light dis-plays of human movement are among the most well-established probes of social perception in ASD. Recent optical neuroimaging work by Yang et al. used high-density diffuse optical tomography to image 46 ASD and 49 non-autistic school-age children during coherent and scrambled BM viewing, finding significantly stronger activation contrast in non-autistic participants across visual, motor, and social processing areas, with brain function correlating dimension-ally with autism trait severity as measured by the SRS-2 [15]. Complementary EEG work by B¨ ohm et al. demonstrated that BM perception elicits segregated, predominantly local feedforward network dynamics in ASD, in contrast to the integrated long-range bidirectional connectivity observed in typically developing controls, with SVM classification suc-cessfully distinguishing the two groups [16]. Together, these studies confirm that BM paradigms produce robust, multi-modal neural signatures of ASD that are well suited for classification. 
+
+C. Deep Learning Architectures for fNIRS Classification 
+
+Deep learning methods for fNIRS classification have evolved rapidly. For ASD-specific work, Zhang et al. trained an adaptive spatiotemporal graph convolution network on resting-state fNIRS from bilateral frontal and temporal cor-tex, achieving 95.4% accuracy using time windows as short as 2.1 seconds and demonstrating that brief hemodynamic segments can encode rich pathological information [9]. Cai et al. subsequently achieved 97.9% accuracy with an edge-weight-enhanced graph attention network fusing node and edge features from resting-state fNIRS over both temporal lobes, outperforming classical ML and CNN baselines [8]. Both studies, however, use resting-state datasets and train and evaluate within the same time window, leaving open the question of temporal generalization. Beyond ASD, several architectures have advanced fNIRS classification more broadly. Wang et al. introduced fNIRS-T and fNIRS-PreT, demonstrating that self-attention over lightly preprocessed fNIRS channels outperforms CNNs and LSTMs on multiple motor BCI datasets [10]. The same group later proposed fNIRSNet, which explicitly in-corporates delayed hemodynamic response characteristics into convolutional kernel design, achieving strong subject-specific and subject-independent performance with only 498 parameters—highlighting the importance of encoding HRF domain knowledge into model architecture [21]. Liao et al. presented CT-Net, a CNN-Transformer fusion network that provides interpretable fNIRS classification through at-tention visualization [11]. Guglielmini et al. used a trans-former encoder to reconstruct short-separation (extracerebral) signals from long-separation channels, enabling hardware-independent denoising that generalizes across systems and tasks [22]. More broadly, transformer-based foundation mod-els trained on large-scale fMRI data have shown promising zero-shot and fine-tuned results for mental-state decoding and ASD diagnosis, suggesting that pretrained representa-tions can transfer across neuroimaging contexts [23]. 
+
+D. Cross-Subject Transfer and Few-Shot Adaptation 
+
+Cross-subject generalization remains a central challenge for fNIRS-based classification due to inter-individual vari-ability in hemodynamic response characteristics, optode-scalp coupling, and cortical anatomy. Jing et al. applied a transformer architecture for cross-subject mental work-load classification from fNIRS, reporting substantial per-formance degradation when models trained on one cohort were evaluated on new subjects without adaptation [18]. Lyu et al. proposed domain adaptation methods based on distribution alignment to improve cross-subject and cross-session workload classification from fNIRS, demonstrating that explicit handling of inter-subject distributional shift can recover much of the within-subject performance [24]. More recently, Feng et al. introduced a heterogeneous trans-fer learning model for cross-subject fNIRS classification in stroke rehabilitation, achieving 83–91% accuracy using leave-one-subject-out cross-validation across eight patients by transferring knowledge from EEG source domains [25]. Recent EEG-fNIRS work by Lin et al. has further shown that subject-specific parametric modeling of the hemodynamic response function significantly improves the characterization of neurovascular coupling, quantifying the extent of inter-individual HRF variability that any cross-subject model must contend with [17]. In the few-shot regime, Jung and An proposed EFRM, a multimodal EEG-fNIRS representation-learning model for few-shot brain-signal classification that leverages shared la-tent representations across modalities to classify with lim-ited labeled samples [26]. However, this approach requires concurrent EEG recording and does not address temporal distribution shift within fNIRS alone. 
+
+E. Positioning of the Present Work 
+
+The present work is most closely related to Zhang et al. [9] and Cai et al. [8] in using short-window fNIRS for ASD discrimination, and to the fNIRS-T/fNIRS-PreT and fNIRSNet lines of work in adopting architectures that account for hemodynamic response properties [10], [21]. However, prior fNIRS-ASD classification studies uniformly train and evaluate within the same temporal window, and cross-subject transfer work in fNIRS has focused on subject distributional shift without considering temporal distribu-tional shift. Our approach differs in three key respects. First, we use a naturalistic biological motion paradigm rather than resting state, producing task-evoked hemodynamic responses with clinically meaningful temporal structure. Second, we formalize and systematically evaluate cross-time-window transfer as a distinct generalization challenge, varying both window length and temporal offset under leave-one-subject-out cross-validation. Third, we benchmark nine adaptation strategies—spanning zero-shot, few-shot, cohort-level adap-tation, domain-adversarial invariance, self-supervised pre-training, and meta-learning—within a single unified frame-work, providing the first systematic comparison of temporal generalization strategies for fNIRS-based classification. III. METHODS 
+
+A. Dataset 1) Participants: We analyze data from N=124 children (ASD =63, TD =61), ages 7–12, with normal or corrected-to-normal vision and no neurological disorders beyond ASD. ASD diagnoses were confirmed via clinical assessment. Procedures were approved by the institutional IRB; guardians provided informed consent. 
+
+2) Biological Motion Paradigm: Participants viewed 15 s point-light walker (PLW) clips across five conditions (happy, angry, fearful, neutral, and a rotation control). PLWs preserve biologically meaningful motion while removing facial fea-tures and background semantics. Onset and offset markers were aligned to the recording clock. Trials were excluded if >35% of concurrent behavioral monitoring samples were invalid or if pre-trial quality checks indicated signal loss. Ap-proximately 15% of trials were removed; reported participant counts reflect the final post-filtering cohort. 
+
+3) fNIRS Acquisition: All fNIRS data were collected at Seattle Children’s Hospital (SCH) as part of a broader neurodevelopmental research protocol. Device-specific ac-quisition parameters (system model, wavelengths, channel fNIRS Recording         
+
+> BM paradigm
+> Time-Window Slicing
+> 2.5–10 s windows
+> Topographic Maps
+> Vision Encoder
+> b0 / b3 / MaxViT ASD vs. TD
+> 02.5 57.5 10 12.5 15 s
+> 10 s
+> 7.5 s
+> 5 s
+> 2.5 s 15 s trial
+> Adaptation Strategies
+> E1–E3
+> Few-shot
+> E4–E5
+> Cohort adapt.
+> E6 DANN
+> Domain-
+> adversarial
+> E7 SS-Pre
+> Self-supervised
+> E8 Subj-UB
+> Upper bound Fig. 1. Overview of the cross-time-window transfer pipeline. Multichannel fNIRS recordings from a biological motion paradigm are segmented into overlapping time windows of varying length (2.5–10 s) and offset. Each window is converted into a 2D topographic map via spatial interpolation, then classified by a vision encoder. Eight adaptation strategies (E1–E8) modify the training or fine-tuning procedure to address cross-subject and cross-window distribution shift.
+
+configuration, sampling rate, and optode layout) are doc-umented in the original data-collection protocol and fall outside the scope of the present work, which operates on preprocessed channel-level hemodynamic time series. 
+
+4) Preprocessing: For each trial, the recorded fNIRS time series was segmented into various 10s, 7.5s, 5s, and 2.5s time windows. Within each window, the hemodynamic response was averaged across time points to produce a single scalar value per channel, yielding a spatially resolved snapshot of cortical activation over the entire montage. These channel-level averages were then mapped to scalp coordinates and interpolated into two-dimensional topographic images (see below). Artifact removal was done prior to image-generation. 
+
+B. Problem Formulation and Topographic Map Generation 
+
+Let S = {S1, S2, . . . , SN } denote the set of N subjects, each labeled yi ∈ { ASD , TD }. For a given trial duration T (e.g., 15 s), we define a time window w = [ tstart , tstart + ℓ] param-eterized by its onset tstart and length ℓ ∈ { 2.5, 5, 7.5, 10 } s. For each trial, the fNIRS time series is segmented according to w, and the mean hemodynamic concentration change is computed per channel. Channel-level values are mapped to their scalp coordinates and interpolated onto a regular two-dimensional grid, producing a topographic image x ∈
+
+RH×W ×C. This converts the classification task into a standard image recognition problem. By varying ℓ and sliding tstart in 2.5 s increments, we generate a family of topographic maps per subject that tile the hemodynamic response at multiple resolutions and offsets. We distinguish two temporal roles. The source window w s
+
+generates the training data; the target window w t̸ = ws is used to evaluate generalization under temporal distribution shift. For subject Si and window w, we write Dwi = {(xwi, j, yi)}ni
+
+> j=1
+
+.The central question is: given a classifier fθ trained on {Dws 
+
+> i
+
+}
+
+from a subset of subjects, how well does it generalize to Dwt
+
+> S∗
+
+from a held-out subject S∗?
+
+C. Architectures 
+
+We benchmark three vision architectures: EfficientNet-b0 and EfficientNet-b3 [19], compound-scaled convolutional networks serving as lightweight and higher-capacity base-lines respectively; and MaxViT [20], a hybrid architecture combining multi-axis self-attention with MBConv layers to capture both local and global spatial dependencies. All models are initialized from ImageNet-pretrained weights and adapted with a binary classification head using AdamW with cosine annealing. Full hyperparameter details are provided in supplementary material. 
+
+D. Leave-One-Subject-Out Evaluation 
+
+All experiments follow leave-one-subject-out (LOSO) cross-validation. In each fold, one subject S∗ is held out; the base model is trained on source-window data from the remaining N−1 subjects: 
+
+θ ∗ = arg min  
+
+> θ
+
+# ∑
+
+> i̸=S∗
+
+L   fθ (x), yi
+
+, x ∈ Dws 
+
+> i
+
+(1) where L is cross-entropy loss. This base model has never seen data from S∗ or from wt .
+
+E. Zero-Shot Evaluation 
+
+The base model fθ ∗ is evaluated on S∗ under two conditions without further training. Zero-shot source (ZS)evaluates on Dws 
+
+> S∗
+
+, measuring cross-subject generalization within the training window. Zero-shot target (ZT ) eval-uates on Dwt 
+
+> S∗
+
+, measuring simultaneous cross-subject and cross-window generalization. The gap ZS − ZT quantifies the marginal cost of temporal distribution shift. 
+
+F. Adaptation Strategies 
+
+We define eight adaptation strategies (E1–E8) that progres-sively introduce subject-specific samples, cohort-level target-window data, invariance constraints, and self-supervised rep-resentations. In all few-shot conditions, ≈5% of the relevant sample pool is used. We denote the few-shot subset as 
+
+Dw,fs  
+
+> S∗
+
+⊂ DwS∗ , with Dw,eval  
+
+> S∗
+
+= DwS∗ \ Dw,fs  
+
+> S∗
+
+reserved for eval-uation. 
+
+1) E1 (FS-Src): Few-Shot Source-Window Personaliza-tion: Fine-tune fθ ∗ on Dws,fs  
+
+> S∗
+
+, then evaluate on Dwt 
+
+> S∗
+
+. The model gains subject knowledge from ws but receives no exposure to wt .2) E2 (FS-Tgt): Few-Shot Target-Window Personalization: 
+
+Partition S∗’s target-window samples into Dwt ,fs  
+
+> S∗
+
+(≈5%) and 
+
+Dwt ,eval  
+
+> S∗
+
+. Fine-tune fθ ∗ on Dwt ,fs  
+
+> S∗
+
+and evaluate on Dwt ,eval  
+
+> S∗
+
+.This provides an upper bound on what minimal labeled target-window data can achieve. 
+
+3) E3 (FS-Seq): Two-Stage Adaptation (Source → Target): 
+
+Fine-tune fθ ∗ on Dws,fs  
+
+> S∗
+
+to obtain fθ1 , then fine-tune fθ1 on 
+
+Dwt ,fs  
+
+> S∗
+
+with halved learning rate to obtain fθ2 . Evaluate on 
+
+Dwt ,eval  
+
+> S∗
+
+. This tests whether a curriculum adapting first to the subject, then to the window, outperforms direct adaptation (E2). 
+
+4) E4 (Coh-Tgt): Cohort-Level Target-Window Adapta-tion: Fine-tune the base model on all target-window samples from every subject except S∗:
+
+θE4 = arg min  
+
+> θ
+
+# ∑
+
+> i̸=S∗
+
+L   fθ (x), yi
+
+, x ∈ Dwt 
+
+> i
+
+(2) then evaluate on Dwt 
+
+> S∗
+
+. This isolates the value of window adaptation without subject-specific exposure. 
+
+5) E5 (Coh+FS): Cohort + Few-Shot Personalization: 
+
+Extend E4 with a subject-specific stage: fine-tune fθE4 on 
+
+Dwt ,fs  
+
+> S∗
+
+and evaluate on Dwt ,eval  
+
+> S∗
+
+. This tests whether cohort-level window alignment and subject calibration are synergis-tic. 
+
+6) E6 (DANN): Domain-Adversarial Time-Window Invari-ance: Train on data from all subjects except S∗ using both 
+
+ws and wt , with a classification loss Lcls and a domain dis-crimination loss Ldom . A gradient-reversal layer [27] forces the feature extractor to suppress window-discriminative cues: min   
+
+> θf,θc
+
+Lcls − λ Ldom , min 
+
+> θd
+
+Ldom (3) where λ controls adversarial strength. Evaluate on Dwt 
+
+> S∗
+
+in zero-shot mode. 
+
+7) E7 (SS-Pre): Self-Supervised Temporal Pretraining: 
+
+Pretrain the vision encoder on topographic maps from all subjects except S∗ across both windows using a temporal prediction objective (next-step embedding prediction). Fine-tune for ASD vs. TD classification on source-window data, then evaluate on Dwt 
+
+> S∗
+
+. This tests whether self-supervised temporal representations improve cross-window robustness. 
+
+8) E8 (Subj-UB): Subject-Specific Upper Bound: Fine-tune the base model on all source-window samples from 
+
+S∗:
+
+θE8 = arg min  
+
+> θ
+
+L   fθ (x), yS∗
+
+, x ∈ Dws 
+
+> S∗
+
+(4) then evaluate on Dwt 
+
+> S∗
+
+. This upper bound tests within-subject cross-window transfer with full knowledge of S∗’s physiol-ogy but zero exposure to wt .
+
+G. Summary of Experimental Conditions 
+
+The eight strategies form a progression of increasing privileged information. The zero-shot baselines ( ZS, ZT ) use no data from the held-out subject S∗ or the target window. E1 (FS-Src) receives a few-shot sample ( ≈5%) from S∗’s source window only; E2 (FS-Tgt) receives a few-shot sample from S∗’s target window only; E3 (FS-Seq) receives both.   
+
+> Fig. 2. Mean accuracy (%) across completed window configurations for each strategy and architecture. Zero-shot baselines cluster near chance (54– 69%). Few-shot target-window personalization (E2) recovers 90–96%, while the subject-specific upper bound (E8) reaches 97–100%. Among subject-independent strategies, E6 (DANN) and E7 (SS-Pre) at 78–90% substantially outperform cohort-level adaptation (E4, ∼68%). Best practical result across architectures is E2 (FS-Tgt) with MaxViT at 94.2%.
+
+E4 (Coh-Tgt), E6 (DANN), and E7 (SS-Pre) use full target-window data from all other subjects but nothing from S∗;E5 (Coh+FS) adds a few-shot target-window sample from 
+
+S∗ on top of E4. E8 (Subj-UB) uses all of S∗’s source-window data, providing the strongest subject personalization and serving as an upper bound. IV. RESULTS We report accuracy for all eight adaptation strategies (E1– E8) and two zero-shot baselines ( ZS, ZT ) across three archi-tectures under leave-one-subject-out cross-validation. Cells marked PH denote pending experiments currently in progress for 2.5 s window configurations. 
+
+A. Zero-Shot Transfer 
+
+Zero-shot performance is uniformly poor across all win-dow configurations and architectures. Under same-window evaluation ( ZS), accuracy ranges from 54.0–65.1% (mean: b0 = 57.0%, b3 = 58.7%, MaxViT = 63.3%). Under cross-window evaluation ( ZT ), accuracy ranges from 55.4–69.5% (mean: b0 = 63.9%, b3 = 58.5%, MaxViT = 63.5%). Neither window length nor offset produces a consistent advantage, and the ZS–ZT gap is small and inconsistent in sign, indicat-ing that temporal shift compounds rather than replaces the already-severe cross-subject degradation. These results con-firm that cross-time-window transfer is a first-order challenge requiring explicit adaptation. 
+
+B. Overview of Adaptation Strategies 
+
+Figure 2 summarizes mean accuracy per strategy averaged across all completed window configurations. E8 (Subj-UB) is separated as an upper-bound reference. Zero-shot baselines remain near chance (54–69%), con-firming temporal distribution shift as a first-order challenge. E2 (FS-Tgt) achieves 93–94% from only ≈5% target-window labels, substantially outperforming E1 (FS-Src) (77–90%). E8 (Subj-UB) reaches 97–100%, revealing that inter-subject variability, not the temporal shift, is the dominant bar-rier. Among subject-independent strategies, E6 (DANN) and E7 (SS-Pre) achieve 78–90%, far exceeding E4 (Coh-Tgt) (∼68%). C. Comparison with Prior Work 
+
+Table I contextualizes our results against prior fNIRS classification methods. Existing ASD classification studies report high accuracy (95–98%) but evaluate within the same time window and often without strict cross-subject hold-out, making direct numerical comparison misleading. Our protocol is strictly harder: all results use leave-one-subject-out cross-validation with cross-time-window transfer on a substantially larger cohort ( N=124). Under these conditions, our subject-independent strategies (E6, E7) achieve 83–84% with zero target-subject data, and few-shot personalization (E2) recovers 94%.                                                    
+
+> TABLE I COMPARISON WITH PRIOR F NIRS CLASSIFICATION METHODS .“C ROSS -S UBJ ”INDICATES SUBJECT -HOLDOUT EVALUATION .“C ROSS -W IN ”INDICATES CROSS -TIME -WINDOW TRANSFER . B EST IN
+> BOLD ;SECOND BEST UNDERLINED .†USES ≈5% LABELED TARGET -WINDOW DATA FROM THE HELD -OUT SUBJECT .
+> Method Task NProt. XS XW Acc (%)
+> Prior work — same-window evaluation
+> Zhang [9] (ASGCN) Rest 47 k-fold ✗✗95.4 Cai [8] (EWE-GAT) Rest 47 LOOCV ✗✗97.9
+> Prior work — cross-subject transfer (non-ASD)
+> Feng [25] (CHTLM) MI 8LOSO ✓✗83.1–91.3
+> Ours — cross-subj. and cross-win. (LOSO, N =124 )
+> E6 (DANN, b3) BM 124 LOSO ✓✓83.3 E7 (SS-Pre, b0) BM 124 LOSO ✓✓84.1 E2 (FS-Tgt, MaxViT) †BM 124 LOSO ✓✓94.2
+
+D. Adaptation Strategies (E1–E8) 
+
+Table II reports per-window accuracy for all eight adapta-tion strategies. E2 (FS-Tgt) leads consistently (90–96%), confirming that 5% of target-window labels is the most effective lightweight adaptation. E1 (FS-Src) achieves 75–93% from source-window data alone, showing partial cross-window trans-fer of subject physiology. E3 (FS-Seq) falls between the two. MaxViT achieves the highest E1 accuracy, suggesting its attention mechanism captures more transferable subject representations. E4 (Coh-Tgt) yields only marginal gains over zero-shot ( ∼67–69%), confirming that window-level information without subject-level information is insufficient. E5 (Coh+FS) recovers more (72–85%) but remains below E2 (FS-Tgt), suggesting the cohort-adapted initialization is a weaker starting point for personalization. E6 (DANN) and E7 (SS-Pre) achieve 78–90% without any target-subject data, substantially improving over zero-shot. E6 tends to favor EfficientNet-b3 (reaching 87.6%), while E7 is more uniform across architectures. Neither consistently dominates, suggest-ing explicit invariance enforcement and implicit temporal structure learning are complementary. E8 (Subj-UB) achieves 97–100% despite zero target-window exposure, confirming that the dominant barrier is inter-subject variability rather than temporal shift. V. DISCUSSION 
+
+A. Temporal Shift is Real but Recoverable 
+
+The zero-shot results establish that cross-time-window transfer is a non-trivial challenge for fNIRS-based ASD classification. Models trained on one temporal segment and evaluated on another show accuracy in the 54–69% range, only modestly above chance. This confirms that topographic maps from different time windows carry meaningfully dif-ferent distributional statistics, reflecting variability in hemo-dynamic delay, signal-to-noise ratio, and the evolving shape of the HRF across the trial. This degradation occurs even when training and test subjects are drawn from the same population, isolating the temporal shift as a distinct source of performance loss. The E8 (Subj-UB) upper bound reveals that this shift is almost entirely recoverable when subject physiology is known: accuracy reaches 97–100% across all architectures despite zero target-window exposure. The dominant barrier is therefore not the temporal shift itself but inter-subject variability. Once a model has internalized a subject’s hemo-dynamic profile from one window, it transfers that knowledge to another with minimal loss. The practical implication is that calibration time should be invested in subject-specific data collection rather than in matching the exact temporal window used during training. 
+
+B. The Value of Minimal Personalization 
+
+E2 (FS-Tgt) achieves 90–96% accuracy from only ≈5% of the target subject’s target-window samples, jumping from 
+
+∼60% at zero-shot. This suggests that clinically useful accu-racy is achievable with as little as a single short calibration block. E1 (FS-Src), using the same fraction of data from the source window, reaches 75–93%, demonstrating that subject-level information partially transfers across windows even without target-window exposure. E3 (FS-Seq) consistently falls between E1 and E2, sug-gesting that direct target-window adaptation is preferable to the sequential curriculum. The two-stage procedure likely overfits to the source-window distribution before encounter-ing the target. E2’s simplicity, a single fine-tuning step on a handful of labeled samples, makes it the most attractive option for clinical workflows that permit brief per-subject calibration. 
+
+C. Cohort-Level Adaptation Alone is Insufficient 
+
+E4 (Coh-Tgt) yields only marginal improvement over zero-shot ( ∼67–69%) despite access to the full target-window dis-tribution from the rest of the cohort. This is consistent with the finding that subject variability, not window variability, is the primary bottleneck. E5 (Coh+FS) partially recovers (72–85%) but underper-forms E2 (FS-Tgt), which starts from the source-window base model. This suggests that cohort-level target-window adaptation may degrade the model’s starting point by over-fitting to other subjects’ characteristics, a form of negative transfer that few-shot personalization only partially corrects. The methodological takeaway is that naively pooling more TABLE II ACCURACY (%) FOR ALL ADAPTATION STRATEGIES (E1–E8) ACROSS WINDOW CONFIGURATIONS AND ARCHITECTURES . E8 (S UBJ -UB) IS TRAINED ON ALL OF S∗ ’S SOURCE -WINDOW DATA AND SERVES AS THE SUBJECT -SPECIFIC UPPER BOUND .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+> EfficientNet-b0 EfficientNet-b3 MaxViT Len Win E1 E2 E3 E4 E5 E6 E7 E8 E1 E2 E3 E4 E5 E6 E7 E8 E1 E2 E3 E4 E5 E6 E7 E8 10 5–15 82.4 94.8 90.5 67.4 80.8 84.2 83.5 98.4 79.3 94.2 84.9 67.8 82.6 81.4 78.9 98.1 92.0 95.8 95.1 68.7 74.1 80.6 82.3 99.5 2.5–12.5 82.0 95.1 90.8 67.2 79.3 83.6 81.7 98.7 80.5 94.5 84.4 67.1 83.3 80.7 76.6 98.3 93.7 96.1 96.2 68.4 72.3 81.2 83.0 99.6 0–10 83.1 94.3 91.2 68.9 77.6 86.0 84.2 98.6 77.8 94.0 85.3 68.6 79.9 82.3 79.5 98.0 90.1 95.5 92.7 68.9 73.8 81.5 82.8 99.2 7.5 7.5–15 78.6 94.1 87.1 66.3 85.0 86.5 84.0 98.8 79.2 93.5 84.5 67.6 83.1 80.2 79.8 98.3 87.1 91.4 91.4 68.6 77.3 82.0 83.6 99.8 5–12.5 81.9 96.0 89.8 65.6 84.4 85.3 83.3 98.5 79.5 93.7 84.7 66.8 82.3 78.8 79.4 98.4 92.0 95.0 94.1 67.2 72.9 82.8 84.1 98.9 2.5–10 80.9 94.6 88.0 68.1 77.8 88.0 85.0 98.9 74.4 95.0 82.5 66.5 83.9 82.0 80.3 98.7 86.4 92.3 92.4 68.9 73.9 80.5 81.8 99.8 0–7.5 82.9 96.3 89.6 68.9 78.7 89.8 85.8 97.9 79.1 95.0 84.2 68.4 79.7 83.9 84.2 97.8 91.9 95.8 95.0 68.9 72.1 83.4 79.5 99.0 510–15 83.4 93.9 86.8 67.8 84.5 89.1 85.4 99.3 77.5 93.8 84.2 67.9 82.1 86.4 82.4 98.1 89.5 93.2 92.4 68.6 76.0 89.5 88.5 99.4 7.5–12.5 82.6 96.1 88.2 68.8 82.8 78.1 81.8 98.7 78.8 94.2 84.8 67.3 81.6 84.0 78.1 98.7 90.0 92.5 93.8 68.9 76.3 76.6 83.4 99.6 5–10 80.9 95.4 86.9 66.2 82.2 80.8 85.4 97.6 79.3 93.9 82.8 67.4 81.0 82.9 79.9 96.9 88.0 90.3 89.5 69.0 75.7 82.1 81.4 97.7 2.5–7.5 81.7 94.5 89.9 68.4 83.3 83.0 84.1 97.7 75.0 93.3 80.5 67.5 83.2 87.6 80.3 96.7 89.7 95.4 91.6 68.9 73.1 78.3 78.6 99.6 0–5 81.8 95.4 88.1 67.9 80.2 78.6 86.4 99.0 76.8 93.6 87.0 69.6 82.7 80.9 81.7 98.8 90.4 94.0 91.9 68.9 78.3 79.0 83.1 99.6 2.5 12.5–15 78.2 94.2 89.6 68.6 80.3 79.8 85.2 98.8 77.0 90.6 83.7 67.3 79.5 86.8 82.6 97.8 93.3 96.1 94.8 68.4 74.7 77.3 84.7 100.0 10–12.5 81.4 93.7 89.1 66.8 86.3 79.0 83.9 97.6 78.3 92.5 86.8 67.1 80.2 85.0 78.8 98.3 91.4 94.8 94.3 67.8 78.1 75.1 84.0 98.1 7.5–10 78.7 87.7 84.5 68.8 80.7 80.3 81.0 97.3 74.6 90.3 82.5 67.2 80.3 79.6 81.1 97.2 90.9 94.6 94.6 68.5 78.9 77.5 81.0 98.5 5–7.5 82.5 93.3 87.9 67.4 81.4 79.3 82.4 96.0 75.6 92.0 87.2 67.2 81.1 83.0 78.5 98.1 86.8 93.1 93.5 68.9 76.0 77.4 79.3 98.7 2.5–5 79.5 90.1 87.9 67.9 81.3 81.0 90.3 96.4 73.2 91.3 81.4 67.0 79.1 87.1 81.3 99.4 88.7 96.8 94.4 68.9 76.3 78.0 85.6 99.1 0–2.5 82.3 90.7 88.3 67.7 79.9 80.9 81.6 99.3 76.7 92.9 85.6 68.1 82.2 81.0 81.0 98.0 92.6 95.0 94.1 67.2 76.3 74.8 83.1 98.6
+> aOverall best performance achieved. bBest performance per Experiment ( Ei)cBest performance per Experiment ( Ei) & per Classifier.
+
+target-distribution data does not substitute for subject-specific information. 
+
+D. Domain-Adversarial and Self-Supervised Approaches 
+
+E6 (DANN) and E7 (SS-Pre) achieve 78–90% without any target-subject data, making them the strongest options when calibration is impractical. E6 removes window-specific cues via gradient reversal; E7 learns temporal structure through self-supervised prediction across consecutive windows. That neither consistently dominates suggests they capture com-plementary aspects of generalization. In context, Feng et al. [25] reported 83–91% for cross-subject classification on 8 stroke patients without temporal shift; our E6 and E7 achieve comparable accuracy on a larger pediatric cohort ( N=124) under the additional burden of cross-window transfer. 
+
+E. Architecture Effects 
+
+MaxViT generally outperforms both EfficientNet variants in few-shot settings (E1–E3), consistent with its multi-axis self-attention capturing both local and global spatial depen-dencies. For E6 (DANN), however, EfficientNet-b3 achieves the highest accuracy on several configurations, implying that architecture selection should be conditioned on the adapta-tion strategy. EfficientNet-b0 remains competitive throughout despite being the lightest model, which is encouraging for deployment on embedded or point-of-care devices. 
+
+F. Short Windows Carry Discriminative Information 
+
+Across all strategies, 2.5 s windows achieve accuracy comparable to longer windows (5–10 s) when paired with appropriate adaptation, aligning with Zhang et al. [9] who reported high accuracy from 2.1 s segments under same-window evaluation. Shorter windows enable more trials per session, increase robustness to motion artifacts, and reduce recording time. For pediatric ASD screening, where session duration and child compliance are binding constraints, this substantially expands the feasible design space. 
+
+G. Time Windowing as Ecologically Valid Data Augmenta-tion 
+
+Beyond evaluation, the sliding time-window approach offers a principled solution to data scarcity. Standard syn-thetic augmentation (SMOTE, noise injection, GANs) risks producing samples that violate physiological constraints. Time windowing provides an alternative grounded in the biophysics of the signal: by varying window length and offset, a single 15 s trial yields up to six topographic maps differing in hemodynamic phase, amplitude, and noise. Every sample corresponds to a real segment of a real hemo-dynamic response with no interpolation required. The E8 results (97–100%) confirm this diversity is learnable, and for small-sample neuroimaging studies this offers a scalable, assumption-free augmentation strategy. 
+
+H. Limitations and Future Directions 
+
+Some 2.5 s configurations remain pending for E4–E8. The study uses a single paradigm at one site; multi-paradigm and multi-site generalization remains to be demonstrated. While our cohort ( N=124, ages 7–12) is larger than prior fNIRS-ASD studies, extension to younger children is an important next step. The topographic map representation discards intra-window temporal dynamics; spatiotemporal architectures may capture richer information. Future work should combine E6 and E7 into a unified pipeline, extend the framework to multi-session settings, and integrate fNIRS with complementary modalities such as eye tracking, which was collected concurrently. VI. CONCLUSION We formalized the cross-time-window transfer problem for fNIRS-based ASD classification and introduced a systematic evaluation protocol that varies window length and temporal offset under leave-one-subject-out cross-validation. Bench-marking three vision architectures on topographic maps from a biological motion paradigm, we draw four conclusions: (1) temporal distribution shift is a first-order challenge, with zero-shot cross-window accuracy near chance (54–69%); (2) the shift is almost entirely recoverable through subject-specific adaptation — E8 (Subj-UB) reaches 97–100%, and E2 (FS-Tgt) recovers 90–96% from only ≈5% of target-window labels — establishing inter-subject variability as the dominant barrier; (3) when subject-specific data is unavail-able, domain-adversarial invariance (E6 (DANN), 78–90%) and self-supervised pretraining (E7 (SS-Pre), 78–90%) sub-stantially outperform cohort-level adaptation ( ∼68%); and (4) discriminative information is recoverable from windows as short as 2.5 s. Beyond evaluation, the sliding time-window protocol itself serves as an ecologically valid data augmen-tation strategy, generating physiologically grounded train-ing samples without synthetic interpolation. Together, our adaptation hierarchy and augmentation framework provide a practical roadmap extensible to other fNIRS classification tasks and clinical populations facing analogous temporal generalization challenges. ACKNOWLEDGMENT This study was funded by NIMH award K01MH104739. REFERENCES [1] H. Hodges, C. Fealko, and N. Soares, “Autism spectrum disorder: def-inition, epidemiology, causes, and clinical evaluation,” Translational Pediatrics , vol. 9, pp. S55 – S65, 2020. [2] C. Okoye, C. M. Obialo-Ibeawuchi, O. A. Obajeun, S. Sarwar, C. Tawfik, M. Waleed, A. U. Wasim, I. Mohamoud, A. Y. Afolayan, and R. N. Mbaezue, “Early diagnosis of autism spectrum disorder: A review and analysis of the risks and benefits,” Cureus , vol. 15, 2023. [3] T. Falkmer, K. Anderson, M. Falkmer, and C. Horlin, “Diagnostic pro-cedures in autism spectrum disorders: a systematic literature review,” 
+
+European Child & Adolescent Psychiatry , vol. 22, pp. 329–340, 2013. [4] J. Wang, Z. Zou, H. Huang, J. Wu, X. Wei, S. Yin, Y. Chen, and Y. Liu, “The functional near infrared spectroscopy applications in chil-dren with developmental diseases: a review,” Frontiers in Neurology ,vol. 16, 2025. [5] F. Zhang and H. Roeyers, “Exploring brain functions in autism spectrum disorder: A systematic review on functional near-infrared spectroscopy (fnirs) studies,” International Journal of Psychophysiol-ogy , vol. 137, pp. 41–53, 2019. [6] T. Liu, X. Liu, L. Yi, C. Zhu, P. S. Markey, and M. Pelowski, “Assessing autism at its social and developmental roots: A review of autism spectrum disorder studies using functional near-infrared spectroscopy,” NeuroImage , vol. 185, pp. 955–967, 2017. [7] E. Conti, E. Scaffei, C. Bosetti, V. Marchi, V. Costanzo, V. Dell’Oste, R. Mazziotti, L. Dell’Osso, C. Carmassi, F. Muratori, L. Baroncelli, S. Calderoni, and R. Battini, “Looking for “fnirs signature” in autism spectrum: A systematic review starting from preschoolers,” Frontiers in Neuroscience , vol. 16, 2022. [8] J. Cai, X. Zeng, and J. Li, “Classification of autism spectrum disorder using edge-weight enhanced graph attention network with multiple features of resting-state fnirs signals,” Journal of Biophotonics , vol. 18, 2025. [9] H. Zhang, L. Xu, J. Yu, J. Li, and J. Wang, “Identification of autism spectrum disorder based on functional near-infrared spectroscopy using adaptive spatiotemporal graph convolution network,” Frontiers in Neuroscience , vol. 17, 2023. [10] Z. Wang, J. Zhang, X. Zhang, P. Chen, and B. Wang, “Transformer model for functional near-infrared spectroscopy classification,” IEEE Journal of Biomedical and Health Informatics , vol. 26, pp. 2559–2569, 2022. [11] L. Liao, J. Lu, L. Wang, Y. Zhang, D. Gao, and M. Wang, “CT-Net: An interpretable CNN-Transformer fusion network for fNIRS classification,” Medical and Biological Engineering and Computing ,vol. 62, no. 10, pp. 3233–3247, 2024. [12] A. De Giacomo, F. Craig, S. Medicamento, F. Gradia, D. Sardella, A. Costabile, E. Matera, and M. Turi, “Machine learning and deep learning applied to EEG and fNIRS for early autism spectrum disorder diagnosis: a systematic review,” Frontiers in Psychiatry , vol. 17, 2026. [13] R. Mazziotti, E. Scaffei, E. Conti, V. Marchi, R. Rizzi, G. Cioni, R. Battini, and L. Baroncelli, “The amplitude of fnirs hemodynamic response in the visual cortex unmasks autistic traits in typically developing children,” Translational Psychiatry , vol. 12, 2022. [14] E. Scaffei, R. Mazziotti, E. Conti, V. Costanzo, S. Calderoni, A. Stoc-coro, C. Carmassi, R. Tancredi, L. Baroncelli, and R. Battini, “A potential biomarker of brain activity in autism spectrum disorders: A pilot fnirs study in female preschoolers,” Brain Sciences , vol. 13, 2023. [15] D. Yang, A. M. Svoboda, T. G. George, P. K. Mansfield, M. D. Wheelock, M. L. Schroeder, S. M. Rafferty, A. Sherafati, K. Tripathy, T. Burns-Yocum, E. Forsen, J. R. Pruett, N. M. Marrus, J. P. Culver, J. N. Constantino, and A. T. Eggebrecht, “Mapping neural correlates of biological motion perception in autistic children using high-density diffuse optical tomography,” Molecular Autism , vol. 15, no. 1, p. 35, 2024. [16] P. B¨ ohm, N. Adelhoefer, I. Jarvers, J. Blechert, T. Renner, and C. Scharfenort, “Segregated dynamical networks for biological motion perception in the mu and beta range underlie social deficits in autism,” 
+
+Diagnostics , vol. 14, no. 4, p. 408, 2024. [17] J. Lin, J. Lu, Z. Shu, J. Han, and N. Yu, “Subject-specific modeling of EEG-fNIRS neurovascular coupling by task-related tensor decom-position,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 32, pp. 452–461, 2024. [18] Y. Jing, W. Wang, J. Wang, Y. Jiao, K. Xiang, T. Lin, W. Shi, and Z. Hou, “Transformer based cross-subject mental workload classifi-cation using fnirs for real-world application,” in 2023 45th Annual International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC) , 2023, pp. 1–5. [19] M. Tan and Q. V. Le, “Efficientnet: Rethinking model scaling for con-volutional neural networks,” in Proceedings of the 36th International Conference on Machine Learning (ICML) , 2019, pp. 6105–6114. [20] Z. Tu, H. Talebi, H. Zhang, F. Yang, J. Yu, Y. Li, and P. Milanfar, “Maxvit: Multi-axis vision transformer,” in European Conference on Computer Vision (ECCV) , 2022, pp. 459–479. [21] Z. Wang, J. Fang, and J. Zhang, “Rethinking delayed hemodynamic responses for fNIRS classification,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 31, pp. 4528–4538, 2023. [22] S. Guglielmini, V. Banchieri, F. Scholkmann, and M. Wolf, “Transformer-based deep learning model for predicting fnirs short-channel signals,” Neurophotonics , vol. 12, 2025. [23] L. Yang, L. Guo, Y. Yuan, J. Han, X. Hu, and T. Zhang, “A foundational fmri model for representing continuous brain states,” 
+
+IEEE Journal of Biomedical and Health Informatics , vol. 29, pp. 8361–8373, 2025. [24] B. Lyu, T. Pham, G. Blaney, Z. Haga, A. Sassaroli, S. Fantini, and S. Aeron, “Domain adaptation for robust workload level alignment between sessions and subjects using fNIRS,” Journal of Biomedical Optics , vol. 26, no. 2, p. 022908, 2021. [25] J. Feng, Y. Li, Z. Huang, Y. Chen, S. Lu, R. Hu, Q. Hu, Y. Chen, X. Wang, Y. Fan, and J. He, “Heterogeneous transfer learning model for improving the classification performance of fNIRS signals in motor imagery among cross-subject stroke patients,” Frontiers in Human Neuroscience , vol. 19, 2025. [26] E. Jung and J. An, “Efrm: A multimodal eeg-fnirs representation-learning model for few-shot brain-signal classification,” Computers in biology and medicine , vol. 199, p. 111292, 2025. [27] Y. Ganin, E. Ustinova, H. Ajakan, P. Germain, H. Larochelle, F. Lavi-olette, M. Marchand, and V. Lempitsky, “Domain-adversarial training of neural networks,” Journal of Machine Learning Research , vol. 17, no. 59, pp. 1–35, 2016.
