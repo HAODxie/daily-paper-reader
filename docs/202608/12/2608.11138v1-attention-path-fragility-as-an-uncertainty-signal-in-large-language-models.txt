@@ -1,0 +1,1053 @@
+Title: Attention-Path Fragility as an Uncertainty Signal in Large Language Models
+
+URL Source: https://arxiv.org/pdf/2608.11138v1
+
+Published Time: Wed, 12 Aug 2026 01:24:31 GMT
+
+Number of Pages: 19
+
+Markdown Content:
+# Attention-Path Fragility as an Uncertainty Signal in Large Language Models 
+
+## Minsoo Kim, Sungyoung Ji, Kisung Moon, Ilyong Yoon ∗
+
+POSCO Holdings Future Technology Research Institute 440, Teheran-ro, Gangnam-gu, Seoul, Republic of Korea {kim1102, sy_ji, moonkisung, ilyong.yoon}@posco-inc.com 
+
+Abstract 
+
+We propose that a model’s uncertainty about a token is re-flected not only in the breadth of its output distribution but also in whether a confident prediction is fragile under pertur-bation of its attention pathways. We instantiate this as ASMI (Attention-Subnetwork Mutual Information), a training-free estimator that masks attention heads and measures the BALD mutual information among the resulting subnetworks, with a semantic-agreement kernel to discount surface-form disagree-ment. The signal is not a restatement of output confidence: on grounded QA an out-of-fold test shows it adds error-predictive information beyond single-pass confidence and entropy, con-centrated in confident-but-fragile predictions, where acting on it roughly halves the retained error of a confidence fil-ter. The distinctness is regime-graded, so ASMI predicts its own domain of applicability, strong where answers are routed through provided context and bounded by design where they are recalled from parametric knowledge. Sem-ASMI reads the signal from a single greedy response, without the stochastic generations the strongest baselines require, and ties or beats Semantic Entropy on ten of the twelve grounded benchmark-backbone settings. Across the same twelve settings, the best ASMI variant, typically the adaptive one reusing the ten sam-ples already drawn for the baselines, ties or leads the strongest baseline in eight, significantly in three under a paired test. On parametric QA all variants revert to or below the zero-cost MSP baseline, exactly as predicted, and the estimates are near-deterministic across reruns. A head-level analysis shows that what tracks this boundary is not the presence of head-level fragility but whether that fragility couples to errors. 
+
+## Introduction 
+
+Reliable uncertainty estimation (UE) is foundational for de-ploying large language models (LLMs) in selective gener-ation, hallucination detection, and human-in-the-loop deci-sion making (Kadavath et al. 2022; Manakul, Liusie, and Gales 2023; Kalai et al. 2025), where over-confident in-correct outputs carry real costs (Guo et al. 2017; Jiang et al. 2021). The stakes are highest in grounded generation, where a hallucination is a failure to route the answer through the provided context (Huang et al. 2025). Estimators span information-theoretic quantities on a single deterministic for-ward pass (Malinin and Gales 2020), agreement statistics 
+
+> ∗
+
+Corresponding author. France     
+
+> capital
+> … is
+> Low 𝑴𝑰 𝒕 : many redundant paths
+> Canberra
+> Sydney
+> Australi a
+> capital
+> … is
+> High 𝑴𝑰 𝒕 : one critical path
+> Rome
+> Paris
+
+Figure 1: ASMI at a glance. Masking heads leaves a confident token (left) unchanged but destabilizes a fragile token (right) that hinges on one critical path. ASMI scores this fragility: random attention-head masking at a target layer yields mul-tiple predictive distributions whose disagreement, measured by mutual information, is a token-level uncertainty proxy. across stochastically decoded samples (Kuhn, Gal, and Far-quhar 2023; Farquhar et al. 2024; Duan et al. 2024; Nikitin et al. 2024), signals read from internal states and from atten-tion (Azaria and Mitchell 2023; Vazhentsev et al. 2025), and structural perturbations of the model itself (Gal and Ghahra-mani 2016; Zhang et al. 2025). We propose a complementary signal: a model’s uncertainty about a token is reflected not only in the breadth of its output distribution, but also in whether the prediction is fragile , that is, whether it hinges on a specific attention pathway among many redundant alterna-tives. The intuition rests on a well-documented property of multi-head attention: many heads can be pruned with mini-mal loss (Michel, Levy, and Neubig 2019; Voita et al. 2019; He et al. 2024), yet a high-level behavior can hinge on a single head (Zhou et al. 2025), and a small subset is uncertainty-aware (Vazhentsev et al. 2025). Masking leaves a genuinely supported prediction intact, since redundant pathways carry the same information, and destabilizes a fragile one (Fig. 1). Crucially, this fragility is invisible to a single forward pass: a token can be assigned high confidence yet collapse un-der masking, and these confident-but-fragile tokens carry error information that output-confidence measures miss. We instantiate this as ASMI (Attention-Subnetwork Mutual In-formation): for each Monte Carlo sample we mask attention heads at a target layer and quantify disagreement among the resulting predictive distributions via the BALD mutual-information decomposition (Houlsby et al. 2011; Smith and Gal 2018), with a semantic-agreement kernel to discount surface-form disagreement. The estimator is training-free arXiv:2608.11138v1 [cs.CL] 11 Aug 2026 and needs only the choice of target layer. Existing estima-tors can be characterized along two axes: their variation source (stochastic output sampling versus structural model perturbation) and their measurement target (output spread versus computational path dependence). ASMI occupies the structural-perturbation, path-dependence corner, and its po-sition yields a testable hypothesis: the signal should be infor-mative where correctness depends on attending to specific context tokens, as in retrieval-grounded QA, and end where uncertainty originates elsewhere, as in parametric knowl-edge recall (Longpre et al. 2021; Mallen et al. 2023; Xu et al. 2024). We test this behaviorally, with grounded against parametric QA as a designed contrast, and internally, asking whether the signal adds error information beyond output con-fidence and how its head-level signature tracks the boundary. The result is an estimator that states in advance where it should work and where it should fail, with both directions confirmed. Our contributions are: 
+
+• We propose ASMI , a training-free token-level uncer-tainty estimator that probes attention-path fragility by random head masking with a semantic-agreement ker-nel, and reads it from a single greedy response. In this sampling-free form it is competitive with the strongest sample-diversity baselines, which each draw ten stochas-tic generations, and its estimates are near-deterministic across reruns. 
+
+• We show the signal is distinct from output confidence, not a proxy for it : an out-of-fold test confirms it adds error-predictive information beyond single-pass confi-dence and entropy, concentrated in confident-but-fragile 
+
+predictions. 
+
+• The distinctness is regime-graded, so ASMI predicts its own domain of applicability : it leads on context-routed QA and reverts to or below the free MSP base-line on parametric recall, exactly where the design pre-dicts. A head-level analysis shows that what tracks this boundary is whether fragility couples to errors, present on grounded QA and absent under parametric recall, and a near-zero masking response identifies the one backbone where the signal carries no information, a candidate label-free screen whose validation here is retrospective. 
+
+## Related Work 
+
+Sample-diversity UE. Sample-diversity methods estimate uncertainty from the variability of stochastically generated outputs. SelfCheckGPT (Manakul, Liusie, and Gales 2023) uses pairwise consistency among sampled generations as a hallucination signal. Semantic Entropy (Kuhn, Gal, and Farquhar 2023; Farquhar et al. 2024) clusters semantically equivalent generations and takes entropy over the clusters, Kernel Language Entropy (Nikitin et al. 2024) relaxes this to a soft semantic kernel, SAR (Duan et al. 2024) weights sam-ples by relevance to the predicted answer, and LUQ (Zhang et al. 2024) extends the approach to long-form text. 
+
+Single-pass UE. Information-based methods such as Max-imum Sequence Probability, Perplexity, and Mean Token En-tropy (Malinin and Gales 2020) read uncertainty directly from the output distribution of a single deterministic for-ward pass. Probing methods examine internal model states: SAPLMA (Azaria and Mitchell 2023), INSIDE (Chen et al. 2024), and Semantic Entropy Probes (Kossen et al. 2024) ex-tract signals from hidden representations, while P(True) (Ka-davath et al. 2022) prompts the model for self-assessment. 
+
+Attention-based methods such as RAUQ (Vazhentsev et al. 2025) read uncertainty from attention scores at heads identi-fied as uncertainty-aware by prior analysis. 
+
+Structural perturbation UE. MC Dropout (Gal and Ghahramani 2016) established test-time structural perturba-tion as an uncertainty signal, but its variational interpretation does not transfer directly to modern LLMs trained without dropout, and adaptations such as TokUR (Zhang et al. 2025) inject noise into the attention weight matrices and read a pos-terior over parameters. ASMI perturbs differently: we apply discrete Bernoulli masks to attention head outputs to probe path dependence among redundant heads (Michel, Levy, and Neubig 2019; Voita et al. 2019), surfacing the model’s re-liance on specific attention paths rather than posterior uncer-tainty over parameters. 
+
+Adaptive UE. Other adaptive UE approaches such as Co-coa (Vashurin et al. 2025b) and GENUINE (Wang et al. 2025) combine multiple uncertainty signals via calibration or graph-based fusion. Our adaptive variant, Adapt-ASMI, instead modulates a single signal by a directly observable in-put property, the diversity of stochastically decoded outputs. 
+
+A two-axis characterization. Placing the families above on those two axes leaves one corner empty. Sample-diversity methods measure output spread, information-based and probing methods read outputs or hidden states without per-turbing, RAUQ and Lookback Lens (Chuang et al. 2024) observe attention passively, and MC Dropout perturbs the model but still measures output spread. ASMI is, to our knowledge, the first estimator in the structural-perturbation, path-dependence corner, and that position is predictive rather than merely descriptive. It should be informative when the prediction depends on routing context through specific at-tention paths, a computation carried by a sparse set of heads that causally transport in-context information (Olsson et al. 2022; Wu et al. 2025; Todd et al. 2024) and can individu-ally flip the answer between its in-context and memorized source (Yu, Merullo, and Pavlick 2023; Jin et al. 2024; Ortu et al. 2024). That advantage should end where uncertainty originates in parametric recall, whose locus is MLP-stored knowledge rather than the attention paths that extract it (Geva et al. 2021; Dai et al. 2022; Meng et al. 2022; Geva et al. 2023), a dissociation already exploited to detect RAG hal-lucination (Sun et al. 2025). The hypothesis is falsifiable in both directions: it fails if the signal survives closed-book re-call or if matched perturbations of non-attention components at the same layer reproduce it. 
+
+## Methodology 
+
+Attention subnetwork sampling. Let fθ be a pretrained autoregressive language model with fixed parameters θ. For Sub  Networks 
+
+> Uncertainty
+> 𝑴𝑰 𝒕
+
+𝒇 𝜽 𝒔𝒖𝒇𝒇𝒊𝒙 
+
+> what
+> is
+> music
+> often
+> Genre
+> Token
+> 1
+> 2
+> 3
+> 𝒕
+> 𝟒
+
+Question : What is music often divided into?  / LLM  generation : Genre            
+
+> Genre
+> Rhythm
+> Sound
+> Genre
+> Rhythm
+> Sound
+> Genre
+> Rhythm
+> Sound
+> Layer 1
+> Layer 2
+> Layer 𝒍 ∗− 𝟐
+> Layer 𝒍 ∗− 𝟏
+> hidden state (cached)
+> 𝒇 𝜽
+> 𝒑𝒓𝒆𝒇𝒊𝒙
+> Layer
+> 𝒍 ∗ + 𝟏
+> Final
+> Layer
+> Layer: 𝒍 ∗A
+> Layer: 𝒍 ∗A
+> Layer: 𝒍 ∗A
+> Layer
+> 𝒍 ∗ + 𝟏
+> Final
+> Layer
+> Layer
+> 𝒍 ∗ + 𝟏
+> Final
+> Layer
+
+Figure 2: Pipeline of ASMI. The prefix below the target layer ℓ⋆ is computed once, and S independently masked copies of the suffix score the same greedy output (three shown). Filled and open circles denote kept and masked heads. Disagreement among the resulting token distributions yields MI t (Eq. 5). The semantic kernel of Sem-ASMI and the adaptive gate of Adapt-ASMI are omitted for clarity. an input context (x, y <t ), the model defines a next-token dis-tribution pθ (yt | x, y <t ). To estimate structural uncertainty from internal computation rather than decoding noise, we perturb the model at inference time by masking attention heads in a selected Transformer layer ℓ⋆. For a multi-head attention module with H heads, 
+
+MHA( Q, K, V ) = Concat(head 1, . . . , head H ) WO , (1) where 
+
+head h = softmax 
+
+ QhK⊤
+
+> h
+
+√dh
+
+
+
+Vh. (2) Because many heads can be pruned without significant loss (Michel, Levy, and Neubig 2019; Voita et al. 2019; He et al. 2024), we use random head dropout in reverse, as a probe of how strongly a prediction depends on specific attention paths. For each Monte Carlo sample s, we draw a binary mask m(s) ∈ { 0, 1}H with 
+
+m(s) 
+
+> h
+
+∼ Bernoulli(1 − p), (3) and apply it to the head outputs before the output projection: 
+
+\MHA (s)
+
+(Q, K, V ) = Concat 
+
+
+
+[head (s)1 , . . . , [head (s)
+
+> H
+
+
+
+WO .
+
+(4) No 1/(1 − p) rescaling is applied, following the ablation convention of the head-pruning literature (Michel, Levy, and Neubig 2019; Voita et al. 2019), and the scale reduction is common to all samples, so it does not itself generate the inter-sample disagreement that MI t measures. Because only the aggregated head outputs are masked, the attention rout-ing remains fixed and only each head’s contribution to the representation is perturbed. We set (p, S ) = (0 .15 , 40) , de-rived from a coverage lower bound on S and a fidelity upper bound on p (Appendix G). 
+
+Efficient Monte Carlo inference. Because the perturba-tion is applied only at layer ℓ⋆, the computation below that layer is shared across all S subnetworks (Fig. 2). Writing the model as fθ = f suf  
+
+> θ
+
+◦ f pre  
+
+> θ
+
+, where f pre  
+
+> θ
+
+contains layers 
+
+1, . . . , ℓ ⋆ − 1 and f suf  
+
+> θ
+
+contains layers ℓ⋆, . . . , L , we compute the prefix activations hcache = f pre  
+
+> θ
+
+(x, y ) once and evaluate only the suffix under each mask m(s). This reduces the Monte Carlo cost from S(Cpre + Csuf ) to Cpre + S C suf FLOPs, where Cpre and Csuf denote prefix and suffix costs. Since y is fixed prior to scoring, each masked pass is a single teacher-forcing evaluation, and the ensemble is defined implicitly by the binary masks: no parameter copies are materialized, and the only persistent overhead is the shared cache hcache 
+
+(measured overhead in Appendix A). 
+
+Mutual-information uncertainty. Let p(s) 
+
+> t
+
+(·) denote the predictive distribution at position t under the s-th sampled attention subnetwork, and let S be the number of Monte Carlo samples. We quantify token-level disagreement by the mutual information between the sampled subnetwork and the next-token prediction (Houlsby et al. 2011): 
+
+MI t = H(¯ pt) − 1
+
+S
+
+> S
+
+X
+
+> s=1
+
+H
+
+
+
+p(s)
+
+> t
+
+
+
+, ¯pt = 1
+
+S
+
+> S
+
+X
+
+> s=1
+
+p(s) 
+
+> t
+
+, (5) where H(p) = − P 
+
+> i
+
+pi log pi. This quantity becomes large when different attention subnetworks make confident but in-consistent predictions, and therefore captures structural dis-agreement induced by internal attention perturbations rather than decoding stochasticity. Exact MI t requires entropies over the full vocabulary ( |V | > 150 K), prohibitive across S
+
+samples and all generated positions, so we approximate each 
+
+p(s) 
+
+> t
+
+by its top-K candidates plus a single tail bucket holding the residual mass. On retrieval-grounded benchmarks top-
+
+K = 64 retains over 95% of probability mass even at the most uncertain high-MI tokens (Appendix B). For sample s,let I(s) 
+
+> t,K
+
+be the top-K token indices at position t, where each retained probability is computed using the full-vocabulary normalization constant: 
+
+p(s) 
+
+> t
+
+(i) = exp( ℓ(s) 
+
+> t,i
+
+)
+
+PVj=1 exp( ℓ(s) 
+
+> t,j
+
+) . (6) Algorithm 1: Sem-ASMI Uncertainty Estimation 
+
+Require: Input x; model fθ ; layer ℓ⋆; samples S; mask rate 
+
+p; truncation K
+
+Ensure: Sequence uncertainty U (x, y )
+
+1: y ← GreedyDecode( fθ , x ), T ← | y|
+
+2: hcache ← f pre 
+
+θ (x, y )
+
+3: for s = 1 to S do 
+
+4: Sample mask m(s) ∈ { 0, 1}H , m(s)
+
+h ∼ Bernoulli(1 −
+
+p)
+
+5: {p(s)
+
+t }Tt=1 ← f suf 
+
+θ (hcache ; m(s)) at positions of y
+
+6: end for 
+
+7: Form top-K union support and tail-bucket distributions 
+
+{˜p(s)
+
+t }
+
+8: Compute {MI t}, {At} from {˜p(s)
+
+t } via Eq. 5, 11 
+
+9: return U ← 1
+
+T
+
+PTt=1 MI t (1 − At)
+
+We then form the union support 
+
+Ut =
+
+S[
+
+s=1 
+
+I(s)
+
+t,K , (7) and construct a reduced distribution ˜p(s)
+
+t over Ut ∪ { tail }:
+
+˜p(s)
+
+t (i) = 
+
+(
+
+p(s)
+
+t (i), i ∈ U t,
+
+1 − P
+
+j∈U t p(s)
+
+t (j), i = tail . (8) We use these reduced distributions to approximate MI t. Eq. 5 admits the equivalent form 
+
+MI t = 1
+
+S
+
+SX
+
+s=1 
+
+KL 
+
+
+
+p(s)
+
+t ¯pt
+
+
+
+, (9) i.e., the average divergence of each subnetwork’s prediction from the ensemble mean. This form makes MI t decompos-able over the masked heads. 
+
+Semantic agreement weighting. Different subnetworks may assign high probability to semantically similar alter-natives (e.g., “sleep” and “sleeping”), disagreement that is not uncertainty. To discount it, we compute a semantic agree-ment score on the top-K candidate distributions (Fig. 3). For MC samples m and n, let p(m)
+
+t , p (n)
+
+t ∈ RK be their top-
+
+K probability vectors, renormalized to sum to one over the retained support, and let G(m,n )
+
+t ∈ RK×K be the pairwise token similarity matrix with entries equal to 1 for identical to-kens and min(1 , max(0 , cos( ei, e j ))) otherwise, computed over L2-normalized rows of the output projection matrix 
+
+Wlm , so that At ∈ [0 , 1] by construction. We define pairwise agreement as 
+
+A(m,n )
+
+t =
+
+
+
+p(m)
+
+t
+
+⊤
+
+G(m,n )
+
+t p(n)
+
+t , (10) and average it across ordered sample pairs: 
+
+At = 1
+
+S(S − 1) 
+
+X
+
+m̸=n
+
+A(m,n )
+
+t . (11) 10 −5 10 −4 10 −3 10 −2                                                          
+
+> Token-level uncertainty MI t
+> 0.2 0.4 0.6 0.8 1.0
+> Semantic agreement  At
+> Consistent 7209 (63.3%) Benign instability 1495 (13.1%) Stable dispersion 398 (3.5%) Flagged 2293 (20.1%)
+> 10 0
+> 10 1
+> 10 2' sleep' ' sleeping' ' slee' ' rest' ' his' ' bed' ' resting' ' asleep' ' sleep' ' sleeping' ' slee' ' rest' ' his' ' bed' ' resting' ' asleep'
+> 1.00 0.63 0.34 0.13 0.00 0.17 0.15 0.50 0.63 1.00 0.32 0.04 -0.02 0.17 0.28 0.54 0.34 0.32 1.00 0.06 -0.01 0.10 0.13 0.29 0.13 0.04 0.06 1.00 0.01 0.04 0.47 0.02 0.00 -0.02 -0.01 0.01 1.00 0.01 -0.01 0.00 0.17 0.17 0.10 0.04 0.01 1.00 0.05 0.13 0.15 0.28 0.13 0.47 -0.01 0.05 1.00 0.19 0.50 0.54 0.29 0.02 0.00 0.13 0.19 1.00
+
+Figure 3: Token-level mechanism on CoQA. (a) Joint dis-tribution of MI t and At (Pearson r = −0.57 ). High MI t
+
+with low agreement is flagged, while high MI t with high agreement is benign instability that the kernel discounts. (b) 
+
+Pairwise Wlm cosine similarity among the top-8 candidates at a representative benign-instability token, the surface-form cluster that drives At up. The semantically-weighted token-level score is 
+
+usem 
+
+t = MI t (1 − At), (12) while the unweighted base variant, which we denote ASMI and use as an ablation, retains the raw unosem 
+
+t = MI t. The sequence-level uncertainty is the mean over generated token positions: 
+
+U (x, y ) = 1
+
+T
+
+TX
+
+t=1 
+
+usem 
+
+t . (13) Equations 12 and 13 define Sem-ASMI. 
+
+Adaptive semantic weighting. Semantic weighting helps when valid answers share a canonical form, but risks discard-ing genuine uncertainty when many surface forms are valid. Adapt-ASMI therefore gates it per input by the diversity of 
+
+N sampled responses, each embedded by the model’s own hidden state at layer ⌊L/ 2⌋ at its final token. With sample embeddings e1, . . . , e N ,
+
+div( x) = 1 −  N
+
+2
+
+−1 P
+
+i<j cos( ei, e j ), (14) and the gate is α(x) = σ β(τ − div( x))  with logistic σ, so that α → 1 when the sampled responses are near-paraphrases (div( x) < τ ) and α → 0 when they genuinely diverge. The token-level score becomes 
+
+uadapt 
+
+t = MI t
+
+ 1 − α(x) At
+
+, (15) recovering Eq. 12 as α → 1 (low diversity) and the raw MI t
+
+as α → 0, with (τ, β ) = (0 .3, 10) fixed across all tasks and backbones. 
+
+## Experiments 
+
+Datasets and quality metric. Our benchmark is a two-condition contrast dictated by the method’s design. The context-routed condition uses CoQA (Reddy, Chen, and Manning 2019), SQuAD (Rajpurkar et al. 2016), and BabiQA (Weston et al. 2015) (Table 2). As a negative control, the parametric condition uses closed-book TriviaQA (Joshi UE Method Qwen3-4B Qwen3-8B Llama-2-7B Mistral-7B CoQA SQuAD BabiQA TriviaQA CoQA SQuAD BabiQA TriviaQA CoQA SQuAD BabiQA TriviaQA CoQA SQuAD BabiQA TriviaQA                                                                                                                                                                 
+
+> Baselines
+> Maximum Sequence Probability 0.45 0.32 0.48 0.72 0.53 0.35 0.76 0.70 0.53 0.18 0.58 0.77 0.52 0.65 0.59 0.78 Mean Token Entropy 0.40 0.27 0.56 0.70 0.50 0.41 0.75 0.69 0.46 0.68 0.30 0.75 0.44 0.78 0.54 0.78 Semantic Entropy 0.46 0.28 0.54 0.72 0.53 0.45 0.74 0.70 0.55 0.47 0.50 0.77 0.54 0.80 0.58 0.78 SAR 0.46 0.27 0.63 0.71 0.47 0.40 0.71 0.68 0.53 0.51 0.49 0.78 0.52 0.78 0.56 0.80
+> P(True) 0.03 0.07 0.49 0.30 0.07 0.17 0.22 0.39 -0.04 0.47 0.21 0.06 -0.05 0.78 0.20 -0.11 RAUQ 0.37 0.32 0.32 0.70 0.48 0.45 0.74 0.66 0.47 0.46 0.57 0.75 0.46 0.82 0.48 0.70 RAUQ (entropy) 0.47 0.36 0.42 0.72 0.53 0.47 0.74 0.70 0.50 0.75 0.29 0.77 0.51 0.83 0.46 0.77
+> Attention-based, active perturbation (ours)
+> ASMI (60%) 0.46 0.29 0.60 0.59 0.51 0.34 0.80 0.62 0.49 0.62 0.11 0.66 0.48 0.77 0.52 0.74 Sem-ASMI (60%) 0.52 0.29 0.66 0.66 0.55 0.40 0.78 0.66 0.54 0.69 0.27 0.71 0.53 0.83 0.61 0.78 Adapt-ASMI (60%) 0.53 0.31 0.66 0.66 0.56 0.40 0.79 0.67 0.55 0.71 0.29 0.72 0.54 0.84 0.61 0.78
+
+Table 1: Representative UE methods on four backbones (PRR, higher is better, ASMI variants at depth d = 60% ). TriviaQA is the closed-book parametric control, and the other three benchmarks are context-routed. Bold and underline mark best and second best among the methods shown. Standard errors are ±0.01 to ±0.03 (±0.03 to ±0.07 on BabiQA), with per-cell values and all 17 baselines in Appendix I. Dataset n Input Gen AlignScore CoQA ≈ 8K 490 4 0.782 
+
+SQuAD 5K 183 18 0.869 
+
+BabiQA 1K 175 3 0.709 
+
+TriviaQA 5K 176 4 0.488 
+
+Table 2: Dataset characteristics on Qwen3-4B-base. Median input and generation lengths in tokens, and mean AlignScore of the greedy answers. The three grounded datasets sit above the closed-book parametric control. et al. 2017) with no evidence documents, so answers must come from parametric memory (Mallen et al. 2023). All datasets follow the LM-Polygraph (Vashurin et al. 2025a) pipeline with its default prompting and standard splits, scored by AlignScore (Zha et al. 2023), an entailment-based metric that tracks faithfulness better than surface-overlap scores (Maynez et al. 2020). To bound compute, SQuAD and TriviaQA use a fixed random 5K subsample, identical across methods and backbones. 
+
+Baselines. We compare against 17 baseline UE meth-ods spanning four families. Information-based : MSP, Per-plexity, Mean Token Entropy (Malinin and Gales 2020), PMI (Takayama and Arase 2019), Conditional PMI (van der Poel, Cotterell, and Meister 2022), SelfCertainty (Kang, Zhao, and Song 2025). Sample-diversity : Monte Carlo and MC-normalized sequence entropy (Malinin and Gales 2020), Semantic Entropy (Kuhn, Gal, and Farquhar 2023; Far-quhar et al. 2024), SAR, SentenceSAR (Duan et al. 2024), LUQ (Zhang et al. 2024), Kernel Language Entropy (Nikitin et al. 2024). Probing : P(True) and its sampling variant (Ka-davath et al. 2022). Attention-based : RAUQ and its en-tropy variant (Vazhentsev et al. 2025). All run within LM-Polygraph with default hyperparameters. The main table shows a representative subset, and the full comparison with standard errors is in Appendix I. 
+
+Implementation details. Our primary backbone is Qwen3-4B-base (Yang et al. 2025), with Qwen3-8B-base, Wall-clock s/example (median) CoQA SQuAD MSP 4.14 0.75 
+
+Semantic Entropy (10 samples + NLI) 8.73 2.16 
+
+Sem-ASMI (greedy + 40 masked passes) 6.35 2.48 
+
+Adapt-ASMI (adds the 10 samples) 10 .77 3.76 
+
+Sem-ASMI, marginal given the samples 2.21 1.74 
+
+Table 3: End-to-end cost on Qwen3-4B-base (200 examples, one H100 MIG slice, mask-batched Sem-ASMI). Full break-down in Appendix H. Llama-2-7B (Touvron et al. 2023), and Mistral-7B (Jiang et al. 2023) for generality, all with H = 32 query heads. We evaluate base models deliberately, since instruction tun-ing reshapes attention-head specialization (Wu et al. 2024) and would confound the head-level analysis. We fix a single operating point (p, S ) = (0 .15 , 40) with top-K truncation 
+
+K = 64 across all tasks and backbones (Appendix G). The estimator’s only hyperparameter is the masked layer, a rela-tive depth d that transfers across architectures. Because the context-routing computation ASMI probes concentrates in the middle to later-middle layers (Geva et al. 2023; Wu et al. 2025), we sweep d ∈ { 60 , 70 , 80 , 90 }% identically every-where and take d = 60% as representative by aggregate PRR, which needs no per-task tuning (Appendix I). Responses are greedy-decoded and scored under each mask. Adapt-ASMI’s gate reuses the N = 10 sampled responses the protocol al-ready generates for the sampling baselines, whereas ASMI and Sem-ASMI need only the greedy response. All methods are evaluated by the Prediction Rejection Ratio (PRR) (Ma-linin and Gales 2020) within LM-Polygraph (Fadeeva et al. 2023), the normalized area between the uncertainty-based and random rejection curves, taking the value 1 for oracle rejection and 0 for an uninformative score (Appendix A). 
+
+Main results. Table 1 is best read together with mea-sured cost (Table 3). Sem-ASMI needs only the greedy response, and in that sampling-free form it is competitive on grounded QA with the strongest sample-diversity base-lines, which each draw ten stochastic generations per input. unsure confident 
+
+> single-pass confidence (MSP) →
+> fragile robust
+> masking fragility ( usem )
+
+52%  
+
+> n= 357
+
+31%  
+
+> n= 143
+
+16%  
+
+> n= 143
+
+10%   
+
+> n= 357 BabiQA×4b (grounded) CoQA×4b (grounded) TriviaQA×4b (parametric) 0.450 0.475 0.500 0.525 0.550 0.575 0.600 0.625 0.650
+> residual error-detection AUROC
+> chance
+> grounded parametric
+
+Figure 4: The confident-but-fragile signal. (a) BabiQA error rate by MSP confidence and usem fragility: confident-but-fragile predictions fail 31% against 10% for confident-robust. 
+
+(b) The effect is strong on grounded QA and fades to chance under parametric recall. Measured cost tracks input length and therefore favors the long-context inputs typical of context-routed QA: on CoQA the mask-batched implementation takes 27% less wall-clock end to end than Semantic Entropy, on the shorter SQuAD inputs it takes 15% more, and once the ten samples exist the marginal cost of the score itself is 2.2 and 1.7 seconds. Under a cluster-respecting paired bootstrap the best ASMI variant ties or leads the per-column best baseline in eight of the twelve grounded columns, significantly in three, and in every remaining lead the sampling-free Sem-ASMI ties or beats Semantic Entropy from the greedy response alone (Appendix J). The same test finds four significant deficits, confined to SQuAD, where three of the four backbones trail the per-column best baseline, and to the one mapped excep-tion cell below. On parametric recall all variants revert to or below the free MSP baseline, and the paired test places the top variant significantly below the per-column best baseline in three of the four columns, so the same table draws the boundary it was built to test. The three ASMI rows isolate the ablation: the semantic kernel lifts Sem-ASMI over the unweighted ASMI by 0.04 to 0.06 PRR on CoQA, where surface forms vary most, and the adaptive gate matches or exceeds it elsewhere. A further ablation shows the gain is not the averaging: the ensemble-mean entropy from the same forty masked passes is rank-identical to single-pass entropy (Spearman 0.97 to 0.995 ), and the weighted score beats it sig-nificantly on both grounded analysis cells (Appendix D). On CoQA the semantically weighted variants, Sem- and Adapt-ASMI, lead both RAUQ and its entropy variant on all four backbones, and the gap between those two RAUQ variants shows that RAUQ’s competitiveness comes from its entropy term rather than from attention, so the attention signal ASMI reads is not already captured by the strongest attention base-line. ASMI is also the more reproducible of the two families: redrawing only internal randomness moves Adapt-ASMI’s PRR by ±0.006 against ±0.014 to 0.041 for the sample-diversity competitors (Appendix K). Absolute PRR is not comparable across columns, so all comparisons are within a column. 0.00 0.25 0.50 0.75      
+
+> extra-abstention fraction (within confident set)
+> 0.05 0.10 0.15
+> retained error rate (lower is better ↓ )
+> BabiQA (grounded)
+> 0.00 0.25 0.50 0.75
+> extra-abstention fraction (within confident set)
+> CoQA (grounded)
+> usem (ours) entropy
+
+Figure 5: Deployment payoff in the confident stratum. Re-tained error among MSP-confident predictions as an increas-ing fraction of them is abstained by ASMI fragility ( usem ,blue) or by predictive entropy (black). On grounded QA the ASMI curve stays below entropy at every abstention level. 
+
+A distinct signal, not a proxy for output confidence. Ag-gregate PRR shows ASMI ranks errors as well as the strongest single-pass baselines, but not that it reads a different signal. Because token-level MI and single-pass entropy are strongly correlated (Spearman around 0.9 on CoQA), we test distinct-ness at the source rather than the aggregate. On the greedy response we regress the semantically-weighted score usem 
+
+on MSP and single-pass entropy out of fold and ask whether its residual still predicts errors. It does. The residual detects errors above chance on every grounded dataset, in five of the six backbone-dataset cells at AUROCs of 0.54 to 0.60 , one of them at the estimator’s own Monte Carlo resolution, so the information usem adds is not contained in output confidence or entropy (Table 6), consistent with theoretical and probing evidence that output confidence leaves error information un-read (Yadkori et al. 2024; Yuksekgonul et al. 2024; Orgad et al. 2024). The effect is localized: splitting sequences at the medians of MSP and usem , the confident-but-fragile cell is wrong three times as often as the confident-robust cell, on BabiQA 31% against 10% , a gap MSP alone cannot see (Fig. 4). The signal is regime-graded exactly as the design predicts: the raw gap between fragile and robust cells also appears on parametric TriviaQA, but there it is entirely ab-sorbed by single-pass confidence and entropy with the resid-ual at chance on both backbones ( 0.49 and 0.51 ), whereas on grounded QA a residual beyond both remains (Table 6). A separate check on real grounded QA shows the semantic kernel improving the ranking by discounting surface-form variation rather than adding information orthogonal to the masking disagreement, so there the distinct signal is carried by the attention-masking disagreement itself (Appendix D). 
+
+Deployment payoff. In selective prediction (Geifman and El-Yaniv 2017; Kamath, Jia, and Liang 2020), the value of the signal concentrates on confident errors, the predic-tions a standard confidence filter keeps and acts on. Among the answers MSP rates as confident, abstaining the ASMI-fragile ones roughly halves the retained error on grounded QA, from 16 .0% to 5.6% on BabiQA and from 13 .6% to Confident error Filter by ASMI Filter by entropy BabiQA 0.160 0.056 0.092       
+
+> CoQA 0.136 0.072 0.108
+> TriviaQA 0.344 0.147 0.133
+
+Table 4: Retained error in the MSP-confident stratum after abstaining its top half by usem or by entropy (final cover-age 0.25 , Qwen3-4B-base). On grounded QA ASMI roughly halves the confident error, while on parametric TriviaQA en-tropy leads instead. 
+
+7.2% on CoQA, against 9.2% and 10 .8% for the same ab-stention budget spent on entropy, and the gap holds across the whole abstention range rather than at a single operating point (Table 4, Fig. 5). On parametric TriviaQA the order reverses, so the boundary holds in deployment too. As a standalone score ASMI also gives a lower area under the risk-coverage curve than MSP or entropy on the grounded benchmarks with the ordering reversing on TriviaQA as the boundary predicts (Appendix E). The gain is localized rather than global: added to a logistic selector over MSP and en-tropy fit across all coverage levels, ASMI leaves the overall risk-coverage curve unchanged, because its error information concentrates in the confident stratum and a single global fit averages that region together with the rest. A case-level look matches the mechanism. For confident BabiQA errors most masked subnetworks reproduce the confident wrong answer while a minority route to the true location, recovering gar-den where the greedy answer is bedroom, a disagreement the single pass and its entropy cannot see. 
+
+Boundary: parametric-knowledge QA. TriviaQA is the designed negative control, and the boundary is sharp. On the same SQuAD examples with the passage removed, Sem-ASMI sits significantly below MSP ( −0.054 , 95% CI 
+
+[−0.088 , −0.021] ) while the open-book condition is a sta-tistical tie, so the pattern reproduces within a single dataset when only the knowledge source moves (Appendix C). The practical instruction is symmetric: use this sampling-free sig-nal as a faithfulness check where answers are routed through provided context, and hand off to output-distribution base-lines for closed-book recall. 
+
+Operating envelope. Every remaining exception is mapped, not noise. All TriviaQA cells sit at or below MSP as the boundary predicts, and the one grounded exception has an identified cause. On BabiQA with Llama-2-7B head mask-ing barely moves the output, so correct and incorrect answers carry the same near-zero MI and ASMI has no fragility to read while MSP still ranks the errors, an over-robustness that is a model property rather than an artifact (Table 12). The BabiQA depth instability is detailed in Appendix I. The cell announces itself before any correctness label exists: the same masking response that produces the score also reports when a model is too robust for it to carry information. We report this as a candidate label-free screen rather than a validated one, since its support is a single cell examined after the fact. 
+
+Structural analysis. A head-level decomposition confirms that the fragility ASMI reads is head borne (Appendix F). At the operating layer a causal probe makes the dependence direct: ablating a token’s few most critical heads flips the pre-diction for high-MI tokens while leaving low-MI tokens al-most unchanged. The concentration of this dependence cou-ples positively to uncertainty on the grounded benchmarks and negatively on parametric recall, and mutual information tracks the head structure more than single-pass entropy does. 
+
+## Limitations & Future Work 
+
+The BALD form of Eq. 5 admits an epistemic reading of MI t
+
+under the variational view of inference-time dropout (Gal and Ghahramani 2016), but entropy-based decompositions of epistemic and aleatoric uncertainty face formal objec-tions (Wimmer et al. 2023), so we use MI t as a disagreement functional and claim no empirical separation of the two. Distinctness replicates across both backbones and all three grounded datasets, with two caveats: the CoQA residual on Qwen3-8B does not exclude chance, and the SQuAD effect on Qwen3-4B lies at the estimator’s own Monte Carlo res-olution (Appendix D). On the parametric control the top-K
+
+truncation retains 77 .3% of the high-MI mass against over 
+
+95% on grounded data, but re-scoring TriviaQA at K = 256 
+
+raises mean token coverage to 0.97 and leaves Sem-ASMI significantly below MSP, so the parametric-side deficit is not a truncation artifact (Appendix C). Extending the two-axis characterization to reasoning, open-ended generation, instruction-tuned models, and further parametric tasks is future work, for which our structural analysis provides the measurement tool. 
+
+## Conclusion 
+
+We introduced attention-path fragility as an uncertainty sig-nal, instantiated as ASMI, a training-free estimator that probes attention-pathway redundancy by random head mask-ing and reads it from a single greedy response. Two correlated signals can look identical in aggregate, so we tested dis-tinctness at the source: the semantically-weighted score adds error-predictive information beyond confidence and entropy, concentrated in confident-but-fragile predictions. Its value is local rather than global: a global selector cannot exploit it, yet in the confident stratum, where a deployed system acts, it roughly halves the error. The distinctness is regime-graded and confirmed by a designed contrast: from that single greedy pass ASMI is competitive with the strongest sampling-based baselines on context-routed QA, and reverts to or below the free MSP baseline on parametric recall, exactly as the hy-pothesis requires. A head-level analysis traces this boundary to whether fragility couples to errors, and a causal ablation confirms the fragility is carried by identifiable critical heads. The lesson outlasts the estimator: for a signal tied to a spe-cific computation, where it applies and where its value lands follow from the locus of a model’s errors, and we offer ASMI as a case for treating a UE signal’s domain of applicability as a predictable property rather than a discovered one. References 
+
+Azaria, A.; and Mitchell, T. 2023. The internal state of an LLM knows when it’s lying. In Findings of EMNLP , 967– 976. Chen, C.; Liu, K.; Chen, Z.; et al. 2024. INSIDE: LLMs’ internal states retain the power of hallucination detection. 
+
+arXiv preprint arXiv:2402.03744 .Chuang, Y.-S.; Qiu, L.; Hsieh, C.-Y.; et al. 2024. Lookback lens: Detecting and mitigating contextual hallucinations in large language models using only attention maps. In Pro-ceedings of EMNLP , 1419–1436. Dai, D.; Dong, L.; Hao, Y.; et al. 2022. Knowledge neurons in pretrained transformers. In Proceedings of ACL , 8493–8502. Duan, J.; Cheng, H.; Wang, S.; et al. 2024. Shifting attention to relevance: Towards the predictive uncertainty quantifica-tion of free-form large language models. In Proceedings of ACL , 5050–5063. Fadeeva, E.; Vashurin, R.; Tsvigun, A.; et al. 2023. LM-polygraph: Uncertainty estimation for language models. In 
+
+Proceedings of EMNLP: System Demonstrations , 446–461. Farquhar, S.; Kossen, J.; Kuhn, L.; and Gal, Y. 2024. Detect-ing hallucinations in large language models using semantic entropy. Nature , 630(8017): 625–630. Gal, Y.; and Ghahramani, Z. 2016. Dropout as a bayesian ap-proximation: Representing model uncertainty in deep learn-ing. In Proceedings of ICML , 1050–1059. Geifman, Y.; and El-Yaniv, R. 2017. Selective classification for deep neural networks. Advances in Neural Information Processing Systems , 30. Geva, M.; Bastings, J.; Filippova, K.; and Globerson, A. 2023. Dissecting recall of factual associations in auto-regressive language models. In Proceedings of EMNLP ,12216–12235. Geva, M.; Schuster, R.; Berant, J.; and Levy, O. 2021. Trans-former feed-forward layers are key-value memories. In Pro-ceedings of EMNLP , 5484–5495. Guo, C.; Pleiss, G.; Sun, Y.; and Weinberger, K. Q. 2017. On calibration of modern neural networks. In Proceedings of ICML , 1321–1330. He, S.; Sun, G.; Shen, Z.; and Li, A. 2024. What matters in transformers? not all attention is needed. arXiv preprint arXiv:2406.15786 .Houlsby, N.; Huszár, F.; Ghahramani, Z.; and Lengyel, M. 2011. Bayesian active learning for classification and prefer-ence learning. arXiv preprint arXiv:1112.5745 .Huang, L.; Yu, W.; Ma, W.; et al. 2025. A survey on hal-lucination in large language models: Principles, taxonomy, challenges, and open questions. ACM Transactions on Infor-mation Systems , 43(2): 1–55. Jiang, A. Q.; Sablayrolles, A.; Mensch, A.; et al. 2023. Mis-tral 7B. arXiv preprint arXiv:2310.06825 .Jiang, Z.; Araki, J.; Ding, H.; and Neubig, G. 2021. How can we know when language models know? on the calibration of language models for question answering. Transactions of the Association for Computational Linguistics , 9: 962–977. Jin, Z.; Cao, P.; Yuan, H.; et al. 2024. Cutting off the head ends the conflict: A mechanism for interpreting and mitigat-ing knowledge conflicts in language models. In Findings of ACL , 1193–1215. Joshi, M.; Choi, E.; Weld, D. S.; and Zettlemoyer, L. 2017. Triviaqa: A large scale distantly supervised challenge dataset for reading comprehension. In Proceedings of ACL , 1601– 1611. Kadavath, S.; Conerly, T.; Askell, A.; et al. 2022. Lan-guage models (mostly) know what they know. arXiv preprint arXiv:2207.05221 .Kalai, A. T.; Nachum, O.; Vempala, S. S.; and Zhang, E. 2025. Why language models hallucinate. arXiv preprint arXiv:2509.04664 .Kamath, A.; Jia, R.; and Liang, P. 2020. Selective question answering under domain shift. In Proceedings of ACL , 5684– 5696. Kang, Z.; Zhao, X.; and Song, D. 2025. Scalable Best-of-N Selection for Large Language Models via Self-Certainty. 
+
+arXiv preprint arXiv:2502.18581 .Kossen, J.; Han, J.; Razzak, M.; et al. 2024. Semantic entropy probes: Robust and cheap hallucination detection in llms. 
+
+arXiv preprint arXiv:2406.15927 .Kuhn, L.; Gal, Y.; and Farquhar, S. 2023. Seman-tic uncertainty: Linguistic invariances for uncertainty es-timation in natural language generation. arXiv preprint arXiv:2302.09664 .Longpre, S.; Perisetla, K.; Chen, A.; et al. 2021. Entity-based knowledge conflicts in question answering. In Proceedings of EMNLP , 7052–7063. Malinin, A.; and Gales, M. 2020. Uncertainty estima-tion in autoregressive structured prediction. arXiv preprint arXiv:2002.07650 .Mallen, A.; Asai, A.; Zhong, V.; et al. 2023. When not to trust language models: Investigating effectiveness of para-metric and non-parametric memories. In Proceedings of ACL , 9802–9822. Manakul, P.; Liusie, A.; and Gales, M. 2023. Selfcheckgpt: Zero-resource black-box hallucination detection for gener-ative large language models. In Proceedings of EMNLP ,9004–9017. Maynez, J.; Narayan, S.; Bohnet, B.; and McDonald, R. 2020. On faithfulness and factuality in abstractive summarization. In Proceedings of ACL , 1906–1919. Meng, K.; Bau, D.; Andonian, A.; and Belinkov, Y. 2022. Locating and editing factual associations in gpt. Advances in Neural Information Processing Systems , 35: 17359–17372. Michel, P.; Levy, O.; and Neubig, G. 2019. Are sixteen heads really better than one? Advances in Neural Information Processing Systems , 32. Nikitin, A.; Kossen, J.; Gal, Y.; and Marttinen, P. 2024. Ker-nel language entropy: Fine-grained uncertainty quantifica-tion for llms from semantic similarities. Advances in Neural Information Processing Systems , 37: 8901–8929. Olsson, C.; Elhage, N.; Nanda, N.; et al. 2022. In-context learning and induction heads. arXiv preprint arXiv:2209.11895 .Orgad, H.; Toker, M.; Gekhman, Z.; et al. 2024. LLMs know more than they show: On the intrinsic representation of LLM hallucinations. arXiv preprint arXiv:2410.02707 .Ortu, F.; Jin, Z.; Doimo, D.; Sachan, M.; Cazzaniga, A.; and Schölkopf, B. 2024. Competition of mechanisms: Tracing how language models handle facts and counterfactuals. In 
+
+Proceedings of ACL , 8420–8436. Rajpurkar, P.; Zhang, J.; Lopyrev, K.; and Liang, P. 2016. SQuAD: 100,000+ Questions for Machine Comprehension of Text. arXiv preprint arXiv:1606.05250 .Reddy, S.; Chen, D.; and Manning, C. D. 2019. Coqa: A conversational question answering challenge. Transactions of the Association for Computational Linguistics , 7: 249– 266. Smith, L.; and Gal, Y. 2018. Understanding Measures of Un-certainty for Adversarial Example Detection. In Proceedings of UAI , 560–569. Sun, Z.; Zang, X.; Zheng, K.; et al. 2025. ReDeEP: De-tecting hallucination in retrieval-augmented generation via mechanistic interpretability. In Proceedings of ICLR .Takayama, J.; and Arase, Y. 2019. Relevant and Informative Response Generation using Pointwise Mutual Information. In Proceedings of the First Workshop on NLP for Conversa-tional AI , 133–138. Todd, E.; Li, M.; Sen Sharma, A.; Mueller, A.; Wallace, B.; and Bau, D. 2024. Function vectors in large language models. In Proceedings of ICLR .Touvron, H.; Martin, L.; Stone, K.; et al. 2023. Llama 2: Open foundation and fine-tuned chat models. arXiv preprint arXiv:2307.09288 .van der Poel, L.; Cotterell, R.; and Meister, C. 2022. Mutual Information Alleviates Hallucinations in Abstractive Sum-marization. In Proceedings of EMNLP , 5956–5965. Vashurin, R.; Fadeeva, E.; Vazhentsev, A.; et al. 2025a. Benchmarking uncertainty quantification methods for large language models with lm-polygraph. Transactions of the Association for Computational Linguistics , 13: 220–248. Vashurin, R.; Goloburda, M.; Nakov, P.; Shelmanov, A.; and Panov, M. 2025b. CoCoA: A Generalized Approach to Un-certainty Quantification by Integrating Confidence and Con-sistency of LLM Outputs. arXiv preprint arXiv:2502.04964 .Vazhentsev, A.; Rvanova, L.; Kuzmin, G.; et al. 2025. Uncertainty-aware attention heads: Efficient unsupervised uncertainty quantification for LLMs. arXiv preprint arXiv:2505.20045 .Voita, E.; Talbot, D.; Moiseev, F.; Sennrich, R.; and Titov, I. 2019. Analyzing multi-head self-attention: Specialized heads do the heavy lifting, the rest can be pruned. In Pro-ceedings of ACL , 5797–5808. Wang, T.; Kulkarni, A.; Cody, T.; et al. 2025. GEN-UINE: Graph Enhanced Multi-level Uncertainty Estimation for Large Language Models. In Findings of EMNLP , 20522– 20541. Weston, J.; Bordes, A.; Chopra, S.; et al. 2015. Towards ai-complete question answering: A set of prerequisite toy tasks. 
+
+arXiv preprint arXiv:1502.05698 .Wimmer, L.; Sale, Y.; Hofman, P.; Bischl, B.; and Hüller-meier, E. 2023. Quantifying aleatoric and epistemic un-certainty in machine learning: Are conditional entropy and mutual information appropriate measures? In Proceedings of UAI , 2282–2292. Wu, W.; Wang, Y.; Xiao, G.; Peng, H.; and Fu, Y. 2025. Re-trieval head mechanistically explains long-context factuality. In Proceedings of ICLR .Wu, X.; Yao, W.; Chen, J.; et al. 2024. From language mod-eling to instruction following: Understanding the behavior shift in LLMs after instruction tuning. In Proceedings of NAACL , 2341–2369. Xu, R.; Qi, Z.; Guo, Z.; et al. 2024. Knowledge conflicts for LLMs: A survey. In Proceedings of EMNLP , 8541–8565. Yadkori, Y. A.; Kuzborskij, I.; György, A.; and Szepesvari, C. 2024. To believe or not to believe your llm: Iterative prompting for estimating epistemic uncertainty. Advances in Neural Information Processing Systems , 37: 58077–58117. Yang, A.; Li, A.; Yang, B.; et al. 2025. Qwen3 technical report. arXiv preprint arXiv:2505.09388 .Yu, Q.; Merullo, J.; and Pavlick, E. 2023. Characterizing mechanisms for factual recall in language models. In Pro-ceedings of EMNLP , 9924–9959. Yuksekgonul, M.; Chandrasekaran, V.; Jones, E.; et al. 2024. Attention satisfies: A constraint-satisfaction lens on factual errors of language models. In Proceedings of ICLR .Zha, Y.; Yang, Y.; Li, R.; and Hu, Z. 2023. AlignScore: Eval-uating factual consistency with a unified alignment function. In Proceedings of ACL , 11328–11348. Zhang, C.; Liu, F.; Basaldella, M.; and Collier, N. 2024. Luq: Long-text uncertainty quantification for llms. In Proceedings of EMNLP , 5244–5262. Zhang, T.; Shi, H.; Wang, Y.; et al. 2025. TokUR: Token-Level Uncertainty Estimation for Large Language Model Reasoning. arXiv preprint arXiv:2505.11737 .Zhou, Z.; Yu, H.; Zhang, X.; et al. 2025. On the role of at-tention heads in large language model safety. In Proceedings of ICLR .A Implementation Details 
+
+Compute and memory overhead. With prefix caching, the scoring cost of ASMI is Cpre + S C suf rather than 
+
+S(Cpre + Csuf ), where the prefix below the target layer is computed once and the suffix is recomputed under each of the S masks. With S = 40 the resulting overhead depends only on the target depth. On the 36-layer Qwen backbones the masked layer sits at ℓ⋆ = −14 , so a 22-layer prefix is computed once and a 14-layer suffix is scored 40 times, giving (22 + 40 × 14) /36 ≈ 16 × the FLOPs of a single unmasked scoring pass. On the 32-layer Llama-2-7B and Mistral-7B backbones the masked layer sits at ℓ⋆ = −13 ,giving (19 + 40 × 13) /32 ≈ 17 ×. Memory overhead is limited to the shared prefix cache hcache , since each subnet-work is defined implicitly by its binary mask m(s) and no parameter copies are materialized. 
+
+Evaluation protocol. The Prediction Rejection Ratio (PRR) (Malinin and Gales 2020) is the normalized area be-tween the uncertainty-based rejection curve and the random-rejection baseline, taking values in [−1, 1] , where 1 corre-sponds to oracle rejection (rejecting examples in order of decreasing error) and 0 to uninformative uncertainty. We compute PRR with the LM-Polygraph (Fadeeva et al. 2023) implementation, using AlignScore (Zha et al. 2023) as the sequence-level quality metric throughout. PRR uses the con-tinuous AlignScore, and the binary analyses (error rates, AU-ROC, and the confident-stratum filters) binarize correctness at 0.5. Standard errors for all reported PRR values are esti-mated by bootstrap resampling over test examples. 
+
+Baseline configuration. All baseline UE methods are run within LM-Polygraph with their default hyperparameters, ex-cept that all stochastic sampling uses a fixed temperature of 
+
+0.5 with 10 generations, following the sampling protocol of SAR (Duan et al. 2024) and identical across methods and backbones. Greedy-decoded responses used for scoring are shared across all methods on each benchmark, so quality-metric values are identical across estimators and PRR differ-ences reflect only the uncertainty rankings. 
+
+## B Top-K Coverage Analysis 
+
+This appendix justifies the top-K approximation used in computing the mutual information MI t defined in the Methodology section. We chose K = 64 across all experi-ments based on the following analysis. 
+
+Setup. For each benchmark and each Monte Carlo sample 
+
+s ∈ { 1, . . . , S }, we collect the per-token predictive distribu-tions p(s) 
+
+> t
+
+produced by Qwen3-4B-base under the sampled attention-head mask m(s) at the target layer ℓ⋆. At each to-ken position we compute the cumulative probability mass covered by the top-K candidates, 
+
+Coverage (s) 
+
+> t
+
+(K) = X
+
+> i∈top -K(t,s )
+
+p(s) 
+
+> t
+
+(i), (16) where top -K(t, s ) denotes the top-K indices of p(s) 
+
+> t
+
+, and average over all generated tokens and all S = 40 samples.                               
+
+> Benchmark nK=8 16 32 64 128
+> CoQA 567 0.851 0.903 0.935 0.955 0.969
+> SQuAD 1480 0.955 0.972 0.982 0.987 0.991
+> BabiQA 216 0.950 0.966 0.975 0.981 0.986
+> TriviaQA 397 0.556 0.633 0.705 0.773 0.833
+
+Table 5: Cumulative top-K coverage on the high-MI stratum, the top 10% of tokens by MI t. The three grounded bench-marks are well covered at K = 64 , whereas TriviaQA is not. 
+
+MI stratification. We stratify tokens by their MI t value into three 10% bands: low-MI (bottom decile), mid-MI (the central band, P45 to P55 ), and high-MI (top decile). The high-MI band is the stringent case, since these tokens have the most spread subnetwork distributions. 
+
+Coverage results. Low-MI tokens are trivially covered, with K = 1 alone above 99% of mass on every benchmark, confirming that confident predictions are sharply peaked. For mid-MI tokens, coverage at K = 64 exceeds 99% on all four benchmarks, with TriviaQA the lowest. The high-MI band is the stringent case (Table 5). The three grounded benchmarks stay above 95% at K = 64 , while TriviaQA reaches 77.3% and remains at 88.5% even at K = 256 .
+
+Approximation bias. For the three grounded benchmarks the excluded high-MI tail mass is at most about 4.5% (CoQA, the tightest case), which bounds its entropy contribution by 
+
+−0.045 log 0 .045 ≈ 0.14 nats on either H(¯ pt) or H(p(s) 
+
+> t
+
+),well below the cross-token variation in MI t used as the un-certainty signal. On TriviaQA the excluded tail is larger, so the absolute bias is larger, but the relative ranking of tokens by MI t, which is what PRR depends on, is preserved across the choice of K in our checks (Appendix C). 
+
+Relation to the mechanism. The coverage pattern follows the same grounded and parametric split as the benchmark results. On CoQA, SQuAD, and BabiQA the candidate set at uncertain tokens is constrained by the input context, so subnetwork outputs stay concentrated on a moderate number of candidates even at high MI. On TriviaQA, parametric retrieval of factoid entities exposes a long tail of plausible alternatives, and coverage rises slowly with K. TriviaQA is also the task in Table 1 where ASMI is not the dominant method. 
+
+## C Boundary Deconfounds 
+
+Two pre-registered checks ask whether the parametric-side boundary could be an artifact of the estimator rather than a property of the task regime. 
+
+Enlarged truncation. We re-ran the masked scoring on closed-book TriviaQA with the truncation enlarged from 
+
+K = 64 to K = 256 (n = 5K , identical per-example mask seeds). Mean token coverage rises to 0.97 , where the high-MI stratum of Table 5 is the stringent case rather than the population average. Sem-ASMI nonetheless stays significantly below MSP, a paired gap of −0.041 PRR (95% CI [−0.055 , −0.025] ), and on the common sub-set the paired effect of enlarging K is slightly negative (−0.018 , CI [−0.031 , −0.005] for Sem-ASMI and −0.026 ,CI [−0.046 , −0.006] for raw MI). The parametric-side deficit is therefore not a truncation artifact. The adaptive variant was not re-scored, since its gate needs sample-embedding inputs not cached in this pipeline. 
+
+Same-dataset contrast. A second control holds the dataset fixed and moves only the knowledge source. We re-ran SQuAD on the same 5K examples with the passage re-moved from the prompt, keeping questions, decoding, the AlignScore metric, and the ASMI operating point iden-tical, and clustering both conditions by the original pas-sage ( 1,934 clusters). The Sem-ASMI to MSP gap is a statistical tie in the open-book condition ( −0.034 , 95% CI 
+
+[−0.078 , +0 .010] ) and significantly negative once the pas-sage is removed ( −0.054 , CI [−0.088 , −0.021] ), which re-produces the parametric-side pattern within a single dataset. Removing the passage also raises the base error rate sharply (mean AlignScore 0.867 to 0.109 ), so we read the paired within-condition gaps. Absolute PRR levels are compressed at this error rate. 
+
+## D The Distinct-Signal Analysis 
+
+This appendix details the test behind the “A distinct signal” paragraph. Aggregate PRR and rank correlation cannot sep-arate two questions: whether ASMI ranks errors well, and whether it reads information that output confidence does not. Because token-level MI t and single-pass entropy are strongly rank correlated (Spearman around 0.9 on CoQA), we judge distinctness at the source, by residualization, not by aggre-gate scores. 
+
+Setup. All quantities are computed at the operating layer. The confident-but-fragile and kernel analyses use Qwen3-4B-base, selecting BabiQA by the largest headroom-normalized gap between Sem-ASMI and MSP, with CoQA as a real-grounded generalization target and closed-book Triv-iaQA as the parametric contrast, and the residual test ex-tends to all four datasets on both Qwen backbones (Table 6). For each generated sequence we record the semantically-weighted score usem , the raw MI , the single-pass entropy 
+
+H, MSP, the ensemble-mean and mean-per-sample entropies used inside MI , and the AlignScore label. 
+
+Residualization. We fit a logistic model of correctness on {MSP , H } and, out of fold, measure whether adding 
+
+usem improves error prediction (incremental AUROC and a likelihood-ratio test) and whether the part of usem orthogo-nal to {MSP , H } detects errors on its own (residual AUROC against 0.5). All splits are out of fold with a fixed seed and bootstrap confidence intervals. Across the grid the residual excludes chance in five of the six grounded cells, with CoQA on Qwen3-8B the one miss, and sits at chance on Trivi-aQA at both backbones (Table 6). The likelihood-ratio test is nominally significant on TriviaQA at Qwen3-8B, but both intervals include chance and the interval criterion is what we use throughout. The raw MI carries part of the same resid-ual on BabiQA and is borderline on CoQA, and on BabiQA at Qwen3-8B it exceeds the weighted score ( 0.687 against 
+
+0.603 ), so the kernel is not uniformly helpful at the larger scale. 
+
+SQuAD at Qwen3-4B. The two 5K rows are independent Monte Carlo draws of the same estimator, correlating at 0.95 
+
+at the sequence level, and the effect sits at the estimator’s resolution: one draw excludes chance and the other does not. Within a draw the signal strengthens under alternative aggre-gations, from 0.550 for the mean to 0.594 for the top-quartile mean and 0.613 for the max, consistent with mean aggre-gation diluting a token-level signal over SQuAD’s longest answers. This draw sensitivity concerns a borderline signifi-cance verdict rather than score instability, consistent with the redraw correlations of Appendix K. 
+
+The confident-but-fragile split. Splitting sequences at the medians of MSP and usem gives a two-by-two grid of er-ror rates. On BabiQA the confident-fragile cell (high MSP, high usem ) carries an error gap of 0.21 [0 .12 , 0.29] over the confident-robust cell, the contrast plotted in Figure 4. The gap is 0.12 [0 .04 , 0.21] on CoQA and 0.28 [0 .19 , 0.37] on TriviaQA, where a high base error rate inflates the absolute difference. The raw gap is therefore a poor regime marker on its own. The regimes separate only after conditioning on 
+
+{MSP , H }, where the grounded gaps still carry information and the TriviaQA gap does not (Table 6). Within the confident stratum the gap is not resolvable at the token level ( −0.09 [−0.16 , 0.00] ), consistent with the sequence-level reading below. 
+
+What the kernel adds. The residual over {MSP , H }
+
+above tests distinctness from output confidence. A sepa-rate question is how much of the distinct signal comes from the semantic kernel rather than from the masking disagreement, and it cannot be read from the same resid-ual. The two entropies inside the mutual information, the ensemble-mean entropy H(¯ pt) and the mean-per-sample en-tropy 1
+
+> S
+
+P 
+
+> s
+
+H(p(s) 
+
+> t
+
+), span MI t by construction, since MI t
+
+is their difference (Eq. 5). Controlling for both therefore removes the entire linear contribution of the mutual infor-mation, so the residual of usem = MI t(1 − At) under this control measures what the kernel factor (1 − At) adds, not distinctness from confidence. So read, the kernel contributes error information beyond the masking disagreement on syn-thetic BabiQA ( 0.603 [0 .565 , 0.641] ) and little on real CoQA (0.513 [0 .465 , 0.562] ). This is not the distinct signal weaken-ing on CoQA, which the {MSP , H } test in Table 6 already rules out. It is that on real grounded data the distinct signal is carried by the attention-masking disagreement itself, and the kernel improves the ranking by discounting surface-form dis-agreement rather than by adding an axis orthogonal to MI t.This is consistent with the kernel’s 0.04 to 0.06 PRR lift on CoQA in Table 1, a reranking within the mutual-information ordering rather than new information. For the same span rea-son we do not control raw MI with these entropies, since its residual would be zero by construction. 
+
+Ensemble-mean entropy alone. A natural question is whether the masked ensemble helps only through averaging, since the ensemble-mean entropy H(¯ pt) is a free by-product Backbone Dataset Residual AUROC Incr. AUROC Qwen3-4B BabiQA 0.589 [0 .547 , 0.627] +0 .020 [+0 .008 , +0 .032]                                         
+
+> Qwen3-4B CoQA 0.549 [0 .501 ,0.595] +0 .018 [+0 .005 ,+0 .031]
+> Qwen3-4B SQuAD, analysis draw 0.550 [0 .516 ,0.584] +0 .007 [ −0.000 ,+0 .015]
+> Qwen3-4B SQuAD, deployed draw 0.501 [0 .466 ,0.535] +0 .001 [ −0.002 ,+0 .003]
+> Qwen3-4B TriviaQA 0.495 [0 .465 ,0.524] −0.001 [ −0.003 ,+0 .000]
+> Qwen3-8B BabiQA 0.603 [0 .558 ,0.641] +0 .019 [+0 .009 ,+0 .029]
+> Qwen3-8B CoQA 0.517 [0 .472 ,0.560] +0 .007 [ −0.000 ,+0 .015]
+> Qwen3-8B SQuAD 0.543 [0 .504 ,0.586] +0 .004 [ −0.006 ,+0 .014]
+> Qwen3-8B TriviaQA 0.511 [0 .475 ,0.547] +0 .002 [ −0.002 ,+0 .006]
+
+Table 6: Out-of-fold residual and incremental error-detection AUROC of usem over {MSP , H } (95% CIs). A cell counts as detected when the residual interval excludes 0.5. The two SQuAD Qwen3-4B rows are the same estimator under two independent Monte Carlo mask draws. of the same forty passes. Scored alone on the three cached Qwen3-4B analysis cells (BabiQA and CoQA at n = 1K ,TriviaQA at n = 1 .5K ), it is essentially the single-pass en-tropy, with Spearman rank correlations from 0.967 to 0.995 ,so the ensemble mean adds no standalone information. Raw 
+
+MI does not beat it on the grounded cells (both intervals cross zero), but the semantically weighted usem does, by +0 .046 
+
+PRR on BabiQA (95% CI [+0 .004 , +0 .089] ) and +0 .093 on CoQA ( [+0 .032 , +0 .156] ) under the same cluster-respecting paired bootstrap. On parametric TriviaQA the ordering re-verses and H(¯ pt) alone is the best of the four, consistent with the regime boundary. Averaging over masks therefore accounts for none of the gain, which comes from the weighted disagreement term that the semantic kernel multiplies. 
+
+Further scope. Two limits of the analysis are worth record-ing. The distinctness is established by residualization and not by an asymmetric error set: at a matched flag rate on BabiQA, usem and entropy flag balanced disjoint error sets (McNemar p = 0 .26 ), so the correct claim is that usem adds error-predictive information beyond output confidence, not that it catches a class of errors entropy is blind to. And within the confident stratum the effect is not resolvable at the token level with per-sequence labels (AUROC near 0.5), so it is a sequence-level phenomenon. 
+
+## E Deployment Payoff: Full Analysis 
+
+This appendix gives the full selective-prediction analysis be-hind the deployment result in the main text. We report the single-signal risk-coverage comparison, the honest null for a global selector, and the parametric contrast, none of which fit in the main body. 
+
+Protocol. For each signal we sort predictions by uncer-tainty, retain the most confident fraction (the coverage c), and abstain on the rest. The retained error rate is the risk. We report the area under the risk-coverage curve (AURC, lower is better) (Geifman and El-Yaniv 2017). Any selector that combines signals is fit out-of-fold with the same clus-ter keys as the main-text bootstrap, so no example scores itself. We report grounded cells (BabiQA, CoQA) and the parametric contrast (TriviaQA) throughout. SQuAD shows no confident-stratum gain on Qwen3-4B, consistent with the             
+
+> Cell MSP Entropy usem
+> BabiQA (grounded) 0.151 0.151 0.133
+> CoQA (grounded) 0.134 0.134 0.123
+> TriviaQA (parametric) 0.314 0.305 0.327
+
+Table 7: Single-signal area under the risk-coverage curve (AURC, lower is better). Bold marks the best signal in each row. dilution pattern of Appendix D, so the payoff claim rests on BabiQA and CoQA. 
+
+Single-signal risk-coverage. Table 7 reports AURC for each signal on its own. On both grounded cells usem has the lowest AURC, and on parametric TriviaQA it is the worst, mirroring the benchmark boundary. The advantage is con-centrated at the most-confident end of the curve: usem is lowest at coverage 0.5 to 0.6 and crosses the single-pass sig-nals near full coverage. This is the same confident-region effect that the confident-stratum filter exploits below, shown within the confident stratum in Figure 5 of the main text. 
+
+A trained global selector. We next ask whether usem 
+
+improves a trained selector over the single-pass signals. We fit an out-of-fold logistic model of correctness on 
+
+{MSP , entropy } (base) and on {MSP , entropy , u sem }
+
+(full), and compare their risk-coverage curves. Across cov-erage {.7, . 8, . 9} the two curves stay within noise on both grounded cells, with paired bootstrap intervals on the differ-ence that include zero throughout, and likewise on TriviaQA. The reason is localization rather than absence: usem ’s error information sits almost entirely in the confident stratum, so a single global fit that spreads one model across all coverage levels averages that region together with the rest and cannot use it. The same information is what the confident-stratum filter below turns into a large gain. 
+
+Filtering the confident stratum. The payoff appears when the filter targets the confident stratum directly, which is the training-free result reported in the main text (Table 4, Fig-ure 5). Within the MSP-confident half, abstaining on the top half by usem gives a final coverage of 0.25 and roughly halves the retained error on BabiQA and CoQA, well ahead of spending the same abstention budget on predictive en-tropy. On parametric TriviaQA the effect reverses and en-tropy filtering is slightly better. The null global selector and the confident-stratum filter are consistent with each other, since the deployment value of usem is concentrated in the confident-but-fragile region the mechanism predicts. 
+
+Scope. The analysis covers two grounded cells and one parametric contrast on Qwen3-4B-base. usem runs on Trivi-aQA as well, with a finite AURC of 0.327 , and simply loses to the single-pass signals there rather than being inapplicable. 
+
+## F Head-Level Structural Analysis 
+
+This appendix gives the head-level picture behind the “Struc-tural analysis” paragraph, at the estimator’s operating layer. It is deliberately brief, since the operating-layer validation of the signal is the confident-but-fragile analysis of Appendix D. 
+
+Estimation setup. The analysis uses Qwen3-4B-base with the same mask rate p = 0 .15 and top-K truncation K = 64 
+
+as the main experiments, at the operating depth of about 60% .The only change is an enlarged budget of San = 300 masked passes per example to reduce the variance of the per-head estimates, leaving the estimator unchanged at S = 40 . We analyze the first 500 examples of each split, which yields 
+
+2,780 , 7,374 , 1,089 , and 2,027 generated tokens on CoQA, SQuAD, BabiQA, and TriviaQA. Permutation nulls use 1Kshuffles per token and confidence intervals use 2K example-level bootstrap resamples. 
+
+Criticality estimator. For each token t, the criticality of head h is the difference in mean divergence between the masks that ablate it and those that keep it, 
+
+ˆβh,t = dt m(s)  
+
+> h=0
+
+− dt m(s) 
+
+> h=1
+
+, (17) where dt m(s)  
+
+> h=b
+
+averages d(s) 
+
+> t
+
+= KL( p(s) 
+
+> t
+
+∥¯pt) over the samples with mask bit b. Because masks are independent Bernoulli variables, ˆβh,t is unbiased for the marginal ef-fect of ablating head h. We measure the concentration of the non-negative profile by the Herfindahl index HHI t =
+
+P 
+
+> h
+
+w2 
+
+> h,t
+
+with wh,t = max( ˆβh,t , 0) / P 
+
+> h′
+
+max( ˆβh′,t , 0) ,ranging from 1/H for a uniform profile to 1 for a single critical head. To remove the concentration that estimation noise alone produces, we permute the divergence-to-mask assignment 1K times per token and standardize the observed index against this null, giving zt.
+
+Coupling at the operating layer. At the operating layer the criticality of an uncertain token is distributed across about ten heads rather than concentrated on a few (Table 8). The coupling is modest in magnitude but consistent in sign, fol-lowing the grounded and parametric divide. The associa-tion ρ(MI t, z t) is positive on all three grounded benchmarks and negative on parametric TriviaQA, with intervals exclud-ing zero, and mutual information tracks this head structure more than single-pass entropy does on the grounded cells. On CoQA the coupling sharpens with depth, from 0.09 at the operating layer to 0.44 four layers from the top, as the criticality concentrates onto fewer heads. 
+
+Causal probe. A causal probe confirms that the fragility is head borne. For each benchmark we take the 200 highest-MI and 200 lowest-MI generated tokens and deterministically ablate the token’s k most critical heads. Ablating even one head flips a sizable fraction of the high-MI tokens while the low-MI tokens almost never flip, and the gap widens with k
+
+up to k = 8 (Table 9). The dependence is present on all four benchmarks, so MI t measures genuine reliance on specific heads. What follows the grounded and parametric divide is whether that reliance tracks uncertainty. For k ≥ 2 the flip rates are in fact highest on TriviaQA, so fragility itself is strongest under parametric recall, and it is the alignment with correctness that is missing there. Mechanistic accounts of factual recall (Geva et al. 2021; Dai et al. 2022; Meng et al. 2022; Geva et al. 2023) explain this case, since knowledge sits in mid-layer MLP sublayers while attention heads extract it, so head perturbation probes an extraction pathway that runs whether or not the underlying knowledge is strong. 
+
+## G Derivation of the Coverage-Fidelity Constraints 2 4 6 8        
+
+> expected heads dropped [k] = Hp
+> 0.05 0.10 0.15 0.20 0.25 0.30
+> drop probability p
+> 010 20 30 40 50 60 70 80
+> number of masks  S
+> feasible region coverage bound fidelity bound
+
+Figure 6: Coverage lower bound and fidelity upper bound in the (p,S) plane. The adopted operating point (0.15, 40) is the minimum-cost corner of the feasible region. 
+
+Coverage lower bound on S. Each Monte Carlo sample draws an independent mask m(s) ∈ { 0, 1}H with m(s) 
+
+> h
+
+∼
+
+Bernoulli(1 − p). The probability that a given head h is never masked across S samples is (1 − p)S . By a union bound over H heads, the probability that at least one head is never ablated is at most H(1 − p)S . Requiring this failure probability to be at most δ gives 
+
+H(1 − p)S ≤ δ ⇐⇒ S ≥ ln( H/δ )
+
+− ln(1 − p) . (18) Coverage is a necessary condition for the mutual-information estimate: a head that is never masked contributes no observed perturbation, so its criticality is invisible to the estimator. For 
+
+H=32 and δ=0 .05 , Equation 18 yields S ≥ 62 at p=0 .10 but Benchmark ρ(MI t, z t) ρ(Ht, z t) neff (high MI) CoQA 0.09 [0 .05 , 0.13] −0.04 [ −0.09 , 0.00] 9.7
+
+SQuAD 0.14 [0 .11 , 0.17] 0.04 [0 .01 , 0.07] 9.1
+
+BabiQA 0.14 [0 .08 , 0.19] 0.10 [0 .05 , 0.15] 9.6
+
+TriviaQA −0.10 [ −0.14 , −0.05] −0.19 [ −0.23 , −0.14] 9.6
+
+Table 8: Head-criticality at the 60% operating layer on Qwen3-4B-base (95% CIs). zt is the permutation-standardized concen-tration of the head-criticality profile, and neff = 1 /HHI t is its effective head count on the high-MI stratum. High-MI flip rate (%) k=1 k=2 k=4 k=8 k=16                     
+
+> CoQA 16 33 36 43 43
+> SQuAD 14 19 19 25 25
+> BabiQA 25 32 41 42 31
+> TriviaQA 22 35 57 63 61
+
+Table 9: Causal probe at the operating layer. Fraction of the 
+
+200 highest-MI tokens whose greedy prediction flips when the token’s k most critical heads are ablated. The 200 lowest-MI tokens flip at most 1% throughout. only S ≥ 40 at p=0 .15 : increasing p reduces the sampling budget required for full coverage. 
+
+Fidelity upper bound on p. The number of simultaneously masked heads in a sample is k ∼ Binomial( H, p ), with mean 
+
+Hp and variance Hp (1 − p). The perturbed network must remain a functioning model: if too many heads are removed at once, the measurement no longer probes dependence on attention paths but instead reflects generic degradation of a broken computation. We therefore require that k stay below a tolerance kmax with high probability, using the Gaussian upper bound 
+
+Hp + z1−δ′
+
+pHp (1 − p) ≤ kmax . (19) We set kmax =8 , i.e., one quarter of the heads in a layer, following head-pruning studies that report negligible loss within this margin and a sharp collapse beyond it (Michel, Levy, and Neubig 2019; Voita et al. 2019). With z0.95 =1 .645 
+
+and H=32 , the left side of Equation 19 evaluates to 4.8 + 1.645 √4.08 ≈ 8.1 at p=0 .15 , marginally above kmax under the Gaussian surrogate, while the exact Binomial(32 , 0.15) 
+
+95th percentile equals 8. The exact distribution therefore admits p=0 .15 as the largest admissible mask rate, which is the sense in which we write p ≲ 0.15 .
+
+Feasible region and the chosen operating point. Figure 6 plots both constraints in the (p, S ) plane. The coverage curve (Eq. 18) bounds the region from below and decreases in p,and the fidelity line (Eq. 19) bounds it from the right. The minimum-cost point of the feasible region, the smallest S
+
+satisfying coverage at the largest admissible p, is the corner 
+
+(p, S ) = (0 .15 , 40) , which we adopt without further tuning. Earlier configurations (0 .10 , 16) and (0 .15 , 32) lie below the coverage curve. At (0 .10 , 16) the expected number of never-ablated heads is H(1 − p)S = 32 · 0.916 ≈ 5.9, so roughly six heads per layer are never perturbed across the S samples and part of the signal is omitted. 
+
+Scope. Both constraints depend on the model only through the number of maskable units, which in our design is the num-ber of query heads H, since masks are applied to query-head outputs before the output projection. Grouped-query atten-tion reduces the number of key/value projections but leaves the query heads intact: Qwen3-4B, Qwen3-8B, and Mistral-7B retain H = 32 query heads alongside their grouped key/value projections, matching the standard multi-head at-tention of Llama-2-7B, so the operating point (0 .15 , 40) 
+
+transfers across all four backbones without re-derivation. Equations 18 and 19 generalize directly, and re-derivation is required only when H itself changes, for instance for a backbone with a different query-head count or a coarser masking granularity such as whole key/value groups. The coverage condition guarantees only that every head is per-turbed at least once. It does not bound the variance of the MI estimate, which continues to decrease as O(1 /√S) be-yond the coverage threshold. Pairwise co-ablation coverage, in which every head pair is observed masked jointly, would require S ≳ ln    H
+
+> 2
+
+/δ /p 2 ≈ 410 samples at p=0 .15 (at the same coverage failure probability δ=0 .05 ) and is outside our compute budget, so the estimator captures marginal head criticality rather than higher-order interaction effects. 
+
+## H Measured Cost 
+
+All measurements use Qwen3-4B-base on a single H100 MIG 3g.40gb slice with 200 fixed examples per dataset, 10 warmup examples excluded, reporting per-example medians. Peak memory spans 8.3 to 9.3 GB across all methods. Phase medians on CoQA and SQuAD are: greedy response 4.14 
+
+and 0.75 seconds, ten stochastic samples drawn as one batch 
+
+4.41 and 1.28 , NLI clustering for Semantic Entropy 0.18 
+
+and 0.13 , mask-batched ASMI scoring 2.21 and 1.74 , se-quential ASMI scoring 5.17 and 2.34 . Mask batching carries the comparison. The 40 masked suffixes share one batched pass, which is 2.3× faster than sequential masking and, on CoQA, cheaper than drawing the ten stochastic samples it replaces. The auxiliary NLI model contributes under 0.2
+
+seconds per example, so the cost of the sampling baselines is dominated by generation itself. The advantage of ASMI tracks input length and therefore favors the long CoQA inputs over the shorter SQuAD ones. The analytic FLOPs view of Appendix A is complementary, since batched masked passes trade FLOPs for parallelism. Absolute seconds are specific to this hardware, so we read only the relative ordering from them. UE Method Qwen3-4B Qwen3-8B Llama-2-7B Mistral-7B CoQA SQuAD CoQA SQuAD CoQA SQuAD CoQA SQuAD 
+
+Information-based 
+
+Maximum Sequence Probability 0.45 ±0.02 0.32 ±0.03 0.53 ±0.02 0.35 ±0.02 0.53 ±0.01 0.18 ±0.02 0.52 ±0.02 0.65 ±0.01 Perplexity 0.42 ±0.02 0.27 ±0.03 0.50 ±0.01 0.40 ±0.02 0.52 ±0.01 0.73 ±0.02 0.48 ±0.02 0.81 ±0.01 Mean Token Entropy 0.40 ±0.02 0.27 ±0.03 0.50 ±0.01 0.41 ±0.02 0.46 ±0.02 0.68 ±0.02 0.44 ±0.02 0.78 ±0.01 Pointwise Mutual Information -0.05 ±0.02 -0.14 ±0.04 -0.04 ±0.02 0.24 ±0.02 -0.04 ±0.02 0.50 ±0.02 -0.12 ±0.03 0.69 ±0.02 SelfCertainty 0.19 ±0.02 0.02 ±0.04 0.28 ±0.02 0.32 ±0.02 0.21 ±0.02 0.57 ±0.02 0.23 ±0.02 0.73 ±0.02 Conditional Pointwise MI -0.19 ±0.03 -0.35 ±0.05 -0.22 ±0.02 -0.15 ±0.03 -0.21 ±0.02 0.41 ±0.02 -0.29 ±0.03 0.67 ±0.02 
+
+Sample-diversity 
+
+Monte Carlo Sequence Entropy 0.43 ±0.02 0.27 ±0.03 0.52 ±0.02 0.45 ±0.02 0.52 ±0.01 0.36 ±0.02 0.51 ±0.02 0.77 ±0.01 MC Normalized Sequence Entropy 0.44 ±0.02 0.23 ±0.03 0.49 ±0.02 0.39 ±0.02 0.50 ±0.01 0.48 ±0.02 0.49 ±0.02 0.69 ±0.01 Semantic Entropy 0.46 ±0.02 0.28 ±0.03 0.53 ±0.01 0.45 ±0.02 0.55 ±0.01 0.47 ±0.02 0.54 ±0.02 0.80 ±0.01 SAR 0.46 ±0.02 0.27 ±0.03 0.47 ±0.02 0.40 ±0.02 0.53 ±0.01 0.51 ±0.02 0.52 ±0.02 0.78 ±0.01 SentenceSAR (max 5) 0.44 ±0.02 0.28 ±0.03 0.51 ±0.02 0.43 ±0.02 0.54 ±0.01 0.45 ±0.02 0.53 ±0.02 0.80 ±0.01 LUQ 0.37 ±0.02 0.32 ±0.02 0.37 ±0.02 0.50 ±0.02 0.39 ±0.02 0.43 ±0.02 0.41 ±0.02 0.73 ±0.01 Kernel Language Entropy 0.41 ±0.02 0.31 ±0.02 0.40 ±0.02 0.48 ±0.02 0.44 ±0.02 0.50 ±0.02 0.47 ±0.02 0.80 ±0.01 
+
+Probing 
+
+P(True) 0.03 ±0.02 0.07 ±0.03 0.07 ±0.02 0.17 ±0.02 -0.04 ±0.02 0.47 ±0.02 -0.05 ±0.03 0.78 ±0.01 P(True) Sampling -0.04 ±0.03 0.03 ±0.04 0.04 ±0.02 0.30 ±0.02 -0.04 ±0.02 0.44 ±0.02 -0.28 ±0.03 0.29 ±0.03 
+
+Attention-based 
+
+RAUQ 0.37 ±0.02 0.32 ±0.03 0.48 ±0.02 0.45 ±0.02 0.47 ±0.02 0.46 ±0.02 0.46 ±0.02 0.82 ±0.01 RAUQ (entropy) 0.47 ±0.02 0.36 ±0.02 0.53 ±0.02 0.47 ±0.02 0.50 ±0.02 0.75 ±0.02 0.51 ±0.02 0.83 ±0.01 
+
+Attention-based, active perturbation (ours) 
+
+ASMI (60%, K=64) 0.46 ±0.02 0.29 ±0.03 0.51 ±0.01 0.34 ±0.02 0.49 ±0.02 0.62 ±0.02 0.48 ±0.02 0.77 ±0.02 Sem-ASMI (60%, K=64) 0.52 ±0.02 0.29 ±0.03 0.55 ±0.01 0.40 ±0.02 0.54 ±0.01 0.69 ±0.02 0.53 ±0.02 0.83 ±0.01 Adapt-ASMI (60%, K=64) 0.53 ±0.01 0.31 ±0.02 0.56 ±0.02 0.40 ±0.02 0.55 ±0.01 0.71 ±0.02 0.54 ±0.02 0.84 ±0.01 
+
+ASMI (70%, K=64) 0.47 ±0.02 0.27 ±0.03 0.52 ±0.01 0.40 ±0.02 0.46 ±0.02 0.61 ±0.02 0.46 ±0.02 0.73 ±0.02 ASMI (80%, K=64) 0.44 ±0.02 0.28 ±0.02 0.51 ±0.01 0.43 ±0.02 0.40 ±0.02 0.67 ±0.02 0.38 ±0.02 0.74 ±0.02 ASMI (90%, K=64) 0.29 ±0.02 0.24 ±0.03 0.42 ±0.02 0.34 ±0.02 0.43 ±0.02 0.70 ±0.01 0.45 ±0.02 0.73 ±0.02 Sem-ASMI (70%, K=64) 0.52 ±0.02 0.28 ±0.03 0.54 ±0.01 0.42 ±0.02 0.52 ±0.01 0.68 ±0.02 0.53 ±0.02 0.79 ±0.01 Sem-ASMI (80%, K=64) 0.50 ±0.01 0.28 ±0.03 0.54 ±0.01 0.43 ±0.02 0.49 ±0.01 0.71 ±0.01 0.49 ±0.02 0.80 ±0.01 Sem-ASMI (90%, K=64) 0.41 ±0.02 0.26 ±0.03 0.51 ±0.02 0.39 ±0.02 0.52 ±0.01 0.74 ±0.01 0.52 ±0.02 0.78 ±0.01 Adapt-ASMI (70%, K=64) 0.52 ±0.02 0.29 ±0.03 0.55 ±0.01 0.44 ±0.02 0.53 ±0.01 0.69 ±0.02 0.54 ±0.01 0.81 ±0.01 Adapt-ASMI (80%, K=64) 0.50 ±0.02 0.30 ±0.02 0.55 ±0.01 0.46 ±0.02 0.50 ±0.01 0.72 ±0.01 0.50 ±0.02 0.81 ±0.01 Adapt-ASMI (90%, K=64) 0.42 ±0.02 0.27 ±0.03 0.52 ±0.02 0.40 ±0.02 0.53 ±0.01 0.75 ±0.01 0.53 ±0.02 0.80 ±0.01 Table 10: PRR (mean ± standard error, higher is better) on CoQA and SQuAD, scored by AlignScore. Full version of Table 1, with all 17 baselines and the three ASMI variants across the depth sweep. Bold and underline mark the best and second-best PRR per column at the operating depth d = 60% . Rows at other depths belong to the sweep and are left unmarked. 
+
+## I Full Benchmark and Depth Sweep 
+
+Tables 10 and 11 report the complete benchmark that the main text abbreviates. The main comparison in Table 1 keeps a compact baseline set at the single operating depth d = 60% .Here we list every baseline together with the three ASMI variants across the full depth sweep, so the abbreviated main table and the depth analysis draw on one set of numbers. Bold and underline follow the main-table convention and are com-puted only at the 60% operating depth, so the highlighting stays comparable to Table 1 while the remaining depths are shown for context. One property of the Llama-2-7B SQuAD column is worth noting. On this task 28 .5% of the greedy generations contain nothing but whitespace and wrong an-swers are much shorter than correct ones (7.0 against 12.7 tokens on average), which depresses length-sensitive scores such as MSP in that column, whose error-detection AUROC falls to 0.47 . Since every method scores the same greedy responses, comparisons within the column remain valid. 
+
+Depth selection. We take d = 60% as the representative depth by aggregate PRR over the sweep. Aggregated across all sixteen cells, four benchmarks by four backbones, nor-malized PRR is highest at 60% (0.600 ) against 0.592 , 0.577 ,and 0.586 at the deeper settings, and 60% is the best or tied-best depth in eight of the twelve grounded columns. The exceptions are SQuAD on Qwen3-8B and Llama-2-7B and BabiQA on Llama-2-7B and Mistral-7B. On CoQA perfor-mance rises smoothly toward 60% , consistent with masking within the context-routing band rather than the near-output layers, and SQuAD follows the same trend on Qwen3-4B and Mistral-7B while favoring deeper masking on Llama-2-7B. BabiQA is the exception discussed next. 
+
+Stability of depth selection We verify that the 60% choice is not an artifact of the full-data aggregate with a cluster-respecting split-half test. We draw R = 1K random halves (seed 20260711 ), keeping related items together: CoQA is split by story and SQuAD by passage, the same cluster keys used for the main-text bootstrap, while BabiQA and Trivi-UE Method Qwen3-4B Qwen3-8B Llama-2-7B Mistral-7B BabiQA TriviaQA BabiQA TriviaQA BabiQA TriviaQA BabiQA TriviaQA 
+
+Information-based 
+
+Maximum Sequence Probability 0.48 ±0.04 0.72 ±0.02 0.76 ±0.03 0.70 ±0.02 0.58 ±0.04 0.77 ±0.01 0.59 ±0.04 0.78 ±0.01 Perplexity 0.49 ±0.05 0.71 ±0.01 0.74 ±0.03 0.68 ±0.02 0.53 ±0.04 0.76 ±0.01 0.59 ±0.04 0.79 ±0.01 Mean Token Entropy 0.56 ±0.04 0.70 ±0.02 0.75 ±0.03 0.69 ±0.02 0.30 ±0.05 0.75 ±0.01 0.54 ±0.04 0.78 ±0.01 Pointwise Mutual Information 0.24 ±0.05 -0.05 ±0.02 0.46 ±0.04 -0.07 ±0.02 0.20 ±0.05 -0.02 ±0.03 0.24 ±0.05 -0.01 ±0.03 SelfCertainty 0.07 ±0.07 0.32 ±0.02 0.62 ±0.04 0.34 ±0.02 0.06 ±0.05 0.52 ±0.02 0.20 ±0.05 0.60 ±0.02 Conditional Pointwise MI 0.09 ±0.07 -0.30 ±0.02 -0.45 ±0.06 -0.35 ±0.02 0.25 ±0.05 -0.34 ±0.03 0.09 ±0.06 -0.35 ±0.03 
+
+Sample-diversity 
+
+Monte Carlo Sequence Entropy 0.47 ±0.05 0.71 ±0.02 0.74 ±0.03 0.69 ±0.01 0.52 ±0.04 0.76 ±0.01 0.56 ±0.04 0.77 ±0.01 MC Normalized Sequence Entropy 0.50 ±0.05 0.70 ±0.02 0.72 ±0.03 0.67 ±0.02 0.50 ±0.04 0.75 ±0.01 0.53 ±0.04 0.78 ±0.01 Semantic Entropy 0.54 ±0.04 0.72 ±0.02 0.74 ±0.03 0.70 ±0.02 0.50 ±0.04 0.77 ±0.01 0.58 ±0.04 0.78 ±0.01 SAR 0.63 ±0.04 0.71 ±0.02 0.71 ±0.03 0.68 ±0.02 0.49 ±0.04 0.78 ±0.01 0.56 ±0.04 0.80 ±0.01 
+
+SentenceSAR (max 5) 0.49 ±0.05 0.71 ±0.02 0.73 ±0.03 0.69 ±0.02 0.52 ±0.04 0.77 ±0.01 0.54 ±0.04 0.78 ±0.01 LUQ 0.47 ±0.05 0.64 ±0.02 0.43 ±0.05 0.52 ±0.02 0.42 ±0.04 0.69 ±0.02 0.37 ±0.05 0.73 ±0.02 Kernel Language Entropy 0.48 ±0.05 0.64 ±0.02 0.44 ±0.05 0.51 ±0.02 0.41 ±0.05 0.70 ±0.02 0.37 ±0.05 0.73 ±0.02 
+
+Probing 
+
+P(True) 0.49 ±0.04 0.30 ±0.02 0.22 ±0.06 0.39 ±0.02 0.21 ±0.05 0.06 ±0.03 0.20 ±0.05 -0.11 ±0.03 P(True) Sampling 0.11 ±0.06 0.38 ±0.02 0.32 ±0.06 0.39 ±0.02 0.21 ±0.05 0.06 ±0.03 0.18 ±0.06 0.20 ±0.03 
+
+Attention-based 
+
+RAUQ 0.32 ±0.06 0.70 ±0.02 0.74 ±0.03 0.66 ±0.02 0.57 ±0.04 0.75 ±0.01 0.48 ±0.05 0.70 ±0.02 RAUQ (entropy) 0.42 ±0.05 0.72 ±0.02 0.74 ±0.03 0.70 ±0.02 0.29 ±0.05 0.77 ±0.01 0.46 ±0.04 0.77 ±0.01 
+
+Attention-based, active perturbation (ours) 
+
+ASMI (60%, K=64) 0.60 ±0.04 0.59 ±0.02 0.80 ±0.03 0.62 ±0.02 0.11 ±0.05 0.66 ±0.02 0.52 ±0.04 0.74 ±0.01 Sem-ASMI (60%, K=64) 0.66 ±0.04 0.66 ±0.02 0.78 ±0.03 0.66 ±0.02 0.27 ±0.05 0.71 ±0.01 0.61 ±0.04 0.78 ±0.01 Adapt-ASMI (60%, K=64) 0.66 ±0.04 0.66 ±0.02 0.79 ±0.03 0.67 ±0.02 0.29 ±0.05 0.72 ±0.01 0.61 ±0.03 0.78 ±0.01 ASMI (70%, K=64) 0.48 ±0.04 0.64 ±0.02 0.78 ±0.03 0.65 ±0.02 0.23 ±0.05 0.69 ±0.01 0.41 ±0.04 0.67 ±0.01 ASMI (80%, K=64) 0.33 ±0.04 0.58 ±0.02 0.48 ±0.04 0.62 ±0.02 0.24 ±0.05 0.66 ±0.02 0.51 ±0.04 0.68 ±0.01 ASMI (90%, K=64) 0.55 ±0.04 0.58 ±0.02 0.76 ±0.03 0.49 ±0.02 0.10 ±0.04 0.68 ±0.02 0.49 ±0.04 0.69 ±0.02 Sem-ASMI (70%, K=64) 0.58 ±0.04 0.68 ±0.02 0.76 ±0.03 0.68 ±0.02 0.33 ±0.04 0.73 ±0.01 0.57 ±0.04 0.74 ±0.01 Sem-ASMI (80%, K=64) 0.38 ±0.05 0.64 ±0.02 0.70 ±0.03 0.66 ±0.02 0.39 ±0.04 0.72 ±0.01 0.63 ±0.03 0.75 ±0.01 Sem-ASMI (90%, K=64) 0.64 ±0.04 0.67 ±0.02 0.77 ±0.03 0.62 ±0.02 0.31 ±0.05 0.73 ±0.01 0.62 ±0.03 0.75 ±0.01 Adapt-ASMI (70%, K=64) 0.58 ±0.04 0.69 ±0.02 0.77 ±0.03 0.68 ±0.02 0.34 ±0.04 0.74 ±0.01 0.57 ±0.04 0.75 ±0.01 Adapt-ASMI (80%, K=64) 0.38 ±0.05 0.64 ±0.02 0.69 ±0.03 0.66 ±0.02 0.41 ±0.04 0.72 ±0.01 0.63 ±0.03 0.75 ±0.01 Adapt-ASMI (90%, K=64) 0.64 ±0.04 0.67 ±0.02 0.77 ±0.03 0.62 ±0.02 0.33 ±0.05 0.73 ±0.01 0.62 ±0.03 0.75 ±0.01 Table 11: PRR (mean ± standard error, higher is better) on BabiQA and closed-book TriviaQA, the parametric control, scored by AlignScore. Full version of Table 1, with all 17 baselines and the three ASMI variants across the depth sweep. Bold and underline mark the best and second-best PRR per column at the operating depth d = 60% . Rows at other depths belong to the sweep and are left unmarked. aQA are split by input. On each split we select the argmax depth on the first half and measure its out-of-half regret, the PRR gap to the best depth, on the second half, with PRR normalized within each half. Across the sixteen cells, 60% 
+
+is selected in 99 .3% of the splits, the remaining 0.7% go to 
+
+70% , and 80% and 90% are never selected, with zero out-of-half regret in 98 .7% of splits and a mean regret of 0.0001 
+
+PRR. The selection reproduces for Sem-ASMI at 99 .0% . The representative depth is therefore stable across resampling and variant. 
+
+Instability of depth selection BabiQA is the one grounded benchmark whose PRR is non-monotonic in depth, with a pronounced dip at 80% on the two Qwen backbones. For unweighted ASMI on Qwen3-8B it drops from 0.78 at 70% 
+
+to 0.48 at 80% and recovers at 90% , instead of following the smooth CoQA trend. The task explains this. BabiQA answers are a single location word, so the sequence score is carried by essentially one token and there is almost no averaging 
+
+BabiQA cell MI MI corr MI wrong ASMI MSP Qwen3-4B 0.016 0.014 0.022 0.77 0.68 
+
+Qwen3-8B 0.025 0.017 0.045 0.86 0.86 
+
+Llama-2-7B 0.002 0.002 0.002 0.60 0.75 
+
+Table 12: Mechanism of the BabiQA failure ( d = 60% , K =64 ). Mean token-level MI t split by answer correctness, with error-detection AUROC for ASMI and MSP. Head masking barely moves the Llama-2-7B output, which leaves correct and wrong answers indistinguishable to ASMI. over positions to smooth depth effects, unlike CoQA where up to twenty tokens are averaged. The task is also solved by a localized copy of the last-mentioned location, so whether a given layer is masked interacts sharply with whether that routing step is perturbed, which produces a bad layer near 
+
+80% for the Qwen models. The small evaluation set ( n = 1K )Backbone Dataset Top ASMI variant (PRR) Best baseline (PRR) Top ∆PRR vs SemEnt Top ∆PRR vs best baseline Sem-ASMI ∆PRR vs SemEnt Qwen3-4B CoQA Adapt-ASMI (0.524) RAUQ-E (0.469) +0 .065 ∗ [+0 .042 , +0 .088] +0 .056 ∗ [+0 .035 , +0 .076] +0 .060 ∗ [+0 .036 , +0 .085]                                                                                                                                                     
+
+> SQuAD Adapt-ASMI (0.305) RAUQ-E (0.359) +0 .024 [ −0.011 ,+0 .059] −0.053 ∗[−0.098 ,−0.006] +0 .004 [ −0.037 ,+0 .044]
+> BabiQA Sem-ASMI (0.657) SAR (0.628) +0 .120 ∗[+0 .051 ,+0 .192] +0 .030 [ −0.014 ,+0 .072] +0 .120 ∗[+0 .051 ,+0 .192]
+> TriviaQA Adapt-ASMI (0.662) RAUQ-E (0.723) −0.057 ∗[−0.072 ,−0.043] −0.060 ∗[−0.073 ,−0.048] −0.061 ∗[−0.076 ,−0.046]
+> Qwen3-8B CoQA Adapt-ASMI (0.559) SemEnt (0.529) +0 .029 ∗[+0 .013 ,+0 .045] +0 .029 ∗[+0 .013 ,+0 .045] +0 .019 ∗[+0 .002 ,+0 .035]
+> SQuAD Adapt-ASMI (0.402) LUQ (0.500) −0.052 ∗[−0.087 ,−0.019] −0.098 ∗[−0.138 ,−0.059] −0.057 ∗[−0.094 ,−0.021]
+> BabiQA ASMI (0.798) MSP (0.761) +0 .060 ∗[+0 .028 ,+0 .095] +0 .037 ∗[+0 .005 ,+0 .072] +0 .042 ∗[+0 .014 ,+0 .074]
+> TriviaQA Adapt-ASMI (0.670) RAUQ-E (0.706) −0.031 ∗[−0.044 ,−0.018] −0.037 ∗[−0.051 ,−0.022] −0.037 ∗[−0.051 ,−0.023]
+> Llama-2-7B CoQA Adapt-ASMI (0.552) SemEnt (0.545) +0 .008 [ −0.012 ,+0 .027] +0 .008 [ −0.012 ,+0 .027] −0.001 [ −0.023 ,+0 .020]
+> SQuAD Adapt-ASMI (0.706) RAUQ-E (0.753) +0 .236 ∗[+0 .202 ,+0 .270] −0.047 ∗[−0.062 ,−0.033] +0 .224 ∗[+0 .187 ,+0 .261]
+> BabiQA Adapt-ASMI (0.286) MSP (0.581) −0.215 ∗[−0.283 ,−0.148] −0.295 ∗[−0.365 ,−0.228] −0.227 ∗[−0.300 ,−0.157]
+> TriviaQA Adapt-ASMI (0.723) RAUQ-E (0.772) −0.048 ∗[−0.066 ,−0.030] −0.049 ∗[−0.064 ,−0.033] −0.056 ∗[−0.074 ,−0.037]
+> Mistral-7B CoQA Adapt-ASMI (0.537) SemEnt (0.536) +0 .002 [ −0.018 ,+0 .021] +0 .002 [ −0.018 ,+0 .021] −0.007 [ −0.028 ,+0 .014]
+> SQuAD Adapt-ASMI (0.840) RAUQ-E (0.830) +0 .037 ∗[+0 .015 ,+0 .059] +0 .010 [ −0.003 ,+0 .023] +0 .025 [ −0.001 ,+0 .051]
+> BabiQA Adapt-ASMI (0.607) MSP (0.593) +0 .024 [ −0.029 ,+0 .077] +0 .015 [ −0.032 ,+0 .062] +0 .022 [ −0.032 ,+0 .077]
+> TriviaQA Adapt-ASMI (0.784) SAR (0.795) +0 .000 [ −0.013 ,+0 .014] −0.012 [ −0.026 ,+0 .003] −0.002 [ −0.016 ,+0 .012]
+
+Table 13: Head-to-head paired significance at the 60% operating depth. Each entry is a paired ∆PRR with a 95% percentile interval from a cluster-respecting paired bootstrap ( B = 10K , using the cluster keys and seed of Appendix I), positive when ASMI is ahead, with asterisks marking intervals that exclude zero. The first two ∆ columns follow the column’s top ASMI variant and the last reports the sampling-free Sem-ASMI against Semantic Entropy (SemEnt), the pre-specified primary reference. The per-column best baseline is the conservative reference, taken over all 17 baselines, and RAUQ-E denotes the entropy variant of RAUQ. Cluster counts are 499 on CoQA, 1,934 on SQuAD, 999 on BabiQA, and 4,404 on TriviaQA. Point PRR values agree with the full benchmark tables within their standard errors. correct wrong 
+
+0.00 0.25 0.50 0.75 1.00 
+
+> Llama-2-7B, BabiQA  AUROC 0.60
+
+AdaptASMI 
+
+correct wrong 
+
+> AUROC 0.75
+
+MSP 
+
+correct wrong 
+
+0.00 0.25 0.50 0.75 1.00 
+
+> Qwen3-8B, BabiQA
+> AUROC 0.86
+
+correct wrong 
+
+> AUROC 0.86
+> normalized uncertainty
+
+correct wrong 
+
+Figure 7: Error separation on BabiQA. Violins show per-example uncertainty for correct (blue) and wrong (orange) generations, with error-detection AUROC per panel. Llama-2-7B (top) is over-robust to head masking, so Adapt-ASMI cannot separate errors while MSP still can. Qwen3-8B (bot-tom) routes wrong answers through more fragile paths. then widens the standard error and amplifies these swings. Semantic weighting cushions the dip, raising the Qwen3-8B 
+
+80% score from 0.48 for ASMI to 0.70 for Sem-ASMI, which indicates that much of the disagreement introduced at that layer is surface-form and is discounted by the kernel. Llama-2-7B is low at every depth on BabiQA for a distinct reason that the mechanism analysis pins down. Its genera-tions are well-formed single location words, but head mask-ing barely perturbs its output on this task. The token-level 
+
+MI t has median 0.000 and mean 0.002 , against 0.025 on Qwen3-8B, so the model is over-robust to the perturbation and insensitive along the attention path. Correct and incor-rect answers therefore carry the same near-zero MI and their score distributions overlap almost completely (Fig. 7, top). ASMI retains only an attenuated ranking, while the output-distribution MSP still separates them (Table 12). On Qwen3-8B, where the model routes the task and wrong answers are more fragile, the wrong-answer distribution shifts upward (Fig. 7, bottom) and ASMI matches MSP. The MI magni-tude flags this over-robustness before any correctness label is available. At the representative 60% depth BabiQA is well-behaved on three of four backbones and enters the main comparison, but its depth profile is the least stable of the grounded family, consistent with the underpowered head-criticality coupling in the mechanism analysis. 
+
+## J Head-to-Head Significance 
+
+The bootstrap standard errors of the main tables overstate the uncertainty of a comparison, because every method scores the same greedy responses under the same correctness la-bels. We therefore test differences directly with a cluster-respecting paired bootstrap. Each of the B = 10K resamples draws one set of clusters with replacement, using the same cluster keys and seed as Appendix I, and applies the same indices to both methods, so the shared per-example varia-tion cancels and the intervals are narrower than the marginal standard errors imply, by roughly half on CoQA. We report 
+
+∆PRR with a 95% percentile interval and call a compari-son a tie when the interval includes zero. Semantic Entropy is the pre-specified primary reference, fixed before running the test to avoid selecting the winner after the fact, and the per-column best baseline is the conservative reference, since the maximum over all 17 baselines is the hardest compari-son for ASMI. Table 13 reports all sixteen columns. Against Semantic Entropy the top ASMI variant wins significantly in six of the twelve grounded columns, loses in two, and ties in four. Against the per-column best baseline ASMI leads in eight grounded columns, significantly in three (CoQA on both Qwen backbones and BabiQA on Qwen3-8B), and the remaining leads are ties. A tie carries information of its own here, since in every tied column the sampling-free Sem-ASMI ties or beats Semantic Entropy from the greedy response alone (last column of Table 13). One of the two losses against Semantic Entropy is the over-robust Llama-2-7B BabiQA cell the operating envelope already maps, and the other is Qwen3-8B on SQuAD. The largest single gap in the table, the +0 .236 of the Llama-2-7B SQuAD column, coincides with the column where 28 .5% of greedy gener-ations are empty (Appendix I), so we checked the tallies without it: over the remaining eleven grounded columns the top variant still wins five, loses two, and ties four against Se-mantic Entropy, and still leads the per-column best baseline in eight with three significant, so no headline count depends on this column. On parametric TriviaQA ASMI sits signifi-cantly below the best baseline in three of the four columns, so the designed boundary holds under the paired test as well. 
+
+## K Estimator Stability 
+
+Protocol. The bootstrap SEs of the main tables mea-sure sampling variability over test examples and treat each method’s scores as fixed. They do not measure the variabil-ity of the estimator itself, whose scores depend on inter-nal randomness, namely sampled head masks for ASMI and stochastically decoded samples for sample-diversity base-lines. We fix a 500-example CoQA subset, the backbone, and the scored greedy responses, and redraw only the method-internal randomness five times, using disjoint sets of S = 40 
+
+masks for the ASMI variants and independent resamplings of the 10 stochastic generations (temperature 0.5 follow-ing Duan et al. 2024, as configured in all main experiments) for the baselines. Because the examples are fixed, differences across redraws reflect measurement noise alone. Absolute PRR levels differ from the main tables (subset, single layer). This experiment measures variance, not level. 
+
+Results. Table 14 reports the across-redraw standard devi-ation of PRR and the mean pairwise Spearman correlation of the per-example scores. Adapt-ASMI varies by ±0.006 
+
+across redraws and Sem-ASMI by ±0.004 , two to five times less than the sample-diversity baselines (from ±0.014 to 
+
+±0.041 ), and their example rankings are nearly determin-istic (rank-ρ = 0 .98 ). This follows from the design: ASMI scores a fixed greedy response under structural perturbations 
+
+Method mean sd range rank-ρ
+
+Adapt-ASMI .493 .006 [.486 , . 501] .98 
+
+Sem-ASMI .491 .004 [.486 , . 496] .98 
+
+ASMI .444 .011 [.432 , . 461] .96 
+
+Semantic Entropy .474 .020 [.455 , . 505] .94 
+
+SAR .477 .014 [.459 , . 493] .92 
+
+MC Sequence Entropy .450 .014 [.440 , . 470] .95 
+
+Kernel Language Entropy .427 .041 [.373 , . 479] .81 
+
+Table 14: Estimator stability: PRR across five redraws of method-internal randomness on a fixed 500-example CoQA subset. rank-ρ is the mean pairwise Spearman correlation of per-example scores across redraws. whose head coverage is guaranteed (Appendix G), whereas sample-diversity scores inherit the stochasticity of tempera-ture decoding. With five redraws the sd estimates are coarse. Ranges are reported alongside. 
+
+## L Benchmark Prompts and Examples 
+
+For reproducibility we show the prompt format and one rep-resentative example per benchmark, exactly as produced by the LM-Polygraph pipeline on base models with no chat template. Long contexts are truncated with [...], and the gold answer follows each block. 
+
+CoQA (grounded, 0-shot). A flattened story followed by a single question, with the answer stated in the story.                                                 
+
+> The following are stories and questions about them. Each story is followed by aquestion and answer to agiven question .Story: Once upon atime, in abarn near afarm house, there lived alittle white kitten named Cotton. [...] But she was the only white one in the bunch. [...] Then Cotton thought, "I like being special". Question: What color was Cotton? Answer:
+
+Gold answer: white .
+
+SQuAD (grounded, 0-shot). A passage with an extractive question whose answer is a span of the passage.                                               
+
+> Read the following passage and answer the question. Passage: Super Bowl 50 was an American football game to determine the champion of the National Football League (NFL) for the 2015 season. The AFC champion Denver Broncos defeated the NFC champion Carolina Panthers 24-10 to earn their third Super Bowl title. [...] Question: Which NFL team represented the AFC at Super Bowl 50? Answer:
+
+Gold answer: Denver Broncos .
+
+BabiQA (grounded, 1-shot). A synthetic location-tracking task with a fixed one-shot exemplar. The answer is a single word copied from the context. Imagine that you are only able to say a single word. Answer the question given a context. You must only output the full name of the location the same way it is mentioned in the text. Example: Context: Mary moved to the bathroom. John went to the hallway. [...] Question: Where is Sandra? Answer: bathroom Context: John travelled to the hallway. Mary journeyed to the bathroom. Question: Where is John? Answer: 
+
+Gold answer: hallway .
+
+TriviaQA (parametric, closed-book, 5-shot). Five fixed exemplars followed by the query, with no passage provided. 
+
+Question: What is the capital of the Indian state of Tamil Nadu? Answer:chennai Question: Who rules Narnia following the reign of High King Peter [...]? Answer:prince caspian [... three more fixed exemplars ...] Question: Who was the man behind The Chipmunks? Answer: 
+
+Gold answer: David Seville , which must come from parametric knowledge.

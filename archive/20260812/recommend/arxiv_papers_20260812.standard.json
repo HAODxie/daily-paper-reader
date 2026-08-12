@@ -1,0 +1,724 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-12T20:02:25.315423+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 9,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 11,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.04390v1",
+      "source": "arxiv",
+      "title": "EdgeLM: Edge Demonstrations for Language Models' Table Understanding",
+      "abstract": "Large language models (LLMs) perform table-centric prediction through in-context learning, making demonstration selection critical to performance. Existing retrieval methods prioritize similarity to the query, but similar demonstrations often reinforce the model's likely prediction rather than reveal the distinctions needed for difficult decisions. We propose EdgeLM, a retrieval framework that instead selects edge evidence, demonstrations that are both relevant to the query and informative about the decision boundary. EdgeLM retrieves two complementary forms of edge evidence by selecting data edges, nearby examples with different ground-truth labels, and model edges, similar examples previously misclassified by the deployed model. EdgeLM requires neither model retraining nor task-specific engineering. Across five data wrangling tasks, fifteen datasets, and five open-weight and proprietary LLMs, EdgeLM consistently achieves the best or near-best performance in every setting, while ablations show that the two forms of edge evidence provide complementary benefits. Our code and datasets are publicly available at https://github.com/soroushomidvar/EdgeLM.",
+      "authors": [
+        "Soroush Omidvartehrani",
+        "Mohammadamin Habibollah",
+        "Mohammadreza Daviran",
+        "Davood Rafiei"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.DB"
+      ],
+      "published": "2026-08-05T02:45:24+00:00",
+      "link": "https://arxiv.org/pdf/2608.04390v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Directly addresses large language models via in-context learning demonstration selection for table understanding",
+      "llm_evidence_cn": "直接研究大语言模型在表格理解中的上下文学习示范选择",
+      "llm_evidence": "直接研究大语言模型在表格理解中的上下文学习示范选择",
+      "canonical_evidence": "直接研究大语言模型在表格理解中的上下文学习示范选择",
+      "llm_tldr_en": "Proposes EdgeLM, a retrieval framework that selects edge demonstrations (near decision boundary) instead of similar ones, improving LLM table understanding performance without extra training.",
+      "llm_tldr_cn": "针对大语言模型在表格理解任务中演示选择过于注重相似性、难以解决困难决策的问题，提出EdgeLM检索框架。该方法通过选取“边缘证据”示例——即与查询相关且位于决策边界附近的样例（包含不同标签的邻近数据和之前误分类的相似数据），为模型提供更具区分性的上下文。实验表明EdgeLM不需要额外训练即可提升表格预测性能，为大模型上下文学习提供了一种新的演示选择策略。",
+      "llm_tldr": "针对大语言模型在表格理解任务中演示选择过于注重相似性、难以解决困难决策的问题，提出EdgeLM检索框架。该方法通过选取“边缘证据”示例——即与查询相关且位于决策边界附近的样例（包含不同标签的邻近数据和之前误分类的相似数据），为模型提供更具区分性的上下文。实验表明EdgeLM不需要额外训练即可提升表格预测性能，为大模型上下文学习提供了一种新的演示选择策略。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10647v1",
+      "source": "arxiv",
+      "title": "ProtoGIB-Workload: Learning Workload-Specific Neural Topology Prototypes across Subjects",
+      "abstract": "Reliable electroencephalography (EEG)-based mental workload recognition is crucial for adaptive human-centered systems, yet practical deployment requires models to generalize to users unseen during training. Although functional connectivity graphs are widely adopted to capture workload-related neural interactions, they inherently entangle task-relevant structures with subject-specific physiological traits and sample-level noise. This entanglement often leads models to learn structural shortcuts, severely degrading cross-subject generalization. To address this, we propose ProtoGIB-Workload, a novel framework that explicitly regularizes and aligns graph structures for subject-independent workload recognition. Our approach introduces a Stochastic Graph Information Bottleneck (SGIB) to compress dense correlation priors into compact, task-relevant subgraphs, filtering out input-related redundancy. Crucially, to prevent the retention of subject-specific spurious edges, we propose a Class-Conditional Topology Stabilizer (CTS). Leveraging the fixed electrode coordinates of EEG data, CTS operates directly on graph-generation probabilities to encourage consistent edge-generation statistics across different subjects sharing the same workload class. Extensive experiments on two public EEG workload datasets and one in-house EEG cognitive load dataset of air traffic controllers under strict leave-one-subject-out (LOSO) protocols demonstrate that ProtoGIB-Workload significantly outperforms state-of-the-art temporal and graph-based baselines, improving the cross-subject Macro-F1 score by an average of 5.15% (up to 6.34%). Further analyses confirm that our method successfully extracts stable, cross-subject consistent neural connectivity patterns.",
+      "authors": [
+        "Yuzhe Zhang",
+        "Yixi Zhang",
+        "Shengdian Jiang",
+        "Chengxi Xie",
+        "Jihong Wang",
+        "Huan Liu",
+        "Man Yao",
+        "Minnan Luo",
+        "Chao Shen"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-08-11T08:31:31+00:00",
+      "link": "https://arxiv.org/pdf/2608.10647v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "EEG-based mental workload recognition with cross-subject graph alignment",
+      "llm_evidence_cn": "基于脑电的心理负荷识别与跨被试图结构对齐",
+      "llm_evidence": "基于脑电的心理负荷识别与跨被试图结构对齐",
+      "canonical_evidence": "基于脑电的心理负荷识别与跨被试图结构对齐",
+      "llm_tldr_en": "This paper proposes ProtoGIB-Workload, a framework that learns workload-specific neural topology prototypes to align graph structures across subjects, significantly improving cross-subject generalization for EEG-based mental workload recognition.",
+      "llm_tldr_cn": "脑电心理负荷识别在跨被试场景下常因个体生理差异导致泛化性能下降。现有功能连接图方法容易混淆任务相关结构与个体特质，形成结构捷径。本文提出ProtoGIB-Workload框架，通过显式正则化和对齐图结构，学习特定负荷的神经拓扑原型。实验表明该方法在跨被试心理负荷识别中显著提升泛化能力，为自适应人机系统的可靠部署提供了支持。",
+      "llm_tldr": "脑电心理负荷识别在跨被试场景下常因个体生理差异导致泛化性能下降。现有功能连接图方法容易混淆任务相关结构与个体特质，形成结构捷径。本文提出ProtoGIB-Workload框架，通过显式正则化和对齐图结构，学习特定负荷的神经拓扑原型。实验表明该方法在跨被试心理负荷识别中显著提升泛化能力，为自适应人机系统的可靠部署提供了支持。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.11138v1",
+      "source": "arxiv",
+      "title": "Attention-Path Fragility as an Uncertainty Signal in Large Language Models",
+      "abstract": "We propose that a model's uncertainty about a token is reflected not only in the breadth of its output distribution but also in whether a confident prediction is \\emph{fragile} under perturbation of its attention pathways. We instantiate this as ASMI (Attention-Subnetwork Mutual Information), a training-free estimator that masks attention heads and measures the BALD mutual information among the resulting subnetworks, with a semantic-agreement kernel to discount surface-form disagreement. The signal is not a restatement of output confidence: on grounded QA an out-of-fold test shows it adds error-predictive information beyond single-pass confidence and entropy, concentrated in \\emph{confident-but-fragile} predictions, where acting on it roughly halves the retained error of a confidence filter. The distinctness is regime-graded, so ASMI predicts its own domain of applicability, strong where answers are routed through provided context and bounded by design where they are recalled from parametric knowledge. Sem-ASMI reads the signal from a single greedy response, without the stochastic generations the strongest baselines require, and ties or beats Semantic Entropy on ten of the twelve grounded benchmark-backbone settings. Across the same twelve settings, the best ASMI variant, typically the adaptive one reusing the ten samples already drawn for the baselines, ties or leads the strongest baseline in eight, significantly in three under a paired test. On parametric QA all variants revert to or below the zero-cost MSP baseline, exactly as predicted, and the estimates are near-deterministic across reruns. A head-level analysis shows that what tracks this boundary is not the presence of head-level fragility but whether that fragility couples to errors.",
+      "authors": [
+        "Minsoo Kim",
+        "Sungyoung Ji",
+        "Kisung Moon",
+        "Ilyong Yoon"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-11T16:59:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.11138v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Directly studies uncertainty estimation in large language models",
+      "llm_evidence_cn": "直接研究大语言模型中的不确定性估计",
+      "llm_evidence": "直接研究大语言模型中的不确定性估计",
+      "canonical_evidence": "直接研究大语言模型中的不确定性估计",
+      "llm_tldr_en": "Proposes ASMI, a training-free estimator using attention subnetwork mutual information to detect confident-but-fragile predictions in LLMs, adding error-predictive signal beyond confidence.",
+      "llm_tldr_cn": "针对大语言模型置信度估计不可靠的问题，提出一种无需训练的注意力子网络互信息（ASMI）估计器，通过掩码注意力头并测量子网络间的一致性来识别“自信但脆弱”的预测。在开放问答任务上，该方法在置信度与熵之外提供了额外的错误预测信息，可显著提升模型的不确定性判断能力，对大模型可靠部署有重要意义。",
+      "llm_tldr": "针对大语言模型置信度估计不可靠的问题，提出一种无需训练的注意力子网络互信息（ASMI）估计器，通过掩码注意力头并测量子网络间的一致性来识别“自信但脆弱”的预测。在开放问答任务上，该方法在置信度与熵之外提供了额外的错误预测信息，可显著提升模型的不确定性判断能力，对大模型可靠部署有重要意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05224v3",
+      "source": "arxiv",
+      "title": "Small Foundation Models of Human Cognition and Behaviour",
+      "abstract": "Large language models fine-tuned on human behavioural data have emerged as general-purpose cognitive proxies, but the scale this requires, and whether these models process task structure or exploit statistical shortcuts, remain open questions. We train fourteen models from 135M to 14B parameters across four architecture families on Psych-101, a dataset of 10.7 million trial-level choices from 160 experiments. For in-distribution simulations, scale barely matters. The models fall within a narrow band, as though against a ceiling, and 0.6B to 1B parameters suffice to match a 70B baseline on held-out participants. Out-of-distribution, that band opens into a markedly steeper scaling gradient, with larger models clearly advantaged in generalisation to novel task structure. To determine what information these models use, we run two diagnostics. We progressively strip four prompt channels -- task instructions, experimental stimuli, outcome feedback, and choice history -- across 27 experiments, and permute trial order. Masking the content of stimuli and feedback destroys 75.7% of learned information and pushes models below chance, demonstrating that choice history alone does not account for performance. Permutation reveals invariance on tasks with independent trials but sensitivity where trial order is determined by prior responses. Small cognitively fine-tuned models therefore show promise as noise ceiling estimators for psychological experiments, though their scope remains bounded by the paradigms seen in training.",
+      "authors": [
+        "Nick Oh",
+        "Fernand Gobet"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY"
+      ],
+      "published": "2026-08-05T11:34:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.05224v3",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM fine-tuned on large-scale human behavioral data as cognitive proxies",
+      "llm_evidence_cn": "在人类行为数据上微调大语言模型作为认知代理",
+      "llm_evidence": "在人类行为数据上微调大语言模型作为认知代理",
+      "canonical_evidence": "在人类行为数据上微调大语言模型作为认知代理",
+      "llm_tldr_en": "Trains fourteen language models (135M-14B) on Psych-101, 10.7M trial-level human choices, finding that small models suffice for in-distribution simulation while larger models generalize better out-of-distribution.",
+      "llm_tldr_cn": "大语言模型在人类行为数据上微调后可作为通用认知代理，但所需规模以及是否真正利用任务结构仍存疑。作者在Psych-101数据集（160个实验的1070万次选择）上训练了四个架构家族、135M到14B参数的模型。结果显示，分布内模拟中0.6B到1B参数就足以匹配70B基线，而分布外泛化则明显依赖更大模型。这为构建小而高效的人类认知与行为基础模型提供了依据。",
+      "llm_tldr": "大语言模型在人类行为数据上微调后可作为通用认知代理，但所需规模以及是否真正利用任务结构仍存疑。作者在Psych-101数据集（160个实验的1070万次选择）上训练了四个架构家族、135M到14B参数的模型。结果显示，分布内模拟中0.6B到1B参数就足以匹配70B基线，而分布外泛化则明显依赖更大模型。这为构建小而高效的人类认知与行为基础模型提供了依据。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.10796v1",
+      "source": "arxiv",
+      "title": "E$^3$mo-Bench: A Scalable Benchmark for Multimodal Evoked and Expressed Emotion Understanding via Bayesian Pairwise Alignment",
+      "abstract": "Understanding both expressed and evoked emotions is critical for multimodal large language models (MLLMs) to achieve comprehensive affect-aware interactions. However, existing benchmarks typically examine expressed and evoked emotions in isolation or are constrained to coarse-grained and incomplete affective characterizations. To bridge this gap, we introduce E$^3$mo-Bench, a scalable benchmark comprising $12{,}314$ question-answer pairs across $2{,}524$ videos with predefined affective perspectives. It evaluates evoked and expressed emotion understanding via $3$ complementary tasks: emotion perception, open-vocabulary recognition, and valence-arousal-dominance (VAD) assessment. To efficiently scale reliable continuous annotations, we propose Bayesian Pairwise Alignment, which aggregates sparse, low-burden pairwise judgments into anchor-referenced VAD estimates. Furthermore, we develop E$^3$mo-Score, a training-free agent that aggregates complementary judgments from a five-model committee to improve VAD estimation. Extensive experiments validate the effectiveness of our framework and expose a pronounced performance skew between evoked and expressed emotion paradigms. These findings, coupled with MLLMs' persistent deficits in fine-grained recognition and dimensional assessment, chart a clear course for advancing multimodal emotional intelligence.",
+      "authors": [
+        "Lancheng Gao",
+        "Ziheng Jia",
+        "Shengyan Li",
+        "Zixuan Xing",
+        "Jiarui Wang",
+        "Huiyu Duan",
+        "Xiongkuo Min"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-11T11:05:22+00:00",
+      "link": "https://arxiv.org/pdf/2608.10796v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Benchmark for multimodal emotion understanding with MLLMs, central to the composite neuro-mental theme",
+      "llm_evidence_cn": "面向多模态情感理解的大模型基准，契合神经-心理复合主题",
+      "llm_evidence": "面向多模态情感理解的大模型基准，契合神经-心理复合主题",
+      "canonical_evidence": "面向多模态情感理解的大模型基准，契合神经-心理复合主题",
+      "llm_tldr_en": "Introduces E3mo-Bench, a 12,314 QA-pair benchmark for evoked and expressed emotion understanding in videos, evaluating MLLMs on perception, open-vocabulary recognition, and VAD assessment via Bayesian pairwise alignment.",
+      "llm_tldr_cn": "为全面评估多模态大语言模型的情感理解能力，构建了包含12,314个问答对、覆盖2,524个视频的E^3mo-Bench基准，支持情绪感知、开放词汇识别和效价-唤醒-支配（VAD）评估三种任务。通过贝叶斯成对对齐实现可扩展的标注，解决现有基准对表达性情绪与诱发情绪研究割裂、粒度粗等问题。该基准为情感计算和多模态大模型研究提供了标准化评测平台，对心理健康人机交互有重要价值。",
+      "llm_tldr": "为全面评估多模态大语言模型的情感理解能力，构建了包含12,314个问答对、覆盖2,524个视频的E^3mo-Bench基准，支持情绪感知、开放词汇识别和效价-唤醒-支配（VAD）评估三种任务。通过贝叶斯成对对齐实现可扩展的标注，解决现有基准对表达性情绪与诱发情绪研究割裂、粒度粗等问题。该基准为情感计算和多模态大模型研究提供了标准化评测平台，对心理健康人机交互有重要价值。",
+      "llm_tags": [
+        "query:neuro-mental:composite"
+      ],
+      "matched_query_tag": "query:neuro-mental:composite",
+      "matched_query_text": "Papers central to 请每日自动检索最近24小时至7天内新发表或新上线的学术论文、预印本和综述，重点关注“大语言模型/大模型、睡眠、情绪/心理健康、脑机接口、脑电、深度学习、多模态人工智能，Fmri”相关研究。, especially work that connects or combines: large language models in research; sleep research; mental health studies; brain-computer interface technology; EEG signal processing; deep learning in neuroscience; How do large language models impact sleep and mental health; Deep learning for emotion recognition from EEG and brain computer interfaces; Multimodal AI integrating sleep data and mental health monitoring; EEG and fMRI studies on emotion regulation and mental health.",
+      "matched_requirement_id": "req-composite-neuro-mental",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.08868v1",
+      "source": "arxiv",
+      "title": "Conversation as Measurement in Clinical Encounters: Observable Phase Structure, Partially Observable Patient State",
+      "abstract": "Many modern AI systems analyze conversational traces to infer aspects of human interaction and state, implicitly assuming that such information is recoverable from conversation. We study observability: whether a target is recoverable from conversational transcripts alone. Observability is difficult to assess because transcripts may provide only a partial view of many targets, and large-scale analysis requires model-based annotation, making true limits of the conversational signal hard to distinguish from annotator error. We therefore study clinical encounters, where patient-reported outcome measures (PROMs) provide an external anchor for patient state, and visits follow broadly structured patterns. We study observability of patient state and conversational phase structure using 439 real-world clinical encounter transcripts spanning 134 hours, including 245 ENT transcripts paired with 273 PROM surveys. We operationalize patient state using PROM scores for voice, cough, and swallowing; phase structure using conversational phase segmentation. To make these analyses credible at scale, we use a PHI-compliant GPT-5 deployment for transcript annotation and conduct 40 hours of manual validation, reducing the risk that apparent limits of observability simply reflect annotator error. Our core finding is an observability asymmetry: phase structure is observable and useful for characterizing clinical encounter organization, while patient state is only partially observable, even in a setting designed to elicit patient symptoms and experiences, cautioning against transcript-only inference of human state.",
+      "authors": [
+        "Lily Chen",
+        "Ted Mau",
+        "Michael Gensheimer",
+        "Brian Anthony Nuyen",
+        "Nancy Jiang",
+        "James Zou"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-09T19:16:10+00:00",
+      "link": "https://arxiv.org/pdf/2608.08868v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI measurement of mental health state from clinical conversations",
+      "llm_evidence_cn": "从临床对话测量心理健康状态",
+      "llm_evidence": "从临床对话测量心理健康状态",
+      "canonical_evidence": "从临床对话测量心理健康状态",
+      "llm_tldr_en": "AI typically assumes patient state is recoverable from conversations. Using clinical encounters with PROMs as anchors, this paper studies observability of targets from transcripts, separating conversational signal limits from annotator error and revealing phase structure.",
+      "llm_tldr_cn": "许多AI系统从对话中推断患者状态，但对话信号对临床目标的可观测性尚不明确，且难以与标注误差区分。该研究以临床会谈为场景，用患者自报结局指标（PROMs）作为外部锚点，分析从对话记录恢复患者状态的观测边界。研究发现对话呈现出可观察的阶段结构，而患者状态仅部分可观察。这为基于对话的临床测量提供了观测性分析框架，有助于提升AI在心理健康等临床场景中的可信度。",
+      "llm_tldr": "许多AI系统从对话中推断患者状态，但对话信号对临床目标的可观测性尚不明确，且难以与标注误差区分。该研究以临床会谈为场景，用患者自报结局指标（PROMs）作为外部锚点，分析从对话记录恢复患者状态的观测边界。研究发现对话呈现出可观察的阶段结构，而患者状态仅部分可观察。这为基于对话的临床测量提供了观测性分析框架，有助于提升AI在心理健康等临床场景中的可信度。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.08868v2",
+      "source": "arxiv",
+      "title": "Conversation as Measurement in Clinical Encounters: Observable Phase Structure, Partially Observable Patient State",
+      "abstract": "Many modern AI systems analyze conversational traces to infer aspects of human interaction and state, implicitly assuming that such information is recoverable from conversation. We study observability: whether a target is recoverable from conversational transcripts alone. Observability is difficult to assess because transcripts may provide only a partial view of many targets, and large-scale analysis requires model-based annotation, making true limits of the conversational signal hard to distinguish from annotator error. We therefore study clinical encounters, where patient-reported outcome measures (PROMs) provide an external anchor for patient state, and visits follow broadly structured patterns. We study observability of patient state and conversational phase structure using 439 real-world clinical encounter transcripts spanning 134 hours, including 245 ENT transcripts paired with 273 PROM surveys. We operationalize patient state using PROM scores for voice, cough, and swallowing; phase structure using conversational phase segmentation. To make these analyses credible at scale, we use a PHI-compliant GPT-5 deployment for transcript annotation and conduct 40 hours of manual validation, reducing the risk that apparent limits of observability simply reflect annotator error. Our core finding is an observability asymmetry: phase structure is observable and useful for characterizing clinical encounter organization, while patient state is only partially observable, even in a setting designed to elicit patient symptoms and experiences, cautioning against transcript-only inference of human state.",
+      "authors": [
+        "Lily Chen",
+        "Ted Mau",
+        "Michael Gensheimer",
+        "Brian Anthony Nuyen",
+        "Nancy Jiang",
+        "James Zou"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-09T19:16:10+00:00",
+      "link": "https://arxiv.org/pdf/2608.08868v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI measurement of mental health state from clinical conversations",
+      "llm_evidence_cn": "从临床对话测量心理健康状态",
+      "llm_evidence": "从临床对话测量心理健康状态",
+      "canonical_evidence": "从临床对话测量心理健康状态",
+      "llm_tldr_en": "AI typically assumes patient state is recoverable from conversations. Using clinical encounters with PROMs as anchors, this paper studies observability of targets from transcripts, separating conversational signal limits from annotator error and revealing phase structure.",
+      "llm_tldr_cn": "许多AI系统从对话中推断患者状态，但对话信号对临床目标的可观测性尚不明确，且难以与标注误差区分。该研究以临床会谈为场景，用患者自报结局指标（PROMs）作为外部锚点，分析从对话记录恢复患者状态的观测边界。研究发现对话呈现出可观察的阶段结构，而患者状态仅部分可观察。这为基于对话的临床测量提供了观测性分析框架，有助于提升AI在心理健康等临床场景中的可信度。",
+      "llm_tldr": "许多AI系统从对话中推断患者状态，但对话信号对临床目标的可观测性尚不明确，且难以与标注误差区分。该研究以临床会谈为场景，用患者自报结局指标（PROMs）作为外部锚点，分析从对话记录恢复患者状态的观测边界。研究发现对话呈现出可观察的阶段结构，而患者状态仅部分可观察。这为基于对话的临床测量提供了观测性分析框架，有助于提升AI在心理健康等临床场景中的可信度。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.06110v2",
+      "source": "arxiv",
+      "title": "ECHO: A Locally-Deployable Agentic Health Assistant with Temporal Memory, Safety Guardrails, and Speech Assessment",
+      "abstract": "This paper presents ECHO (Enhanced Care & Health Observer), a locally-deployable conversational health assistant for long-term chronic care management. ECHO integrates three complementary software modules developed under shared supervision as a unified system. The core module is an agentic chatbot built on a ReAct loop orchestrated via LangGraph, equipped with 17 clinical tools and a temporal knowledge graph for persistent cross-session memory; it achieves a 94.9% tool-execution pass rate across a 59-scenario benchmark with GPT-5 Mini. A two-stage hybrid safety layer intercepts all incoming queries: a rule-based layer handles explicit crisis signals and jailbreak attempts in under 1ms, while a signed graph neural network (GNN) with APPNP-style propagation classifies boundary cases by clinical intent, achieving 88.8% accuracy and 90.6% unsafe recall on a 2,537-query annotated Turkish health dataset while outperforming zero-shot LLM baselines including Llama 3.3 70B. A multimodal speech assessment module combining Whisper acoustic encoding and BERT text encoding with cross-attention fusion estimates emotion, depression, and pain, reaching a mean macro F1 of 0.652. The full system is implemented as a web application that can run entirely on consumer hardware, with no patient data transmitted to external services, supporting compliance with GDPR and KVKK.",
+      "authors": [
+        "Abdulkadir Külçe",
+        "Alihan Esen",
+        "Çağla Fikir",
+        "Berke Kurt",
+        "Kuzey Arar",
+        "Gökhan Ercan",
+        "Faik Boray Tek"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-06T14:44:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.06110v2",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Agentic LLM health assistant with mental-health crisis safety guardrails and speech assessment",
+      "llm_evidence_cn": "基于智能体大模型的健康助手，具备精神健康危机防护与语音评估能力",
+      "llm_evidence": "基于智能体大模型的健康助手，具备精神健康危机防护与语音评估能力",
+      "canonical_evidence": "基于智能体大模型的健康助手，具备精神健康危机防护与语音评估能力",
+      "llm_tldr_en": "ECHO is a locally-deployable agentic health assistant using ReAct/LangGraph and a temporal knowledge graph, achieving 94.9% tool-execution accuracy with two-stage crisis safety in under 1ms.",
+      "llm_tldr_cn": "针对长期慢性病管理中健康助手的持续记忆与安全需求，ECHO构建了基于ReAct循环和LangGraph的智能体聊天机器人，配备17个临床工具和时序知识图谱，实现跨会话记忆。系统采用两阶段混合安全层，规则层可在1毫秒内拦截危机信号，图网络层提供更细粒度防护。在59场景基准中工具执行通过率达94.9%。该工作展示了本地可部署的大模型健康助手在慢病管理与心理健康危机干预中的可行性。",
+      "llm_tldr": "针对长期慢性病管理中健康助手的持续记忆与安全需求，ECHO构建了基于ReAct循环和LangGraph的智能体聊天机器人，配备17个临床工具和时序知识图谱，实现跨会话记忆。系统采用两阶段混合安全层，规则层可在1毫秒内拦截危机信号，图网络层提供更细粒度防护。在59场景基准中工具执行通过率达94.9%。该工作展示了本地可部署的大模型健康助手在慢病管理与心理健康危机干预中的可行性。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.08702v1",
+      "source": "arxiv",
+      "title": "SRE-FER: Regional residual evidence learning for mitigating local evidence dilution in fine-grained facial expression recognition",
+      "abstract": "Fine-grained facial expression recognition (FER) hinges on capturing subtle muscular cues that distinguish adjacent emotions. Yet capturing these cues presents a dilemma. Detector-based methods depend on fragile landmark pipelines, whereas we find that directly transferring foundation models such as DINOv3 under conventional global readouts can cause local evidence dilution: early global aggregation washes out sparse muscular signals and leaves persistent confusion between categories such as fear/surprise and sad/neutral. To recover this evidence, we propose SRE-FER, a readout-level regional residual evidence learning framework. Its core module, RERA, adds zero-initialized residual logits that refine class boundaries while preserving the backbone's global prediction. Training-time action unit (AU) guidance steers regional features toward expression-relevant areas using Facial Action Coding System (FACS)-based anatomical priors, without requiring an external facial pipeline at inference. An optional Full setting further routes sample-specific non-redundant tokens. On three benchmarks, SRE-FER attains 92.76% on RAF-DB, 91.32% on FERPlus, and 67.78% on AffectNet-7, demonstrating highly competitive performance compared to existing FER methods.",
+      "authors": [
+        "Jiaye Song",
+        "Ruochen Zhang",
+        "Yuliang Wang",
+        "Jiaqi Wu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-09T13:33:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.08702v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Deep learning method for fine-grained facial expression recognition, relevant to emotion recognition tasks",
+      "llm_evidence_cn": "用于细粒度面部表情识别的深度学习方法，与情绪识别任务相关",
+      "llm_evidence": "用于细粒度面部表情识别的深度学习方法，与情绪识别任务相关",
+      "canonical_evidence": "用于细粒度面部表情识别的深度学习方法，与情绪识别任务相关",
+      "llm_tldr_en": "Proposes SRE-FER, a regional residual evidence learning framework that recovers sparse muscular cues in fine-grained facial expression recognition, mitigating local evidence dilution and improving subtle emotion discrimination.",
+      "llm_tldr_cn": "针对细粒度面部表情识别中全局聚合导致局部微弱肌肉线索被稀释的问题，提出SRE-FER框架，其核心模块RERA通过零初始化残差逻辑恢复局部证据。该框架在避免依赖脆弱关键点管道的同时，缓解了恐惧/惊讶、悲伤/中性等易混淆类别的误判。实验表明该方法能有效提升细粒度表情识别性能，对情绪理解相关应用具有价值。",
+      "llm_tldr": "针对细粒度面部表情识别中全局聚合导致局部微弱肌肉线索被稀释的问题，提出SRE-FER框架，其核心模块RERA通过零初始化残差逻辑恢复局部证据。该框架在避免依赖脆弱关键点管道的同时，缓解了恐惧/惊讶、悲伤/中性等易混淆类别的误判。实验表明该方法能有效提升细粒度表情识别性能，对情绪理解相关应用具有价值。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "Deep learning for emotion recognition from EEG and brain computer interfaces",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.08926v1",
+      "source": "arxiv",
+      "title": "Decoding Phenotypes: A Framework for Fusing Genomic Language Models and Neuroimaging",
+      "abstract": "Neuroimaging and genetic testing are two important clinical references for nervous system diseases, offering complementary diagnostic information. However, integrating genomic and neuroimaging data for precise disease diagnosis is challenging due to cross-modality heterogeneity. Existing imaging-genetics approaches mainly encode genetic information as hard-coded labels, which lose the local sequence context around disease-associated variants. To address this limitation, we propose GeneFuse, a multimodal learning framework that aligns genetic representations from pre-trained Genomic Language Models (GLMs) with features extracted from images. GeneFuse integrates two components: (1) Genotype-Conditioned Feature Modulation (GCFM), a FiLM-inspired module that uses genomic embeddings to modulate image feature maps; and (2) Uncertainty-aware Genomic Residual Fusion (U-GRF), a fusion strategy that uses imaging-derived predictive uncertainty to gate the contribution of genotypic features. We evaluate GeneFuse on early cognitive decline identification (NC vs. MCI) and dementia screening (NC vs. AD). In the APOE-centered setting, GeneFuse achieves AUROCs of 0.77 and 0.83, outperforming existing imaging-genetics fusion methods. These results indicate that GLM-derived genomic embeddings provide additional information to imaging.",
+      "authors": [
+        "Tianli Tao",
+        "Ziyang Wang",
+        "Emma Robinson",
+        "Rachel Sparks",
+        "Le Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-09T21:40:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.08926v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multimodal deep learning fusing genomic language models and neuroimaging for nervous system diseases",
+      "llm_evidence_cn": "基因组语言模型与神经影像融合的深度学习框架",
+      "llm_evidence": "基因组语言模型与神经影像融合的深度学习框架",
+      "canonical_evidence": "基因组语言模型与神经影像融合的深度学习框架",
+      "llm_tldr_en": "GeneFuse aligns Genomic Language Model representations with neuroimaging features via FiLM-inspired genotype-conditioned feature modulation, improving cross-modality fusion for nervous system disease diagnosis.",
+      "llm_tldr_cn": "神经系统疾病诊断中，影像和遗传是互补临床参考，但跨模态异质性使整合困难。现有方法将遗传信息编码为硬编码标签，丢失变异周围的局部序列上下文。本文提出GeneFuse，将预训练基因组语言模型的表征与影像特征对齐，并采用基因型条件特征调制（GCFM，FiLM启发）。该多模态学习框架为影像遗传学提供更精细的融合机制。",
+      "llm_tldr": "神经系统疾病诊断中，影像和遗传是互补临床参考，但跨模态异质性使整合困难。现有方法将遗传信息编码为硬编码标签，丢失变异周围的局部序列上下文。本文提出GeneFuse，将预训练基因组语言模型的表征与影像特征对齐，并采用基因型条件特征调制（GCFM，FiLM启发）。该多模态学习框架为影像遗传学提供更精细的融合机制。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "deep learning in neuroscience",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.07867v1",
+      "source": "arxiv",
+      "title": "CONFER: Conflict-Aware Evidence Negotiation for Regime-Calibrated Weak Supervision in Multimodal Emotion Recognition",
+      "abstract": "Multimodal emotion recognition often treats self-reported labels as reliable supervision while overlooking self-report unreliability and cross-modal conflict. We propose \\textbf{CONFER}, a graph-based conflict-aware evidence negotiation framework for weakly supervised multimodal emotion recognition. CONFER represents each modality expert as a node with a predictive belief, boundary-based uncertainty, and runtime reliability estimated from historical out-of-fold performance and current-sample uncertainty. Uncertainty-aware compatibility and reliability-directed asymmetric edge weights govern iterative message-passing negotiation, followed by peer-supported prediction readout. Conflict reduction, residual disagreement, and mean modality uncertainty further characterize three regimes---Consensus, Dissent, and Ambiguity---for sample-specific weak-label calibration. We evaluate CONFER on AMIGOS, MAHNOB-HCI, and DEAP under subject-dependent 10-fold and strict leave-one-subject-out (LOSO) protocols. CONFER achieves competitive performance, reaching \\textbf{0.873} accuracy on AMIGOS-V and \\textbf{0.854} accuracy on MAHNOB-V under strict LOSO evaluation. Further analyses show larger negotiation gains on high-conflict samples and improved robustness to weak-label corruption, indicating that cross-modal conflict provides useful information for both directional modality coordination and supervision-reliability estimation.",
+      "authors": [
+        "Bojing Hou",
+        "Ruohao Li",
+        "Yitong Zhu",
+        "Luwen Yu",
+        "Yuyang Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-08T02:42:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.07867v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Weakly supervised multimodal emotion recognition, relevant to mental health and EEG/BCI emotion applications",
+      "llm_evidence_cn": "面向多模态情绪识别的弱监督冲突感知方法，与心理健康和情感计算相关",
+      "llm_evidence": "面向多模态情绪识别的弱监督冲突感知方法，与心理健康和情感计算相关",
+      "canonical_evidence": "面向多模态情绪识别的弱监督冲突感知方法，与心理健康和情感计算相关",
+      "llm_tldr_en": "CONFER proposes a graph-based conflict-aware negotiation framework for weakly supervised multimodal emotion recognition, modeling modality reliability and cross-modal conflict to improve prediction.",
+      "llm_tldr_cn": "多模态情绪识别常将自我报告标签视为可靠监督，但忽略了自我报告不可靠和跨模态冲突。作者提出CONFER框架，以图神经网络表达各模态专家的预测信念、边界不确定性和运行时可靠性，通过迭代消息传递进行证据协商。实验表明该方法能够有效降低冲突、提升弱监督下的情绪识别性能，为情感计算与心理健康分析提供了新思路。",
+      "llm_tldr": "多模态情绪识别常将自我报告标签视为可靠监督，但忽略了自我报告不可靠和跨模态冲突。作者提出CONFER框架，以图神经网络表达各模态专家的预测信念、边界不确定性和运行时可靠性，通过迭代消息传递进行证据协商。实验表明该方法能够有效降低冲突、提升弱监督下的情绪识别性能，为情感计算与心理健康分析提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.08772v1",
+      "source": "arxiv",
+      "title": "Multilingual Emotion Neurons in Large Audio-Language Models",
+      "abstract": "Emotion is central to human communication, and its expression varies across languages. Large audio-language models (LALMs) achieve strong performance on multilingual speech tasks, yet it remains unclear whether they encode emotion through language-specific correlations or language-agnostic representations. We present the first neuron-level interpretability study of this question. We define Multilingual Emotion Neurons (MLENs) as functional units exhibiting stable emotional selectivity and aligned causal effects across languages, and introduce Consistency-Regularized Fusion (CR-Fusion) to identify them. Across four modern LALMs and 12 typologically diverse languages, emotion-sensitive neurons identified independently per language show minimal overlap, and additional monolingual identification data saturates quickly without isolating more transferable units, motivating identification from pooled cross-lingual evidence. Causal interventions demonstrate that MLENs identified by CR-Fusion provide more precise and transferable affective control than monolingual neuron sets in both zero-shot and low-resource settings. Leave-one-out ablations further reveal asymmetric transfer: individual identification languages, including low-resource ones, contribute non-redundant evidence, while several low-resource languages benefit most from the resulting cross-lingual transfer. Together, our findings provide the first causal, neuron-level account of how LALMs encode emotion across languages, and establish multilingual neuron identification as an effective mechanism for understanding cross-lingual affective behavior.",
+      "authors": [
+        "Xiutian Zhao",
+        "Philipp Koehn",
+        "Björn Schuller",
+        "Berrak Sisman"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "eess.AS"
+      ],
+      "published": "2026-08-09T15:42:55+00:00",
+      "link": "https://arxiv.org/pdf/2608.08772v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Neuron-level interpretability of emotion in large audio-language models",
+      "llm_evidence_cn": "大型音频语言模型中情绪神经元的可解释性研究",
+      "llm_evidence": "大型音频语言模型中情绪神经元的可解释性研究",
+      "canonical_evidence": "大型音频语言模型中情绪神经元的可解释性研究",
+      "llm_tldr_en": "This paper provides the first neuron-level interpretability study of emotion in large audio-language models, defining Multilingual Emotion Neurons and introducing CR-Fusion to identify them across 12 languages, revealing language-agnostic emotion representations.",
+      "llm_tldr_cn": "大型音频语言模型在多语言语音任务中表现优异，但情绪表征是否跨语言一致并不清楚。本文首次从神经元层面研究该问题，定义了多语言情绪神经元，并提出一致性正则化融合方法识别这些神经元。在四种模型和12种语言上的实验表明，按语言独立识别的情绪敏感神经元重叠很少，揭示了情绪编码的复杂跨语言机制，对情感计算模型可解释性有重要意义。",
+      "llm_tldr": "大型音频语言模型在多语言语音任务中表现优异，但情绪表征是否跨语言一致并不清楚。本文首次从神经元层面研究该问题，定义了多语言情绪神经元，并提出一致性正则化融合方法识别这些神经元。在四种模型和12种语言上的实验表明，按语言独立识别的情绪敏感神经元重叠很少，揭示了情绪编码的复杂跨语言机制，对情感计算模型可解释性有重要意义。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.10887v1",
+      "source": "arxiv",
+      "title": "Modeling and Interpreting Correlations, Null Distributions and Significance Levels in Neural Tracking of Natural Stimuli",
+      "abstract": "Neural tracking - the time-locking of neural responses to continuous stimuli such as speech, music, and video - is widely used to study how the brain processes natural input. Tracking strength is typically quantified as the correlation between the recorded neural response and the stimulus, decoded and/or encoded through data-driven models, and this correlation is routinely used to compare stimulus features, models, or settings. However, its magnitude depends not only on how strongly the brain tracks the stimulus, but also on the statistical properties of the signals being correlated. For example, a smallband speech envelope carrying almost no information about speech content yields among the highest correlations, simply because it is easier to reconstruct. Meaningful interpretation therefore requires comparing each correlation to its null distribution: the correlations expected without any stimulus-response relationship. We show that the randomization procedures commonly used to construct this null distribution are not interchangeable: each implicitly encodes a different null hypothesis, and we motivate stimulus-response misalignment as the most practical and appropriate choice. Because reliable null distributions require many permutations, we introduce a semi-parametric model using the normal distribution after the Fisher transform that yields accurate significance levels from only 3-5 min of data and predicts them across analysis window lengths. Building on this, we propose the null-normalized tracking score, an interpretable measure placing features and models on a common scale, which relates directly to the widely used match-mismatch accuracy. Applied to EEG from 121 participants listening to continuous speech, the framework reverses conclusions drawn from raw correlations, providing an efficient and principled methodology for interpreting neural tracking correlations.",
+      "authors": [
+        "Simon Geirnaert",
+        "Alexander Bertrand",
+        "Tom Francart",
+        "Jonas Vanthornhout"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "eess.SP",
+        "q-bio.QM"
+      ],
+      "published": "2026-08-11T13:03:38+00:00",
+      "link": "https://arxiv.org/pdf/2608.10887v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Statistical modeling of neural tracking correlations and significance, relevant to EEG signal processing",
+      "llm_evidence_cn": "针对神经追踪中的相关性与显著性统计建模，与脑电信号处理直接相关",
+      "llm_evidence": "针对神经追踪中的相关性与显著性统计建模，与脑电信号处理直接相关",
+      "canonical_evidence": "针对神经追踪中的相关性与显著性统计建模，与脑电信号处理直接相关",
+      "llm_tldr_en": "This paper investigates how correlation magnitudes in neural tracking depend on signal statistics, providing null distributions and significance levels for reliable interpretation of EEG-style natural-stimulus experiments.",
+      "llm_tldr_cn": "针对自然刺激神经追踪研究中相关强度解释易受信号统计特性影响的问题，论文系统分析了相关幅度如何依赖被相关信号的统计属性，并提出相应的零分布与显著性水平建模方法。通过理论分析和示例展示了窄带语音包络等低信息信号也会产生高相关的现象。该工作为脑电等神经追踪实验的正确统计推断提供了指导，避免误导性结论。",
+      "llm_tldr": "针对自然刺激神经追踪研究中相关强度解释易受信号统计特性影响的问题，论文系统分析了相关幅度如何依赖被相关信号的统计属性，并提出相应的零分布与显著性水平建模方法。通过理论分析和示例展示了窄带语音包络等低信息信号也会产生高相关的现象。该工作为脑电等神经追踪实验的正确统计推断提供了指导，避免误导性结论。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "EEG signal processing",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.09294v1",
+      "source": "arxiv",
+      "title": "Graphing the Everyday: A Neurosymbolic Approach to Eliciting Routines for Just-In-Time Adaptive Interventions",
+      "abstract": "Just-In-Time Adaptive Interventions (JITAIs) increasingly rely on conversational agents to elicit user routines, yet translating fluid human dialogue into rigid schedule data remains a significant challenge. We conducted a qualitative investigation of a neurosymbolic pipeline, combining Large Language Models (LLMs) with a Neo4j knowledge graph, to map unstructured verbal narratives into actionable interventions. Through human-centric evaluation using natural-language playbacks, we identified a critical \"mental-model gap,\" where the linear extraction of LLMs clashes with hierarchical, non-linear human storytelling, causing severe entity fragmentation. Furthermore, we articulate an \"ecological mismatch,\" demonstrating that algorithmic schedule availability frequently ignores the user's fluctuating psychological receptivity and physical energy levels. To resolve these tensions, we propose actionable design heuristics, including routine piggybacking, adaptive negotiation, and scalable transparency. Ultimately, these guidelines provide a foundational framework for evolving rigid schedule-trackers into empathetic, context-aware proactive agents capable of supporting long-term health behavior change.",
+      "authors": [
+        "Shakyani Jayasiriwardene",
+        "Blake Mountford",
+        "Meican Ma",
+        "Niels van Berkel",
+        "Nicholas Koemel",
+        "Matthew Ahmadi",
+        "Jorge Goncalves",
+        "Emmanuel Stamatakis",
+        "Zhanna Sarsenbayeva"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC"
+      ],
+      "published": "2026-08-10T08:45:54+00:00",
+      "link": "https://arxiv.org/pdf/2608.09294v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM and knowledge graph pipeline for eliciting routines in just-in-time adaptive interventions for health behavior",
+      "llm_evidence_cn": "利用大语言模型与知识图谱提取日常规律以支持健康行为干预",
+      "llm_evidence": "利用大语言模型与知识图谱提取日常规律以支持健康行为干预",
+      "canonical_evidence": "利用大语言模型与知识图谱提取日常规律以支持健康行为干预",
+      "llm_tldr_en": "This paper evaluates a neurosymbolic pipeline combining LLMs with a knowledge graph to map free-form dialogue into intervention routines for JITAIs, exposing a mental-model gap and ecological mismatch that inform the design of adaptive health interventions.",
+      "llm_tldr_cn": "及时自适应干预常依赖对话代理获取用户日常规律，但把非结构叙事转化为结构化数据存在挑战。本文结合大语言模型与Neo4j知识图谱构建神经符号流程，并通过自然语言回放进行以人为中心的评估。研究发现线性提取与人类分层非线性叙事之间存在心理模型鸿沟，导致实体碎片化，同时揭示生态错配问题。这些发现对心理健康干预系统的设计具有重要启发。",
+      "llm_tldr": "及时自适应干预常依赖对话代理获取用户日常规律，但把非结构叙事转化为结构化数据存在挑战。本文结合大语言模型与Neo4j知识图谱构建神经符号流程，并通过自然语言回放进行以人为中心的评估。研究发现线性提取与人类分层非线性叙事之间存在心理模型鸿沟，导致实体碎片化，同时揭示生态错配问题。这些发现对心理健康干预系统的设计具有重要启发。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.09861v1",
+      "source": "arxiv",
+      "title": "Towards Expert-level Medical AI for Real-time Video Consultations",
+      "abstract": "Audio-visual interaction is the standard for patient-physician consultations, enabling natural communication and effective assessment of illness through non-verbal cues. While text-based AI has shown promise, it discards essential perceptual dimensions and limits patients who cannot articulate symptoms in writing. Early efforts to extend medical AI to audio-visual interaction have demonstrated feasibility but not reached clinician-level performance. Here, we provide the first demonstration of expert-level AI in real-time clinical video consultations using AMIE (Articulate Medical Intelligence Explorer) in a video configuration. AMIE (Video) is a Gemini-based multi-agent system integrating low-latency dialogue, clinical reasoning, and real-time audio-visual perception. To guide development, we established a taxonomy and automated evaluations for clinical audio-visual cues in telehealth settings. In a randomized Objective Structured Clinical Examination (OSCE) study with 30 primary care physicians (PCPs), 15 patient actors and 100 clinical scenarios, we compared AMIE (Video), its text-only counterpart AMIE (Text), and PCPs consulting via video. Clinical evaluators rated AMIE (Video) on par or better than PCPs in history-taking, diagnosis, management, and physical observation and examination. Patient actors preferred AMIE's approach to assessing and explaining conditions, while PCPs were preferred for rapport and partnership building. In modality ablation, patient actors preferred AMIE (Video)'s interface over text chat for communicative effectiveness, convenience, and feeling understood. Limitations remain in fine anatomical precision, subtle affective nuances, and high-frequency movements. While further research is needed before real-world translation, these results mark an important milestone toward AI systems capable of augmenting care across the sensory complexity of clinical practice.",
+      "authors": [
+        "Mahvish Nagda",
+        "Jihyeon Lee",
+        "Matthew Thompson",
+        "Chunjong Park",
+        "Tim Strother",
+        "Valentin Liévin",
+        "Roma Ruparel",
+        "Akshay Goel",
+        "Teya Bergamaschi",
+        "Suhana Bedi",
+        "Meet Shah",
+        "Pavel Dubov",
+        "Liviu Panait",
+        "Toshiyuki Fukuzawa",
+        "Sam Schmidgall",
+        "Craig Schiff",
+        "Joseph Xu",
+        "Aliya Rysbek",
+        "Yana Lunts",
+        "Jan Freyberg",
+        "Rebecca Hemengway",
+        "Sunny Virmani",
+        "David Racz",
+        "Carey Radebaugh",
+        "Joëlle Barral",
+        "Kavi Goel",
+        "Dale R. Webster",
+        "Katherine Chou",
+        "Avinatan Hassidim",
+        "Yossi Matias",
+        "James Manyika",
+        "Gregory Wayne",
+        "Tao Tu",
+        "Yun Liu",
+        "Ethan Goh",
+        "Christina Chen",
+        "Ryutaro Tanno",
+        "Po-Hsuan Cameron Chen",
+        "Mike Schaekermann",
+        "Anil Palepu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-08-10T17:19:31+00:00",
+      "link": "https://arxiv.org/pdf/2608.09861v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM-based real-time video consultation medical AI, relevant to LLM research with health applications",
+      "llm_evidence_cn": "基于大模型的实时视频医疗AI，与LLM健康应用研究相关",
+      "llm_evidence": "基于大模型的实时视频医疗AI，与LLM健康应用研究相关",
+      "canonical_evidence": "基于大模型的实时视频医疗AI，与LLM健康应用研究相关",
+      "llm_tldr_en": "AMIE (Video) is a Gemini-based multi-agent system for real-time clinical video consultations that integrates low-latency dialogue, clinical reasoning, and audio-visual perception to reach expert-level performance in first demonstration.",
+      "llm_tldr_cn": "文本AI舍弃了医患沟通中的听觉-视觉信息，限制了无法文字描述症状的患者。论文推出AMIE的视频配置，基于Gemini构建多智能体系统，实现低延迟对话、临床推理和实时音视频感知。首次演示其在真实临床视频问诊中达到专家级水平。该工作拓展了LLM在医疗多模态交互中的应用，也可为远程精神评估提供参考。",
+      "llm_tldr": "文本AI舍弃了医患沟通中的听觉-视觉信息，限制了无法文字描述症状的患者。论文推出AMIE的视频配置，基于Gemini构建多智能体系统，实现低延迟对话、临床推理和实时音视频感知。首次演示其在真实临床视频问诊中达到专家级水平。该工作拓展了LLM在医疗多模态交互中的应用，也可为远程精神评估提供参考。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "large language models in research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.10442v1",
+      "source": "arxiv",
+      "title": "FUSE: Frame-Unified Stress Estimation from Facial Video",
+      "abstract": "Automatic stress detection from facial video offers a practical path to non-intrusive affect monitoring, yet existing video-based approaches commonly decompose full recordings into short temporal windows before classification. This design introduces additional choices regarding window length, overlap, and aggregation, while limiting direct analysis of temporal information across the entire recording. In this study, we present FUSE (Frame-Unified Stress Estimation), a facial-video stress detection framework that processes complete recordings as a single input without temporal windowing or external segmentation. The name reflects the defining operation of the method: rather than dividing a recording into short clips, all frames are fused into one unified two-dimensional representation from which the stress state is estimated. This unification is realized by folding the temporal dimension into the channel dimension of the spatial representation, and the resulting high-dimensional input is processed using a unified asymmetric-attention architecture. At a temporal stride of t = 1, FUSE retains the full 120-second recording as one input, corresponding to 3,600 frames at 30 fps. Experiments on a 58-subject stress dataset using a stratified subject-level protocol evaluate seven temporal-stride configurations, ranging from full-frame input to sparse subsampling. FUSE achieves the highest test accuracy of 69.44% at t = 15, while the full-frame configuration remains competitive at 69.03%. Across the stride range, computational cost varies from 12.48 to 348.78 GFLOPs, showing the trade-off between temporal density and efficiency. These results demonstrate that temporal windowing is not required for effective facial-video stress detection in this setting, and that complete-recording inference can be achieved within a single unified architecture.",
+      "authors": [
+        "Stefanos Gkikas",
+        "Thomas Kassiotis",
+        "Yang Guo",
+        "Guangliang Li",
+        "Giorgos Giannakakis"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-11T03:49:44+00:00",
+      "link": "https://arxiv.org/pdf/2608.10442v1",
+      "tags": [
+        "keyword:neuro-mental",
+        "query:neuro-mental"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Video-based stress detection for mental health monitoring",
+      "llm_evidence_cn": "视频面部压力估计与心理健康监测",
+      "llm_evidence": "视频面部压力估计与心理健康监测",
+      "canonical_evidence": "视频面部压力估计与心理健康监测",
+      "llm_tldr_en": "Introduces FUSE, a frame-unified framework that processes complete facial recordings as a single input without temporal windowing, improving temporal context modeling for continuous stress and affect monitoring.",
+      "llm_tldr_cn": "面部视频自动压力检测是非侵入式情感监测的有效途径，但现有方法多依赖短时间窗口，难以利用整段视频的时序信息。该文提出FUSE框架，将完整视频的所有帧融合为一个统一的二维特征，无需切窗或外部分段，直接进行压力估计。该方法在压力检测任务上简化了设计选择并提升了对整段时序建模的能力，为连续情感状态监测提供了新思路。",
+      "llm_tldr": "面部视频自动压力检测是非侵入式情感监测的有效途径，但现有方法多依赖短时间窗口，难以利用整段视频的时序信息。该文提出FUSE框架，将完整视频的所有帧融合为一个统一的二维特征，无需切窗或外部分段，直接进行压力估计。该方法在压力检测任务上简化了设计选择并提升了对整段时序建模的能力，为连续情感状态监测提供了新思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.10448v1",
+      "source": "arxiv",
+      "title": "Rationale-Guided Learning for Multimodal Emotion Recognition",
+      "abstract": "Multimodal emotion recognition in conversation (MERC) requires understanding complex interactions between verbal and non-verbal cues. However, most existing approaches fundamentally treat this as a direct input-output (multimodal cues-emotion labels) mapping problem, overlooking the causal reasoning that humans use when interpreting emotions. We propose rationale-guided learning (RGL), a novel framework that transforms MERC into a cognitively-inspired reasoning task. Based on dual-process theory, we decompose emotional reasoning into three facets: Intuitive (immediate perception, System 1), Contextual (situational analysis, System 2), and Integrative (synthesis of both). We leverage an MLLM offline to generate structured rationales, which are encoded as memories to guide model training via aligning internal representations with human-like reasoning patterns. Our final model operates without any MLLM overheads at inference time. Experimental results show that RGL achieves state-of-the-art performance on the IEMOCAP and MELD benchmarks. Further, for interpretation, we demonstrate that the model's internal features effectively retrieve semantically correct rationales for unseen test samples, validating its rationale reasoning capabilities.",
+      "authors": [
+        "Sujung Oh",
+        "Jung Uk Kim",
+        "Sangmin Lee"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-11T04:02:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.10448v1",
+      "tags": [
+        "query:neuro-mental"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multimodal emotion recognition using rationale-guided learning and MLLM",
+      "llm_evidence_cn": "基于多模态情绪识别与MLLM的心理健康关联研究",
+      "llm_evidence": "基于多模态情绪识别与MLLM的心理健康关联研究",
+      "canonical_evidence": "基于多模态情绪识别与MLLM的心理健康关联研究",
+      "llm_tldr_en": "Rationale-guided learning transforms multimodal emotion recognition in conversation into a cognitively inspired reasoning task using an MLLM to generate structured rationales.",
+      "llm_tldr_cn": "多模态对话情绪识别常被视为直接的输入-输出映射，忽略了人类解释情绪时的因果推理。本文提出基于双过程理论的理由引导学习（RGL），将情感推理分解为直觉、情境和整合三个层面，并利用多模态大模型离线生成结构化理由作为记忆。该方法为情绪识别提供了新的认知启发式建模思路。",
+      "llm_tldr": "多模态对话情绪识别常被视为直接的输入-输出映射，忽略了人类解释情绪时的因果推理。本文提出基于双过程理论的理由引导学习（RGL），将情感推理分解为直觉、情境和整合三个层面，并利用多模态大模型离线生成结构化理由作为记忆。该方法为情绪识别提供了新的认知启发式建模思路。",
+      "llm_tags": [
+        "query:neuro-mental"
+      ],
+      "matched_query_tag": "query:neuro-mental",
+      "matched_query_text": "mental health studies",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
